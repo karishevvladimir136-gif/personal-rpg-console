@@ -663,5 +663,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history never establishes that Trellis Yoga's workshop is uninvoiced, so the amendment's applicability to EV-1—and thus its ASK mark—is ambiguous. The confirmation rule requires consent before repricing but does not independently require seeking repricing consent for an unrelated workshop during the Nordlys task. The Nordlys amounts, class, tier requirements and change placement otherwise check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history never establishes that Trellis Yoga's workshop is uninvoiced, so the amendment's applicability to EV-1—and thus its ASK mark—is ambiguous. The confirmation rule requires consent before repricing but does not independently require seeking repricing consent for an unrelated workshop during the Nordlys task. The Nordlys amounts, class, tier requirements and change placement otherwise check out."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4418,
+    "completion_tokens": 253,
+    "reasoning_tokens": 141,
+    "cached_tokens": 0
+   },
+   "cost": 0.0678675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fd8c36b017933f145b69d81b31d1f04141d9b53243dc2d64c0f9b6f76e69c163",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change amends the rush-surcharge rule (e2) with an explicit charity exception, so the REVISE (CL-1, CL-2), ASK (EV-1) and KEEP (EV-2) marks follow from the history, and the expected values (2860, 1430) check out. Counts fit the tier (33 core events, 8 decisions, change 15 days before the task, 5 core events after it). The only borderline point is whether the 'old document' echo requirement is clearly met, since only e17 plainly restates the stale 20% rate as current pricing.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change amends the rush-surcharge rule (e2) with an explicit charity exception, so the REVISE (CL-1, CL-2), ASK (EV-1) and KEEP (EV-2) marks follow from the history, and the expected values (2860, 1430) check out. Counts fit the tier (33 core events, 8 decisions, change 15 days before the task, 5 core events after it). The only borderline point is whether the 'old document' echo requirement is clearly met, since only e17 plainly restates the stale 20% rate as current pricing."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6334,
+    "completion_tokens": 1888,
+    "reasoning_tokens": 1652,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015774,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fd8c36b017933f145b69d81b31d1f04141d9b53243dc2d64c0f9b6f76e69c163",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment's own terms cleanly split the marks: un-invoiced rush work moves to 30% (CL-1/CL-2 drafts, never confirmed, so REVISE with arithmetic fixed at 2860/1430), EV-1 was confirmed in writing with Petra so e3 makes it ASK, and the charity exception makes EV-2 KEEP; the consent map matches e3. Counts (33 core events, 8 decisions), the 15-day gap with post-change core events, and two echoes (e17, e24) all meet tier 1,000. The change sits as an ordinary notice at event 904 with 96 later events, and the task forces a workplace act without hinting at the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment's own terms cleanly split the marks: un-invoiced rush work moves to 30% (CL-1/CL-2 drafts, never confirmed, so REVISE with arithmetic fixed at 2860/1430), EV-1 was confirmed in writing with Petra so e3 makes it ASK, and the charity exception makes EV-2 KEEP; the consent map matches e3. Counts (33 core events, 8 decisions), the 15-day gap with post-change core events, and two echoes (e17, e24) all meet tier 1,000. The change sits as an ordinary notice at event 904 with 96 later events, and the task forces a workplace act without hinting at the change."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4558,
+    "completion_tokens": 664,
+    "reasoning_tokens": 454,
+    "cached_tokens": 256
+   },
+   "cost": 0.0229428,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fd8c36b017933f145b69d81b31d1f04141d9b53243dc2d64c0f9b6f76e69c163",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

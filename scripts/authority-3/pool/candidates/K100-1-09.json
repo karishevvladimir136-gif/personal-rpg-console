@@ -1,0 +1,631 @@
+{
+ "id": "K100-1-09",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 1,
+ "idx": 8,
+ "setting": "Workshop foreman at Ironline Custom Fabrication, a metalworking shop",
+ "prompt_sha256": "ca24b3721bc91cc0248c8bea3d98b04dd9256e80d74f7b73dfee8ef39e0a1c3f",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Hargrove steel price rise\",\n \"setting\": \"Workshop foreman at Ironline Custom Fabrication, a metalworking shop\",\n \"owner\": \"Marcus\",\n \"org\": \"Ironline Custom Fabrication\",\n \"now\": \"2026-11-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Marcus\", \"text\": \"Standing instruction for the shop: any supplier order over 5000 needs sign-off from Priya Nayak, our finance lead, before it is placed. Anything at or under 5000 I can approve myself.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-22\", \"type\": \"policy\", \"from\": \"Marcus\", \"text\": \"Shop policy on client work: once a client has confirmed a quoted price, we do not change that price without the client's own agreement, whatever happens to our material costs.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-07-06\", \"type\": \"note\", \"from\": \"Marcus\", \"text\": \"Yard notes: the goods-in dock takes one delivery in the morning slot starting 08:00. Priya Nayak handles finance on Tuesdays and Thursdays and wants order totals in whole numbers.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-20\", \"type\": \"quote\", \"from\": \"Nadia Broome (Casta Fasteners)\", \"text\": \"Quote from Casta Fasteners: M8 zinc-plated bolts, boxes of 500, at 38 per box, quote held for 60 days.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-08-03\", \"type\": \"cancellation\", \"from\": \"Owen Pruitt (Pruitt Stables)\", \"text\": \"Owen Pruitt called to cancel the small gate repair we had pencilled in for late August; he will come back to us in the spring.\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Petra Lind (WeldRight Training)\", \"text\": \"Petra Lind at WeldRight Training confirms she can run a one-day welder refresher at our shop on Friday 20 November 2026, at 350 per person, up to six welders.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-08-24\", \"type\": \"email\", \"from\": \"Luis Ferro (Hargrove Metals)\", \"text\": \"Luis Ferro at Hargrove Metals writes: 6mm mild steel plate is 980 per tonne, and we can deliver 4 tonnes to the Ironline yard on Tuesday 10 November 2026, morning drop.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Dana Vance (Vance Railings)\", \"text\": \"Dana Vance of Vance Railings confirms they need the balcony railing job fabricated and ready for collection in the week of Monday 16 November 2026. Dana is the one who signs off anything on their side.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Placed the order with Hargrove Metals: 4 tonnes of 6mm mild steel plate at 980 per tonne, total 3920, delivery to our goods-in dock on Tuesday 10 November 2026. At 3920 it is under the 5000 line, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e1\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked the goods-in dock morning slot from 08:00 on Tuesday 10 November 2026 for the Hargrove Metals plate delivery, since that is the morning they said they would drop.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-21\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Confirmed the quote to Dana Vance at Vance Railings: 5800 for the balcony railing job, ready for collection in the week of Monday 16 November 2026. The price works off the 4 tonnes of plate coming in at 980 a tonne on the Hargrove order.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Greta Selby (Selby Alloys)\", \"text\": \"Greta Selby at Selby Alloys offers 6mm mild steel plate at 1010 per tonne, ex works, collection only, no delivery slots before December.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e13\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked two of our welders onto the WeldRight Training refresher day on Friday 20 November 2026 at 350 per person, 700 in total.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-10-08\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Ordered 30 MIG welding wire spools from Abel Tooling at 21 each, total 630, well under the finance sign-off line, for delivery to the workshop.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Marcus\", \"text\": \"Toolbox talk minutes: reminded the crew to sweep the goods-in dock after each delivery and to log offcuts by thickness on the rack card.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-19\", \"type\": \"task\", \"from\": \"Marcus\", \"text\": \"To-do: pay the Selby Alloys invoice for the September aluminium order by Friday 20 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-21\", \"type\": \"call\", \"from\": \"Dana Vance (Vance Railings)\", \"text\": \"Quick call with Dana Vance: their site survey of the balcony is done and the railing measurements stand as quoted; they are happy with the plan for the week of Monday 16 November 2026.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-26\", \"type\": \"task\", \"from\": \"Marcus\", \"text\": \"To-do: chase Casta Fasteners for the bolt delivery note before the stocktake on Friday 13 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Luis Ferro (Hargrove Metals)\", \"text\": \"Luis Ferro at Hargrove Metals writes: owing to mill increases we have to put 6mm mild steel plate up to 1040 per tonne, and this applies to your 4 tonnes on the way to you. Your delivery on Tuesday 10 November 2026 is unchanged, same morning drop.\", \"role\": \"change\", \"revokes\": [\"e7\"]},\n  {\"id\": \"e20\", \"date\": \"2026-11-02\", \"type\": \"minutes\", \"from\": \"Marcus\", \"text\": \"Monday production meeting: cutting list for the Vance Railings balcony job is finalised, first cuts start the morning after the plate lands, and the paint booth is reserved for the railings the following week.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-11-03\", \"type\": \"message\", \"from\": \"Priya Nayak (finance)\", \"text\": \"Priya Nayak reminds the office that November supplier invoices should be coded to the November budget, and asks that any order paperwork reaches her by Thursday afternoons.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-11-04\", \"type\": \"note\", \"from\": \"Marcus\", \"text\": \"Note to self: staging area by the goods-in dock must be clear before the Hargrove lorry arrives; move the Abel Tooling pallets on Friday.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-11-05\", \"type\": \"notice\", \"from\": \"Harlan Beck (SafeGrip Supplies)\", \"text\": \"SafeGrip Supplies notice: our welding glove sizes run small this season; order a size up for the winter stock.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Hargrove Metals 6mm plate order\", \"fields\": {\"supplier\": \"Hargrove Metals\", \"item\": \"6mm mild steel plate\", \"quantity\": \"4\", \"unit_price\": \"980\", \"total\": \"3920\", \"delivery\": \"2026-11-10\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Goods-in dock slot for Hargrove delivery\", \"fields\": {\"date\": \"2026-11-10\", \"time\": \"08:00\", \"place\": \"goods-in dock\", \"purpose\": \"Hargrove Metals plate delivery\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Vance Railings balcony railing job\", \"fields\": {\"client\": \"Dana Vance\", \"company\": \"Vance Railings\", \"job\": \"balcony railing fabrication\", \"price\": \"5800\", \"ready_week\": \"2026-11-16\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"WeldRight welder refresher day\", \"fields\": {\"date\": \"2026-11-20\", \"time\": \"09:00\", \"place\": \"workshop bay 2\", \"provider\": \"WeldRight Training\", \"attendees\": \"2\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Abel Tooling welding wire order\", \"fields\": {\"supplier\": \"Abel Tooling\", \"item\": \"MIG welding wire spools\", \"quantity\": \"30\", \"unit_price\": \"21\", \"total\": \"630\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"price\"], \"from\": \"Dana Vance\", \"rule\": \"e2\"}\n ],\n \"task\": \"Send Hargrove Metals our final confirmation for the four tonnes of 6mm plate coming on 10 November, with the correct pricing on it, so they can invoice us properly.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"unit_price\", \"value\": \"1040\", \"stale\": [\"980\"]},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"4160\", \"stale\": [\"3920\"]},\n  {\"message_to\": \"Luis Ferro (Hargrove Metals)\", \"regarding\": \"ORD-1\", \"says\": [\"4160\", \"1040\"], \"stale\": [\"3920\", \"980\"], \"task\": true}\n ],\n \"why\": \"Hargrove's newer email raises the plate price to 1040 per tonne while leaving the 10 November delivery standing, so the Hargrove order record is stale at 980/3920 and must be corrected to 1040/4160 (REVISE; at 4160 it stays under the 5000 finance sign-off line). The Vance Railings quote was priced off that order, but a confirmed client price can only change with Dana Vance's agreement, so CL-1 is ASK and its price field stays untouched pending consent. The dock booking rests only on the delivery date, which the change leaves standing, so it is KEEP.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"rebar restock\", \"counterpart\": \"Luis Ferro\", \"org\": \"Hargrove Metals\", \"item\": \"10mm rebar bundles\", \"unit\": \"bundle\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"goods-in dock\"},\n  {\"kind\": \"order\", \"topic\": \"galvanised tube restock\", \"counterpart\": \"Marta Oh\", \"org\": \"Hargrove Metals\", \"item\": \"galvanised tube lengths\", \"unit\": \"length\", \"values\": [\"12\", \"18\", \"25\", \"30\"], \"place\": \"goods-in dock\"},\n  {\"kind\": \"order\", \"topic\": \"aluminium sheet restock\", \"counterpart\": \"Greta Selby\", \"org\": \"Selby Alloys\", \"item\": \"aluminium sheet offcuts\", \"unit\": \"crate\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"goods-in dock\"},\n  {\"kind\": \"order\", \"topic\": \"cutting disc restock\", \"counterpart\": \"Dana Voss\", \"org\": \"Abel Tooling\", \"item\": \"cutting discs\", \"unit\": \"pack\", \"values\": [\"10\", \"15\", \"20\", \"40\"], \"place\": \"workshop stores\"},\n  {\"kind\": \"order\", \"topic\": \"grinding wheel restock\", \"counterpart\": \"Dana Voss\", \"org\": \"Abel Tooling\", \"item\": \"grinding wheels\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"workshop stores\"},\n  {\"kind\": \"booking\", \"topic\": \"dock slot bookings\", \"counterpart\": \"various hauliers\", \"org\": \"Ironline Custom Fabrication\", \"item\": \"goods-in dock morning slot\", \"unit\": \"\", \"values\": [\"goods-in dock\", \"side yard gate\", \"rear roller door\"], \"place\": \"goods-in dock\"},\n  {\"kind\": \"booking\", \"topic\": \"paint booth slots\", \"counterpart\": \"Marcus\", \"org\": \"Ironline Custom Fabrication\", \"item\": \"paint booth session\", \"unit\": \"\", \"values\": [\"paint booth\", \"paint booth extension\", \"drying rack area\"], \"place\": \"paint booth\"},\n  {\"kind\": \"order\", \"topic\": \"argon bottle swap\", \"counterpart\": \"Renata Cole\", \"org\": \"BlueFlame Gases\", \"item\": \"argon gas bottles\", \"unit\": \"bottle\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"welding bay\"},\n  {\"kind\": \"order\", \"topic\": \"welding glove stock\", \"counterpart\": \"Harlan Beck\", \"org\": \"SafeGrip Supplies\", \"item\": \"welding gloves\", \"unit\": \"pair\", \"values\": [\"12\", \"20\", \"24\", \"36\"], \"place\": \"workshop stores\"},\n  {\"kind\": \"booking\", \"topic\": \"forklift service\", \"counterpart\": \"Tomas Rey\", \"org\": \"Rey Plant Services\", \"item\": \"forklift service bay slot\", \"unit\": \"\", \"values\": [\"service bay\", \"side yard\", \"loading apron\"], \"place\": \"side yard\"},\n  {\"kind\": \"order\", \"topic\": \"bolt and nut restock\", \"counterpart\": \"Nadia Broome\", \"org\": \"Casta Fasteners\", \"item\": \"M8 bolt boxes\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"workshop stores\"},\n  {\"kind\": \"booking\", \"topic\": \"meeting room use\", \"counterpart\": \"Priya Nayak\", \"org\": \"Ironline Custom Fabrication\", \"item\": \"front office meeting room\", \"unit\": \"\", \"values\": [\"meeting room\", \"front office\", \"kitchen annex\"], \"place\": \"front office\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3180,
+    "completion_tokens": 7654,
+    "reasoning_tokens": 3875,
+    "cached_tokens": 0
+   },
+   "cost": 0.12435,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Hargrove steel price rise",
+  "setting": "Workshop foreman at Ironline Custom Fabrication, a metalworking shop",
+  "owner": "Marcus",
+  "org": "Ironline Custom Fabrication",
+  "now": "2026-11-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-08",
+    "type": "instruction",
+    "from": "Marcus",
+    "text": "Standing instruction for the shop: any supplier order over 5000 needs sign-off from Priya Nayak, our finance lead, before it is placed. Anything at or under 5000 I can approve myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-22",
+    "type": "policy",
+    "from": "Marcus",
+    "text": "Shop policy on client work: once a client has confirmed a quoted price, we do not change that price without the client's own agreement, whatever happens to our material costs.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-07-06",
+    "type": "note",
+    "from": "Marcus",
+    "text": "Yard notes: the goods-in dock takes one delivery in the morning slot starting 08:00. Priya Nayak handles finance on Tuesdays and Thursdays and wants order totals in whole numbers.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-20",
+    "type": "quote",
+    "from": "Nadia Broome (Casta Fasteners)",
+    "text": "Quote from Casta Fasteners: M8 zinc-plated bolts, boxes of 500, at 38 per box, quote held for 60 days.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-08-03",
+    "type": "cancellation",
+    "from": "Owen Pruitt (Pruitt Stables)",
+    "text": "Owen Pruitt called to cancel the small gate repair we had pencilled in for late August; he will come back to us in the spring.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Petra Lind (WeldRight Training)",
+    "text": "Petra Lind at WeldRight Training confirms she can run a one-day welder refresher at our shop on Friday 20 November 2026, at 350 per person, up to six welders.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-08-24",
+    "type": "email",
+    "from": "Luis Ferro (Hargrove Metals)",
+    "text": "Luis Ferro at Hargrove Metals writes: 6mm mild steel plate is 980 per tonne, and we can deliver 4 tonnes to the Ironline yard on Tuesday 10 November 2026, morning drop.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Dana Vance (Vance Railings)",
+    "text": "Dana Vance of Vance Railings confirms they need the balcony railing job fabricated and ready for collection in the week of Monday 16 November 2026. Dana is the one who signs off anything on their side.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-14",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Placed the order with Hargrove Metals: 4 tonnes of 6mm mild steel plate at 980 per tonne, total 3920, delivery to our goods-in dock on Tuesday 10 November 2026. At 3920 it is under the 5000 line, so no finance sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e1"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-15",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Booked the goods-in dock morning slot from 08:00 on Tuesday 10 November 2026 for the Hargrove Metals plate delivery, since that is the morning they said they would drop.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-21",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Confirmed the quote to Dana Vance at Vance Railings: 5800 for the balcony railing job, ready for collection in the week of Monday 16 November 2026. The price works off the 4 tonnes of plate coming in at 980 a tonne on the Hargrove order.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e2"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Greta Selby (Selby Alloys)",
+    "text": "Greta Selby at Selby Alloys offers 6mm mild steel plate at 1010 per tonne, ex works, collection only, no delivery slots before December.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e13",
+    "date": "2026-10-05",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Booked two of our welders onto the WeldRight Training refresher day on Friday 20 November 2026 at 350 per person, 700 in total.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-10-08",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Ordered 30 MIG welding wire spools from Abel Tooling at 21 each, total 630, well under the finance sign-off line, for delivery to the workshop.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-12",
+    "type": "minutes",
+    "from": "Marcus",
+    "text": "Toolbox talk minutes: reminded the crew to sweep the goods-in dock after each delivery and to log offcuts by thickness on the rack card.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-19",
+    "type": "task",
+    "from": "Marcus",
+    "text": "To-do: pay the Selby Alloys invoice for the September aluminium order by Friday 20 November 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-21",
+    "type": "call",
+    "from": "Dana Vance (Vance Railings)",
+    "text": "Quick call with Dana Vance: their site survey of the balcony is done and the railing measurements stand as quoted; they are happy with the plan for the week of Monday 16 November 2026.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-26",
+    "type": "task",
+    "from": "Marcus",
+    "text": "To-do: chase Casta Fasteners for the bolt delivery note before the stocktake on Friday 13 November 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-28",
+    "type": "email",
+    "from": "Luis Ferro (Hargrove Metals)",
+    "text": "Luis Ferro at Hargrove Metals writes: owing to mill increases we have to put 6mm mild steel plate up to 1040 per tonne, and this applies to your 4 tonnes on the way to you. Your delivery on Tuesday 10 November 2026 is unchanged, same morning drop.",
+    "role": "change",
+    "revokes": [
+     "e7"
+    ]
+   },
+   {
+    "id": "e20",
+    "date": "2026-11-02",
+    "type": "minutes",
+    "from": "Marcus",
+    "text": "Monday production meeting: cutting list for the Vance Railings balcony job is finalised, first cuts start the morning after the plate lands, and the paint booth is reserved for the railings the following week.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-11-03",
+    "type": "message",
+    "from": "Priya Nayak (finance)",
+    "text": "Priya Nayak reminds the office that November supplier invoices should be coded to the November budget, and asks that any order paperwork reaches her by Thursday afternoons.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-11-04",
+    "type": "note",
+    "from": "Marcus",
+    "text": "Note to self: staging area by the goods-in dock must be clear before the Hargrove lorry arrives; move the Abel Tooling pallets on Friday.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-11-05",
+    "type": "notice",
+    "from": "Harlan Beck (SafeGrip Supplies)",
+    "text": "SafeGrip Supplies notice: our welding glove sizes run small this season; order a size up for the winter stock.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Hargrove Metals 6mm plate order",
+    "fields": {
+     "supplier": "Hargrove Metals",
+     "item": "6mm mild steel plate",
+     "quantity": "4",
+     "unit_price": "980",
+     "total": "3920",
+     "delivery": "2026-11-10",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Goods-in dock slot for Hargrove delivery",
+    "fields": {
+     "date": "2026-11-10",
+     "time": "08:00",
+     "place": "goods-in dock",
+     "purpose": "Hargrove Metals plate delivery",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Vance Railings balcony railing job",
+    "fields": {
+     "client": "Dana Vance",
+     "company": "Vance Railings",
+     "job": "balcony railing fabrication",
+     "price": "5800",
+     "ready_week": "2026-11-16",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "WeldRight welder refresher day",
+    "fields": {
+     "date": "2026-11-20",
+     "time": "09:00",
+     "place": "workshop bay 2",
+     "provider": "WeldRight Training",
+     "attendees": "2",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Abel Tooling welding wire order",
+    "fields": {
+     "supplier": "Abel Tooling",
+     "item": "MIG welding wire spools",
+     "quantity": "30",
+     "unit_price": "21",
+     "total": "630",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "price"
+    ],
+    "from": "Dana Vance",
+    "rule": "e2"
+   }
+  ],
+  "task": "Send Hargrove Metals our final confirmation for the four tonnes of 6mm plate coming on 10 November, with the correct pricing on it, so they can invoice us properly.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "unit_price",
+    "value": "1040",
+    "stale": [
+     "980"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "4160",
+    "stale": [
+     "3920"
+    ]
+   },
+   {
+    "message_to": "Luis Ferro (Hargrove Metals)",
+    "regarding": "ORD-1",
+    "says": [
+     "4160",
+     "1040"
+    ],
+    "stale": [
+     "3920",
+     "980"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Hargrove's newer email raises the plate price to 1040 per tonne while leaving the 10 November delivery standing, so the Hargrove order record is stale at 980/3920 and must be corrected to 1040/4160 (REVISE; at 4160 it stays under the 5000 finance sign-off line). The Vance Railings quote was priced off that order, but a confirmed client price can only change with Dana Vance's agreement, so CL-1 is ASK and its price field stays untouched pending consent. The dock booking rests only on the delivery date, which the change leaves standing, so it is KEEP.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "rebar restock",
+    "counterpart": "Luis Ferro",
+    "org": "Hargrove Metals",
+    "item": "10mm rebar bundles",
+    "unit": "bundle",
+    "values": [
+     "6",
+     "10",
+     "14",
+     "20"
+    ],
+    "place": "goods-in dock"
+   },
+   {
+    "kind": "order",
+    "topic": "galvanised tube restock",
+    "counterpart": "Marta Oh",
+    "org": "Hargrove Metals",
+    "item": "galvanised tube lengths",
+    "unit": "length",
+    "values": [
+     "12",
+     "18",
+     "25",
+     "30"
+    ],
+    "place": "goods-in dock"
+   },
+   {
+    "kind": "order",
+    "topic": "aluminium sheet restock",
+    "counterpart": "Greta Selby",
+    "org": "Selby Alloys",
+    "item": "aluminium sheet offcuts",
+    "unit": "crate",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "goods-in dock"
+   },
+   {
+    "kind": "order",
+    "topic": "cutting disc restock",
+    "counterpart": "Dana Voss",
+    "org": "Abel Tooling",
+    "item": "cutting discs",
+    "unit": "pack",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "40"
+    ],
+    "place": "workshop stores"
+   },
+   {
+    "kind": "order",
+    "topic": "grinding wheel restock",
+    "counterpart": "Dana Voss",
+    "org": "Abel Tooling",
+    "item": "grinding wheels",
+    "unit": "box",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "workshop stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "dock slot bookings",
+    "counterpart": "various hauliers",
+    "org": "Ironline Custom Fabrication",
+    "item": "goods-in dock morning slot",
+    "unit": "",
+    "values": [
+     "goods-in dock",
+     "side yard gate",
+     "rear roller door"
+    ],
+    "place": "goods-in dock"
+   },
+   {
+    "kind": "booking",
+    "topic": "paint booth slots",
+    "counterpart": "Marcus",
+    "org": "Ironline Custom Fabrication",
+    "item": "paint booth session",
+    "unit": "",
+    "values": [
+     "paint booth",
+     "paint booth extension",
+     "drying rack area"
+    ],
+    "place": "paint booth"
+   },
+   {
+    "kind": "order",
+    "topic": "argon bottle swap",
+    "counterpart": "Renata Cole",
+    "org": "BlueFlame Gases",
+    "item": "argon gas bottles",
+    "unit": "bottle",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "welding bay"
+   },
+   {
+    "kind": "order",
+    "topic": "welding glove stock",
+    "counterpart": "Harlan Beck",
+    "org": "SafeGrip Supplies",
+    "item": "welding gloves",
+    "unit": "pair",
+    "values": [
+     "12",
+     "20",
+     "24",
+     "36"
+    ],
+    "place": "workshop stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "forklift service",
+    "counterpart": "Tomas Rey",
+    "org": "Rey Plant Services",
+    "item": "forklift service bay slot",
+    "unit": "",
+    "values": [
+     "service bay",
+     "side yard",
+     "loading apron"
+    ],
+    "place": "side yard"
+   },
+   {
+    "kind": "order",
+    "topic": "bolt and nut restock",
+    "counterpart": "Nadia Broome",
+    "org": "Casta Fasteners",
+    "item": "M8 bolt boxes",
+    "unit": "box",
+    "values": [
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "workshop stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "meeting room use",
+    "counterpart": "Priya Nayak",
+    "org": "Ironline Custom Fabrication",
+    "item": "front office meeting room",
+    "unit": "",
+    "values": [
+     "meeting room",
+     "front office",
+     "kitchen annex"
+    ],
+    "place": "front office"
+   }
+  ],
+  "id": "K100-1-09",
+  "tier": 100,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e19) revokes fact e7; ORD-1 (one hop) must be revised to 1040/4160, CL-1 (two hops via e9 and rule e2) is ASK, and EV-1 is KEEP since the delivery date stands, matching class 1 with the required two-hop touched decision. The task requires acting now (sending the confirmation with correct pricing) without hinting at the change. 23 core events with 5 decisions, change 9 days before the task day with later events after it, all satisfy tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e19) revokes fact e7; ORD-1 (one hop) must be revised to 1040/4160, CL-1 (two hops via e9 and rule e2) is ASK, and EV-1 is KEEP since the delivery date stands, matching class 1 with the required two-hop touched decision. The task requires acting now (sending the confirmation with correct pricing) without hinting at the change. 23 core events with 5 decisions, change 9 days before the task day with later events after it, all satisfy tier 100."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3758,
+    "completion_tokens": 319,
+    "reasoning_tokens": 153,
+    "cached_tokens": 384
+   },
+   "cost": 0.00622704,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "eb6cf82ff630e019764c652d83bf724da2248f464b5834a0157cd92220ef9c8b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e19 revokes the 980/tonne price in e7, and the marks follow: ORD-1 is REVISE (4160 stays under the 5000 sign-off line), CL-1 is ASK two hops from e7 and gated by the e2 consent rule, and EV-1 is KEEP because the 10 November date stands. The core has 23 events, 5 decisions, and the change sits 9 days before the task day with 4 core events after it, and it is an ordinary-looking email at event 87 of 100 with no 'correction' label.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e19 revokes the 980/tonne price in e7, and the marks follow: ORD-1 is REVISE (4160 stays under the 5000 sign-off line), CL-1 is ASK two hops from e7 and gated by the e2 consent rule, and EV-1 is KEEP because the 10 November date stands. The core has 23 events, 5 decisions, and the change sits 9 days before the task day with 4 core events after it, and it is an ordinary-looking email at event 87 of 100 with no 'correction' label."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5302,
+    "completion_tokens": 1566,
+    "reasoning_tokens": 1334,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013132,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "eb6cf82ff630e019764c652d83bf724da2248f464b5834a0157cd92220ef9c8b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The supplier price update supports ORD-1 at 1040 per tonne and 4160 total, with delivery unchanged. However, the client-price policy requires consent only if changing the confirmed quote; it does not require passing increased material costs to Dana or seeking a price change. Thus the mandatory ASK on CL-1 is not unambiguously justified.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The supplier price update supports ORD-1 at 1040 per tonne and 4160 total, with delivery unchanged. However, the client-price policy requires consent only if changing the confirmed quote; it does not require passing increased material costs to Dana or seeking a price change. Thus the mandatory ASK on CL-1 is not unambiguously justified."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3690,
+    "completion_tokens": 227,
+    "reasoning_tokens": 120,
+    "cached_tokens": 0
+   },
+   "cost": 0.0574675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "eb6cf82ff630e019764c652d83bf724da2248f464b5834a0157cd92220ef9c8b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

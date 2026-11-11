@@ -632,5 +632,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Dolores's package was confirmed before the prospective price increase, and the later history says her order is already with the supplier; nothing establishes that the new supplier price applies to it. The deposit rule requires consent if her confirmed price is changed, but does not require a price change or consent request, so the ASK mark and mandatory request are not justified.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Dolores's package was confirmed before the prospective price increase, and the later history says her order is already with the supplier; nothing establishes that the new supplier price applies to it. The deposit rule requires consent if her confirmed price is changed, but does not require a price change or consent request, so the ASK mark and mandatory request are not justified."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4002,
+    "completion_tokens": 219,
+    "reasoning_tokens": 112,
+    "cached_tokens": 0
+   },
+   "cost": 0.0609675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "836735a9053e3f19a393d7e01405a3550fad4723753b7cece887b82bd87ea650",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e22 revokes the 145 Hi-Index figure from e5, and the touched decisions follow correctly: e15 and e16 are REVISE (e16 is two hops from e5), e18 is ASK under the deposit rule, and e14 and e20 are KEEP because the update leaves CR-39 and the lead time standing. The totals (175 + 60 + 45 = 280) match the history's own pricing pattern, and the tier counts (28 core events, 6 decisions, change 25 days before the task, 6 core events after it, echo at e19) are met. The change is an ordinary supplier email that is not labelled as a correction and is not the last event.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e22 revokes the 145 Hi-Index figure from e5, and the touched decisions follow correctly: e15 and e16 are REVISE (e16 is two hops from e5), e18 is ASK under the deposit rule, and e14 and e20 are KEEP because the update leaves CR-39 and the lead time standing. The totals (175 + 60 + 45 = 280) match the history's own pricing pattern, and the tier counts (28 core events, 6 decisions, change 25 days before the task, 6 core events after it, echo at e19) are met. The change is an ordinary supplier email that is not labelled as a correction and is not the last event."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5783,
+    "completion_tokens": 2091,
+    "reasoning_tokens": 1820,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016238,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "836735a9053e3f19a393d7e01405a3550fad4723753b7cece887b82bd87ea650",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The price update revokes only the 145 Hi-Index figure, so CL-1/ORD-1 revise to 175/280, ORD-3 (unchanged CR-39 price) and EV-1 (unchanged lead time) keep, and ORD-2 requires Dolores's consent under the deposit rule e2 matching the consent map. Tier 500 is met: 28 core events, 6 decisions, change 25 days before the task day with later core events, and an echo (e19) restating the stale price. The change sits at event 406 of 500 as an ordinary supplier email with 94 later events, and the task (send Marcus's order today) forces an act without hinting at the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The price update revokes only the 145 Hi-Index figure, so CL-1/ORD-1 revise to 175/280, ORD-3 (unchanged CR-39 price) and EV-1 (unchanged lead time) keep, and ORD-2 requires Dolores's consent under the deposit rule e2 matching the consent map. Tier 500 is met: 28 core events, 6 decisions, change 25 days before the task day with later core events, and an echo (e19) restating the stale price. The change sits at event 406 of 500 as an ordinary supplier email with 94 later events, and the task (send Marcus's order today) forces an act without hinting at the change."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4122,
+    "completion_tokens": 548,
+    "reasoning_tokens": 335,
+    "cached_tokens": 0
+   },
+   "cost": 0.020586,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "836735a9053e3f19a393d7e01405a3550fad4723753b7cece887b82bd87ea650",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

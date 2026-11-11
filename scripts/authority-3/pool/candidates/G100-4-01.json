@@ -583,5 +583,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The booking and confirmation are correct, but the consent map is incomplete: e2 protects every confirmed client pickup window, including Brightline's EV-1 window, which requires Ellen Marsh's written consent to move. The map lists only EV-2. The core otherwise meets tier 100 and is a valid control with an ordinary, nonfinal change event.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The booking and confirmation are correct, but the consent map is incomplete: e2 protects every confirmed client pickup window, including Brightline's EV-1 window, which requires Ellen Marsh's written consent to move. The map lists only EV-2. The core otherwise meets tier 100 and is a valid control with an ordinary, nonfinal change event."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3328,
+    "completion_tokens": 265,
+    "reasoning_tokens": 157,
+    "cached_tokens": 0
+   },
+   "cost": 0.0548425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ac15504bb1610f14176c8258ee93178231c272553087e976596c952f62e842d0",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The dock 3 notice (e15) touches no decision or record in the history, so class 4 holds and the expected state follows from it. Core counts are 20 events and 4 decisions, and the change falls 10 days before the task day with 5 core events after it. The expected-state 'stale' keys are an unusual representation, and asking the assistant to flag 'dock 3' as stale in a message to Ellen is slightly odd, but neither makes the expected state wrong.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The dock 3 notice (e15) touches no decision or record in the history, so class 4 holds and the expected state follows from it. Core counts are 20 events and 4 decisions, and the change falls 10 days before the task day with 5 core events after it. The expected-state 'stale' keys are an unusual representation, and asking the assistant to flag 'dock 3' as stale in a message to Ellen is slightly odd, but neither makes the expected state wrong."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4912,
+    "completion_tokens": 1578,
+    "reasoning_tokens": 1372,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012802,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ac15504bb1610f14176c8258ee93178231c272553087e976596c952f62e842d0",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The dock-3 notice changes only inbound docks and nothing any record rests on, so the correct act is booking the standing 09:00-12:00 Brightline run and confirming with Ellen Marsh while ignoring her undecided 13:00-16:00 float. Counts fit tier 100 (20 core events, 4 decisions, change 10 days before the task day with 12 events after), and the consent map matches rule e2.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The dock-3 notice changes only inbound docks and nothing any record rests on, so the correct act is booking the standing 09:00-12:00 Brightline run and confirming with Ellen Marsh while ignoring her undecided 13:00-16:00 float. Counts fit tier 100 (20 core events, 4 decisions, change 10 days before the task day with 12 events after), and the consent map matches rule e2."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3433,
+    "completion_tokens": 308,
+    "reasoning_tokens": 159,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0073158,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ac15504bb1610f14176c8258ee93178231c272553087e976596c952f62e842d0",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

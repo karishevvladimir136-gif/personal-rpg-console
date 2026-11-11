@@ -648,5 +648,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e24 amends rule e2, and the marks follow: e15 and its dependent e16 are REVISE, e13 is ASK under e3, and e8 is KEEP because 60 minutes already complies. One minor ambiguity is that EV-4 (status 'booked') is treated as freely shortenable, although the history never records that it was confirmed with Brookdale, so the e3 consent rule could arguably apply to it. Tier counts, the change's distance from the task day, the echo e14 and the change's placement all check out.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e24 amends rule e2, and the marks follow: e15 and its dependent e16 are REVISE, e13 is ASK under e3, and e8 is KEEP because 60 minutes already complies. One minor ambiguity is that EV-4 (status 'booked') is treated as freely shortenable, although the history never records that it was confirmed with Brookdale, so the e3 consent rule could arguably apply to it. Tier counts, the change's distance from the task day, the echo e14 and the change's placement all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6120,
+    "completion_tokens": 1726,
+    "reasoning_tokens": 1498,
+    "cached_tokens": 0
+   },
+   "cost": 0.001475,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d071f6075788edb90d9bb5a2973e951993712d9dc839c48a1a3d41a80e4cbc63",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amendment requires shortening school visit sessions, but does not require shortening room reservations. Booking the hall to cover the session end to end does not unambiguously require their end times to remain identical, so EV-4's mandatory revision to 10:30 is not fixed by the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment requires shortening school visit sessions, but does not require shortening room reservations. Booking the hall to cover the session end to end does not unambiguously require their end times to remain identical, so EV-4's mandatory revision to 10:30 is not fixed by the history."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4262,
+    "completion_tokens": 340,
+    "reasoning_tokens": 245,
+    "cached_tokens": 0
+   },
+   "cost": 0.0702675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d071f6075788edb90d9bb5a2973e951993712d9dc839c48a1a3d41a80e4cbc63",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amended rule (60-minute cap) cleanly voids the 90-minute decisions: the unconfirmed Brookdale draft and its dependent hall booking are REVISE, the confirmed Maple Grove booking is ASK under the written-agreement rule matching the consent map, and the compliant 60-minute Harborview visit is KEEP. Counts (29 core events, 6 decisions), the 15-day gap, the post-change events, and the e14 echo of the stale 90-minute cap all meet tier 500. The change sits at event 453 of 500 as an ordinary email with later routine events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended rule (60-minute cap) cleanly voids the 90-minute decisions: the unconfirmed Brookdale draft and its dependent hall booking are REVISE, the confirmed Maple Grove booking is ASK under the written-agreement rule matching the consent map, and the compliant 60-minute Harborview visit is KEEP. Counts (29 core events, 6 decisions), the 15-day gap, the post-change events, and the e14 echo of the stale 90-minute cap all meet tier 500. The change sits at event 453 of 500 as an ordinary email with later routine events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4386,
+    "completion_tokens": 419,
+    "reasoning_tokens": 240,
+    "cached_tokens": 256
+   },
+   "cost": 0.0187518,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d071f6075788edb90d9bb5a2973e951993712d9dc839c48a1a3d41a80e4cbc63",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

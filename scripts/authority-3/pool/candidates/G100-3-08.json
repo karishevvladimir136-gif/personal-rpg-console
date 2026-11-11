@@ -616,5 +616,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history fixes the revised whip delivery date as 21 September and requires Ines's consent before moving the planting appointment, but it never establishes 23 September as the proposed planting date. Requiring that exact proposal makes the expected final state unjustifiably specific; the chain structure and tier requirements otherwise hold.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history fixes the revised whip delivery date as 21 September and requires Ines's consent before moving the planting appointment, but it never establishes 23 September as the proposed planting date. Requiring that exact proposal makes the expected final state unjustifiably specific; the chain structure and tier requirements otherwise hold."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3514,
+    "completion_tokens": 185,
+    "reasoning_tokens": 87,
+    "cached_tokens": 0
+   },
+   "cost": 0.0531675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e1bf3fd10a6e52aab0f158cc77610334cb90bdaea07dc215bd81e72649bbfc88",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected message to Ines proposes Wednesday 23 September, a date the history never fixes, so a different valid proposal would fail the check. The change is a partial correction (the delivery fee still stands), which fits class 3, and the core meets the tier counts with the change 7 days before the task day. The task forces an act without naming the change.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected message to Ines proposes Wednesday 23 September, a date the history never fixes, so a different valid proposal would fail the check. The change is a partial correction (the delivery fee still stands), which fits class 3, and the core meets the tier counts with the change 7 days before the task day. The task forces an act without naming the change."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5093,
+    "completion_tokens": 1558,
+    "reasoning_tokens": 1396,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012883,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e1bf3fd10a6e52aab0f158cc77610334cb90bdaea07dc215bd81e72649bbfc88",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change corrects fact e3, ORD-1 rests directly on it (REVISE to 2026-09-21, a value the change fixes), EV-1 rests on the order two hops down and is ASK under standing rule e1, and ORD-2 cites only the flat delivery fee that the change explicitly leaves standing (KEEP). Tier 100 counts hold (21 core events, 4 decisions, change 7 days before the task day, 7 events after). Minor note: the proposed Wednesday 23 September date for EV-1 is inferred by preserving the 'first Wednesday a few days after delivery' pattern rather than being explicitly fixed, but it is the natural unambiguous read.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change corrects fact e3, ORD-1 rests directly on it (REVISE to 2026-09-21, a value the change fixes), EV-1 rests on the order two hops down and is ASK under standing rule e1, and ORD-2 cites only the flat delivery fee that the change explicitly leaves standing (KEEP). Tier 100 counts hold (21 core events, 4 decisions, change 7 days before the task day, 7 events after). Minor note: the proposed Wednesday 23 September date for EV-1 is inferred by preserving the 'first Wednesday a few days after delivery' pattern rather than being explicitly fixed, but it is the natural unambiguous read."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3636,
+    "completion_tokens": 681,
+    "reasoning_tokens": 480,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0135198,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e1bf3fd10a6e52aab0f158cc77610334cb90bdaea07dc215bd81e72649bbfc88",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

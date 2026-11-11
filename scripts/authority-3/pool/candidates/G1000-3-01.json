@@ -670,5 +670,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure is sound: e28 revokes e14, ORD-1 (REVISE) and EV-1 (ASK) are touched, and CL-1 (KEEP) survives. However, the task day is 2026-10-20, so the planting day (2026-10-15) and the delivery (2026-10-10) are already past, which makes the expected 'keep or move the 15 October planting day' message and the ASK on EV-1 incoherent. The task also asks to confirm the order with Fern Hollow, but the expected state includes no such message and does not address it.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure is sound: e28 revokes e14, ORD-1 (REVISE) and EV-1 (ASK) are touched, and CL-1 (KEEP) survives. However, the task day is 2026-10-20, so the planting day (2026-10-15) and the delivery (2026-10-10) are already past, which makes the expected 'keep or move the 15 October planting day' message and the ASK on EV-1 incoherent. The task also asks to confirm the order with Fern Hollow, but the expected state includes no such message and does not address it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6293,
+    "completion_tokens": 2009,
+    "reasoning_tokens": 1773,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016338,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3a2bb3b14221bb9207a7b22e86f2237c1315063bc4b82dcb7c17951120a2a977",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The stock correction establishes an availability limit, not an agreed replacement order of exactly 80 plants, so the automatic quantity and amount revisions are not uniquely fixed. On the task day, 20 October, asking whether to keep or move the 15 October planting day is retrospective without any explanation of what happened. Routine event E0878 also cancels the Bramble Ridge moss treatment order, undermining the requirement that ORD-3 remain unchanged.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The stock correction establishes an availability limit, not an agreed replacement order of exactly 80 plants, so the automatic quantity and amount revisions are not uniquely fixed. On the task day, 20 October, asking whether to keep or move the 15 October planting day is retrospective without any explanation of what happened. Routine event E0878 also cancels the Bramble Ridge moss treatment order, undermining the requirement that ORD-3 remain unchanged."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4364,
+    "completion_tokens": 410,
+    "reasoning_tokens": 285,
+    "cached_tokens": 0
+   },
+   "cost": 0.0750425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3a2bb3b14221bb9207a7b22e86f2237c1315063bc4b82dcb7c17951120a2a977",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: e14 (fact A) corrected 240→80; e16/ORD-1 rests on A and is REVISE (80×4=320); e18/EV-1 rests on the order and is ASK under Mara's consent rule e1; e19/CL-1 cites only clay-suitability, which the correction preserves, so KEEP. Tier counts hold (33 core events, 8 decisions, change 18 days before task day, 117 later events, two echoes e23/e26 restating 180), the task demands action without naming the change, and the change sits as an ordinary email at position 883. The Bramble Ridge hornbeam quote is a mild distractor but does not make the Fern Hollow revision ambiguous, since the order is already placed and the correction fixes the new quantity.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: e14 (fact A) corrected 240→80; e16/ORD-1 rests on A and is REVISE (80×4=320); e18/EV-1 rests on the order and is ASK under Mara's consent rule e1; e19/CL-1 cites only clay-suitability, which the correction preserves, so KEEP. Tier counts hold (33 core events, 8 decisions, change 18 days before task day, 117 later events, two echoes e23/e26 restating 180), the task demands action without naming the change, and the change sits as an ordinary email at position 883. The Bramble Ridge hornbeam quote is a mild distractor but does not make the Fern Hollow revision ambiguous, since the order is already placed and the correction fixes the new quantity."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4456,
+    "completion_tokens": 648,
+    "reasoning_tokens": 416,
+    "cached_tokens": 256
+   },
+   "cost": 0.0223968,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3a2bb3b14221bb9207a7b22e86f2237c1315063bc4b82dcb7c17951120a2a977",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

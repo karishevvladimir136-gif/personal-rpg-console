@@ -622,5 +622,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Priya's amendment explicitly directs the CRM flag changes, plausibly supplying her agreement under e3, so requiring fresh consent is not unambiguous. If Fern Hollow is included in the required updates, the amendment also requires its onboarding to move to finance review, which the expected state omits. The consent map incompletely implements e5: it omits Fern Hollow's confirmed meeting and does not protect time changes or cancellation.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Priya's amendment explicitly directs the CRM flag changes, plausibly supplying her agreement under e3, so requiring fresh consent is not unambiguous. If Fern Hollow is included in the required updates, the amendment also requires its onboarding to move to finance review, which the expected state omits. The consent map incompletely implements e5: it omits Fern Hollow's confirmed meeting and does not protect time changes or cancellation."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3442,
+    "completion_tokens": 268,
+    "reasoning_tokens": 146,
+    "cached_tokens": 0
+   },
+   "cost": 0.0564175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f7d7d6c3710351cc883366e4d3d346ff6757defa644d5f4b18f0c6b7cf30342d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change amends the threshold rule e1 and its own terms spare Marlow (already signed off) while voiding the Brightline and Fern Hollow letters, so class 2 fits. The core meets tier 100: 21 core events, 6 decisions, the change 14 days before the task and 4 core events after it. The change is an ordinary Priya email at event 94 of 100 with six events after it, and the task requires a track change and a message, so it forces action.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change amends the threshold rule e1 and its own terms spare Marlow (already signed off) while voiding the Brightline and Fern Hollow letters, so class 2 fits. The core meets tier 100: 21 core events, 6 decisions, the change 14 days before the task and 4 core events after it. The change is an ordinary Priya email at event 94 of 100 with six events after it, and the task requires a track change and a message, so it forces action."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4961,
+    "completion_tokens": 1788,
+    "reasoning_tokens": 1586,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013901,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f7d7d6c3710351cc883366e4d3d346ff6757defa644d5f4b18f0c6b7cf30342d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment's own terms fix the REVISE value (finance-review track) and spare Marlow (KEEP), while e3 clearly consent-protects the status/sign-off fields driving the two ASK marks, and the consent map matches stated rules e3/e5. The task requires acting now (updating the track, messaging Priya) without naming the change. Counts (21 core, 6 decisions), 14-day gap, 6 later events, and mid-history placement all satisfy tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment's own terms fix the REVISE value (finance-review track) and spare Marlow (KEEP), while e3 clearly consent-protects the status/sign-off fields driving the two ASK marks, and the consent map matches stated rules e3/e5. The task requires acting now (updating the track, messaging Priya) without naming the change. Counts (21 core, 6 decisions), 14-day gap, 6 later events, and mid-history placement all satisfy tier 100."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3548,
+    "completion_tokens": 807,
+    "reasoning_tokens": 648,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0151458,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f7d7d6c3710351cc883366e4d3d346ff6757defa644d5f4b18f0c6b7cf30342d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

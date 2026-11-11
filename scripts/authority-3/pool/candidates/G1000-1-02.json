@@ -672,5 +672,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The route change fixes Thursday delivery for the bread order, while Jonas's dependent shift requires his consent and the brunch and Tuesday order remain unchanged. The task requires a confirmation to the bakery without hinting at the change. The core has 34 events, 8 decisions, two stale-value echoes, and a change 22 days before the task with six later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The route change fixes Thursday delivery for the bread order, while Jonas's dependent shift requires his consent and the brunch and Tuesday order remain unchanged. The task requires a confirmation to the bakery without hinting at the change. The core has 34 events, 8 decisions, two stale-value echoes, and a change 22 days before the task with six later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4307,
+    "completion_tokens": 222,
+    "reasoning_tokens": 111,
+    "cached_tokens": 0
+   },
+   "cost": 0.06493,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5ca28367e4ce76a20f34cba855b4d461b4b11b36ca34208345a6f424275430b2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e28 revokes the Friday delivery fact e4. It touches ORD-1 (REVISE to Thursday), EV-1 two hops away (ASK, since e3 requires Jonas's agreement), and CL-1 and ORD-3 (KEEP, because their surviving parts stand). The core has 34 events, 8 decisions, a change 22 days before the task day, 6 core events after it, and 2 echoes (e18, e22). The change is an ordinary-sounding email with later events after it, and the task can only be completed by sending the bakery a confirmation.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e28 revokes the Friday delivery fact e4. It touches ORD-1 (REVISE to Thursday), EV-1 two hops away (ASK, since e3 requires Jonas's agreement), and CL-1 and ORD-3 (KEEP, because their surviving parts stand). The core has 34 events, 8 decisions, a change 22 days before the task day, 6 core events after it, and 2 echoes (e18, e22). The change is an ordinary-sounding email with later events after it, and the task can only be completed by sending the bakery a confirmation."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6279,
+    "completion_tokens": 2471,
+    "reasoning_tokens": 2226,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018634,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5ca28367e4ce76a20f34cba855b4d461b4b11b36ca34208345a6f424275430b2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e28) revokes the Tuesday/Friday delivery fact and fixes Thursday at 7:00, so ORD-1 REVISE and the confirmation message are unambiguous; EV-1 is two hops from the revoked fact and correctly ASK under the roster rule, while CL-1 and ORD-3 are KEEP on surviving aspects, and the consent map matches e3. Counts (34 core events, 8 decisions, 22-day gap, two echoes e18/e22) meet tier 1,000, and the change sits mid-history with later events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e28) revokes the Tuesday/Friday delivery fact and fixes Thursday at 7:00, so ORD-1 REVISE and the confirmation message are unambiguous; EV-1 is two hops from the revoked fact and correctly ASK under the roster rule, while CL-1 and ORD-3 are KEEP on surviving aspects, and the consent map matches e3. Counts (34 core events, 8 decisions, 22-day gap, two echoes e18/e22) meet tier 1,000, and the change sits mid-history with later events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4437,
+    "completion_tokens": 599,
+    "reasoning_tokens": 420,
+    "cached_tokens": 3584
+   },
+   "cost": 0.0126192,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5ca28367e4ce76a20f34cba855b4d461b4b11b36ca34208345a6f424275430b2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

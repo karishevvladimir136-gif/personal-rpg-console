@@ -645,5 +645,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The threshold amendment supports placing ORD-3 at 1240 pounds without sign-off, but does not uniquely fix 2 November as the pointing start. Five working days establishes a delivery lead time, not a guaranteed works-start date, and the expected schedule starts pointing before the confirmed 5 November scaffolding booking without obtaining consent to move that booking.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The threshold amendment supports placing ORD-3 at 1240 pounds without sign-off, but does not uniquely fix 2 November as the pointing start. Five working days establishes a delivery lead time, not a guaranteed works-start date, and the expected schedule starts pointing before the confirmed 5 November scaffolding booking without obtaining consent to move that booking."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4094,
+    "completion_tokens": 253,
+    "reasoning_tokens": 147,
+    "cached_tokens": 0
+   },
+   "cost": 0.0638175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "210521913a7633dc413dc010309ae9a6bef5f507232609085f450b63786c321f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected EV-3 date of 2026-11-02 is not fixed by the history: the scaffolding put-up and second visit on EV-1 is 2026-11-05 and must come first, so pointing cannot start on 2 November, and the task's 'to suit' leaves a range of later dates. The rest of the state follows: the class-2 marks (ORD-1 KEEP, ORD-3 REVISE, EV-1 ASK) match the amendment's terms, and the core meets the tier counts and distance. The change at e16 is an ordinary dated email, not labelled as a correction, with many events after it.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected EV-3 date of 2026-11-02 is not fixed by the history: the scaffolding put-up and second visit on EV-1 is 2026-11-05 and must come first, so pointing cannot start on 2 November, and the task's 'to suit' leaves a range of later dates. The rest of the state follows: the class-2 marks (ORD-1 KEEP, ORD-3 REVISE, EV-1 ASK) match the amendment's terms, and the core meets the tier counts and distance. The change at e16 is an ordinary dated email, not labelled as a correction, with many events after it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5876,
+    "completion_tokens": 2239,
+    "reasoning_tokens": 1985,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017071,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "210521913a7633dc413dc010309ae9a6bef5f507232609085f450b63786c321f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The rule amendment (threshold 800→1600) cleanly voids the held Clipsham order and the sign-off-dependent pointing date while expressly leaving the pre-amendment Bath stone order standing, and the EV-1 consent requirement follows from rule e4. Counts (29 core events, 7 decisions, change 36 days before task day, echo e13 restating the old rule) meet tier 500, and the change sits mid-history with 121 later events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The rule amendment (threshold 800→1600) cleanly voids the held Clipsham order and the sign-off-dependent pointing date while expressly leaving the pre-amendment Bath stone order standing, and the EV-1 consent requirement follows from rule e4. Counts (29 core events, 7 decisions, change 36 days before task day, echo e13 restating the old rule) meet tier 500, and the change sits mid-history with 121 later events."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4190,
+    "completion_tokens": 712,
+    "reasoning_tokens": 559,
+    "cached_tokens": 256
+   },
+   "cost": 0.0225588,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "210521913a7633dc413dc010309ae9a6bef5f507232609085f450b63786c321f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

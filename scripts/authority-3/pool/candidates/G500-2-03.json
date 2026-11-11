@@ -635,5 +635,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history does not fix the revised courier collection and delivery dates as 2 and 3 December. The original booking establishes particular dates and next-day delivery, but no rule requires preserving their offsets from the sale date; therefore the expected final state is not unambiguous.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history does not fix the revised courier collection and delivery dates as 2 and 3 December. The original booking establishes particular dates and next-day delivery, but no rule requires preserving their offsets from the sale date; therefore the expected final state is not unambiguous."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4097,
+    "completion_tokens": 164,
+    "reasoning_tokens": 73,
+    "cached_tokens": 0
+   },
+   "cost": 0.059405,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4967c669955de432f0d41c62b7db8e65dc238091e0504d0a4e0875dc9af7c713",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment in e23 lifts the written-agreement requirement only below 3000 pounds, so EV-3 can be revised directly, while EV-2 at 4800 still needs Ada's consent and e9's KEEP on the 5200 canteen is consistent with the rule. The ORD-1 dates of 2 and 3 December are inferred from the Wednesday-collect, Thursday-deliver pattern rather than stated outright, which is a minor ambiguity. The core meets the tier counts (28 events, 6 decisions), sits 13 days before the task day, and has five core events after the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment in e23 lifts the written-agreement requirement only below 3000 pounds, so EV-3 can be revised directly, while EV-2 at 4800 still needs Ada's consent and e9's KEEP on the 5200 canteen is consistent with the rule. The ORD-1 dates of 2 and 3 December are inferred from the Wednesday-collect, Thursday-deliver pattern rather than stated outright, which is a minor ambiguity. The core meets the tier counts (28 events, 6 decisions), sits 13 days before the task day, and has five core events after the change."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5922,
+    "completion_tokens": 2728,
+    "reasoning_tokens": 2476,
+    "cached_tokens": 0
+   },
+   "cost": 0.0019562,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4967c669955de432f0d41c62b7db8e65dc238091e0504d0a4e0875dc9af7c713",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment cleanly splits the lots by the 3000-pound reserve threshold: tea service (900) and its courier run are REVISE with dates fixed by the established collect-day-before/deliver-two-days-before-sale pattern, the cabinet (4800) still requires Ada's consent so ASK is correct, and canteen/photography are KEEP. Tier requirements are met: 28 core events, 6 decisions, change 13 days before the task day with later events, and e19 echoes the old rule. The change sits at event 459 of 500 as an ordinary email with routine noise around it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment cleanly splits the lots by the 3000-pound reserve threshold: tea service (900) and its courier run are REVISE with dates fixed by the established collect-day-before/deliver-two-days-before-sale pattern, the cabinet (4800) still requires Ada's consent so ASK is correct, and canteen/photography are KEEP. Tier requirements are met: 28 core events, 6 decisions, change 13 days before the task day with later events, and e19 echoes the old rule. The change sits at event 459 of 500 as an ordinary email with routine noise around it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4221,
+    "completion_tokens": 569,
+    "reasoning_tokens": 386,
+    "cached_tokens": 256
+   },
+   "cost": 0.0205068,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4967c669955de432f0d41c62b7db8e65dc238091e0504d0a4e0875dc9af7c713",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

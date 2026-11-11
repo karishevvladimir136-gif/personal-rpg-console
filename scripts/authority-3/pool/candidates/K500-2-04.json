@@ -1,0 +1,722 @@
+{
+ "id": "K500-2-04",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 2,
+ "idx": 3,
+ "setting": "Co-working space manager at The Foundry Hub, a 120-desk shared office",
+ "prompt_sha256": "12b4f9028116199af929264f72d299f95e12e5f48d2b85ccb28c977fe6e0e12f",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at The Foundry Hub\",\n \"setting\": \"Co-working space manager at The Foundry Hub, a 120-desk shared office\",\n \"owner\": \"Marta\",\n \"org\": \"The Foundry Hub\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"The Foundry Hub has 120 desks across the east and west wings; meeting spaces are the Atlas Room, the Hub Hall and the Foundry Theatre.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Priya Nair (Facilities)\", \"text\": \"Room capacities for the autumn: Atlas Room seats 36, Hub Hall seats 44, Foundry Theatre seats 60.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing instruction: any change to a confirmed booking made for Brightbyte Systems must first be agreed with their office manager, Lena Petrova, before we alter it on our side.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Tomasz Wrona (Fairway Catering)\", \"text\": \"Our working lunch rate is 14 per head, minimum 10 lunches, with 48 hours notice for delivery to The Foundry Hub.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"House rule from today: any room booking for 20 attendees or more must be signed off by Priya Nair in facilities before we confirm it to the member company. Smaller bookings can be confirmed directly.\", \"role\": \"rule\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Supplier orders over 500 need sign-off from our finance lead, Jo Bramwell, before the order is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Lena Petrova (Brightbyte Systems)\", \"text\": \"Brightbyte's autumn product workshop will bring 28 attendees; we would like the Atlas Room on 2026-11-05 from 09:00 to 17:00.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Ines Duarte (Kestrel Analytics)\", \"text\": \"Kestrel Analytics is planning its client showcase for 2026-11-12, expecting 38 attendees, and the Hub Hall would suit us.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Atlas Room for the weekly Tuesday stand-up, 8 people, 09:30 to 10:00, confirmed straight away since it is a small booking.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-6\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Atlas Room for Brightbyte Systems' workshop on 2026-11-05, 09:00 to 17:00, 28 attendees; status pending because at 28 attendees it needs Priya Nair's sign-off before confirmation.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Owen Preece (Moss & Vine Plants)\", \"text\": \"Moss & Vine will refresh the lobby planters on the first Monday of each month; next visit 2026-08-03.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Hub Hall for Kestrel Analytics' client showcase on 2026-11-12, 10:00 to 16:00, 38 attendees; status pending, awaiting Priya Nair's sign-off since it is over 20 attendees.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Ruth Calder (Northloop Media)\", \"text\": \"Northloop Media's annual members' day is set for 2026-11-20 with 50 attendees; please hold the Foundry Theatre.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-17\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Foundry Theatre for Northloop Media's members' day on 2026-11-20, 09:00 to 18:00, 50 attendees; status pending, needs Priya Nair's sign-off as a large booking.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e2\", \"e5\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Priya Nair (Facilities)\", \"text\": \"Reminder to the team: I am away 2026-08-10 to 2026-08-21; large booking sign-offs will queue until I return.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Reserved 8 guest desks in the east wing for Brightbyte Systems' workshop overflow on 2026-11-05, tied to their Atlas Room booking; marked as draft until the workshop booking settles.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\", \"mark\": \"ASK\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-03\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Moss & Vine refreshed the lobby planters this morning as scheduled.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered AV support from Clearline AV for the Kestrel Analytics showcase on 2026-11-12: two radio mics, one projector, one technician on site 09:00 to 17:00, quoted at 340; order status pending until the Hub Hall booking is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 30 working lunches from Fairway Catering at 14 per head for the Brightbyte workshop on 2026-11-05, delivery 12:30 to the Atlas Room; total 420, under the finance sign-off limit.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e4\", \"e6\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Tomasz Wrona (Fairway Catering)\", \"text\": \"Confirming our autumn kitchen maintenance day on 2026-09-07; no deliveries that day.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-25\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"August ops meeting: west wing recertification survey booked for early September; coffee consumables to move to fortnightly restock.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-01\", \"type\": \"invoice\", \"from\": \"Clearline AV\", \"text\": \"Invoice 1187 for August ad-hoc AV hires, 210, payable by 2026-09-30.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"notice\", \"from\": \"Marta\", \"text\": \"Front-desk reminder for the autumn events season: room bookings of 20 attendees or more go to Priya Nair for sign-off before we confirm them to members.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Lena Petrova (Brightbyte Systems)\", \"text\": \"Lena confirmed the Brightbyte workshop agenda: registration 09:00, closing talk ends 16:30 on 2026-11-05.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-21\", \"type\": \"note\", \"from\": \"Priya Nair (Facilities)\", \"text\": \"West wing recertification completed: inspected capacity for the Atlas Room and Hub Hall is higher than planned, and the fire officer signed it off on 2026-09-18.\", \"role\": \"fact\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Priya Nair (Facilities)\", \"text\": \"Now that the west wing recertification is done, please update the house rule from 2026-10-01: my sign-off is only needed for room bookings of 45 attendees or more. Bookings below 45 can be confirmed directly by the front desk. The recertification report is the reason for the change.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Ines Duarte (Kestrel Analytics)\", \"text\": \"Quick question from Kestrel: if our client showcase moved to 2026-11-19 instead, would the Hub Hall still be free? No decision yet on our side.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-08\", \"type\": \"invoice\", \"from\": \"Fairway Catering\", \"text\": \"Invoice 2291 for September coffee-cart service, 156, payable by 2026-11-07.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-13\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Atlas Room for the monthly community social on 2026-11-27, 18:00 to 21:00, 12 attendees, confirmed directly as a small booking.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-7\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-19\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"October ops meeting: Jo Bramwell asked for November event costs by the end of the month; reception rota for November approved.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-22\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To-do: pay Clearline AV invoice 1187 (210) before 2026-10-31.\", \"role\": \"obligation\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Owen Preece (Moss & Vine Plants)\", \"text\": \"Moss & Vine will do the November planter refresh on 2026-11-02, first Monday as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-28\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Front desk asked about the November large bookings; told them I will finalise the list at the end of the week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Brightbyte Systems workshop - Atlas Room\", \"fields\": {\"date\": \"2026-11-05\", \"place\": \"Atlas Room\", \"attendees\": \"28\", \"time_start\": \"09:00\", \"time_end\": \"17:00\", \"status\": \"pending\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kestrel Analytics client showcase - Hub Hall\", \"fields\": {\"date\": \"2026-11-12\", \"place\": \"Hub Hall\", \"attendees\": \"38\", \"time_start\": \"10:00\", \"time_end\": \"16:00\", \"status\": \"pending\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Northloop Media members' day - Foundry Theatre\", \"fields\": {\"date\": \"2026-11-20\", \"place\": \"Foundry Theatre\", \"attendees\": \"50\", \"time_start\": \"09:00\", \"time_end\": \"18:00\", \"status\": \"pending\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Brightbyte workshop guest desks - east wing\", \"fields\": {\"date\": \"2026-11-05\", \"place\": \"east wing\", \"desks\": \"8\", \"status\": \"draft\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Weekly Tuesday stand-up - Atlas Room\", \"fields\": {\"date\": \"2026-11-03\", \"place\": \"Atlas Room\", \"attendees\": \"8\", \"time_start\": \"09:30\", \"time_end\": \"10:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Community social - Atlas Room\", \"fields\": {\"date\": \"2026-11-27\", \"place\": \"Atlas Room\", \"attendees\": \"12\", \"time_start\": \"18:00\", \"time_end\": \"21:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Clearline AV support - Kestrel showcase\", \"fields\": {\"date\": \"2026-11-12\", \"supplier\": \"Clearline AV\", \"items\": \"two radio mics, one projector, one technician\", \"total\": \"340\", \"status\": \"pending\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Fairway Catering lunches - Brightbyte workshop\", \"fields\": {\"date\": \"2026-11-05\", \"supplier\": \"Fairway Catering\", \"quantity\": \"30\", \"delivery_time\": \"12:30\", \"total\": \"420\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-4\", \"fields\": [\"status\"], \"from\": \"Lena Petrova (Brightbyte Systems)\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please get November's large room bookings finalised this morning: confirm whatever can now be confirmed, sort out the Brightbyte guest desks for their workshop day, and then email Priya Nair with the final list of confirmed November event dates and rooms.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"]},\n  {\"record\": \"EV-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"]},\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"]},\n  {\"message_to\": \"Lena Petrova (Brightbyte Systems)\", \"regarding\": \"EV-4\", \"says\": [\"guest desks\", \"2026-11-05\"], \"stale\": [\"confirmed\"], \"task\": true},\n  {\"message_to\": \"Priya Nair (Facilities)\", \"regarding\": null, \"says\": [\"2026-11-05\", \"Atlas Room\", \"2026-11-12\", \"Hub Hall\", \"confirmed\"], \"stale\": [\"2026-11-20 confirmed\", \"Foundry Theatre confirmed\"], \"task\": true}\n ],\n \"why\": \"The 2026-09-28 email from Priya amends the sign-off rule from 20 to 45 attendees as of 2026-10-01, citing the west wing recertification. The Brightbyte (28) and Kestrel (38) bookings fall under 45, so they no longer need sign-off and are REVISE to confirmed; the Clearline AV order rests on the Kestrel booking (two hops) and is REVISE too. The Northloop booking (50) still needs Priya's sign-off, so it is KEEP and stays pending. The Brightbyte guest desks rest on the Brightbyte booking, but confirming them changes a Brightbyte booking, which requires Lena Petrova's consent under the standing instruction, so that is ASK: the assistant asks Lena rather than changing EV-4.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"coffee restock\", \"counterpart\": \"Tomasz Wrona\", \"org\": \"Fairway Catering\", \"item\": \"coffee beans and milk\", \"unit\": \"kilos\", \"values\": [\"8\", \"10\", \"12\", \"14\", \"16\"], \"place\": \"The Foundry Hub kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"lunch orders\", \"counterpart\": \"Tomasz Wrona\", \"org\": \"Fairway Catering\", \"item\": \"working lunches\", \"unit\": \"lunches\", \"values\": [\"10\", \"14\", \"18\", \"22\", \"26\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"booking\", \"topic\": \"stand-up room\", \"counterpart\": \"Marta\", \"org\": \"The Foundry Hub\", \"item\": \"weekly stand-up room\", \"unit\": \"\", \"values\": [\"Atlas Room\", \"Hub Hall\", \"east wing nook\", \"west wing nook\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"booking\", \"topic\": \"Kestrel team sessions\", \"counterpart\": \"Ines Duarte\", \"org\": \"Kestrel Analytics\", \"item\": \"monthly team session room\", \"unit\": \"\", \"values\": [\"Atlas Room\", \"Hub Hall\", \"Foundry Theatre\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"booking\", \"topic\": \"Brightbyte sprint rooms\", \"counterpart\": \"Lena Petrova\", \"org\": \"Brightbyte Systems\", \"item\": \"sprint planning room\", \"unit\": \"\", \"values\": [\"Atlas Room\", \"Hub Hall\", \"east wing nook\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"order\", \"topic\": \"AV hires\", \"counterpart\": \"Daneka Holt\", \"org\": \"Clearline AV\", \"item\": \"ad-hoc AV hire\", \"unit\": \"kits\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"order\", \"topic\": \"plant service\", \"counterpart\": \"Owen Preece\", \"org\": \"Moss & Vine Plants\", \"item\": \"replacement plants\", \"unit\": \"plants\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"The Foundry Hub lobby\"},\n  {\"kind\": \"booking\", \"topic\": \"interview pods\", \"counterpart\": \"Sofia Lindqvist\", \"org\": \"Northloop Media\", \"item\": \"interview pod\", \"unit\": \"\", \"values\": [\"pod 1\", \"pod 2\", \"pod 3\", \"Atlas Room\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Ravi Menon\", \"org\": \"Brightshine Supplies\", \"item\": \"cleaning consumables\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"7\", \"9\"], \"place\": \"The Foundry Hub stores\"},\n  {\"kind\": \"order\", \"topic\": \"water cooler\", \"counterpart\": \"Elena Marsh\", \"org\": \"Clearwell Water\", \"item\": \"water cooler bottles\", \"unit\": \"bottles\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"The Foundry Hub kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"yoga class\", \"counterpart\": \"Hannah Beale\", \"org\": \"Stretch Studio\", \"item\": \"lunchtime yoga space\", \"unit\": \"\", \"values\": [\"Hub Hall\", \"Atlas Room\", \"roof terrace\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Kofi Asante\", \"org\": \"PrintPoint\", \"item\": \"printer toner cartridges\", \"unit\": \"cartridges\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"The Foundry Hub print room\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3237,
+    "completion_tokens": 7261,
+    "reasoning_tokens": 2319,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1103316,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at The Foundry Hub\",\n \"setting\": \"Co-working space manager at The Foundry Hub, a 120-desk shared office\",\n \"owner\": \"Marta\",\n \"org\": \"The Foundry Hub\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"The Foundry Hub has 120 desks across the east and west wings; meeting spaces are the Atlas Room, the Hub Hall and the Foundry Theatre.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Priya Nair (Facilities)\", \"text\": \"Room capacities for the autumn: Atlas Room seats 36, Hub Hall seats 44, Foundry Theatre seats 60.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing instruction: any change to a confirmed booking made for Brightbyte Systems must first be agreed with their office manager, Lena Petrova, before we alter it on our side.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Tomasz Wrona (Fairway Catering)\", \"text\": \"Our working lunch rate is 14 per head, minimum 10 lunches, with 48 hours notice for delivery to The Foundry Hub.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"House rule from today: any room booking for 20 attendees or more must be signed off by Priya Nair in facilities before we confirm it to the member company. Smaller bookings can be confirmed directly.\", \"role\": \"rule\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Supplier orders over 500 need sign-off from our finance lead, Jo Bramwell, before the order is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Lena Petrova (Brightbyte Systems)\", \"text\": \"Brightbyte's autumn product workshop will bring 28 attendees; we would like the Atlas Room on 2026-11-05 from 09:00 to 17:00.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Ines Duarte (Kestrel Analytics)\", \"text\": \"Kestrel Analytics is planning its client showcase for 2026-11-12, expecting 38 attendees, and the Hub Hall would suit us.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Atlas Room for the weekly Tuesday stand-up, 8 people, 09:30 to 10:00, confirmed straight away since it is a small booking.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Atlas Room for Brightbyte Systems' workshop on 2026-11-05, 09:00 to 17:00, 28 attendees; status pending because at 28 attendees it needs Priya Nair's sign-off before confirmation.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Owen Preece (Moss & Vine Plants)\", \"text\": \"Moss & Vine will refresh the lobby planters on the first Monday of each month; next visit 2026-08-03.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Hub Hall for Kestrel Analytics' client showcase on 2026-11-12, 10:00 to 16:00, 38 attendees; status pending, awaiting Priya Nair's sign-off since it is over 20 attendees.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Ruth Calder (Northloop Media)\", \"text\": \"Northloop Media's annual members' day is set for 2026-11-20 with 50 attendees; please hold the Foundry Theatre.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-17\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Foundry Theatre for Northloop Media's members' day on 2026-11-20, 09:00 to 18:00, 50 attendees; status pending, needs Priya Nair's sign-off as a large booking.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e2\", \"e5\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Priya Nair (Facilities)\", \"text\": \"Reminder to the team: I am away 2026-08-10 to 2026-08-21; large booking sign-offs will queue until I return.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Reserved 8 guest desks in the east wing for Brightbyte Systems' workshop overflow on 2026-11-05, tied to their Atlas Room booking; marked as draft until the workshop booking settles.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\", \"mark\": \"ASK\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-03\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Moss & Vine refreshed the lobby planters this morning as scheduled.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered AV support from Clearline AV for the Kestrel Analytics showcase on 2026-11-12: two radio mics, one projector, one technician on site 09:00 to 17:00, quoted at 340; order status pending until the Hub Hall booking is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 30 working lunches from Fairway Catering at 14 per head for the Brightbyte workshop on 2026-11-05, delivery 12:30 to the Atlas Room; total 420, under the finance sign-off limit.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e4\", \"e6\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Tomasz Wrona (Fairway Catering)\", \"text\": \"Confirming our autumn kitchen maintenance day on 2026-09-07; no deliveries that day.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-25\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"August ops meeting: west wing recertification survey booked for early September; coffee consumables to move to fortnightly restock.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-01\", \"type\": \"invoice\", \"from\": \"Clearline AV\", \"text\": \"Invoice 1187 for August ad-hoc AV hires, 210, payable by 2026-09-30.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"notice\", \"from\": \"Marta\", \"text\": \"Front-desk reminder for the autumn events season: room bookings of 20 attendees or more go to Priya Nair for sign-off before we confirm them to members.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Lena Petrova (Brightbyte Systems)\", \"text\": \"Lena confirmed the Brightbyte workshop agenda: registration 09:00, closing talk ends 16:30 on 2026-11-05.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-21\", \"type\": \"note\", \"from\": \"Priya Nair (Facilities)\", \"text\": \"West wing recertification completed: inspected capacity for the Atlas Room and Hub Hall is higher than planned, and the fire officer signed it off on 2026-09-18.\", \"role\": \"fact\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Priya Nair (Facilities)\", \"text\": \"Now that the west wing recertification is done, please update the house rule from 2026-10-01: my sign-off is only needed for room bookings of 45 attendees or more. Bookings below 45 can be confirmed directly by the front desk. The recertification report is the reason for the change.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Ines Duarte (Kestrel Analytics)\", \"text\": \"Quick question from Kestrel: if our client showcase moved to 2026-11-19 instead, would the Hub Hall still be free? No decision yet on our side.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-08\", \"type\": \"invoice\", \"from\": \"Fairway Catering\", \"text\": \"Invoice 2291 for September coffee-cart service, 156, payable by 2026-11-07.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-13\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Atlas Room for the monthly community social on 2026-11-27, 18:00 to 21:00, 12 attendees, confirmed directly as a small booking.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-7\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-19\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"October ops meeting: Jo Bramwell asked for November event costs by the end of the month; reception rota for November approved.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-22\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To-do: pay Clearline AV invoice 1187 (210) before 2026-10-31.\", \"role\": \"obligation\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Owen Preece (Moss & Vine Plants)\", \"text\": \"Moss & Vine will do the November planter refresh on 2026-11-02, first Monday as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-28\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Front desk asked about the November large bookings; told them I will finalise the list at the end of the week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Brightbyte Systems workshop - Atlas Room\", \"fields\": {\"date\": \"2026-11-05\", \"place\": \"Atlas Room\", \"attendees\": \"28\", \"time_start\": \"09:00\", \"time_end\": \"17:00\", \"status\": \"pending\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kestrel Analytics client showcase - Hub Hall\", \"fields\": {\"date\": \"2026-11-12\", \"place\": \"Hub Hall\", \"attendees\": \"38\", \"time_start\": \"10:00\", \"time_end\": \"16:00\", \"status\": \"pending\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Northloop Media members' day - Foundry Theatre\", \"fields\": {\"date\": \"2026-11-20\", \"place\": \"Foundry Theatre\", \"attendees\": \"50\", \"time_start\": \"09:00\", \"time_end\": \"18:00\", \"status\": \"pending\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Brightbyte workshop guest desks - east wing\", \"fields\": {\"date\": \"2026-11-05\", \"place\": \"east wing\", \"desks\": \"8\", \"status\": \"draft\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Weekly Tuesday stand-up - Atlas Room\", \"fields\": {\"date\": \"2026-11-03\", \"place\": \"Atlas Room\", \"attendees\": \"8\", \"time_start\": \"09:30\", \"time_end\": \"10:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Community social - Atlas Room\", \"fields\": {\"date\": \"2026-11-27\", \"place\": \"Atlas Room\", \"attendees\": \"12\", \"time_start\": \"18:00\", \"time_end\": \"21:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Clearline AV support - Kestrel showcase\", \"fields\": {\"date\": \"2026-11-12\", \"supplier\": \"Clearline AV\", \"items\": \"two radio mics, one projector, one technician\", \"total\": \"340\", \"status\": \"pending\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Fairway Catering lunches - Brightbyte workshop\", \"fields\": {\"date\": \"2026-11-05\", \"supplier\": \"Fairway Catering\", \"quantity\": \"30\", \"delivery_time\": \"12:30\", \"total\": \"420\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-4\", \"fields\": [\"status\"], \"from\": \"Lena Petrova (Brightbyte Systems)\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please get November's large room bookings finalised this morning: confirm whatever can now be confirmed, sort out the Brightbyte guest desks for their workshop day, and then email Priya Nair with the final list of confirmed November event dates and rooms.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"]},\n  {\"record\": \"EV-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"]},\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"]},\n  {\"message_to\": \"Lena Petrova (Brightbyte Systems)\", \"regarding\": \"EV-4\", \"says\": [\"guest desks\", \"2026-11-05\"], \"stale\": [\"confirmed\"], \"task\": true},\n  {\"message_to\": \"Priya Nair (Facilities)\", \"regarding\": null, \"says\": [\"2026-11-05\", \"Atlas Room\", \"2026-11-12\", \"Hub Hall\", \"confirmed\"], \"stale\": [\"2026-11-20 confirmed\", \"Foundry Theatre confirmed\"], \"task\": true}\n ],\n \"why\": \"The 2026-09-28 email from Priya amends the sign-off rule from 20 to 45 attendees as of 2026-10-01, citing the west wing recertification. The Brightbyte (28) and Kestrel (38) bookings fall under 45, so they no longer need sign-off and are REVISE to confirmed; the Clearline AV order rests on the Kestrel booking (two hops) and is REVISE too. The Northloop booking (50) still needs Priya's sign-off, so it is KEEP and stays pending. The stand-up (8 attendees) was always below either threshold and is KEEP, and the Fairway lunch order was already placed and depends only on the workshop's date and headcount, which the amendment leaves standing, so it is KEEP. The Brightbyte guest desks rest on the Brightbyte booking, but confirming them changes a Brightbyte booking, which requires Lena Petrova's consent under the standing instruction, so that is ASK: the assistant asks Lena rather than changing EV-4.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"coffee restock\", \"counterpart\": \"Tomasz Wrona\", \"org\": \"Fairway Catering\", \"item\": \"coffee beans and milk\", \"unit\": \"kilos\", \"values\": [\"8\", \"10\", \"12\", \"14\", \"16\"], \"place\": \"The Foundry Hub kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"lunch orders\", \"counterpart\": \"Tomasz Wrona\", \"org\": \"Fairway Catering\", \"item\": \"working lunches\", \"unit\": \"lunches\", \"values\": [\"10\", \"14\", \"18\", \"22\", \"26\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"booking\", \"topic\": \"stand-up room\", \"counterpart\": \"Marta\", \"org\": \"The Foundry Hub\", \"item\": \"weekly stand-up room\", \"unit\": \"\", \"values\": [\"Atlas Room\", \"Hub Hall\", \"east wing nook\", \"west wing nook\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"booking\", \"topic\": \"Kestrel team sessions\", \"counterpart\": \"Ines Duarte\", \"org\": \"Kestrel Analytics\", \"item\": \"monthly team session room\", \"unit\": \"\", \"values\": [\"Atlas Room\", \"Hub Hall\", \"Foundry Theatre\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"booking\", \"topic\": \"Brightbyte sprint rooms\", \"counterpart\": \"Lena Petrova\", \"org\": \"Brightbyte Systems\", \"item\": \"sprint planning room\", \"unit\": \"\", \"values\": [\"Atlas Room\", \"Hub Hall\", \"east wing nook\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"order\", \"topic\": \"AV hires\", \"counterpart\": \"Daneka Holt\", \"org\": \"Clearline AV\", \"item\": \"ad-hoc AV hire\", \"unit\": \"kits\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"order\", \"topic\": \"plant service\", \"counterpart\": \"Owen Preece\", \"org\": \"Moss & Vine Plants\", \"item\": \"replacement plants\", \"unit\": \"plants\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"The Foundry Hub lobby\"},\n  {\"kind\": \"booking\", \"topic\": \"interview pods\", \"counterpart\": \"Sofia Lindqvist\", \"org\": \"Northloop Media\", \"item\": \"interview pod\", \"unit\": \"\", \"values\": [\"pod 1\", \"pod 2\", \"pod 3\", \"Atlas Room\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Ravi Menon\", \"org\": \"Brightshine Supplies\", \"item\": \"cleaning consumables\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"7\", \"9\"], \"place\": \"The Foundry Hub stores\"},\n  {\"kind\": \"order\", \"topic\": \"water cooler\", \"counterpart\": \"Elena Marsh\", \"org\": \"Clearwell Water\", \"item\": \"water cooler bottles\", \"unit\": \"bottles\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"The Foundry Hub kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"yoga class\", \"counterpart\": \"Hannah Beale\", \"org\": \"Stretch Studio\", \"item\": \"lunchtime yoga space\", \"unit\": \"\", \"values\": [\"Hub Hall\", \"Atlas Room\", \"roof terrace\"], \"place\": \"The Foundry Hub\"},\n  {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Kofi Asante\", \"org\": \"PrintPoint\", \"item\": \"printer toner cartridges\", \"unit\": \"cartridges\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"The Foundry Hub print room\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 8255,
+    "completion_tokens": 5092,
+    "reasoning_tokens": 90,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0928506,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- decisions resting (directly or through other decisions) on what the change revokes need a mark: ['e9', 'e19']\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Sign-off threshold raised at The Foundry Hub",
+  "setting": "Co-working space manager at The Foundry Hub, a 120-desk shared office",
+  "owner": "Marta",
+  "org": "The Foundry Hub",
+  "now": "2026-10-30",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "note",
+    "from": "Marta",
+    "text": "The Foundry Hub has 120 desks across the east and west wings; meeting spaces are the Atlas Room, the Hub Hall and the Foundry Theatre.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Priya Nair (Facilities)",
+    "text": "Room capacities for the autumn: Atlas Room seats 36, Hub Hall seats 44, Foundry Theatre seats 60.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing instruction: any change to a confirmed booking made for Brightbyte Systems must first be agreed with their office manager, Lena Petrova, before we alter it on our side.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Tomasz Wrona (Fairway Catering)",
+    "text": "Our working lunch rate is 14 per head, minimum 10 lunches, with 48 hours notice for delivery to The Foundry Hub.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "policy",
+    "from": "Marta",
+    "text": "House rule from today: any room booking for 20 attendees or more must be signed off by Priya Nair in facilities before we confirm it to the member company. Smaller bookings can be confirmed directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Supplier orders over 500 need sign-off from our finance lead, Jo Bramwell, before the order is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Lena Petrova (Brightbyte Systems)",
+    "text": "Brightbyte's autumn product workshop will bring 28 attendees; we would like the Atlas Room on 2026-11-05 from 09:00 to 17:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-24",
+    "type": "email",
+    "from": "Ines Duarte (Kestrel Analytics)",
+    "text": "Kestrel Analytics is planning its client showcase for 2026-11-12, expecting 38 attendees, and the Hub Hall would suit us.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-30",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Atlas Room for the weekly Tuesday stand-up, 8 people, 09:30 to 10:00, confirmed straight away since it is a small booking.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-6",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Atlas Room for Brightbyte Systems' workshop on 2026-11-05, 09:00 to 17:00, 28 attendees; status pending because at 28 attendees it needs Priya Nair's sign-off before confirmation.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e2",
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Owen Preece (Moss & Vine Plants)",
+    "text": "Moss & Vine will refresh the lobby planters on the first Monday of each month; next visit 2026-08-03.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-09",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Hub Hall for Kestrel Analytics' client showcase on 2026-11-12, 10:00 to 16:00, 38 attendees; status pending, awaiting Priya Nair's sign-off since it is over 20 attendees.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e2",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Ruth Calder (Northloop Media)",
+    "text": "Northloop Media's annual members' day is set for 2026-11-20 with 50 attendees; please hold the Foundry Theatre.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-17",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Foundry Theatre for Northloop Media's members' day on 2026-11-20, 09:00 to 18:00, 50 attendees; status pending, needs Priya Nair's sign-off as a large booking.",
+    "role": "decision",
+    "rests_on": [
+     "e13",
+     "e2",
+     "e5"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-22",
+    "type": "email",
+    "from": "Priya Nair (Facilities)",
+    "text": "Reminder to the team: I am away 2026-08-10 to 2026-08-21; large booking sign-offs will queue until I return.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-28",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Reserved 8 guest desks in the east wing for Brightbyte Systems' workshop overflow on 2026-11-05, tied to their Atlas Room booking; marked as draft until the workshop booking settles.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-4",
+    "mark": "ASK"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-03",
+    "type": "note",
+    "from": "Marta",
+    "text": "Moss & Vine refreshed the lobby planters this morning as scheduled.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered AV support from Clearline AV for the Kestrel Analytics showcase on 2026-11-12: two radio mics, one projector, one technician on site 09:00 to 17:00, quoted at 340; order status pending until the Hub Hall booking is confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 30 working lunches from Fairway Catering at 14 per head for the Brightbyte workshop on 2026-11-05, delivery 12:30 to the Atlas Room; total 420, under the finance sign-off limit.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e4",
+     "e6"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Tomasz Wrona (Fairway Catering)",
+    "text": "Confirming our autumn kitchen maintenance day on 2026-09-07; no deliveries that day.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-25",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "August ops meeting: west wing recertification survey booked for early September; coffee consumables to move to fortnightly restock.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-01",
+    "type": "invoice",
+    "from": "Clearline AV",
+    "text": "Invoice 1187 for August ad-hoc AV hires, 210, payable by 2026-09-30.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-10",
+    "type": "notice",
+    "from": "Marta",
+    "text": "Front-desk reminder for the autumn events season: room bookings of 20 attendees or more go to Priya Nair for sign-off before we confirm them to members.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Lena Petrova (Brightbyte Systems)",
+    "text": "Lena confirmed the Brightbyte workshop agenda: registration 09:00, closing talk ends 16:30 on 2026-11-05.",
+    "role": "fact"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-21",
+    "type": "note",
+    "from": "Priya Nair (Facilities)",
+    "text": "West wing recertification completed: inspected capacity for the Atlas Room and Hub Hall is higher than planned, and the fire officer signed it off on 2026-09-18.",
+    "role": "fact"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Priya Nair (Facilities)",
+    "text": "Now that the west wing recertification is done, please update the house rule from 2026-10-01: my sign-off is only needed for room bookings of 45 attendees or more. Bookings below 45 can be confirmed directly by the front desk. The recertification report is the reason for the change.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Ines Duarte (Kestrel Analytics)",
+    "text": "Quick question from Kestrel: if our client showcase moved to 2026-11-19 instead, would the Hub Hall still be free? No decision yet on our side.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-08",
+    "type": "invoice",
+    "from": "Fairway Catering",
+    "text": "Invoice 2291 for September coffee-cart service, 156, payable by 2026-11-07.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-13",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Atlas Room for the monthly community social on 2026-11-27, 18:00 to 21:00, 12 attendees, confirmed directly as a small booking.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "EV-7"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-19",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "October ops meeting: Jo Bramwell asked for November event costs by the end of the month; reception rota for November approved.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-22",
+    "type": "task",
+    "from": "Marta",
+    "text": "To-do: pay Clearline AV invoice 1187 (210) before 2026-10-31.",
+    "role": "obligation"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-26",
+    "type": "email",
+    "from": "Owen Preece (Moss & Vine Plants)",
+    "text": "Moss & Vine will do the November planter refresh on 2026-11-02, first Monday as usual.",
+    "role": "fact"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-28",
+    "type": "note",
+    "from": "Marta",
+    "text": "Front desk asked about the November large bookings; told them I will finalise the list at the end of the week.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Brightbyte Systems workshop - Atlas Room",
+    "fields": {
+     "date": "2026-11-05",
+     "place": "Atlas Room",
+     "attendees": "28",
+     "time_start": "09:00",
+     "time_end": "17:00",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Kestrel Analytics client showcase - Hub Hall",
+    "fields": {
+     "date": "2026-11-12",
+     "place": "Hub Hall",
+     "attendees": "38",
+     "time_start": "10:00",
+     "time_end": "16:00",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Northloop Media members' day - Foundry Theatre",
+    "fields": {
+     "date": "2026-11-20",
+     "place": "Foundry Theatre",
+     "attendees": "50",
+     "time_start": "09:00",
+     "time_end": "18:00",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Brightbyte workshop guest desks - east wing",
+    "fields": {
+     "date": "2026-11-05",
+     "place": "east wing",
+     "desks": "8",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Weekly Tuesday stand-up - Atlas Room",
+    "fields": {
+     "date": "2026-11-03",
+     "place": "Atlas Room",
+     "attendees": "8",
+     "time_start": "09:30",
+     "time_end": "10:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-7",
+    "collection": "schedule",
+    "title": "Community social - Atlas Room",
+    "fields": {
+     "date": "2026-11-27",
+     "place": "Atlas Room",
+     "attendees": "12",
+     "time_start": "18:00",
+     "time_end": "21:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Clearline AV support - Kestrel showcase",
+    "fields": {
+     "date": "2026-11-12",
+     "supplier": "Clearline AV",
+     "items": "two radio mics, one projector, one technician",
+     "total": "340",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Fairway Catering lunches - Brightbyte workshop",
+    "fields": {
+     "date": "2026-11-05",
+     "supplier": "Fairway Catering",
+     "quantity": "30",
+     "delivery_time": "12:30",
+     "total": "420",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-4",
+    "fields": [
+     "status"
+    ],
+    "from": "Lena Petrova (Brightbyte Systems)",
+    "rule": "e3"
+   }
+  ],
+  "task": "Please get November's large room bookings finalised this morning: confirm whatever can now be confirmed, sort out the Brightbyte guest desks for their workshop day, and then email Priya Nair with the final list of confirmed November event dates and rooms.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending"
+    ]
+   },
+   {
+    "record": "EV-2",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending"
+    ]
+   },
+   {
+    "message_to": "Lena Petrova (Brightbyte Systems)",
+    "regarding": "EV-4",
+    "says": [
+     "guest desks",
+     "2026-11-05"
+    ],
+    "stale": [
+     "confirmed"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Priya Nair (Facilities)",
+    "regarding": null,
+    "says": [
+     "2026-11-05",
+     "Atlas Room",
+     "2026-11-12",
+     "Hub Hall",
+     "confirmed"
+    ],
+    "stale": [
+     "2026-11-20 confirmed",
+     "Foundry Theatre confirmed"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The 2026-09-28 email from Priya amends the sign-off rule from 20 to 45 attendees as of 2026-10-01, citing the west wing recertification. The Brightbyte (28) and Kestrel (38) bookings fall under 45, so they no longer need sign-off and are REVISE to confirmed; the Clearline AV order rests on the Kestrel booking (two hops) and is REVISE too. The Northloop booking (50) still needs Priya's sign-off, so it is KEEP and stays pending. The stand-up (8 attendees) was always below either threshold and is KEEP, and the Fairway lunch order was already placed and depends only on the workshop's date and headcount, which the amendment leaves standing, so it is KEEP. The Brightbyte guest desks rest on the Brightbyte booking, but confirming them changes a Brightbyte booking, which requires Lena Petrova's consent under the standing instruction, so that is ASK: the assistant asks Lena rather than changing EV-4.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "coffee restock",
+    "counterpart": "Tomasz Wrona",
+    "org": "Fairway Catering",
+    "item": "coffee beans and milk",
+    "unit": "kilos",
+    "values": [
+     "8",
+     "10",
+     "12",
+     "14",
+     "16"
+    ],
+    "place": "The Foundry Hub kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "lunch orders",
+    "counterpart": "Tomasz Wrona",
+    "org": "Fairway Catering",
+    "item": "working lunches",
+    "unit": "lunches",
+    "values": [
+     "10",
+     "14",
+     "18",
+     "22",
+     "26"
+    ],
+    "place": "The Foundry Hub"
+   },
+   {
+    "kind": "booking",
+    "topic": "stand-up room",
+    "counterpart": "Marta",
+    "org": "The Foundry Hub",
+    "item": "weekly stand-up room",
+    "unit": "",
+    "values": [
+     "Atlas Room",
+     "Hub Hall",
+     "east wing nook",
+     "west wing nook"
+    ],
+    "place": "The Foundry Hub"
+   },
+   {
+    "kind": "booking",
+    "topic": "Kestrel team sessions",
+    "counterpart": "Ines Duarte",
+    "org": "Kestrel Analytics",
+    "item": "monthly team session room",
+    "unit": "",
+    "values": [
+     "Atlas Room",
+     "Hub Hall",
+     "Foundry Theatre"
+    ],
+    "place": "The Foundry Hub"
+   },
+   {
+    "kind": "booking",
+    "topic": "Brightbyte sprint rooms",
+    "counterpart": "Lena Petrova",
+    "org": "Brightbyte Systems",
+    "item": "sprint planning room",
+    "unit": "",
+    "values": [
+     "Atlas Room",
+     "Hub Hall",
+     "east wing nook"
+    ],
+    "place": "The Foundry Hub"
+   },
+   {
+    "kind": "order",
+    "topic": "AV hires",
+    "counterpart": "Daneka Holt",
+    "org": "Clearline AV",
+    "item": "ad-hoc AV hire",
+    "unit": "kits",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "The Foundry Hub"
+   },
+   {
+    "kind": "order",
+    "topic": "plant service",
+    "counterpart": "Owen Preece",
+    "org": "Moss & Vine Plants",
+    "item": "replacement plants",
+    "unit": "plants",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "The Foundry Hub lobby"
+   },
+   {
+    "kind": "booking",
+    "topic": "interview pods",
+    "counterpart": "Sofia Lindqvist",
+    "org": "Northloop Media",
+    "item": "interview pod",
+    "unit": "",
+    "values": [
+     "pod 1",
+     "pod 2",
+     "pod 3",
+     "Atlas Room"
+    ],
+    "place": "The Foundry Hub"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Ravi Menon",
+    "org": "Brightshine Supplies",
+    "item": "cleaning consumables",
+    "unit": "boxes",
+    "values": [
+     "3",
+     "5",
+     "7",
+     "9"
+    ],
+    "place": "The Foundry Hub stores"
+   },
+   {
+    "kind": "order",
+    "topic": "water cooler",
+    "counterpart": "Elena Marsh",
+    "org": "Clearwell Water",
+    "item": "water cooler bottles",
+    "unit": "bottles",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "The Foundry Hub kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "yoga class",
+    "counterpart": "Hannah Beale",
+    "org": "Stretch Studio",
+    "item": "lunchtime yoga space",
+    "unit": "",
+    "values": [
+     "Hub Hall",
+     "Atlas Room",
+     "roof terrace"
+    ],
+    "place": "The Foundry Hub"
+   },
+   {
+    "kind": "order",
+    "topic": "printer toner",
+    "counterpart": "Kofi Asante",
+    "org": "PrintPoint",
+    "item": "printer toner cartridges",
+    "unit": "cartridges",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "The Foundry Hub print room"
+   }
+  ],
+  "id": "K500-2-04",
+  "tier": 500,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

@@ -623,5 +623,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected Swift booking fixes 08:30, but the task specifies only the morning and no history event establishes that time for Pellow Head. The shuttle announcement touches no existing decision, so class 4 is appropriate; the core also meets the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected Swift booking fixes 08:30, but the task specifies only the morning and no history event establishes that time for Pellow Head. The shuttle announcement touches no existing decision, so class 4 is appropriate; the core also meets the tier requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3890,
+    "completion_tokens": 189,
+    "reasoning_tokens": 100,
+    "cached_tokens": 0
+   },
+   "cost": 0.0580675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d4603ed1f190e41f65f05226cd21b4772a5f6f8db699c4ef2c96fee048e7295f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected Swift booking time of 08:30 is not fixed anywhere in the history: no Pellow Head start time is given, and 08:30 is copied from the Wyndham Heron booking, so the expected state is not fully determined. The 'stale' annotations on the new Pellow Head and trailer records (48 from the eight-fee distractor, 120 on a new record) are also not justified by the history. The core structure otherwise meets the class 4 and tier 500 requirements, and the change is hidden among routine events.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected Swift booking time of 08:30 is not fixed anywhere in the history: no Pellow Head start time is given, and 08:30 is copied from the Wyndham Heron booking, so the expected state is not fully determined. The 'stale' annotations on the new Pellow Head and trailer records (48 from the eight-fee distractor, 120 on a new record) are also not justified by the history. The core structure otherwise meets the class 4 and tier 500 requirements, and the change is hidden among routine events."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5566,
+    "completion_tokens": 1773,
+    "reasoning_tokens": 1550,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014431,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d4603ed1f190e41f65f05226cd21b4772a5f6f8db699c4ef2c96fee048e7295f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The shuttle-bus change rests under no decision and touches no record, so control behavior (leave everything, execute the task) is correct; the new Kestrel tow at 135 (post-1-September rate, e15) and the 20-pound Pellow Head fee are unambiguous, with 120 and 48 as clean distractors, and the consent map matches e1. Counts fit tier 500 (30 core events, 6 decisions, change 11 days before task day, 5+ core events after it), and class 4 needs no echo. The change sits at event 474 of 500 with 26 later events, so it is well hidden.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The shuttle-bus change rests under no decision and touches no record, so control behavior (leave everything, execute the task) is correct; the new Kestrel tow at 135 (post-1-September rate, e15) and the 20-pound Pellow Head fee are unambiguous, with 120 and 48 as clean distractors, and the consent map matches e1. Counts fit tier 500 (30 core events, 6 decisions, change 11 days before task day, 5+ core events after it), and class 4 needs no echo. The change sits at event 474 of 500 with 26 later events, so it is well hidden."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4018,
+    "completion_tokens": 472,
+    "reasoning_tokens": 277,
+    "cached_tokens": 256
+   },
+   "cost": 0.0184428,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d4603ed1f190e41f65f05226cd21b4772a5f6f8db699c4ef2c96fee048e7295f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

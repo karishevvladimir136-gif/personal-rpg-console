@@ -648,5 +648,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected lighting and florist revisions assume the couple will accept the Orchard Marquee, but that venue change still requires their written agreement; the history does not unambiguously authorize committing dependent orders to it beforehand. The marquee's existing freestanding truss frame also does not establish an agreed replacement lighting specification or supplier compatibility.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected lighting and florist revisions assume the couple will accept the Orchard Marquee, but that venue change still requires their written agreement; the history does not unambiguously authorize committing dependent orders to it beforehand. The marquee's existing freestanding truss frame also does not establish an agreed replacement lighting specification or supplier compatibility."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3566,
+    "completion_tokens": 156,
+    "reasoning_tokens": 56,
+    "cached_tokens": 0
+   },
+   "cost": 0.0523675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e8b449a90735ee965e6359f203ac12a501e42f3cee1a98801cf9d5dbb0d060e7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e17 revokes the Harvest Barn offer e4, and the marks follow from the history: e6 (ASK, one hop) is protected by the standing consent rule, e8 and e9 (REVISE, two hops) take the marquee's truss frame and north-side entrance, and e7 and e10 stay KEEP because the date, headcount and 120-seat capacity still stand. The core has 21 events, 6 decisions, the change is 10 days before the task day with 4 core events after it, and it appears as an ordinary email with no 'correction' label. The task cannot be completed without editing ORD-2 and ORD-3 and messaging the couple.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e17 revokes the Harvest Barn offer e4, and the marks follow from the history: e6 (ASK, one hop) is protected by the standing consent rule, e8 and e9 (REVISE, two hops) take the marquee's truss frame and north-side entrance, and e7 and e10 stay KEEP because the date, headcount and 120-seat capacity still stand. The core has 21 events, 6 decisions, the change is 10 days before the task day with 4 core events after it, and it appears as an ordinary email with no 'correction' label. The task cannot be completed without editing ORD-2 and ORD-3 and messaging the couple."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5312,
+    "completion_tokens": 1998,
+    "reasoning_tokens": 1728,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015302,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e8b449a90735ee965e6359f203ac12a501e42f3cee1a98801cf9d5dbb0d060e7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The revoked barn letter propagates correctly: EV-1 venue needs the couple's consent under e1 (ASK, record untouched, message sent), while ORD-2 and ORD-3 are two-hop REVISEs fixed to the marquee's truss frame and north-side arch by the change's own terms, and ORD-1/ORD-4 stand on surviving facts (date, headcount, 120 capacity). Tier counts (21 core, 6 decisions, change 10 days before task day with 4 core events after) all meet tier 100, and the change sits as an ordinary email at position 90 of 100 with later noise. Minor tension: ORD-2's venue_area becomes Orchard Marquee while EV-1 still says Harvest Barn pending consent, but the values are what the history fixes.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The revoked barn letter propagates correctly: EV-1 venue needs the couple's consent under e1 (ASK, record untouched, message sent), while ORD-2 and ORD-3 are two-hop REVISEs fixed to the marquee's truss frame and north-side arch by the change's own terms, and ORD-1/ORD-4 stand on surviving facts (date, headcount, 120 capacity). Tier counts (21 core, 6 decisions, change 10 days before task day with 4 core events after) all meet tier 100, and the change sits as an ordinary email at position 90 of 100 with later noise. Minor tension: ORD-2's venue_area becomes Orchard Marquee while EV-1 still says Harvest Barn pending consent, but the values are what the history fixes."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3680,
+    "completion_tokens": 648,
+    "reasoning_tokens": 424,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0131568,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e8b449a90735ee965e6359f203ac12a501e42f3cee1a98801cf9d5dbb0d060e7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

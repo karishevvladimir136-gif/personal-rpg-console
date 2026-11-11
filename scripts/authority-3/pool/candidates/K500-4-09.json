@@ -1,0 +1,622 @@
+{
+ "id": "K500-4-09",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 4,
+ "idx": 8,
+ "setting": "Farm manager at Willow Creek Orchard, a pick-your-own apple farm",
+ "prompt_sha256": "ce7bd8eb2d284a81e0821a0482dd6e6c91f18bc33ce7ceed3b4ef0065aa1482a",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Compost credit note beside the cider press booking\",\n \"setting\": \"Farm manager at Willow Creek Orchard, a pick-your-own apple farm\",\n \"owner\": \"Marta\",\n \"org\": \"Willow Creek Orchard\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule at Willow Creek Orchard: any supplier order over 600 needs sign-off from Sam Vickers, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: once a school or club visit is confirmed, the visit date may only be moved if the visiting group's own contact person agrees to the new date first.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Tom Reyes (Greenfield Agri Hire)\", \"text\": \"For your autumn work our tractor hire is 145 per day, collected or delivered to Willow Creek Orchard, all through September and October.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Nair (Ferment Supply)\", \"text\": \"Bottling caps are 12 per sack of 500, and we can deliver to your cider room any weekday.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Owen Blake (Hazelwood Pressing)\", \"text\": \"Our Friday pressing slots are open right through November at 90 per slot, starting at 09:00 at our pressing barn. Just tell me which Friday you want.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Friday pressing slot at Hazelwood Pressing's barn for Friday 6 November 2026 at 09:00, at their quoted 90 per slot, for our late apple press.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Lena Marsh (CrateCo)\", \"text\": \"Stackable picking crates are 8 each, delivered to your Orchard Barn within three working days of order.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 30 picking crates from CrateCo at 8 each, delivered to the Orchard Barn on 2026-08-14 for the main season.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"message\", \"from\": \"Ruth Cole (head picker)\", \"text\": \"Good news, we have 14 seasonal pickers confirmed and ready for the September picking start.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set the autumn picking rota to start Monday 31 August 2026 with the 14 confirmed seasonal pickers under Ruth Cole.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Grace Wren (Hillside Primary School)\", \"text\": \"Could we bring 40 children for a pick-your-own visit on Friday 30 October 2026? We would meet you at the Orchard Barn at 10:00.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Hillside Primary School visit for Friday 30 October 2026, 40 children, meeting at the Orchard Barn at 10:00, with Grace Wren as their contact.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e2\"], \"record\": \"EV-3\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-02\", \"type\": \"invoice\", \"from\": \"Gary Bull (Stonewall Compost)\", \"text\": \"Invoice for the July delivery: 18 tonnes of compost delivered to Willow Creek Orchard, total 1240, payable this month.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Paid the Stonewall Compost invoice for the July delivery of 18 tonnes by bank transfer today.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Debs Kaur (Orchard Fuel Co)\", \"text\": \"Red diesel is 1.32 per litre this quarter, minimum delivery 400 litres to your fuel tank.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 500 litres of red diesel from Orchard Fuel Co at 1.32 per litre, total 660, delivered to the farm fuel tank on 2026-09-04; Sam Vickers signed it off as it is over 600.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Ana Ruiz (Creek Beekeeping)\", \"text\": \"I'll run my honey stall in your farm shop on Sundays through the autumn if that still suits.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Colm Brady (Beehive Supplies)\", \"text\": \"Honey jars are 0.60 each in boxes of 100, delivered to your farm shop.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 400 honey jars from Beehive Supplies at 0.60 each, total 240, delivered to the farm shop.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked tractor hire from Greenfield Agri Hire at 145 per day for Friday 25 September and Saturday 26 September 2026, two days, total 290, for orchard mowing.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-4\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-01\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"Reminder to myself: repaint the pick-your-own entrance sign before the October weekends.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Priya Nair (Ferment Supply)\", \"text\": \"We now stock a cider vinegar at 4.50 per bottle in cases of 12, if you'd like it for the farm shop.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Gary Bull (Stonewall Compost)\", \"text\": \"Your account statement is attached: it shows the July delivery of 18 tonnes of compost at 1240 settled in full, nothing outstanding.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-18\", \"type\": \"note\", \"from\": \"Ruth Cole (head picker)\", \"text\": \"Fuel tank gauge reads about half full after the September delivery; no leaks seen on the weekly check.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 24 bottles of the new cider vinegar from Ferment Supply at 4.50 per bottle, total 108, for the farm shop shelves.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Gary Bull (Stonewall Compost)\", \"text\": \"Heads-up for autumn: our compost price for November orders will be 72 per tonne, delivered to Willow Creek Orchard as usual.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Gary Bull (Stonewall Compost)\", \"text\": \"Apologies for the mix-up: your July delivery of 18 tonnes of compost should have been billed at 1120, not the 1240 on the original invoice. I've issued a credit note for the 120 difference to your account.\", \"role\": \"change\", \"revokes\": [\"e13\"]},\n  {\"id\": \"e28\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"Farm shop will close half an hour earlier on weekdays from next week; tell the team at Thursday's catch-up.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Prep list for the Hillside Primary visit on Friday 30 October: 40 children, meet at the Orchard Barn at 10:00, sacks and hand-wash ready.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Owen Blake (Hazelwood Pressing)\", \"text\": \"Your Friday 6 November pressing slot is all set at 09:00. If you want any more Fridays in November just say the word.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Cider pressing slot at Hazelwood Pressing\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"09:00\", \"place\": \"Hazelwood Pressing barn\", \"cost\": \"90\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Picking crates from CrateCo\", \"fields\": {\"item\": \"picking crates\", \"quantity\": \"30\", \"unit_price\": \"8\", \"delivery\": \"2026-08-14\", \"place\": \"Orchard Barn\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Autumn picking rota\", \"fields\": {\"start\": \"2026-08-31\", \"pickers\": \"14\", \"lead\": \"Ruth Cole\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Hillside Primary School visit\", \"fields\": {\"date\": \"2026-10-30\", \"group\": \"Hillside Primary School\", \"children\": \"40\", \"place\": \"Orchard Barn\", \"time\": \"10:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Red diesel from Orchard Fuel Co\", \"fields\": {\"item\": \"red diesel\", \"quantity\": \"500\", \"total\": \"660\", \"delivery\": \"2026-09-04\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Honey jars from Beehive Supplies\", \"fields\": {\"item\": \"honey jars\", \"quantity\": \"400\", \"total\": \"240\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Tractor hire from Greenfield Agri Hire\", \"fields\": {\"start\": \"2026-09-25\", \"days\": \"2\", \"cost\": \"290\", \"supplier\": \"Greenfield Agri Hire\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Cider vinegar from Ferment Supply\", \"fields\": {\"item\": \"cider vinegar bottles\", \"quantity\": \"24\", \"total\": \"108\", \"status\": \"delivered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"date\"], \"from\": \"Grace Wren (Hillside Primary School)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Could you book us another Friday pressing slot at Hazelwood Pressing for Friday 20 November 2026 at the usual 90, and drop Owen a quick message confirming we're booked in?\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-20\", \"time\": \"09:00\", \"place\": \"Hazelwood Pressing barn\", \"cost\": \"90\", \"status\": \"confirmed\"}, \"stale\": {\"date\": [\"2026-11-06\"]}, \"task\": true},\n  {\"message_to\": \"Owen Blake (Hazelwood Pressing)\", \"regarding\": null, \"says\": [\"2026-11-20\", \"90\"], \"stale\": [\"2026-11-06\"], \"task\": true}\n ],\n \"why\": \"The change is a credit-note correction to the old July compost invoice, a fact no decision ever used, so nothing in the workplace needs to move and no decision carries a mark. The September statement and the November compost price are tempting but irrelevant to the task. The task simply adds a new Friday pressing slot on 2026-11-20 at the standing 90 price and a confirming message to Owen, leaving every existing record exactly as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"tractor top-up hire\", \"counterpart\": \"Tom Reyes\", \"org\": \"Greenfield Agri Hire\", \"item\": \"tractor hire day\", \"values\": [\"orchard rows\", \"cider room yard\", \"top field\", \"Orchard Barn\"], \"place\": \"Willow Creek Orchard\"},\n  {\"kind\": \"order\", \"topic\": \"sugar restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Ferment Supply\", \"item\": \"brewing sugar sacks\", \"unit\": \"sack\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"cider room\"},\n  {\"kind\": \"order\", \"topic\": \"yeast restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Ferment Supply\", \"item\": \"cider yeast packets\", \"unit\": \"packet\", \"values\": [\"12\", \"20\", \"24\", \"30\"], \"place\": \"cider room\"},\n  {\"kind\": \"booking\", \"topic\": \"pressing slot\", \"counterpart\": \"Owen Blake\", \"org\": \"Hazelwood Pressing\", \"item\": \"Friday pressing slot\", \"values\": [\"Hazelwood Pressing barn\", \"small press room\"], \"place\": \"Hazelwood Pressing\"},\n  {\"kind\": \"order\", \"topic\": \"crate restock\", \"counterpart\": \"Lena Marsh\", \"org\": \"CrateCo\", \"item\": \"stackable picking crates\", \"unit\": \"crate\", \"values\": [\"10\", \"15\", \"20\", \"25\", \"30\"], \"place\": \"Orchard Barn\"},\n  {\"kind\": \"order\", \"topic\": \"diesel top-up\", \"counterpart\": \"Debs Kaur\", \"org\": \"Orchard Fuel Co\", \"item\": \"red diesel\", \"unit\": \"litre\", \"values\": [\"400\", \"450\", \"500\", \"600\"], \"place\": \"farm fuel tank\"},\n  {\"kind\": \"order\", \"topic\": \"jar restock\", \"counterpart\": \"Colm Brady\", \"org\": \"Beehive Supplies\", \"item\": \"honey jars\", \"unit\": \"box of 100\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"farm shop\"},\n  {\"kind\": \"booking\", \"topic\": \"farm shop stall\", \"counterpart\": \"Ana Ruiz\", \"org\": \"Creek Beekeeping\", \"item\": \"Sunday honey stall\", \"values\": [\"farm shop front\", \"farm shop porch\", \"Orchard Barn entrance\"], \"place\": \"farm shop\"},\n  {\"kind\": \"order\", \"topic\": \"paper bag restock\", \"counterpart\": \"Nina Fox\", \"org\": \"Valley Packaging\", \"item\": \"paper picking bags\", \"unit\": \"bundle\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Orchard Barn\"},\n  {\"kind\": \"booking\", \"topic\": \"pressure washer hire\", \"counterpart\": \"Sam Vickers\", \"org\": \"Greenfield Agri Hire\", \"item\": \"pressure washer day\", \"values\": [\"packing shed\", \"cider room\", \"Orchard Barn\"], \"place\": \"Willow Creek Orchard\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3246,
+    "completion_tokens": 6169,
+    "reasoning_tokens": 2098,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0939786,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Compost credit note beside the cider press booking\",\n \"setting\": \"Farm manager at Willow Creek Orchard, a pick-your-own apple farm\",\n \"owner\": \"Marta\",\n \"org\": \"Willow Creek Orchard\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule at Willow Creek Orchard: any supplier order over 600 needs sign-off from Sam Vickers, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: once a school or club visit is confirmed, the visit date may only be moved if the visiting group's own contact person agrees to the new date first.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Tom Reyes (Greenfield Agri Hire)\", \"text\": \"For your autumn work our tractor hire is 145 per day, collected or delivered to Willow Creek Orchard, all through September and October.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Nair (Ferment Supply)\", \"text\": \"Bottling caps are 12 per sack of 500, and we can deliver to your cider room any weekday.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Owen Blake (Hazelwood Pressing)\", \"text\": \"Our Friday pressing slots are open right through November at 90 per slot, starting at 09:00 at our pressing barn. Just tell me which Friday you want.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Friday pressing slot at Hazelwood Pressing's barn for Friday 6 November 2026 at 09:00, at their quoted 90 per slot, for our late apple press.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Lena Marsh (CrateCo)\", \"text\": \"Stackable picking crates are 8 each, delivered to your Orchard Barn within three working days of order.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 30 picking crates from CrateCo at 8 each, delivered to the Orchard Barn on 2026-08-14 for the main season.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"message\", \"from\": \"Ruth Cole (head picker)\", \"text\": \"Good news, we have 14 seasonal pickers confirmed and ready for the September picking start.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set the autumn picking rota to start Monday 31 August 2026 with the 14 confirmed seasonal pickers under Ruth Cole.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Grace Wren (Hillside Primary School)\", \"text\": \"Could we bring 40 children for a pick-your-own visit on Friday 30 October 2026? We would meet you at the Orchard Barn at 10:00.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Hillside Primary School visit for Friday 30 October 2026, 40 children, meeting at the Orchard Barn at 10:00, with Grace Wren as their contact.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e2\"], \"record\": \"EV-3\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-02\", \"type\": \"invoice\", \"from\": \"Gary Bull (Stonewall Compost)\", \"text\": \"Invoice for the July delivery: 18 tonnes of compost delivered to Willow Creek Orchard, total 1240, payable this month.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Paid the Stonewall Compost invoice for the July delivery of 18 tonnes by bank transfer today.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Debs Kaur (Orchard Fuel Co)\", \"text\": \"Red diesel is 1.32 per litre this quarter, minimum delivery 400 litres to your fuel tank.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 500 litres of red diesel from Orchard Fuel Co at 1.32 per litre, total 660, delivered to the farm fuel tank on 2026-09-04; Sam Vickers signed it off as it is over 600.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Ana Ruiz (Creek Beekeeping)\", \"text\": \"I'll run my honey stall in your farm shop on Sundays through the autumn if that still suits.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Colm Brady (Beehive Supplies)\", \"text\": \"Honey jars are 0.60 each in boxes of 100, delivered to your farm shop.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 400 honey jars from Beehive Supplies at 0.60 each, total 240, delivered to the farm shop.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked tractor hire from Greenfield Agri Hire at 145 per day for Friday 25 September and Saturday 26 September 2026, two days, total 290, for orchard mowing.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-4\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-01\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"Reminder to myself: repaint the pick-your-own entrance sign before the October weekends.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Priya Nair (Ferment Supply)\", \"text\": \"We now stock a cider vinegar at 4.50 per bottle in cases of 12, if you'd like it for the farm shop.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Gary Bull (Stonewall Compost)\", \"text\": \"Your account statement is attached: it shows the July delivery of 18 tonnes of compost at 1240 settled in full, nothing outstanding.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-18\", \"type\": \"note\", \"from\": \"Ruth Cole (head picker)\", \"text\": \"Fuel tank gauge reads about half full after the September delivery; no leaks seen on the weekly check.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 24 bottles of the new cider vinegar from Ferment Supply at 4.50 per bottle, total 108, for the farm shop shelves.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Gary Bull (Stonewall Compost)\", \"text\": \"Heads-up for autumn: our compost price for November orders will be 72 per tonne, delivered to Willow Creek Orchard as usual.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Gary Bull (Stonewall Compost)\", \"text\": \"Apologies for the mix-up: your July delivery of 18 tonnes of compost should have been billed at 1120, not the 1240 on the original invoice. I've issued a credit note for the 120 difference to your account.\", \"role\": \"change\", \"revokes\": [\"e13\"]},\n  {\"id\": \"e28\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"Farm shop will close half an hour earlier on weekdays from next week; tell the team at Thursday's catch-up.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Prep list for the Hillside Primary visit on Friday 30 October: 40 children, meet at the Orchard Barn at 10:00, sacks and hand-wash ready.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Owen Blake (Hazelwood Pressing)\", \"text\": \"Your Friday 6 November pressing slot is all set at 09:00. If you want any more Fridays in November just say the word.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Cider pressing slot at Hazelwood Pressing\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"09:00\", \"place\": \"Hazelwood Pressing barn\", \"cost\": \"90\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Picking crates from CrateCo\", \"fields\": {\"item\": \"picking crates\", \"quantity\": \"30\", \"unit_price\": \"8\", \"delivery\": \"2026-08-14\", \"place\": \"Orchard Barn\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Autumn picking rota\", \"fields\": {\"start\": \"2026-08-31\", \"pickers\": \"14\", \"lead\": \"Ruth Cole\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Hillside Primary School visit\", \"fields\": {\"date\": \"2026-10-30\", \"group\": \"Hillside Primary School\", \"children\": \"40\", \"place\": \"Orchard Barn\", \"time\": \"10:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Red diesel from Orchard Fuel Co\", \"fields\": {\"item\": \"red diesel\", \"quantity\": \"500\", \"total\": \"660\", \"delivery\": \"2026-09-04\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Honey jars from Beehive Supplies\", \"fields\": {\"item\": \"honey jars\", \"quantity\": \"400\", \"total\": \"240\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Tractor hire from Greenfield Agri Hire\", \"fields\": {\"start\": \"2026-09-25\", \"days\": \"2\", \"cost\": \"290\", \"supplier\": \"Greenfield Agri Hire\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Cider vinegar from Ferment Supply\", \"fields\": {\"item\": \"cider vinegar bottles\", \"quantity\": \"24\", \"total\": \"108\", \"status\": \"delivered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"date\"], \"from\": \"Grace Wren (Hillside Primary School)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Could you book us another Friday pressing slot at Hazelwood Pressing for Friday 20 November 2026 at the usual 90, and drop Owen a quick message confirming we're booked in?\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-20\", \"time\": \"09:00\", \"place\": \"Hazelwood Pressing barn\", \"cost\": \"90\", \"status\": \"confirmed\"}, \"stale\": {\"date\": [\"2026-11-06\"]}, \"task\": true},\n  {\"message_to\": \"Owen Blake (Hazelwood Pressing)\", \"regarding\": null, \"says\": [\"2026-11-20\", \"90\"], \"stale\": [\"2026-11-06\"], \"task\": true}\n ],\n \"why\": \"The change is a credit-note correction to the old July compost invoice, a fact no decision ever used, so nothing in the workplace needs to move and no decision carries a mark. The September statement and the November compost price are tempting but irrelevant to the task. The task simply adds a new Friday pressing slot on 2026-11-20 at the standing 90 price and a confirming message to Owen, leaving every existing record exactly as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"tractor top-up hire\", \"counterpart\": \"Tom Reyes\", \"org\": \"Greenfield Agri Hire\", \"item\": \"tractor hire day\", \"values\": [\"orchard rows\", \"cider room yard\", \"top field\", \"Orchard Barn\"], \"place\": \"Willow Creek Orchard\"},\n  {\"kind\": \"order\", \"topic\": \"sugar restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Ferment Supply\", \"item\": \"brewing sugar sacks\", \"unit\": \"sack\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"cider room\"},\n  {\"kind\": \"order\", \"topic\": \"yeast restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Ferment Supply\", \"item\": \"cider yeast packets\", \"unit\": \"packet\", \"values\": [\"12\", \"20\", \"24\", \"30\"], \"place\": \"cider room\"},\n  {\"kind\": \"booking\", \"topic\": \"pressing slot\", \"counterpart\": \"Owen Blake\", \"org\": \"Hazelwood Pressing\", \"item\": \"Friday pressing slot\", \"values\": [\"Hazelwood Pressing barn\", \"small press room\", \"loading bay\"], \"place\": \"Hazelwood Pressing\"},\n  {\"kind\": \"order\", \"topic\": \"crate restock\", \"counterpart\": \"Lena Marsh\", \"org\": \"CrateCo\", \"item\": \"stackable picking crates\", \"unit\": \"crate\", \"values\": [\"10\", \"15\", \"20\", \"25\", \"30\"], \"place\": \"Orchard Barn\"},\n  {\"kind\": \"order\", \"topic\": \"diesel top-up\", \"counterpart\": \"Debs Kaur\", \"org\": \"Orchard Fuel Co\", \"item\": \"red diesel\", \"unit\": \"litre\", \"values\": [\"400\", \"450\", \"500\", \"600\"], \"place\": \"farm fuel tank\"},\n  {\"kind\": \"order\", \"topic\": \"jar restock\", \"counterpart\": \"Colm Brady\", \"org\": \"Beehive Supplies\", \"item\": \"honey jars\", \"unit\": \"box of 100\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"farm shop\"},\n  {\"kind\": \"booking\", \"topic\": \"farm shop stall\", \"counterpart\": \"Ana Ruiz\", \"org\": \"Creek Beekeeping\", \"item\": \"Sunday honey stall\", \"values\": [\"farm shop front\", \"farm shop porch\", \"Orchard Barn entrance\"], \"place\": \"farm shop\"},\n  {\"kind\": \"order\", \"topic\": \"paper bag restock\", \"counterpart\": \"Nina Fox\", \"org\": \"Valley Packaging\", \"item\": \"paper picking bags\", \"unit\": \"bundle\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Orchard Barn\"},\n  {\"kind\": \"booking\", \"topic\": \"pressure washer hire\", \"counterpart\": \"Sam Vickers\", \"org\": \"Greenfield Agri Hire\", \"item\": \"pressure washer day\", \"values\": [\"packing shed\", \"cider room\", \"Orchard Barn\"], \"place\": \"Willow Creek Orchard\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7378,
+    "completion_tokens": 4075,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0749646,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'pressing slot': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Compost credit note beside the cider press booking",
+  "setting": "Farm manager at Willow Creek Orchard, a pick-your-own apple farm",
+  "owner": "Marta",
+  "org": "Willow Creek Orchard",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule at Willow Creek Orchard: any supplier order over 600 needs sign-off from Sam Vickers, our finance lead, before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: once a school or club visit is confirmed, the visit date may only be moved if the visiting group's own contact person agrees to the new date first.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Tom Reyes (Greenfield Agri Hire)",
+    "text": "For your autumn work our tractor hire is 145 per day, collected or delivered to Willow Creek Orchard, all through September and October.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Priya Nair (Ferment Supply)",
+    "text": "Bottling caps are 12 per sack of 500, and we can deliver to your cider room any weekday.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Owen Blake (Hazelwood Pressing)",
+    "text": "Our Friday pressing slots are open right through November at 90 per slot, starting at 09:00 at our pressing barn. Just tell me which Friday you want.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Friday pressing slot at Hazelwood Pressing's barn for Friday 6 November 2026 at 09:00, at their quoted 90 per slot, for our late apple press.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Lena Marsh (CrateCo)",
+    "text": "Stackable picking crates are 8 each, delivered to your Orchard Barn within three working days of order.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 30 picking crates from CrateCo at 8 each, delivered to the Orchard Barn on 2026-08-14 for the main season.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-22",
+    "type": "message",
+    "from": "Ruth Cole (head picker)",
+    "text": "Good news, we have 14 seasonal pickers confirmed and ready for the September picking start.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Set the autumn picking rota to start Monday 31 August 2026 with the 14 confirmed seasonal pickers under Ruth Cole.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-26",
+    "type": "email",
+    "from": "Grace Wren (Hillside Primary School)",
+    "text": "Could we bring 40 children for a pick-your-own visit on Friday 30 October 2026? We would meet you at the Orchard Barn at 10:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-29",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Confirmed the Hillside Primary School visit for Friday 30 October 2026, 40 children, meeting at the Orchard Barn at 10:00, with Grace Wren as their contact.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e2"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-02",
+    "type": "invoice",
+    "from": "Gary Bull (Stonewall Compost)",
+    "text": "Invoice for the July delivery: 18 tonnes of compost delivered to Willow Creek Orchard, total 1240, payable this month.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-06",
+    "type": "note",
+    "from": "Marta",
+    "text": "Paid the Stonewall Compost invoice for the July delivery of 18 tonnes by bank transfer today.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Debs Kaur (Orchard Fuel Co)",
+    "text": "Red diesel is 1.32 per litre this quarter, minimum delivery 400 litres to your fuel tank.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-23",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 500 litres of red diesel from Orchard Fuel Co at 1.32 per litre, total 660, delivered to the farm fuel tank on 2026-09-04; Sam Vickers signed it off as it is over 600.",
+    "role": "decision",
+    "rests_on": [
+     "e15",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-03",
+    "type": "email",
+    "from": "Ana Ruiz (Creek Beekeeping)",
+    "text": "I'll run my honey stall in your farm shop on Sundays through the autumn if that still suits.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Colm Brady (Beehive Supplies)",
+    "text": "Honey jars are 0.60 each in boxes of 100, delivered to your farm shop.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 400 honey jars from Beehive Supplies at 0.60 each, total 240, delivered to the farm shop.",
+    "role": "decision",
+    "rests_on": [
+     "e18"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked tractor hire from Greenfield Agri Hire at 145 per day for Friday 25 September and Saturday 26 September 2026, two days, total 290, for orchard mowing.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-01",
+    "type": "message",
+    "from": "Marta",
+    "text": "Reminder to myself: repaint the pick-your-own entrance sign before the October weekends.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Priya Nair (Ferment Supply)",
+    "text": "We now stock a cider vinegar at 4.50 per bottle in cases of 12, if you'd like it for the farm shop.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Gary Bull (Stonewall Compost)",
+    "text": "Your account statement is attached: it shows the July delivery of 18 tonnes of compost at 1240 settled in full, nothing outstanding.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-18",
+    "type": "note",
+    "from": "Ruth Cole (head picker)",
+    "text": "Fuel tank gauge reads about half full after the September delivery; no leaks seen on the weekly check.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 24 bottles of the new cider vinegar from Ferment Supply at 4.50 per bottle, total 108, for the farm shop shelves.",
+    "role": "decision",
+    "rests_on": [
+     "e22"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Gary Bull (Stonewall Compost)",
+    "text": "Heads-up for autumn: our compost price for November orders will be 72 per tonne, delivered to Willow Creek Orchard as usual.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Gary Bull (Stonewall Compost)",
+    "text": "Apologies for the mix-up: your July delivery of 18 tonnes of compost should have been billed at 1120, not the 1240 on the original invoice. I've issued a credit note for the 120 difference to your account.",
+    "role": "change",
+    "revokes": [
+     "e13"
+    ]
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-08",
+    "type": "message",
+    "from": "Marta",
+    "text": "Farm shop will close half an hour earlier on weekdays from next week; tell the team at Thursday's catch-up.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-14",
+    "type": "note",
+    "from": "Marta",
+    "text": "Prep list for the Hillside Primary visit on Friday 30 October: 40 children, meet at the Orchard Barn at 10:00, sacks and hand-wash ready.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Owen Blake (Hazelwood Pressing)",
+    "text": "Your Friday 6 November pressing slot is all set at 09:00. If you want any more Fridays in November just say the word.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Cider pressing slot at Hazelwood Pressing",
+    "fields": {
+     "date": "2026-11-06",
+     "time": "09:00",
+     "place": "Hazelwood Pressing barn",
+     "cost": "90",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Picking crates from CrateCo",
+    "fields": {
+     "item": "picking crates",
+     "quantity": "30",
+     "unit_price": "8",
+     "delivery": "2026-08-14",
+     "place": "Orchard Barn",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Autumn picking rota",
+    "fields": {
+     "start": "2026-08-31",
+     "pickers": "14",
+     "lead": "Ruth Cole",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Hillside Primary School visit",
+    "fields": {
+     "date": "2026-10-30",
+     "group": "Hillside Primary School",
+     "children": "40",
+     "place": "Orchard Barn",
+     "time": "10:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Red diesel from Orchard Fuel Co",
+    "fields": {
+     "item": "red diesel",
+     "quantity": "500",
+     "total": "660",
+     "delivery": "2026-09-04",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Honey jars from Beehive Supplies",
+    "fields": {
+     "item": "honey jars",
+     "quantity": "400",
+     "total": "240",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Tractor hire from Greenfield Agri Hire",
+    "fields": {
+     "start": "2026-09-25",
+     "days": "2",
+     "cost": "290",
+     "supplier": "Greenfield Agri Hire",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Cider vinegar from Ferment Supply",
+    "fields": {
+     "item": "cider vinegar bottles",
+     "quantity": "24",
+     "total": "108",
+     "status": "delivered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "date"
+    ],
+    "from": "Grace Wren (Hillside Primary School)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Could you book us another Friday pressing slot at Hazelwood Pressing for Friday 20 November 2026 at the usual 90, and drop Owen a quick message confirming we're booked in?",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-11-20",
+     "time": "09:00",
+     "place": "Hazelwood Pressing barn",
+     "cost": "90",
+     "status": "confirmed"
+    },
+    "stale": {
+     "date": [
+      "2026-11-06"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Owen Blake (Hazelwood Pressing)",
+    "regarding": null,
+    "says": [
+     "2026-11-20",
+     "90"
+    ],
+    "stale": [
+     "2026-11-06"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change is a credit-note correction to the old July compost invoice, a fact no decision ever used, so nothing in the workplace needs to move and no decision carries a mark. The September statement and the November compost price are tempting but irrelevant to the task. The task simply adds a new Friday pressing slot on 2026-11-20 at the standing 90 price and a confirming message to Owen, leaving every existing record exactly as it is.",
+  "noise_kit": [
+   {
+    "kind": "booking",
+    "topic": "tractor top-up hire",
+    "counterpart": "Tom Reyes",
+    "org": "Greenfield Agri Hire",
+    "item": "tractor hire day",
+    "values": [
+     "orchard rows",
+     "cider room yard",
+     "top field",
+     "Orchard Barn"
+    ],
+    "place": "Willow Creek Orchard"
+   },
+   {
+    "kind": "order",
+    "topic": "sugar restock",
+    "counterpart": "Priya Nair",
+    "org": "Ferment Supply",
+    "item": "brewing sugar sacks",
+    "unit": "sack",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "cider room"
+   },
+   {
+    "kind": "order",
+    "topic": "yeast restock",
+    "counterpart": "Priya Nair",
+    "org": "Ferment Supply",
+    "item": "cider yeast packets",
+    "unit": "packet",
+    "values": [
+     "12",
+     "20",
+     "24",
+     "30"
+    ],
+    "place": "cider room"
+   },
+   {
+    "kind": "booking",
+    "topic": "pressing slot",
+    "counterpart": "Owen Blake",
+    "org": "Hazelwood Pressing",
+    "item": "Friday pressing slot",
+    "values": [
+     "Hazelwood Pressing barn",
+     "small press room",
+     "loading bay"
+    ],
+    "place": "Hazelwood Pressing"
+   },
+   {
+    "kind": "order",
+    "topic": "crate restock",
+    "counterpart": "Lena Marsh",
+    "org": "CrateCo",
+    "item": "stackable picking crates",
+    "unit": "crate",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25",
+     "30"
+    ],
+    "place": "Orchard Barn"
+   },
+   {
+    "kind": "order",
+    "topic": "diesel top-up",
+    "counterpart": "Debs Kaur",
+    "org": "Orchard Fuel Co",
+    "item": "red diesel",
+    "unit": "litre",
+    "values": [
+     "400",
+     "450",
+     "500",
+     "600"
+    ],
+    "place": "farm fuel tank"
+   },
+   {
+    "kind": "order",
+    "topic": "jar restock",
+    "counterpart": "Colm Brady",
+    "org": "Beehive Supplies",
+    "item": "honey jars",
+    "unit": "box of 100",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "farm shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "farm shop stall",
+    "counterpart": "Ana Ruiz",
+    "org": "Creek Beekeeping",
+    "item": "Sunday honey stall",
+    "values": [
+     "farm shop front",
+     "farm shop porch",
+     "Orchard Barn entrance"
+    ],
+    "place": "farm shop"
+   },
+   {
+    "kind": "order",
+    "topic": "paper bag restock",
+    "counterpart": "Nina Fox",
+    "org": "Valley Packaging",
+    "item": "paper picking bags",
+    "unit": "bundle",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Orchard Barn"
+   },
+   {
+    "kind": "booking",
+    "topic": "pressure washer hire",
+    "counterpart": "Sam Vickers",
+    "org": "Greenfield Agri Hire",
+    "item": "pressure washer day",
+    "values": [
+     "packing shed",
+     "cider room",
+     "Orchard Barn"
+    ],
+    "place": "Willow Creek Orchard"
+   }
+  ],
+  "id": "K500-4-09",
+  "tier": 500,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

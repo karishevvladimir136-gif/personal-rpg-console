@@ -634,5 +634,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure holds: the rose-price correction (e23) revokes e3, touching the quote e6 (ASK, consent needed under e1 because CL-1 is confirmed), the order e8 (REVISE to 690), and e11 (KEEP, since the Tuesday slot survives), and the expected state follows from these marks. The core has 30 events and 7 decisions, the change sits 15 days before the task day with many events after it, and the echo e18 restates 0.90. The change is an ordinary email with later events after it and is not labelled as a correction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure holds: the rose-price correction (e23) revokes e3, touching the quote e6 (ASK, consent needed under e1 because CL-1 is confirmed), the order e8 (REVISE to 690), and e11 (KEEP, since the Tuesday slot survives), and the expected state follows from these marks. The core has 30 events and 7 decisions, the change sits 15 days before the task day with many events after it, and the echo e18 restates 0.90. The change is an ordinary email with later events after it and is not labelled as a correction."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6171,
+    "completion_tokens": 1471,
+    "reasoning_tokens": 1234,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013526,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b6f9fc377c5320c40eb05602b3130e56023b581bd45798c7d8b90f46cec61a72",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The supplier increase fixes ORD-1 at 690, but no rule requires passing increased wholesale costs to Priya; retaining her agreed price without requesting a change is also consistent with the history. Consequently, the mandatory ASK and treating 540 as stale in client communications are not unambiguously justified. The consent map also omits booking date and contents, although e1 explicitly protects both.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The supplier increase fixes ORD-1 at 690, but no rule requires passing increased wholesale costs to Priya; retaining her agreed price without requesting a change is also consistent with the history. Consequently, the mandatory ASK and treating 540 as stale in client communications are not unambiguously justified. The consent map also omits booking date and contents, although e1 explicitly protects both."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4182,
+    "completion_tokens": 498,
+    "reasoning_tokens": 384,
+    "cached_tokens": 0
+   },
+   "cost": 0.0771675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b6f9fc377c5320c40eb05602b3130e56023b581bd45798c7d8b90f46cec61a72",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change corrects fact A (rose price), touching decision B on A (the CL-1 quote, ASK under Rosa's consent rule e1) and decision C on B (ORD-1, repriced to 690 per the change's own terms), while EV-3 cites A only for the delivery day the correction leaves standing (KEEP) — a clean class 3 chain. Counts fit tier 500 (30 core events, 7 decisions, change 15 days before the task day with later core events, echo e18), and the change sits unannounced at event 443 of 500 with 57 events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change corrects fact A (rose price), touching decision B on A (the CL-1 quote, ASK under Rosa's consent rule e1) and decision C on B (ORD-1, repriced to 690 per the change's own terms), while EV-3 cites A only for the delivery day the correction leaves standing (KEEP) — a clean class 3 chain. Counts fit tier 500 (30 core events, 7 decisions, change 15 days before the task day with later core events, echo e18), and the change sits unannounced at event 443 of 500 with 57 events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4294,
+    "completion_tokens": 547,
+    "reasoning_tokens": 359,
+    "cached_tokens": 256
+   },
+   "cost": 0.0203958,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b6f9fc377c5320c40eb05602b3130e56023b581bd45798c7d8b90f46cec61a72",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

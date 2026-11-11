@@ -1,0 +1,526 @@
+{
+ "id": "K100-4-07",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 4,
+ "idx": 6,
+ "setting": "Physiotherapy receptionist at Lakeshore Sports Medicine Centre",
+ "prompt_sha256": "48bfcb894321fc0c1315a1e0372325bbf6858d077b6570dae0f1b9ef4379431f",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"New gel line beside the standing order\",\n \"setting\": \"Physiotherapy receptionist at Lakeshore Sports Medicine Centre\",\n \"owner\": \"Maya\",\n \"org\": \"Lakeshore Sports Medicine Centre\",\n \"now\": \"2026-11-09\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule for the front desk: any change to a confirmed client appointment (date, time or room) must be agreed with that client first. Never move a confirmed booking on our own initiative.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule for ordering: any supplier order over 500 must be signed off by Tomas Hale, our finance lead, before it is placed. Orders of 500 or under I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Priya Nair (MedFlex Supplies)\", \"text\": \"Confirming our current price for standard ultrasound gel, 250ml bottles: 12 per bottle, plus delivery. This price holds for the rest of the year.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Priya Nair (MedFlex Supplies)\", \"text\": \"Our pneumatic recovery boots are 340 per pair at the moment, including the carry bag. Let me know if Lakeshore wants a pair for the treatment rooms.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered one pair of pneumatic recovery boots from MedFlex Supplies at 340 per pair. At 340 the order is under 500 so I placed it directly without finance sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 20 bottles of standard ultrasound gel (250ml) from MedFlex Supplies at 12 per bottle, total 240, well under the 500 sign-off line, so I placed it myself.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Lena Park (Lakeshore Sports Medicine Centre)\", \"text\": \"For the diary: I work Fridays 08:00 to 14:00 and I'm happy to take the early clients. Room 2 has the shoulder pulley set I like for morning sessions.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Darren Cole\", \"text\": \"Fridays at 09:00 suit me best for my shoulder rehab, and Room 2 is fine. Please book me in on that basis going forward.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Registered Darren Cole in the client list with his preference for Friday 09:00 sessions in Room 2 for shoulder rehab.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"CL-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Darren Cole with Lena Park on Friday 13 November at 09:00 in Room 2 for his shoulder rehab session, matching his standing Friday preference and Lena's Friday morning shift.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e7\", \"e1\"], \"record\": \"EV-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Rosa Jimenez (Lakeshore Sports Medicine Centre)\", \"text\": \"Facilities note: Room 3 is free every Tuesday afternoon from 13:00 onwards; the evening cleaning crew only comes through after 18:00.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the staff equipment demo for Tuesday 17 November at 14:00 in Room 3, since Room 3 is free on Tuesday afternoons.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"message\", \"from\": \"Lena Park (Lakeshore Sports Medicine Centre)\", \"text\": \"Thanks for the new recovery boots, the pair arrived and the athletes already love them.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-05\", \"type\": \"quote\", \"from\": \"Priya Nair (MedFlex Supplies)\", \"text\": \"Quote for our premium pneumatic recovery boots with the heated lining: 410 per pair. The standard pair remains 340. Quote valid 60 days.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Priya Nair (MedFlex Supplies)\", \"text\": \"Logistics update: our courier now delivers to Lakeshore every Wednesday between 09:00 and 12:00, so orders placed by Monday evening arrive that week.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"Ana Sousa (CleanWave Linen Service)\", \"text\": \"Our price for weekly towel and treatment-sheet service for a clinic your size is 85 per week, fresh drop every Monday.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-03\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"To-do: pay the MedFlex Supplies August invoice by 2026-11-30.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-14\", \"type\": \"call\", \"from\": \"Maya\", \"text\": \"Call note: Darren Cole rang to say his shoulder is improving and he is happy with the Friday morning routine with Lena.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Rosa Jimenez (Lakeshore Sports Medicine Centre)\", \"text\": \"Building notice: the car park behind the centre will be resurfaced in the spring; no impact on clinic hours.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-11-02\", \"type\": \"email\", \"from\": \"Priya Nair (MedFlex Supplies)\", \"text\": \"News from our catalogue: we now also stock a latex-free ultrasound gel, 250ml bottles, at 14 per bottle. Your standard ultrasound gel remains available at the usual 12 per bottle, unchanged.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e21\", \"date\": \"2026-11-05\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Staff meeting minutes: winter rota confirmed, Lena keeps Friday mornings, and the equipment demo on Tuesday 17 November at 14:00 in Room 3 is on track.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-11-07\", \"type\": \"message\", \"from\": \"Rosa Jimenez (Lakeshore Sports Medicine Centre)\", \"text\": \"Reminder that the Room 3 cupboard keys are back with reception after the cleaners finished.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Recovery boots order\", \"fields\": {\"supplier\": \"MedFlex Supplies\", \"item\": \"pneumatic recovery boots\", \"quantity\": \"1\", \"unit_price\": \"340\", \"total\": \"340\", \"status\": \"placed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Ultrasound gel restock\", \"fields\": {\"supplier\": \"MedFlex Supplies\", \"item\": \"standard ultrasound gel 250ml\", \"quantity\": \"20\", \"unit_price\": \"12\", \"total\": \"240\", \"status\": \"placed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Darren Cole shoulder rehab\", \"fields\": {\"client\": \"Darren Cole\", \"physio\": \"Lena Park\", \"date\": \"2026-11-13\", \"time\": \"09:00\", \"place\": \"Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Staff equipment demo\", \"fields\": {\"date\": \"2026-11-17\", \"time\": \"14:00\", \"place\": \"Room 3\", \"lead\": \"Lena Park\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Darren Cole\", \"fields\": {\"name\": \"Darren Cole\", \"preference\": \"Friday 09:00 Room 2\", \"treatment\": \"shoulder rehab\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Darren Cole\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please order another 20 bottles of our standard ultrasound gel from MedFlex Supplies, and send Darren Cole a message confirming his appointment this Friday at 09:00 in Room 2 with Lena.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"MedFlex Supplies\", \"item\": \"standard ultrasound gel 250ml\", \"quantity\": \"20\", \"unit_price\": \"12\", \"total\": \"240\"}, \"stale\": {\"unit_price\": [\"14\"], \"item\": [\"latex-free ultrasound gel 250ml\"], \"total\": [\"280\"]}, \"task\": true},\n  {\"message_to\": \"Darren Cole\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-13\", \"09:00\", \"Room 2\", \"Lena Park\"], \"stale\": [\"Room 3\", \"14:00\", \"2026-11-17\"], \"task\": true}\n ],\n \"why\": \"Control class: the MedFlex email about a new latex-free gel at 14 per bottle adds a fact beside the topic and revokes nothing, so no decision is touched and no record changes. The standing plan holds: the gel restock uses the unchanged standard gel at 12 per bottle (20 bottles, 240, under the 500 sign-off line), and Darren's confirmed Friday 13 November 09:00 Room 2 appointment with Lena is simply confirmed to him, not moved — moving it would need his consent and nothing asks for that.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"gel restock\", \"counterpart\": \"Priya Nair\", \"org\": \"MedFlex Supplies\", \"item\": \"standard ultrasound gel 250ml\", \"unit\": \"bottle\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"order\", \"topic\": \"tape restock\", \"counterpart\": \"Priya Nair\", \"org\": \"MedFlex Supplies\", \"item\": \"kinesiology tape rolls\", \"unit\": \"roll\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"order\", \"topic\": \"band restock\", \"counterpart\": \"Priya Nair\", \"org\": \"MedFlex Supplies\", \"item\": \"resistance band sets\", \"unit\": \"set\", \"values\": [\"5\", \"8\", \"10\", \"15\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"booking\", \"topic\": \"physio room rota\", \"counterpart\": \"Lena Park\", \"org\": \"Lakeshore Sports Medicine Centre\", \"item\": \"treatment room for client sessions\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"Lakeshore Sports Medicine Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"staff catch-up\", \"counterpart\": \"Rosa Jimenez\", \"org\": \"Lakeshore Sports Medicine Centre\", \"item\": \"room for weekly staff catch-up\", \"unit\": \"\", \"values\": [\"Room 3\", \"staff room\", \"Room 1\"], \"place\": \"Lakeshore Sports Medicine Centre\"},\n  {\"kind\": \"order\", \"topic\": \"linen service\", \"counterpart\": \"Ana Sousa\", \"org\": \"CleanWave Linen Service\", \"item\": \"treatment sheets and towels\", \"unit\": \"bag\", \"values\": [\"3\", \"4\", \"5\", \"6\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"order\", \"topic\": \"ice pack restock\", \"counterpart\": \"Jonas Beck\", \"org\": \"Nordic Rehab Supply\", \"item\": \"reusable ice packs\", \"unit\": \"pack\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"booking\", \"topic\": \"team physio visit\", \"counterpart\": \"Marta Ellis\", \"org\": \"Harbour Rowing Club\", \"item\": \"room for squad screening session\", \"unit\": \"\", \"values\": [\"Room 2\", \"Room 3\", \"gym bay\"], \"place\": \"Lakeshore Sports Medicine Centre\"},\n  {\"kind\": \"order\", \"topic\": \"office supplies\", \"counterpart\": \"Kenji Mori\", \"org\": \"Papertrail Office Co\", \"item\": \"appointment diary refills\", \"unit\": \"pack\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"booking\", \"topic\": \"massage therapist slot\", \"counterpart\": \"Elin Voss\", \"org\": \"Lakeshore Sports Medicine Centre\", \"item\": \"room for sports massage sessions\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"gym bay\"], \"place\": \"Lakeshore Sports Medicine Centre\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3186,
+    "completion_tokens": 5405,
+    "reasoning_tokens": 2018,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0823386,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"New gel line beside the standing order\",\n \"setting\": \"Physiotherapy receptionist at Lakeshore Sports Medicine Centre\",\n \"owner\": \"Maya\",\n \"org\": \"Lakeshore Sports Medicine Centre\",\n \"now\": \"2026-11-09\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule for the front desk: any change to a confirmed client appointment (date, time or room) must be agreed with that client first. Never move a confirmed booking on our own initiative.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule for ordering: any supplier order over 500 must be signed off by Tomas Hale, our finance lead, before it is placed. Orders of 500 or under I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Priya Nair (MedFlex Supplies)\", \"text\": \"Confirming our current price for standard ultrasound gel, 250ml bottles: 12 per bottle, plus delivery. This price holds for the rest of the year.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Priya Nair (MedFlex Supplies)\", \"text\": \"Our pneumatic recovery boots are 340 per pair at the moment, including the carry bag. Let me know if Lakeshore wants a pair for the treatment rooms.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered one pair of pneumatic recovery boots from MedFlex Supplies at 340 per pair. At 340 the order is under 500 so I placed it directly without finance sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 20 bottles of standard ultrasound gel (250ml) from MedFlex Supplies at 12 per bottle, total 240, well under the 500 sign-off line, so I placed it myself.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Lena Park (Lakeshore Sports Medicine Centre)\", \"text\": \"For the diary: I work Fridays 08:00 to 14:00 and I'm happy to take the early clients. Room 2 has the shoulder pulley set I like for morning sessions.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Darren Cole\", \"text\": \"Fridays at 09:00 suit me best for my shoulder rehab, and Room 2 is fine. Please book me in on that basis going forward.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Registered Darren Cole in the client list with his preference for Friday 09:00 sessions in Room 2 for shoulder rehab.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"CL-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Darren Cole with Lena Park on Friday 13 November at 09:00 in Room 2 for his shoulder rehab session, matching his standing Friday preference and Lena's Friday morning shift.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e7\", \"e1\"], \"record\": \"EV-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Rosa Jimenez (Lakeshore Sports Medicine Centre)\", \"text\": \"Facilities note: Room 3 is free every Tuesday afternoon from 13:00 onwards; the evening cleaning crew only comes through after 18:00.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the staff equipment demo for Tuesday 17 November at 14:00 in Room 3, since Room 3 is free on Tuesday afternoons.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"message\", \"from\": \"Lena Park (Lakeshore Sports Medicine Centre)\", \"text\": \"Thanks for the new recovery boots, the pair arrived and the athletes already love them.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-05\", \"type\": \"quote\", \"from\": \"Priya Nair (MedFlex Supplies)\", \"text\": \"Quote for our premium pneumatic recovery boots with the heated lining: 410 per pair. The standard pair remains 340. Quote valid 60 days.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Priya Nair (MedFlex Supplies)\", \"text\": \"Logistics update: our courier now delivers to Lakeshore every Wednesday between 09:00 and 12:00, so orders placed by Monday evening arrive that week.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"Ana Sousa (CleanWave Linen Service)\", \"text\": \"Our price for weekly towel and treatment-sheet service for a clinic your size is 85 per week, fresh drop every Monday.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-03\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"To-do: pay the MedFlex Supplies August invoice by 2026-11-30.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-14\", \"type\": \"call\", \"from\": \"Maya\", \"text\": \"Call note: Darren Cole rang to say his shoulder is improving and he is happy with the Friday morning routine with Lena.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-22\", \"type\": \"notice\", \"from\": \"Rosa Jimenez (Lakeshore Sports Medicine Centre)\", \"text\": \"Building notice: the car park behind the centre will be resurfaced in the spring; no impact on clinic hours.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Priya Nair (MedFlex Supplies)\", \"text\": \"News from our catalogue: we now also stock a latex-free ultrasound gel, 250ml bottles, at 14 per bottle. Your standard ultrasound gel remains available at the usual 12 per bottle, unchanged.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e21\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Rosa Jimenez (Lakeshore Sports Medicine Centre)\", \"text\": \"Reminder that the Room 3 cupboard keys are back with reception after the cleaners finished.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-11-05\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Staff meeting minutes: winter rota confirmed, Lena keeps Friday mornings, and the equipment demo on Tuesday 17 November at 14:00 in Room 3 is on track.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Recovery boots order\", \"fields\": {\"supplier\": \"MedFlex Supplies\", \"item\": \"pneumatic recovery boots\", \"quantity\": \"1\", \"unit_price\": \"340\", \"total\": \"340\", \"status\": \"placed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Ultrasound gel restock\", \"fields\": {\"supplier\": \"MedFlex Supplies\", \"item\": \"standard ultrasound gel 250ml\", \"quantity\": \"20\", \"unit_price\": \"12\", \"total\": \"240\", \"status\": \"placed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Darren Cole shoulder rehab\", \"fields\": {\"client\": \"Darren Cole\", \"physio\": \"Lena Park\", \"date\": \"2026-11-13\", \"time\": \"09:00\", \"place\": \"Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Staff equipment demo\", \"fields\": {\"date\": \"2026-11-17\", \"time\": \"14:00\", \"place\": \"Room 3\", \"lead\": \"Lena Park\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Darren Cole\", \"fields\": {\"name\": \"Darren Cole\", \"preference\": \"Friday 09:00 Room 2\", \"treatment\": \"shoulder rehab\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Darren Cole\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please order another 20 bottles of our standard ultrasound gel from MedFlex Supplies, and send Darren Cole a message confirming his appointment this Friday at 09:00 in Room 2 with Lena.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"MedFlex Supplies\", \"item\": \"standard ultrasound gel 250ml\", \"quantity\": \"20\", \"unit_price\": \"12\", \"total\": \"240\"}, \"stale\": {\"unit_price\": [\"14\"], \"item\": [\"latex-free ultrasound gel 250ml\"], \"total\": [\"280\"]}, \"task\": true},\n  {\"message_to\": \"Darren Cole\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-13\", \"09:00\", \"Room 2\", \"Lena Park\"], \"stale\": [\"Room 3\", \"14:00\", \"2026-11-17\"], \"task\": true}\n ],\n \"why\": \"Control class: the MedFlex email about a new latex-free gel at 14 per bottle adds a fact beside the topic and revokes nothing, so no decision is touched and no record changes. The standing plan holds: the gel restock uses the unchanged standard gel at 12 per bottle (20 bottles, 240, under the 500 sign-off line), and Darren's confirmed Friday 13 November 09:00 Room 2 appointment with Lena is simply confirmed to him, not moved — moving it would need his consent and nothing asks for that.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"gel restock\", \"counterpart\": \"Priya Nair\", \"org\": \"MedFlex Supplies\", \"item\": \"standard ultrasound gel 250ml\", \"unit\": \"bottle\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"order\", \"topic\": \"tape restock\", \"counterpart\": \"Priya Nair\", \"org\": \"MedFlex Supplies\", \"item\": \"kinesiology tape rolls\", \"unit\": \"roll\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"order\", \"topic\": \"band restock\", \"counterpart\": \"Priya Nair\", \"org\": \"MedFlex Supplies\", \"item\": \"resistance band sets\", \"unit\": \"set\", \"values\": [\"5\", \"8\", \"10\", \"15\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"booking\", \"topic\": \"physio room rota\", \"counterpart\": \"Lena Park\", \"org\": \"Lakeshore Sports Medicine Centre\", \"item\": \"treatment room for client sessions\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"Lakeshore Sports Medicine Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"staff catch-up\", \"counterpart\": \"Rosa Jimenez\", \"org\": \"Lakeshore Sports Medicine Centre\", \"item\": \"room for weekly staff catch-up\", \"unit\": \"\", \"values\": [\"Room 3\", \"staff room\", \"Room 1\"], \"place\": \"Lakeshore Sports Medicine Centre\"},\n  {\"kind\": \"order\", \"topic\": \"linen service\", \"counterpart\": \"Ana Sousa\", \"org\": \"CleanWave Linen Service\", \"item\": \"treatment sheets and towels\", \"unit\": \"bag\", \"values\": [\"3\", \"4\", \"5\", \"6\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"order\", \"topic\": \"ice pack restock\", \"counterpart\": \"Jonas Beck\", \"org\": \"Nordic Rehab Supply\", \"item\": \"reusable ice packs\", \"unit\": \"pack\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"booking\", \"topic\": \"team physio visit\", \"counterpart\": \"Marta Ellis\", \"org\": \"Harbour Rowing Club\", \"item\": \"room for squad screening session\", \"unit\": \"\", \"values\": [\"Room 2\", \"Room 3\", \"gym bay\"], \"place\": \"Lakeshore Sports Medicine Centre\"},\n  {\"kind\": \"order\", \"topic\": \"office supplies\", \"counterpart\": \"Kenji Mori\", \"org\": \"Papertrail Office Co\", \"item\": \"appointment diary refills\", \"unit\": \"pack\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Lakeshore reception\"},\n  {\"kind\": \"booking\", \"topic\": \"massage therapist slot\", \"counterpart\": \"Elin Voss\", \"org\": \"Lakeshore Sports Medicine Centre\", \"item\": \"room for sports massage sessions\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"gym bay\"], \"place\": \"Lakeshore Sports Medicine Centre\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6646,
+    "completion_tokens": 3535,
+    "reasoning_tokens": 148,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0646686,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- the change is too close to now: only 3 of 100 events would come after it; move the change earlier\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "New gel line beside the standing order",
+  "setting": "Physiotherapy receptionist at Lakeshore Sports Medicine Centre",
+  "owner": "Maya",
+  "org": "Lakeshore Sports Medicine Centre",
+  "now": "2026-11-09",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Maya",
+    "text": "Standing rule for the front desk: any change to a confirmed client appointment (date, time or room) must be agreed with that client first. Never move a confirmed booking on our own initiative.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Maya",
+    "text": "Standing rule for ordering: any supplier order over 500 must be signed off by Tomas Hale, our finance lead, before it is placed. Orders of 500 or under I can place directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Priya Nair (MedFlex Supplies)",
+    "text": "Confirming our current price for standard ultrasound gel, 250ml bottles: 12 per bottle, plus delivery. This price holds for the rest of the year.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Priya Nair (MedFlex Supplies)",
+    "text": "Our pneumatic recovery boots are 340 per pair at the moment, including the carry bag. Let me know if Lakeshore wants a pair for the treatment rooms.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered one pair of pneumatic recovery boots from MedFlex Supplies at 340 per pair. At 340 the order is under 500 so I placed it directly without finance sign-off.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered 20 bottles of standard ultrasound gel (250ml) from MedFlex Supplies at 12 per bottle, total 240, well under the 500 sign-off line, so I placed it myself.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Lena Park (Lakeshore Sports Medicine Centre)",
+    "text": "For the diary: I work Fridays 08:00 to 14:00 and I'm happy to take the early clients. Room 2 has the shoulder pulley set I like for morning sessions.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Darren Cole",
+    "text": "Fridays at 09:00 suit me best for my shoulder rehab, and Room 2 is fine. Please book me in on that basis going forward.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-29",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Registered Darren Cole in the client list with his preference for Friday 09:00 sessions in Room 2 for shoulder rehab.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked Darren Cole with Lena Park on Friday 13 November at 09:00 in Room 2 for his shoulder rehab session, matching his standing Friday preference and Lena's Friday morning shift.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e7",
+     "e1"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Rosa Jimenez (Lakeshore Sports Medicine Centre)",
+    "text": "Facilities note: Room 3 is free every Tuesday afternoon from 13:00 onwards; the evening cleaning crew only comes through after 18:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Scheduled the staff equipment demo for Tuesday 17 November at 14:00 in Room 3, since Room 3 is free on Tuesday afternoons.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-15",
+    "type": "message",
+    "from": "Lena Park (Lakeshore Sports Medicine Centre)",
+    "text": "Thanks for the new recovery boots, the pair arrived and the athletes already love them.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-05",
+    "type": "quote",
+    "from": "Priya Nair (MedFlex Supplies)",
+    "text": "Quote for our premium pneumatic recovery boots with the heated lining: 410 per pair. The standard pair remains 340. Quote valid 60 days.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Priya Nair (MedFlex Supplies)",
+    "text": "Logistics update: our courier now delivers to Lakeshore every Wednesday between 09:00 and 12:00, so orders placed by Monday evening arrive that week.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-20",
+    "type": "quote",
+    "from": "Ana Sousa (CleanWave Linen Service)",
+    "text": "Our price for weekly towel and treatment-sheet service for a clinic your size is 85 per week, fresh drop every Monday.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-03",
+    "type": "task",
+    "from": "Maya",
+    "text": "To-do: pay the MedFlex Supplies August invoice by 2026-11-30.",
+    "role": "obligation"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-14",
+    "type": "call",
+    "from": "Maya",
+    "text": "Call note: Darren Cole rang to say his shoulder is improving and he is happy with the Friday morning routine with Lena.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-22",
+    "type": "notice",
+    "from": "Rosa Jimenez (Lakeshore Sports Medicine Centre)",
+    "text": "Building notice: the car park behind the centre will be resurfaced in the spring; no impact on clinic hours.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Priya Nair (MedFlex Supplies)",
+    "text": "News from our catalogue: we now also stock a latex-free ultrasound gel, 250ml bottles, at 14 per bottle. Your standard ultrasound gel remains available at the usual 12 per bottle, unchanged.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-20",
+    "type": "message",
+    "from": "Rosa Jimenez (Lakeshore Sports Medicine Centre)",
+    "text": "Reminder that the Room 3 cupboard keys are back with reception after the cleaners finished.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-11-05",
+    "type": "minutes",
+    "from": "Maya",
+    "text": "Staff meeting minutes: winter rota confirmed, Lena keeps Friday mornings, and the equipment demo on Tuesday 17 November at 14:00 in Room 3 is on track.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Recovery boots order",
+    "fields": {
+     "supplier": "MedFlex Supplies",
+     "item": "pneumatic recovery boots",
+     "quantity": "1",
+     "unit_price": "340",
+     "total": "340",
+     "status": "placed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Ultrasound gel restock",
+    "fields": {
+     "supplier": "MedFlex Supplies",
+     "item": "standard ultrasound gel 250ml",
+     "quantity": "20",
+     "unit_price": "12",
+     "total": "240",
+     "status": "placed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Darren Cole shoulder rehab",
+    "fields": {
+     "client": "Darren Cole",
+     "physio": "Lena Park",
+     "date": "2026-11-13",
+     "time": "09:00",
+     "place": "Room 2",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Staff equipment demo",
+    "fields": {
+     "date": "2026-11-17",
+     "time": "14:00",
+     "place": "Room 3",
+     "lead": "Lena Park",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Darren Cole",
+    "fields": {
+     "name": "Darren Cole",
+     "preference": "Friday 09:00 Room 2",
+     "treatment": "shoulder rehab",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time",
+     "place"
+    ],
+    "from": "Darren Cole",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please order another 20 bottles of our standard ultrasound gel from MedFlex Supplies, and send Darren Cole a message confirming his appointment this Friday at 09:00 in Room 2 with Lena.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "MedFlex Supplies",
+     "item": "standard ultrasound gel 250ml",
+     "quantity": "20",
+     "unit_price": "12",
+     "total": "240"
+    },
+    "stale": {
+     "unit_price": [
+      "14"
+     ],
+     "item": [
+      "latex-free ultrasound gel 250ml"
+     ],
+     "total": [
+      "280"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Darren Cole",
+    "regarding": "EV-1",
+    "says": [
+     "2026-11-13",
+     "09:00",
+     "Room 2",
+     "Lena Park"
+    ],
+    "stale": [
+     "Room 3",
+     "14:00",
+     "2026-11-17"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Control class: the MedFlex email about a new latex-free gel at 14 per bottle adds a fact beside the topic and revokes nothing, so no decision is touched and no record changes. The standing plan holds: the gel restock uses the unchanged standard gel at 12 per bottle (20 bottles, 240, under the 500 sign-off line), and Darren's confirmed Friday 13 November 09:00 Room 2 appointment with Lena is simply confirmed to him, not moved — moving it would need his consent and nothing asks for that.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "gel restock",
+    "counterpart": "Priya Nair",
+    "org": "MedFlex Supplies",
+    "item": "standard ultrasound gel 250ml",
+    "unit": "bottle",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "Lakeshore reception"
+   },
+   {
+    "kind": "order",
+    "topic": "tape restock",
+    "counterpart": "Priya Nair",
+    "org": "MedFlex Supplies",
+    "item": "kinesiology tape rolls",
+    "unit": "roll",
+    "values": [
+     "12",
+     "24",
+     "36",
+     "48"
+    ],
+    "place": "Lakeshore reception"
+   },
+   {
+    "kind": "order",
+    "topic": "band restock",
+    "counterpart": "Priya Nair",
+    "org": "MedFlex Supplies",
+    "item": "resistance band sets",
+    "unit": "set",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "15"
+    ],
+    "place": "Lakeshore reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "physio room rota",
+    "counterpart": "Lena Park",
+    "org": "Lakeshore Sports Medicine Centre",
+    "item": "treatment room for client sessions",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Room 3"
+    ],
+    "place": "Lakeshore Sports Medicine Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff catch-up",
+    "counterpart": "Rosa Jimenez",
+    "org": "Lakeshore Sports Medicine Centre",
+    "item": "room for weekly staff catch-up",
+    "unit": "",
+    "values": [
+     "Room 3",
+     "staff room",
+     "Room 1"
+    ],
+    "place": "Lakeshore Sports Medicine Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "linen service",
+    "counterpart": "Ana Sousa",
+    "org": "CleanWave Linen Service",
+    "item": "treatment sheets and towels",
+    "unit": "bag",
+    "values": [
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "place": "Lakeshore reception"
+   },
+   {
+    "kind": "order",
+    "topic": "ice pack restock",
+    "counterpart": "Jonas Beck",
+    "org": "Nordic Rehab Supply",
+    "item": "reusable ice packs",
+    "unit": "pack",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Lakeshore reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "team physio visit",
+    "counterpart": "Marta Ellis",
+    "org": "Harbour Rowing Club",
+    "item": "room for squad screening session",
+    "unit": "",
+    "values": [
+     "Room 2",
+     "Room 3",
+     "gym bay"
+    ],
+    "place": "Lakeshore Sports Medicine Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "office supplies",
+    "counterpart": "Kenji Mori",
+    "org": "Papertrail Office Co",
+    "item": "appointment diary refills",
+    "unit": "pack",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Lakeshore reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "massage therapist slot",
+    "counterpart": "Elin Voss",
+    "org": "Lakeshore Sports Medicine Centre",
+    "item": "room for sports massage sessions",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "gym bay"
+    ],
+    "place": "Lakeshore Sports Medicine Centre"
+   }
+  ],
+  "id": "K100-4-07",
+  "tier": 100,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

@@ -642,5 +642,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The house rules require consent before changing confirmed arrangements, but do not require proposing changes whenever another room becomes available; the mandatory ASK marks therefore do not unambiguously follow. Moreover, moving the Guild display back to Cedar would overlap Priya's newly confirmed stay, so that consent request cannot straightforwardly promise the original venue.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The house rules require consent before changing confirmed arrangements, but do not require proposing changes whenever another room becomes available; the mandatory ASK marks therefore do not unambiguously follow. Moreover, moving the Guild display back to Cedar would overlap Priya's newly confirmed stay, so that consent request cannot straightforwardly promise the original venue."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4387,
+    "completion_tokens": 266,
+    "reasoning_tokens": 165,
+    "cached_tokens": 0
+   },
+   "cost": 0.06813,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4ee368e468ddc0a72dfb979d779c5179397b62532e8980d1fa15c819a868f58f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e25 revokes e5, and the marks follow: e9 is REVISE, e14 and e16 are ASK (e16 is two hops away via e9), and e11 and e17 are KEEP because their substance stands. The task forces a booking and confirmation without naming the change, and the tier counts (29 core events, 7 decisions, 14 days before the task day, 66 events after the change, and the e24 echo) all meet the 500 tier. The change is an ordinary 'Good news' email with later events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e25 revokes e5, and the marks follow: e9 is REVISE, e14 and e16 are ASK (e16 is two hops away via e9), and e11 and e17 are KEEP because their substance stands. The task forces a booking and confirmation without naming the change, and the tier counts (29 core events, 7 decisions, 14 days before the task day, 66 events after the change, and the e24 echo) all meet the 500 tier. The change is an ordinary 'Good news' email with later events after it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6377,
+    "completion_tokens": 2308,
+    "reasoning_tokens": 2085,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017917,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4ee368e468ddc0a72dfb979d779c5179397b62532e8980d1fa15c819a868f58f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The early-finish email fixes EV-1's end to 2026-10-19, freeing the Cedar Room for the 23–25 Oct booking; Tansey (one hop, e1 consent) and the Guild venue (two hops via the block decision e9, e2 consent) are correctly ASK, while Kendal and ORD-2 rest on unaffected aspects and are KEEP. Counts (29 core, 7 decisions), the 14-day gap, the e24 echo, and 66 post-change events all meet the tier and hiding requirements.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The early-finish email fixes EV-1's end to 2026-10-19, freeing the Cedar Room for the 23–25 Oct booking; Tansey (one hop, e1 consent) and the Guild venue (two hops via the block decision e9, e2 consent) are correctly ASK, while Kendal and ORD-2 rest on unaffected aspects and are KEEP. Counts (29 core, 7 decisions), the 14-day gap, the e24 echo, and 66 post-change events all meet the tier and hiding requirements."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4481,
+    "completion_tokens": 696,
+    "reasoning_tokens": 524,
+    "cached_tokens": 0
+   },
+   "cost": 0.023883,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4ee368e468ddc0a72dfb979d779c5179397b62532e8980d1fa15c819a868f58f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

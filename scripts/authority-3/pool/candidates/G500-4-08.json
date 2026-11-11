@@ -604,5 +604,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The 10 October instruction restates the existing crew rule, and the booking already names Marta and Tomas, so only the requested confirmation message and status change are needed. The core has 29 events and 8 decisions, with the change 18 days before the task and four core events afterward; a control requires no stale-value echo. The change is presented as an ordinary instruction among other events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 10 October instruction restates the existing crew rule, and the booking already names Marta and Tomas, so only the requested confirmation message and status change are needed. The core has 29 events and 8 decisions, with the change 18 days before the task and four core events afterward; a control requires no stale-value echo. The change is presented as an ordinary instruction among other events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3967,
+    "completion_tokens": 219,
+    "reasoning_tokens": 103,
+    "cached_tokens": 0
+   },
+   "cost": 0.06053,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3703a55fa7696d8add4b020c91ef2355bfcfba9ab2ee90cb37c5f42eda9946c2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 10 October instruction (E0460) restates the two-person rule from E0015 without changing any decision, and the expected state follows from that. The core has 29 events and 8 decisions, and the change falls 18 days before the task day with four core events after it, so the tier counts hold. The change is an ordinary-looking event, though its 'putting this in plain words' phrasing slightly signals a restatement, which is consistent with class 4.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 10 October instruction (E0460) restates the two-person rule from E0015 without changing any decision, and the expected state follows from that. The core has 29 events and 8 decisions, and the change falls 18 days before the task day with four core events after it, so the tier counts hold. The change is an ordinary-looking event, though its 'putting this in plain words' phrasing slightly signals a restatement, which is consistent with class 4."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5703,
+    "completion_tokens": 1181,
+    "reasoning_tokens": 986,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011608,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3703a55fa7696d8add4b020c91ef2355bfcfba9ab2ee90cb37c5f42eda9946c2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 10 October instruction merely restates the June two-person rule, so it is a genuine control: nothing is touched and the expected state (confirm EV-1 and message Deborah with the booked date, time and crew) follows unambiguously. Counts meet tier 500 (29 core events, 8 decisions, change 18 days before the task day with later core events; no echo required in class 4), and the change sits mid-history among routine events without being flagged.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 10 October instruction merely restates the June two-person rule, so it is a genuine control: nothing is touched and the expected state (confirm EV-1 and message Deborah with the booked date, time and crew) follows unambiguously. Counts meet tier 500 (29 core events, 8 decisions, change 18 days before the task day with later core events; no echo required in class 4), and the change sits mid-history among routine events without being flagged."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4059,
+    "completion_tokens": 356,
+    "reasoning_tokens": 202,
+    "cached_tokens": 256
+   },
+   "cost": 0.0168258,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3703a55fa7696d8add4b020c91ef2355bfcfba9ab2ee90cb37c5f42eda9946c2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

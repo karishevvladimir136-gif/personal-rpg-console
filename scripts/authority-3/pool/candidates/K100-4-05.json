@@ -1,0 +1,497 @@
+{
+ "id": "K100-4-05",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 4,
+ "idx": 4,
+ "setting": "Tailor shop proprietor at Finch & Thread Bespoke Tailoring",
+ "prompt_sha256": "d04c7357aa7f276b39b76813323881cdaaa783935408439754034731a045c639",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Restated sign-off rule at the tailor shop\",\n \"setting\": \"Tailor shop proprietor at Finch & Thread Bespoke Tailoring\",\n \"owner\": \"Maren\",\n \"org\": \"Finch & Thread Bespoke Tailoring\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maren\", \"text\": \"Shop policy: once a client fitting is confirmed, the appointment date may not be moved without that client's own agreement. If a date has to change, ask the client first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing instruction for the workshop: any supplier order over £800 must be signed off by senior cutter Tomas Hale before it is sent. Orders of £800 or less can go straight out.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Luca Marlow (Marlow Fabrics)\", \"text\": \"Maren, here is our current cloth list for Finch & Thread: navy herringbone suiting wool is £68 per metre, cupro lining is £14 per metre. Standard delivery to your shop is five working days.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Asha Whitfield\", \"text\": \"Dear Maren, my wedding is on Saturday 21 November 2026, so I will need the final fitting of my suit done in good time, ideally late October. The shop fitting room suits me fine.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked Asha Whitfield's final wedding-suit fitting for Saturday 24 October 2026 at 10:30 in the shop fitting room, ahead of her 21 November wedding. Confirmed it with her by email.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Tomas Hale works in the shop on Tuesdays and Thursdays; client measuring sessions should be booked on those days where possible.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-23\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Ordered 8 metres of cupro lining from Marlow Fabrics at £14 a metre, £112 in total. Well under the £800 sign-off threshold, so the order went straight out to Luca Marlow for delivery to the shop.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Petra Wexley (Wexley & Sons)\", \"text\": \"Our natural horn buttons are sold in boxes of 24 at £48 per box, minimum order two boxes. Postage to your shop is included.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Ordered two boxes of natural horn buttons from Wexley & Sons, £96 in total, below the £800 threshold so no sign-off needed. Delivery to the shop.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"minutes\", \"from\": \"Maren\", \"text\": \"Weekly catch-up notes: pressing rota swapped for August, apprentice to shadow Tomas on Thursday mornings, shop window to be redressed before the autumn.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-22\", \"type\": \"notice\", \"from\": \"Maren\", \"text\": \"Reminder on the door and the website: Finch & Thread is closed on Mondays throughout the year.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Hello, I would like to arrange a first measuring session for a two-piece suit. I can come to the shop on a weekday afternoon.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked Priya Nair's first measuring session for Tuesday 20 October 2026 at 14:00 with Tomas Hale in the shop, since Tomas is in on Tuesdays. Confirmed to Priya by email.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e6\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-20\", \"type\": \"task\", \"from\": \"Maren\", \"text\": \"Pay Marlow Fabrics' July invoice of £318 by Monday 31 August 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Luca Marlow (Marlow Fabrics)\", \"text\": \"Maren, a heads-up for your winter planning: the next herringbone lots coming through the mill are running at about £72 per metre. Your current list price stands for anything ordered from the present stock.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-14\", \"type\": \"message\", \"from\": \"Maren\", \"text\": \"Team note: the apprentice handles sleeve-head pressing this week; keep the fitting room free after 16:00 on Friday for the window mannequins.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-30\", \"type\": \"message\", \"from\": \"Maren\", \"text\": \"For everyone's benefit, a reminder of how we handle supplier spend: whenever a cloth or trim order comes in above eight hundred pounds, it goes across Tomas Hale's bench before it leaves the shop; anything at or under that figure we simply send.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e18\", \"date\": \"2026-10-05\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Asha Whitfield's jacket baste is finished and hanging in the workroom; trousers due off the board this week.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Asha Whitfield\", \"text\": \"Looking forward to the fitting on Saturday 24 October at 10:30. My best man may come along to collect his waistcoat at the same time.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Petra Wexley (Wexley & Sons)\", \"text\": \"Your two boxes of horn buttons left us this morning and should reach the shop early next week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Asha Whitfield final wedding-suit fitting\", \"fields\": {\"client\": \"Asha Whitfield\", \"date\": \"2026-10-24\", \"time\": \"10:30\", \"place\": \"shop fitting room\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Priya Nair first measuring session\", \"fields\": {\"client\": \"Priya Nair\", \"date\": \"2026-10-20\", \"time\": \"14:00\", \"place\": \"shop\", \"with\": \"Tomas Hale\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cupro lining from Marlow Fabrics\", \"fields\": {\"supplier\": \"Marlow Fabrics\", \"item\": \"cupro lining\", \"quantity\": \"8\", \"amount\": \"112\", \"delivery\": \"shop\", \"status\": \"sent\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Horn buttons from Wexley & Sons\", \"fields\": {\"supplier\": \"Wexley & Sons\", \"item\": \"natural horn buttons\", \"quantity\": \"2\", \"amount\": \"96\", \"delivery\": \"shop\", \"status\": \"sent\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Asha Whitfield\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please order 6 metres of the navy herringbone suiting wool from Marlow Fabrics for Asha Whitfield's suit, standard delivery to the shop.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Marlow Fabrics\", \"item\": \"navy herringbone suiting wool\", \"quantity\": \"6\", \"amount\": \"408\", \"delivery\": \"shop\", \"status\": \"sent\"}, \"stale\": {\"amount\": [\"432\"]}, \"task\": true}\n ],\n \"why\": \"The change is only a restatement of the £800 sign-off rule in other words, so it revokes nothing and touches no decision; every existing record stays exactly as it stands. The task is a new order of 6 metres of herringbone at the current £68 per metre (£408, under the threshold, so it goes straight out), and the tempting £72 figure from Luca Marlow's forward-looking email is the stale value to avoid. Nothing else in the workplace should change.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"lining restock\", \"counterpart\": \"Luca Marlow\", \"org\": \"Marlow Fabrics\", \"item\": \"cupro lining\", \"unit\": \"metres\", \"values\": [\"4\", \"6\", \"8\", \"10\", \"12\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"canvas restock\", \"counterpart\": \"Luca Marlow\", \"org\": \"Marlow Fabrics\", \"item\": \"hair canvas\", \"unit\": \"metres\", \"values\": [\"3\", \"5\", \"8\", \"10\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"thread restock\", \"counterpart\": \"Luca Marlow\", \"org\": \"Marlow Fabrics\", \"item\": \"silk basting thread\", \"unit\": \"spools\", \"values\": [\"6\", \"10\", \"12\", \"20\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"button restock\", \"counterpart\": \"Petra Wexley\", \"org\": \"Wexley & Sons\", \"item\": \"corozo buttons\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"shop\"},\n  {\"kind\": \"booking\", \"topic\": \"fitting room afternoon slots\", \"counterpart\": \"Asha Whitfield\", \"org\": \"private client\", \"item\": \"fitting room slot\", \"unit\": \"session\", \"values\": [\"shop fitting room\", \"workshop bench\", \"front counter\"], \"place\": \"shop\"},\n  {\"kind\": \"booking\", \"topic\": \"measuring session rota\", \"counterpart\": \"Tomas Hale\", \"org\": \"Finch & Thread Bespoke Tailoring\", \"item\": \"measuring session\", \"unit\": \"session\", \"values\": [\"shop fitting room\", \"cutting table\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"chalk and pencils\", \"counterpart\": \"Nadia Quill\", \"org\": \"Quill Notions\", \"item\": \"tailor's chalk\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"garment bags\", \"counterpart\": \"Nadia Quill\", \"org\": \"Quill Notions\", \"item\": \"breathable garment bags\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"shop\"},\n  {\"kind\": \"booking\", \"topic\": \"press hire\", \"counterpart\": \"Owen Bright\", \"org\": \"Bright Equipment Hire\", \"item\": \"steam press\", \"unit\": \"day\", \"values\": [\"workshop\", \"pressing alcove\", \"back room\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"tissue and pins\", \"counterpart\": \"Nadia Quill\", \"org\": \"Quill Notions\", \"item\": \"fine dressmaker pins\", \"unit\": \"tins\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"shop\"},\n  {\"kind\": \"booking\", \"topic\": \"van for client collection\", \"counterpart\": \"Owen Bright\", \"org\": \"Bright Equipment Hire\", \"item\": \"small van\", \"unit\": \"day\", \"values\": [\"front of shop\", \"side alley\", \"market square\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"hanger restock\", \"counterpart\": \"Petra Wexley\", \"org\": \"Wexley & Sons\", \"item\": \"cedar suit hangers\", \"unit\": \"dozen\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"shop\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3192,
+    "completion_tokens": 5003,
+    "reasoning_tokens": 1847,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0763266,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Restated sign-off rule at the tailor shop\",\n \"setting\": \"Tailor shop proprietor at Finch & Thread Bespoke Tailoring\",\n \"owner\": \"Maren\",\n \"org\": \"Finch & Thread Bespoke Tailoring\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maren\", \"text\": \"Shop policy: once a client fitting is confirmed, the appointment date may not be moved without that client's own agreement. If a date has to change, ask the client first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing instruction for the workshop: any supplier order over £800 must be signed off by senior cutter Tomas Hale before it is sent. Orders of £800 or less can go straight out.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Luca Marlow (Marlow Fabrics)\", \"text\": \"Maren, here is our current cloth list for Finch & Thread: navy herringbone suiting wool is £68 per metre, cupro lining is £14 per metre. Standard delivery to your shop is five working days.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Asha Whitfield\", \"text\": \"Dear Maren, my wedding is on Saturday 21 November 2026, so I will need the final fitting of my suit done in good time, ideally late October. The shop fitting room suits me fine.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked Asha Whitfield's final wedding-suit fitting for Saturday 24 October 2026 at 10:30 in the shop fitting room, ahead of her 21 November wedding. Confirmed it with her by email.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Tomas Hale works in the shop on Tuesdays and Thursdays; client measuring sessions should be booked on those days where possible.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-23\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Ordered 8 metres of cupro lining from Marlow Fabrics at £14 a metre, £112 in total. Well under the £800 sign-off threshold, so the order went straight out to Luca Marlow for delivery to the shop.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Petra Wexley (Wexley & Sons)\", \"text\": \"Our natural horn buttons are sold in boxes of 24 at £48 per box, minimum order two boxes. Postage to your shop is included.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Ordered two boxes of natural horn buttons from Wexley & Sons, £96 in total, below the £800 threshold so no sign-off needed. Delivery to the shop.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"minutes\", \"from\": \"Maren\", \"text\": \"Weekly catch-up notes: pressing rota swapped for August, apprentice to shadow Tomas on Thursday mornings, shop window to be redressed before the autumn.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-22\", \"type\": \"notice\", \"from\": \"Maren\", \"text\": \"Reminder on the door and the website: Finch & Thread is closed on Mondays throughout the year.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Hello, I would like to arrange a first measuring session for a two-piece suit. I can come to the shop on a weekday afternoon.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked Priya Nair's first measuring session for Tuesday 20 October 2026 at 14:00 with Tomas Hale in the shop, since Tomas is in on Tuesdays. Confirmed to Priya by email.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e6\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-20\", \"type\": \"task\", \"from\": \"Maren\", \"text\": \"Pay Marlow Fabrics' July invoice of £318 by Monday 31 August 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Luca Marlow (Marlow Fabrics)\", \"text\": \"Maren, a heads-up for your winter planning: the next herringbone lots coming through the mill are running at about £72 per metre. Your current list price stands for anything ordered from the present stock.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-14\", \"type\": \"message\", \"from\": \"Maren\", \"text\": \"Team note: the apprentice handles sleeve-head pressing this week; keep the fitting room free after 16:00 on Friday for the window mannequins.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-30\", \"type\": \"message\", \"from\": \"Maren\", \"text\": \"For everyone's benefit, a reminder of how we handle supplier spend: whenever a cloth or trim order comes in above eight hundred pounds, it goes across Tomas Hale's bench before it leaves the shop; anything at or under that figure we simply send.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e18\", \"date\": \"2026-10-05\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Asha Whitfield's jacket baste is finished and hanging in the workroom; trousers due off the board this week.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Asha Whitfield\", \"text\": \"Looking forward to the fitting on Saturday 24 October at 10:30. My best man may come along to collect his waistcoat at the same time.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Petra Wexley (Wexley & Sons)\", \"text\": \"Your two boxes of horn buttons left us this morning and should reach the shop early next week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Asha Whitfield final wedding-suit fitting\", \"fields\": {\"client\": \"Asha Whitfield\", \"date\": \"2026-10-24\", \"time\": \"10:30\", \"place\": \"shop fitting room\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Priya Nair first measuring session\", \"fields\": {\"client\": \"Priya Nair\", \"date\": \"2026-10-20\", \"time\": \"14:00\", \"place\": \"shop\", \"with\": \"Tomas Hale\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cupro lining from Marlow Fabrics\", \"fields\": {\"supplier\": \"Marlow Fabrics\", \"item\": \"cupro lining\", \"quantity\": \"8\", \"amount\": \"112\", \"delivery\": \"shop\", \"status\": \"sent\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Horn buttons from Wexley & Sons\", \"fields\": {\"supplier\": \"Wexley & Sons\", \"item\": \"natural horn buttons\", \"quantity\": \"2\", \"amount\": \"96\", \"delivery\": \"shop\", \"status\": \"sent\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Asha Whitfield\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please order 6 metres of the navy herringbone suiting wool from Marlow Fabrics for Asha Whitfield's suit, standard delivery to the shop.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Marlow Fabrics\", \"item\": \"navy herringbone suiting wool\", \"quantity\": \"6\", \"amount\": \"408\", \"delivery\": \"shop\", \"status\": \"sent\"}, \"stale\": {\"amount\": [\"432\"]}, \"task\": true}\n ],\n \"why\": \"The change is only a restatement of the £800 sign-off rule in other words, so it revokes nothing and touches no decision; every existing record stays exactly as it stands. The task is a new order of 6 metres of herringbone at the current £68 per metre (£408, under the threshold, so it goes straight out), and the tempting £72 figure from Luca Marlow's forward-looking email is the stale value to avoid. Nothing else in the workplace should change.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"lining restock\", \"counterpart\": \"Luca Marlow\", \"org\": \"Marlow Fabrics\", \"item\": \"cupro lining\", \"unit\": \"metres\", \"values\": [\"4\", \"6\", \"8\", \"10\", \"12\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"canvas restock\", \"counterpart\": \"Luca Marlow\", \"org\": \"Marlow Fabrics\", \"item\": \"hair canvas\", \"unit\": \"metres\", \"values\": [\"3\", \"5\", \"8\", \"10\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"thread restock\", \"counterpart\": \"Luca Marlow\", \"org\": \"Marlow Fabrics\", \"item\": \"silk basting thread\", \"unit\": \"spools\", \"values\": [\"6\", \"10\", \"12\", \"20\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"button restock\", \"counterpart\": \"Petra Wexley\", \"org\": \"Wexley & Sons\", \"item\": \"corozo buttons\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"shop\"},\n  {\"kind\": \"booking\", \"topic\": \"fitting room afternoon slots\", \"counterpart\": \"Asha Whitfield\", \"org\": \"private client\", \"item\": \"fitting room slot\", \"unit\": \"session\", \"values\": [\"shop fitting room\", \"workshop bench\", \"front counter\"], \"place\": \"shop\"},\n  {\"kind\": \"booking\", \"topic\": \"measuring session rota\", \"counterpart\": \"Tomas Hale\", \"org\": \"Finch & Thread Bespoke Tailoring\", \"item\": \"measuring session\", \"unit\": \"session\", \"values\": [\"shop fitting room\", \"cutting table\", \"front counter\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"chalk and pencils\", \"counterpart\": \"Nadia Quill\", \"org\": \"Quill Notions\", \"item\": \"tailor's chalk\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"garment bags\", \"counterpart\": \"Nadia Quill\", \"org\": \"Quill Notions\", \"item\": \"breathable garment bags\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"shop\"},\n  {\"kind\": \"booking\", \"topic\": \"press hire\", \"counterpart\": \"Owen Bright\", \"org\": \"Bright Equipment Hire\", \"item\": \"steam press\", \"unit\": \"day\", \"values\": [\"workshop\", \"pressing alcove\", \"back room\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"tissue and pins\", \"counterpart\": \"Nadia Quill\", \"org\": \"Quill Notions\", \"item\": \"fine dressmaker pins\", \"unit\": \"tins\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"shop\"},\n  {\"kind\": \"booking\", \"topic\": \"van for client collection\", \"counterpart\": \"Owen Bright\", \"org\": \"Bright Equipment Hire\", \"item\": \"small van\", \"unit\": \"day\", \"values\": [\"front of shop\", \"side alley\", \"market square\"], \"place\": \"shop\"},\n  {\"kind\": \"order\", \"topic\": \"hanger restock\", \"counterpart\": \"Petra Wexley\", \"org\": \"Wexley & Sons\", \"item\": \"cedar suit hangers\", \"unit\": \"dozen\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"shop\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6412,
+    "completion_tokens": 3168,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0584616,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'measuring session rota': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Restated sign-off rule at the tailor shop",
+  "setting": "Tailor shop proprietor at Finch & Thread Bespoke Tailoring",
+  "owner": "Maren",
+  "org": "Finch & Thread Bespoke Tailoring",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Maren",
+    "text": "Shop policy: once a client fitting is confirmed, the appointment date may not be moved without that client's own agreement. If a date has to change, ask the client first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Maren",
+    "text": "Standing instruction for the workshop: any supplier order over £800 must be signed off by senior cutter Tomas Hale before it is sent. Orders of £800 or less can go straight out.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Luca Marlow (Marlow Fabrics)",
+    "text": "Maren, here is our current cloth list for Finch & Thread: navy herringbone suiting wool is £68 per metre, cupro lining is £14 per metre. Standard delivery to your shop is five working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Asha Whitfield",
+    "text": "Dear Maren, my wedding is on Saturday 21 November 2026, so I will need the final fitting of my suit done in good time, ideally late October. The shop fitting room suits me fine.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Booked Asha Whitfield's final wedding-suit fitting for Saturday 24 October 2026 at 10:30 in the shop fitting room, ahead of her 21 November wedding. Confirmed it with her by email.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-20",
+    "type": "note",
+    "from": "Maren",
+    "text": "Tomas Hale works in the shop on Tuesdays and Thursdays; client measuring sessions should be booked on those days where possible.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-23",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Ordered 8 metres of cupro lining from Marlow Fabrics at £14 a metre, £112 in total. Well under the £800 sign-off threshold, so the order went straight out to Luca Marlow for delivery to the shop.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-01",
+    "type": "email",
+    "from": "Petra Wexley (Wexley & Sons)",
+    "text": "Our natural horn buttons are sold in boxes of 24 at £48 per box, minimum order two boxes. Postage to your shop is included.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Ordered two boxes of natural horn buttons from Wexley & Sons, £96 in total, below the £800 threshold so no sign-off needed. Delivery to the shop.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-15",
+    "type": "minutes",
+    "from": "Maren",
+    "text": "Weekly catch-up notes: pressing rota swapped for August, apprentice to shadow Tomas on Thursday mornings, shop window to be redressed before the autumn.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-22",
+    "type": "notice",
+    "from": "Maren",
+    "text": "Reminder on the door and the website: Finch & Thread is closed on Mondays throughout the year.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Hello, I would like to arrange a first measuring session for a two-piece suit. I can come to the shop on a weekday afternoon.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-07",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Booked Priya Nair's first measuring session for Tuesday 20 October 2026 at 14:00 with Tomas Hale in the shop, since Tomas is in on Tuesdays. Confirmed to Priya by email.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e6"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-20",
+    "type": "task",
+    "from": "Maren",
+    "text": "Pay Marlow Fabrics' July invoice of £318 by Monday 31 August 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Luca Marlow (Marlow Fabrics)",
+    "text": "Maren, a heads-up for your winter planning: the next herringbone lots coming through the mill are running at about £72 per metre. Your current list price stands for anything ordered from the present stock.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-14",
+    "type": "message",
+    "from": "Maren",
+    "text": "Team note: the apprentice handles sleeve-head pressing this week; keep the fitting room free after 16:00 on Friday for the window mannequins.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-30",
+    "type": "message",
+    "from": "Maren",
+    "text": "For everyone's benefit, a reminder of how we handle supplier spend: whenever a cloth or trim order comes in above eight hundred pounds, it goes across Tomas Hale's bench before it leaves the shop; anything at or under that figure we simply send.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-05",
+    "type": "note",
+    "from": "Maren",
+    "text": "Asha Whitfield's jacket baste is finished and hanging in the workroom; trousers due off the board this week.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Asha Whitfield",
+    "text": "Looking forward to the fitting on Saturday 24 October at 10:30. My best man may come along to collect his waistcoat at the same time.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-10",
+    "type": "message",
+    "from": "Petra Wexley (Wexley & Sons)",
+    "text": "Your two boxes of horn buttons left us this morning and should reach the shop early next week.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Asha Whitfield final wedding-suit fitting",
+    "fields": {
+     "client": "Asha Whitfield",
+     "date": "2026-10-24",
+     "time": "10:30",
+     "place": "shop fitting room",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Priya Nair first measuring session",
+    "fields": {
+     "client": "Priya Nair",
+     "date": "2026-10-20",
+     "time": "14:00",
+     "place": "shop",
+     "with": "Tomas Hale",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Cupro lining from Marlow Fabrics",
+    "fields": {
+     "supplier": "Marlow Fabrics",
+     "item": "cupro lining",
+     "quantity": "8",
+     "amount": "112",
+     "delivery": "shop",
+     "status": "sent"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Horn buttons from Wexley & Sons",
+    "fields": {
+     "supplier": "Wexley & Sons",
+     "item": "natural horn buttons",
+     "quantity": "2",
+     "amount": "96",
+     "delivery": "shop",
+     "status": "sent"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date"
+    ],
+    "from": "Asha Whitfield",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please order 6 metres of the navy herringbone suiting wool from Marlow Fabrics for Asha Whitfield's suit, standard delivery to the shop.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Marlow Fabrics",
+     "item": "navy herringbone suiting wool",
+     "quantity": "6",
+     "amount": "408",
+     "delivery": "shop",
+     "status": "sent"
+    },
+    "stale": {
+     "amount": [
+      "432"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "The change is only a restatement of the £800 sign-off rule in other words, so it revokes nothing and touches no decision; every existing record stays exactly as it stands. The task is a new order of 6 metres of herringbone at the current £68 per metre (£408, under the threshold, so it goes straight out), and the tempting £72 figure from Luca Marlow's forward-looking email is the stale value to avoid. Nothing else in the workplace should change.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "lining restock",
+    "counterpart": "Luca Marlow",
+    "org": "Marlow Fabrics",
+    "item": "cupro lining",
+    "unit": "metres",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "order",
+    "topic": "canvas restock",
+    "counterpart": "Luca Marlow",
+    "org": "Marlow Fabrics",
+    "item": "hair canvas",
+    "unit": "metres",
+    "values": [
+     "3",
+     "5",
+     "8",
+     "10"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "order",
+    "topic": "thread restock",
+    "counterpart": "Luca Marlow",
+    "org": "Marlow Fabrics",
+    "item": "silk basting thread",
+    "unit": "spools",
+    "values": [
+     "6",
+     "10",
+     "12",
+     "20"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "order",
+    "topic": "button restock",
+    "counterpart": "Petra Wexley",
+    "org": "Wexley & Sons",
+    "item": "corozo buttons",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "fitting room afternoon slots",
+    "counterpart": "Asha Whitfield",
+    "org": "private client",
+    "item": "fitting room slot",
+    "unit": "session",
+    "values": [
+     "shop fitting room",
+     "workshop bench",
+     "front counter"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "measuring session rota",
+    "counterpart": "Tomas Hale",
+    "org": "Finch & Thread Bespoke Tailoring",
+    "item": "measuring session",
+    "unit": "session",
+    "values": [
+     "shop fitting room",
+     "cutting table",
+     "front counter"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "order",
+    "topic": "chalk and pencils",
+    "counterpart": "Nadia Quill",
+    "org": "Quill Notions",
+    "item": "tailor's chalk",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "order",
+    "topic": "garment bags",
+    "counterpart": "Nadia Quill",
+    "org": "Quill Notions",
+    "item": "breathable garment bags",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "press hire",
+    "counterpart": "Owen Bright",
+    "org": "Bright Equipment Hire",
+    "item": "steam press",
+    "unit": "day",
+    "values": [
+     "workshop",
+     "pressing alcove",
+     "back room"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "order",
+    "topic": "tissue and pins",
+    "counterpart": "Nadia Quill",
+    "org": "Quill Notions",
+    "item": "fine dressmaker pins",
+    "unit": "tins",
+    "values": [
+     "3",
+     "6",
+     "9"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "van for client collection",
+    "counterpart": "Owen Bright",
+    "org": "Bright Equipment Hire",
+    "item": "small van",
+    "unit": "day",
+    "values": [
+     "front of shop",
+     "side alley",
+     "market square"
+    ],
+    "place": "shop"
+   },
+   {
+    "kind": "order",
+    "topic": "hanger restock",
+    "counterpart": "Petra Wexley",
+    "org": "Wexley & Sons",
+    "item": "cedar suit hangers",
+    "unit": "dozen",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "shop"
+   }
+  ],
+  "id": "K100-4-05",
+  "tier": 100,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

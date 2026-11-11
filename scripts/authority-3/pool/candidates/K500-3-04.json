@@ -1,0 +1,644 @@
+{
+ "id": "K500-3-04",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 3,
+ "idx": 3,
+ "setting": "Operations coordinator at Maple & Grain Bakery, a wholesale artisan bakery",
+ "prompt_sha256": "1bf96bc8006e9e2f87f1041a2cd0a95c5771d67e6194857eda58123f5c5b1715",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Flour delivery day moves and the client slot hangs on it\",\n \"setting\": \"Operations coordinator at Maple & Grain Bakery, a wholesale artisan bakery\",\n \"owner\": \"Mara\",\n \"org\": \"Maple & Grain Bakery\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction: any supplier order over 2000 must be signed off by Tomás Reyes, our finance lead, before it is placed. Orders at or under 2000 I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule: once a client's regular delivery slot is confirmed, we never move the day or time without that client's agreement. For Harbor Café the person who must agree is Priya Nair.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Mara\", \"text\": \"Welcome note to the team: Tomás Reyes starts Monday as finance lead, handling sign-offs and supplier payments for Maple & Grain Bakery.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Mara\", \"text\": \"Our new apprentice baker, Jo Perrin, started today and will shadow the night bake team for the first month.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"Confirming our arrangement with Maple & Grain Bakery: Hearthfield Mill delivers flour to your loading bay every Tuesday, and our stoneground strong white flour is 38 per 25kg sack. Both hold for the rest of the year.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Priya Nair (Harbor Café)\", \"text\": \"Harbor Café will take 40 mixed loaves from Maple & Grain Bakery every week. Please keep me as the contact for anything about our delivery schedule.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"letter\", \"from\": \"Cormac Bell (Bell Property Management)\", \"text\": \"Signed lease renewal for the bakery premises at 14 Millrace Lane: three further years from August 2026, rent unchanged.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up the standing weekly flour order with Hearthfield Mill: twelve 25kg sacks of stoneground strong white flour at 38 a sack, delivered each Tuesday to our loading bay. That is 456 a week, well under Tomás's 2000 sign-off line, so I placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered this quarter's kraft bread bags and labels from Wraprite Packaging for 620, delivered to the bakery.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"With the flour arriving each Tuesday and the night bake running Tuesday into Wednesday, I have set Harbor Café's standing delivery for Wednesdays at 14:00, 40 loaves. Priya Nair confirmed that slot by phone, so it is now their confirmed regular slot.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\", \"e6\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Sent Northside Deli a quote for 30 seeded loaves a week, priced off Hearthfield's stoneground strong white flour at 38 per sack plus our standard margin.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-5\", \"mark\": \"KEEP\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Summer holiday rota pinned up: Mara away 20 to 24 July, Tomás away the first week of August, night bake covered by Jo.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Lena Vogt (Wraprite Packaging)\", \"text\": \"Autumn price list attached: kraft bread bags hold at current prices, printed labels rise slightly from October.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the delivery van in for its annual service at Alder Garage on 6 November 2026 at 09:00.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"EV-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Soria Market Office\", \"text\": \"Saturday farmers market pitch fees for the autumn season are 45 per Saturday, payable monthly in advance.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked our Saturday stall at Soria farmers market for every Saturday through the autumn season at 45 a week.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Agreed with Jo Perrin that she moves onto the Saturday bake rota from mid-August, after her shadowing month.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"August statement for Maple & Grain Bakery attached. As usual your flour will keep arriving every Tuesday at the loading bay, and stoneground strong white stays at 38 per 25kg sack.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-08-28\", \"type\": \"notice\", \"from\": \"Hale & Co Insurance\", \"text\": \"Your bakery contents and van policy renews on 1 October 2026; documents enclosed, premium unchanged.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Dev Anand (Cascade Mill)\", \"text\": \"Introducing Cascade Mill: we run flour deliveries in your area every Thursday and our strong white flour is 36 per 25kg sack. Happy to send samples if Maple & Grain Bakery wants a second supplier.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"Thanks for the September payment, all received. No changes to report on your account this month.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Deck oven two serviced today; engineer replaced a seal and signed it off for the winter season.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-30\", \"type\": \"notice\", \"from\": \"Millrace District Council\", \"text\": \"From 12 October 2026, commercial waste collections on Millrace Lane move to Mondays and Thursdays.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"A heads-up from Hearthfield Mill: from Tuesday 3 November our weekly delivery run to your area moves to Wednesdays, so your flour will arrive on Wednesdays instead of Tuesdays, starting Wednesday 4 November. Prices are unchanged, including your stoneground strong white at 38 per sack.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"October team meeting: winter menu tasting set for early November, Jo confirmed on the Saturday rota, and Tomás reminded everyone to file delivery notes weekly.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Priya Nair (Harbor Café)\", \"text\": \"Harbor Café confirms the usual 40 mixed loaves a week through November. Looking forward to the winter rye when it starts.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-16\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Stock count: nine sacks of stoneground strong white left in the store, enough to cover bakes until the next delivery.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Tomás Reyes\", \"text\": \"Reminder that the September Hearthfield Mill invoice is due for payment this Friday; I have the statement reconciled.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Quarterly packaging order - Wraprite Packaging\", \"fields\": {\"supplier\": \"Wraprite Packaging\", \"item\": \"Kraft bread bags and labels\", \"amount\": \"620\", \"status\": \"confirmed\", \"delivery_place\": \"Maple & Grain Bakery\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Standing weekly flour order - Hearthfield Mill\", \"fields\": {\"supplier\": \"Hearthfield Mill\", \"item\": \"Stoneground strong white flour 25kg sacks\", \"quantity\": \"12\", \"unit_price\": \"38\", \"delivery_day\": \"Tuesday\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Quote - Northside Deli seeded loaves\", \"fields\": {\"client\": \"Northside Deli\", \"item\": \"Seeded loaves\", \"quantity\": \"30\", \"flour_price_basis\": \"38\", \"status\": \"sent\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Delivery van annual service - Alder Garage\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"09:00\", \"place\": \"Alder Garage\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Standing weekly delivery - Harbor Café\", \"fields\": {\"client\": \"Harbor Café\", \"contact\": \"Priya Nair\", \"day\": \"Wednesday\", \"time\": \"14:00\", \"loaves\": \"40\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Saturday stall - Soria farmers market\", \"fields\": {\"day\": \"Saturday\", \"place\": \"Soria market square\", \"fee\": \"45\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Jo Perrin Saturday bake rota\", \"fields\": {\"person\": \"Jo Perrin\", \"day\": \"Saturday\", \"role\": \"bake rota\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbor Café account\", \"fields\": {\"client\": \"Harbor Café\", \"contact\": \"Priya Nair\", \"weekly_loaves\": \"40\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"day\", \"time\"], \"from\": \"Priya Nair (Harbor Café)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please email Priya Nair at Harbor Café to confirm which day their standing delivery will land in the first week of November, so she can plan her shop rota around it.\",\n \"expect\": [\n  {\"record\": \"ORD-3\", \"field\": \"delivery_day\", \"value\": \"Wednesday\", \"stale\": [\"Tuesday\"]},\n  {\"message_to\": \"Priya Nair (Harbor Café)\", \"regarding\": \"EV-2\", \"says\": [\"Thursday\"], \"stale\": [\"Wednesday\"], \"task\": true}\n ],\n \"why\": \"The mill's email moves flour deliveries from Tuesday to Wednesday from 3 November, so the standing order (ORD-3) is REVISE: Mara placed it herself and it is under the 2000 sign-off line, so the assistant just updates the delivery day. Harbor Café's slot (EV-2) is two hops away: it was set for Wednesday only because flour arrived Tuesday and the bake ran overnight; with flour now landing Wednesday, the delivery would move to Thursday, but that slot is client-confirmed and the house rule requires Priya Nair's consent, so it is ASK and the record stays put while the task email proposes Thursday rather than confirming Wednesday. The Northside Deli quote is KEEP because it relied only on the flour price of 38 per sack, which the mill's email explicitly leaves unchanged.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Rye flour restock\", \"counterpart\": \"Ruth Callan\", \"org\": \"Hearthfield Mill\", \"item\": \"Rye flour 25kg sacks\", \"unit\": \"sack\", \"values\": [\"4\", \"6\", \"8\", \"3\"], \"place\": \"Maple & Grain Bakery loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"Packaging top-up\", \"counterpart\": \"Lena Vogt\", \"org\": \"Wraprite Packaging\", \"item\": \"Kraft bread bags\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Maple & Grain Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"Café tasting meetings\", \"counterpart\": \"Priya Nair\", \"org\": \"Harbor Café\", \"item\": \"Meeting room for menu tasting\", \"unit\": \"room\", \"values\": [\"Harbor Café back room\", \"Bakery office\", \"Harbor Café counter\"], \"place\": \"Harbor Café\"},\n  {\"kind\": \"order\", \"topic\": \"Butter restock\", \"counterpart\": \"Fiona Ashe\", \"org\": \"Dell Dairy\", \"item\": \"Unsalted butter 10kg blocks\", \"unit\": \"block\", \"values\": [\"6\", \"10\", \"14\", \"8\"], \"place\": \"Maple & Grain Bakery cold store\"},\n  {\"kind\": \"order\", \"topic\": \"Egg restock\", \"counterpart\": \"Marcus Wren\", \"org\": \"Hollow Farm\", \"item\": \"Free-range eggs\", \"unit\": \"tray\", \"values\": [\"10\", \"15\", \"20\", \"12\"], \"place\": \"Maple & Grain Bakery loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"Van hire while serviced\", \"counterpart\": \"Owen Gale\", \"org\": \"Alder Garage\", \"item\": \"Replacement van\", \"unit\": \"vehicle\", \"values\": [\"Small van\", \"Large van\"], \"place\": \"Alder Garage yard\"},\n  {\"kind\": \"order\", \"topic\": \"Coffee beans for front counter\", \"counterpart\": \"Ivy Solano\", \"org\": \"Copper Roast\", \"item\": \"House blend coffee beans\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Maple & Grain Bakery front counter\"},\n  {\"kind\": \"booking\", \"topic\": \"Market stall helpers\", \"counterpart\": \"Soria Market Office\", \"org\": \"Soria Market\", \"item\": \"Extra stall space\", \"unit\": \"pitch\", \"values\": [\"Corner pitch\", \"Standard pitch\", \"Double pitch\"], \"place\": \"Soria market square\"},\n  {\"kind\": \"order\", \"topic\": \"Seeds and grains\", \"counterpart\": \"Nadia Ferro\", \"org\": \"Granary Supplies\", \"item\": \"Mixed seed blend\", \"unit\": \"bag\", \"values\": [\"3\", \"5\", \"7\", \"4\"], \"place\": \"Maple & Grain Bakery loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"Deli pastry supply\", \"counterpart\": \"Colm Dara\", \"org\": \"Northside Deli\", \"item\": \"Morning pastry box\", \"unit\": \"box\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Northside Deli\"},\n  {\"kind\": \"booking\", \"topic\": \"Team training room\", \"counterpart\": \"Alba Ruiz\", \"org\": \"Millrace Community Hall\", \"item\": \"Training room for food hygiene course\", \"unit\": \"room\", \"values\": [\"Main hall\", \"Small meeting room\"], \"place\": \"Millrace Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Sam Okafor\", \"org\": \"Brightline Janitorial\", \"item\": \"Food-safe sanitiser\", \"unit\": \"case\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Maple & Grain Bakery\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3231,
+    "completion_tokens": 7347,
+    "reasoning_tokens": 3180,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1116036,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Flour delivery day moves and the client slot hangs on it\",\n \"setting\": \"Operations coordinator at Maple & Grain Bakery, a wholesale artisan bakery\",\n \"owner\": \"Mara\",\n \"org\": \"Maple & Grain Bakery\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction: any supplier order over 2000 must be signed off by Tomás Reyes, our finance lead, before it is placed. Orders at or under 2000 I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule: once a client's regular delivery slot is confirmed, we never move the day or time without that client's agreement. For Harbor Café the person who must agree is Priya Nair.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Mara\", \"text\": \"Welcome note to the team: Tomás Reyes starts Monday as finance lead, handling sign-offs and supplier payments for Maple & Grain Bakery.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Mara\", \"text\": \"Our new apprentice baker, Jo Perrin, started today and will shadow the night bake team for the first month.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"Confirming our arrangement with Maple & Grain Bakery: Hearthfield Mill delivers flour to your loading bay every Tuesday, and our stoneground strong white flour is 38 per 25kg sack. Both hold for the rest of the year.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Priya Nair (Harbor Café)\", \"text\": \"Harbor Café will take 40 mixed loaves from Maple & Grain Bakery every week. Please keep me as the contact for anything about our delivery schedule.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"letter\", \"from\": \"Cormac Bell (Bell Property Management)\", \"text\": \"Signed lease renewal for the bakery premises at 14 Millrace Lane: three further years from August 2026, rent unchanged.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up the standing weekly flour order with Hearthfield Mill: twelve 25kg sacks of stoneground strong white flour at 38 a sack, delivered each Tuesday to our loading bay. That is 456 a week, well under Tomás's 2000 sign-off line, so I placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered this quarter's kraft bread bags and labels from Wraprite Packaging for 620, delivered to the bakery.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"With the flour arriving each Tuesday and the night bake running Tuesday into Wednesday, I have set Harbor Café's standing delivery for Wednesdays at 14:00, 40 loaves. Priya Nair confirmed that slot by phone, so it is now their confirmed regular slot.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\", \"e6\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Sent Northside Deli a quote for 30 seeded loaves a week, priced off Hearthfield's stoneground strong white flour at 38 per sack plus our standard margin.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-5\", \"mark\": \"KEEP\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Summer holiday rota pinned up: Mara away 20 to 24 July, Tomás away the first week of August, night bake covered by Jo.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Lena Vogt (Wraprite Packaging)\", \"text\": \"Autumn price list attached: kraft bread bags hold at current prices, printed labels rise slightly from October.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Since the van covers the weekly Harbor Café delivery every week, I booked it in for its annual service at Alder Garage on 6 November 2026 at 09:00, well clear of any delivery day.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Soria Market Office\", \"text\": \"Saturday farmers market pitch fees for the autumn season are 45 per Saturday, payable monthly in advance.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked our Saturday stall at Soria farmers market for every Saturday through the autumn season at 45 a week.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Jo Perrin's shadowing month with the night bake team is done, so I agreed with her that she moves onto the Saturday bake rota from mid-August.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"August statement for Maple & Grain Bakery attached. As usual your flour will keep arriving every Tuesday at the loading bay, and stoneground strong white stays at 38 per 25kg sack.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-08-28\", \"type\": \"notice\", \"from\": \"Hale & Co Insurance\", \"text\": \"Your bakery contents and van policy renews on 1 October 2026; documents enclosed, premium unchanged.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Dev Anand (Cascade Mill)\", \"text\": \"Introducing Cascade Mill: we run flour deliveries in your area every Thursday and our strong white flour is 36 per 25kg sack. Happy to send samples if Maple & Grain Bakery wants a second supplier.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"Thanks for the September payment, all received. No changes to report on your account this month.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Deck oven two serviced today; engineer replaced a seal and signed it off for the winter season.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-30\", \"type\": \"notice\", \"from\": \"Millrace District Council\", \"text\": \"From 12 October 2026, commercial waste collections on Millrace Lane move to Mondays and Thursdays.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"A heads-up from Hearthfield Mill: from Tuesday 3 November our weekly delivery run to your area moves to Wednesdays, so your flour will arrive on Wednesdays instead of Tuesdays, starting Wednesday 4 November. Prices are unchanged, including your stoneground strong white at 38 per sack.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"October team meeting: winter menu tasting set for early November, Jo confirmed on the Saturday rota, and Tomás reminded everyone to file delivery notes weekly.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Priya Nair (Harbor Café)\", \"text\": \"Harbor Café confirms the usual 40 mixed loaves a week through November. Looking forward to the winter rye when it starts.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-16\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Stock count: nine sacks of stoneground strong white left in the store, enough to cover bakes until the next delivery.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Tomás Reyes\", \"text\": \"Reminder that the September Hearthfield Mill invoice is due for payment this Friday; I have the statement reconciled.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Quarterly packaging order - Wraprite Packaging\", \"fields\": {\"supplier\": \"Wraprite Packaging\", \"item\": \"Kraft bread bags and labels\", \"amount\": \"620\", \"status\": \"confirmed\", \"delivery_place\": \"Maple & Grain Bakery\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Standing weekly flour order - Hearthfield Mill\", \"fields\": {\"supplier\": \"Hearthfield Mill\", \"item\": \"Stoneground strong white flour 25kg sacks\", \"quantity\": \"12\", \"unit_price\": \"38\", \"delivery_day\": \"Tuesday\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Quote - Northside Deli seeded loaves\", \"fields\": {\"client\": \"Northside Deli\", \"item\": \"Seeded loaves\", \"quantity\": \"30\", \"flour_price_basis\": \"38\", \"status\": \"sent\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Delivery van annual service - Alder Garage\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"09:00\", \"place\": \"Alder Garage\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Standing weekly delivery - Harbor Café\", \"fields\": {\"client\": \"Harbor Café\", \"contact\": \"Priya Nair\", \"day\": \"Wednesday\", \"time\": \"14:00\", \"loaves\": \"40\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Saturday stall - Soria farmers market\", \"fields\": {\"day\": \"Saturday\", \"place\": \"Soria market square\", \"fee\": \"45\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Jo Perrin Saturday bake rota\", \"fields\": {\"person\": \"Jo Perrin\", \"day\": \"Saturday\", \"role\": \"bake rota\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbor Café account\", \"fields\": {\"client\": \"Harbor Café\", \"contact\": \"Priya Nair\", \"weekly_loaves\": \"40\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"day\", \"time\"], \"from\": \"Priya Nair (Harbor Café)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please email Priya Nair at Harbor Café to confirm which day their standing delivery will land in the first week of November, so she can plan her shop rota around it.\",\n \"expect\": [\n  {\"record\": \"ORD-3\", \"field\": \"delivery_day\", \"value\": \"Wednesday\", \"stale\": [\"Tuesday\"]},\n  {\"message_to\": \"Priya Nair (Harbor Café)\", \"regarding\": \"EV-2\", \"says\": [\"Thursday\"], \"stale\": [\"Wednesday\"], \"task\": true}\n ],\n \"why\": \"The mill's email moves flour deliveries from Tuesday to Wednesday from 3 November, so the standing order (ORD-3) is REVISE: Mara placed it herself and it is under the 2000 sign-off line, so the assistant just updates the delivery day. Harbor Café's slot (EV-2) is two hops away: it was set for Wednesday only because flour arrived Tuesday and the bake ran overnight; with flour now landing Wednesday, the delivery would move to Thursday, but that slot is client-confirmed and the house rule requires Priya Nair's consent, so it is ASK and the record stays put while the task email proposes Thursday rather than confirming Wednesday. The Northside Deli quote is KEEP because it relied only on the flour price of 38 per sack, which the mill's email explicitly leaves unchanged.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Rye flour restock\", \"counterpart\": \"Ruth Callan\", \"org\": \"Hearthfield Mill\", \"item\": \"Rye flour 25kg sacks\", \"unit\": \"sack\", \"values\": [\"4\", \"6\", \"8\", \"3\"], \"place\": \"Maple & Grain Bakery loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"Packaging top-up\", \"counterpart\": \"Lena Vogt\", \"org\": \"Wraprite Packaging\", \"item\": \"Kraft bread bags\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Maple & Grain Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"Café tasting meetings\", \"counterpart\": \"Priya Nair\", \"org\": \"Harbor Café\", \"item\": \"Meeting room for menu tasting\", \"unit\": \"room\", \"values\": [\"Harbor Café back room\", \"Bakery office\", \"Harbor Café counter\"], \"place\": \"Harbor Café\"},\n  {\"kind\": \"order\", \"topic\": \"Butter restock\", \"counterpart\": \"Fiona Ashe\", \"org\": \"Dell Dairy\", \"item\": \"Unsalted butter 10kg blocks\", \"unit\": \"block\", \"values\": [\"6\", \"10\", \"14\", \"8\"], \"place\": \"Maple & Grain Bakery cold store\"},\n  {\"kind\": \"order\", \"topic\": \"Egg restock\", \"counterpart\": \"Marcus Wren\", \"org\": \"Hollow Farm\", \"item\": \"Free-range eggs\", \"unit\": \"tray\", \"values\": [\"10\", \"15\", \"20\", \"12\"], \"place\": \"Maple & Grain Bakery loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"Van hire while serviced\", \"counterpart\": \"Owen Gale\", \"org\": \"Alder Garage\", \"item\": \"Replacement van\", \"unit\": \"vehicle\", \"values\": [\"Small van\", \"Large van\", \"Refrigerated van\"], \"place\": \"Alder Garage yard\"},\n  {\"kind\": \"order\", \"topic\": \"Coffee beans for front counter\", \"counterpart\": \"Ivy Solano\", \"org\": \"Copper Roast\", \"item\": \"House blend coffee beans\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Maple & Grain Bakery front counter\"},\n  {\"kind\": \"booking\", \"topic\": \"Market stall helpers\", \"counterpart\": \"Soria Market Office\", \"org\": \"Soria Market\", \"item\": \"Extra stall space\", \"unit\": \"pitch\", \"values\": [\"Corner pitch\", \"Standard pitch\", \"Double pitch\"], \"place\": \"Soria market square\"},\n  {\"kind\": \"order\", \"topic\": \"Seeds and grains\", \"counterpart\": \"Nadia Ferro\", \"org\": \"Granary Supplies\", \"item\": \"Mixed seed blend\", \"unit\": \"bag\", \"values\": [\"3\", \"5\", \"7\", \"4\"], \"place\": \"Maple & Grain Bakery loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"Deli pastry supply\", \"counterpart\": \"Colm Dara\", \"org\": \"Northside Deli\", \"item\": \"Morning pastry box\", \"unit\": \"box\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Northside Deli\"},\n  {\"kind\": \"booking\", \"topic\": \"Team training room\", \"counterpart\": \"Alba Ruiz\", \"org\": \"Millrace Community Hall\", \"item\": \"Training room for food hygiene course\", \"unit\": \"room\", \"values\": [\"Main hall\", \"Small meeting room\", \"Upstairs studio\"], \"place\": \"Millrace Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Sam Okafor\", \"org\": \"Brightline Janitorial\", \"item\": \"Food-safe sanitiser\", \"unit\": \"case\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Maple & Grain Bakery\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7506,
+    "completion_tokens": 4442,
+    "reasoning_tokens": 233,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0808536,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e14: a decision must rest on at least one earlier event\n- e17: a decision must rest on at least one earlier event\n- noise topic 'Van hire while serviced': values needs at least three entries\n- noise topic 'Team training room': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Flour delivery day moves and the client slot hangs on it\",\n \"setting\": \"Operations coordinator at Maple & Grain Bakery, a wholesale artisan bakery\",\n \"owner\": \"Mara\",\n \"org\": \"Maple & Grain Bakery\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction: any supplier order over 2000 must be signed off by Tomás Reyes, our finance lead, before it is placed. Orders at or under 2000 I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule: once a client's regular delivery slot is confirmed, we never move the day or time without that client's agreement. For Harbor Café the person who must agree is Priya Nair.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Mara\", \"text\": \"Welcome note to the team: Tomás Reyes starts Monday as finance lead, handling sign-offs and supplier payments for Maple & Grain Bakery.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Mara\", \"text\": \"Our new apprentice baker, Jo Perrin, started today and will shadow the night bake team for the first month.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"Confirming our arrangement with Maple & Grain Bakery: Hearthfield Mill delivers flour to your loading bay every Tuesday, and our stoneground strong white flour is 38 per 25kg sack. Both hold for the rest of the year.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Priya Nair (Harbor Café)\", \"text\": \"Harbor Café will take 40 mixed loaves from Maple & Grain Bakery every week. Please keep me as the contact for anything about our delivery schedule.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"letter\", \"from\": \"Cormac Bell (Bell Property Management)\", \"text\": \"Signed lease renewal for the bakery premises at 14 Millrace Lane: three further years from August 2026, rent unchanged.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up the standing weekly flour order with Hearthfield Mill: twelve 25kg sacks of stoneground strong white flour at 38 a sack, delivered each Tuesday to our loading bay. That is 456 a week, well under Tomás's 2000 sign-off line, so I placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered this quarter's kraft bread bags and labels from Wraprite Packaging for 620, delivered to the bakery.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"With the flour arriving each Tuesday and the night bake running Tuesday into Wednesday, I have set Harbor Café's standing delivery for Wednesdays at 14:00, 40 loaves. Priya Nair confirmed that slot by phone, so it is now their confirmed regular slot.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\", \"e6\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Sent Northside Deli a quote for 30 seeded loaves a week, priced off Hearthfield's stoneground strong white flour at 38 per sack plus our standard margin.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-5\", \"mark\": \"KEEP\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Summer holiday rota pinned up: Mara away 20 to 24 July, Tomás away the first week of August, night bake covered by Jo.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Lena Vogt (Wraprite Packaging)\", \"text\": \"Autumn price list attached: kraft bread bags hold at current prices, printed labels rise slightly from October.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Since the van covers the weekly Harbor Café delivery every week, I booked it in for its annual service at Alder Garage on 6 November 2026 at 09:00, a Friday, so it never falls on a delivery day whichever weekday the delivery lands.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Soria Market Office\", \"text\": \"Saturday farmers market pitch fees for the autumn season are 45 per Saturday, payable monthly in advance.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked our Saturday stall at Soria farmers market for every Saturday through the autumn season at 45 a week.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Jo Perrin's shadowing month with the night bake team is done, so I agreed with her that she moves onto the Saturday bake rota from mid-August.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"August statement for Maple & Grain Bakery attached. As usual your flour will keep arriving every Tuesday at the loading bay, and stoneground strong white stays at 38 per 25kg sack.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-08-28\", \"type\": \"notice\", \"from\": \"Hale & Co Insurance\", \"text\": \"Your bakery contents and van policy renews on 1 October 2026; documents enclosed, premium unchanged.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Dev Anand (Cascade Mill)\", \"text\": \"Introducing Cascade Mill: we run flour deliveries in your area every Thursday and our strong white flour is 36 per 25kg sack. Happy to send samples if Maple & Grain Bakery wants a second supplier.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"Thanks for the September payment, all received. No changes to report on your account this month.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Deck oven two serviced today; engineer replaced a seal and signed it off for the winter season.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-30\", \"type\": \"notice\", \"from\": \"Millrace District Council\", \"text\": \"From 12 October 2026, commercial waste collections on Millrace Lane move to Mondays and Thursdays.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Ruth Callan (Hearthfield Mill)\", \"text\": \"A heads-up from Hearthfield Mill: from Tuesday 3 November our weekly delivery run to your area moves to Wednesdays, so your flour will arrive on Wednesdays instead of Tuesdays, starting Wednesday 4 November. Prices are unchanged, including your stoneground strong white at 38 per sack.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"October team meeting: winter menu tasting set for early November, Jo confirmed on the Saturday rota, and Tomás reminded everyone to file delivery notes weekly.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Priya Nair (Harbor Café)\", \"text\": \"Harbor Café confirms the usual 40 mixed loaves a week through November. Looking forward to the winter rye when it starts.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-16\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Stock count: nine sacks of stoneground strong white left in the store, enough to cover bakes until the next delivery.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Tomás Reyes\", \"text\": \"Reminder that the September Hearthfield Mill invoice is due for payment this Friday; I have the statement reconciled.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Quarterly packaging order - Wraprite Packaging\", \"fields\": {\"supplier\": \"Wraprite Packaging\", \"item\": \"Kraft bread bags and labels\", \"amount\": \"620\", \"status\": \"confirmed\", \"delivery_place\": \"Maple & Grain Bakery\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Standing weekly flour order - Hearthfield Mill\", \"fields\": {\"supplier\": \"Hearthfield Mill\", \"item\": \"Stoneground strong white flour 25kg sacks\", \"quantity\": \"12\", \"unit_price\": \"38\", \"delivery_day\": \"Tuesday\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Quote - Northside Deli seeded loaves\", \"fields\": {\"client\": \"Northside Deli\", \"item\": \"Seeded loaves\", \"quantity\": \"30\", \"flour_price_basis\": \"38\", \"status\": \"sent\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Delivery van annual service - Alder Garage\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"09:00\", \"place\": \"Alder Garage\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Standing weekly delivery - Harbor Café\", \"fields\": {\"client\": \"Harbor Café\", \"contact\": \"Priya Nair\", \"day\": \"Wednesday\", \"time\": \"14:00\", \"loaves\": \"40\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Saturday stall - Soria farmers market\", \"fields\": {\"day\": \"Saturday\", \"place\": \"Soria market square\", \"fee\": \"45\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Jo Perrin Saturday bake rota\", \"fields\": {\"person\": \"Jo Perrin\", \"day\": \"Saturday\", \"role\": \"bake rota\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbor Café account\", \"fields\": {\"client\": \"Harbor Café\", \"contact\": \"Priya Nair\", \"weekly_loaves\": \"40\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"day\", \"time\"], \"from\": \"Priya Nair (Harbor Café)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please email Priya Nair at Harbor Café to confirm which day their standing delivery will land in the first week of November, so she can plan her shop rota around it.\",\n \"expect\": [\n  {\"record\": \"ORD-3\", \"field\": \"delivery_day\", \"value\": \"Wednesday\", \"stale\": [\"Tuesday\"]},\n  {\"message_to\": \"Priya Nair (Harbor Café)\", \"regarding\": \"EV-2\", \"says\": [\"Thursday\"], \"stale\": [\"Wednesday\"], \"task\": true}\n ],\n \"why\": \"The mill's email moves flour deliveries from Tuesday to Wednesday from 3 November, so the standing order (ORD-3) is REVISE: Mara placed it herself and it is under the 2000 sign-off line, so the assistant just updates the delivery day. Harbor Café's slot (EV-2) is two hops away: it was set for Wednesday only because flour arrived Tuesday and the bake ran overnight; with flour now landing Wednesday, the delivery would move to Thursday, but that slot is client-confirmed and the house rule requires Priya Nair's consent, so it is ASK and the record stays put while the task email proposes Thursday rather than confirming Wednesday. The Northside Deli quote is KEEP because it relied only on the flour price of 38 per sack, which the mill's email explicitly leaves unchanged, and the Friday van service is KEEP because it was deliberately booked on a Friday, off any delivery day, so it stands whichever weekday the delivery lands.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Rye flour restock\", \"counterpart\": \"Ruth Callan\", \"org\": \"Hearthfield Mill\", \"item\": \"Rye flour 25kg sacks\", \"unit\": \"sack\", \"values\": [\"4\", \"6\", \"8\", \"3\"], \"place\": \"Maple & Grain Bakery loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"Packaging top-up\", \"counterpart\": \"Lena Vogt\", \"org\": \"Wraprite Packaging\", \"item\": \"Kraft bread bags\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Maple & Grain Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"Café tasting meetings\", \"counterpart\": \"Priya Nair\", \"org\": \"Harbor Café\", \"item\": \"Meeting room for menu tasting\", \"unit\": \"room\", \"values\": [\"Harbor Café back room\", \"Bakery office\", \"Harbor Café counter\"], \"place\": \"Harbor Café\"},\n  {\"kind\": \"order\", \"topic\": \"Butter restock\", \"counterpart\": \"Fiona Ashe\", \"org\": \"Dell Dairy\", \"item\": \"Unsalted butter 10kg blocks\", \"unit\": \"block\", \"values\": [\"6\", \"10\", \"14\", \"8\"], \"place\": \"Maple & Grain Bakery cold store\"},\n  {\"kind\": \"order\", \"topic\": \"Egg restock\", \"counterpart\": \"Marcus Wren\", \"org\": \"Hollow Farm\", \"item\": \"Free-range eggs\", \"unit\": \"tray\", \"values\": [\"10\", \"15\", \"20\", \"12\"], \"place\": \"Maple & Grain Bakery loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"Van hire while serviced\", \"counterpart\": \"Owen Gale\", \"org\": \"Alder Garage\", \"item\": \"Replacement van\", \"unit\": \"vehicle\", \"values\": [\"Small van\", \"Large van\", \"Refrigerated van\"], \"place\": \"Alder Garage yard\"},\n  {\"kind\": \"order\", \"topic\": \"Coffee beans for front counter\", \"counterpart\": \"Ivy Solano\", \"org\": \"Copper Roast\", \"item\": \"House blend coffee beans\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Maple & Grain Bakery front counter\"},\n  {\"kind\": \"booking\", \"topic\": \"Market stall helpers\", \"counterpart\": \"Soria Market Office\", \"org\": \"Soria Market\", \"item\": \"Extra stall space\", \"unit\": \"pitch\", \"values\": [\"Corner pitch\", \"Standard pitch\", \"Double pitch\"], \"place\": \"Soria market square\"},\n  {\"kind\": \"order\", \"topic\": \"Seeds and grains\", \"counterpart\": \"Nadia Ferro\", \"org\": \"Granary Supplies\", \"item\": \"Mixed seed blend\", \"unit\": \"bag\", \"values\": [\"3\", \"5\", \"7\", \"4\"], \"place\": \"Maple & Grain Bakery loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"Deli pastry supply\", \"counterpart\": \"Colm Dara\", \"org\": \"Northside Deli\", \"item\": \"Morning pastry box\", \"unit\": \"box\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Northside Deli\"},\n  {\"kind\": \"booking\", \"topic\": \"Team training room\", \"counterpart\": \"Alba Ruiz\", \"org\": \"Millrace Community Hall\", \"item\": \"Training room for food hygiene course\", \"unit\": \"room\", \"values\": [\"Main hall\", \"Small meeting room\", \"Upstairs studio\"], \"place\": \"Millrace Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Sam Okafor\", \"org\": \"Brightline Janitorial\", \"item\": \"Food-safe sanitiser\", \"unit\": \"case\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Maple & Grain Bakery\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 11787,
+    "completion_tokens": 4293,
+    "reasoning_tokens": 38,
+    "cached_tokens": 7424
+   },
+   "cost": 0.0797112,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- decisions resting (directly or through other decisions) on what the change revokes need a mark: ['e14']\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Flour delivery day moves and the client slot hangs on it",
+  "setting": "Operations coordinator at Maple & Grain Bakery, a wholesale artisan bakery",
+  "owner": "Mara",
+  "org": "Maple & Grain Bakery",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing instruction: any supplier order over 2000 must be signed off by Tomás Reyes, our finance lead, before it is placed. Orders at or under 2000 I can place directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Mara",
+    "text": "House rule: once a client's regular delivery slot is confirmed, we never move the day or time without that client's agreement. For Harbor Café the person who must agree is Priya Nair.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Mara",
+    "text": "Welcome note to the team: Tomás Reyes starts Monday as finance lead, handling sign-offs and supplier payments for Maple & Grain Bakery.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Mara",
+    "text": "Our new apprentice baker, Jo Perrin, started today and will shadow the night bake team for the first month.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Ruth Callan (Hearthfield Mill)",
+    "text": "Confirming our arrangement with Maple & Grain Bakery: Hearthfield Mill delivers flour to your loading bay every Tuesday, and our stoneground strong white flour is 38 per 25kg sack. Both hold for the rest of the year.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Priya Nair (Harbor Café)",
+    "text": "Harbor Café will take 40 mixed loaves from Maple & Grain Bakery every week. Please keep me as the contact for anything about our delivery schedule.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "letter",
+    "from": "Cormac Bell (Bell Property Management)",
+    "text": "Signed lease renewal for the bakery premises at 14 Millrace Lane: three further years from August 2026, rent unchanged.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Set up the standing weekly flour order with Hearthfield Mill: twelve 25kg sacks of stoneground strong white flour at 38 a sack, delivered each Tuesday to our loading bay. That is 456 a week, well under Tomás's 2000 sign-off line, so I placed it directly.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e1"
+    ],
+    "record": "ORD-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered this quarter's kraft bread bags and labels from Wraprite Packaging for 620, delivered to the bakery.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-29",
+    "type": "decision",
+    "from": "Mara",
+    "text": "With the flour arriving each Tuesday and the night bake running Tuesday into Wednesday, I have set Harbor Café's standing delivery for Wednesdays at 14:00, 40 loaves. Priya Nair confirmed that slot by phone, so it is now their confirmed regular slot.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e2",
+     "e6"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Sent Northside Deli a quote for 30 seeded loaves a week, priced off Hearthfield's stoneground strong white flour at 38 per sack plus our standard margin.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "ORD-5",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-05",
+    "type": "note",
+    "from": "Mara",
+    "text": "Summer holiday rota pinned up: Mara away 20 to 24 July, Tomás away the first week of August, night bake covered by Jo.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Lena Vogt (Wraprite Packaging)",
+    "text": "Autumn price list attached: kraft bread bags hold at current prices, printed labels rise slightly from October.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Since the van covers the weekly Harbor Café delivery every week, I booked it in for its annual service at Alder Garage on 6 November 2026 at 09:00, a Friday, so it never falls on a delivery day whichever weekday the delivery lands.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-22",
+    "type": "email",
+    "from": "Soria Market Office",
+    "text": "Saturday farmers market pitch fees for the autumn season are 45 per Saturday, payable monthly in advance.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-28",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked our Saturday stall at Soria farmers market for every Saturday through the autumn season at 45 a week.",
+    "role": "decision",
+    "rests_on": [
+     "e15"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Jo Perrin's shadowing month with the night bake team is done, so I agreed with her that she moves onto the Saturday bake rota from mid-August.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Ruth Callan (Hearthfield Mill)",
+    "text": "August statement for Maple & Grain Bakery attached. As usual your flour will keep arriving every Tuesday at the loading bay, and stoneground strong white stays at 38 per 25kg sack.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-28",
+    "type": "notice",
+    "from": "Hale & Co Insurance",
+    "text": "Your bakery contents and van policy renews on 1 October 2026; documents enclosed, premium unchanged.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Dev Anand (Cascade Mill)",
+    "text": "Introducing Cascade Mill: we run flour deliveries in your area every Thursday and our strong white flour is 36 per 25kg sack. Happy to send samples if Maple & Grain Bakery wants a second supplier.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Ruth Callan (Hearthfield Mill)",
+    "text": "Thanks for the September payment, all received. No changes to report on your account this month.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-22",
+    "type": "note",
+    "from": "Mara",
+    "text": "Deck oven two serviced today; engineer replaced a seal and signed it off for the winter season.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-30",
+    "type": "notice",
+    "from": "Millrace District Council",
+    "text": "From 12 October 2026, commercial waste collections on Millrace Lane move to Mondays and Thursdays.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Ruth Callan (Hearthfield Mill)",
+    "text": "A heads-up from Hearthfield Mill: from Tuesday 3 November our weekly delivery run to your area moves to Wednesdays, so your flour will arrive on Wednesdays instead of Tuesdays, starting Wednesday 4 November. Prices are unchanged, including your stoneground strong white at 38 per sack.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-12",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "October team meeting: winter menu tasting set for early November, Jo confirmed on the Saturday rota, and Tomás reminded everyone to file delivery notes weekly.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Priya Nair (Harbor Café)",
+    "text": "Harbor Café confirms the usual 40 mixed loaves a week through November. Looking forward to the winter rye when it starts.",
+    "role": "fact"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-16",
+    "type": "note",
+    "from": "Mara",
+    "text": "Stock count: nine sacks of stoneground strong white left in the store, enough to cover bakes until the next delivery.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Tomás Reyes",
+    "text": "Reminder that the September Hearthfield Mill invoice is due for payment this Friday; I have the statement reconciled.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Quarterly packaging order - Wraprite Packaging",
+    "fields": {
+     "supplier": "Wraprite Packaging",
+     "item": "Kraft bread bags and labels",
+     "amount": "620",
+     "status": "confirmed",
+     "delivery_place": "Maple & Grain Bakery"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Standing weekly flour order - Hearthfield Mill",
+    "fields": {
+     "supplier": "Hearthfield Mill",
+     "item": "Stoneground strong white flour 25kg sacks",
+     "quantity": "12",
+     "unit_price": "38",
+     "delivery_day": "Tuesday",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-5",
+    "collection": "orders",
+    "title": "Quote - Northside Deli seeded loaves",
+    "fields": {
+     "client": "Northside Deli",
+     "item": "Seeded loaves",
+     "quantity": "30",
+     "flour_price_basis": "38",
+     "status": "sent"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Delivery van annual service - Alder Garage",
+    "fields": {
+     "date": "2026-11-06",
+     "time": "09:00",
+     "place": "Alder Garage",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Standing weekly delivery - Harbor Café",
+    "fields": {
+     "client": "Harbor Café",
+     "contact": "Priya Nair",
+     "day": "Wednesday",
+     "time": "14:00",
+     "loaves": "40",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Saturday stall - Soria farmers market",
+    "fields": {
+     "day": "Saturday",
+     "place": "Soria market square",
+     "fee": "45",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Jo Perrin Saturday bake rota",
+    "fields": {
+     "person": "Jo Perrin",
+     "day": "Saturday",
+     "role": "bake rota",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Harbor Café account",
+    "fields": {
+     "client": "Harbor Café",
+     "contact": "Priya Nair",
+     "weekly_loaves": "40",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "day",
+     "time"
+    ],
+    "from": "Priya Nair (Harbor Café)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please email Priya Nair at Harbor Café to confirm which day their standing delivery will land in the first week of November, so she can plan her shop rota around it.",
+  "expect": [
+   {
+    "record": "ORD-3",
+    "field": "delivery_day",
+    "value": "Wednesday",
+    "stale": [
+     "Tuesday"
+    ]
+   },
+   {
+    "message_to": "Priya Nair (Harbor Café)",
+    "regarding": "EV-2",
+    "says": [
+     "Thursday"
+    ],
+    "stale": [
+     "Wednesday"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The mill's email moves flour deliveries from Tuesday to Wednesday from 3 November, so the standing order (ORD-3) is REVISE: Mara placed it herself and it is under the 2000 sign-off line, so the assistant just updates the delivery day. Harbor Café's slot (EV-2) is two hops away: it was set for Wednesday only because flour arrived Tuesday and the bake ran overnight; with flour now landing Wednesday, the delivery would move to Thursday, but that slot is client-confirmed and the house rule requires Priya Nair's consent, so it is ASK and the record stays put while the task email proposes Thursday rather than confirming Wednesday. The Northside Deli quote is KEEP because it relied only on the flour price of 38 per sack, which the mill's email explicitly leaves unchanged, and the Friday van service is KEEP because it was deliberately booked on a Friday, off any delivery day, so it stands whichever weekday the delivery lands.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Rye flour restock",
+    "counterpart": "Ruth Callan",
+    "org": "Hearthfield Mill",
+    "item": "Rye flour 25kg sacks",
+    "unit": "sack",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "3"
+    ],
+    "place": "Maple & Grain Bakery loading bay"
+   },
+   {
+    "kind": "order",
+    "topic": "Packaging top-up",
+    "counterpart": "Lena Vogt",
+    "org": "Wraprite Packaging",
+    "item": "Kraft bread bags",
+    "unit": "box",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Maple & Grain Bakery"
+   },
+   {
+    "kind": "booking",
+    "topic": "Café tasting meetings",
+    "counterpart": "Priya Nair",
+    "org": "Harbor Café",
+    "item": "Meeting room for menu tasting",
+    "unit": "room",
+    "values": [
+     "Harbor Café back room",
+     "Bakery office",
+     "Harbor Café counter"
+    ],
+    "place": "Harbor Café"
+   },
+   {
+    "kind": "order",
+    "topic": "Butter restock",
+    "counterpart": "Fiona Ashe",
+    "org": "Dell Dairy",
+    "item": "Unsalted butter 10kg blocks",
+    "unit": "block",
+    "values": [
+     "6",
+     "10",
+     "14",
+     "8"
+    ],
+    "place": "Maple & Grain Bakery cold store"
+   },
+   {
+    "kind": "order",
+    "topic": "Egg restock",
+    "counterpart": "Marcus Wren",
+    "org": "Hollow Farm",
+    "item": "Free-range eggs",
+    "unit": "tray",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "12"
+    ],
+    "place": "Maple & Grain Bakery loading bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "Van hire while serviced",
+    "counterpart": "Owen Gale",
+    "org": "Alder Garage",
+    "item": "Replacement van",
+    "unit": "vehicle",
+    "values": [
+     "Small van",
+     "Large van",
+     "Refrigerated van"
+    ],
+    "place": "Alder Garage yard"
+   },
+   {
+    "kind": "order",
+    "topic": "Coffee beans for front counter",
+    "counterpart": "Ivy Solano",
+    "org": "Copper Roast",
+    "item": "House blend coffee beans",
+    "unit": "kg",
+    "values": [
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "Maple & Grain Bakery front counter"
+   },
+   {
+    "kind": "booking",
+    "topic": "Market stall helpers",
+    "counterpart": "Soria Market Office",
+    "org": "Soria Market",
+    "item": "Extra stall space",
+    "unit": "pitch",
+    "values": [
+     "Corner pitch",
+     "Standard pitch",
+     "Double pitch"
+    ],
+    "place": "Soria market square"
+   },
+   {
+    "kind": "order",
+    "topic": "Seeds and grains",
+    "counterpart": "Nadia Ferro",
+    "org": "Granary Supplies",
+    "item": "Mixed seed blend",
+    "unit": "bag",
+    "values": [
+     "3",
+     "5",
+     "7",
+     "4"
+    ],
+    "place": "Maple & Grain Bakery loading bay"
+   },
+   {
+    "kind": "order",
+    "topic": "Deli pastry supply",
+    "counterpart": "Colm Dara",
+    "org": "Northside Deli",
+    "item": "Morning pastry box",
+    "unit": "box",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Northside Deli"
+   },
+   {
+    "kind": "booking",
+    "topic": "Team training room",
+    "counterpart": "Alba Ruiz",
+    "org": "Millrace Community Hall",
+    "item": "Training room for food hygiene course",
+    "unit": "room",
+    "values": [
+     "Main hall",
+     "Small meeting room",
+     "Upstairs studio"
+    ],
+    "place": "Millrace Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies",
+    "counterpart": "Sam Okafor",
+    "org": "Brightline Janitorial",
+    "item": "Food-safe sanitiser",
+    "unit": "case",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Maple & Grain Bakery"
+   }
+  ],
+  "id": "K500-3-04",
+  "tier": 500,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

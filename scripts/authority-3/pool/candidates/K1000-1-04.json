@@ -1,0 +1,707 @@
+{
+ "id": "K1000-1-04",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 1,
+ "idx": 3,
+ "setting": "Theatre administrator at The Marlowe Playhouse, a 200-seat community theatre",
+ "prompt_sha256": "82df3604fb2e668f6c2a2a70c222c2add8d5e2618d0a416f300dc63dc7be896e",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"The lantern count\",\n  \"setting\": \"Theatre administrator at The Marlowe Playhouse, a 200-seat community theatre\",\n  \"owner\": \"Ruth\",\n  \"org\": \"The Marlowe Playhouse\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Ruth Ellery\", \"text\": \"Updated the Marlowe production handbook: every in-house show keeps a rig plan, a get-in schedule and a crew call on file in the office system.\", \"role\": \"other\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Ruth Ellery\", \"text\": \"Standing instruction: any supplier order over £400 needs Marcus Hale's sign-off as finance lead before it is placed. Orders of £400 or under I can place directly.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Terry Bloom (Brightside Lighting Hire)\", \"text\": \"Hello from Brightside Lighting Hire. I'll be your account contact for anything you need from us this season. Best number is 01632 555 214.\", \"role\": \"other\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Ruth Ellery\", \"text\": \"Standing rule for external hires: once a hire booking is confirmed, any change to the hire dates or to the equipment included in the hire must have the hirer's written agreement before we alter it.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Ruth Ellery\", \"text\": \"Dates fixed for our in-house autumn production Harvest Moon: Thursday 22 to Saturday 24 October 2026 in the main house, get-in the week before.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Lena Voss\", \"text\": \"Delighted to design the lighting for Harvest Moon at the Marlowe. My email is lena.voss@postbox.example and I'll need the rig plan a fortnight before the get-in.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-29\", \"type\": \"quote\", \"from\": \"Terry Bloom (Brightside Lighting Hire)\", \"text\": \"Our standard hire list for the autumn: LED lanterns £15 each per week, dimmer packs £30 per week, cable bundles £8 per week.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Terry Bloom (Brightside Lighting Hire)\", \"text\": \"Confirming availability: our Tour Rig A has 12 LED lanterns free for the week commencing Monday 19 October 2026, at the standard £15 each per week.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Gillian Pryce (St Cuthbert's Drama Society)\", \"text\": \"We're interested in hiring the Marlowe for our autumn show at the end of October. Could you tell us what lighting equipment would come with the hire?\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Scheduled the Harvest Moon get-in for Monday 19 October 2026 from 09:00 in the main house, ahead of the Thursday 22 October opening.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-13\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Ordered 400 Harvest Moon programmes from Hartley Print for £160, delivery by 16 October. Well under the £400 sign-off limit, so I placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Booked Tour Rig A's 12 LED lanterns from Brightside Lighting Hire for the week commencing Monday 19 October 2026, at £15 each, so £180 for the week. Under the £400 limit, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e5\", \"e2\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"message\", \"from\": \"Priya Shah (stage manager)\", \"text\": \"Can we lock rehearsal room evenings for September? The Harvest Moon cast wants Tuesdays.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Drew up the Harvest Moon rig plan with Lena Voss: the 12 lanterns we have booked from Brightside for the get-in week, plotted across the three stage bars.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"notice\", \"from\": \"Ruth Ellery\", \"text\": \"Box office for Harvest Moon is now open; all three performances, 22 to 24 October, are on sale.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Booked a rigging crew call of 3 technicians for Tuesday 20 October 2026, 09:00, to hang and focus the rig planned for Harvest Moon.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-07\", \"type\": \"email\", \"from\": \"Gillian Pryce (St Cuthbert's Drama Society)\", \"text\": \"I'm the booking contact for St Cuthbert's: g.pryce@stcuthberts.example, phone 01632 555 907.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Confirmed the St Cuthbert's Drama Society hire for Friday 30 October to Sunday 1 November 2026, hire fee £420, with the hire including use of the theatre's 12-lantern touring rig.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e4\", \"e17\"], \"record\": \"EV-7\", \"mark\": \"ASK\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Booked the rehearsal room every Tuesday in September, 19:00 to 22:00, for the Harvest Moon cast as Priya asked.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e5\"], \"record\": \"EV-3\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Ordered 40 boxes of interval confectionery from Sweetsmiths Confectionery for the Harvest Moon run, £96, delivery 20 October.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-24\", \"type\": \"email\", \"from\": \"Priya Shah (stage manager)\", \"text\": \"Circulated the Harvest Moon pre-production checklist: get-in Monday 19 October, and 12 lanterns booked from Brightside for the rig.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e22\", \"date\": \"2026-08-31\", \"type\": \"message\", \"from\": \"Alan Blythe (trustee)\", \"text\": \"Trustees agreed the panto dates in principle for December; full discussion at the October meeting.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Lena Voss\", \"text\": \"Thanks for the rig plan printout — good to see all 12 lanterns plotted on the three bars. That will cover the show nicely.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e24\", \"date\": \"2026-09-04\", \"type\": \"quote\", \"from\": \"Nadia Reese (Lumenhire Ltd)\", \"text\": \"Introductory quote for the Marlowe: we could supply 10 LED lanterns for the week commencing 19 October at £14 each, if you ever need an alternative supplier.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-07\", \"type\": \"task\", \"from\": \"Ruth Ellery\", \"text\": \"To-do: pay Brightside Lighting Hire the £90 deposit for the Harvest Moon rig week by Friday 9 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Jorge Mendes (marketing volunteer)\", \"text\": \"Harvest Moon posters are up in the library and the market square. Ticket sales at 63 so far.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Terry Bloom (Brightside Lighting Hire)\", \"text\": \"A heads-up on Tour Rig A: three of its lanterns have gone in for repair, so for the week commencing Monday 19 October we can supply 9 LED lanterns rather than 12. Same £15 each per week. Sorry for the short notice — hope that still covers your show.\", \"role\": \"change\", \"revokes\": [\"e8\"]},\n    {\"id\": \"e28\", \"date\": \"2026-09-18\", \"type\": \"minutes\", \"from\": \"Ruth Ellery\", \"text\": \"Production meeting notes: costumes on track, programmes with Hartley Print, final rig numbers with Brightside to be settled before the get-in.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Priya Shah (stage manager)\", \"text\": \"Front-of-house rota for the Harvest Moon run drafted; two ushers per performance still needed for the Saturday.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-09-25\", \"type\": \"invoice\", \"from\": \"Hartley Print\", \"text\": \"Invoice HP-1187: 400 Harvest Moon programmes, £160, due within 30 days.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Lena Voss\", \"text\": \"Just checking the rig plan is still as we drew it up — I'll finalise my colour calls once I know the lantern count is settled.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-09-30\", \"type\": \"task\", \"from\": \"Ruth Ellery\", \"text\": \"Reminder: confirm usher numbers for all three Harvest Moon performances before the get-in week.\", \"role\": \"obligation\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-01\", \"type\": \"note\", \"from\": \"Ruth Ellery\", \"text\": \"Bar stocktake done; interval stock due from Sweetsmiths on 20 October will top us up for the run.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harvest Moon get-in\", \"fields\": {\"show\": \"Harvest Moon\", \"date\": \"2026-10-19\", \"time\": \"09:00\", \"place\": \"main house\", \"status\": \"scheduled\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Harvest Moon programmes\", \"fields\": {\"supplier\": \"Hartley Print\", \"item\": \"programmes\", \"quantity\": \"400\", \"amount\": \"160\", \"delivery\": \"2026-10-16\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Brightside Tour Rig A lantern hire, Harvest Moon week\", \"fields\": {\"supplier\": \"Brightside Lighting Hire\", \"item\": \"Tour Rig A LED lanterns\", \"quantity\": \"12\", \"week\": \"2026-10-19\", \"amount\": \"180\", \"status\": \"booked\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Harvest Moon lighting rig plan\", \"fields\": {\"show\": \"Harvest Moon\", \"designer\": \"Lena Voss\", \"lanterns\": \"12\", \"bars\": \"3\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harvest Moon rigging crew call\", \"fields\": {\"show\": \"Harvest Moon\", \"date\": \"2026-10-20\", \"time\": \"09:00\", \"crew\": \"3\", \"status\": \"booked\"}},\n    {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"St Cuthbert's Drama Society hire\", \"fields\": {\"client\": \"St Cuthbert's Drama Society\", \"contact\": \"Gillian Pryce\", \"dates\": \"2026-10-30 to 2026-11-01\", \"equipment\": \"12-lantern touring rig\", \"fee\": \"420\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Harvest Moon September rehearsals\", \"fields\": {\"show\": \"Harvest Moon\", \"place\": \"rehearsal room\", \"day\": \"Tuesday\", \"time\": \"19:00\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Interval confectionery, Harvest Moon run\", \"fields\": {\"supplier\": \"Sweetsmiths Confectionery\", \"item\": \"confectionery boxes\", \"quantity\": \"40\", \"amount\": \"96\", \"delivery\": \"2026-10-20\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Lena Voss, lighting designer\", \"fields\": {\"name\": \"Lena Voss\", \"email\": \"lena.voss@postbox.example\", \"role\": \"visiting lighting designer\", \"show\": \"Harvest Moon\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-7\", \"fields\": [\"equipment\"], \"from\": \"Gillian Pryce (St Cuthbert's Drama Society)\", \"rule\": \"e4\"}\n  ],\n  \"task\": \"Could you send Brightside our confirmed lantern numbers for the Harvest Moon rig week, and make sure the lantern order and the rig plan both show the right count?\",\n  \"expect\": [\n    {\"record\": \"ORD-3\", \"field\": \"quantity\", \"value\": \"9\", \"stale\": [\"12\"]},\n    {\"record\": \"ORD-3\", \"field\": \"amount\", \"value\": \"135\", \"stale\": [\"180\"]},\n    {\"record\": \"EV-4\", \"field\": \"lanterns\", \"value\": \"9\", \"stale\": [\"12\"]},\n    {\"message_to\": \"Terry Bloom (Brightside Lighting Hire)\", \"regarding\": \"ORD-3\", \"says\": [\"9\"], \"stale\": [\"12\"], \"task\": true}\n  ],\n  \"why\": \"Brightside's 14 September email supersedes the July availability: Tour Rig A now has 9 lanterns, not 12, at the same £15 rate. The lantern order (ORD-3) and the rig plan built on it (EV-4) must therefore be revised to 9 and £135, and confirming the numbers to Brightside is the task. The crew call only uses the plan's date, so it stands (KEEP); the St Cuthbert's hire includes the 12-lantern rig in its confirmed terms, so changing it needs Gillian Pryce's written agreement under the hire rule (ASK, left untouched). The Lumenhire quote for 10 lanterns is a distractor, not a basis for action.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"stage consumables\", \"counterpart\": \"Terry Bloom\", \"org\": \"Brightside Lighting Hire\", \"item\": \"cable bundles and colour gels\", \"unit\": \"bundle\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"Marlowe Playhouse stage door\"},\n    {\"kind\": \"order\", \"topic\": \"printing\", \"counterpart\": \"Sandra Vick\", \"org\": \"Hartley Print\", \"item\": \"A5 flyers\", \"unit\": \"batch of 100\", \"values\": [\"2\", \"3\", \"5\", \"8\"], \"place\": \"Marlowe Playhouse box office\"},\n    {\"kind\": \"order\", \"topic\": \"bar restock\", \"counterpart\": \"Colm Sweetsmith\", \"org\": \"Sweetsmiths Confectionery\", \"item\": \"interval confectionery boxes\", \"unit\": \"box\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Marlowe Playhouse bar\"},\n    {\"kind\": \"booking\", \"topic\": \"rehearsal room\", \"counterpart\": \"Priya Shah\", \"org\": \"The Marlowe Playhouse\", \"item\": \"rehearsal room evening session\", \"unit\": \"session\", \"values\": [\"rehearsal room\", \"studio\", \"main house\"], \"place\": \"Marlowe Playhouse\"},\n    {\"kind\": \"booking\", \"topic\": \"trustees meeting\", \"counterpart\": \"Alan Blythe\", \"org\": \"The Marlowe Playhouse\", \"item\": \"monthly trustees meeting room\", \"unit\": \"meeting\", \"values\": [\"green room\", \"office\", \"foyer bar\"], \"place\": \"Marlowe Playhouse\"},\n    {\"kind\": \"booking\", \"topic\": \"school drama club\", \"counterpart\": \"Miriam Cole\", \"org\": \"Lakeside School\", \"item\": \"weekly drama club space\", \"unit\": \"session\", \"values\": [\"studio\", \"rehearsal room\"], \"place\": \"Marlowe Playhouse\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Dave Norton\", \"org\": \"Norton Janitorial\", \"item\": \"cleaning supplies case\", \"unit\": \"case\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Marlowe Playhouse stage door\"},\n    {\"kind\": \"booking\", \"topic\": \"van hire\", \"counterpart\": \"Ian Pritchard\", \"org\": \"Pritchard Vehicle Hire\", \"item\": \"transit van for set runs\", \"unit\": \"day\", \"values\": [\"transit van\", \"luton van\"], \"place\": \"Marlowe Playhouse yard\"},\n    {\"kind\": \"order\", \"topic\": \"ticket stock\", \"counterpart\": \"Helen Avery\", \"org\": \"Ticketline Supplies\", \"item\": \"ticket roll stock\", \"unit\": \"roll\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Marlowe Playhouse box office\"},\n    {\"kind\": \"order\", \"topic\": \"kiosk coffee\", \"counterpart\": \"Ben Okafor\", \"org\": \"Roast & Co\", \"item\": \"coffee beans\", \"unit\": \"kilogram\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Marlowe Playhouse kiosk\"},\n    {\"kind\": \"order\", \"topic\": \"scenic materials\", \"counterpart\": \"Petra Lind\", \"org\": \"Scenic Supplies Ltd\", \"item\": \"scenic paint and timber\", \"unit\": \"pack\", \"values\": [\"2\", \"4\", \"5\"], \"place\": \"Marlowe Playhouse workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"choral rehearsal\", \"counterpart\": \"Fiona Doyle\", \"org\": \"Marlowe Choral Society\", \"item\": \"Tuesday choral rehearsal space\", \"unit\": \"session\", \"values\": [\"main house\", \"studio\"], \"place\": \"Marlowe Playhouse\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3241,
+    "completion_tokens": 9396,
+    "reasoning_tokens": 4582,
+    "cached_tokens": 0
+   },
+   "cost": 0.150663,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"The lantern count\",\n  \"setting\": \"Theatre administrator at The Marlowe Playhouse, a 200-seat community theatre\",\n  \"owner\": \"Ruth\",\n  \"org\": \"The Marlowe Playhouse\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Ruth Ellery\", \"text\": \"Updated the Marlowe production handbook: every in-house show keeps a rig plan, a get-in schedule and a crew call on file in the office system.\", \"role\": \"other\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Ruth Ellery\", \"text\": \"Standing instruction: any supplier order over £400 needs Marcus Hale's sign-off as finance lead before it is placed. Orders of £400 or under I can place directly.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Terry Bloom (Brightside Lighting Hire)\", \"text\": \"Hello from Brightside Lighting Hire. I'll be your account contact for anything you need from us this season. Best number is 01632 555 214.\", \"role\": \"other\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Ruth Ellery\", \"text\": \"Standing rule for external hires: once a hire booking is confirmed, any change to the hire dates or to the equipment included in the hire must have the hirer's written agreement before we alter it.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Ruth Ellery\", \"text\": \"Dates fixed for our in-house autumn production Harvest Moon: Thursday 22 to Saturday 24 October 2026 in the main house, get-in the week before.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Lena Voss\", \"text\": \"Delighted to design the lighting for Harvest Moon at the Marlowe. My email is lena.voss@postbox.example and I'll need the rig plan a fortnight before the get-in.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-29\", \"type\": \"quote\", \"from\": \"Terry Bloom (Brightside Lighting Hire)\", \"text\": \"Our standard hire list for the autumn: LED lanterns £15 each per week, dimmer packs £30 per week, cable bundles £8 per week.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Terry Bloom (Brightside Lighting Hire)\", \"text\": \"Confirming availability: our Tour Rig A has 12 LED lanterns free for the week commencing Monday 19 October 2026, at the standard £15 each per week.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Gillian Pryce (St Cuthbert's Drama Society)\", \"text\": \"We're interested in hiring the Marlowe for our autumn show at the end of October. Could you tell us what lighting equipment would come with the hire?\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Scheduled the Harvest Moon get-in for Monday 19 October 2026 from 09:00 in the main house, ahead of the Thursday 22 October opening.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-13\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Ordered 400 Harvest Moon programmes from Hartley Print for £160, delivery by 16 October. Well under the £400 sign-off limit, so I placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Booked Tour Rig A's 12 LED lanterns from Brightside Lighting Hire for the week commencing Monday 19 October 2026, at £15 each, so £180 for the week. Under the £400 limit, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e5\", \"e2\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"message\", \"from\": \"Priya Shah (stage manager)\", \"text\": \"Can we lock rehearsal room evenings for September? The Harvest Moon cast wants Tuesdays.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Drew up the Harvest Moon rig plan with Lena Voss: the 12 lanterns we have booked from Brightside for the get-in week, plotted across the three stage bars.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"notice\", \"from\": \"Ruth Ellery\", \"text\": \"Box office for Harvest Moon is now open; all three performances, 22 to 24 October, are on sale.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Booked a rigging crew call of 3 technicians for Tuesday 20 October 2026, 09:00, to hang and focus the rig planned for Harvest Moon.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-07\", \"type\": \"email\", \"from\": \"Gillian Pryce (St Cuthbert's Drama Society)\", \"text\": \"I'm the booking contact for St Cuthbert's: g.pryce@stcuthberts.example, phone 01632 555 907.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Confirmed the St Cuthbert's Drama Society hire for Friday 30 October to Sunday 1 November 2026, hire fee £420, with the hire including use of the theatre's 12-lantern touring rig.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e4\", \"e17\"], \"record\": \"EV-7\", \"mark\": \"ASK\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Booked the rehearsal room every Tuesday in September, 19:00 to 22:00, for the Harvest Moon cast as Priya asked.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e5\"], \"record\": \"EV-3\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Ruth Ellery\", \"text\": \"Ordered 40 boxes of interval confectionery from Sweetsmiths Confectionery for the Harvest Moon run, £96, delivery 20 October.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-24\", \"type\": \"email\", \"from\": \"Priya Shah (stage manager)\", \"text\": \"Circulated the Harvest Moon pre-production checklist: get-in Monday 19 October, and 12 lanterns booked from Brightside for the rig.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e22\", \"date\": \"2026-08-31\", \"type\": \"message\", \"from\": \"Alan Blythe (trustee)\", \"text\": \"Trustees agreed the panto dates in principle for December; full discussion at the October meeting.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Lena Voss\", \"text\": \"Thanks for the rig plan printout — good to see all 12 lanterns plotted on the three bars. That will cover the show nicely.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e24\", \"date\": \"2026-09-04\", \"type\": \"quote\", \"from\": \"Nadia Reese (Lumenhire Ltd)\", \"text\": \"Introductory quote for the Marlowe: we could supply 10 LED lanterns for the week commencing 19 October at £14 each, if you ever need an alternative supplier.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-07\", \"type\": \"task\", \"from\": \"Ruth Ellery\", \"text\": \"To-do: pay Brightside Lighting Hire the £90 deposit for the Harvest Moon rig week by Friday 9 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Jorge Mendes (marketing volunteer)\", \"text\": \"Harvest Moon posters are up in the library and the market square. Ticket sales at 63 so far.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Terry Bloom (Brightside Lighting Hire)\", \"text\": \"A heads-up on Tour Rig A: three of its lanterns have gone in for repair, so for the week commencing Monday 19 October we can supply 9 LED lanterns rather than 12. Same £15 each per week. Sorry for the short notice — hope that still covers your show.\", \"role\": \"change\", \"revokes\": [\"e8\"]},\n    {\"id\": \"e28\", \"date\": \"2026-09-18\", \"type\": \"minutes\", \"from\": \"Ruth Ellery\", \"text\": \"Production meeting notes: costumes on track, programmes with Hartley Print, final rig numbers with Brightside to be settled before the get-in.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Priya Shah (stage manager)\", \"text\": \"Front-of-house rota for the Harvest Moon run drafted; two ushers per performance still needed for the Saturday.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-09-25\", \"type\": \"invoice\", \"from\": \"Hartley Print\", \"text\": \"Invoice HP-1187: 400 Harvest Moon programmes, £160, due within 30 days.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Lena Voss\", \"text\": \"Just checking the rig plan is still as we drew it up — I'll finalise my colour calls once I know the lantern count is settled.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-09-30\", \"type\": \"task\", \"from\": \"Ruth Ellery\", \"text\": \"Reminder: confirm usher numbers for all three Harvest Moon performances before the get-in week.\", \"role\": \"obligation\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-01\", \"type\": \"note\", \"from\": \"Ruth Ellery\", \"text\": \"Bar stocktake done; interval stock due from Sweetsmiths on 20 October will top us up for the run.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harvest Moon get-in\", \"fields\": {\"show\": \"Harvest Moon\", \"date\": \"2026-10-19\", \"time\": \"09:00\", \"place\": \"main house\", \"status\": \"scheduled\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Harvest Moon programmes\", \"fields\": {\"supplier\": \"Hartley Print\", \"item\": \"programmes\", \"quantity\": \"400\", \"amount\": \"160\", \"delivery\": \"2026-10-16\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Brightside Tour Rig A lantern hire, Harvest Moon week\", \"fields\": {\"supplier\": \"Brightside Lighting Hire\", \"item\": \"Tour Rig A LED lanterns\", \"quantity\": \"12\", \"week\": \"2026-10-19\", \"amount\": \"180\", \"status\": \"booked\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Harvest Moon lighting rig plan\", \"fields\": {\"show\": \"Harvest Moon\", \"designer\": \"Lena Voss\", \"lanterns\": \"12\", \"bars\": \"3\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harvest Moon rigging crew call\", \"fields\": {\"show\": \"Harvest Moon\", \"date\": \"2026-10-20\", \"time\": \"09:00\", \"crew\": \"3\", \"status\": \"booked\"}},\n    {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"St Cuthbert's Drama Society hire\", \"fields\": {\"client\": \"St Cuthbert's Drama Society\", \"contact\": \"Gillian Pryce\", \"dates\": \"2026-10-30 to 2026-11-01\", \"equipment\": \"12-lantern touring rig\", \"fee\": \"420\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Harvest Moon September rehearsals\", \"fields\": {\"show\": \"Harvest Moon\", \"place\": \"rehearsal room\", \"day\": \"Tuesday\", \"time\": \"19:00\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Interval confectionery, Harvest Moon run\", \"fields\": {\"supplier\": \"Sweetsmiths Confectionery\", \"item\": \"confectionery boxes\", \"quantity\": \"40\", \"amount\": \"96\", \"delivery\": \"2026-10-20\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Lena Voss, lighting designer\", \"fields\": {\"name\": \"Lena Voss\", \"email\": \"lena.voss@postbox.example\", \"role\": \"visiting lighting designer\", \"show\": \"Harvest Moon\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-7\", \"fields\": [\"equipment\"], \"from\": \"Gillian Pryce (St Cuthbert's Drama Society)\", \"rule\": \"e4\"}\n  ],\n  \"task\": \"Could you send Brightside our confirmed lantern numbers for the Harvest Moon rig week, and make sure the lantern order and the rig plan both show the right count?\",\n  \"expect\": [\n    {\"record\": \"ORD-3\", \"field\": \"quantity\", \"value\": \"9\", \"stale\": [\"12\"]},\n    {\"record\": \"ORD-3\", \"field\": \"amount\", \"value\": \"135\", \"stale\": [\"180\"]},\n    {\"record\": \"EV-4\", \"field\": \"lanterns\", \"value\": \"9\", \"stale\": [\"12\"]},\n    {\"message_to\": \"Terry Bloom (Brightside Lighting Hire)\", \"regarding\": \"ORD-3\", \"says\": [\"9\"], \"stale\": [\"12\"], \"task\": true}\n  ],\n  \"why\": \"Brightside's 14 September email supersedes the July availability: Tour Rig A now has 9 lanterns, not 12, at the same £15 rate. The lantern order (ORD-3) and the rig plan built on it (EV-4) must therefore be revised to 9 and £135, and confirming the numbers to Brightside is the task. The crew call only uses the plan's date, so it stands (KEEP); the St Cuthbert's hire includes the 12-lantern rig in its confirmed terms, so changing it needs Gillian Pryce's written agreement under the hire rule (ASK, left untouched). The Lumenhire quote for 10 lanterns is a distractor, not a basis for action.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"stage consumables\", \"counterpart\": \"Terry Bloom\", \"org\": \"Brightside Lighting Hire\", \"item\": \"cable bundles and colour gels\", \"unit\": \"bundle\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"Marlowe Playhouse stage door\"},\n    {\"kind\": \"order\", \"topic\": \"printing\", \"counterpart\": \"Sandra Vick\", \"org\": \"Hartley Print\", \"item\": \"A5 flyers\", \"unit\": \"batch of 100\", \"values\": [\"2\", \"3\", \"5\", \"8\"], \"place\": \"Marlowe Playhouse box office\"},\n    {\"kind\": \"order\", \"topic\": \"bar restock\", \"counterpart\": \"Colm Sweetsmith\", \"org\": \"Sweetsmiths Confectionery\", \"item\": \"interval confectionery boxes\", \"unit\": \"box\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Marlowe Playhouse bar\"},\n    {\"kind\": \"booking\", \"topic\": \"rehearsal room\", \"counterpart\": \"Priya Shah\", \"org\": \"The Marlowe Playhouse\", \"item\": \"rehearsal room evening session\", \"unit\": \"session\", \"values\": [\"rehearsal room\", \"studio\", \"main house\"], \"place\": \"Marlowe Playhouse\"},\n    {\"kind\": \"booking\", \"topic\": \"trustees meeting\", \"counterpart\": \"Alan Blythe\", \"org\": \"The Marlowe Playhouse\", \"item\": \"monthly trustees meeting room\", \"unit\": \"meeting\", \"values\": [\"green room\", \"office\", \"foyer bar\"], \"place\": \"Marlowe Playhouse\"},\n    {\"kind\": \"booking\", \"topic\": \"school drama club\", \"counterpart\": \"Miriam Cole\", \"org\": \"Lakeside School\", \"item\": \"weekly drama club space\", \"unit\": \"session\", \"values\": [\"studio\", \"rehearsal room\", \"green room\"], \"place\": \"Marlowe Playhouse\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Dave Norton\", \"org\": \"Norton Janitorial\", \"item\": \"cleaning supplies case\", \"unit\": \"case\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Marlowe Playhouse stage door\"},\n    {\"kind\": \"booking\", \"topic\": \"van hire\", \"counterpart\": \"Ian Pritchard\", \"org\": \"Pritchard Vehicle Hire\", \"item\": \"transit van for set runs\", \"unit\": \"day\", \"values\": [\"transit van\", \"luton van\", \"minibus\"], \"place\": \"Marlowe Playhouse yard\"},\n    {\"kind\": \"order\", \"topic\": \"ticket stock\", \"counterpart\": \"Helen Avery\", \"org\": \"Ticketline Supplies\", \"item\": \"ticket roll stock\", \"unit\": \"roll\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Marlowe Playhouse box office\"},\n    {\"kind\": \"order\", \"topic\": \"kiosk coffee\", \"counterpart\": \"Ben Okafor\", \"org\": \"Roast & Co\", \"item\": \"coffee beans\", \"unit\": \"kilogram\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Marlowe Playhouse kiosk\"},\n    {\"kind\": \"order\", \"topic\": \"scenic materials\", \"counterpart\": \"Petra Lind\", \"org\": \"Scenic Supplies Ltd\", \"item\": \"scenic paint and timber\", \"unit\": \"pack\", \"values\": [\"2\", \"4\", \"5\"], \"place\": \"Marlowe Playhouse workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"choral rehearsal\", \"counterpart\": \"Fiona Doyle\", \"org\": \"Marlowe Choral Society\", \"item\": \"Tuesday choral rehearsal space\", \"unit\": \"session\", \"values\": [\"main house\", \"studio\", \"foyer bar\"], \"place\": \"Marlowe Playhouse\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 8146,
+    "completion_tokens": 4835,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0886686,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'school drama club': values needs at least three entries\n- noise topic 'van hire': values needs at least three entries\n- noise topic 'choral rehearsal': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "The lantern count",
+  "setting": "Theatre administrator at The Marlowe Playhouse, a 200-seat community theatre",
+  "owner": "Ruth",
+  "org": "The Marlowe Playhouse",
+  "now": "2026-10-05",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Ruth Ellery",
+    "text": "Updated the Marlowe production handbook: every in-house show keeps a rig plan, a get-in schedule and a crew call on file in the office system.",
+    "role": "other"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Ruth Ellery",
+    "text": "Standing instruction: any supplier order over £400 needs Marcus Hale's sign-off as finance lead before it is placed. Orders of £400 or under I can place directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Terry Bloom (Brightside Lighting Hire)",
+    "text": "Hello from Brightside Lighting Hire. I'll be your account contact for anything you need from us this season. Best number is 01632 555 214.",
+    "role": "other"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "instruction",
+    "from": "Ruth Ellery",
+    "text": "Standing rule for external hires: once a hire booking is confirmed, any change to the hire dates or to the equipment included in the hire must have the hirer's written agreement before we alter it.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Ruth Ellery",
+    "text": "Dates fixed for our in-house autumn production Harvest Moon: Thursday 22 to Saturday 24 October 2026 in the main house, get-in the week before.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Lena Voss",
+    "text": "Delighted to design the lighting for Harvest Moon at the Marlowe. My email is lena.voss@postbox.example and I'll need the rig plan a fortnight before the get-in.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-29",
+    "type": "quote",
+    "from": "Terry Bloom (Brightside Lighting Hire)",
+    "text": "Our standard hire list for the autumn: LED lanterns £15 each per week, dimmer packs £30 per week, cable bundles £8 per week.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Terry Bloom (Brightside Lighting Hire)",
+    "text": "Confirming availability: our Tour Rig A has 12 LED lanterns free for the week commencing Monday 19 October 2026, at the standard £15 each per week.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Gillian Pryce (St Cuthbert's Drama Society)",
+    "text": "We're interested in hiring the Marlowe for our autumn show at the end of October. Could you tell us what lighting equipment would come with the hire?",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-09",
+    "type": "decision",
+    "from": "Ruth Ellery",
+    "text": "Scheduled the Harvest Moon get-in for Monday 19 October 2026 from 09:00 in the main house, ahead of the Thursday 22 October opening.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-13",
+    "type": "decision",
+    "from": "Ruth Ellery",
+    "text": "Ordered 400 Harvest Moon programmes from Hartley Print for £160, delivery by 16 October. Well under the £400 sign-off limit, so I placed it directly.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Ruth Ellery",
+    "text": "Booked Tour Rig A's 12 LED lanterns from Brightside Lighting Hire for the week commencing Monday 19 October 2026, at £15 each, so £180 for the week. Under the £400 limit, so no finance sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e5",
+     "e2"
+    ],
+    "record": "ORD-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-20",
+    "type": "message",
+    "from": "Priya Shah (stage manager)",
+    "text": "Can we lock rehearsal room evenings for September? The Harvest Moon cast wants Tuesdays.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-24",
+    "type": "decision",
+    "from": "Ruth Ellery",
+    "text": "Drew up the Harvest Moon rig plan with Lena Voss: the 12 lanterns we have booked from Brightside for the get-in week, plotted across the three stage bars.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e6"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-28",
+    "type": "notice",
+    "from": "Ruth Ellery",
+    "text": "Box office for Harvest Moon is now open; all three performances, 22 to 24 October, are on sale.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Ruth Ellery",
+    "text": "Booked a rigging crew call of 3 technicians for Tuesday 20 October 2026, 09:00, to hang and focus the rig planned for Harvest Moon.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-07",
+    "type": "email",
+    "from": "Gillian Pryce (St Cuthbert's Drama Society)",
+    "text": "I'm the booking contact for St Cuthbert's: g.pryce@stcuthberts.example, phone 01632 555 907.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Ruth Ellery",
+    "text": "Confirmed the St Cuthbert's Drama Society hire for Friday 30 October to Sunday 1 November 2026, hire fee £420, with the hire including use of the theatre's 12-lantern touring rig.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e4",
+     "e17"
+    ],
+    "record": "EV-7",
+    "mark": "ASK"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Ruth Ellery",
+    "text": "Booked the rehearsal room every Tuesday in September, 19:00 to 22:00, for the Harvest Moon cast as Priya asked.",
+    "role": "decision",
+    "rests_on": [
+     "e13",
+     "e5"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-18",
+    "type": "decision",
+    "from": "Ruth Ellery",
+    "text": "Ordered 40 boxes of interval confectionery from Sweetsmiths Confectionery for the Harvest Moon run, £96, delivery 20 October.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-24",
+    "type": "email",
+    "from": "Priya Shah (stage manager)",
+    "text": "Circulated the Harvest Moon pre-production checklist: get-in Monday 19 October, and 12 lanterns booked from Brightside for the rig.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-31",
+    "type": "message",
+    "from": "Alan Blythe (trustee)",
+    "text": "Trustees agreed the panto dates in principle for December; full discussion at the October meeting.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Lena Voss",
+    "text": "Thanks for the rig plan printout — good to see all 12 lanterns plotted on the three bars. That will cover the show nicely.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-04",
+    "type": "quote",
+    "from": "Nadia Reese (Lumenhire Ltd)",
+    "text": "Introductory quote for the Marlowe: we could supply 10 LED lanterns for the week commencing 19 October at £14 each, if you ever need an alternative supplier.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-07",
+    "type": "task",
+    "from": "Ruth Ellery",
+    "text": "To-do: pay Brightside Lighting Hire the £90 deposit for the Harvest Moon rig week by Friday 9 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-09",
+    "type": "email",
+    "from": "Jorge Mendes (marketing volunteer)",
+    "text": "Harvest Moon posters are up in the library and the market square. Ticket sales at 63 so far.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Terry Bloom (Brightside Lighting Hire)",
+    "text": "A heads-up on Tour Rig A: three of its lanterns have gone in for repair, so for the week commencing Monday 19 October we can supply 9 LED lanterns rather than 12. Same £15 each per week. Sorry for the short notice — hope that still covers your show.",
+    "role": "change",
+    "revokes": [
+     "e8"
+    ]
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-18",
+    "type": "minutes",
+    "from": "Ruth Ellery",
+    "text": "Production meeting notes: costumes on track, programmes with Hartley Print, final rig numbers with Brightside to be settled before the get-in.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-22",
+    "type": "note",
+    "from": "Priya Shah (stage manager)",
+    "text": "Front-of-house rota for the Harvest Moon run drafted; two ushers per performance still needed for the Saturday.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-09-25",
+    "type": "invoice",
+    "from": "Hartley Print",
+    "text": "Invoice HP-1187: 400 Harvest Moon programmes, £160, due within 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Lena Voss",
+    "text": "Just checking the rig plan is still as we drew it up — I'll finalise my colour calls once I know the lantern count is settled.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-09-30",
+    "type": "task",
+    "from": "Ruth Ellery",
+    "text": "Reminder: confirm usher numbers for all three Harvest Moon performances before the get-in week.",
+    "role": "obligation"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-01",
+    "type": "note",
+    "from": "Ruth Ellery",
+    "text": "Bar stocktake done; interval stock due from Sweetsmiths on 20 October will top us up for the run.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Harvest Moon get-in",
+    "fields": {
+     "show": "Harvest Moon",
+     "date": "2026-10-19",
+     "time": "09:00",
+     "place": "main house",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Harvest Moon programmes",
+    "fields": {
+     "supplier": "Hartley Print",
+     "item": "programmes",
+     "quantity": "400",
+     "amount": "160",
+     "delivery": "2026-10-16",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Brightside Tour Rig A lantern hire, Harvest Moon week",
+    "fields": {
+     "supplier": "Brightside Lighting Hire",
+     "item": "Tour Rig A LED lanterns",
+     "quantity": "12",
+     "week": "2026-10-19",
+     "amount": "180",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Harvest Moon lighting rig plan",
+    "fields": {
+     "show": "Harvest Moon",
+     "designer": "Lena Voss",
+     "lanterns": "12",
+     "bars": "3",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Harvest Moon rigging crew call",
+    "fields": {
+     "show": "Harvest Moon",
+     "date": "2026-10-20",
+     "time": "09:00",
+     "crew": "3",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-7",
+    "collection": "schedule",
+    "title": "St Cuthbert's Drama Society hire",
+    "fields": {
+     "client": "St Cuthbert's Drama Society",
+     "contact": "Gillian Pryce",
+     "dates": "2026-10-30 to 2026-11-01",
+     "equipment": "12-lantern touring rig",
+     "fee": "420",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Harvest Moon September rehearsals",
+    "fields": {
+     "show": "Harvest Moon",
+     "place": "rehearsal room",
+     "day": "Tuesday",
+     "time": "19:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Interval confectionery, Harvest Moon run",
+    "fields": {
+     "supplier": "Sweetsmiths Confectionery",
+     "item": "confectionery boxes",
+     "quantity": "40",
+     "amount": "96",
+     "delivery": "2026-10-20",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Lena Voss, lighting designer",
+    "fields": {
+     "name": "Lena Voss",
+     "email": "lena.voss@postbox.example",
+     "role": "visiting lighting designer",
+     "show": "Harvest Moon"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-7",
+    "fields": [
+     "equipment"
+    ],
+    "from": "Gillian Pryce (St Cuthbert's Drama Society)",
+    "rule": "e4"
+   }
+  ],
+  "task": "Could you send Brightside our confirmed lantern numbers for the Harvest Moon rig week, and make sure the lantern order and the rig plan both show the right count?",
+  "expect": [
+   {
+    "record": "ORD-3",
+    "field": "quantity",
+    "value": "9",
+    "stale": [
+     "12"
+    ]
+   },
+   {
+    "record": "ORD-3",
+    "field": "amount",
+    "value": "135",
+    "stale": [
+     "180"
+    ]
+   },
+   {
+    "record": "EV-4",
+    "field": "lanterns",
+    "value": "9",
+    "stale": [
+     "12"
+    ]
+   },
+   {
+    "message_to": "Terry Bloom (Brightside Lighting Hire)",
+    "regarding": "ORD-3",
+    "says": [
+     "9"
+    ],
+    "stale": [
+     "12"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Brightside's 14 September email supersedes the July availability: Tour Rig A now has 9 lanterns, not 12, at the same £15 rate. The lantern order (ORD-3) and the rig plan built on it (EV-4) must therefore be revised to 9 and £135, and confirming the numbers to Brightside is the task. The crew call only uses the plan's date, so it stands (KEEP); the St Cuthbert's hire includes the 12-lantern rig in its confirmed terms, so changing it needs Gillian Pryce's written agreement under the hire rule (ASK, left untouched). The Lumenhire quote for 10 lanterns is a distractor, not a basis for action.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "stage consumables",
+    "counterpart": "Terry Bloom",
+    "org": "Brightside Lighting Hire",
+    "item": "cable bundles and colour gels",
+    "unit": "bundle",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "6"
+    ],
+    "place": "Marlowe Playhouse stage door"
+   },
+   {
+    "kind": "order",
+    "topic": "printing",
+    "counterpart": "Sandra Vick",
+    "org": "Hartley Print",
+    "item": "A5 flyers",
+    "unit": "batch of 100",
+    "values": [
+     "2",
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "Marlowe Playhouse box office"
+   },
+   {
+    "kind": "order",
+    "topic": "bar restock",
+    "counterpart": "Colm Sweetsmith",
+    "org": "Sweetsmiths Confectionery",
+    "item": "interval confectionery boxes",
+    "unit": "box",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "Marlowe Playhouse bar"
+   },
+   {
+    "kind": "booking",
+    "topic": "rehearsal room",
+    "counterpart": "Priya Shah",
+    "org": "The Marlowe Playhouse",
+    "item": "rehearsal room evening session",
+    "unit": "session",
+    "values": [
+     "rehearsal room",
+     "studio",
+     "main house"
+    ],
+    "place": "Marlowe Playhouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "trustees meeting",
+    "counterpart": "Alan Blythe",
+    "org": "The Marlowe Playhouse",
+    "item": "monthly trustees meeting room",
+    "unit": "meeting",
+    "values": [
+     "green room",
+     "office",
+     "foyer bar"
+    ],
+    "place": "Marlowe Playhouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "school drama club",
+    "counterpart": "Miriam Cole",
+    "org": "Lakeside School",
+    "item": "weekly drama club space",
+    "unit": "session",
+    "values": [
+     "studio",
+     "rehearsal room",
+     "green room"
+    ],
+    "place": "Marlowe Playhouse"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Dave Norton",
+    "org": "Norton Janitorial",
+    "item": "cleaning supplies case",
+    "unit": "case",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Marlowe Playhouse stage door"
+   },
+   {
+    "kind": "booking",
+    "topic": "van hire",
+    "counterpart": "Ian Pritchard",
+    "org": "Pritchard Vehicle Hire",
+    "item": "transit van for set runs",
+    "unit": "day",
+    "values": [
+     "transit van",
+     "luton van",
+     "minibus"
+    ],
+    "place": "Marlowe Playhouse yard"
+   },
+   {
+    "kind": "order",
+    "topic": "ticket stock",
+    "counterpart": "Helen Avery",
+    "org": "Ticketline Supplies",
+    "item": "ticket roll stock",
+    "unit": "roll",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "Marlowe Playhouse box office"
+   },
+   {
+    "kind": "order",
+    "topic": "kiosk coffee",
+    "counterpart": "Ben Okafor",
+    "org": "Roast & Co",
+    "item": "coffee beans",
+    "unit": "kilogram",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Marlowe Playhouse kiosk"
+   },
+   {
+    "kind": "order",
+    "topic": "scenic materials",
+    "counterpart": "Petra Lind",
+    "org": "Scenic Supplies Ltd",
+    "item": "scenic paint and timber",
+    "unit": "pack",
+    "values": [
+     "2",
+     "4",
+     "5"
+    ],
+    "place": "Marlowe Playhouse workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "choral rehearsal",
+    "counterpart": "Fiona Doyle",
+    "org": "Marlowe Choral Society",
+    "item": "Tuesday choral rehearsal space",
+    "unit": "session",
+    "values": [
+     "main house",
+     "studio",
+     "foyer bar"
+    ],
+    "place": "Marlowe Playhouse"
+   }
+  ],
+  "id": "K1000-1-04",
+  "tier": 1000,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

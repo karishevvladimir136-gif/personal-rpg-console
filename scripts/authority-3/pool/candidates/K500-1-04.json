@@ -1,0 +1,647 @@
+{
+ "id": "K500-1-04",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 1,
+ "idx": 3,
+ "setting": "Ski school director at Frostpine Mountain Resort, a small alpine resort",
+ "prompt_sha256": "577ebb97ac43b2fbf9c51807c73367f2c378c16a085218b321fb75f3025a86c2",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Junior camp rental sets cut by supplier\",\n  \"setting\": \"Ski school director at Frostpine Mountain Resort, a small alpine resort\",\n  \"owner\": \"Marta\",\n  \"org\": \"Frostpine Ski School\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Any supplier order over 500 must be signed off by our finance lead Johan Berg before it is sent to the supplier.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Once a client booking is confirmed, the date or the group size may only be changed with the client contact's written consent.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Confirming we can supply Frostpine Ski School with 40 children's ski sets at 18 per set per day for the whole 2026-27 season, delivered to the ski school hut at the base lodge.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Junior camp weekend is fixed for Saturday 14 November and Sunday 15 November 2026, meeting at the base lodge hut at 08:30.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"message\", \"from\": \"Priya Nair (instructor)\", \"text\": \"Happy to confirm I am available every Saturday through the season for group lessons, including 14 and 21 November.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Oskar Lund (Nordkapp Catering)\", \"text\": \"We can keep supplying hot cocoa and soup to the base lodge terrace kiosk at 3.50 per portion this winter, minimum batch of 40 portions.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 30 children's ski sets from Peak Rentals for the junior camp weekend of 14 November at 18 per set per day, total 540; Johan Berg signed off the amount as required for orders over 500.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the weekly instructor briefing for every Wednesday at 17:00 in the base lodge meeting corner, starting 4 November.\", \"role\": \"decision\", \"record\": \"EV-2\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 10 children's ski sets from Peak Rentals for the freestyle taster day on Saturday 21 November at 18 per set per day, total 180, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Northfield School group booking for 30 children on Saturday 14 November with client contact Anna Reyes, using the 30 rental sets already secured for the camp weekend; any later change to date or group size needs her written consent.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Greta Mohn (lift operations)\", \"text\": \"The main chairlift will run 08:00 to 16:30 daily from opening day, and the beginner tow from 08:30.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Season checklist for Frostpine: your 40 children's ski sets at 18 per set per day are reserved as agreed and will be ready at the base lodge hut from opening week.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e13\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Quick note that we also have 20 premium children's ski sets in stock this season at 22 per set per day if you ever want an upgrade for race training.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e14\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Assigned Priya Nair to lead the Saturday junior group lessons on 14 and 21 November, meeting at the base lodge hut at 08:30.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-3\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 120 portions of hot cocoa and soup from Nordkapp Catering for the junior camp weekend at 3.50 per portion, total 420, delivery to the base lodge terrace kiosk.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-10\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Pay the Nordkapp Catering deposit invoice by 30 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-14\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Staff meeting: agreed the season opens with two instructor teams, lost-property box moves to the base lodge hut, and helmet straps are checked every Friday.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"cancellation\", \"from\": \"Henrik Aas (guest)\", \"text\": \"Please cancel my private lesson booked for 3 October; I will rebook in December.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Anna Reyes (Northfield School)\", \"text\": \"Thank you for the confirmation for 30 children on Saturday 14 November; the parents' consent forms are being collected this month.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Greta Mohn (lift operations)\", \"text\": \"Snowmaking starts overnight from 5 October; please keep the lower slope clear of stored gear.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Bad news from our supplier: a binding recall means we can only guarantee 28 children's ski sets per day from 15 October onwards this season. The daily price stays 18 per set and deliveries to the base lodge hut continue as normal.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e22\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Priya Nair (instructor)\", \"text\": \"Drafted the camp weekend lesson plan; flag drill slots are pencilled for 10:00 on both days.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-15\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Reminder: confirm final rental numbers with Peak Rentals before the November groups arrive.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Oskar Lund (Nordkapp Catering)\", \"text\": \"Cocoa and soup delivery for the camp weekend is scheduled for 07:45 on Saturday 14 November at the terrace kiosk.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Peak Rentals children's ski sets, junior camp weekend 14 Nov\", \"fields\": {\"supplier\": \"Peak Rentals\", \"item\": \"children ski sets\", \"quantity\": \"30\", \"unit_price\": \"18\", \"total\": \"540\", \"date\": \"2026-11-14\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Peak Rentals children's ski sets, freestyle taster 21 Nov\", \"fields\": {\"supplier\": \"Peak Rentals\", \"item\": \"children ski sets\", \"quantity\": \"10\", \"unit_price\": \"18\", \"total\": \"180\", \"date\": \"2026-11-21\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Nordkapp Catering cocoa and soup, camp weekend\", \"fields\": {\"supplier\": \"Nordkapp Catering\", \"item\": \"cocoa and soup portions\", \"quantity\": \"120\", \"unit_price\": \"3.50\", \"total\": \"420\", \"date\": \"2026-11-14\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Northfield School group booking\", \"fields\": {\"client\": \"Northfield School\", \"contact\": \"Anna Reyes\", \"group_size\": \"30\", \"date\": \"2026-11-14\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly instructor briefing\", \"fields\": {\"day\": \"Wednesday\", \"time\": \"17:00\", \"place\": \"base lodge meeting corner\", \"status\": \"booked\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Priya Nair Saturday junior lessons\", \"fields\": {\"instructor\": \"Priya Nair\", \"date\": \"2026-11-14\", \"time\": \"08:30\", \"place\": \"base lodge hut\", \"status\": \"booked\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"group_size\", \"date\"], \"from\": \"Anna Reyes (Northfield School)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please email Lena Vik at Peak Rentals with our final confirmed numbers for the junior camp weekend ski set order on 14 November, and make sure the order record shows exactly what we are telling her.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"28\", \"stale\": [\"30\"]},\n    {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"504\", \"stale\": [\"540\"]},\n    {\"message_to\": \"Lena Vik (Peak Rentals)\", \"regarding\": \"ORD-1\", \"says\": [\"28\"], \"stale\": [\"30\", \"540\"], \"task\": true}\n  ],\n  \"why\": \"Peak Rentals cut the guaranteed children's sets from 40 to 28 per day from 15 October, so the 30-set junior camp order (ORD-1) must be revised to 28 at 504 and that is what Marta's message to Lena must say. The Northfield School booking (CL-1) is touched two hops away through the camp order, but its group size cannot be changed without Anna Reyes's written consent, so it stays at 30 with a consent request; the 10-set freestyle order fits within the 28 now available and stays as is.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"helmet restock\", \"counterpart\": \"Lena Vik\", \"org\": \"Peak Rentals\", \"item\": \"children helmets\", \"unit\": \"helmets\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"base lodge hut\"},\n    {\"kind\": \"order\", \"topic\": \"pole restock\", \"counterpart\": \"Lena Vik\", \"org\": \"Peak Rentals\", \"item\": \"junior ski poles\", \"unit\": \"pairs\", \"values\": [\"5\", \"8\", \"12\", \"15\"], \"place\": \"base lodge hut\"},\n    {\"kind\": \"booking\", \"topic\": \"school taster mornings\", \"counterpart\": \"Anna Reyes\", \"org\": \"Northfield School\", \"item\": \"two-hour taster lesson\", \"unit\": \"session\", \"values\": [\"lower slope\", \"beginner tow area\", \"base lodge terrace\"], \"place\": \"lower slope\"},\n    {\"kind\": \"order\", \"topic\": \"cocoa resupply\", \"counterpart\": \"Oskar Lund\", \"org\": \"Nordkapp Catering\", \"item\": \"hot cocoa portions\", \"unit\": \"portions\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"base lodge terrace kiosk\"},\n    {\"kind\": \"booking\", \"topic\": \"instructor briefing room\", \"counterpart\": \"Greta Mohn\", \"org\": \"Frostpine lift operations\", \"item\": \"meeting corner\", \"unit\": \"booking\", \"values\": [\"base lodge meeting corner\", \"canteen alcove\", \"ticket office back room\"], \"place\": \"base lodge\"},\n    {\"kind\": \"order\", \"topic\": \"glove restock\", \"counterpart\": \"Ingrid Solli\", \"org\": \"Alpine Outfitters\", \"item\": \"children mittens\", \"unit\": \"pairs\", \"values\": [\"10\", \"14\", \"18\", \"24\"], \"place\": \"ski school office\"},\n    {\"kind\": \"order\", \"topic\": \"sunscreen and lip balm\", \"counterpart\": \"Ingrid Solli\", \"org\": \"Alpine Outfitters\", \"item\": \"SPF 50 sticks\", \"unit\": \"sticks\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"ski school office\"},\n    {\"kind\": \"booking\", \"topic\": \"race club gate training\", \"counterpart\": \"Petter Skar\", \"org\": \"Frostpine Race Club\", \"item\": \"slalom slope slot\", \"unit\": \"slot\", \"values\": [\"upper slope\", \"lower slope\", \"floodlit piste\"], \"place\": \"main piste\"},\n    {\"kind\": \"order\", \"topic\": \"first aid top-up\", \"counterpart\": \"Rune Dahl\", \"org\": \"Fjell Med Supply\", \"item\": \"first aid refill packs\", \"unit\": \"packs\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"ski school office\"},\n    {\"kind\": \"booking\", \"topic\": \"parents info evening\", \"counterpart\": \"Anna Reyes\", \"org\": \"Northfield School\", \"item\": \"info evening room\", \"unit\": \"evening\", \"values\": [\"base lodge meeting corner\", \"chalet lounge\"], \"place\": \"Frostpine chalet\"},\n    {\"kind\": \"order\", \"topic\": \"slope signage\", \"counterpart\": \"Vilde Kaasa\", \"org\": \"Nord Print\", \"item\": \"correx slope signs\", \"unit\": \"signs\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"base lodge\"},\n    {\"kind\": \"booking\", \"topic\": \"snowboard crossover sessions\", \"counterpart\": \"Mikkel Fon\", \"org\": \"Frostpine Ski School\", \"item\": \"practice area slot\", \"unit\": \"session\", \"values\": [\"beginner tow area\", \"lower slope\", \"fun park edge\"], \"place\": \"beginner tow area\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3234,
+    "completion_tokens": 6603,
+    "reasoning_tokens": 2880,
+    "cached_tokens": 0
+   },
+   "cost": 0.108747,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Junior camp rental sets cut by supplier\",\n  \"setting\": \"Ski school director at Frostpine Mountain Resort, a small alpine resort\",\n  \"owner\": \"Marta\",\n  \"org\": \"Frostpine Ski School\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Any supplier order over 500 must be signed off by our finance lead Johan Berg before it is sent to the supplier.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Once a client booking is confirmed, the date or the group size may only be changed with the client contact's written consent.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Confirming we can supply Frostpine Ski School with 40 children's ski sets at 18 per set per day for the whole 2026-27 season, delivered to the ski school hut at the base lodge.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Junior camp weekend is fixed for Saturday 14 November and Sunday 15 November 2026, meeting at the base lodge hut at 08:30.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"message\", \"from\": \"Priya Nair (instructor)\", \"text\": \"Happy to confirm I am available every Saturday through the season for group lessons, including 14 and 21 November.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Oskar Lund (Nordkapp Catering)\", \"text\": \"We can keep supplying hot cocoa and soup to the base lodge terrace kiosk at 3.50 per portion this winter, minimum batch of 40 portions.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 30 children's ski sets from Peak Rentals for the junior camp weekend of 14 November at 18 per set per day, total 540; Johan Berg signed off the amount as required for orders over 500.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the weekly instructor briefing for every Wednesday at 17:00 in the base lodge meeting corner, starting 4 November.\", \"role\": \"decision\", \"record\": \"EV-2\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 10 children's ski sets from Peak Rentals for the freestyle taster day on Saturday 21 November at 18 per set per day, total 180, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Northfield School group booking for 30 children on Saturday 14 November with client contact Anna Reyes, using the 30 rental sets already secured for the camp weekend; any later change to date or group size needs her written consent.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Greta Mohn (lift operations)\", \"text\": \"The main chairlift will run 08:00 to 16:30 daily from opening day, and the beginner tow from 08:30.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Season checklist for Frostpine: your 40 children's ski sets at 18 per set per day are reserved as agreed and will be ready at the base lodge hut from opening week.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e13\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Quick note that we also have 20 premium children's ski sets in stock this season at 22 per set per day if you ever want an upgrade for race training.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e14\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Assigned Priya Nair to lead the Saturday junior group lessons on 14 and 21 November, meeting at the base lodge hut at 08:30.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-3\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 120 portions of hot cocoa and soup from Nordkapp Catering for the junior camp weekend at 3.50 per portion, total 420, delivery to the base lodge terrace kiosk.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-10\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Pay the Nordkapp Catering deposit invoice by 30 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-14\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Staff meeting: agreed the season opens with two instructor teams, lost-property box moves to the base lodge hut, and helmet straps are checked every Friday.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"cancellation\", \"from\": \"Henrik Aas (guest)\", \"text\": \"Please cancel my private lesson booked for 3 October; I will rebook in December.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Anna Reyes (Northfield School)\", \"text\": \"Thank you for the confirmation for 30 children on Saturday 14 November; the parents' consent forms are being collected this month.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Greta Mohn (lift operations)\", \"text\": \"Snowmaking starts overnight from 5 October; please keep the lower slope clear of stored gear.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Bad news from our supplier: a binding recall means we can only guarantee 28 children's ski sets per day from 15 October onwards this season. The daily price stays 18 per set and deliveries to the base lodge hut continue as normal.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e22\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Priya Nair (instructor)\", \"text\": \"Drafted the camp weekend lesson plan; flag drill slots are pencilled for 10:00 on both days.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-15\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Reminder: confirm final rental numbers with Peak Rentals before the November groups arrive.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Oskar Lund (Nordkapp Catering)\", \"text\": \"Cocoa and soup delivery for the camp weekend is scheduled for 07:45 on Saturday 14 November at the terrace kiosk.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Johan Berg (finance lead)\", \"text\": \"Please route all supplier order drafts through me before sending; I sign off once a week on Thursdays.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-07-28\", \"type\": \"quote\", \"from\": \"Ingrid Solli (Alpine Outfitters)\", \"text\": \"Quoted 12 per pair for children's mittens in batches of ten or more, delivery to the ski school office within five working days.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-08-26\", \"type\": \"message\", \"from\": \"Greta Mohn (lift operations)\", \"text\": \"The floodlit piste will be open Tuesday and Thursday evenings from 17:30 once the season starts.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-30\", \"type\": \"call\", \"from\": \"Petter Skar (Frostpine Race Club)\", \"text\": \"Race club asked about gate training slots on the upper slope in November; I said I would come back to them after the camp weekend plans settle.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Anna Reyes (Northfield School)\", \"text\": \"We have 26 of the 30 consent forms back already; the children are very excited about the trip on 14 November.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-17\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Check helmet strap stock and order spares by 24 October 2026.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Peak Rentals children's ski sets, junior camp weekend 14 Nov\", \"fields\": {\"supplier\": \"Peak Rentals\", \"item\": \"children ski sets\", \"quantity\": \"30\", \"unit_price\": \"18\", \"total\": \"540\", \"date\": \"2026-11-14\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Peak Rentals children's ski sets, freestyle taster 21 Nov\", \"fields\": {\"supplier\": \"Peak Rentals\", \"item\": \"children ski sets\", \"quantity\": \"10\", \"unit_price\": \"18\", \"total\": \"180\", \"date\": \"2026-11-21\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Nordkapp Catering cocoa and soup, camp weekend\", \"fields\": {\"supplier\": \"Nordkapp Catering\", \"item\": \"cocoa and soup portions\", \"quantity\": \"120\", \"unit_price\": \"3.50\", \"total\": \"420\", \"date\": \"2026-11-14\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Northfield School group booking\", \"fields\": {\"client\": \"Northfield School\", \"contact\": \"Anna Reyes\", \"group_size\": \"30\", \"date\": \"2026-11-14\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly instructor briefing\", \"fields\": {\"day\": \"Wednesday\", \"time\": \"17:00\", \"place\": \"base lodge meeting corner\", \"status\": \"booked\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Priya Nair Saturday junior lessons\", \"fields\": {\"instructor\": \"Priya Nair\", \"date\": \"2026-11-14\", \"time\": \"08:30\", \"place\": \"base lodge hut\", \"status\": \"booked\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"group_size\", \"date\"], \"from\": \"Anna Reyes (Northfield School)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please email Lena Vik at Peak Rentals with our final confirmed numbers for the junior camp weekend ski set order on 14 November, and make sure the order record shows exactly what we are telling her.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"28\", \"stale\": [\"30\"]},\n    {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"504\", \"stale\": [\"540\"]},\n    {\"message_to\": \"Lena Vik (Peak Rentals)\", \"regarding\": \"ORD-1\", \"says\": [\"28\"], \"stale\": [\"30\", \"540\"], \"task\": true}\n  ],\n  \"why\": \"Peak Rentals cut the guaranteed children's sets from 40 to 28 per day from 15 October, so the 30-set junior camp order (ORD-1) must be revised to 28 at 504 and that is what Marta's message to Lena must say. The Northfield School booking (CL-1) is touched two hops away through the camp order, but its group size cannot be changed without Anna Reyes's written consent, so it stays at 30 with a consent request; the 10-set freestyle order fits within the 28 now available and stays as is.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"helmet restock\", \"counterpart\": \"Lena Vik\", \"org\": \"Peak Rentals\", \"item\": \"children helmets\", \"unit\": \"helmets\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"base lodge hut\"},\n    {\"kind\": \"order\", \"topic\": \"pole restock\", \"counterpart\": \"Lena Vik\", \"org\": \"Peak Rentals\", \"item\": \"junior ski poles\", \"unit\": \"pairs\", \"values\": [\"5\", \"8\", \"12\", \"15\"], \"place\": \"base lodge hut\"},\n    {\"kind\": \"booking\", \"topic\": \"school taster mornings\", \"counterpart\": \"Anna Reyes\", \"org\": \"Northfield School\", \"item\": \"two-hour taster lesson\", \"unit\": \"session\", \"values\": [\"lower slope\", \"beginner tow area\", \"base lodge terrace\"], \"place\": \"lower slope\"},\n    {\"kind\": \"order\", \"topic\": \"cocoa resupply\", \"counterpart\": \"Oskar Lund\", \"org\": \"Nordkapp Catering\", \"item\": \"hot cocoa portions\", \"unit\": \"portions\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"base lodge terrace kiosk\"},\n    {\"kind\": \"booking\", \"topic\": \"instructor briefing room\", \"counterpart\": \"Greta Mohn\", \"org\": \"Frostpine lift operations\", \"item\": \"meeting corner\", \"unit\": \"booking\", \"values\": [\"base lodge meeting corner\", \"canteen alcove\", \"ticket office back room\"], \"place\": \"base lodge\"},\n    {\"kind\": \"order\", \"topic\": \"glove restock\", \"counterpart\": \"Ingrid Solli\", \"org\": \"Alpine Outfitters\", \"item\": \"children mittens\", \"unit\": \"pairs\", \"values\": [\"10\", \"14\", \"18\", \"24\"], \"place\": \"ski school office\"},\n    {\"kind\": \"order\", \"topic\": \"sunscreen and lip balm\", \"counterpart\": \"Ingrid Solli\", \"org\": \"Alpine Outfitters\", \"item\": \"SPF 50 sticks\", \"unit\": \"sticks\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"ski school office\"},\n    {\"kind\": \"booking\", \"topic\": \"race club gate training\", \"counterpart\": \"Petter Skar\", \"org\": \"Frostpine Race Club\", \"item\": \"slalom slope slot\", \"unit\": \"slot\", \"values\": [\"upper slope\", \"lower slope\", \"floodlit piste\"], \"place\": \"main piste\"},\n    {\"kind\": \"order\", \"topic\": \"first aid top-up\", \"counterpart\": \"Rune Dahl\", \"org\": \"Fjell Med Supply\", \"item\": \"first aid refill packs\", \"unit\": \"packs\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"ski school office\"},\n    {\"kind\": \"booking\", \"topic\": \"parents info evening\", \"counterpart\": \"Anna Reyes\", \"org\": \"Northfield School\", \"item\": \"info evening room\", \"unit\": \"evening\", \"values\": [\"base lodge meeting corner\", \"chalet lounge\"], \"place\": \"Frostpine chalet\"},\n    {\"kind\": \"order\", \"topic\": \"slope signage\", \"counterpart\": \"Vilde Kaasa\", \"org\": \"Nord Print\", \"item\": \"correx slope signs\", \"unit\": \"signs\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"base lodge\"},\n    {\"kind\": \"booking\", \"topic\": \"snowboard crossover sessions\", \"counterpart\": \"Mikkel Fon\", \"org\": \"Frostpine Ski School\", \"item\": \"practice area slot\", \"unit\": \"session\", \"values\": [\"beginner tow area\", \"lower slope\", \"fun park edge\"], \"place\": \"beginner tow area\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7022,
+    "completion_tokens": 4212,
+    "reasoning_tokens": 67,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0759516,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: the core has 24 events; need 28–55\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Junior camp rental sets cut by supplier\",\n  \"setting\": \"Ski school director at Frostpine Mountain Resort, a small alpine resort\",\n  \"owner\": \"Marta\",\n  \"org\": \"Frostpine Ski School\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Any supplier order over 500 must be signed off by our finance lead Johan Berg before it is sent to the supplier.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Once a client booking is confirmed, the date or the group size may only be changed with the client contact's written consent.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Confirming we can supply Frostpine Ski School with 40 children's ski sets at 18 per set per day for the whole 2026-27 season, delivered to the ski school hut at the base lodge.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Junior camp weekend is fixed for Saturday 14 November and Sunday 15 November 2026, meeting at the base lodge hut at 08:30.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"message\", \"from\": \"Priya Nair (instructor)\", \"text\": \"Happy to confirm I am available every Saturday through the season for group lessons, including 14 and 21 November.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Oskar Lund (Nordkapp Catering)\", \"text\": \"We can keep supplying hot cocoa and soup to the base lodge terrace kiosk at 3.50 per portion this winter, minimum batch of 40 portions.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Johan Berg (finance lead)\", \"text\": \"Please route all supplier order drafts through me before sending; I sign off once a week on Thursdays.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 30 children's ski sets from Peak Rentals for the junior camp weekend of 14 November at 18 per set per day, total 540; Johan Berg signed off the amount as required for orders over 500.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the weekly instructor briefing for every Wednesday at 17:00 in the base lodge meeting corner, starting 4 November, so the team is aligned before the junior camp weekend of 14 November.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-2\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 10 children's ski sets from Peak Rentals for the freestyle taster day on Saturday 21 November at 18 per set per day, total 180, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Northfield School group booking for 30 children on Saturday 14 November with client contact Anna Reyes, using the 30 rental sets already secured for the camp weekend; any later change to date or group size needs her written consent.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Greta Mohn (lift operations)\", \"text\": \"The main chairlift will run 08:00 to 16:30 daily from opening day, and the beginner tow from 08:30.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-28\", \"type\": \"quote\", \"from\": \"Ingrid Solli (Alpine Outfitters)\", \"text\": \"Quoted 12 per pair for children's mittens in batches of ten or more, delivery to the ski school office within five working days.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Season checklist for Frostpine: your 40 children's ski sets at 18 per set per day are reserved as agreed and will be ready at the base lodge hut from opening week.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e15\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Quick note that we also have 20 premium children's ski sets in stock this season at 22 per set per day if you ever want an upgrade for race training.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e16\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Assigned Priya Nair to lead the Saturday junior group lessons on 14 and 21 November, meeting at the base lodge hut at 08:30.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-3\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-26\", \"type\": \"message\", \"from\": \"Greta Mohn (lift operations)\", \"text\": \"The floodlit piste will be open Tuesday and Thursday evenings from 17:30 once the season starts.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 120 portions of hot cocoa and soup from Nordkapp Catering for the junior camp weekend at 3.50 per portion, total 420, delivery to the base lodge terrace kiosk.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Pay the Nordkapp Catering deposit invoice by 30 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-14\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Staff meeting: agreed the season opens with two instructor teams, lost-property box moves to the base lodge hut, and helmet straps are checked every Friday.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-22\", \"type\": \"cancellation\", \"from\": \"Henrik Aas (guest)\", \"text\": \"Please cancel my private lesson booked for 3 October; I will rebook in December.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Anna Reyes (Northfield School)\", \"text\": \"Thank you for the confirmation for 30 children on Saturday 14 November; the parents' consent forms are being collected this month.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-30\", \"type\": \"call\", \"from\": \"Petter Skar (Frostpine Race Club)\", \"text\": \"Race club asked about gate training slots on the upper slope in November; I said I would come back to them after the camp weekend plans settle.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Greta Mohn (lift operations)\", \"text\": \"Snowmaking starts overnight from 5 October; please keep the lower slope clear of stored gear.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Lena Vik (Peak Rentals)\", \"text\": \"Bad news from our supplier: a binding recall means we can only guarantee 28 children's ski sets per day from 15 October onwards this season. The daily price stays 18 per set and deliveries to the base lodge hut continue as normal.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e26\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Priya Nair (instructor)\", \"text\": \"Drafted the camp weekend lesson plan; flag drill slots are pencilled for 10:00 on both days.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Anna Reyes (Northfield School)\", \"text\": \"We have 26 of the 30 consent forms back already; the children are very excited about the trip on 14 November.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Reminder: confirm final rental numbers with Peak Rentals before the November groups arrive.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-17\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Check helmet strap stock and order spares by 24 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Oskar Lund (Nordkapp Catering)\", \"text\": \"Cocoa and soup delivery for the camp weekend is scheduled for 07:45 on Saturday 14 November at the terrace kiosk.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Peak Rentals children's ski sets, junior camp weekend 14 Nov\", \"fields\": {\"supplier\": \"Peak Rentals\", \"item\": \"children ski sets\", \"quantity\": \"30\", \"unit_price\": \"18\", \"total\": \"540\", \"date\": \"2026-11-14\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Peak Rentals children's ski sets, freestyle taster 21 Nov\", \"fields\": {\"supplier\": \"Peak Rentals\", \"item\": \"children ski sets\", \"quantity\": \"10\", \"unit_price\": \"18\", \"total\": \"180\", \"date\": \"2026-11-21\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Nordkapp Catering cocoa and soup, camp weekend\", \"fields\": {\"supplier\": \"Nordkapp Catering\", \"item\": \"cocoa and soup portions\", \"quantity\": \"120\", \"unit_price\": \"3.50\", \"total\": \"420\", \"date\": \"2026-11-14\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Northfield School group booking\", \"fields\": {\"client\": \"Northfield School\", \"contact\": \"Anna Reyes\", \"group_size\": \"30\", \"date\": \"2026-11-14\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly instructor briefing\", \"fields\": {\"day\": \"Wednesday\", \"time\": \"17:00\", \"place\": \"base lodge meeting corner\", \"status\": \"booked\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Priya Nair Saturday junior lessons\", \"fields\": {\"instructor\": \"Priya Nair\", \"date\": \"2026-11-14\", \"time\": \"08:30\", \"place\": \"base lodge hut\", \"status\": \"booked\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"group_size\", \"date\"], \"from\": \"Anna Reyes (Northfield School)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please email Lena Vik at Peak Rentals with our final confirmed numbers for the junior camp weekend ski set order on 14 November, and make sure the order record shows exactly what we are telling her.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"28\", \"stale\": [\"30\"]},\n    {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"504\", \"stale\": [\"540\"]},\n    {\"message_to\": \"Lena Vik (Peak Rentals)\", \"regarding\": \"ORD-1\", \"says\": [\"28\"], \"stale\": [\"30\", \"540\"], \"task\": true}\n  ],\n  \"why\": \"Peak Rentals cut the guaranteed children's sets from 40 to 28 per day from 15 October, so the 30-set junior camp order (ORD-1) must be revised to 28 at 504 and that is what Marta's message to Lena must say. The Northfield School booking (CL-1) is touched two hops away through the camp order, but its group size cannot be changed without Anna Reyes's written consent, so it stays at 30 with a consent request; the 10-set freestyle order fits within the 28 now available and stays as is.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"helmet restock\", \"counterpart\": \"Lena Vik\", \"org\": \"Peak Rentals\", \"item\": \"children helmets\", \"unit\": \"helmets\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"base lodge hut\"},\n    {\"kind\": \"order\", \"topic\": \"pole restock\", \"counterpart\": \"Lena Vik\", \"org\": \"Peak Rentals\", \"item\": \"junior ski poles\", \"unit\": \"pairs\", \"values\": [\"5\", \"8\", \"12\", \"15\"], \"place\": \"base lodge hut\"},\n    {\"kind\": \"booking\", \"topic\": \"school taster mornings\", \"counterpart\": \"Anna Reyes\", \"org\": \"Northfield School\", \"item\": \"two-hour taster lesson\", \"unit\": \"session\", \"values\": [\"lower slope\", \"beginner tow area\", \"base lodge terrace\"], \"place\": \"lower slope\"},\n    {\"kind\": \"order\", \"topic\": \"cocoa resupply\", \"counterpart\": \"Oskar Lund\", \"org\": \"Nordkapp Catering\", \"item\": \"hot cocoa portions\", \"unit\": \"portions\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"base lodge terrace kiosk\"},\n    {\"kind\": \"booking\", \"topic\": \"instructor briefing room\", \"counterpart\": \"Greta Mohn\", \"org\": \"Frostpine lift operations\", \"item\": \"meeting corner\", \"unit\": \"booking\", \"values\": [\"base lodge meeting corner\", \"canteen alcove\", \"ticket office back room\"], \"place\": \"base lodge\"},\n    {\"kind\": \"order\", \"topic\": \"glove restock\", \"counterpart\": \"Ingrid Solli\", \"org\": \"Alpine Outfitters\", \"item\": \"children mittens\", \"unit\": \"pairs\", \"values\": [\"10\", \"14\", \"18\", \"24\"], \"place\": \"ski school office\"},\n    {\"kind\": \"order\", \"topic\": \"sunscreen and lip balm\", \"counterpart\": \"Ingrid Solli\", \"org\": \"Alpine Outfitters\", \"item\": \"SPF 50 sticks\", \"unit\": \"sticks\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"ski school office\"},\n    {\"kind\": \"booking\", \"topic\": \"race club gate training\", \"counterpart\": \"Petter Skar\", \"org\": \"Frostpine Race Club\", \"item\": \"slalom slope slot\", \"unit\": \"slot\", \"values\": [\"upper slope\", \"lower slope\", \"floodlit piste\"], \"place\": \"main piste\"},\n    {\"kind\": \"order\", \"topic\": \"first aid top-up\", \"counterpart\": \"Rune Dahl\", \"org\": \"Fjell Med Supply\", \"item\": \"first aid refill packs\", \"unit\": \"packs\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"ski school office\"},\n    {\"kind\": \"booking\", \"topic\": \"parents info evening\", \"counterpart\": \"Anna Reyes\", \"org\": \"Northfield School\", \"item\": \"info evening room\", \"unit\": \"evening\", \"values\": [\"base lodge meeting corner\", \"chalet lounge\", \"canteen alcove\"], \"place\": \"Frostpine chalet\"},\n    {\"kind\": \"order\", \"topic\": \"slope signage\", \"counterpart\": \"Vilde Kaasa\", \"org\": \"Nord Print\", \"item\": \"correx slope signs\", \"unit\": \"signs\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"base lodge\"},\n    {\"kind\": \"booking\", \"topic\": \"snowboard crossover sessions\", \"counterpart\": \"Mikkel Fon\", \"org\": \"Frostpine Ski School\", \"item\": \"practice area slot\", \"unit\": \"session\", \"values\": [\"beginner tow area\", \"lower slope\", \"fun park edge\"], \"place\": \"beginner tow area\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 11261,
+    "completion_tokens": 4714,
+    "reasoning_tokens": 538,
+    "cached_tokens": 6912
+   },
+   "cost": 0.0858306,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e25 is dated before e24)\n- e8: a decision must rest on at least one earlier event\n- noise topic 'parents info evening': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Junior camp rental sets cut by supplier",
+  "setting": "Ski school director at Frostpine Mountain Resort, a small alpine resort",
+  "owner": "Marta",
+  "org": "Frostpine Ski School",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Any supplier order over 500 must be signed off by our finance lead Johan Berg before it is sent to the supplier.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Once a client booking is confirmed, the date or the group size may only be changed with the client contact's written consent.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Lena Vik (Peak Rentals)",
+    "text": "Confirming we can supply Frostpine Ski School with 40 children's ski sets at 18 per set per day for the whole 2026-27 season, delivered to the ski school hut at the base lodge.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Marta",
+    "text": "Junior camp weekend is fixed for Saturday 14 November and Sunday 15 November 2026, meeting at the base lodge hut at 08:30.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "message",
+    "from": "Priya Nair (instructor)",
+    "text": "Happy to confirm I am available every Saturday through the season for group lessons, including 14 and 21 November.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Oskar Lund (Nordkapp Catering)",
+    "text": "We can keep supplying hot cocoa and soup to the base lodge terrace kiosk at 3.50 per portion this winter, minimum batch of 40 portions.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Johan Berg (finance lead)",
+    "text": "Please route all supplier order drafts through me before sending; I sign off once a week on Thursdays.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 30 children's ski sets from Peak Rentals for the junior camp weekend of 14 November at 18 per set per day, total 540; Johan Berg signed off the amount as required for orders over 500.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1",
+     "e4"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled the weekly instructor briefing for every Wednesday at 17:00 in the base lodge meeting corner, starting 4 November, so the team is aligned before the junior camp weekend of 14 November.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-09",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 10 children's ski sets from Peak Rentals for the freestyle taster day on Saturday 21 November at 18 per set per day, total 180, so no finance sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Confirmed the Northfield School group booking for 30 children on Saturday 14 November with client contact Anna Reyes, using the 30 rental sets already secured for the camp weekend; any later change to date or group size needs her written consent.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e2"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Greta Mohn (lift operations)",
+    "text": "The main chairlift will run 08:00 to 16:30 daily from opening day, and the beginner tow from 08:30.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-28",
+    "type": "quote",
+    "from": "Ingrid Solli (Alpine Outfitters)",
+    "text": "Quoted 12 per pair for children's mittens in batches of ten or more, delivery to the ski school office within five working days.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-03",
+    "type": "email",
+    "from": "Lena Vik (Peak Rentals)",
+    "text": "Season checklist for Frostpine: your 40 children's ski sets at 18 per set per day are reserved as agreed and will be ready at the base lodge hut from opening week.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-10",
+    "type": "email",
+    "from": "Lena Vik (Peak Rentals)",
+    "text": "Quick note that we also have 20 premium children's ski sets in stock this season at 22 per set per day if you ever want an upgrade for race training.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Assigned Priya Nair to lead the Saturday junior group lessons on 14 and 21 November, meeting at the base lodge hut at 08:30.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-26",
+    "type": "message",
+    "from": "Greta Mohn (lift operations)",
+    "text": "The floodlit piste will be open Tuesday and Thursday evenings from 17:30 once the season starts.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-01",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 120 portions of hot cocoa and soup from Nordkapp Catering for the junior camp weekend at 3.50 per portion, total 420, delivery to the base lodge terrace kiosk.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-10",
+    "type": "task",
+    "from": "Marta",
+    "text": "Pay the Nordkapp Catering deposit invoice by 30 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-14",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Staff meeting: agreed the season opens with two instructor teams, lost-property box moves to the base lodge hut, and helmet straps are checked every Friday.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-22",
+    "type": "cancellation",
+    "from": "Henrik Aas (guest)",
+    "text": "Please cancel my private lesson booked for 3 October; I will rebook in December.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Anna Reyes (Northfield School)",
+    "text": "Thank you for the confirmation for 30 children on Saturday 14 November; the parents' consent forms are being collected this month.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-30",
+    "type": "call",
+    "from": "Petter Skar (Frostpine Race Club)",
+    "text": "Race club asked about gate training slots on the upper slope in November; I said I would come back to them after the camp weekend plans settle.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-02",
+    "type": "notice",
+    "from": "Greta Mohn (lift operations)",
+    "text": "Snowmaking starts overnight from 5 October; please keep the lower slope clear of stored gear.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Lena Vik (Peak Rentals)",
+    "text": "Bad news from our supplier: a binding recall means we can only guarantee 28 children's ski sets per day from 15 October onwards this season. The daily price stays 18 per set and deliveries to the base lodge hut continue as normal.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-12",
+    "type": "message",
+    "from": "Priya Nair (instructor)",
+    "text": "Drafted the camp weekend lesson plan; flag drill slots are pencilled for 10:00 on both days.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-14",
+    "type": "message",
+    "from": "Anna Reyes (Northfield School)",
+    "text": "We have 26 of the 30 consent forms back already; the children are very excited about the trip on 14 November.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-15",
+    "type": "note",
+    "from": "Marta",
+    "text": "Reminder: confirm final rental numbers with Peak Rentals before the November groups arrive.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-17",
+    "type": "task",
+    "from": "Marta",
+    "text": "Check helmet strap stock and order spares by 24 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Oskar Lund (Nordkapp Catering)",
+    "text": "Cocoa and soup delivery for the camp weekend is scheduled for 07:45 on Saturday 14 November at the terrace kiosk.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Peak Rentals children's ski sets, junior camp weekend 14 Nov",
+    "fields": {
+     "supplier": "Peak Rentals",
+     "item": "children ski sets",
+     "quantity": "30",
+     "unit_price": "18",
+     "total": "540",
+     "date": "2026-11-14",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Peak Rentals children's ski sets, freestyle taster 21 Nov",
+    "fields": {
+     "supplier": "Peak Rentals",
+     "item": "children ski sets",
+     "quantity": "10",
+     "unit_price": "18",
+     "total": "180",
+     "date": "2026-11-21",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Nordkapp Catering cocoa and soup, camp weekend",
+    "fields": {
+     "supplier": "Nordkapp Catering",
+     "item": "cocoa and soup portions",
+     "quantity": "120",
+     "unit_price": "3.50",
+     "total": "420",
+     "date": "2026-11-14",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Northfield School group booking",
+    "fields": {
+     "client": "Northfield School",
+     "contact": "Anna Reyes",
+     "group_size": "30",
+     "date": "2026-11-14",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Weekly instructor briefing",
+    "fields": {
+     "day": "Wednesday",
+     "time": "17:00",
+     "place": "base lodge meeting corner",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Priya Nair Saturday junior lessons",
+    "fields": {
+     "instructor": "Priya Nair",
+     "date": "2026-11-14",
+     "time": "08:30",
+     "place": "base lodge hut",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "group_size",
+     "date"
+    ],
+    "from": "Anna Reyes (Northfield School)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please email Lena Vik at Peak Rentals with our final confirmed numbers for the junior camp weekend ski set order on 14 November, and make sure the order record shows exactly what we are telling her.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "quantity",
+    "value": "28",
+    "stale": [
+     "30"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "504",
+    "stale": [
+     "540"
+    ]
+   },
+   {
+    "message_to": "Lena Vik (Peak Rentals)",
+    "regarding": "ORD-1",
+    "says": [
+     "28"
+    ],
+    "stale": [
+     "30",
+     "540"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Peak Rentals cut the guaranteed children's sets from 40 to 28 per day from 15 October, so the 30-set junior camp order (ORD-1) must be revised to 28 at 504 and that is what Marta's message to Lena must say. The Northfield School booking (CL-1) is touched two hops away through the camp order, but its group size cannot be changed without Anna Reyes's written consent, so it stays at 30 with a consent request; the 10-set freestyle order fits within the 28 now available and stays as is.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "helmet restock",
+    "counterpart": "Lena Vik",
+    "org": "Peak Rentals",
+    "item": "children helmets",
+    "unit": "helmets",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "base lodge hut"
+   },
+   {
+    "kind": "order",
+    "topic": "pole restock",
+    "counterpart": "Lena Vik",
+    "org": "Peak Rentals",
+    "item": "junior ski poles",
+    "unit": "pairs",
+    "values": [
+     "5",
+     "8",
+     "12",
+     "15"
+    ],
+    "place": "base lodge hut"
+   },
+   {
+    "kind": "booking",
+    "topic": "school taster mornings",
+    "counterpart": "Anna Reyes",
+    "org": "Northfield School",
+    "item": "two-hour taster lesson",
+    "unit": "session",
+    "values": [
+     "lower slope",
+     "beginner tow area",
+     "base lodge terrace"
+    ],
+    "place": "lower slope"
+   },
+   {
+    "kind": "order",
+    "topic": "cocoa resupply",
+    "counterpart": "Oskar Lund",
+    "org": "Nordkapp Catering",
+    "item": "hot cocoa portions",
+    "unit": "portions",
+    "values": [
+     "40",
+     "60",
+     "80",
+     "100"
+    ],
+    "place": "base lodge terrace kiosk"
+   },
+   {
+    "kind": "booking",
+    "topic": "instructor briefing room",
+    "counterpart": "Greta Mohn",
+    "org": "Frostpine lift operations",
+    "item": "meeting corner",
+    "unit": "booking",
+    "values": [
+     "base lodge meeting corner",
+     "canteen alcove",
+     "ticket office back room"
+    ],
+    "place": "base lodge"
+   },
+   {
+    "kind": "order",
+    "topic": "glove restock",
+    "counterpart": "Ingrid Solli",
+    "org": "Alpine Outfitters",
+    "item": "children mittens",
+    "unit": "pairs",
+    "values": [
+     "10",
+     "14",
+     "18",
+     "24"
+    ],
+    "place": "ski school office"
+   },
+   {
+    "kind": "order",
+    "topic": "sunscreen and lip balm",
+    "counterpart": "Ingrid Solli",
+    "org": "Alpine Outfitters",
+    "item": "SPF 50 sticks",
+    "unit": "sticks",
+    "values": [
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "ski school office"
+   },
+   {
+    "kind": "booking",
+    "topic": "race club gate training",
+    "counterpart": "Petter Skar",
+    "org": "Frostpine Race Club",
+    "item": "slalom slope slot",
+    "unit": "slot",
+    "values": [
+     "upper slope",
+     "lower slope",
+     "floodlit piste"
+    ],
+    "place": "main piste"
+   },
+   {
+    "kind": "order",
+    "topic": "first aid top-up",
+    "counterpart": "Rune Dahl",
+    "org": "Fjell Med Supply",
+    "item": "first aid refill packs",
+    "unit": "packs",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "ski school office"
+   },
+   {
+    "kind": "booking",
+    "topic": "parents info evening",
+    "counterpart": "Anna Reyes",
+    "org": "Northfield School",
+    "item": "info evening room",
+    "unit": "evening",
+    "values": [
+     "base lodge meeting corner",
+     "chalet lounge",
+     "canteen alcove"
+    ],
+    "place": "Frostpine chalet"
+   },
+   {
+    "kind": "order",
+    "topic": "slope signage",
+    "counterpart": "Vilde Kaasa",
+    "org": "Nord Print",
+    "item": "correx slope signs",
+    "unit": "signs",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "base lodge"
+   },
+   {
+    "kind": "booking",
+    "topic": "snowboard crossover sessions",
+    "counterpart": "Mikkel Fon",
+    "org": "Frostpine Ski School",
+    "item": "practice area slot",
+    "unit": "session",
+    "values": [
+     "beginner tow area",
+     "lower slope",
+     "fun park edge"
+    ],
+    "place": "beginner tow area"
+   }
+  ],
+  "id": "K500-1-04",
+  "tier": 500,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

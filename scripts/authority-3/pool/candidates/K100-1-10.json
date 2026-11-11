@@ -1,0 +1,624 @@
+{
+ "id": "K100-1-10",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 1,
+ "idx": 9,
+ "setting": "Studio manager at Solstice Yoga & Pilates Studio, a boutique fitness studio",
+ "prompt_sha256": "f2d102e42f1676643244b4b6b15a6e09c146e09093327338291c67caa3d5599f",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Soren's class fee goes up\",\n \"setting\": \"Studio manager at Solstice Yoga & Pilates Studio, a boutique fitness studio\",\n \"owner\": \"Maya\",\n \"org\": \"Solstice Yoga & Pilates Studio\",\n \"now\": \"2026-10-15\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Studio policy: recurring weekly classes run month to month and stay on the timetable unless the instructor or the studio cancels with two weeks notice.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Studio policy: once a client event is confirmed in writing, the agreed price cannot be changed without that client's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Soren Bakke (instructor)\", \"text\": \"Hi Maya, confirming my per-class fee at Solstice is 45 per class, for my Pilates sessions from June onward. Happy to keep the Tuesday evening slot.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ruth Kim (Beacon Physio)\", \"text\": \"Hi Maya, Beacon Physio would like to book a private Pilates workshop for our staff on Saturday 21 November, 10:00 to 12:00, in the Sunrise Room. Please confirm pricing.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Confirmed Soren Bakke as instructor for the recurring Tuesday 19:00 Pilates class in the Sunrise Room at his fee of 45 per class, running month to month.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Quoted Beacon Physio 260 for the Saturday 21 November staff workshop: two hours of Soren's instruction at his 45 per class fee plus the 170 Sunrise Room private hire charge, and Ruth Kim confirmed the booking at that price in writing.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e2\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up the monthly payroll order for Soren Bakke: four Tuesday Pilates classes at 45 per class, 180 per month, paid at month end.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Garden Room every Friday 07:30 for the open sunrise yoga class with Mira Costa teaching, ongoing.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"EV-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Nadia Ferreira (bookkeeper)\", \"text\": \"Maya, June payroll is filed. Soren's four Tuesday classes at 45 each came to 180 as set up. Nothing unusual this month.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Soren Bakke (instructor)\", \"text\": \"Thanks Maya, July timetable looks good for me. Same Tuesday 19:00 slot works all month.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Mira Costa (instructor)\", \"text\": \"Hi Maya, just a heads-up that from September my Friday sunrise yoga rate moves to 50 per class. Let me know if that's workable.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e12\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Agreed Mira Costa's Friday sunrise yoga rate of 50 per class from September and updated her standing class accordingly.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-04\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"September studio notes: Sunrise Room bookings steady, Tuesday Pilates with Soren near full most weeks, Beacon workshop confirmed for 21 November.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Ruth Kim (Beacon Physio)\", \"text\": \"Hi Maya, confirming headcount of 12 for our 21 November workshop. The agreed 260 price is approved on our side.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Nadia Ferreira (bookkeeper)\", \"text\": \"Maya, September payroll done: Soren's four classes at 45, total 180. Please send October figures by 20 October so I can run payroll on time.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Maya\", \"text\": \"Reminder to myself: order spare reformer springs and check Beacon workshop room setup before mid-November.\", \"role\": \"task\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Soren Bakke (instructor)\", \"text\": \"Hi Maya, a quick note: from 1 October my per-class fee is 50, in line with the other studios I teach at. That applies to my Tuesday Pilates class and any private sessions I teach for Solstice. Hope that's alright.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e18\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Autumn planning notes: November timetable stays as is, Tuesday 19:00 Pilates and Friday 07:30 sunrise yoga continue, Beacon Physio workshop on Saturday 21 November in the Sunrise Room.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Nadia Ferreira (bookkeeper)\", \"text\": \"Maya, gentle nudge for the October payroll figures when you have them.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tuesday Pilates with Soren\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"19:00\", \"place\": \"Sunrise Room\", \"instructor\": \"Soren Bakke\", \"fee\": \"45\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Friday sunrise yoga with Mira\", \"fields\": {\"day\": \"Friday\", \"time\": \"07:30\", \"place\": \"Garden Room\", \"instructor\": \"Mira Costa\", \"fee\": \"50\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Monthly payroll Soren Bakke\", \"fields\": {\"payee\": \"Soren Bakke\", \"month\": \"2026-10\", \"classes\": \"4\", \"amount\": \"180\", \"status\": \"pending\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Beacon Physio staff workshop\", \"fields\": {\"client\": \"Beacon Physio\", \"contact\": \"Ruth Kim\", \"date\": \"2026-11-21\", \"place\": \"Sunrise Room\", \"instructor\": \"Soren Bakke\", \"price\": \"260\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"price\"], \"from\": \"Ruth Kim (Beacon Physio)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Nadia the October payroll figure for Soren's Tuesday Pilates classes so she can run payroll this week.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"fee\", \"value\": \"50\", \"stale\": [\"45\"]},\n  {\"record\": \"ORD-1\", \"field\": \"amount\", \"value\": \"200\", \"stale\": [\"180\"]},\n  {\"message_to\": \"Nadia Ferreira\", \"regarding\": \"ORD-1\", \"says\": [\"200\"], \"stale\": [\"180\"], \"task\": true}\n ],\n \"why\": \"Soren's 7 October email replaces his 45 per-class fee with 50 from 1 October, so the Tuesday class record (EV-1) and the monthly payroll order (ORD-1, 4 x 50 = 200) must be revised, and the payroll message to Nadia must carry 200, not the stale 180. The Beacon workshop price also rests on Soren's fee, but studio policy requires Ruth Kim's written agreement to change a confirmed client price, so CL-1 is ASK: its price must stay at 260 pending consent. Mira's 50 rate is a distractor on a different class and is untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"yoga mat restock\", \"counterpart\": \"Tessa Lind\", \"org\": \"Nordic Mat Supply\", \"item\": \"rubber yoga mats\", \"unit\": \"mats\", \"values\": [\"6\", \"10\", \"12\", \"8\"], \"place\": \"Sunrise Room\"},\n  {\"kind\": \"order\", \"topic\": \"reformer springs\", \"counterpart\": \"Pavel Novak\", \"org\": \"Reformer Parts Co\", \"item\": \"reformer spring sets\", \"unit\": \"sets\", \"values\": [\"2\", \"4\", \"3\"], \"place\": \"Sunrise Room\"},\n  {\"kind\": \"order\", \"topic\": \"towel laundry service\", \"counterpart\": \"Ruth Kim\", \"org\": \"Beacon Physio\", \"item\": \"laundered studio towels\", \"unit\": \"bags\", \"values\": [\"3\", \"5\", \"4\"], \"place\": \"front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"staff physio session\", \"counterpart\": \"Ruth Kim\", \"org\": \"Beacon Physio\", \"item\": \"Sunrise Room private hire\", \"unit\": \"hours\", \"values\": [\"Sunrise Room\", \"Garden Room\", \"Reformer Studio\"], \"place\": \"Sunrise Room\"},\n  {\"kind\": \"order\", \"topic\": \"herbal tea restock\", \"counterpart\": \"Anouk Verhoeven\", \"org\": \"Leaf & Steep\", \"item\": \"herbal tea boxes\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\", \"3\"], \"place\": \"reception lounge\"},\n  {\"kind\": \"booking\", \"topic\": \"teachers meeting room\", \"counterpart\": \"Mira Costa\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"monthly teachers meeting\", \"unit\": \"rooms\", \"values\": [\"Garden Room\", \"Sunrise Room\", \"Reformer Studio\"], \"place\": \"Garden Room\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Jonas Dahl\", \"org\": \"CleanCo Janitorial\", \"item\": \"studio cleaning supply kit\", \"unit\": \"kits\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"community class slot\", \"counterpart\": \"Priya Nair\", \"org\": \"Riverside Community Centre\", \"item\": \"outreach yoga session\", \"unit\": \"rooms\", \"values\": [\"main hall\", \"studio annex\", \"community room\"], \"place\": \"Riverside Community Centre\"},\n  {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Anouk Verhoeven\", \"org\": \"Leaf & Steep\", \"item\": \"unscented tealight candles\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Garden Room\"},\n  {\"kind\": \"booking\", \"topic\": \"massage therapist room\", \"counterpart\": \"Leah Sorensen\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"treatment room hire\", \"unit\": \"rooms\", \"values\": [\"Treatment Room 1\", \"Treatment Room 2\"], \"place\": \"Treatment Room 1\"},\n  {\"kind\": \"order\", \"topic\": \"water bottle restock\", \"counterpart\": \"Tessa Lind\", \"org\": \"Nordic Mat Supply\", \"item\": \"branded water bottles\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"18\"], \"place\": \"front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"workshop catering drop\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"workshop lunch delivery\", \"unit\": \"rooms\", \"values\": [\"reception lounge\", \"Garden Room\", \"Sunrise Room\"], \"place\": \"reception lounge\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3180,
+    "completion_tokens": 4282,
+    "reasoning_tokens": 1124,
+    "cached_tokens": 0
+   },
+   "cost": 0.07377,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Soren's class fee goes up\",\n \"setting\": \"Studio manager at Solstice Yoga & Pilates Studio, a boutique fitness studio\",\n \"owner\": \"Maya\",\n \"org\": \"Solstice Yoga & Pilates Studio\",\n \"now\": \"2026-10-15\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Studio policy: recurring weekly classes run month to month and stay on the timetable unless the instructor or the studio cancels with two weeks notice.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Studio policy: once a client event is confirmed in writing, the agreed price cannot be changed without that client's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Soren Bakke (instructor)\", \"text\": \"Hi Maya, confirming my per-class fee at Solstice is 45 per class, for my Pilates sessions from June onward. Happy to keep the Tuesday evening slot.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ruth Kim (Beacon Physio)\", \"text\": \"Hi Maya, Beacon Physio would like to book a private Pilates workshop for our staff on Saturday 21 November, 10:00 to 12:00, in the Sunrise Room. Please confirm pricing.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Confirmed Soren Bakke as instructor for the recurring Tuesday 19:00 Pilates class in the Sunrise Room at his fee of 45 per class, running month to month.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Quoted Beacon Physio 260 for the Saturday 21 November staff workshop: two hours of Soren's instruction at his 45 per class fee plus the 170 Sunrise Room private hire charge, and Ruth Kim confirmed the booking at that price in writing.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e2\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up the monthly payroll order for Soren Bakke: four Tuesday Pilates classes at 45 per class, 180 per month, paid at month end.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Garden Room every Friday 07:30 for the open sunrise yoga class with Mira Costa teaching, ongoing.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"EV-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Nadia Ferreira (bookkeeper)\", \"text\": \"Maya, June payroll is filed. Soren's four Tuesday classes at 45 each came to 180 as set up. Nothing unusual this month.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Soren Bakke (instructor)\", \"text\": \"Thanks Maya, July timetable looks good for me. Same Tuesday 19:00 slot works all month.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Mira Costa (instructor)\", \"text\": \"Hi Maya, just a heads-up that from September my Friday sunrise yoga rate moves to 50 per class. Let me know if that's workable.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e12\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Agreed Mira Costa's Friday sunrise yoga rate of 50 per class from September and updated her standing class accordingly.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-04\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"September studio notes: Sunrise Room bookings steady, Tuesday Pilates with Soren near full most weeks, Beacon workshop confirmed for 21 November.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Ruth Kim (Beacon Physio)\", \"text\": \"Hi Maya, confirming headcount of 12 for our 21 November workshop. The agreed 260 price is approved on our side.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Nadia Ferreira (bookkeeper)\", \"text\": \"Maya, September payroll done: Soren's four classes at 45, total 180. Please send October figures by 20 October so I can run payroll on time.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-05\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Reminder to myself: order spare reformer springs and check Beacon workshop room setup before mid-November.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Soren Bakke (instructor)\", \"text\": \"Hi Maya, a quick note: from 1 October my per-class fee is 50, in line with the other studios I teach at. That applies to my Tuesday Pilates class and any private sessions I teach for Solstice. Hope that's alright.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e18\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Autumn planning notes: November timetable stays as is, Tuesday 19:00 Pilates and Friday 07:30 sunrise yoga continue, Beacon Physio workshop on Saturday 21 November in the Sunrise Room.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Nadia Ferreira (bookkeeper)\", \"text\": \"Maya, gentle nudge for the October payroll figures when you have them.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Tessa Lind (Nordic Mat Supply)\", \"text\": \"Hi Maya, your October order of 10 rubber yoga mats shipped today and should reach the studio on Friday 16 October.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tuesday Pilates with Soren\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"19:00\", \"place\": \"Sunrise Room\", \"instructor\": \"Soren Bakke\", \"fee\": \"45\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Friday sunrise yoga with Mira\", \"fields\": {\"day\": \"Friday\", \"time\": \"07:30\", \"place\": \"Garden Room\", \"instructor\": \"Mira Costa\", \"fee\": \"50\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Monthly payroll Soren Bakke\", \"fields\": {\"payee\": \"Soren Bakke\", \"month\": \"2026-10\", \"classes\": \"4\", \"amount\": \"180\", \"status\": \"pending\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Beacon Physio staff workshop\", \"fields\": {\"client\": \"Beacon Physio\", \"contact\": \"Ruth Kim\", \"date\": \"2026-11-21\", \"place\": \"Sunrise Room\", \"instructor\": \"Soren Bakke\", \"price\": \"260\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"price\"], \"from\": \"Ruth Kim (Beacon Physio)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Nadia the October payroll figure for Soren's Tuesday Pilates classes so she can run payroll this week.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"fee\", \"value\": \"50\", \"stale\": [\"45\"]},\n  {\"record\": \"ORD-1\", \"field\": \"amount\", \"value\": \"200\", \"stale\": [\"180\"]},\n  {\"message_to\": \"Nadia Ferreira\", \"regarding\": \"ORD-1\", \"says\": [\"200\"], \"stale\": [\"180\"], \"task\": true}\n ],\n \"why\": \"Soren's 7 October email replaces his 45 per-class fee with 50 from 1 October, so the Tuesday class record (EV-1) and the monthly payroll order (ORD-1, 4 x 50 = 200, two hops from the revoked fee fact) must be revised, and the payroll message to Nadia must carry 200, not the stale 180. The Beacon workshop price also rests on Soren's fee, but studio policy requires Ruth Kim's written agreement to change a confirmed client price, so CL-1 is ASK: its price must stay at 260 pending consent. Mira's 50 rate is a distractor on a different class and is untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"yoga mat restock\", \"counterpart\": \"Tessa Lind\", \"org\": \"Nordic Mat Supply\", \"item\": \"rubber yoga mats\", \"unit\": \"mats\", \"values\": [\"6\", \"10\", \"12\", \"8\"], \"place\": \"Sunrise Room\"},\n  {\"kind\": \"order\", \"topic\": \"reformer springs\", \"counterpart\": \"Pavel Novak\", \"org\": \"Reformer Parts Co\", \"item\": \"reformer spring sets\", \"unit\": \"sets\", \"values\": [\"2\", \"4\", \"3\"], \"place\": \"Sunrise Room\"},\n  {\"kind\": \"order\", \"topic\": \"towel laundry service\", \"counterpart\": \"Ruth Kim\", \"org\": \"Beacon Physio\", \"item\": \"laundered studio towels\", \"unit\": \"bags\", \"values\": [\"3\", \"5\", \"4\"], \"place\": \"front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"staff physio session\", \"counterpart\": \"Ruth Kim\", \"org\": \"Beacon Physio\", \"item\": \"Sunrise Room private hire\", \"unit\": \"hours\", \"values\": [\"Sunrise Room\", \"Garden Room\", \"Reformer Studio\"], \"place\": \"Sunrise Room\"},\n  {\"kind\": \"order\", \"topic\": \"herbal tea restock\", \"counterpart\": \"Anouk Verhoeven\", \"org\": \"Leaf & Steep\", \"item\": \"herbal tea boxes\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\", \"3\"], \"place\": \"reception lounge\"},\n  {\"kind\": \"booking\", \"topic\": \"teachers meeting room\", \"counterpart\": \"Mira Costa\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"monthly teachers meeting\", \"unit\": \"rooms\", \"values\": [\"Garden Room\", \"Sunrise Room\", \"Reformer Studio\"], \"place\": \"Garden Room\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Jonas Dahl\", \"org\": \"CleanCo Janitorial\", \"item\": \"studio cleaning supply kit\", \"unit\": \"kits\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"community class slot\", \"counterpart\": \"Priya Nair\", \"org\": \"Riverside Community Centre\", \"item\": \"outreach yoga session\", \"unit\": \"rooms\", \"values\": [\"main hall\", \"studio annex\", \"community room\"], \"place\": \"Riverside Community Centre\"},\n  {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Anouk Verhoeven\", \"org\": \"Leaf & Steep\", \"item\": \"unscented tealight candles\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Garden Room\"},\n  {\"kind\": \"booking\", \"topic\": \"massage therapist room\", \"counterpart\": \"Leah Sorensen\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"treatment room hire\", \"unit\": \"rooms\", \"values\": [\"Treatment Room 1\", \"Treatment Room 2\"], \"place\": \"Treatment Room 1\"},\n  {\"kind\": \"order\", \"topic\": \"water bottle restock\", \"counterpart\": \"Tessa Lind\", \"org\": \"Nordic Mat Supply\", \"item\": \"branded water bottles\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"18\"], \"place\": \"front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"workshop catering drop\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"workshop lunch delivery\", \"unit\": \"rooms\", \"values\": [\"reception lounge\", \"Garden Room\", \"Sunrise Room\"], \"place\": \"reception lounge\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6431,
+    "completion_tokens": 3299,
+    "reasoning_tokens": 59,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0604836,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 19 events; need 20–40\n- e16: role «task» not in ['change', 'decision', 'fact', 'obligation', 'other', 'rule']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Soren's class fee goes up\",\n \"setting\": \"Studio manager at Solstice Yoga & Pilates Studio, a boutique fitness studio\",\n \"owner\": \"Maya\",\n \"org\": \"Solstice Yoga & Pilates Studio\",\n \"now\": \"2026-10-15\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Studio policy: recurring weekly classes run month to month and stay on the timetable unless the instructor or the studio cancels with two weeks notice.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Studio policy: once a client event is confirmed in writing, the agreed price cannot be changed without that client's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Soren Bakke (instructor)\", \"text\": \"Hi Maya, confirming my per-class fee at Solstice is 45 per class, for my Pilates sessions from June onward. Happy to keep the Tuesday evening slot.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ruth Kim (Beacon Physio)\", \"text\": \"Hi Maya, Beacon Physio would like to book a private Pilates workshop for our staff on Saturday 21 November, 10:00 to 12:00, in the Sunrise Room. Please confirm pricing.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Confirmed Soren Bakke as instructor for the recurring Tuesday 19:00 Pilates class in the Sunrise Room at his fee of 45 per class, running month to month.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Quoted Beacon Physio 260 for the Saturday 21 November staff workshop: two hours of Soren's instruction at his 45 per class fee plus the 170 Sunrise Room private hire charge, and Ruth Kim confirmed the booking at that price in writing.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e2\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up the monthly payroll order for Soren Bakke: four Tuesday Pilates classes at 45 per class, 180 per month, paid at month end.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Garden Room every Friday 07:30 for the open sunrise yoga class with Mira Costa teaching, ongoing.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"EV-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Nadia Ferreira (bookkeeper)\", \"text\": \"Maya, June payroll is filed. Soren's four Tuesday classes at 45 each came to 180 as set up. Nothing unusual this month.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Soren Bakke (instructor)\", \"text\": \"Thanks Maya, July timetable looks good for me. Same Tuesday 19:00 slot works all month.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Mira Costa (instructor)\", \"text\": \"Hi Maya, just a heads-up that from September my Friday sunrise yoga rate moves to 50 per class. Let me know if that's workable.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e12\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Agreed Mira Costa's Friday sunrise yoga rate of 50 per class from September and updated her standing class accordingly.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-04\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"September studio notes: Sunrise Room bookings steady, Tuesday Pilates with Soren near full most weeks, Beacon workshop confirmed for 21 November.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Ruth Kim (Beacon Physio)\", \"text\": \"Hi Maya, confirming headcount of 12 for our 21 November workshop. The agreed 260 price is approved on our side.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Nadia Ferreira (bookkeeper)\", \"text\": \"Maya, September payroll done: Soren's four classes at 45, total 180. Please send October figures by 20 October so I can run payroll on time.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-05\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Reminder to myself: order spare reformer springs and check Beacon workshop room setup before mid-November.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Soren Bakke (instructor)\", \"text\": \"Hi Maya, a quick note: from 1 October my per-class fee is 50, in line with the other studios I teach at. That applies to my Tuesday Pilates class and any private sessions I teach for Solstice. Hope that's alright.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e18\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Autumn planning notes: November timetable stays as is, Tuesday 19:00 Pilates and Friday 07:30 sunrise yoga continue, Beacon Physio workshop on Saturday 21 November in the Sunrise Room.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Nadia Ferreira (bookkeeper)\", \"text\": \"Maya, gentle nudge for the October payroll figures when you have them.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Tessa Lind (Nordic Mat Supply)\", \"text\": \"Hi Maya, your October order of 10 rubber yoga mats shipped today and should reach the studio on Friday 16 October.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tuesday Pilates with Soren\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"19:00\", \"place\": \"Sunrise Room\", \"instructor\": \"Soren Bakke\", \"fee\": \"45\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Friday sunrise yoga with Mira\", \"fields\": {\"day\": \"Friday\", \"time\": \"07:30\", \"place\": \"Garden Room\", \"instructor\": \"Mira Costa\", \"fee\": \"50\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Monthly payroll Soren Bakke\", \"fields\": {\"payee\": \"Soren Bakke\", \"month\": \"2026-10\", \"classes\": \"4\", \"amount\": \"180\", \"status\": \"pending\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Beacon Physio staff workshop\", \"fields\": {\"client\": \"Beacon Physio\", \"contact\": \"Ruth Kim\", \"date\": \"2026-11-21\", \"place\": \"Sunrise Room\", \"instructor\": \"Soren Bakke\", \"price\": \"260\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"price\"], \"from\": \"Ruth Kim (Beacon Physio)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Nadia the October payroll figure for Soren's Tuesday Pilates classes so she can run payroll this week.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"fee\", \"value\": \"50\", \"stale\": [\"45\"]},\n  {\"record\": \"ORD-1\", \"field\": \"amount\", \"value\": \"200\", \"stale\": [\"180\"]},\n  {\"message_to\": \"Nadia Ferreira\", \"regarding\": \"ORD-1\", \"says\": [\"200\"], \"stale\": [\"180\"], \"task\": true}\n ],\n \"why\": \"Soren's 7 October email replaces his 45 per-class fee with 50 from 1 October, so the Tuesday class record (EV-1) and the monthly payroll order (ORD-1, 4 x 50 = 200, two hops from the revoked fee fact) must be revised, and the payroll message to Nadia must carry 200, not the stale 180. The Beacon workshop price also rests on Soren's fee, but studio policy requires Ruth Kim's written agreement to change a confirmed client price, so CL-1 is ASK: its price must stay at 260 pending consent. Mira's 50 rate is a distractor on a different class and is untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"yoga mat restock\", \"counterpart\": \"Tessa Lind\", \"org\": \"Nordic Mat Supply\", \"item\": \"rubber yoga mats\", \"unit\": \"mats\", \"values\": [\"6\", \"10\", \"12\", \"8\"], \"place\": \"Sunrise Room\"},\n  {\"kind\": \"order\", \"topic\": \"reformer springs\", \"counterpart\": \"Pavel Novak\", \"org\": \"Reformer Parts Co\", \"item\": \"reformer spring sets\", \"unit\": \"sets\", \"values\": [\"2\", \"4\", \"3\"], \"place\": \"Sunrise Room\"},\n  {\"kind\": \"order\", \"topic\": \"towel laundry service\", \"counterpart\": \"Ruth Kim\", \"org\": \"Beacon Physio\", \"item\": \"laundered studio towels\", \"unit\": \"bags\", \"values\": [\"3\", \"5\", \"4\"], \"place\": \"front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"staff physio session\", \"counterpart\": \"Ruth Kim\", \"org\": \"Beacon Physio\", \"item\": \"Sunrise Room private hire\", \"unit\": \"hours\", \"values\": [\"Sunrise Room\", \"Garden Room\", \"Reformer Studio\"], \"place\": \"Sunrise Room\"},\n  {\"kind\": \"order\", \"topic\": \"herbal tea restock\", \"counterpart\": \"Anouk Verhoeven\", \"org\": \"Leaf & Steep\", \"item\": \"herbal tea boxes\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\", \"3\"], \"place\": \"reception lounge\"},\n  {\"kind\": \"booking\", \"topic\": \"teachers meeting room\", \"counterpart\": \"Mira Costa\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"monthly teachers meeting\", \"unit\": \"rooms\", \"values\": [\"Garden Room\", \"Sunrise Room\", \"Reformer Studio\"], \"place\": \"Garden Room\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Jonas Dahl\", \"org\": \"CleanCo Janitorial\", \"item\": \"studio cleaning supply kit\", \"unit\": \"kits\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"community class slot\", \"counterpart\": \"Priya Nair\", \"org\": \"Riverside Community Centre\", \"item\": \"outreach yoga session\", \"unit\": \"rooms\", \"values\": [\"main hall\", \"studio annex\", \"community room\"], \"place\": \"Riverside Community Centre\"},\n  {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Anouk Verhoeven\", \"org\": \"Leaf & Steep\", \"item\": \"unscented tealight candles\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Garden Room\"},\n  {\"kind\": \"booking\", \"topic\": \"massage therapist room\", \"counterpart\": \"Leah Sorensen\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"treatment room hire\", \"unit\": \"rooms\", \"values\": [\"Treatment Room 1\", \"Treatment Room 2\", \"Treatment Room 3\"], \"place\": \"Treatment Room 1\"},\n  {\"kind\": \"order\", \"topic\": \"water bottle restock\", \"counterpart\": \"Tessa Lind\", \"org\": \"Nordic Mat Supply\", \"item\": \"branded water bottles\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"18\"], \"place\": \"front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"workshop catering drop\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"workshop lunch delivery\", \"unit\": \"rooms\", \"values\": [\"reception lounge\", \"Garden Room\", \"Sunrise Room\"], \"place\": \"reception lounge\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 9732,
+    "completion_tokens": 3246,
+    "reasoning_tokens": 0,
+    "cached_tokens": 6400
+   },
+   "cost": 0.060606,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'massage therapist room': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Soren's class fee goes up",
+  "setting": "Studio manager at Solstice Yoga & Pilates Studio, a boutique fitness studio",
+  "owner": "Maya",
+  "org": "Solstice Yoga & Pilates Studio",
+  "now": "2026-10-15",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Maya",
+    "text": "Studio policy: recurring weekly classes run month to month and stay on the timetable unless the instructor or the studio cancels with two weeks notice.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Maya",
+    "text": "Studio policy: once a client event is confirmed in writing, the agreed price cannot be changed without that client's written agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Soren Bakke (instructor)",
+    "text": "Hi Maya, confirming my per-class fee at Solstice is 45 per class, for my Pilates sessions from June onward. Happy to keep the Tuesday evening slot.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Ruth Kim (Beacon Physio)",
+    "text": "Hi Maya, Beacon Physio would like to book a private Pilates workshop for our staff on Saturday 21 November, 10:00 to 12:00, in the Sunrise Room. Please confirm pricing.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Confirmed Soren Bakke as instructor for the recurring Tuesday 19:00 Pilates class in the Sunrise Room at his fee of 45 per class, running month to month.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Quoted Beacon Physio 260 for the Saturday 21 November staff workshop: two hours of Soren's instruction at his 45 per class fee plus the 170 Sunrise Room private hire charge, and Ruth Kim confirmed the booking at that price in writing.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4",
+     "e2"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Set up the monthly payroll order for Soren Bakke: four Tuesday Pilates classes at 45 per class, 180 per month, paid at month end.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked the Garden Room every Friday 07:30 for the open sunrise yoga class with Mira Costa teaching, ongoing.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-03",
+    "type": "email",
+    "from": "Nadia Ferreira (bookkeeper)",
+    "text": "Maya, June payroll is filed. Soren's four Tuesday classes at 45 each came to 180 as set up. Nothing unusual this month.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-14",
+    "type": "message",
+    "from": "Soren Bakke (instructor)",
+    "text": "Thanks Maya, July timetable looks good for me. Same Tuesday 19:00 slot works all month.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Mira Costa (instructor)",
+    "text": "Hi Maya, just a heads-up that from September my Friday sunrise yoga rate moves to 50 per class. Let me know if that's workable.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Agreed Mira Costa's Friday sunrise yoga rate of 50 per class from September and updated her standing class accordingly.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e8"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-04",
+    "type": "note",
+    "from": "Maya",
+    "text": "September studio notes: Sunrise Room bookings steady, Tuesday Pilates with Soren near full most weeks, Beacon workshop confirmed for 21 November.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Ruth Kim (Beacon Physio)",
+    "text": "Hi Maya, confirming headcount of 12 for our 21 November workshop. The agreed 260 price is approved on our side.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Nadia Ferreira (bookkeeper)",
+    "text": "Maya, September payroll done: Soren's four classes at 45, total 180. Please send October figures by 20 October so I can run payroll on time.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-05",
+    "type": "note",
+    "from": "Maya",
+    "text": "Reminder to myself: order spare reformer springs and check Beacon workshop room setup before mid-November.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-07",
+    "type": "email",
+    "from": "Soren Bakke (instructor)",
+    "text": "Hi Maya, a quick note: from 1 October my per-class fee is 50, in line with the other studios I teach at. That applies to my Tuesday Pilates class and any private sessions I teach for Solstice. Hope that's alright.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-12",
+    "type": "minutes",
+    "from": "Maya",
+    "text": "Autumn planning notes: November timetable stays as is, Tuesday 19:00 Pilates and Friday 07:30 sunrise yoga continue, Beacon Physio workshop on Saturday 21 November in the Sunrise Room.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-14",
+    "type": "message",
+    "from": "Nadia Ferreira (bookkeeper)",
+    "text": "Maya, gentle nudge for the October payroll figures when you have them.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Tessa Lind (Nordic Mat Supply)",
+    "text": "Hi Maya, your October order of 10 rubber yoga mats shipped today and should reach the studio on Friday 16 October.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Tuesday Pilates with Soren",
+    "fields": {
+     "day": "Tuesday",
+     "time": "19:00",
+     "place": "Sunrise Room",
+     "instructor": "Soren Bakke",
+     "fee": "45",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Friday sunrise yoga with Mira",
+    "fields": {
+     "day": "Friday",
+     "time": "07:30",
+     "place": "Garden Room",
+     "instructor": "Mira Costa",
+     "fee": "50",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Monthly payroll Soren Bakke",
+    "fields": {
+     "payee": "Soren Bakke",
+     "month": "2026-10",
+     "classes": "4",
+     "amount": "180",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Beacon Physio staff workshop",
+    "fields": {
+     "client": "Beacon Physio",
+     "contact": "Ruth Kim",
+     "date": "2026-11-21",
+     "place": "Sunrise Room",
+     "instructor": "Soren Bakke",
+     "price": "260",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "price"
+    ],
+    "from": "Ruth Kim (Beacon Physio)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please send Nadia the October payroll figure for Soren's Tuesday Pilates classes so she can run payroll this week.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "fee",
+    "value": "50",
+    "stale": [
+     "45"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "amount",
+    "value": "200",
+    "stale": [
+     "180"
+    ]
+   },
+   {
+    "message_to": "Nadia Ferreira",
+    "regarding": "ORD-1",
+    "says": [
+     "200"
+    ],
+    "stale": [
+     "180"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Soren's 7 October email replaces his 45 per-class fee with 50 from 1 October, so the Tuesday class record (EV-1) and the monthly payroll order (ORD-1, 4 x 50 = 200, two hops from the revoked fee fact) must be revised, and the payroll message to Nadia must carry 200, not the stale 180. The Beacon workshop price also rests on Soren's fee, but studio policy requires Ruth Kim's written agreement to change a confirmed client price, so CL-1 is ASK: its price must stay at 260 pending consent. Mira's 50 rate is a distractor on a different class and is untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "yoga mat restock",
+    "counterpart": "Tessa Lind",
+    "org": "Nordic Mat Supply",
+    "item": "rubber yoga mats",
+    "unit": "mats",
+    "values": [
+     "6",
+     "10",
+     "12",
+     "8"
+    ],
+    "place": "Sunrise Room"
+   },
+   {
+    "kind": "order",
+    "topic": "reformer springs",
+    "counterpart": "Pavel Novak",
+    "org": "Reformer Parts Co",
+    "item": "reformer spring sets",
+    "unit": "sets",
+    "values": [
+     "2",
+     "4",
+     "3"
+    ],
+    "place": "Sunrise Room"
+   },
+   {
+    "kind": "order",
+    "topic": "towel laundry service",
+    "counterpart": "Ruth Kim",
+    "org": "Beacon Physio",
+    "item": "laundered studio towels",
+    "unit": "bags",
+    "values": [
+     "3",
+     "5",
+     "4"
+    ],
+    "place": "front desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff physio session",
+    "counterpart": "Ruth Kim",
+    "org": "Beacon Physio",
+    "item": "Sunrise Room private hire",
+    "unit": "hours",
+    "values": [
+     "Sunrise Room",
+     "Garden Room",
+     "Reformer Studio"
+    ],
+    "place": "Sunrise Room"
+   },
+   {
+    "kind": "order",
+    "topic": "herbal tea restock",
+    "counterpart": "Anouk Verhoeven",
+    "org": "Leaf & Steep",
+    "item": "herbal tea boxes",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "3"
+    ],
+    "place": "reception lounge"
+   },
+   {
+    "kind": "booking",
+    "topic": "teachers meeting room",
+    "counterpart": "Mira Costa",
+    "org": "Solstice Yoga & Pilates Studio",
+    "item": "monthly teachers meeting",
+    "unit": "rooms",
+    "values": [
+     "Garden Room",
+     "Sunrise Room",
+     "Reformer Studio"
+    ],
+    "place": "Garden Room"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Jonas Dahl",
+    "org": "CleanCo Janitorial",
+    "item": "studio cleaning supply kit",
+    "unit": "kits",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "community class slot",
+    "counterpart": "Priya Nair",
+    "org": "Riverside Community Centre",
+    "item": "outreach yoga session",
+    "unit": "rooms",
+    "values": [
+     "main hall",
+     "studio annex",
+     "community room"
+    ],
+    "place": "Riverside Community Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "candle restock",
+    "counterpart": "Anouk Verhoeven",
+    "org": "Leaf & Steep",
+    "item": "unscented tealight candles",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Garden Room"
+   },
+   {
+    "kind": "booking",
+    "topic": "massage therapist room",
+    "counterpart": "Leah Sorensen",
+    "org": "Solstice Yoga & Pilates Studio",
+    "item": "treatment room hire",
+    "unit": "rooms",
+    "values": [
+     "Treatment Room 1",
+     "Treatment Room 2",
+     "Treatment Room 3"
+    ],
+    "place": "Treatment Room 1"
+   },
+   {
+    "kind": "order",
+    "topic": "water bottle restock",
+    "counterpart": "Tessa Lind",
+    "org": "Nordic Mat Supply",
+    "item": "branded water bottles",
+    "unit": "bottles",
+    "values": [
+     "12",
+     "24",
+     "18"
+    ],
+    "place": "front desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "workshop catering drop",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "workshop lunch delivery",
+    "unit": "rooms",
+    "values": [
+     "reception lounge",
+     "Garden Room",
+     "Sunrise Room"
+    ],
+    "place": "reception lounge"
+   }
+  ],
+  "id": "K100-1-10",
+  "tier": 100,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The fee change from 45 to 50 propagates correctly: EV-1 is a direct REVISE, ORD-1 is a two-hop REVISE via e5 with the fixed value 4 x 50 = 200, and CL-1 is properly ASK under rule e2 requiring Ruth Kim's written agreement; Mira's rate change is a clean distractor. The task requires sending the payroll figure now without hinting at any change. Core counts (20 events, 6 decisions), change timing (8 days before task day, events after), and the change's placement mid-history at event 91 all meet tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The fee change from 45 to 50 propagates correctly: EV-1 is a direct REVISE, ORD-1 is a two-hop REVISE via e5 with the fixed value 4 x 50 = 200, and CL-1 is properly ASK under rule e2 requiring Ruth Kim's written agreement; Mira's rate change is a clean distractor. The task requires sending the payroll figure now without hinting at any change. Core counts (20 events, 6 decisions), change timing (8 days before task day, events after), and the change's placement mid-history at event 91 all meet tier 100."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3288,
+    "completion_tokens": 267,
+    "reasoning_tokens": 93,
+    "cached_tokens": 384
+   },
+   "cost": 0.00534024,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2abef66d5242f1380c078cafc0e8df61a1969f25f77207e1737c6f9d35d4c94f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The new instructor fee supports updating EV-1 to 50, ORD-1 to 200, and sending Nadia 200. However, increased workshop costs do not require increasing its confirmed client price: e2 requires consent if that price is changed, not a request to change it. Thus the mandatory consent request to Ruth does not follow unambiguously from the history or the payroll task.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The new instructor fee supports updating EV-1 to 50, ORD-1 to 200, and sending Nadia 200. However, increased workshop costs do not require increasing its confirmed client price: e2 requires consent if that price is changed, not a request to change it. Thus the mandatory consent request to Ruth does not follow unambiguously from the history or the payroll task."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3224,
+    "completion_tokens": 182,
+    "reasoning_tokens": 67,
+    "cached_tokens": 0
+   },
+   "cost": 0.0493925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2abef66d5242f1380c078cafc0e8df61a1969f25f77207e1737c6f9d35d4c94f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The marks follow from the stated rules: ORD-1 is two hops from the revoked fee fact via e5, and CL-1 is ASK under the written-agreement rule in e2, with Ruth's written confirmation in e6. The core has 20 events and 5 decisions, and the change falls 8 days before the task day with 3 core events after it. The only weak point is that the required consent request to Ruth Kim is stated as 'implied' rather than specified as a concrete act.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The marks follow from the stated rules: ORD-1 is two hops from the revoked fee fact via e5, and CL-1 is ASK under the written-agreement rule in e2, with Ruth's written confirmation in e6. The core has 20 events and 5 decisions, and the change falls 8 days before the task day with 3 core events after it. The only weak point is that the required consent request to Ruth Kim is stated as 'implied' rather than specified as a concrete act."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4722,
+    "completion_tokens": 1863,
+    "reasoning_tokens": 1653,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014037,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2abef66d5242f1380c078cafc0e8df61a1969f25f77207e1737c6f9d35d4c94f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

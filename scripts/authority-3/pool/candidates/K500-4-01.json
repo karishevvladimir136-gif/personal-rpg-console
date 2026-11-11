@@ -550,5 +550,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (2027 price list effective 1 January 2027) explicitly leaves 2026 bookings untouched, so no decision rests on it and the correct action is simply confirming ORD-1 as it stands — a clean control. The task requires sending a confirmation message now without hinting at any change, and distractors (Christmas dinner quote) are harmless. The change sits mid-history at event 410 with later events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (2027 price list effective 1 January 2027) explicitly leaves 2026 bookings untouched, so no decision rests on it and the correct action is simply confirming ORD-1 as it stands — a clean control. The task requires sending a confirmation message now without hinting at any change, and distractors (Christmas dinner quote) are harmless. The change sits mid-history at event 410 with later events after it."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3754,
+    "completion_tokens": 244,
+    "reasoning_tokens": 111,
+    "cached_tokens": 0
+   },
+   "cost": 0.0063292,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fdde38011db15b1137c629c349ba69500a9ed57c9aebe7f8e59563e0b044cb91",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The unchanged catering order and confirmation are supported, but the consent map is incomplete: e2 requires Sandra's consent for date or place changes to all confirmed event bookings, not just EV-2. It should also cover the applicable fields of EV-1, EV-3 and EV-4.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The unchanged catering order and confirmation are supported, but the consent map is incomplete: e2 requires Sandra's consent for date or place changes to all confirmed event bookings, not just EV-2. It should also cover the applicable fields of EV-1, EV-3 and EV-4."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3697,
+    "completion_tokens": 258,
+    "reasoning_tokens": 162,
+    "cached_tokens": 0
+   },
+   "cost": 0.059105,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fdde38011db15b1137c629c349ba69500a9ed57c9aebe7f8e59563e0b044cb91",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e24) explicitly leaves 2026 bookings on their existing pricing, so no decision is touched and the control class holds, with the expected message and unchanged records following from the history. The core meets the tier: 28 events, 6 decisions, and the change sits 23 days before the task day with 4 core events after it. The change is an ordinary-looking email with no correction label and later events after it. The one weakness is that the stale-fact trap is shallow, since the change states its own non-effect on 2026 orders.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e24) explicitly leaves 2026 bookings on their existing pricing, so no decision is touched and the control class holds, with the expected message and unchanged records following from the history. The core meets the tier: 28 events, 6 decisions, and the change sits 23 days before the task day with 4 core events after it. The change is an ordinary-looking email with no correction label and later events after it. The one weakness is that the stale-fact trap is shallow, since the change states its own non-effect on 2026 orders."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5223,
+    "completion_tokens": 1308,
+    "reasoning_tokens": 1088,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011763,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fdde38011db15b1137c629c349ba69500a9ed57c9aebe7f8e59563e0b044cb91",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

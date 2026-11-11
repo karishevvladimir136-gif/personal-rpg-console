@@ -672,5 +672,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The stale-fact chain (e27 revokes e7, touching e9, e11, e19 and e17, with e19 two hops away) and the ASK/KEEP marks are sound. However, the expected EV-2 value of 2026-10-26 is not fixed by the history, since nothing states a retouch date, and it coincides with the task day, so the REVISE value is underdetermined. The set-up week of 2026-11-25 to 11-27 is likewise chosen by the writer rather than derived from the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The stale-fact chain (e27 revokes e7, touching e9, e11, e19 and e17, with e19 two hops away) and the ASK/KEEP marks are sound. However, the expected EV-2 value of 2026-10-26 is not fixed by the history, since nothing states a retouch date, and it coincides with the task day, so the REVISE value is underdetermined. The set-up week of 2026-11-25 to 11-27 is likewise chosen by the writer rather than derived from the history."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6127,
+    "completion_tokens": 1583,
+    "reasoning_tokens": 1363,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014042,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "07c6182b396ecef68c2e60bc863d295498c291ad43273dd05dca1a8c72d9fa82",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history does not fix the replacement graduation, varnish, set-up or delivery dates; the expected dates require unstated scheduling rules. The change also says the billets ship next Monday after 7 October but arrive on 8 October, an inconsistent sequence. Class 3 fits the explicit dependency chain e7→e9→e11 and e14's reliance on the unchanged price aspect of e7.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history does not fix the replacement graduation, varnish, set-up or delivery dates; the expected dates require unstated scheduling rules. The change also says the billets ship next Monday after 7 October but arrive on 8 October, an inconsistent sequence. Class 3 fits the explicit dependency chain e7→e9→e11 and e14's reliance on the unchanged price aspect of e7."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4345,
+    "completion_tokens": 395,
+    "reasoning_tokens": 277,
+    "cached_tokens": 0
+   },
+   "cost": 0.074055,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "07c6182b396ecef68c2e60bc863d295498c291ad43273dd05dca1a8c72d9fa82",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change email is slightly self-contradictory ('ship next Monday' vs 'arrive Thursday 8 October'), and the downstream dates (12–16 Oct graduation, 26 Oct retouch, 25–27 Nov set-up) are reasonable but not uniquely fixed by the history, so some solver judgment is required; otherwise the marks, consent rule, and KEEP on ORD-3 all follow from the stated rules and the change's own terms.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change email is slightly self-contradictory ('ship next Monday' vs 'arrive Thursday 8 October'), and the downstream dates (12–16 Oct graduation, 26 Oct retouch, 25–27 Nov set-up) are reasonable but not uniquely fixed by the history, so some solver judgment is required; otherwise the marks, consent rule, and KEEP on ORD-3 all follow from the stated rules and the change's own terms."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4521,
+    "completion_tokens": 1156,
+    "reasoning_tokens": 1008,
+    "cached_tokens": 0
+   },
+   "cost": 0.030903,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "07c6182b396ecef68c2e60bc863d295498c291ad43273dd05dca1a8c72d9fa82",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

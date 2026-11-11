@@ -597,5 +597,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The marks follow from the rules: e9 (REVISE) rests directly on the revoked fact e3, e11 (ASK) is two hops away via e9 and protected by Rita's consent rule, and e8 (KEEP) uses only the standing van-and-Colin part. The core has 28 events, 7 decisions, a change 13 days before the task day, and 3 later events, and the echo e20 restates 5 October. One minor tension: the expected member notice gives a 21 October collection date while EV-1 stays at 7 October until Rita consents, which is intended but could be stated more clearly.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The marks follow from the rules: e9 (REVISE) rests directly on the revoked fact e3, e11 (ASK) is two hops away via e9 and protected by Rita's consent rule, and e8 (KEEP) uses only the standing van-and-Colin part. The core has 28 events, 7 decisions, a change 13 days before the task day, and 3 later events, and the echo e20 restates 5 October. One minor tension: the expected member notice gives a 21 October collection date while EV-1 stays at 7 October until Rita consents, which is intended but could be stated more clearly."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5742,
+    "completion_tokens": 1598,
+    "reasoning_tokens": 1348,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013732,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6bd891c9f63f3eab0a52a59bcee71d95f8e16d0e435c989cb8a9f43ac15312e3",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected notice treats 21 October as settled despite the outstanding requirement for Rita’s consent; moreover, 'two days after' describes the original booking rather than unambiguously requiring that interval after rescheduling. The dependency structure matches class 3: the order depends on the delivery fact, the collection booking depends on the order, and the courier decision uses an unchanged aspect of the original fact.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected notice treats 21 October as settled despite the outstanding requirement for Rita’s consent; moreover, 'two days after' describes the original booking rather than unambiguously requiring that interval after rescheduling. The dependency structure matches class 3: the order depends on the delivery fact, the collection booking depends on the order, and the courier decision uses an unchanged aspect of the original fact."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3968,
+    "completion_tokens": 435,
+    "reasoning_tokens": 320,
+    "cached_tokens": 0
+   },
+   "cost": 0.0713425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6bd891c9f63f3eab0a52a59bcee71d95f8e16d0e435c989cb8a9f43ac15312e3",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The revoked delivery date (e25 revokes e3) propagates to ORD-1 as REVISE with the fixed value 2026-10-19 and to EV-1 two hops away as ASK under Rita Nash's consent rule (e1, matching the consent map), while ORD-2 is a sound KEEP since it rests only on the unchanged own-van/Colin aspect. Tier 500 counts hold (28 core events, 7 decisions, change 13 days before the task day with later core events and an echo at e20), and the change sits mid-history at event 459 of 500 among routine noise. Minor note: the member notice announces the 2026-10-21 collection date while the hall rebooking still awaits consent, but the notice is anchored to ORD-1 so the expected state remains unambiguous.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The revoked delivery date (e25 revokes e3) propagates to ORD-1 as REVISE with the fixed value 2026-10-19 and to EV-1 two hops away as ASK under Rita Nash's consent rule (e1, matching the consent map), while ORD-2 is a sound KEEP since it rests only on the unchanged own-van/Colin aspect. Tier 500 counts hold (28 core events, 7 decisions, change 13 days before the task day with later core events and an echo at e20), and the change sits mid-history at event 459 of 500 among routine noise. Minor note: the member notice announces the 2026-10-21 collection date while the hall rebooking still awaits consent, but the notice is anchored to ORD-1 so the expected state remains unambiguous."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4047,
+    "completion_tokens": 549,
+    "reasoning_tokens": 315,
+    "cached_tokens": 0
+   },
+   "cost": 0.020376,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6bd891c9f63f3eab0a52a59bcee71d95f8e16d0e435c989cb8a9f43ac15312e3",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

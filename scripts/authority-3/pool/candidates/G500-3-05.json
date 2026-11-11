@@ -634,5 +634,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The delivery correction moves the bake to 12 November and requires requesting Wei Chen’s agreement to a 13 November pickup at 10:00, leaving the confirmed pickup record unchanged pending consent. The extra flour order remains valid because the correction changes only delivery timing. The core has 33 events and 7 decisions, includes a stale-value echo, and places the change 15 days before the task with later events following it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The delivery correction moves the bake to 12 November and requires requesting Wei Chen’s agreement to a 13 November pickup at 10:00, leaving the confirmed pickup record unchanged pending consent. The extra flour order remains valid because the correction changes only delivery timing. The core has 33 events and 7 decisions, includes a stale-value echo, and places the change 15 days before the task with later events following it."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4057,
+    "completion_tokens": 227,
+    "reasoning_tokens": 105,
+    "cached_tokens": 0
+   },
+   "cost": 0.062055,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "17b0cb82d6454a06b84926e084fabd8dfb784287b9b7cbbb22075ce49145d8d9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain (e19 → e22 → e23, with e20 KEEP on e19's supplier and price) and the rule-driven ASK on the pickup follow from the history, and the echo e24 restates the stale 10 November date. The core meets the 500-tier counts (33 events, 7 decisions), the change sits 15 days before the task day with many events after it, and it is worded neutrally. One minor gap: the invoice task e33 (pay by 10 November) is not marked or addressed in the expected state, though it may not be a decision resting on the delivery date.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain (e19 → e22 → e23, with e20 KEEP on e19's supplier and price) and the rule-driven ASK on the pickup follow from the history, and the echo e24 restates the stale 10 November date. The core meets the 500-tier counts (33 events, 7 decisions), the change sits 15 days before the task day with many events after it, and it is worded neutrally. One minor gap: the invoice task e33 (pay by 10 November) is not marked or addressed in the expected state, though it may not be a decision resting on the delivery date."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5776,
+    "completion_tokens": 1738,
+    "reasoning_tokens": 1501,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014466,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "17b0cb82d6454a06b84926e084fabd8dfb784287b9b7cbbb22075ce49145d8d9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: corrected delivery date (A) forces the bake (B, REVISE to 2026-11-12), which forces the confirmed pickup (C, ASK under the written-agreement rule for 2026-11-13), while ORD-2 (D) relies only on supplier/price, which the correction leaves standing (KEEP). Tier 500 requirements are met: 33 core events, 7 decisions, change 15 days before the task day with later core events, and echo e24 restates the stale 10 November date. The task compels action (sending Wei Chen a message) without naming the change, and the change is an ordinary mid-history email with 51 events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: corrected delivery date (A) forces the bake (B, REVISE to 2026-11-12), which forces the confirmed pickup (C, ASK under the written-agreement rule for 2026-11-13), while ORD-2 (D) relies only on supplier/price, which the correction leaves standing (KEEP). Tier 500 requirements are met: 33 core events, 7 decisions, change 15 days before the task day with later core events, and echo e24 restates the stale 10 November date. The task compels action (sending Wei Chen a message) without naming the change, and the change is an ordinary mid-history email with 51 events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4157,
+    "completion_tokens": 511,
+    "reasoning_tokens": 304,
+    "cached_tokens": 256
+   },
+   "cost": 0.0194448,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "17b0cb82d6454a06b84926e084fabd8dfb784287b9b7cbbb22075ce49145d8d9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

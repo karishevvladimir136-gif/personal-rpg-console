@@ -1,0 +1,636 @@
+{
+ "id": "K100-2-04",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 2,
+ "idx": 3,
+ "setting": "Salon owner at Velvet & Vine Hair Studio, a five-chair salon",
+ "prompt_sha256": "fc797108d1580167c74026f0239e7cb5d9851709fd6bda48d8485ed9ae076f5b",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Group booking approval threshold raised at the salon\",\n  \"setting\": \"Salon owner at Velvet & Vine Hair Studio, a five-chair salon\",\n  \"owner\": \"Rowan\",\n  \"org\": \"Velvet & Vine Hair Studio\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rowan\", \"text\": \"Studio policy: any change to the date or time of a confirmed client appointment must be agreed with the client first, before we change anything in the schedule.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Rowan\", \"text\": \"Standing instruction for the diary: group bookings of four or more people must be approved by our manager Priya Nair before they are confirmed in the schedule.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"note\", \"from\": \"Rowan\", \"text\": \"Priya Nair is the salon manager at Velvet & Vine and handles diary approvals and the staff rota; reach her on the studio line or her mobile.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-16\", \"type\": \"email\", \"from\": \"Tomas Reyes (Belleza Supplies)\", \"text\": \"Hello Rowan, confirming Belleza Supplies delivers to Velvet & Vine every Thursday; send orders to me by Tuesday evening and they will be on that week's van.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Dana Ellison\", \"text\": \"Hi Rowan, I would love to book my bridal party at Velvet & Vine on 17 October 2026 — that is five of us in total, hair and light styling, starting around 09:00.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I have put the Ellison bridal party, five people on 17 October 2026 from 09:00 with Nia on the main floor, into the schedule as pending, since a group of five needs Priya Nair's approval before it can be confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I drafted the Belleza Supplies order for the Ellison bridal party on 17 October — colour and styling kit for five, 340 in total, for delivery on Thursday 15 October — but I am holding it as a draft until that booking is confirmed, and it must go to Tomas Reyes by Tuesday evening.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Priya Nair (Velvet & Vine)\", \"text\": \"Approved under the group booking rule: Maren Solis and her group of five are confirmed for 24 October 2026 at 13:00. It is in the diary.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-10\", \"type\": \"message\", \"from\": \"Maren Solis\", \"text\": \"Hi Rowan, any chance our group of five could move from 24 October to 31 October, same time at 13:00? One of us is away that weekend.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I decided we will move Maren Solis's confirmed group of five from 24 October to 31 October 2026 at 13:00 — the group was already approved under the group booking rule, but because it is a confirmed appointment the date change must first be agreed with Maren herself, so the schedule stays as it is until she says yes.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e8\", \"e2\", \"e1\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Lianne Cho\", \"text\": \"Hello, our school reunion group would like to book Velvet & Vine on 21 November 2026 from 10:00 — there will be eight of us for blow-dries and up-dos.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-27\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I entered the Cho reunion group, eight people on 21 November 2026 from 10:00, as pending in the schedule, because a party of eight clearly needs Priya Nair's approval under the group booking rule before we confirm it.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e2\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-05\", \"type\": \"note\", \"from\": \"Rowan\", \"text\": \"Reminder: towel service swap happens every Monday morning; leave the used linen bag by the back door.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-12\", \"type\": \"message\", \"from\": \"Nia Okafor (Velvet & Vine)\", \"text\": \"Rowan, the new foils are lovely to work with, thank you — much faster on long hair.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Priya Nair (Velvet & Vine)\", \"text\": \"Hi Rowan — as I am cutting my hours back from this week, let us simplify the diary sign-off: from today I will only approve group bookings of six or more people. Groups of four or five you can confirm yourself without waiting for me. The Cho reunion in November still needs my sign-off; anything smaller is yours to confirm.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e16\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Alma Ruiz\", \"text\": \"Good afternoon, I am organising a birthday group of six and wondered about availability at Velvet & Vine on 12 December 2026, late morning if possible.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e17\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Nia Okafor (Velvet & Vine)\", \"text\": \"Rowan, I can take the early chair on Saturdays through October if that helps with the party bookings.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-03\", \"type\": \"invoice\", \"from\": \"Tomas Reyes (Belleza Supplies)\", \"text\": \"September statement attached for Velvet & Vine: two routine restock deliveries, nothing overdue. October's first Thursday van is nearly full, so send this week's order early.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Ellison bridal party booking\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"09:00\", \"party_size\": \"5\", \"stylist\": \"Nia\", \"room\": \"Main floor\", \"status\": \"pending\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Maren Solis group booking\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"13:00\", \"party_size\": \"5\", \"stylist\": \"Nia\", \"room\": \"Main floor\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Cho reunion group booking\", \"fields\": {\"date\": \"2026-11-21\", \"time\": \"10:00\", \"party_size\": \"8\", \"stylist\": \"Priya\", \"room\": \"Main floor\", \"status\": \"pending\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Belleza Supplies order for Ellison bridal party\", \"fields\": {\"supplier\": \"Belleza Supplies\", \"contact\": \"Tomas Reyes\", \"items\": \"Colour and styling kit for five\", \"amount\": \"340\", \"delivery_date\": \"2026-10-15\", \"status\": \"draft\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"date\"], \"from\": \"Maren Solis\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please tidy up the diary for me today: confirm the Ellison bridal party booking for 17 October, send the supplies order for it to Tomas at Belleza Supplies, and move Maren Solis's group booking from 24 October to 31 October.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n    {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"draft\"], \"task\": true},\n    {\"message_to\": \"Tomas Reyes\", \"regarding\": \"ORD-1\", \"says\": [\"2026-10-15\", \"340\"], \"stale\": [], \"task\": true},\n    {\"message_to\": \"Maren Solis\", \"regarding\": \"EV-3\", \"says\": [\"2026-10-31\"], \"stale\": [\"2026-10-24\"], \"task\": true}\n  ],\n  \"why\": \"Priya's email of 28 September replaces the old approval rule: from that date only groups of six or more need her sign-off, so the five-person Ellison booking can be confirmed by the owner (REVISE), and the supplies order that rested on that confirmation can be sent (REVISE, two hops). The Cho reunion (eight people) still falls under the amended rule, so it stays pending (KEEP), and Maren's date move still needs her own consent under the unchanged client-consent policy, so the assistant must ask her rather than edit the schedule (ASK).\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Shampoo and conditioner restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Belleza Supplies\", \"item\": \"litre bottles of shampoo and conditioner\", \"unit\": \"bottles\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Velvet & Vine back room\"},\n    {\"kind\": \"order\", \"topic\": \"Colour tube restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Belleza Supplies\", \"item\": \"professional colour tubes\", \"unit\": \"tubes\", \"values\": [\"20\", \"36\", \"48\", \"60\"], \"place\": \"Velvet & Vine colour bar\"},\n    {\"kind\": \"order\", \"topic\": \"Foil and gloves restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Belleza Supplies\", \"item\": \"boxes of foils and nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Velvet & Vine back room\"},\n    {\"kind\": \"booking\", \"topic\": \"Weekly staff rota meeting\", \"counterpart\": \"Priya Nair\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"Monday rota meeting\", \"unit\": \"room\", \"values\": [\"Main floor\", \"Back room\", \"Kitchen corner\"], \"place\": \"Velvet & Vine\"},\n    {\"kind\": \"booking\", \"topic\": \"Nia training sessions\", \"counterpart\": \"Nia Okafor\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"evening training chair\", \"unit\": \"chair\", \"values\": [\"Chair 2\", \"Chair 4\", \"Chair 5\"], \"place\": \"Velvet & Vine main floor\"},\n    {\"kind\": \"order\", \"topic\": \"Towel and linen service\", \"counterpart\": \"Greta Lind\", \"org\": \"FreshFold Linen\", \"item\": \"salon towel bundles\", \"unit\": \"bundles\", \"values\": [\"10\", \"14\", \"20\"], \"place\": \"Velvet & Vine back door\"},\n    {\"kind\": \"order\", \"topic\": \"Coffee and tea for clients\", \"counterpart\": \"Sam Whitaker\", \"org\": \"BeanCounter Roasters\", \"item\": \"coffee bags and tea boxes\", \"unit\": \"bags\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Velvet & Vine kitchen corner\"},\n    {\"kind\": \"booking\", \"topic\": \"Window display photographer\", \"counterpart\": \"Jules Amari\", \"org\": \"Brightroom Studio\", \"item\": \"monthly photo slot\", \"unit\": \"slot\", \"values\": [\"Front window\", \"Main floor\", \"Colour bar\"], \"place\": \"Velvet & Vine\"},\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Petra Voss\", \"org\": \"ClearDay Janitorial\", \"item\": \"disinfectant and surface spray\", \"unit\": \"bottles\", \"values\": [\"6\", \"10\", \"15\"], \"place\": \"Velvet & Vine storage cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"Saturday blow-dry slots\", \"counterpart\": \"Maren Solis\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"recurring blow-dry appointment\", \"unit\": \"chair\", \"values\": [\"Chair 1\", \"Chair 3\", \"Chair 5\"], \"place\": \"Velvet & Vine main floor\"},\n    {\"kind\": \"order\", \"topic\": \"Retail shelf restock\", \"counterpart\": \"Ines Marek\", \"org\": \"Glowline Beauty\", \"item\": \"retail styling sprays\", \"unit\": \"cans\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Velvet & Vine front shelf\"},\n    {\"kind\": \"booking\", \"topic\": \"Magazine and card drop\", \"counterpart\": \"Owen Pruitt\", \"org\": \"High Street Printers\", \"item\": \"promo card collection slot\", \"unit\": \"slot\", \"values\": [\"Front desk\", \"Back door\", \"Kitchen corner\"], \"place\": \"Velvet & Vine\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3178,
+    "completion_tokens": 6855,
+    "reasoning_tokens": 3447,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1040646,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Group booking approval threshold raised at the salon\",\n  \"setting\": \"Salon owner at Velvet & Vine Hair Studio, a five-chair salon\",\n  \"owner\": \"Rowan\",\n  \"org\": \"Velvet & Vine Hair Studio\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rowan\", \"text\": \"Studio policy: any change to the date or time of a confirmed client appointment must be agreed with the client first, before we change anything in the schedule.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Rowan\", \"text\": \"Standing instruction for the diary: group bookings of four or more people must be approved by our manager Priya Nair before they are confirmed in the schedule.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"note\", \"from\": \"Rowan\", \"text\": \"Priya Nair is the salon manager at Velvet & Vine and handles diary approvals and the staff rota; reach her on the studio line or her mobile.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-16\", \"type\": \"email\", \"from\": \"Tomas Reyes (Belleza Supplies)\", \"text\": \"Hello Rowan, confirming Belleza Supplies delivers to Velvet & Vine every Thursday; send orders to me by Tuesday evening and they will be on that week's van.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Dana Ellison\", \"text\": \"Hi Rowan, I would love to book my bridal party at Velvet & Vine on 17 October 2026 — that is five of us in total, hair and light styling, starting around 09:00.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I have put the Ellison bridal party, five people on 17 October 2026 from 09:00 with Nia on the main floor, into the schedule as pending, since a group of five needs Priya Nair's approval before it can be confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I drafted the Belleza Supplies order for the Ellison bridal party on 17 October — colour and styling kit for five, 340 in total, for delivery on Thursday 15 October — but I am holding it as a draft until that booking is confirmed, and it must go to Tomas Reyes by Tuesday evening.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Priya Nair (Velvet & Vine)\", \"text\": \"Approved under the group booking rule: Maren Solis and her group of five are confirmed for 24 October 2026 at 13:00. It is in the diary.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-10\", \"type\": \"message\", \"from\": \"Maren Solis\", \"text\": \"Hi Rowan, any chance our group of five could move from 24 October to 31 October, same time at 13:00? One of us is away that weekend.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I decided we will move Maren Solis's confirmed group of five from 24 October to 31 October 2026 at 13:00 — the group was already approved under the group booking rule, but because it is a confirmed appointment the date change must first be agreed with Maren herself, so the schedule stays as it is until she says yes.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e8\", \"e2\", \"e1\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Lianne Cho\", \"text\": \"Hello, our school reunion group would like to book Velvet & Vine on 21 November 2026 from 10:00 — there will be eight of us for blow-dries and up-dos.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-27\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I entered the Cho reunion group, eight people on 21 November 2026 from 10:00, as pending in the schedule, because a party of eight clearly needs Priya Nair's approval under the group booking rule before we confirm it.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e2\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-05\", \"type\": \"note\", \"from\": \"Rowan\", \"text\": \"Reminder: towel service swap happens every Monday morning; leave the used linen bag by the back door.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-12\", \"type\": \"message\", \"from\": \"Nia Okafor (Velvet & Vine)\", \"text\": \"Rowan, the new foils are lovely to work with, thank you — much faster on long hair.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Priya Nair (Velvet & Vine)\", \"text\": \"Hi Rowan — as I am cutting my hours back from this week, let us simplify the diary sign-off: from today I will only approve group bookings of six or more people. Groups of four or five you can confirm yourself without waiting for me. The Cho reunion in November still needs my sign-off; anything smaller is yours to confirm.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e16\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Alma Ruiz\", \"text\": \"Good afternoon, I am organising a birthday group of six and wondered about availability at Velvet & Vine on 12 December 2026, late morning if possible.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e17\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Nia Okafor (Velvet & Vine)\", \"text\": \"Rowan, I can take the early chair on Saturdays through October if that helps with the party bookings.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-03\", \"type\": \"invoice\", \"from\": \"Tomas Reyes (Belleza Supplies)\", \"text\": \"September statement attached for Velvet & Vine: two routine restock deliveries, nothing overdue. October's first Thursday van is nearly full, so send this week's order early.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-06-23\", \"type\": \"message\", \"from\": \"Greta Lind (FreshFold Linen)\", \"text\": \"Hi Rowan, just checking in — FreshFold will keep collecting the salon's linen every Monday at 08:00 through the summer; give me a shout if the towel count ever needs to change.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-21\", \"type\": \"call\", \"from\": \"Rowan\", \"text\": \"Called the landlord about the sticky lock on the back door; he will send someone round this week, no cost to us.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Ellison bridal party booking\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"09:00\", \"party_size\": \"5\", \"stylist\": \"Nia\", \"room\": \"Main floor\", \"status\": \"pending\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Maren Solis group booking\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"13:00\", \"party_size\": \"5\", \"stylist\": \"Nia\", \"room\": \"Main floor\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Cho reunion group booking\", \"fields\": {\"date\": \"2026-11-21\", \"time\": \"10:00\", \"party_size\": \"8\", \"stylist\": \"Priya\", \"room\": \"Main floor\", \"status\": \"pending\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Belleza Supplies order for Ellison bridal party\", \"fields\": {\"supplier\": \"Belleza Supplies\", \"contact\": \"Tomas Reyes\", \"items\": \"Colour and styling kit for five\", \"amount\": \"340\", \"delivery_date\": \"2026-10-15\", \"status\": \"draft\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"date\"], \"from\": \"Maren Solis\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please tidy up the diary for me today: confirm the Ellison bridal party booking for 17 October, send the supplies order for it to Tomas at Belleza Supplies, and move Maren Solis's group booking from 24 October to 31 October.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n    {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"draft\"], \"task\": true},\n    {\"message_to\": \"Tomas Reyes\", \"regarding\": \"ORD-1\", \"says\": [\"2026-10-15\", \"340\"], \"stale\": [], \"task\": true},\n    {\"message_to\": \"Maren Solis\", \"regarding\": \"EV-3\", \"says\": [\"2026-10-31\"], \"stale\": [\"2026-10-24\"], \"task\": true}\n  ],\n  \"why\": \"Priya's email of 28 September replaces the old approval rule: from that date only groups of six or more need her sign-off, so the five-person Ellison booking can be confirmed by the owner (REVISE), and the supplies order that rested on that confirmation can be sent (REVISE, two hops). The Cho reunion (eight people) still falls under the amended rule, so it stays pending (KEEP), and Maren's date move still needs her own consent under the unchanged client-consent policy, so the assistant must ask her rather than edit the schedule (ASK).\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Shampoo and conditioner restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Belleza Supplies\", \"item\": \"litre bottles of shampoo and conditioner\", \"unit\": \"bottles\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Velvet & Vine back room\"},\n    {\"kind\": \"order\", \"topic\": \"Colour tube restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Belleza Supplies\", \"item\": \"professional colour tubes\", \"unit\": \"tubes\", \"values\": [\"20\", \"36\", \"48\", \"60\"], \"place\": \"Velvet & Vine colour bar\"},\n    {\"kind\": \"order\", \"topic\": \"Foil and gloves restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Belleza Supplies\", \"item\": \"boxes of foils and nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Velvet & Vine back room\"},\n    {\"kind\": \"booking\", \"topic\": \"Weekly staff rota meeting\", \"counterpart\": \"Priya Nair\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"Monday rota meeting\", \"unit\": \"room\", \"values\": [\"Main floor\", \"Back room\", \"Kitchen corner\"], \"place\": \"Velvet & Vine\"},\n    {\"kind\": \"booking\", \"topic\": \"Nia training sessions\", \"counterpart\": \"Nia Okafor\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"evening training chair\", \"unit\": \"chair\", \"values\": [\"Chair 2\", \"Chair 4\", \"Chair 5\"], \"place\": \"Velvet & Vine main floor\"},\n    {\"kind\": \"order\", \"topic\": \"Towel and linen service\", \"counterpart\": \"Greta Lind\", \"org\": \"FreshFold Linen\", \"item\": \"salon towel bundles\", \"unit\": \"bundles\", \"values\": [\"10\", \"14\", \"20\"], \"place\": \"Velvet & Vine back door\"},\n    {\"kind\": \"order\", \"topic\": \"Coffee and tea for clients\", \"counterpart\": \"Sam Whitaker\", \"org\": \"BeanCounter Roasters\", \"item\": \"coffee bags and tea boxes\", \"unit\": \"bags\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Velvet & Vine kitchen corner\"},\n    {\"kind\": \"booking\", \"topic\": \"Window display photographer\", \"counterpart\": \"Jules Amari\", \"org\": \"Brightroom Studio\", \"item\": \"monthly photo slot\", \"unit\": \"slot\", \"values\": [\"Front window\", \"Main floor\", \"Colour bar\"], \"place\": \"Velvet & Vine\"},\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Petra Voss\", \"org\": \"ClearDay Janitorial\", \"item\": \"disinfectant and surface spray\", \"unit\": \"bottles\", \"values\": [\"6\", \"10\", \"15\"], \"place\": \"Velvet & Vine storage cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"Saturday blow-dry slots\", \"counterpart\": \"Maren Solis\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"recurring blow-dry appointment\", \"unit\": \"chair\", \"values\": [\"Chair 1\", \"Chair 3\", \"Chair 5\"], \"place\": \"Velvet & Vine main floor\"},\n    {\"kind\": \"order\", \"topic\": \"Retail shelf restock\", \"counterpart\": \"Ines Marek\", \"org\": \"Glowline Beauty\", \"item\": \"retail styling sprays\", \"unit\": \"cans\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Velvet & Vine front shelf\"},\n    {\"kind\": \"booking\", \"topic\": \"Magazine and card drop\", \"counterpart\": \"Owen Pruitt\", \"org\": \"High Street Printers\", \"item\": \"promo card collection slot\", \"unit\": \"slot\", \"values\": [\"Front desk\", \"Back door\", \"Kitchen corner\"], \"place\": \"Velvet & Vine\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6649,
+    "completion_tokens": 3575,
+    "reasoning_tokens": 10,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0652776,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 18 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Group booking approval threshold raised at the salon\",\n  \"setting\": \"Salon owner at Velvet & Vine Hair Studio, a five-chair salon\",\n  \"owner\": \"Rowan\",\n  \"org\": \"Velvet & Vine Hair Studio\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rowan\", \"text\": \"Studio policy: any change to the date or time of a confirmed client appointment must be agreed with the client first, before we change anything in the schedule.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Rowan\", \"text\": \"Standing instruction for the diary: group bookings of four or more people must be approved by our manager Priya Nair before they are confirmed in the schedule.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"note\", \"from\": \"Rowan\", \"text\": \"Priya Nair is the salon manager at Velvet & Vine and handles diary approvals and the staff rota; reach her on the studio line or her mobile.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-16\", \"type\": \"email\", \"from\": \"Tomas Reyes (Belleza Supplies)\", \"text\": \"Hello Rowan, confirming Belleza Supplies delivers to Velvet & Vine every Thursday; send orders to me by Tuesday evening and they will be on that week's van.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-23\", \"type\": \"message\", \"from\": \"Greta Lind (FreshFold Linen)\", \"text\": \"Hi Rowan, just checking in — FreshFold will keep collecting the salon's linen every Monday at 08:00 through the summer; give me a shout if the towel count ever needs to change.\", \"role\": \"other\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Dana Ellison\", \"text\": \"Hi Rowan, I would love to book my bridal party at Velvet & Vine on 17 October 2026 — that is five of us in total, hair and light styling, starting around 09:00.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I have put the Ellison bridal party, five people on 17 October 2026 from 09:00 with Nia on the main floor, into the schedule as pending, since a group of five needs Priya Nair's approval before it can be confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I drafted the Belleza Supplies order for the Ellison bridal party on 17 October — colour and styling kit for five, 340 in total, for delivery on Thursday 15 October — but I am holding it as a draft until that booking is confirmed, and it must go to Tomas Reyes by Tuesday evening.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Priya Nair (Velvet & Vine)\", \"text\": \"Approved under the group booking rule: Maren Solis and her group of five are confirmed for 24 October 2026 at 13:00. It is in the diary.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-10\", \"type\": \"message\", \"from\": \"Maren Solis\", \"text\": \"Hi Rowan, any chance our group of five could move from 24 October to 31 October, same time at 13:00? One of us is away that weekend.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I decided we will move Maren Solis's confirmed group of five from 24 October to 31 October 2026 at 13:00 — the group was already approved under the group booking rule, but because it is a confirmed appointment the date change must first be agreed with Maren herself, so the schedule stays as it is until she says yes.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e9\", \"e2\", \"e1\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Lianne Cho\", \"text\": \"Hello, our school reunion group would like to book Velvet & Vine on 21 November 2026 from 10:00 — there will be eight of us for blow-dries and up-dos.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-27\", \"type\": \"decision\", \"from\": \"Rowan\", \"text\": \"I entered the Cho reunion group, eight people on 21 November 2026 from 10:00, as pending in the schedule, because a party of eight clearly needs Priya Nair's approval under the group booking rule before we confirm it.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e2\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-05\", \"type\": \"note\", \"from\": \"Rowan\", \"text\": \"Reminder: towel service swap happens every Monday morning; leave the used linen bag by the back door.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-12\", \"type\": \"message\", \"from\": \"Nia Okafor (Velvet & Vine)\", \"text\": \"Rowan, the new foils are lovely to work with, thank you — much faster on long hair.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-21\", \"type\": \"call\", \"from\": \"Rowan\", \"text\": \"Called the landlord about the sticky lock on the back door; he will send someone round this week, no cost to us.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Priya Nair (Velvet & Vine)\", \"text\": \"Hi Rowan — as I am cutting my hours back from this week, let us simplify the diary sign-off: from today I will only approve group bookings of six or more people. Groups of four or five you can confirm yourself without waiting for me. The Cho reunion in November still needs my sign-off; anything smaller is yours to confirm.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e18\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Alma Ruiz\", \"text\": \"Good afternoon, I am organising a birthday group of six and wondered about availability at Velvet & Vine on 12 December 2026, late morning if possible.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Nia Okafor (Velvet & Vine)\", \"text\": \"Rowan, I can take the early chair on Saturdays through October if that helps with the party bookings.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-03\", \"type\": \"invoice\", \"from\": \"Tomas Reyes (Belleza Supplies)\", \"text\": \"September statement attached for Velvet & Vine: two routine restock deliveries, nothing overdue. October's first Thursday van is nearly full, so send this week's order early.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Ellison bridal party booking\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"09:00\", \"party_size\": \"5\", \"stylist\": \"Nia\", \"room\": \"Main floor\", \"status\": \"pending\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Maren Solis group booking\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"13:00\", \"party_size\": \"5\", \"stylist\": \"Nia\", \"room\": \"Main floor\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Cho reunion group booking\", \"fields\": {\"date\": \"2026-11-21\", \"time\": \"10:00\", \"party_size\": \"8\", \"stylist\": \"Priya\", \"room\": \"Main floor\", \"status\": \"pending\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Belleza Supplies order for Ellison bridal party\", \"fields\": {\"supplier\": \"Belleza Supplies\", \"contact\": \"Tomas Reyes\", \"items\": \"Colour and styling kit for five\", \"amount\": \"340\", \"delivery_date\": \"2026-10-15\", \"status\": \"draft\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"date\"], \"from\": \"Maren Solis\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please tidy up the diary for me today: confirm the Ellison bridal party booking for 17 October, send the supplies order for it to Tomas at Belleza Supplies, and move Maren Solis's group booking from 24 October to 31 October.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n    {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"draft\"], \"task\": true},\n    {\"message_to\": \"Tomas Reyes\", \"regarding\": \"ORD-1\", \"says\": [\"2026-10-15\", \"340\"], \"stale\": [], \"task\": true},\n    {\"message_to\": \"Maren Solis\", \"regarding\": \"EV-3\", \"says\": [\"2026-10-31\"], \"stale\": [\"2026-10-24\"], \"task\": true}\n  ],\n  \"why\": \"Priya's email of 28 September replaces the old approval rule: from that date only groups of six or more need her sign-off, so the five-person Ellison booking can be confirmed by the owner (REVISE), and the supplies order that rested on that confirmation can be sent (REVISE, two hops). The Cho reunion (eight people) still falls under the amended rule, so it stays pending (KEEP), and Maren's date move still needs her own consent under the unchanged client-consent policy, so the assistant must ask her rather than edit the schedule (ASK).\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Shampoo and conditioner restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Belleza Supplies\", \"item\": \"litre bottles of shampoo and conditioner\", \"unit\": \"bottles\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Velvet & Vine back room\"},\n    {\"kind\": \"order\", \"topic\": \"Colour tube restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Belleza Supplies\", \"item\": \"professional colour tubes\", \"unit\": \"tubes\", \"values\": [\"20\", \"36\", \"48\", \"60\"], \"place\": \"Velvet & Vine colour bar\"},\n    {\"kind\": \"order\", \"topic\": \"Foil and gloves restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Belleza Supplies\", \"item\": \"boxes of foils and nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Velvet & Vine back room\"},\n    {\"kind\": \"booking\", \"topic\": \"Weekly staff rota meeting\", \"counterpart\": \"Priya Nair\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"Monday rota meeting\", \"unit\": \"room\", \"values\": [\"Main floor\", \"Back room\", \"Kitchen corner\"], \"place\": \"Velvet & Vine\"},\n    {\"kind\": \"booking\", \"topic\": \"Nia training sessions\", \"counterpart\": \"Nia Okafor\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"evening training chair\", \"unit\": \"chair\", \"values\": [\"Chair 2\", \"Chair 4\", \"Chair 5\"], \"place\": \"Velvet & Vine main floor\"},\n    {\"kind\": \"order\", \"topic\": \"Towel and linen service\", \"counterpart\": \"Greta Lind\", \"org\": \"FreshFold Linen\", \"item\": \"salon towel bundles\", \"unit\": \"bundles\", \"values\": [\"10\", \"14\", \"20\"], \"place\": \"Velvet & Vine back door\"},\n    {\"kind\": \"order\", \"topic\": \"Coffee and tea for clients\", \"counterpart\": \"Sam Whitaker\", \"org\": \"BeanCounter Roasters\", \"item\": \"coffee bags and tea boxes\", \"unit\": \"bags\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Velvet & Vine kitchen corner\"},\n    {\"kind\": \"booking\", \"topic\": \"Window display photographer\", \"counterpart\": \"Jules Amari\", \"org\": \"Brightroom Studio\", \"item\": \"monthly photo slot\", \"unit\": \"slot\", \"values\": [\"Front window\", \"Main floor\", \"Colour bar\"], \"place\": \"Velvet & Vine\"},\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Petra Voss\", \"org\": \"ClearDay Janitorial\", \"item\": \"disinfectant and surface spray\", \"unit\": \"bottles\", \"values\": [\"6\", \"10\", \"15\"], \"place\": \"Velvet & Vine storage cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"Saturday blow-dry slots\", \"counterpart\": \"Maren Solis\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"recurring blow-dry appointment\", \"unit\": \"chair\", \"values\": [\"Chair 1\", \"Chair 3\", \"Chair 5\"], \"place\": \"Velvet & Vine main floor\"},\n    {\"kind\": \"order\", \"topic\": \"Retail shelf restock\", \"counterpart\": \"Ines Marek\", \"org\": \"Glowline Beauty\", \"item\": \"retail styling sprays\", \"unit\": \"cans\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Velvet & Vine front shelf\"},\n    {\"kind\": \"booking\", \"topic\": \"Magazine and card drop\", \"counterpart\": \"Owen Pruitt\", \"org\": \"High Street Printers\", \"item\": \"promo card collection slot\", \"unit\": \"slot\", \"values\": [\"Front desk\", \"Back door\", \"Kitchen corner\"], \"place\": \"Velvet & Vine\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 10276,
+    "completion_tokens": 3905,
+    "reasoning_tokens": 340,
+    "cached_tokens": 6400
+   },
+   "cost": 0.072123,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e19 is dated before e18)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Group booking approval threshold raised at the salon",
+  "setting": "Salon owner at Velvet & Vine Hair Studio, a five-chair salon",
+  "owner": "Rowan",
+  "org": "Velvet & Vine Hair Studio",
+  "now": "2026-10-05",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Rowan",
+    "text": "Studio policy: any change to the date or time of a confirmed client appointment must be agreed with the client first, before we change anything in the schedule.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Rowan",
+    "text": "Standing instruction for the diary: group bookings of four or more people must be approved by our manager Priya Nair before they are confirmed in the schedule.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "note",
+    "from": "Rowan",
+    "text": "Priya Nair is the salon manager at Velvet & Vine and handles diary approvals and the staff rota; reach her on the studio line or her mobile.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-16",
+    "type": "email",
+    "from": "Tomas Reyes (Belleza Supplies)",
+    "text": "Hello Rowan, confirming Belleza Supplies delivers to Velvet & Vine every Thursday; send orders to me by Tuesday evening and they will be on that week's van.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-23",
+    "type": "message",
+    "from": "Greta Lind (FreshFold Linen)",
+    "text": "Hi Rowan, just checking in — FreshFold will keep collecting the salon's linen every Monday at 08:00 through the summer; give me a shout if the towel count ever needs to change.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Dana Ellison",
+    "text": "Hi Rowan, I would love to book my bridal party at Velvet & Vine on 17 October 2026 — that is five of us in total, hair and light styling, starting around 09:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Rowan",
+    "text": "I have put the Ellison bridal party, five people on 17 October 2026 from 09:00 with Nia on the main floor, into the schedule as pending, since a group of five needs Priya Nair's approval before it can be confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e2",
+     "e3"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Rowan",
+    "text": "I drafted the Belleza Supplies order for the Ellison bridal party on 17 October — colour and styling kit for five, 340 in total, for delivery on Thursday 15 October — but I am holding it as a draft until that booking is confirmed, and it must go to Tomas Reyes by Tuesday evening.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e4"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Priya Nair (Velvet & Vine)",
+    "text": "Approved under the group booking rule: Maren Solis and her group of five are confirmed for 24 October 2026 at 13:00. It is in the diary.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-10",
+    "type": "message",
+    "from": "Maren Solis",
+    "text": "Hi Rowan, any chance our group of five could move from 24 October to 31 October, same time at 13:00? One of us is away that weekend.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Rowan",
+    "text": "I decided we will move Maren Solis's confirmed group of five from 24 October to 31 October 2026 at 13:00 — the group was already approved under the group booking rule, but because it is a confirmed appointment the date change must first be agreed with Maren herself, so the schedule stays as it is until she says yes.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e9",
+     "e2",
+     "e1"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-25",
+    "type": "email",
+    "from": "Lianne Cho",
+    "text": "Hello, our school reunion group would like to book Velvet & Vine on 21 November 2026 from 10:00 — there will be eight of us for blow-dries and up-dos.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-27",
+    "type": "decision",
+    "from": "Rowan",
+    "text": "I entered the Cho reunion group, eight people on 21 November 2026 from 10:00, as pending in the schedule, because a party of eight clearly needs Priya Nair's approval under the group booking rule before we confirm it.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e2"
+    ],
+    "record": "EV-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-05",
+    "type": "note",
+    "from": "Rowan",
+    "text": "Reminder: towel service swap happens every Monday morning; leave the used linen bag by the back door.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-12",
+    "type": "message",
+    "from": "Nia Okafor (Velvet & Vine)",
+    "text": "Rowan, the new foils are lovely to work with, thank you — much faster on long hair.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-21",
+    "type": "call",
+    "from": "Rowan",
+    "text": "Called the landlord about the sticky lock on the back door; he will send someone round this week, no cost to us.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Priya Nair (Velvet & Vine)",
+    "text": "Hi Rowan — as I am cutting my hours back from this week, let us simplify the diary sign-off: from today I will only approve group bookings of six or more people. Groups of four or five you can confirm yourself without waiting for me. The Cho reunion in November still needs my sign-off; anything smaller is yours to confirm.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Alma Ruiz",
+    "text": "Good afternoon, I am organising a birthday group of six and wondered about availability at Velvet & Vine on 12 December 2026, late morning if possible.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-02",
+    "type": "message",
+    "from": "Nia Okafor (Velvet & Vine)",
+    "text": "Rowan, I can take the early chair on Saturdays through October if that helps with the party bookings.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-03",
+    "type": "invoice",
+    "from": "Tomas Reyes (Belleza Supplies)",
+    "text": "September statement attached for Velvet & Vine: two routine restock deliveries, nothing overdue. October's first Thursday van is nearly full, so send this week's order early.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Ellison bridal party booking",
+    "fields": {
+     "date": "2026-10-17",
+     "time": "09:00",
+     "party_size": "5",
+     "stylist": "Nia",
+     "room": "Main floor",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Maren Solis group booking",
+    "fields": {
+     "date": "2026-10-24",
+     "time": "13:00",
+     "party_size": "5",
+     "stylist": "Nia",
+     "room": "Main floor",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Cho reunion group booking",
+    "fields": {
+     "date": "2026-11-21",
+     "time": "10:00",
+     "party_size": "8",
+     "stylist": "Priya",
+     "room": "Main floor",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Belleza Supplies order for Ellison bridal party",
+    "fields": {
+     "supplier": "Belleza Supplies",
+     "contact": "Tomas Reyes",
+     "items": "Colour and styling kit for five",
+     "amount": "340",
+     "delivery_date": "2026-10-15",
+     "status": "draft"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "date"
+    ],
+    "from": "Maren Solis",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please tidy up the diary for me today: confirm the Ellison bridal party booking for 17 October, send the supplies order for it to Tomas at Belleza Supplies, and move Maren Solis's group booking from 24 October to 31 October.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-1",
+    "field": "status",
+    "value": "sent",
+    "stale": [
+     "draft"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Tomas Reyes",
+    "regarding": "ORD-1",
+    "says": [
+     "2026-10-15",
+     "340"
+    ],
+    "stale": [],
+    "task": true
+   },
+   {
+    "message_to": "Maren Solis",
+    "regarding": "EV-3",
+    "says": [
+     "2026-10-31"
+    ],
+    "stale": [
+     "2026-10-24"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Priya's email of 28 September replaces the old approval rule: from that date only groups of six or more need her sign-off, so the five-person Ellison booking can be confirmed by the owner (REVISE), and the supplies order that rested on that confirmation can be sent (REVISE, two hops). The Cho reunion (eight people) still falls under the amended rule, so it stays pending (KEEP), and Maren's date move still needs her own consent under the unchanged client-consent policy, so the assistant must ask her rather than edit the schedule (ASK).",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Shampoo and conditioner restock",
+    "counterpart": "Tomas Reyes",
+    "org": "Belleza Supplies",
+    "item": "litre bottles of shampoo and conditioner",
+    "unit": "bottles",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "Velvet & Vine back room"
+   },
+   {
+    "kind": "order",
+    "topic": "Colour tube restock",
+    "counterpart": "Tomas Reyes",
+    "org": "Belleza Supplies",
+    "item": "professional colour tubes",
+    "unit": "tubes",
+    "values": [
+     "20",
+     "36",
+     "48",
+     "60"
+    ],
+    "place": "Velvet & Vine colour bar"
+   },
+   {
+    "kind": "order",
+    "topic": "Foil and gloves restock",
+    "counterpart": "Tomas Reyes",
+    "org": "Belleza Supplies",
+    "item": "boxes of foils and nitrile gloves",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Velvet & Vine back room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Weekly staff rota meeting",
+    "counterpart": "Priya Nair",
+    "org": "Velvet & Vine Hair Studio",
+    "item": "Monday rota meeting",
+    "unit": "room",
+    "values": [
+     "Main floor",
+     "Back room",
+     "Kitchen corner"
+    ],
+    "place": "Velvet & Vine"
+   },
+   {
+    "kind": "booking",
+    "topic": "Nia training sessions",
+    "counterpart": "Nia Okafor",
+    "org": "Velvet & Vine Hair Studio",
+    "item": "evening training chair",
+    "unit": "chair",
+    "values": [
+     "Chair 2",
+     "Chair 4",
+     "Chair 5"
+    ],
+    "place": "Velvet & Vine main floor"
+   },
+   {
+    "kind": "order",
+    "topic": "Towel and linen service",
+    "counterpart": "Greta Lind",
+    "org": "FreshFold Linen",
+    "item": "salon towel bundles",
+    "unit": "bundles",
+    "values": [
+     "10",
+     "14",
+     "20"
+    ],
+    "place": "Velvet & Vine back door"
+   },
+   {
+    "kind": "order",
+    "topic": "Coffee and tea for clients",
+    "counterpart": "Sam Whitaker",
+    "org": "BeanCounter Roasters",
+    "item": "coffee bags and tea boxes",
+    "unit": "bags",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "Velvet & Vine kitchen corner"
+   },
+   {
+    "kind": "booking",
+    "topic": "Window display photographer",
+    "counterpart": "Jules Amari",
+    "org": "Brightroom Studio",
+    "item": "monthly photo slot",
+    "unit": "slot",
+    "values": [
+     "Front window",
+     "Main floor",
+     "Colour bar"
+    ],
+    "place": "Velvet & Vine"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies",
+    "counterpart": "Petra Voss",
+    "org": "ClearDay Janitorial",
+    "item": "disinfectant and surface spray",
+    "unit": "bottles",
+    "values": [
+     "6",
+     "10",
+     "15"
+    ],
+    "place": "Velvet & Vine storage cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "Saturday blow-dry slots",
+    "counterpart": "Maren Solis",
+    "org": "Velvet & Vine Hair Studio",
+    "item": "recurring blow-dry appointment",
+    "unit": "chair",
+    "values": [
+     "Chair 1",
+     "Chair 3",
+     "Chair 5"
+    ],
+    "place": "Velvet & Vine main floor"
+   },
+   {
+    "kind": "order",
+    "topic": "Retail shelf restock",
+    "counterpart": "Ines Marek",
+    "org": "Glowline Beauty",
+    "item": "retail styling sprays",
+    "unit": "cans",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "Velvet & Vine front shelf"
+   },
+   {
+    "kind": "booking",
+    "topic": "Magazine and card drop",
+    "counterpart": "Owen Pruitt",
+    "org": "High Street Printers",
+    "item": "promo card collection slot",
+    "unit": "slot",
+    "values": [
+     "Front desk",
+     "Back door",
+     "Kitchen corner"
+    ],
+    "place": "Velvet & Vine"
+   }
+  ],
+  "id": "K100-2-04",
+  "tier": 100,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e17 amends the group-approval rule e2 from four-or-more to six-or-more, which voids the approval basis for the five-person Ellison booking (REVISE) and leaves the eight-person Cho reunion standing (KEEP), with Maren's date move still needing her consent under e1 (ASK). The core has 20 events, 4 decisions, the change is 7 days before the task day with 3 core events after it, and the change is an ordinary email in the middle of routine events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e17 amends the group-approval rule e2 from four-or-more to six-or-more, which voids the approval basis for the five-person Ellison booking (REVISE) and leaves the eight-person Cho reunion standing (KEEP), with Maren's date move still needing her consent under e1 (ASK). The core has 20 events, 4 decisions, the change is 7 days before the task day with 3 core events after it, and the change is an ordinary email in the middle of routine events."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5012,
+    "completion_tokens": 1716,
+    "reasoning_tokens": 1503,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013592,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5bdbfb93a3c48e3f79a945541f555b0cf08d0ee184e7b4c3e32efe6300c3272f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amended approval rule clearly licenses confirming the five-person Ellison booking (REVISE), which in turn licenses sending ORD-1 (REVISE two hops), while the eight-person Cho booking still needs Priya's sign-off (KEEP) and Maren's date change still requires her consent under the unchanged client-consent policy (ASK), matching the expected state and consent map. The task is a concrete act with no hint of the change. All tier-100 requirements are met (20 core events, 4 decisions, change 7 days before task day, 3 core events after it, change at position 93 of 100).\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended approval rule clearly licenses confirming the five-person Ellison booking (REVISE), which in turn licenses sending ORD-1 (REVISE two hops), while the eight-person Cho booking still needs Priya's sign-off (KEEP) and Maren's date change still requires her consent under the unchanged client-consent policy (ASK), matching the expected state and consent map. The task is a concrete act with no hint of the change. All tier-100 requirements are met (20 core events, 4 decisions, change 7 days before task day, 3 core events after it, change at position 93 of 100)."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3565,
+    "completion_tokens": 653,
+    "reasoning_tokens": 482,
+    "cached_tokens": 384
+   },
+   "cost": 0.00742644,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5bdbfb93a3c48e3f79a945541f555b0cf08d0ee184e7b4c3e32efe6300c3272f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amended approval rule permits confirming Ellison and releasing its dependent supplies order, while Cho still needs manager approval. Although Maren requested the move, the later diary decision explicitly requires her further agreement before changing the schedule, supporting ASK. The core has 20 events and four decisions; the change is seven days before the task and has three later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended approval rule permits confirming Ellison and releasing its dependent supplies order, while Cho still needs manager approval. Although Maren requested the move, the later diary decision explicitly requires her further agreement before changing the schedule, supporting ASK. The core has 20 events and four decisions; the change is seven days before the task and has three later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3510,
+    "completion_tokens": 403,
+    "reasoning_tokens": 295,
+    "cached_tokens": 0
+   },
+   "cost": 0.0640175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5bdbfb93a3c48e3f79a945541f555b0cf08d0ee184e7b4c3e32efe6300c3272f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

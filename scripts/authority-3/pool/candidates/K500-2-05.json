@@ -1,0 +1,675 @@
+{
+ "id": "K500-2-05",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 2,
+ "idx": 4,
+ "setting": "Law firm office administrator at Pemberton & Vale Solicitors, a six-lawyer firm",
+ "prompt_sha256": "67b3003b30650d836dd6c6b7f48b66e3f231c92c1f3cfac5be876296f8879215",
+ "rounds": [
+  {
+   "text": "{\n \"title\": \"Courier rule change at Pemberton & Vale\",\n \"setting\": \"Law firm office administrator at Pemberton & Vale Solicitors, a six-lawyer firm\",\n \"owner\": \"Ruth\",\n \"org\": \"Pemberton & Vale Solicitors\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"email\", \"from\": \"Priya Nair (FastLine Couriers)\", \"text\": \"FastLine Couriers confirms its standard rates for Pemberton & Vale: local document bundle deliveries within Leeds run between 30 and 40 pounds depending on size, booked through Priya Nair.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"email\", \"from\": \"Colm Draper (SafeStore Archive)\", \"text\": \"SafeStore Archive confirms that a run of archive boxes from Pemberton & Vale to the SafeStore facility on Whitehall Road costs about 30 pounds per delivery.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Harriet Doyle (Bramford Developments)\", \"text\": \"Harriet Doyle at Bramford Developments writes that the commercial lease matter is active and that signed lease bundles should be delivered to her office at 22 Call Lane, Leeds.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-04\", \"type\": \"message\", \"from\": \"Alana Reyes\", \"text\": \"Alana Reyes confirms her purchase completion is planned for early November and asks that the completion papers be delivered to her home at 14 Marlowe Road, Leeds.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Office rule: every outgoing document bundle from Pemberton & Vale goes by FastLine Couriers, and any single delivery costing more than 40 pounds needs finance lead Marcus Hale's sign-off before it is booked.\", \"role\": \"rule\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Marcus Hale is the firm's finance lead and handles all supplier sign-offs and invoice approvals.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked a FastLine Couriers delivery of the signed Bramford lease bundle to Harriet Doyle at 22 Call Lane for 2026-10-27, at FastLine's quoted rate of 32 pounds, within the 40 pound sign-off limit.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-10\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Minutes of the July practice meeting: the six lawyers confirmed autumn filing deadlines and agreed to keep the shared diary updated weekly.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-18\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"To-do: chase Bramford Developments for the remaining signed lease pages by 2026-10-15 so the October bundle is complete.\", \"role\": \"obligation\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-25\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Following the Bramford bundle booking, booked a FastLine Couriers delivery of Alana Reyes's completion papers to 14 Marlowe Road for 2026-11-03, ahead of her early-November completion, at 38 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked a FastLine Couriers run of closed-file archive boxes to SafeStore Archive on Whitehall Road for 2026-10-30 at their quoted 30 pounds, below the 40 pound sign-off threshold so no finance sign-off was sought.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"ORD-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Sent the Hartley wills bundle to the district probate registry by FastLine Couriers on 2026-09-15 at 35 pounds, within the 40 pound sign-off limit; the delivery completed the same day.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"CityDash Couriers\", \"text\": \"CityDash Couriers sends an unsolicited quote: flat 24 pounds for any local document run within Leeds, account opening available on request.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Priya Nair (FastLine Couriers)\", \"text\": \"FastLine Couriers confirms the current Pemberton & Vale bookings: the Bramford lease bundle on 2026-10-27 at 32 pounds, the Reyes completion papers on 2026-11-03 at 38 pounds, and the SafeStore archive run on 2026-10-30 at 30 pounds.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e15\", \"date\": \"2026-09-25\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Following the quarterly supplier review, from 1 October all outgoing document bundles from the firm go by SwiftRun Couriers at their flat rate of 18 pounds per local delivery, and the finance sign-off threshold for any single delivery drops from 40 pounds to 25 pounds; bookings made for dates before 1 October are unaffected.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e16\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Leon Pike (SwiftRun Couriers)\", \"text\": \"Leon Pike at SwiftRun Couriers confirms the Pemberton & Vale account is live, with bookings taken by email and a flat 18 pound rate for local Leeds document deliveries.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-02\", \"type\": \"letter\", \"from\": \"Harriet Doyle (Bramford Developments)\", \"text\": \"Harriet Doyle sends the remaining signed lease pages and confirms the Bramford bundle can go out as planned.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"To-do: pay SwiftRun Couriers' first monthly invoice by 2026-11-15 once Marcus Hale has checked it.\", \"role\": \"obligation\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Alana Reyes\", \"text\": \"Alana Reyes asks whether anything is needed from her before completion; she is at home most weekdays to receive papers.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Minutes of the October practice meeting: completion dates for November were confirmed and admin were asked to keep courier bookings under review.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Sonia Blight (Blight & Co Chambers)\", \"text\": \"Sonia Blight confirms chambers availability for a joint conference in the autumn and suggests Pemberton & Vale's Regent House meeting room.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-06-25\", \"type\": \"invoice\", \"from\": \"Colm Draper (SafeStore Archive)\", \"text\": \"SafeStore Archive invoices the firm 210 pounds for quarterly storage of closed files at the Whitehall Road facility.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Marcus Hale\", \"text\": \"Marcus Hale reminds fee earners that all supplier invoices should reach him by the 25th of each month for payment runs.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-07-30\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"The firm's offices are at Regent House, 8 Crown Street, Leeds; reception opens at 08:30 and the post goes out at 16:00 daily.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Dev Anand (Pemberton & Vale)\", \"text\": \"Dev Anand confirms he will handle the Reyes completion and asks admin to keep her delivery arrangements flexible in case dates move.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-01\", \"type\": \"notice\", \"from\": \"Regent House Management\", \"text\": \"Regent House management gives notice of lift maintenance on 2026-09-18; deliveries that day should use the service entrance.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Priya Nair (FastLine Couriers)\", \"text\": \"FastLine Couriers confirms the Hartley wills bundle was delivered to the district probate registry today and signed for at 11:20.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Harriet Doyle (Bramford Developments)\", \"text\": \"Harriet Doyle says she will be in the Call Lane office all week and any weekday delivery suits her.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Bramford lease bundle delivery\", \"fields\": {\"date\": \"2026-10-27\", \"courier\": \"FastLine\", \"recipient\": \"Harriet Doyle, 22 Call Lane, Leeds\", \"cost\": \"32\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Reyes completion papers delivery\", \"fields\": {\"date\": \"2026-11-03\", \"courier\": \"FastLine\", \"recipient\": \"Alana Reyes, 14 Marlowe Road, Leeds\", \"cost\": \"38\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Archive boxes run to SafeStore\", \"fields\": {\"date\": \"2026-10-30\", \"courier\": \"FastLine\", \"recipient\": \"SafeStore Archive, Whitehall Road\", \"cost\": \"30\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Hartley wills bundle to probate registry\", \"fields\": {\"date\": \"2026-09-15\", \"courier\": \"FastLine\", \"recipient\": \"District probate registry, Leeds\", \"cost\": \"35\", \"status\": \"completed\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-3\", \"fields\": [\"cost\"], \"from\": \"Marcus Hale (finance lead)\", \"rule\": \"e15\"}\n ],\n \"task\": \"It's Tuesday — please get Alana Reyes's completion papers sent out today instead of waiting, and email her to confirm which courier will deliver and when.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"courier\", \"value\": \"SwiftRun\", \"stale\": [\"FastLine\"]},\n  {\"record\": \"ORD-1\", \"field\": \"cost\", \"value\": \"18\", \"stale\": [\"32\"]},\n  {\"record\": \"ORD-2\", \"field\": \"courier\", \"value\": \"SwiftRun\", \"stale\": [\"FastLine\"]},\n  {\"record\": \"ORD-2\", \"field\": \"cost\", \"value\": \"18\", \"stale\": [\"38\"]},\n  {\"record\": \"ORD-2\", \"field\": \"date\", \"value\": \"2026-10-20\", \"stale\": [\"2026-11-03\"], \"task\": true},\n  {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"booked\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"courier\", \"value\": \"SwiftRun\", \"stale\": [\"FastLine\"]},\n  {\"message_to\": \"Alana Reyes\", \"regarding\": \"ORD-2\", \"says\": [\"SwiftRun\", \"2026-10-20\"], \"stale\": [\"FastLine\", \"2026-11-03\"], \"task\": true}\n ],\n \"why\": \"The 25 September instruction replaces the courier rule: from 1 October bundles go by SwiftRun at 18 pounds, with sign-off above 25 pounds. The Bramford and Reyes deliveries (both after 1 October) and the SafeStore run switch to SwiftRun at 18 pounds — REVISE on the courier and cost fields — but the SafeStore run's 30 pound cost was booked without finance sign-off under the old 40 pound threshold and now exceeds the 25 pound limit, so it is ASK: its cost stays and Marcus Hale's sign-off is requested. The Hartley delivery completed before 1 October, so it falls outside the amendment and is KEEP. The task sends the Reyes papers today by the now-current courier, SwiftRun, and tells Alana Reyes so.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"printer paper restock\", \"counterpart\": \"Ellen Marsh\", \"org\": \"Papertrail Office Supplies\", \"item\": \"A4 printer paper\", \"unit\": \"boxes\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and tea supplies\", \"counterpart\": \"Jonah Reeves\", \"org\": \"Kettle & Bean\", \"item\": \"coffee beans and tea\", \"unit\": \"bags\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"booking\", \"topic\": \"client meeting room\", \"counterpart\": \"Regent House Management\", \"org\": \"Regent House\", \"item\": \"meeting room for client appointments\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"Room 5\", \"Boardroom\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"archive box restock\", \"counterpart\": \"Colm Draper\", \"org\": \"SafeStore Archive\", \"item\": \"flat-pack archive boxes\", \"unit\": \"bundles\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"booking\", \"topic\": \"chambers conference room\", \"counterpart\": \"Sonia Blight\", \"org\": \"Blight & Co Chambers\", \"item\": \"conference room for joint conferences\", \"unit\": \"room\", \"values\": [\"Chambers Suite A\", \"Chambers Suite B\", \"Seminar Room\"], \"place\": \"Blight & Co Chambers, Park Row, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"toner cartridges\", \"counterpart\": \"Ellen Marsh\", \"org\": \"Papertrail Office Supplies\", \"item\": \"laser toner cartridges\", \"unit\": \"cartridges\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"booking\", \"topic\": \"notary appointment\", \"counterpart\": \"Felix Grant\", \"org\": \"Grant Notarial Services\", \"item\": \"notary appointment for client certifications\", \"unit\": \"slot\", \"values\": [\"morning slot\", \"midday slot\", \"afternoon slot\"], \"place\": \"Grant Notarial Services, Albion Street, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"envelopes and postage\", \"counterpart\": \"Priya Nair\", \"org\": \"FastLine Couriers\", \"item\": \"document wallets and envelopes\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"booking\", \"topic\": \"team lunch table\", \"counterpart\": \"Marta Kowal\", \"org\": \"The Crown Bistro\", \"item\": \"table for the monthly team lunch\", \"unit\": \"table\", \"values\": [\"table for 6\", \"table for 8\", \"table for 10\"], \"place\": \"The Crown Bistro, Crown Street, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning consumables\", \"counterpart\": \"Jonah Reeves\", \"org\": \"Kettle & Bean\", \"item\": \"kitchen and cleaning consumables\", \"unit\": \"packs\", \"values\": [\"3\", \"5\", \"7\", \"9\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"booking\", \"topic\": \"courier van parking bay\", \"counterpart\": \"Regent House Management\", \"org\": \"Regent House\", \"item\": \"loading bay slot for supplier deliveries\", \"unit\": \"slot\", \"values\": [\"08:00 slot\", \"10:00 slot\", \"14:00 slot\", \"16:00 slot\"], \"place\": \"Regent House service entrance, Crown Street, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"bound bundle covers\", \"counterpart\": \"Ellen Marsh\", \"org\": \"Papertrail Office Supplies\", \"item\": \"lever-arch files and bundle covers\", \"unit\": \"packs\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3238,
+    "completion_tokens": 7465,
+    "reasoning_tokens": 3174,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1133946,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "{\n \"title\": \"Courier rule change at Pemberton & Vale\",\n \"setting\": \"Law firm office administrator at Pemberton & Vale Solicitors, a six-lawyer firm\",\n \"owner\": \"Ruth\",\n \"org\": \"Pemberton & Vale Solicitors\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"email\", \"from\": \"Priya Nair (FastLine Couriers)\", \"text\": \"FastLine Couriers confirms its standard rates for Pemberton & Vale: local document bundle deliveries within Leeds run between 30 and 40 pounds depending on size, booked through Priya Nair.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"email\", \"from\": \"Colm Draper (SafeStore Archive)\", \"text\": \"SafeStore Archive confirms that a run of archive boxes from Pemberton & Vale to the SafeStore facility on Whitehall Road costs about 30 pounds per delivery.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Harriet Doyle (Bramford Developments)\", \"text\": \"Harriet Doyle at Bramford Developments writes that the commercial lease matter is active and that signed lease bundles should be delivered to her office at 22 Call Lane, Leeds.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-04\", \"type\": \"message\", \"from\": \"Alana Reyes\", \"text\": \"Alana Reyes confirms her purchase completion is planned for early November and asks that the completion papers be delivered to her home at 14 Marlowe Road, Leeds.\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Office rule: any change to the agreed cost of a booked supplier delivery, whatever the amount, must be signed off by finance lead Marcus Hale before the booking is altered.\", \"role\": \"rule\"},\n  {\"id\": \"e21\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Sonia Blight (Blight & Co Chambers)\", \"text\": \"Sonia Blight confirms chambers availability for a joint conference in the autumn and suggests their seminar rooms on Park Row, Leeds.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Office rule: every outgoing document bundle from Pemberton & Vale goes by FastLine Couriers, and any single delivery costing more than 40 pounds needs finance lead Marcus Hale's sign-off before it is booked.\", \"role\": \"rule\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Marcus Hale is the firm's finance lead and handles all supplier sign-offs and invoice approvals.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-06-25\", \"type\": \"invoice\", \"from\": \"Colm Draper (SafeStore Archive)\", \"text\": \"SafeStore Archive invoices the firm 210 pounds for quarterly storage of closed files at the Whitehall Road facility.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked a FastLine Couriers delivery of the signed Bramford lease bundle to Harriet Doyle at 22 Call Lane for 2026-10-27, at FastLine's quoted rate of 32 pounds, within the 40 pound sign-off limit.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e23\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Marcus Hale\", \"text\": \"Marcus Hale reminds fee earners that all supplier invoices should reach him by the 25th of each month for payment runs.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-10\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Minutes of the July practice meeting: the six lawyers confirmed autumn filing deadlines and agreed to keep the shared diary updated weekly.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-18\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"To-do: chase Bramford Developments for the remaining signed lease pages by 2026-10-15 so the October bundle is complete.\", \"role\": \"obligation\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-25\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Following the Bramford bundle booking, booked a FastLine Couriers delivery of Alana Reyes's completion papers to 14 Marlowe Road for 2026-11-03, ahead of her early-November completion, at 38 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e24\", \"date\": \"2026-07-30\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"The firm's offices are at Regent House, 8 Crown Street, Leeds; reception opens at 08:30 and the post goes out at 16:00 daily.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked a FastLine Couriers run of closed-file archive boxes to SafeStore Archive on Whitehall Road for 2026-10-30 at their quoted 30 pounds, below the 40 pound sign-off threshold so no finance sign-off was sought.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"ORD-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Sent the Hartley wills bundle to the district probate registry by FastLine Couriers on 2026-09-15 at 35 pounds, within the 40 pound sign-off limit; the delivery completed the same day.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"CityDash Couriers\", \"text\": \"CityDash Couriers sends an unsolicited quote: flat 24 pounds for any local document run within Leeds, account opening available on request.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked Chambers Suite A at Blight & Co Chambers on Park Row for the joint conference with Sonia Blight on 2026-11-10 at 10:00.\", \"role\": \"decision\", \"rests_on\": [\"e21\"], \"record\": \"EV-1\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-01\", \"type\": \"notice\", \"from\": \"Regent House Management\", \"text\": \"Regent House management gives notice of lift maintenance on 2026-09-18; deliveries that day should use the service entrance.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-09-05\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 20 bundles of flat-pack archive boxes from SafeStore Archive for delivery to Regent House, 8 Crown Street, confirmed for 2026-10-22.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e24\"], \"record\": \"ORD-5\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Priya Nair (FastLine Couriers)\", \"text\": \"FastLine Couriers confirms the current Pemberton & Vale bookings: the Bramford lease bundle on 2026-10-27 at 32 pounds, the Reyes completion papers on 2026-11-03 at 38 pounds, and the SafeStore archive run on 2026-10-30 at 30 pounds.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Priya Nair (FastLine Couriers)\", \"text\": \"FastLine Couriers confirms the Hartley wills bundle was delivered to the district probate registry today and signed for at 11:20.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-25\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Following the quarterly supplier review, from 1 October all outgoing document bundles from the firm go by SwiftRun Couriers at their flat rate of 18 pounds per local delivery, and the finance sign-off threshold for any single delivery drops from 40 pounds to 25 pounds; bookings made for dates before 1 October are unaffected.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e16\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Leon Pike (SwiftRun Couriers)\", \"text\": \"Leon Pike at SwiftRun Couriers confirms the Pemberton & Vale account is live, with bookings taken by email and a flat 18 pound rate for local Leeds document deliveries.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-02\", \"type\": \"letter\", \"from\": \"Harriet Doyle (Bramford Developments)\", \"text\": \"Harriet Doyle sends the remaining signed lease pages and confirms the Bramford bundle can go out as planned.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"To-do: pay SwiftRun Couriers' first monthly invoice by 2026-11-15 once Marcus Hale has checked it.\", \"role\": \"obligation\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Alana Reyes\", \"text\": \"Alana Reyes asks whether anything is needed from her before completion; she is at home most weekdays to receive papers.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Minutes of the October practice meeting: completion dates for November were confirmed and admin were asked to keep courier bookings under review.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Harriet Doyle (Bramford Developments)\", \"text\": \"Harriet Doyle says she will be in the Call Lane office all week and any weekday delivery suits her.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Bramford lease bundle delivery\", \"fields\": {\"date\": \"2026-10-27\", \"courier\": \"FastLine\", \"recipient\": \"Harriet Doyle, 22 Call Lane, Leeds\", \"cost\": \"32\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Reyes completion papers delivery\", \"fields\": {\"date\": \"2026-11-03\", \"courier\": \"FastLine\", \"recipient\": \"Alana Reyes, 14 Marlowe Road, Leeds\", \"cost\": \"38\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Archive boxes run to SafeStore\", \"fields\": {\"date\": \"2026-10-30\", \"courier\": \"FastLine\", \"recipient\": \"SafeStore Archive, Whitehall Road\", \"cost\": \"30\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Hartley wills bundle to probate registry\", \"fields\": {\"date\": \"2026-09-15\", \"courier\": \"FastLine\", \"recipient\": \"District probate registry, Leeds\", \"cost\": \"35\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Flat-pack archive boxes from SafeStore\", \"fields\": {\"date\": \"2026-10-22\", \"supplier\": \"SafeStore Archive\", \"quantity\": \"20\", \"delivery_place\": \"Regent House, 8 Crown Street, Leeds\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Joint conference with Blight & Co Chambers\", \"fields\": {\"date\": \"2026-11-10\", \"time\": \"10:00\", \"place\": \"Chambers Suite A, Park Row, Leeds\", \"with\": \"Sonia Blight\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-3\", \"fields\": [\"cost\"], \"from\": \"Marcus Hale (finance lead)\", \"rule\": \"e29\"}\n ],\n \"task\": \"It's Tuesday — please get Alana Reyes's completion papers sent out today instead of waiting, and email her to confirm which courier will deliver and when.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"courier\", \"value\": \"SwiftRun\", \"stale\": [\"FastLine\"]},\n  {\"record\": \"ORD-1\", \"field\": \"cost\", \"value\": \"18\", \"stale\": [\"32\"]},\n  {\"record\": \"ORD-2\", \"field\": \"courier\", \"value\": \"SwiftRun\", \"stale\": [\"FastLine\"]},\n  {\"record\": \"ORD-2\", \"field\": \"cost\", \"value\": \"18\", \"stale\": [\"38\"]},\n  {\"record\": \"ORD-2\", \"field\": \"date\", \"value\": \"2026-10-20\", \"stale\": [\"2026-11-03\"], \"task\": true},\n  {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"booked\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"courier\", \"value\": \"SwiftRun\", \"stale\": [\"FastLine\"]},\n  {\"message_to\": \"Alana Reyes\", \"regarding\": \"ORD-2\", \"says\": [\"SwiftRun\", \"2026-10-20\"], \"stale\": [\"FastLine\", \"2026-11-03\"], \"task\": true}\n ],\n \"why\": \"The 25 September instruction replaces the courier rule: from 1 October bundles go by SwiftRun at 18 pounds, with sign-off above 25 pounds. The Bramford and Reyes deliveries (both after 1 October) and the SafeStore run switch to SwiftRun at 18 pounds — REVISE on the courier and cost fields — but changing the SafeStore run's agreed 30 pound cost requires Marcus Hale's sign-off under the standing cost-change rule, so its cost is ASK: it stays and his consent is requested. The Hartley delivery completed before 1 October, so it falls outside the amendment and is KEEP. The task sends the Reyes papers today by the now-current courier, SwiftRun, and tells Alana Reyes so.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"printer paper restock\", \"counterpart\": \"Ellen Marsh\", \"org\": \"Papertrail Office Supplies\", \"item\": \"A4 printer paper\", \"unit\": \"boxes\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and tea supplies\", \"counterpart\": \"Jonah Reeves\", \"org\": \"Kettle & Bean\", \"item\": \"coffee beans and tea\", \"unit\": \"bags\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"booking\", \"topic\": \"client meeting room\", \"counterpart\": \"Regent House Management\", \"org\": \"Regent House\", \"item\": \"meeting room for client appointments\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"Room 5\", \"Boardroom\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"archive box restock\", \"counterpart\": \"Colm Draper\", \"org\": \"SafeStore Archive\", \"item\": \"flat-pack archive boxes\", \"unit\": \"bundles\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"booking\", \"topic\": \"chambers conference room\", \"counterpart\": \"Sonia Blight\", \"org\": \"Blight & Co Chambers\", \"item\": \"conference room for joint conferences\", \"unit\": \"room\", \"values\": [\"Chambers Suite A\", \"Chambers Suite B\", \"Seminar Room\"], \"place\": \"Blight & Co Chambers, Park Row, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"toner cartridges\", \"counterpart\": \"Ellen Marsh\", \"org\": \"Papertrail Office Supplies\", \"item\": \"laser toner cartridges\", \"unit\": \"cartridges\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"booking\", \"topic\": \"notary appointment\", \"counterpart\": \"Felix Grant\", \"org\": \"Grant Notarial Services\", \"item\": \"notary appointment for client certifications\", \"unit\": \"slot\", \"values\": [\"morning slot\", \"midday slot\", \"afternoon slot\"], \"place\": \"Grant Notarial Services, Albion Street, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"envelopes and postage\", \"counterpart\": \"Priya Nair\", \"org\": \"FastLine Couriers\", \"item\": \"document wallets and envelopes\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"booking\", \"topic\": \"team lunch table\", \"counterpart\": \"Marta Kowal\", \"org\": \"The Crown Bistro\", \"item\": \"table for the monthly team lunch\", \"unit\": \"table\", \"values\": [\"table for 6\", \"table for 8\", \"table for 10\"], \"place\": \"The Crown Bistro, Crown Street, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning consumables\", \"counterpart\": \"Jonah Reeves\", \"org\": \"Kettle & Bean\", \"item\": \"kitchen and cleaning consumables\", \"unit\": \"packs\", \"values\": [\"3\", \"5\", \"7\", \"9\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"},\n  {\"kind\": \"booking\", \"topic\": \"courier van parking bay\", \"counterpart\": \"Regent House Management\", \"org\": \"Regent House\", \"item\": \"loading bay slot for supplier deliveries\", \"unit\": \"slot\", \"values\": [\"08:00 slot\", \"10:00 slot\", \"14:00 slot\", \"16:00 slot\"], \"place\": \"Regent House service entrance, Crown Street, Leeds\"},\n  {\"kind\": \"order\", \"topic\": \"bound bundle covers\", \"counterpart\": \"Ellen Marsh\", \"org\": \"Papertrail Office Supplies\", \"item\": \"lever-arch files and bundle covers\", \"unit\": \"packs\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"Regent House, 8 Crown Street, Leeds\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7639,
+    "completion_tokens": 5544,
+    "reasoning_tokens": 906,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0977826,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e21 is dated before e20)\n- at least two events with role «rule»\n- tier 500: 4 decisions; need 6–14\n- consent on ORD-3: «rule» must name the rule event that requires the consent\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Courier rule change at Pemberton & Vale",
+  "setting": "Law firm office administrator at Pemberton & Vale Solicitors, a six-lawyer firm",
+  "owner": "Ruth",
+  "org": "Pemberton & Vale Solicitors",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-01",
+    "type": "email",
+    "from": "Priya Nair (FastLine Couriers)",
+    "text": "FastLine Couriers confirms its standard rates for Pemberton & Vale: local document bundle deliveries within Leeds run between 30 and 40 pounds depending on size, booked through Priya Nair.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "email",
+    "from": "Colm Draper (SafeStore Archive)",
+    "text": "SafeStore Archive confirms that a run of archive boxes from Pemberton & Vale to the SafeStore facility on Whitehall Road costs about 30 pounds per delivery.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-03",
+    "type": "email",
+    "from": "Harriet Doyle (Bramford Developments)",
+    "text": "Harriet Doyle at Bramford Developments writes that the commercial lease matter is active and that signed lease bundles should be delivered to her office at 22 Call Lane, Leeds.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-04",
+    "type": "message",
+    "from": "Alana Reyes",
+    "text": "Alana Reyes confirms her purchase completion is planned for early November and asks that the completion papers be delivered to her home at 14 Marlowe Road, Leeds.",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Ruth",
+    "text": "Office rule: any change to the agreed cost of a booked supplier delivery, whatever the amount, must be signed off by finance lead Marcus Hale before the booking is altered.",
+    "role": "rule"
+   },
+   {
+    "id": "e21",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Sonia Blight (Blight & Co Chambers)",
+    "text": "Sonia Blight confirms chambers availability for a joint conference in the autumn and suggests their seminar rooms on Park Row, Leeds.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "instruction",
+    "from": "Ruth",
+    "text": "Office rule: every outgoing document bundle from Pemberton & Vale goes by FastLine Couriers, and any single delivery costing more than 40 pounds needs finance lead Marcus Hale's sign-off before it is booked.",
+    "role": "rule"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-20",
+    "type": "note",
+    "from": "Ruth",
+    "text": "Marcus Hale is the firm's finance lead and handles all supplier sign-offs and invoice approvals.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-06-25",
+    "type": "invoice",
+    "from": "Colm Draper (SafeStore Archive)",
+    "text": "SafeStore Archive invoices the firm 210 pounds for quarterly storage of closed files at the Whitehall Road facility.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Booked a FastLine Couriers delivery of the signed Bramford lease bundle to Harriet Doyle at 22 Call Lane for 2026-10-27, at FastLine's quoted rate of 32 pounds, within the 40 pound sign-off limit.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3",
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e23",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Marcus Hale",
+    "text": "Marcus Hale reminds fee earners that all supplier invoices should reach him by the 25th of each month for payment runs.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-10",
+    "type": "minutes",
+    "from": "Ruth",
+    "text": "Minutes of the July practice meeting: the six lawyers confirmed autumn filing deadlines and agreed to keep the shared diary updated weekly.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-18",
+    "type": "task",
+    "from": "Ruth",
+    "text": "To-do: chase Bramford Developments for the remaining signed lease pages by 2026-10-15 so the October bundle is complete.",
+    "role": "obligation"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-25",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Following the Bramford bundle booking, booked a FastLine Couriers delivery of Alana Reyes's completion papers to 14 Marlowe Road for 2026-11-03, ahead of her early-November completion, at 38 pounds.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e4"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e24",
+    "date": "2026-07-30",
+    "type": "note",
+    "from": "Ruth",
+    "text": "The firm's offices are at Regent House, 8 Crown Street, Leeds; reception opens at 08:30 and the post goes out at 16:00 daily.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Booked a FastLine Couriers run of closed-file archive boxes to SafeStore Archive on Whitehall Road for 2026-10-30 at their quoted 30 pounds, below the 40 pound sign-off threshold so no finance sign-off was sought.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e5"
+    ],
+    "record": "ORD-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Sent the Hartley wills bundle to the district probate registry by FastLine Couriers on 2026-09-15 at 35 pounds, within the 40 pound sign-off limit; the delivery completed the same day.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e5"
+    ],
+    "record": "ORD-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-20",
+    "type": "quote",
+    "from": "CityDash Couriers",
+    "text": "CityDash Couriers sends an unsolicited quote: flat 24 pounds for any local document run within Leeds, account opening available on request.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Booked Chambers Suite A at Blight & Co Chambers on Park Row for the joint conference with Sonia Blight on 2026-11-10 at 10:00.",
+    "role": "decision",
+    "rests_on": [
+     "e21"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-01",
+    "type": "notice",
+    "from": "Regent House Management",
+    "text": "Regent House management gives notice of lift maintenance on 2026-09-18; deliveries that day should use the service entrance.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-09-05",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Ordered 20 bundles of flat-pack archive boxes from SafeStore Archive for delivery to Regent House, 8 Crown Street, confirmed for 2026-10-22.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e24"
+    ],
+    "record": "ORD-5"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Priya Nair (FastLine Couriers)",
+    "text": "FastLine Couriers confirms the current Pemberton & Vale bookings: the Bramford lease bundle on 2026-10-27 at 32 pounds, the Reyes completion papers on 2026-11-03 at 38 pounds, and the SafeStore archive run on 2026-10-30 at 30 pounds.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Priya Nair (FastLine Couriers)",
+    "text": "FastLine Couriers confirms the Hartley wills bundle was delivered to the district probate registry today and signed for at 11:20.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-25",
+    "type": "instruction",
+    "from": "Ruth",
+    "text": "Following the quarterly supplier review, from 1 October all outgoing document bundles from the firm go by SwiftRun Couriers at their flat rate of 18 pounds per local delivery, and the finance sign-off threshold for any single delivery drops from 40 pounds to 25 pounds; bookings made for dates before 1 October are unaffected.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Leon Pike (SwiftRun Couriers)",
+    "text": "Leon Pike at SwiftRun Couriers confirms the Pemberton & Vale account is live, with bookings taken by email and a flat 18 pound rate for local Leeds document deliveries.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-02",
+    "type": "letter",
+    "from": "Harriet Doyle (Bramford Developments)",
+    "text": "Harriet Doyle sends the remaining signed lease pages and confirms the Bramford bundle can go out as planned.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-05",
+    "type": "task",
+    "from": "Ruth",
+    "text": "To-do: pay SwiftRun Couriers' first monthly invoice by 2026-11-15 once Marcus Hale has checked it.",
+    "role": "obligation"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-08",
+    "type": "message",
+    "from": "Alana Reyes",
+    "text": "Alana Reyes asks whether anything is needed from her before completion; she is at home most weekdays to receive papers.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-12",
+    "type": "minutes",
+    "from": "Ruth",
+    "text": "Minutes of the October practice meeting: completion dates for November were confirmed and admin were asked to keep courier bookings under review.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-14",
+    "type": "message",
+    "from": "Harriet Doyle (Bramford Developments)",
+    "text": "Harriet Doyle says she will be in the Call Lane office all week and any weekday delivery suits her.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Bramford lease bundle delivery",
+    "fields": {
+     "date": "2026-10-27",
+     "courier": "FastLine",
+     "recipient": "Harriet Doyle, 22 Call Lane, Leeds",
+     "cost": "32",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Reyes completion papers delivery",
+    "fields": {
+     "date": "2026-11-03",
+     "courier": "FastLine",
+     "recipient": "Alana Reyes, 14 Marlowe Road, Leeds",
+     "cost": "38",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Archive boxes run to SafeStore",
+    "fields": {
+     "date": "2026-10-30",
+     "courier": "FastLine",
+     "recipient": "SafeStore Archive, Whitehall Road",
+     "cost": "30",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Hartley wills bundle to probate registry",
+    "fields": {
+     "date": "2026-09-15",
+     "courier": "FastLine",
+     "recipient": "District probate registry, Leeds",
+     "cost": "35",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "ORD-5",
+    "collection": "orders",
+    "title": "Flat-pack archive boxes from SafeStore",
+    "fields": {
+     "date": "2026-10-22",
+     "supplier": "SafeStore Archive",
+     "quantity": "20",
+     "delivery_place": "Regent House, 8 Crown Street, Leeds",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Joint conference with Blight & Co Chambers",
+    "fields": {
+     "date": "2026-11-10",
+     "time": "10:00",
+     "place": "Chambers Suite A, Park Row, Leeds",
+     "with": "Sonia Blight",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-3",
+    "fields": [
+     "cost"
+    ],
+    "from": "Marcus Hale (finance lead)",
+    "rule": "e29"
+   }
+  ],
+  "task": "It's Tuesday — please get Alana Reyes's completion papers sent out today instead of waiting, and email her to confirm which courier will deliver and when.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "courier",
+    "value": "SwiftRun",
+    "stale": [
+     "FastLine"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "cost",
+    "value": "18",
+    "stale": [
+     "32"
+    ]
+   },
+   {
+    "record": "ORD-2",
+    "field": "courier",
+    "value": "SwiftRun",
+    "stale": [
+     "FastLine"
+    ]
+   },
+   {
+    "record": "ORD-2",
+    "field": "cost",
+    "value": "18",
+    "stale": [
+     "38"
+    ]
+   },
+   {
+    "record": "ORD-2",
+    "field": "date",
+    "value": "2026-10-20",
+    "stale": [
+     "2026-11-03"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-2",
+    "field": "status",
+    "value": "sent",
+    "stale": [
+     "booked"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-3",
+    "field": "courier",
+    "value": "SwiftRun",
+    "stale": [
+     "FastLine"
+    ]
+   },
+   {
+    "message_to": "Alana Reyes",
+    "regarding": "ORD-2",
+    "says": [
+     "SwiftRun",
+     "2026-10-20"
+    ],
+    "stale": [
+     "FastLine",
+     "2026-11-03"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The 25 September instruction replaces the courier rule: from 1 October bundles go by SwiftRun at 18 pounds, with sign-off above 25 pounds. The Bramford and Reyes deliveries (both after 1 October) and the SafeStore run switch to SwiftRun at 18 pounds — REVISE on the courier and cost fields — but changing the SafeStore run's agreed 30 pound cost requires Marcus Hale's sign-off under the standing cost-change rule, so its cost is ASK: it stays and his consent is requested. The Hartley delivery completed before 1 October, so it falls outside the amendment and is KEEP. The task sends the Reyes papers today by the now-current courier, SwiftRun, and tells Alana Reyes so.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "printer paper restock",
+    "counterpart": "Ellen Marsh",
+    "org": "Papertrail Office Supplies",
+    "item": "A4 printer paper",
+    "unit": "boxes",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Regent House, 8 Crown Street, Leeds"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee and tea supplies",
+    "counterpart": "Jonah Reeves",
+    "org": "Kettle & Bean",
+    "item": "coffee beans and tea",
+    "unit": "bags",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Regent House, 8 Crown Street, Leeds"
+   },
+   {
+    "kind": "booking",
+    "topic": "client meeting room",
+    "counterpart": "Regent House Management",
+    "org": "Regent House",
+    "item": "meeting room for client appointments",
+    "unit": "room",
+    "values": [
+     "Room 2",
+     "Room 3",
+     "Room 5",
+     "Boardroom"
+    ],
+    "place": "Regent House, 8 Crown Street, Leeds"
+   },
+   {
+    "kind": "order",
+    "topic": "archive box restock",
+    "counterpart": "Colm Draper",
+    "org": "SafeStore Archive",
+    "item": "flat-pack archive boxes",
+    "unit": "bundles",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Regent House, 8 Crown Street, Leeds"
+   },
+   {
+    "kind": "booking",
+    "topic": "chambers conference room",
+    "counterpart": "Sonia Blight",
+    "org": "Blight & Co Chambers",
+    "item": "conference room for joint conferences",
+    "unit": "room",
+    "values": [
+     "Chambers Suite A",
+     "Chambers Suite B",
+     "Seminar Room"
+    ],
+    "place": "Blight & Co Chambers, Park Row, Leeds"
+   },
+   {
+    "kind": "order",
+    "topic": "toner cartridges",
+    "counterpart": "Ellen Marsh",
+    "org": "Papertrail Office Supplies",
+    "item": "laser toner cartridges",
+    "unit": "cartridges",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "6"
+    ],
+    "place": "Regent House, 8 Crown Street, Leeds"
+   },
+   {
+    "kind": "booking",
+    "topic": "notary appointment",
+    "counterpart": "Felix Grant",
+    "org": "Grant Notarial Services",
+    "item": "notary appointment for client certifications",
+    "unit": "slot",
+    "values": [
+     "morning slot",
+     "midday slot",
+     "afternoon slot"
+    ],
+    "place": "Grant Notarial Services, Albion Street, Leeds"
+   },
+   {
+    "kind": "order",
+    "topic": "envelopes and postage",
+    "counterpart": "Priya Nair",
+    "org": "FastLine Couriers",
+    "item": "document wallets and envelopes",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Regent House, 8 Crown Street, Leeds"
+   },
+   {
+    "kind": "booking",
+    "topic": "team lunch table",
+    "counterpart": "Marta Kowal",
+    "org": "The Crown Bistro",
+    "item": "table for the monthly team lunch",
+    "unit": "table",
+    "values": [
+     "table for 6",
+     "table for 8",
+     "table for 10"
+    ],
+    "place": "The Crown Bistro, Crown Street, Leeds"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning consumables",
+    "counterpart": "Jonah Reeves",
+    "org": "Kettle & Bean",
+    "item": "kitchen and cleaning consumables",
+    "unit": "packs",
+    "values": [
+     "3",
+     "5",
+     "7",
+     "9"
+    ],
+    "place": "Regent House, 8 Crown Street, Leeds"
+   },
+   {
+    "kind": "booking",
+    "topic": "courier van parking bay",
+    "counterpart": "Regent House Management",
+    "org": "Regent House",
+    "item": "loading bay slot for supplier deliveries",
+    "unit": "slot",
+    "values": [
+     "08:00 slot",
+     "10:00 slot",
+     "14:00 slot",
+     "16:00 slot"
+    ],
+    "place": "Regent House service entrance, Crown Street, Leeds"
+   },
+   {
+    "kind": "order",
+    "topic": "bound bundle covers",
+    "counterpart": "Ellen Marsh",
+    "org": "Papertrail Office Supplies",
+    "item": "lever-arch files and bundle covers",
+    "unit": "packs",
+    "values": [
+     "6",
+     "10",
+     "14",
+     "20"
+    ],
+    "place": "Regent House, 8 Crown Street, Leeds"
+   }
+  ],
+  "id": "K500-2-05",
+  "tier": 500,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

@@ -633,5 +633,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The task fixes the valet date but not its time; 08:00 belongs to the standing weekly booking and is not unambiguously specified for a new vehicle-specific booking. The consent map and writer's reasoning overstate e12, which requires Priya's agreement only for asking prices above £15,000, not every asking-price change. The brake-pad correction affects no existing decision, and the core meets the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The task fixes the valet date but not its time; 08:00 belongs to the standing weekly booking and is not unambiguously specified for a new vehicle-specific booking. The consent map and writer's reasoning overstate e12, which requires Priya's agreement only for asking prices above £15,000, not every asking-price change. The brake-pad correction affects no existing decision, and the core meets the tier requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3582,
+    "completion_tokens": 249,
+    "reasoning_tokens": 126,
+    "cached_tokens": 0
+   },
+   "cost": 0.0572175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c4d2e9cdeb9c686c7407f87fd195661a7365f29b8f937191be247de4dd77c8ed",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The expected valet record's time of 08:00 is not fixed anywhere in the history, since the task gives no time and e15 states none, so the expected state is not fully determined. The consent map also gives Priya's consent over asking_price on CL-1 and CL-2 under e12, but both prices (14500 and 12800) are below e12's 15000 threshold, so the map does not match the history's rules. The change message calls itself a 'small correction', which announces it somewhat, though it is not the last event and later events follow it.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The expected valet record's time of 08:00 is not fixed anywhere in the history, since the task gives no time and e15 states none, so the expected state is not fully determined. The consent map also gives Priya's consent over asking_price on CL-1 and CL-2 under e12, but both prices (14500 and 12800) are below e12's 15000 threshold, so the map does not match the history's rules. The change message calls itself a 'small correction', which announces it somewhat, though it is not the last event and later events follow it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5144,
+    "completion_tokens": 1874,
+    "reasoning_tokens": 1655,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014514,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c4d2e9cdeb9c686c7407f87fd195661a7365f29b8f937191be247de4dd77c8ed",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core task act is right and unambiguous: the brake-pad correction (e22) revokes e18, which no decision or record field rests on, so the correct behavior is purely booking the Thursday 24 Sept valet at the standing 180-pound rate plus the confirmation message, with all records untouched. However, the consent map cites e12 for both listings' asking_price fields, yet e12 only requires Priya Nair's agreement for asking prices above 15000 pounds, and CL-1 (14500) and CL-2 (12800) are both below that threshold, so the consent map does not match any rule in the history. Tier counts (25 core events, 6 decisions, change 10 days before task day with 3 core events after) and change placement are all compliant.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core task act is right and unambiguous: the brake-pad correction (e22) revokes e18, which no decision or record field rests on, so the correct behavior is purely booking the Thursday 24 Sept valet at the standing 180-pound rate plus the confirmation message, with all records untouched. However, the consent map cites e12 for both listings' asking_price fields, yet e12 only requires Priya Nair's agreement for asking prices above 15000 pounds, and CL-1 (14500) and CL-2 (12800) are both below that threshold, so the consent map does not match any rule in the history. Tier counts (25 core events, 6 decisions, change 10 days before task day with 3 core events after) and change placement are all compliant."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3674,
+    "completion_tokens": 815,
+    "reasoning_tokens": 593,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0149526,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c4d2e9cdeb9c686c7407f87fd195661a7365f29b8f937191be247de4dd77c8ed",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

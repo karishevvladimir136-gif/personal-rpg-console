@@ -713,5 +713,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"EV-3 covers September–December, but the new rate applies only from 1 October; September hours remain at 22 pounds. Without a monthly allocation of the 360 hours, the history does not determine the revised budget, and applying 26 pounds to all 360 hours to obtain 9360 is unjustified.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "EV-3 covers September–December, but the new rate applies only from 1 October; September hours remain at 22 pounds. Without a monthly allocation of the 360 hours, the history does not determine the revised budget, and applying 26 pounds to all 360 hours to obtain 9360 is unjustified."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4438,
+    "completion_tokens": 177,
+    "reasoning_tokens": 75,
+    "cached_tokens": 0
+   },
+   "cost": 0.0643175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9b211ebd4f48f5ce3f609ca54e507ee02187213ba392cba8888d04cf14334561",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core meets tier 500: 31 core events, 8 decisions, the change (e25) falls 16 days before the task day with six core events after it, and the echo e13 restates the 22-pound rate. The expected state follows from the history: the 26-pound rate and totals (2080, 9360) are computed correctly, EV-2 is correctly held for Priya's consent under e1, and EV-4 stays as KEEP. One minor ambiguity is that revising the already-placed ORD-3 total above 500 pounds is not explicitly covered by the sign-off rule, which speaks only of placing orders.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core meets tier 500: 31 core events, 8 decisions, the change (e25) falls 16 days before the task day with six core events after it, and the echo e13 restates the 22-pound rate. The expected state follows from the history: the 26-pound rate and totals (2080, 9360) are computed correctly, EV-2 is correctly held for Priya's consent under e1, and EV-4 stays as KEEP. One minor ambiguity is that revising the already-placed ORD-3 total above 500 pounds is not explicitly covered by the sign-off rule, which speaks only of placing orders."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6418,
+    "completion_tokens": 2424,
+    "reasoning_tokens": 2172,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018538,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9b211ebd4f48f5ce3f609ca54e507ee02187213ba392cba8888d04cf14334561",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The rate revocation cleanly propagates: ORD-3 and EV-3 reprice at 26, EV-2 is a genuine two-hop ASK under the family-event consent rule, and EV-4 KEEP is correct since the supervisor term is unchanged. Minor wrinkle: EV-3's revised budget of 9360 assumes all 360 hours at 26 even though the plan spans September (when 22 still applied), but as a forward budget figure the expected value is defensible. Tier counts (31 core events, 8 decisions, echo e13, 16-day gap, change at 443/500) all meet the 500-tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The rate revocation cleanly propagates: ORD-3 and EV-3 reprice at 26, EV-2 is a genuine two-hop ASK under the family-event consent rule, and EV-4 KEEP is correct since the supervisor term is unchanged. Minor wrinkle: EV-3's revised budget of 9360 assumes all 360 hours at 26 even though the plan spans September (when 22 still applied), but as a forward budget figure the expected value is defensible. Tier counts (31 core events, 8 decisions, echo e13, 16-day gap, change at 443/500) all meet the 500-tier requirements."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4542,
+    "completion_tokens": 733,
+    "reasoning_tokens": 541,
+    "cached_tokens": 0
+   },
+   "cost": 0.024621,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9b211ebd4f48f5ce3f609ca54e507ee02187213ba392cba8888d04cf14334561",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

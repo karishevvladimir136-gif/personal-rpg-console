@@ -1,0 +1,617 @@
+{
+ "id": "K100-1-06",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 1,
+ "idx": 5,
+ "setting": "Events director at The Lighthouse Banquet Hall, a 300-guest wedding venue",
+ "prompt_sha256": "ff30916731d63bdf7e2061ca02e692a2496985412d06b834cf10ecf090abf481",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Catering rate correction at The Lighthouse\",\n  \"setting\": \"Events director at The Lighthouse Banquet Hall, a 300-guest wedding venue\",\n  \"owner\": \"Mara\",\n  \"org\": \"The Lighthouse Banquet Hall\",\n  \"now\": \"2026-10-15\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule: once a client invoice is confirmed, any change to its figures requires that client's written agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Any supplier order above 2000 needs finance lead Priya Shah's sign-off before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-22\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"The main hall seats 220 for dinner service; whole-venue capacity is 300 guests.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"contract\", \"from\": \"Tomas Alvarez\", \"text\": \"Signed contract: Alvarez wedding at The Lighthouse Banquet Hall on Saturday 14 November 2026, 180 guests, full dinner service in the main hall.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Marina Vale (Harbor & Vine Catering)\", \"text\": \"Confirming our terms for the rest of 2026: our plated dinner rate is 56 per guest, and we run menu tastings every Thursday at our kitchen.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Jonas Beck (Petals & Pine Florists)\", \"text\": \"Our wedding package for 180 guests runs 1450 including delivery to The Lighthouse Banquet Hall.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the Alvarez wedding catering order with Harbor & Vine Catering: plated dinner for 180 guests on 14 November 2026 at their rate of 56 per guest, total 10080. Priya Shah signed off since the order is above 2000.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Sent Tomas Alvarez the confirmed wedding invoice showing the catering line of 10080 for 180 plated dinners at 56 per guest. Any change to this confirmed invoice will need his written agreement.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Alvarez menu tasting with Marina Vale for Thursday 22 October 2026 at the Harbor & Vine kitchen, since they hold tastings every Thursday.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Priya Shah\", \"text\": \"August supplier spend report attached; nothing unusual this month.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled the Alvarez budget review for Tuesday 20 October 2026 in the events office, with the catering budget noted as 10080 based on the confirmed Alvarez invoice.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-03\", \"type\": \"fact\", \"from\": \"Nadia Ford (Brightline Linens)\", \"text\": \"Our weekly linen delivery to The Lighthouse Banquet Hall is every Wednesday morning.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-11\", \"type\": \"email\", \"from\": \"Marina Vale (Harbor & Vine Catering)\", \"text\": \"Reminder that your Alvarez tasting is booked for Thursday 22 October; we'll prepare three starter options.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Pay the Petals & Pine florist deposit of 1450 for the Alvarez wedding by 30 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Tomas Alvarez\", \"text\": \"Thanks for the confirmed invoice; we're happy with the catering line as agreed for our November wedding.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-02\", \"type\": \"minutes\", \"from\": \"Priya Shah\", \"text\": \"October planning meeting: staffing for the Alvarez wedding confirmed at 14 servers plus 2 bartenders.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Marina Vale (Harbor & Vine Catering)\", \"text\": \"Apologies for the short notice — our plated dinner rate is actually 62 per guest for the remainder of 2026. Our Thursday tastings are unchanged.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e18\", \"date\": \"2026-10-08\", \"type\": \"quote\", \"from\": \"Marina Vale (Harbor & Vine Catering)\", \"text\": \"Quote for the Reyes anniversary luncheon in January 2027: buffet service at 56 per guest for up to 120 guests.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Nadia Ford (Brightline Linens)\", \"text\": \"Next Wednesday's linen delivery will include the extra napkins you requested.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Tomas Alvarez\", \"text\": \"Looking forward to the tasting on Thursday 22 October — we'll be four people.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Harbor & Vine catering order - Alvarez wedding\", \"fields\": {\"supplier\": \"Harbor & Vine Catering\", \"date\": \"2026-11-14\", \"guests\": \"180\", \"rate\": \"56\", \"total\": \"10080\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Alvarez wedding confirmed invoice\", \"fields\": {\"client\": \"Tomas Alvarez\", \"date\": \"2026-11-14\", \"catering_total\": \"10080\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Alvarez budget review\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"10:00\", \"place\": \"events office\", \"budget\": \"10080\", \"status\": \"booked\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Alvarez menu tasting at Harbor & Vine\", \"fields\": {\"date\": \"2026-10-22\", \"time\": \"14:00\", \"place\": \"Harbor & Vine kitchen\", \"attendees\": \"4\", \"status\": \"booked\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Alvarez wedding\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"main hall\", \"guests\": \"180\", \"status\": \"booked\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"catering_total\"], \"from\": \"Tomas Alvarez\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send Marina Vale at Harbor & Vine our final confirmation of the Alvarez wedding catering order — 180 guests, and confirm the current per-guest dinner rate in the message.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"rate\", \"value\": \"62\", \"stale\": [\"56\"]},\n    {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"11160\", \"stale\": [\"10080\"]},\n    {\"record\": \"EV-2\", \"field\": \"budget\", \"value\": \"11160\", \"stale\": [\"10080\"]},\n    {\"message_to\": \"Marina Vale (Harbor & Vine Catering)\", \"regarding\": \"ORD-1\", \"says\": [\"62\", \"180\"], \"stale\": [\"56\"], \"task\": true}\n  ],\n  \"why\": \"Marina's 7 October email makes the 56 per-guest dinner rate stale; the correct rate is 62 for 2026. The catering order ORD-1 and the budget review EV-2 (which copied the 10080 figure from the invoice, two hops away) are internal records Mara can fix, so they are REVISE. The confirmed client invoice CL-1 needs Tomas Alvarez's written agreement under the house rule, so it is ASK and stays unchanged; the tasting booking used only the Thursday-tastings part of Marina's original email, which the correction leaves standing, so it is KEEP. The distractor quote's 56 is a buffet luncheon rate for a different event and must not be touched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"linen restock\", \"counterpart\": \"Nadia Ford\", \"org\": \"Brightline Linens\", \"item\": \"white tablecloths\", \"unit\": \"pieces\", \"values\": [\"20\", \"30\", \"40\", \"55\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"order\", \"topic\": \"napkin restock\", \"counterpart\": \"Nadia Ford\", \"org\": \"Brightline Linens\", \"item\": \"linen napkins\", \"unit\": \"pieces\", \"values\": [\"100\", \"150\", \"200\", \"250\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"order\", \"topic\": \"kitchen produce\", \"counterpart\": \"Marina Vale\", \"org\": \"Harbor & Vine Catering\", \"item\": \"tasting ingredients box\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Harbor & Vine kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"bar supplies\", \"counterpart\": \"Owen Pryce\", \"org\": \"Seacrest Beverage Supply\", \"item\": \"sparkling wine\", \"unit\": \"cases\", \"values\": [\"10\", \"14\", \"18\", \"22\"], \"place\": \"The Lighthouse Banquet Hall cellar\"},\n    {\"kind\": \"order\", \"topic\": \"flower refresh\", \"counterpart\": \"Jonas Beck\", \"org\": \"Petals & Pine Florists\", \"item\": \"lobby arrangement\", \"unit\": \"arrangements\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"The Lighthouse Banquet Hall lobby\"},\n    {\"kind\": \"booking\", \"topic\": \"staff briefing\", \"counterpart\": \"Priya Shah\", \"org\": \"The Lighthouse Banquet Hall\", \"item\": \"weekly ops meeting\", \"values\": [\"events office\", \"mezzanine room\", \"main hall\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"courier van\", \"counterpart\": \"Lena Marsh\", \"org\": \"Harborquick Couriers\", \"item\": \"delivery van slot\", \"values\": [\"loading bay A\", \"loading bay B\", \"rear gate\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Ruth Ellery\", \"org\": \"Clearview Janitorial\", \"item\": \"floor cleaner\", \"unit\": \"litres\", \"values\": [\"20\", \"30\", \"45\"], \"place\": \"The Lighthouse Banquet Hall storeroom\"},\n    {\"kind\": \"booking\", \"topic\": \"rehearsal space\", \"counterpart\": \"Dev Anand\", \"org\": \"Harbour String Quartet\", \"item\": \"quartet rehearsal\", \"values\": [\"mezzanine room\", \"garden terrace\", \"main hall\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"order\", \"topic\": \"glassware restock\", \"counterpart\": \"Owen Pryce\", \"org\": \"Seacrest Beverage Supply\", \"item\": \"champagne flutes\", \"unit\": \"dozen\", \"values\": [\"6\", \"10\", \"12\"], \"place\": \"The Lighthouse Banquet Hall cellar\"},\n    {\"kind\": \"booking\", \"topic\": \"photographer scout\", \"counterpart\": \"Ivy Chen\", \"org\": \"Ivy Chen Photography\", \"item\": \"venue scouting visit\", \"values\": [\"main hall\", \"garden terrace\", \"mezzanine room\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Jonas Beck\", \"org\": \"Petals & Pine Florists\", \"item\": \"pillar candles\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"The Lighthouse Banquet Hall lobby\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3182,
+    "completion_tokens": 5658,
+    "reasoning_tokens": 2424,
+    "cached_tokens": 0
+   },
+   "cost": 0.094416,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Catering rate correction at The Lighthouse\",\n  \"setting\": \"Events director at The Lighthouse Banquet Hall, a 300-guest wedding venue\",\n  \"owner\": \"Mara\",\n  \"org\": \"The Lighthouse Banquet Hall\",\n  \"now\": \"2026-10-15\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule: once a client invoice is confirmed, any change to its figures requires that client's written agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Any supplier order above 2000 needs finance lead Priya Shah's sign-off before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-22\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"The main hall seats 220 for dinner service; whole-venue capacity is 300 guests.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"contract\", \"from\": \"Tomas Alvarez\", \"text\": \"Signed contract: Alvarez wedding at The Lighthouse Banquet Hall on Saturday 14 November 2026, 180 guests, full dinner service in the main hall.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Marina Vale (Harbor & Vine Catering)\", \"text\": \"Confirming our terms for the rest of 2026: our plated dinner rate is 56 per guest, and we run menu tastings every Thursday at our kitchen.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Jonas Beck (Petals & Pine Florists)\", \"text\": \"Our wedding package for 180 guests runs 1450 including delivery to The Lighthouse Banquet Hall.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the Alvarez wedding catering order with Harbor & Vine Catering: plated dinner for 180 guests on 14 November 2026 at their rate of 56 per guest, total 10080. Priya Shah signed off since the order is above 2000.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Sent Tomas Alvarez the confirmed wedding invoice showing the catering line of 10080 for 180 plated dinners at 56 per guest. Any change to this confirmed invoice will need his written agreement.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Alvarez menu tasting with Marina Vale for Thursday 22 October 2026 at the Harbor & Vine kitchen, since they hold tastings every Thursday.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Priya Shah\", \"text\": \"August supplier spend report attached; nothing unusual this month.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled the Alvarez budget review for Tuesday 20 October 2026 in the events office, with the catering budget noted as 10080 based on the confirmed Alvarez invoice.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Nadia Ford (Brightline Linens)\", \"text\": \"Our weekly linen delivery to The Lighthouse Banquet Hall is every Wednesday morning.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-11\", \"type\": \"email\", \"from\": \"Marina Vale (Harbor & Vine Catering)\", \"text\": \"Reminder that your Alvarez tasting is booked for Thursday 22 October; we'll prepare three starter options.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Pay the Petals & Pine florist deposit of 1450 for the Alvarez wedding by 30 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Tomas Alvarez\", \"text\": \"Thanks for the confirmed invoice; we're happy with the catering line as agreed for our November wedding.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-02\", \"type\": \"minutes\", \"from\": \"Priya Shah\", \"text\": \"October planning meeting: staffing for the Alvarez wedding confirmed at 14 servers plus 2 bartenders.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Marina Vale (Harbor & Vine Catering)\", \"text\": \"Apologies for the short notice — our plated dinner rate is actually 62 per guest for the remainder of 2026. Our Thursday tastings are unchanged.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e18\", \"date\": \"2026-10-08\", \"type\": \"quote\", \"from\": \"Marina Vale (Harbor & Vine Catering)\", \"text\": \"Quote for the Reyes anniversary luncheon in January 2027: buffet service at 56 per guest for up to 120 guests.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Nadia Ford (Brightline Linens)\", \"text\": \"Next Wednesday's linen delivery will include the extra napkins you requested.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Tomas Alvarez\", \"text\": \"Looking forward to the tasting on Thursday 22 October — we'll be four people.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Harbor & Vine catering order - Alvarez wedding\", \"fields\": {\"supplier\": \"Harbor & Vine Catering\", \"date\": \"2026-11-14\", \"guests\": \"180\", \"rate\": \"56\", \"total\": \"10080\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Alvarez wedding confirmed invoice\", \"fields\": {\"client\": \"Tomas Alvarez\", \"date\": \"2026-11-14\", \"catering_total\": \"10080\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Alvarez budget review\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"10:00\", \"place\": \"events office\", \"budget\": \"10080\", \"status\": \"booked\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Alvarez menu tasting at Harbor & Vine\", \"fields\": {\"date\": \"2026-10-22\", \"time\": \"14:00\", \"place\": \"Harbor & Vine kitchen\", \"attendees\": \"4\", \"status\": \"booked\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Alvarez wedding\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"main hall\", \"guests\": \"180\", \"status\": \"booked\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"catering_total\"], \"from\": \"Tomas Alvarez\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send Marina Vale at Harbor & Vine our final confirmation of the Alvarez wedding catering order — 180 guests, and confirm the current per-guest dinner rate in the message.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"rate\", \"value\": \"62\", \"stale\": [\"56\"]},\n    {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"11160\", \"stale\": [\"10080\"]},\n    {\"record\": \"EV-2\", \"field\": \"budget\", \"value\": \"11160\", \"stale\": [\"10080\"]},\n    {\"message_to\": \"Marina Vale (Harbor & Vine Catering)\", \"regarding\": \"ORD-1\", \"says\": [\"62\", \"180\"], \"stale\": [\"56\"], \"task\": true}\n  ],\n  \"why\": \"Marina's 7 October email makes the 56 per-guest dinner rate stale; the correct rate is 62 for 2026. The catering order ORD-1 and the budget review EV-2 (which copied the 10080 figure from the invoice, two hops away) are internal records Mara can fix, so they are REVISE. The confirmed client invoice CL-1 needs Tomas Alvarez's written agreement under the house rule, so it is ASK and stays unchanged; the tasting booking used only the Thursday-tastings part of Marina's original email, which the correction leaves standing, so it is KEEP. The distractor quote's 56 is a buffet luncheon rate for a different event and must not be touched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"linen restock\", \"counterpart\": \"Nadia Ford\", \"org\": \"Brightline Linens\", \"item\": \"white tablecloths\", \"unit\": \"pieces\", \"values\": [\"20\", \"30\", \"40\", \"55\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"order\", \"topic\": \"napkin restock\", \"counterpart\": \"Nadia Ford\", \"org\": \"Brightline Linens\", \"item\": \"linen napkins\", \"unit\": \"pieces\", \"values\": [\"100\", \"150\", \"200\", \"250\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"order\", \"topic\": \"kitchen produce\", \"counterpart\": \"Marina Vale\", \"org\": \"Harbor & Vine Catering\", \"item\": \"tasting ingredients box\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Harbor & Vine kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"bar supplies\", \"counterpart\": \"Owen Pryce\", \"org\": \"Seacrest Beverage Supply\", \"item\": \"sparkling wine\", \"unit\": \"cases\", \"values\": [\"10\", \"14\", \"18\", \"22\"], \"place\": \"The Lighthouse Banquet Hall cellar\"},\n    {\"kind\": \"order\", \"topic\": \"flower refresh\", \"counterpart\": \"Jonas Beck\", \"org\": \"Petals & Pine Florists\", \"item\": \"lobby arrangement\", \"unit\": \"arrangements\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"The Lighthouse Banquet Hall lobby\"},\n    {\"kind\": \"booking\", \"topic\": \"staff briefing\", \"counterpart\": \"Priya Shah\", \"org\": \"The Lighthouse Banquet Hall\", \"item\": \"weekly ops meeting\", \"values\": [\"events office\", \"mezzanine room\", \"main hall\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"courier van\", \"counterpart\": \"Lena Marsh\", \"org\": \"Harborquick Couriers\", \"item\": \"delivery van slot\", \"values\": [\"loading bay A\", \"loading bay B\", \"rear gate\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Ruth Ellery\", \"org\": \"Clearview Janitorial\", \"item\": \"floor cleaner\", \"unit\": \"litres\", \"values\": [\"20\", \"30\", \"45\"], \"place\": \"The Lighthouse Banquet Hall storeroom\"},\n    {\"kind\": \"booking\", \"topic\": \"rehearsal space\", \"counterpart\": \"Dev Anand\", \"org\": \"Harbour String Quartet\", \"item\": \"quartet rehearsal\", \"values\": [\"mezzanine room\", \"garden terrace\", \"main hall\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"order\", \"topic\": \"glassware restock\", \"counterpart\": \"Owen Pryce\", \"org\": \"Seacrest Beverage Supply\", \"item\": \"champagne flutes\", \"unit\": \"dozen\", \"values\": [\"6\", \"10\", \"12\"], \"place\": \"The Lighthouse Banquet Hall cellar\"},\n    {\"kind\": \"booking\", \"topic\": \"photographer scout\", \"counterpart\": \"Ivy Chen\", \"org\": \"Ivy Chen Photography\", \"item\": \"venue scouting visit\", \"values\": [\"main hall\", \"garden terrace\", \"mezzanine room\"], \"place\": \"The Lighthouse Banquet Hall\"},\n    {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Jonas Beck\", \"org\": \"Petals & Pine Florists\", \"item\": \"pillar candles\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"The Lighthouse Banquet Hall lobby\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6517,
+    "completion_tokens": 3259,
+    "reasoning_tokens": 24,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0601416,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e12: type «fact» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Catering rate correction at The Lighthouse",
+  "setting": "Events director at The Lighthouse Banquet Hall, a 300-guest wedding venue",
+  "owner": "Mara",
+  "org": "The Lighthouse Banquet Hall",
+  "now": "2026-10-15",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-08",
+    "type": "policy",
+    "from": "Mara",
+    "text": "House rule: once a client invoice is confirmed, any change to its figures requires that client's written agreement first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-15",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Any supplier order above 2000 needs finance lead Priya Shah's sign-off before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-22",
+    "type": "note",
+    "from": "Mara",
+    "text": "The main hall seats 220 for dinner service; whole-venue capacity is 300 guests.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-02",
+    "type": "contract",
+    "from": "Tomas Alvarez",
+    "text": "Signed contract: Alvarez wedding at The Lighthouse Banquet Hall on Saturday 14 November 2026, 180 guests, full dinner service in the main hall.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Marina Vale (Harbor & Vine Catering)",
+    "text": "Confirming our terms for the rest of 2026: our plated dinner rate is 56 per guest, and we run menu tastings every Thursday at our kitchen.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-28",
+    "type": "email",
+    "from": "Jonas Beck (Petals & Pine Florists)",
+    "text": "Our wedding package for 180 guests runs 1450 including delivery to The Lighthouse Banquet Hall.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Placed the Alvarez wedding catering order with Harbor & Vine Catering: plated dinner for 180 guests on 14 November 2026 at their rate of 56 per guest, total 10080. Priya Shah signed off since the order is above 2000.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Sent Tomas Alvarez the confirmed wedding invoice showing the catering line of 10080 for 180 plated dinners at 56 per guest. Any change to this confirmed invoice will need his written agreement.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e1"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the Alvarez menu tasting with Marina Vale for Thursday 22 October 2026 at the Harbor & Vine kitchen, since they hold tastings every Thursday.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-21",
+    "type": "email",
+    "from": "Priya Shah",
+    "text": "August supplier spend report attached; nothing unusual this month.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-28",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Scheduled the Alvarez budget review for Tuesday 20 October 2026 in the events office, with the catering budget noted as 10080 based on the confirmed Alvarez invoice.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-03",
+    "type": "email",
+    "from": "Nadia Ford (Brightline Linens)",
+    "text": "Our weekly linen delivery to The Lighthouse Banquet Hall is every Wednesday morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-11",
+    "type": "email",
+    "from": "Marina Vale (Harbor & Vine Catering)",
+    "text": "Reminder that your Alvarez tasting is booked for Thursday 22 October; we'll prepare three starter options.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-18",
+    "type": "task",
+    "from": "Mara",
+    "text": "Pay the Petals & Pine florist deposit of 1450 for the Alvarez wedding by 30 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Tomas Alvarez",
+    "text": "Thanks for the confirmed invoice; we're happy with the catering line as agreed for our November wedding.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-02",
+    "type": "minutes",
+    "from": "Priya Shah",
+    "text": "October planning meeting: staffing for the Alvarez wedding confirmed at 14 servers plus 2 bartenders.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-07",
+    "type": "email",
+    "from": "Marina Vale (Harbor & Vine Catering)",
+    "text": "Apologies for the short notice — our plated dinner rate is actually 62 per guest for the remainder of 2026. Our Thursday tastings are unchanged.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-08",
+    "type": "quote",
+    "from": "Marina Vale (Harbor & Vine Catering)",
+    "text": "Quote for the Reyes anniversary luncheon in January 2027: buffet service at 56 per guest for up to 120 guests.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-10",
+    "type": "email",
+    "from": "Nadia Ford (Brightline Linens)",
+    "text": "Next Wednesday's linen delivery will include the extra napkins you requested.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-12",
+    "type": "message",
+    "from": "Tomas Alvarez",
+    "text": "Looking forward to the tasting on Thursday 22 October — we'll be four people.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Harbor & Vine catering order - Alvarez wedding",
+    "fields": {
+     "supplier": "Harbor & Vine Catering",
+     "date": "2026-11-14",
+     "guests": "180",
+     "rate": "56",
+     "total": "10080",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Alvarez wedding confirmed invoice",
+    "fields": {
+     "client": "Tomas Alvarez",
+     "date": "2026-11-14",
+     "catering_total": "10080",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Alvarez budget review",
+    "fields": {
+     "date": "2026-10-20",
+     "time": "10:00",
+     "place": "events office",
+     "budget": "10080",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Alvarez menu tasting at Harbor & Vine",
+    "fields": {
+     "date": "2026-10-22",
+     "time": "14:00",
+     "place": "Harbor & Vine kitchen",
+     "attendees": "4",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Alvarez wedding",
+    "fields": {
+     "date": "2026-11-14",
+     "place": "main hall",
+     "guests": "180",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "catering_total"
+    ],
+    "from": "Tomas Alvarez",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please send Marina Vale at Harbor & Vine our final confirmation of the Alvarez wedding catering order — 180 guests, and confirm the current per-guest dinner rate in the message.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "rate",
+    "value": "62",
+    "stale": [
+     "56"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "11160",
+    "stale": [
+     "10080"
+    ]
+   },
+   {
+    "record": "EV-2",
+    "field": "budget",
+    "value": "11160",
+    "stale": [
+     "10080"
+    ]
+   },
+   {
+    "message_to": "Marina Vale (Harbor & Vine Catering)",
+    "regarding": "ORD-1",
+    "says": [
+     "62",
+     "180"
+    ],
+    "stale": [
+     "56"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Marina's 7 October email makes the 56 per-guest dinner rate stale; the correct rate is 62 for 2026. The catering order ORD-1 and the budget review EV-2 (which copied the 10080 figure from the invoice, two hops away) are internal records Mara can fix, so they are REVISE. The confirmed client invoice CL-1 needs Tomas Alvarez's written agreement under the house rule, so it is ASK and stays unchanged; the tasting booking used only the Thursday-tastings part of Marina's original email, which the correction leaves standing, so it is KEEP. The distractor quote's 56 is a buffet luncheon rate for a different event and must not be touched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "linen restock",
+    "counterpart": "Nadia Ford",
+    "org": "Brightline Linens",
+    "item": "white tablecloths",
+    "unit": "pieces",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "55"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "napkin restock",
+    "counterpart": "Nadia Ford",
+    "org": "Brightline Linens",
+    "item": "linen napkins",
+    "unit": "pieces",
+    "values": [
+     "100",
+     "150",
+     "200",
+     "250"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "kitchen produce",
+    "counterpart": "Marina Vale",
+    "org": "Harbor & Vine Catering",
+    "item": "tasting ingredients box",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Harbor & Vine kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "bar supplies",
+    "counterpart": "Owen Pryce",
+    "org": "Seacrest Beverage Supply",
+    "item": "sparkling wine",
+    "unit": "cases",
+    "values": [
+     "10",
+     "14",
+     "18",
+     "22"
+    ],
+    "place": "The Lighthouse Banquet Hall cellar"
+   },
+   {
+    "kind": "order",
+    "topic": "flower refresh",
+    "counterpart": "Jonas Beck",
+    "org": "Petals & Pine Florists",
+    "item": "lobby arrangement",
+    "unit": "arrangements",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "The Lighthouse Banquet Hall lobby"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff briefing",
+    "counterpart": "Priya Shah",
+    "org": "The Lighthouse Banquet Hall",
+    "item": "weekly ops meeting",
+    "values": [
+     "events office",
+     "mezzanine room",
+     "main hall"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "courier van",
+    "counterpart": "Lena Marsh",
+    "org": "Harborquick Couriers",
+    "item": "delivery van slot",
+    "values": [
+     "loading bay A",
+     "loading bay B",
+     "rear gate"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Ruth Ellery",
+    "org": "Clearview Janitorial",
+    "item": "floor cleaner",
+    "unit": "litres",
+    "values": [
+     "20",
+     "30",
+     "45"
+    ],
+    "place": "The Lighthouse Banquet Hall storeroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "rehearsal space",
+    "counterpart": "Dev Anand",
+    "org": "Harbour String Quartet",
+    "item": "quartet rehearsal",
+    "values": [
+     "mezzanine room",
+     "garden terrace",
+     "main hall"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "glassware restock",
+    "counterpart": "Owen Pryce",
+    "org": "Seacrest Beverage Supply",
+    "item": "champagne flutes",
+    "unit": "dozen",
+    "values": [
+     "6",
+     "10",
+     "12"
+    ],
+    "place": "The Lighthouse Banquet Hall cellar"
+   },
+   {
+    "kind": "booking",
+    "topic": "photographer scout",
+    "counterpart": "Ivy Chen",
+    "org": "Ivy Chen Photography",
+    "item": "venue scouting visit",
+    "values": [
+     "main hall",
+     "garden terrace",
+     "mezzanine room"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "candle restock",
+    "counterpart": "Jonas Beck",
+    "org": "Petals & Pine Florists",
+    "item": "pillar candles",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "The Lighthouse Banquet Hall lobby"
+   }
+  ],
+  "id": "K100-1-06",
+  "tier": 100,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change cleanly revokes the 56 rate fact; ORD-1 (direct) and EV-2 (two hops via CL-1) get 62/11160 as REVISE, CL-1 is properly ASK under the e1 invoice rule, and EV-3 is a sound KEEP since only the Thursday-tastings part of the revoked fact survives. The distractor 56 buffet rate is clearly distinct. The task forces sending a confirming message without hinting at any change, and the change sits mid-history with later events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change cleanly revokes the 56 rate fact; ORD-1 (direct) and EV-2 (two hops via CL-1) get 62/11160 as REVISE, CL-1 is properly ASK under the e1 invoice rule, and EV-3 is a sound KEEP since only the Thursday-tastings part of the revoked fact survives. The distractor 56 buffet rate is clearly distinct. The task forces sending a confirming message without hinting at any change, and the change sits mid-history with later events."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3216,
+    "completion_tokens": 296,
+    "reasoning_tokens": 142,
+    "cached_tokens": 384
+   },
+   "cost": 0.00536704,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "83e410263c1d5fef1b4ccbfe1a598b665273774838d276b920ceff092a4fce3e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"EV-2 explicitly records a budget based on the confirmed invoice, which must remain 10080 pending consent; the history does not unambiguously require changing that budget to 11160 beforehand. The scenario fits class 3: the rate correction affects the order and its downstream invoice, while the tasting decision cites an unaffected aspect of the same original fact.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "EV-2 explicitly records a budget based on the confirmed invoice, which must remain 10080 pending consent; the history does not unambiguously require changing that budget to 11160 beforehand. The scenario fits class 3: the rate correction affects the order and its downstream invoice, while the tasting decision cites an unaffected aspect of the same original fact."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3154,
+    "completion_tokens": 268,
+    "reasoning_tokens": 160,
+    "cached_tokens": 0
+   },
+   "cost": 0.0528175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "83e410263c1d5fef1b4ccbfe1a598b665273774838d276b920ceff092a4fce3e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The REVISE mark on ORD-1 assumes no consent is needed, but e2 requires Priya Shah's sign-off for any supplier order above 2000, and raising the ORD-1 total from 10080 to 11160 arguably needs that sign-off even though the rule says 'before it is placed'. Otherwise the class (1, via e5 to e7 to e8 to e11), the tier counts, the 8-day gap, the post-change events and the hidden change all check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The REVISE mark on ORD-1 assumes no consent is needed, but e2 requires Priya Shah's sign-off for any supplier order above 2000, and raising the ORD-1 total from 10080 to 11160 arguably needs that sign-off even though the rule says 'before it is placed'. Otherwise the class (1, via e5 to e7 to e8 to e11), the tier counts, the 8-day gap, the post-change events and the hidden change all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4688,
+    "completion_tokens": 1615,
+    "reasoning_tokens": 1404,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012763,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "83e410263c1d5fef1b4ccbfe1a598b665273774838d276b920ceff092a4fce3e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

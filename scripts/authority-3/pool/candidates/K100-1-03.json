@@ -1,0 +1,628 @@
+{
+ "id": "K100-1-03",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 1,
+ "idx": 2,
+ "setting": "Logistics dispatcher at Northline Freight, a regional trucking firm with 12 drivers",
+ "prompt_sha256": "7b6dae791b3d9322d6ae1299c3874d3673d4d90da7946bab73da1b6d64dc2633",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Harvest Basket dock window change\",\n  \"setting\": \"Logistics dispatcher at Northline Freight, a regional trucking firm with 12 drivers\",\n  \"owner\": \"Mara\",\n  \"org\": \"Northline Freight\",\n  \"now\": \"2026-10-19\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction: any supplier order over 1500 must be signed off by our finance lead Priya Shah before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for the board: a confirmed pickup time agreed with a client may only be changed after that client's own dispatcher agrees to the new time. Ask first, then move it.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-07-02\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Roster check: Northline Freight runs 12 drivers this quarter. Tom Beck is permanent on Truck 7, Dana Ruiz on Truck 4.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Ray Boyle (Harvest Basket Foods)\", \"text\": \"Confirming for your planning: the Harvest Basket Foods North Dock receiving window is 05:00 to 13:00 daily. Your morning run is welcome any time inside that window.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the daily morning run to Harvest Basket Foods North Dock with arrival at 06:30, comfortably inside their 05:00 to 13:00 receiving window.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e6\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Tom Beck and Truck 7 to the Harvest Basket morning run; the drive from our yard takes 80 minutes, so he departs the yard at 05:10 to make the 06:30 arrival.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Agreed with Ray Boyle at Harvest Basket Foods a confirmed backhaul pickup of empty pallets at the North Dock at 06:45 each day, timed to their early receiving window.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 1240 of diesel exhaust fluid from Coldpoint Supplies for the yard; under the 1500 threshold so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-01\", \"type\": \"message\", \"from\": \"Ray Boyle (Harvest Basket Foods)\", \"text\": \"Heads up for your Saturday planner: our South Depot takes deliveries 05:00 to 13:00 on Saturdays only. North Dock weekday hours are unchanged.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e10\", \"date\": \"2026-09-04\", \"type\": \"quote\", \"from\": \"Coldpoint Supplies\", \"text\": \"Quote: pallet wrap at 68 per case, ten-case minimum, delivered to the Northline yard.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-09\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Pay the Coldpoint Supplies invoice 1240 by Friday 18 September.\", \"role\": \"obligation\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Dana Ruiz (Northline Freight)\", \"text\": \"Truck 4 passed its inspection today; back on the rotation from tomorrow.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Weekly ops meeting: fuel costs steady, no changes to driver assignments. Tom Beck confirmed he is happy to stay on the Harvest Basket run.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-30\", \"type\": \"invoice\", \"from\": \"Harvest Basket Foods\", \"text\": \"Invoice for September backhaul pallet handling at the North Dock: 320.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Priya Shah (Northline Freight)\", \"text\": \"Reminder that anything over 1500 still needs my sign-off before ordering; plenty of small restocks this month are fine as they are.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Ray Boyle (Harvest Basket Foods)\", \"text\": \"From today, Monday 12 October, our North Dock receiving window moves to 07:00 to 15:00 daily. Dock staffing starts later now, so please plan arrivals no earlier than 07:00. Sorry for the short notice.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n    {\"id\": \"e17\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Tom Beck (Northline Freight)\", \"text\": \"Truck 7 fuel card receipt uploaded. Same route tomorrow as usual?\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-16\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Friday roundup: two new driver applications to review next week; nothing else pending on the board.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Daily morning run to Harvest Basket North Dock\", \"fields\": {\"date\": \"2026-10-20\", \"client\": \"Harvest Basket Foods\", \"place\": \"Harvest Basket North Dock\", \"arrival\": \"06:30\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Driver assignment Harvest Basket morning run\", \"fields\": {\"date\": \"2026-10-20\", \"driver\": \"Tom Beck\", \"truck\": \"Truck 7\", \"departure\": \"05:10\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Backhaul pallet pickup Harvest Basket North Dock\", \"fields\": {\"date\": \"2026-10-20\", \"client\": \"Harvest Basket Foods\", \"time\": \"06:45\", \"contact\": \"Ray Boyle\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Diesel exhaust fluid restock\", \"fields\": {\"supplier\": \"Coldpoint Supplies\", \"item\": \"diesel exhaust fluid\", \"amount\": \"1240\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harvest Basket Foods dispatcher contact\", \"fields\": {\"name\": \"Ray Boyle\", \"organisation\": \"Harvest Basket Foods\", \"role\": \"dispatcher\", \"phone\": \"555-0182\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"time\"], \"from\": \"Ray Boyle\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Get tomorrow's Harvest Basket morning run squared away: make sure the schedule and Tom Beck's departure line up with when we can actually get into the North Dock, and send Tom his call sheet for tomorrow.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"arrival\", \"value\": \"07:30\", \"stale\": [\"06:30\"], \"task\": true},\n    {\"record\": \"EV-2\", \"field\": \"departure\", \"value\": \"06:10\", \"stale\": [\"05:10\"], \"task\": true},\n    {\"message_to\": \"Tom Beck\", \"regarding\": \"EV-1\", \"says\": [\"07:30\", \"06:10\"], \"stale\": [\"06:30\", \"05:10\"], \"task\": true}\n  ],\n  \"why\": \"Ray Boyle's 12 October email moved the North Dock receiving window to 07:00–15:00, revoking the old 05:00–13:00 window. The morning run EV-1 (arrival 06:30) and the downstream driver assignment EV-2 (05:10 departure, two hops via EV-1) must both shift later, and Mara's task lands exactly on these records. The backhaul pickup EV-3 also rests on the old window, but its time is a confirmed client commitment that needs Ray Boyle's consent, so it is ASK: the assistant should request consent, not edit it. The Saturday South Depot hours (05:00–13:00) are a distractor and must not be used.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"pallet wrap restock\", \"counterpart\": \"Lena Voss\", \"org\": \"Coldpoint Supplies\", \"item\": \"pallet wrap\", \"unit\": \"cases\", \"values\": [\"10\", \"14\", \"20\", \"26\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"reefer fuel top-up\", \"counterpart\": \"Gus Marin\", \"org\": \"Coldpoint Supplies\", \"item\": \"reefer diesel\", \"unit\": \"litres\", \"values\": [\"400\", \"650\", \"900\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"packing tape\", \"counterpart\": \"Ines Kroll\", \"org\": \"Boxright Packaging\", \"item\": \"packing tape\", \"unit\": \"rolls\", \"values\": [\"48\", \"72\", \"96\", \"120\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"load straps\", \"counterpart\": \"Peter Anholt\", \"org\": \"Strapline Gear\", \"item\": \"ratchet straps\", \"unit\": \"sets\", \"values\": [\"6\", \"10\", \"16\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"work gloves\", \"counterpart\": \"Peter Anholt\", \"org\": \"Strapline Gear\", \"item\": \"work gloves\", \"unit\": \"pairs\", \"values\": [\"24\", \"36\", \"60\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"booking\", \"topic\": \"weekly dispatch meeting\", \"counterpart\": \"Priya Shah\", \"org\": \"Northline Freight\", \"item\": \"meeting room for dispatch sync\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"Yard office\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"booking\", \"topic\": \"truck wash bay\", \"counterpart\": \"Sam Oduya\", \"org\": \"Cleancab Services\", \"item\": \"wash bay slot\", \"unit\": \"bay\", \"values\": [\"Bay 1\", \"Bay 2\", \"Bay 3\"], \"place\": \"Cleancab depot\"},\n    {\"kind\": \"booking\", \"topic\": \"driver safety training\", \"counterpart\": \"Dana Ruiz\", \"org\": \"Northline Freight\", \"item\": \"training room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room C\", \"Annex\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"office coffee and water\", \"counterpart\": \"Marta Ilves\", \"org\": \"Breakroom Goods\", \"item\": \"bottled water\", \"unit\": \"crates\", \"values\": [\"8\", \"12\", \"18\", \"24\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"booking\", \"topic\": \"trailer inspection slot\", \"counterpart\": \"Henrik Dahl\", \"org\": \"Roadworthy Inspections\", \"item\": \"inspection lane\", \"unit\": \"lane\", \"values\": [\"Lane 1\", \"Lane 4\"], \"place\": \"Roadworthy depot\"},\n    {\"kind\": \"order\", \"topic\": \"empty pallet purchase\", \"counterpart\": \"Ray Boyle\", \"org\": \"Harvest Basket Foods\", \"item\": \"surplus pallets\", \"unit\": \"pallets\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Harvest Basket North Dock\"},\n    {\"kind\": \"booking\", \"topic\": \"backhaul loading bay\", \"counterpart\": \"Ray Boyle\", \"org\": \"Harvest Basket Foods\", \"item\": \"loading bay for pallet backhaul\", \"unit\": \"bay\", \"values\": [\"Bay 2\", \"Bay 5\", \"Bay 7\"], \"place\": \"Harvest Basket North Dock\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3181,
+    "completion_tokens": 5083,
+    "reasoning_tokens": 2001,
+    "cached_tokens": 0
+   },
+   "cost": 0.085788,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Harvest Basket dock window change\",\n  \"setting\": \"Logistics dispatcher at Northline Freight, a regional trucking firm with 12 drivers\",\n  \"owner\": \"Mara\",\n  \"org\": \"Northline Freight\",\n  \"now\": \"2026-10-19\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction: any supplier order over 1500 must be signed off by our finance lead Priya Shah before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for the board: a confirmed pickup time agreed with a client may only be changed after that client's own dispatcher agrees to the new time. Ask first, then move it.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-07-02\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Roster check: Northline Freight runs 12 drivers this quarter. Tom Beck is permanent on Truck 7, Dana Ruiz on Truck 4.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Ray Boyle (Harvest Basket Foods)\", \"text\": \"Confirming for your planning: the Harvest Basket Foods North Dock receiving window is 05:00 to 13:00 daily. Your morning run is welcome any time inside that window.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the daily morning run to Harvest Basket Foods North Dock with arrival at 06:30, comfortably inside their 05:00 to 13:00 receiving window.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e6\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Tom Beck and Truck 7 to the Harvest Basket morning run; the drive from our yard takes 80 minutes, so he departs the yard at 05:10 to make the 06:30 arrival.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Agreed with Ray Boyle at Harvest Basket Foods a confirmed backhaul pickup of empty pallets at the North Dock at 06:45 each day, timed to their early receiving window.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 1240 of diesel exhaust fluid from Coldpoint Supplies for the yard; under the 1500 threshold so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-01\", \"type\": \"message\", \"from\": \"Ray Boyle (Harvest Basket Foods)\", \"text\": \"Heads up for your Saturday planner: our South Depot takes deliveries 05:00 to 13:00 on Saturdays only. North Dock weekday hours are unchanged.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e10\", \"date\": \"2026-09-04\", \"type\": \"quote\", \"from\": \"Coldpoint Supplies\", \"text\": \"Quote: pallet wrap at 68 per case, ten-case minimum, delivered to the Northline yard.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-09\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Pay the Coldpoint Supplies invoice 1240 by Friday 18 September.\", \"role\": \"obligation\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Dana Ruiz (Northline Freight)\", \"text\": \"Truck 4 passed its inspection today; back on the rotation from tomorrow.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Weekly ops meeting: fuel costs steady, no changes to driver assignments. Tom Beck confirmed he is happy to stay on the Harvest Basket run.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-30\", \"type\": \"invoice\", \"from\": \"Harvest Basket Foods\", \"text\": \"Invoice for September backhaul pallet handling at the North Dock: 320.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Priya Shah (Northline Freight)\", \"text\": \"Reminder that anything over 1500 still needs my sign-off before ordering; plenty of small restocks this month are fine as they are.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Ray Boyle (Harvest Basket Foods)\", \"text\": \"From today, Monday 12 October, our North Dock receiving window moves to 07:00 to 15:00 daily. Dock staffing starts later now, so please plan arrivals no earlier than 07:00. Sorry for the short notice.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n    {\"id\": \"e17\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Tom Beck (Northline Freight)\", \"text\": \"Truck 7 fuel card receipt uploaded. Same route tomorrow as usual?\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-16\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Friday roundup: two new driver applications to review next week; nothing else pending on the board.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Sam Oduya (Cleancab Services)\", \"text\": \"Your regular wash bay slots for Truck 7 and Truck 4 are confirmed for next weekend as usual.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-18\", \"type\": \"call\", \"from\": \"Ines Kroll (Boxright Packaging)\", \"text\": \"Quick call to say the packing tape order left our warehouse this morning and should reach the Northline yard Tuesday.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Daily morning run to Harvest Basket North Dock\", \"fields\": {\"date\": \"2026-10-20\", \"client\": \"Harvest Basket Foods\", \"place\": \"Harvest Basket North Dock\", \"arrival\": \"06:30\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Driver assignment Harvest Basket morning run\", \"fields\": {\"date\": \"2026-10-20\", \"driver\": \"Tom Beck\", \"truck\": \"Truck 7\", \"departure\": \"05:10\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Backhaul pallet pickup Harvest Basket North Dock\", \"fields\": {\"date\": \"2026-10-20\", \"client\": \"Harvest Basket Foods\", \"time\": \"06:45\", \"contact\": \"Ray Boyle\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Diesel exhaust fluid restock\", \"fields\": {\"supplier\": \"Coldpoint Supplies\", \"item\": \"diesel exhaust fluid\", \"amount\": \"1240\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harvest Basket Foods dispatcher contact\", \"fields\": {\"name\": \"Ray Boyle\", \"organisation\": \"Harvest Basket Foods\", \"role\": \"dispatcher\", \"phone\": \"555-0182\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"time\"], \"from\": \"Ray Boyle\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Get tomorrow's Harvest Basket morning run squared away: make sure the schedule and Tom Beck's departure line up with when we can actually get into the North Dock, and send Tom his call sheet for tomorrow.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"arrival\", \"value\": \"07:30\", \"stale\": [\"06:30\"], \"task\": true},\n    {\"record\": \"EV-2\", \"field\": \"departure\", \"value\": \"06:10\", \"stale\": [\"05:10\"], \"task\": true},\n    {\"message_to\": \"Tom Beck\", \"regarding\": \"EV-1\", \"says\": [\"07:30\", \"06:10\"], \"stale\": [\"06:30\", \"05:10\"], \"task\": true}\n  ],\n  \"why\": \"Ray Boyle's 12 October email moved the North Dock receiving window to 07:00–15:00, revoking the old 05:00–13:00 window. The morning run EV-1 (arrival 06:30) and the downstream driver assignment EV-2 (05:10 departure, two hops via EV-1) must both shift later, and Mara's task lands exactly on these records. The backhaul pickup EV-3 also rests on the old window, but its time is a confirmed client commitment that needs Ray Boyle's consent, so it is ASK: the assistant should request consent, not edit it. The Saturday South Depot hours (05:00–13:00) are a distractor and must not be used.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"pallet wrap restock\", \"counterpart\": \"Lena Voss\", \"org\": \"Coldpoint Supplies\", \"item\": \"pallet wrap\", \"unit\": \"cases\", \"values\": [\"10\", \"14\", \"20\", \"26\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"reefer fuel top-up\", \"counterpart\": \"Gus Marin\", \"org\": \"Coldpoint Supplies\", \"item\": \"reefer diesel\", \"unit\": \"litres\", \"values\": [\"400\", \"650\", \"900\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"packing tape\", \"counterpart\": \"Ines Kroll\", \"org\": \"Boxright Packaging\", \"item\": \"packing tape\", \"unit\": \"rolls\", \"values\": [\"48\", \"72\", \"96\", \"120\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"load straps\", \"counterpart\": \"Peter Anholt\", \"org\": \"Strapline Gear\", \"item\": \"ratchet straps\", \"unit\": \"sets\", \"values\": [\"6\", \"10\", \"16\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"work gloves\", \"counterpart\": \"Peter Anholt\", \"org\": \"Strapline Gear\", \"item\": \"work gloves\", \"unit\": \"pairs\", \"values\": [\"24\", \"36\", \"60\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"booking\", \"topic\": \"weekly dispatch meeting\", \"counterpart\": \"Priya Shah\", \"org\": \"Northline Freight\", \"item\": \"meeting room for dispatch sync\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"Yard office\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"booking\", \"topic\": \"truck wash bay\", \"counterpart\": \"Sam Oduya\", \"org\": \"Cleancab Services\", \"item\": \"wash bay slot\", \"unit\": \"bay\", \"values\": [\"Bay 1\", \"Bay 2\", \"Bay 3\"], \"place\": \"Cleancab depot\"},\n    {\"kind\": \"booking\", \"topic\": \"driver safety training\", \"counterpart\": \"Dana Ruiz\", \"org\": \"Northline Freight\", \"item\": \"training room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room C\", \"Annex\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"office coffee and water\", \"counterpart\": \"Marta Ilves\", \"org\": \"Breakroom Goods\", \"item\": \"bottled water\", \"unit\": \"crates\", \"values\": [\"8\", \"12\", \"18\", \"24\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"booking\", \"topic\": \"trailer inspection slot\", \"counterpart\": \"Henrik Dahl\", \"org\": \"Roadworthy Inspections\", \"item\": \"inspection lane\", \"unit\": \"lane\", \"values\": [\"Lane 1\", \"Lane 4\"], \"place\": \"Roadworthy depot\"},\n    {\"kind\": \"order\", \"topic\": \"empty pallet purchase\", \"counterpart\": \"Ray Boyle\", \"org\": \"Harvest Basket Foods\", \"item\": \"surplus pallets\", \"unit\": \"pallets\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Harvest Basket North Dock\"},\n    {\"kind\": \"booking\", \"topic\": \"backhaul loading bay\", \"counterpart\": \"Ray Boyle\", \"org\": \"Harvest Basket Foods\", \"item\": \"loading bay for pallet backhaul\", \"unit\": \"bay\", \"values\": [\"Bay 2\", \"Bay 5\", \"Bay 7\"], \"place\": \"Harvest Basket North Dock\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6326,
+    "completion_tokens": 3229,
+    "reasoning_tokens": 6,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0591186,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 18 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Harvest Basket dock window change\",\n  \"setting\": \"Logistics dispatcher at Northline Freight, a regional trucking firm with 12 drivers\",\n  \"owner\": \"Mara\",\n  \"org\": \"Northline Freight\",\n  \"now\": \"2026-10-19\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction: any supplier order over 1500 must be signed off by our finance lead Priya Shah before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for the board: a confirmed pickup time agreed with a client may only be changed after that client's own dispatcher agrees to the new time. Ask first, then move it.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-07-02\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Roster check: Northline Freight runs 12 drivers this quarter. Tom Beck is permanent on Truck 7, Dana Ruiz on Truck 4.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Ray Boyle (Harvest Basket Foods)\", \"text\": \"Confirming for your planning: the Harvest Basket Foods North Dock receiving window is 05:00 to 13:00 daily. Your morning run is welcome any time inside that window.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the daily morning run to Harvest Basket Foods North Dock with arrival at 06:30, comfortably inside their 05:00 to 13:00 receiving window.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e6\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Tom Beck and Truck 7 to the Harvest Basket morning run; the drive from our yard takes 80 minutes, so he departs the yard at 05:10 to make the 06:30 arrival.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Agreed with Ray Boyle at Harvest Basket Foods a confirmed backhaul pickup of empty pallets at the North Dock at 06:45 each day, timed to their early receiving window.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 1240 of diesel exhaust fluid from Coldpoint Supplies for the yard; under the 1500 threshold so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-01\", \"type\": \"message\", \"from\": \"Ray Boyle (Harvest Basket Foods)\", \"text\": \"Heads up for your Saturday planner: our South Depot takes deliveries 05:00 to 13:00 on Saturdays only. North Dock weekday hours are unchanged.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e10\", \"date\": \"2026-09-04\", \"type\": \"quote\", \"from\": \"Coldpoint Supplies\", \"text\": \"Quote: pallet wrap at 68 per case, ten-case minimum, delivered to the Northline yard.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-09\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Pay the Coldpoint Supplies invoice 1240 by Friday 18 September.\", \"role\": \"obligation\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Dana Ruiz (Northline Freight)\", \"text\": \"Truck 4 passed its inspection today; back on the rotation from tomorrow.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Weekly ops meeting: fuel costs steady, no changes to driver assignments. Tom Beck confirmed he is happy to stay on the Harvest Basket run.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-30\", \"type\": \"invoice\", \"from\": \"Harvest Basket Foods\", \"text\": \"Invoice for September backhaul pallet handling at the North Dock: 320.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Priya Shah (Northline Freight)\", \"text\": \"Reminder that anything over 1500 still needs my sign-off before ordering; plenty of small restocks this month are fine as they are.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Ray Boyle (Harvest Basket Foods)\", \"text\": \"From today, Monday 12 October, our North Dock receiving window moves to 07:00 to 15:00 daily. Dock staffing starts later now, so please plan arrivals no earlier than 07:00. Sorry for the short notice.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n    {\"id\": \"e17\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Tom Beck (Northline Freight)\", \"text\": \"Truck 7 fuel card receipt uploaded. Same route tomorrow as usual?\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-16\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Friday roundup: two new driver applications to review next week; nothing else pending on the board.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Sam Oduya (Cleancab Services)\", \"text\": \"Your regular wash bay slots for Truck 7 and Truck 4 are confirmed for next weekend as usual.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-18\", \"type\": \"call\", \"from\": \"Ines Kroll (Boxright Packaging)\", \"text\": \"Quick call to say the packing tape order left our warehouse this morning and should reach the Northline yard Tuesday.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Daily morning run to Harvest Basket North Dock\", \"fields\": {\"date\": \"2026-10-20\", \"client\": \"Harvest Basket Foods\", \"place\": \"Harvest Basket North Dock\", \"arrival\": \"06:30\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Driver assignment Harvest Basket morning run\", \"fields\": {\"date\": \"2026-10-20\", \"driver\": \"Tom Beck\", \"truck\": \"Truck 7\", \"departure\": \"05:10\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Backhaul pallet pickup Harvest Basket North Dock\", \"fields\": {\"date\": \"2026-10-20\", \"client\": \"Harvest Basket Foods\", \"time\": \"06:45\", \"contact\": \"Ray Boyle\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Diesel exhaust fluid restock\", \"fields\": {\"supplier\": \"Coldpoint Supplies\", \"item\": \"diesel exhaust fluid\", \"amount\": \"1240\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harvest Basket Foods dispatcher contact\", \"fields\": {\"name\": \"Ray Boyle\", \"organisation\": \"Harvest Basket Foods\", \"role\": \"dispatcher\", \"phone\": \"555-0182\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"time\"], \"from\": \"Ray Boyle\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Get tomorrow's Harvest Basket morning run squared away: make sure the schedule and Tom Beck's departure line up with when we can actually get into the North Dock, and send Tom his call sheet for tomorrow.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"arrival\", \"value\": \"07:30\", \"stale\": [\"06:30\"], \"task\": true},\n    {\"record\": \"EV-2\", \"field\": \"departure\", \"value\": \"06:10\", \"stale\": [\"05:10\"], \"task\": true},\n    {\"message_to\": \"Tom Beck\", \"regarding\": \"EV-1\", \"says\": [\"07:30\", \"06:10\"], \"stale\": [\"06:30\", \"05:10\"], \"task\": true}\n  ],\n  \"why\": \"Ray Boyle's 12 October email moved the North Dock receiving window to 07:00–15:00, revoking the old 05:00–13:00 window. The morning run EV-1 (arrival 06:30) and the downstream driver assignment EV-2 (05:10 departure, two hops via EV-1) must both shift later, and Mara's task lands exactly on these records. The backhaul pickup EV-3 also rests on the old window, but its time is a confirmed client commitment that needs Ray Boyle's consent, so it is ASK: the assistant should request consent, not edit it. The Saturday South Depot hours (05:00–13:00) are a distractor and must not be used.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"pallet wrap restock\", \"counterpart\": \"Lena Voss\", \"org\": \"Coldpoint Supplies\", \"item\": \"pallet wrap\", \"unit\": \"cases\", \"values\": [\"10\", \"14\", \"20\", \"26\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"reefer fuel top-up\", \"counterpart\": \"Gus Marin\", \"org\": \"Coldpoint Supplies\", \"item\": \"reefer diesel\", \"unit\": \"litres\", \"values\": [\"400\", \"650\", \"900\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"packing tape\", \"counterpart\": \"Ines Kroll\", \"org\": \"Boxright Packaging\", \"item\": \"packing tape\", \"unit\": \"rolls\", \"values\": [\"48\", \"72\", \"96\", \"120\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"load straps\", \"counterpart\": \"Peter Anholt\", \"org\": \"Strapline Gear\", \"item\": \"ratchet straps\", \"unit\": \"sets\", \"values\": [\"6\", \"10\", \"16\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"work gloves\", \"counterpart\": \"Peter Anholt\", \"org\": \"Strapline Gear\", \"item\": \"work gloves\", \"unit\": \"pairs\", \"values\": [\"24\", \"36\", \"60\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"booking\", \"topic\": \"weekly dispatch meeting\", \"counterpart\": \"Priya Shah\", \"org\": \"Northline Freight\", \"item\": \"meeting room for dispatch sync\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"Yard office\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"booking\", \"topic\": \"truck wash bay\", \"counterpart\": \"Sam Oduya\", \"org\": \"Cleancab Services\", \"item\": \"wash bay slot\", \"unit\": \"bay\", \"values\": [\"Bay 1\", \"Bay 2\", \"Bay 3\"], \"place\": \"Cleancab depot\"},\n    {\"kind\": \"booking\", \"topic\": \"driver safety training\", \"counterpart\": \"Dana Ruiz\", \"org\": \"Northline Freight\", \"item\": \"training room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room C\", \"Annex\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"order\", \"topic\": \"office coffee and water\", \"counterpart\": \"Marta Ilves\", \"org\": \"Breakroom Goods\", \"item\": \"bottled water\", \"unit\": \"crates\", \"values\": [\"8\", \"12\", \"18\", \"24\"], \"place\": \"Northline yard\"},\n    {\"kind\": \"booking\", \"topic\": \"trailer inspection slot\", \"counterpart\": \"Henrik Dahl\", \"org\": \"Roadworthy Inspections\", \"item\": \"inspection lane\", \"unit\": \"lane\", \"values\": [\"Lane 1\", \"Lane 4\", \"Lane 6\"], \"place\": \"Roadworthy depot\"},\n    {\"kind\": \"order\", \"topic\": \"empty pallet purchase\", \"counterpart\": \"Ray Boyle\", \"org\": \"Harvest Basket Foods\", \"item\": \"surplus pallets\", \"unit\": \"pallets\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Harvest Basket North Dock\"},\n    {\"kind\": \"booking\", \"topic\": \"backhaul loading bay\", \"counterpart\": \"Ray Boyle\", \"org\": \"Harvest Basket Foods\", \"item\": \"loading bay for pallet backhaul\", \"unit\": \"bay\", \"values\": [\"Bay 2\", \"Bay 5\", \"Bay 7\"], \"place\": \"Harvest Basket North Dock\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 9609,
+    "completion_tokens": 3228,
+    "reasoning_tokens": 0,
+    "cached_tokens": 6144
+   },
+   "cost": 0.0606582,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'trailer inspection slot': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Harvest Basket dock window change",
+  "setting": "Logistics dispatcher at Northline Freight, a regional trucking firm with 12 drivers",
+  "owner": "Mara",
+  "org": "Northline Freight",
+  "now": "2026-10-19",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-08",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing instruction: any supplier order over 1500 must be signed off by our finance lead Priya Shah before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-15",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing rule for the board: a confirmed pickup time agreed with a client may only be changed after that client's own dispatcher agrees to the new time. Ask first, then move it.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-07-02",
+    "type": "note",
+    "from": "Mara",
+    "text": "Roster check: Northline Freight runs 12 drivers this quarter. Tom Beck is permanent on Truck 7, Dana Ruiz on Truck 4.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Ray Boyle (Harvest Basket Foods)",
+    "text": "Confirming for your planning: the Harvest Basket Foods North Dock receiving window is 05:00 to 13:00 daily. Your morning run is welcome any time inside that window.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the daily morning run to Harvest Basket Foods North Dock with arrival at 06:30, comfortably inside their 05:00 to 13:00 receiving window.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e6",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Assigned Tom Beck and Truck 7 to the Harvest Basket morning run; the drive from our yard takes 80 minutes, so he departs the yard at 05:10 to make the 06:30 arrival.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Agreed with Ray Boyle at Harvest Basket Foods a confirmed backhaul pickup of empty pallets at the North Dock at 06:45 each day, timed to their early receiving window.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 1240 of diesel exhaust fluid from Coldpoint Supplies for the yard; under the 1500 threshold so no finance sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-01",
+    "type": "message",
+    "from": "Ray Boyle (Harvest Basket Foods)",
+    "text": "Heads up for your Saturday planner: our South Depot takes deliveries 05:00 to 13:00 on Saturdays only. North Dock weekday hours are unchanged.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-04",
+    "type": "quote",
+    "from": "Coldpoint Supplies",
+    "text": "Quote: pallet wrap at 68 per case, ten-case minimum, delivered to the Northline yard.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-09",
+    "type": "task",
+    "from": "Mara",
+    "text": "Pay the Coldpoint Supplies invoice 1240 by Friday 18 September.",
+    "role": "obligation"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Dana Ruiz (Northline Freight)",
+    "text": "Truck 4 passed its inspection today; back on the rotation from tomorrow.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-22",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Weekly ops meeting: fuel costs steady, no changes to driver assignments. Tom Beck confirmed he is happy to stay on the Harvest Basket run.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-30",
+    "type": "invoice",
+    "from": "Harvest Basket Foods",
+    "text": "Invoice for September backhaul pallet handling at the North Dock: 320.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-06",
+    "type": "message",
+    "from": "Priya Shah (Northline Freight)",
+    "text": "Reminder that anything over 1500 still needs my sign-off before ordering; plenty of small restocks this month are fine as they are.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Ray Boyle (Harvest Basket Foods)",
+    "text": "From today, Monday 12 October, our North Dock receiving window moves to 07:00 to 15:00 daily. Dock staffing starts later now, so please plan arrivals no earlier than 07:00. Sorry for the short notice.",
+    "role": "change",
+    "revokes": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-14",
+    "type": "message",
+    "from": "Tom Beck (Northline Freight)",
+    "text": "Truck 7 fuel card receipt uploaded. Same route tomorrow as usual?",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-16",
+    "type": "note",
+    "from": "Mara",
+    "text": "Friday roundup: two new driver applications to review next week; nothing else pending on the board.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-17",
+    "type": "email",
+    "from": "Sam Oduya (Cleancab Services)",
+    "text": "Your regular wash bay slots for Truck 7 and Truck 4 are confirmed for next weekend as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-18",
+    "type": "call",
+    "from": "Ines Kroll (Boxright Packaging)",
+    "text": "Quick call to say the packing tape order left our warehouse this morning and should reach the Northline yard Tuesday.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Daily morning run to Harvest Basket North Dock",
+    "fields": {
+     "date": "2026-10-20",
+     "client": "Harvest Basket Foods",
+     "place": "Harvest Basket North Dock",
+     "arrival": "06:30",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Driver assignment Harvest Basket morning run",
+    "fields": {
+     "date": "2026-10-20",
+     "driver": "Tom Beck",
+     "truck": "Truck 7",
+     "departure": "05:10",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Backhaul pallet pickup Harvest Basket North Dock",
+    "fields": {
+     "date": "2026-10-20",
+     "client": "Harvest Basket Foods",
+     "time": "06:45",
+     "contact": "Ray Boyle",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Diesel exhaust fluid restock",
+    "fields": {
+     "supplier": "Coldpoint Supplies",
+     "item": "diesel exhaust fluid",
+     "amount": "1240",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Harvest Basket Foods dispatcher contact",
+    "fields": {
+     "name": "Ray Boyle",
+     "organisation": "Harvest Basket Foods",
+     "role": "dispatcher",
+     "phone": "555-0182"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "time"
+    ],
+    "from": "Ray Boyle",
+    "rule": "e2"
+   }
+  ],
+  "task": "Get tomorrow's Harvest Basket morning run squared away: make sure the schedule and Tom Beck's departure line up with when we can actually get into the North Dock, and send Tom his call sheet for tomorrow.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "arrival",
+    "value": "07:30",
+    "stale": [
+     "06:30"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-2",
+    "field": "departure",
+    "value": "06:10",
+    "stale": [
+     "05:10"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Tom Beck",
+    "regarding": "EV-1",
+    "says": [
+     "07:30",
+     "06:10"
+    ],
+    "stale": [
+     "06:30",
+     "05:10"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Ray Boyle's 12 October email moved the North Dock receiving window to 07:00–15:00, revoking the old 05:00–13:00 window. The morning run EV-1 (arrival 06:30) and the downstream driver assignment EV-2 (05:10 departure, two hops via EV-1) must both shift later, and Mara's task lands exactly on these records. The backhaul pickup EV-3 also rests on the old window, but its time is a confirmed client commitment that needs Ray Boyle's consent, so it is ASK: the assistant should request consent, not edit it. The Saturday South Depot hours (05:00–13:00) are a distractor and must not be used.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "pallet wrap restock",
+    "counterpart": "Lena Voss",
+    "org": "Coldpoint Supplies",
+    "item": "pallet wrap",
+    "unit": "cases",
+    "values": [
+     "10",
+     "14",
+     "20",
+     "26"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "order",
+    "topic": "reefer fuel top-up",
+    "counterpart": "Gus Marin",
+    "org": "Coldpoint Supplies",
+    "item": "reefer diesel",
+    "unit": "litres",
+    "values": [
+     "400",
+     "650",
+     "900"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "order",
+    "topic": "packing tape",
+    "counterpart": "Ines Kroll",
+    "org": "Boxright Packaging",
+    "item": "packing tape",
+    "unit": "rolls",
+    "values": [
+     "48",
+     "72",
+     "96",
+     "120"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "order",
+    "topic": "load straps",
+    "counterpart": "Peter Anholt",
+    "org": "Strapline Gear",
+    "item": "ratchet straps",
+    "unit": "sets",
+    "values": [
+     "6",
+     "10",
+     "16"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "order",
+    "topic": "work gloves",
+    "counterpart": "Peter Anholt",
+    "org": "Strapline Gear",
+    "item": "work gloves",
+    "unit": "pairs",
+    "values": [
+     "24",
+     "36",
+     "60"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekly dispatch meeting",
+    "counterpart": "Priya Shah",
+    "org": "Northline Freight",
+    "item": "meeting room for dispatch sync",
+    "unit": "room",
+    "values": [
+     "Room A",
+     "Room B",
+     "Yard office"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "truck wash bay",
+    "counterpart": "Sam Oduya",
+    "org": "Cleancab Services",
+    "item": "wash bay slot",
+    "unit": "bay",
+    "values": [
+     "Bay 1",
+     "Bay 2",
+     "Bay 3"
+    ],
+    "place": "Cleancab depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "driver safety training",
+    "counterpart": "Dana Ruiz",
+    "org": "Northline Freight",
+    "item": "training room",
+    "unit": "room",
+    "values": [
+     "Room A",
+     "Room C",
+     "Annex"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "order",
+    "topic": "office coffee and water",
+    "counterpart": "Marta Ilves",
+    "org": "Breakroom Goods",
+    "item": "bottled water",
+    "unit": "crates",
+    "values": [
+     "8",
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "trailer inspection slot",
+    "counterpart": "Henrik Dahl",
+    "org": "Roadworthy Inspections",
+    "item": "inspection lane",
+    "unit": "lane",
+    "values": [
+     "Lane 1",
+     "Lane 4",
+     "Lane 6"
+    ],
+    "place": "Roadworthy depot"
+   },
+   {
+    "kind": "order",
+    "topic": "empty pallet purchase",
+    "counterpart": "Ray Boyle",
+    "org": "Harvest Basket Foods",
+    "item": "surplus pallets",
+    "unit": "pallets",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "Harvest Basket North Dock"
+   },
+   {
+    "kind": "booking",
+    "topic": "backhaul loading bay",
+    "counterpart": "Ray Boyle",
+    "org": "Harvest Basket Foods",
+    "item": "loading bay for pallet backhaul",
+    "unit": "bay",
+    "values": [
+     "Bay 2",
+     "Bay 5",
+     "Bay 7"
+    ],
+    "place": "Harvest Basket North Dock"
+   }
+  ],
+  "id": "K100-1-03",
+  "tier": 100,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The new receiving window permits arrivals from 07:00 to 15:00 but does not fix a 07:30 arrival, so neither that value nor the corresponding 06:10 departure is unambiguous. For example, a 07:00 arrival and 05:40 departure also satisfy the window and the 80-minute drive.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The new receiving window permits arrivals from 07:00 to 15:00 but does not fix a 07:30 arrival, so neither that value nor the corresponding 06:10 departure is unambiguous. For example, a 07:00 arrival and 05:40 departure also satisfy the window and the 80-minute drive."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3161,
+    "completion_tokens": 164,
+    "reasoning_tokens": 57,
+    "cached_tokens": 0
+   },
+   "cost": 0.047705,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "29de6ba07c8c567ba8eeee83f337909236b10056be50f0380d11e3f6843f2305",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e16) cleanly revokes e4; EV-1 and EV-2 are correctly REVISE with unambiguous new values (07:30 arrival, 06:10 departure given the stated 80-minute drive), EV-3 is correctly ASK under rule e2 with a matching consent map, and the South Depot Saturday hours are a proper distractor. The task requires concrete acts (reschedule records, send Tom's call sheet) without naming the change. Core has 20 events, 4 decisions, change 7 days before the task day with 7 events after, and sits mid-history at event 93.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e16) cleanly revokes e4; EV-1 and EV-2 are correctly REVISE with unambiguous new values (07:30 arrival, 06:10 departure given the stated 80-minute drive), EV-3 is correctly ASK under rule e2 with a matching consent map, and the South Depot Saturday hours are a proper distractor. The task requires concrete acts (reschedule records, send Tom's call sheet) without naming the change. Core has 20 events, 4 decisions, change 7 days before the task day with 7 events after, and sits mid-history at event 93."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3207,
+    "completion_tokens": 390,
+    "reasoning_tokens": 216,
+    "cached_tokens": 384
+   },
+   "cost": 0.00576804,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "29de6ba07c8c567ba8eeee83f337909236b10056be50f0380d11e3f6843f2305",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The revoked fact (e4's 05:00-13:00 window) correctly touches e5 directly and e6 two hops away, with e7 as ASK under the e2 consent rule, and the 06:10 departure follows from 07:30 minus the 80-minute drive. One ambiguity: EV-1's arrival time could be read as a client-agreed time under e2, which would make it ASK rather than REVISE, though the consent map and Ray's wording suggest it is not. The core meets the tier counts (20 events, 4 decisions) and the change falls 7 days before the task day, with four core events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The revoked fact (e4's 05:00-13:00 window) correctly touches e5 directly and e6 two hops away, with e7 as ASK under the e2 consent rule, and the 06:10 departure follows from 07:30 minus the 80-minute drive. One ambiguity: EV-1's arrival time could be read as a client-agreed time under e2, which would make it ASK rather than REVISE, though the consent map and Ray's wording suggest it is not. The core meets the tier counts (20 events, 4 decisions) and the change falls 7 days before the task day, with four core events after it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4633,
+    "completion_tokens": 1527,
+    "reasoning_tokens": 1275,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012268,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "29de6ba07c8c567ba8eeee83f337909236b10056be50f0380d11e3f6843f2305",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

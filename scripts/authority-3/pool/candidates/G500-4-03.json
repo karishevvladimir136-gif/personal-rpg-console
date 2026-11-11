@@ -578,5 +578,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The scanner repair affects no recorded decision; the task requires a new NovaVet order at £9.40 per dose and confirmation of the existing hall booking, leaving existing records unchanged. The £1,128 order is below the approval threshold. The core has 28 events and seven decisions, with the change 17 days before the task and nine core events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The scanner repair affects no recorded decision; the task requires a new NovaVet order at £9.40 per dose and confirmation of the existing hall booking, leaving existing records unchanged. The £1,128 order is below the approval threshold. The core has 28 events and seven decisions, with the change 17 days before the task and nine core events after it."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3858,
+    "completion_tokens": 245,
+    "reasoning_tokens": 134,
+    "cached_tokens": 0
+   },
+   "cost": 0.0604675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0a6eb65ed64e53ea4f14b10297a74f458072641dca122858628cd8c94393162c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e19) revokes only the scanner fact in e8, and no decision (e9, e11, e15, e16, e18, e21, e24) rests on e8, so the control class and the no-edit expected state are consistent. The 120-dose order (1128 pounds) is under the 1500-pound sign-off threshold, and the hall confirmation is allowed under the rules, so the task requires action without naming the change. The core has 28 events and 7 decisions, the change is 17 days before the task day with three core events after it, and it appears as an ordinary email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e19) revokes only the scanner fact in e8, and no decision (e9, e11, e15, e16, e18, e21, e24) rests on e8, so the control class and the no-edit expected state are consistent. The 120-dose order (1128 pounds) is under the 1500-pound sign-off threshold, and the hall confirmation is allowed under the rules, so the task requires action without naming the change. The core has 28 events and 7 decisions, the change is 17 days before the task day with three core events after it, and it appears as an ordinary email."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5531,
+    "completion_tokens": 1341,
+    "reasoning_tokens": 1106,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012236,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0a6eb65ed64e53ea4f14b10297a74f458072641dca122858628cd8c94393162c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (scanner repaired) revokes a fact no decision rests on, so all records correctly stay untouched; the task's order uses the agreed NovaVet 9.40 price (120 x 9.40 = 1128, under the sign-off threshold) and the Vetrico offer is a proper distractor. Core counts (28 events, 7 decisions), the 17-day gap with many later events, and the change's mid-history placement all meet tier 500.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (scanner repaired) revokes a fact no decision rests on, so all records correctly stay untouched; the task's order uses the agreed NovaVet 9.40 price (120 x 9.40 = 1128, under the sign-off threshold) and the Vetrico offer is a proper distractor. Core counts (28 events, 7 decisions), the 17-day gap with many later events, and the change's mid-history placement all meet tier 500."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3957,
+    "completion_tokens": 410,
+    "reasoning_tokens": 255,
+    "cached_tokens": 256
+   },
+   "cost": 0.0173298,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0a6eb65ed64e53ea4f14b10297a74f458072641dca122858628cd8c94393162c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

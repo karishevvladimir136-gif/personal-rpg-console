@@ -701,5 +701,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The October 1 price list preserves old prices only for orders confirmed before then; confirmation on October 5 therefore requires totals of 540 and 403.20, not 520 and 378. Removing a sign-off delay does not require moving Hollis's confirmed collection slot or requesting consent, particularly after his September 29 reconfirmation. Routine events also describe delivery of 18 Lubek balance staffs being rescheduled, creating ambiguity with the supposedly still-unconfirmed order.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The October 1 price list preserves old prices only for orders confirmed before then; confirmation on October 5 therefore requires totals of 540 and 403.20, not 520 and 378. Removing a sign-off delay does not require moving Hollis's confirmed collection slot or requesting consent, particularly after his September 29 reconfirmation. Routine events also describe delivery of 18 Lubek balance staffs being rescheduled, creating ambiguity with the supposedly still-unconfirmed order."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4309,
+    "completion_tokens": 261,
+    "reasoning_tokens": 129,
+    "cached_tokens": 0
+   },
+   "cost": 0.066905,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b2ee1c54e0d4e3480335b84965762d33a53213db8bc9cfb536c0a5f9858bb591",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e28 amends the sign-off rule e1, so e20 and e25 are voided (REVISE) and e6 stands (KEEP), which fits class 2. The EV-3 ASK is not motivated: once the Lubek orders need no sign-off, nothing requires moving Hollis's confirmed slot, so the expected consent request and the 'touched' mark on e26 are unsupported. The core meets the tier counts, the change falls 17 days before the task day with four later core events, and the echo e27 is present.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e28 amends the sign-off rule e1, so e20 and e25 are voided (REVISE) and e6 stands (KEEP), which fits class 2. The EV-3 ASK is not motivated: once the Lubek orders need no sign-off, nothing requires moving Hollis's confirmed slot, so the expected consent request and the 'touched' mark on e26 are unsupported. The core meets the tier counts, the change falls 17 days before the task day with four later core events, and the echo e27 is present."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6173,
+    "completion_tokens": 2441,
+    "reasoning_tokens": 2217,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018378,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b2ee1c54e0d4e3480335b84965762d33a53213db8bc9cfb536c0a5f9858bb591",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The order confirmations, KEEPs, and consent map are all sound, but the ASK on EV-3 is underdetermined: the change fixes no new value for Hollis's slot and nothing in the history proposes moving it, so the expected consent request has no defined content or target value and EV-3 could just as well be KEEP. Everything else (counts, change distance, echo e27, hidden change at event 424 with 76 later events) meets spec.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The order confirmations, KEEPs, and consent map are all sound, but the ASK on EV-3 is underdetermined: the change fixes no new value for Hollis's slot and nothing in the history proposes moving it, so the expected consent request has no defined content or target value and EV-3 could just as well be KEEP. Everything else (counts, change distance, echo e27, hidden change at event 424 with 76 later events) meets spec."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4402,
+    "completion_tokens": 645,
+    "reasoning_tokens": 493,
+    "cached_tokens": 256
+   },
+   "cost": 0.0221898,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b2ee1c54e0d4e3480335b84965762d33a53213db8bc9cfb536c0a5f9858bb591",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

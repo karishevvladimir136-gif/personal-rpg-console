@@ -669,5 +669,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The conference move propagates to the prep session and then to Lena’s booking, which requires her consent; the certified-copy requirement remains unchanged. The task requires workplace action without revealing the change. The core has 32 events and 6 decisions, stale-value echoes, and a change 17 days before the task with six later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The conference move propagates to the prep session and then to Lena’s booking, which requires her consent; the certified-copy requirement remains unchanged. The task requires workplace action without revealing the change. The core has 32 events and 6 decisions, stale-value echoes, and a change 17 days before the task with six later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4204,
+    "completion_tokens": 305,
+    "reasoning_tokens": 200,
+    "cached_tokens": 0
+   },
+   "cost": 0.0677925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e7eff45eab3bc8d47052d1ec93c15c3bcbc83a58b5ee0d1a368a54255c887313",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain holds: e9 is revoked, e14 (REVISE) rests on it, e17 (ASK) rests on e14, and e13 (KEEP) cites e9 only for the judge and bundle requirement, which the correction leaves standing. The core meets the 500-tier counts (32 events, 6 decisions), the change is 17 days before the task day with six core events after it, and echo e12 restates the stale date. The change is an ordinary notice with later events after it, though 'Please adjust your arrangements' is a slight hint.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain holds: e9 is revoked, e14 (REVISE) rests on it, e17 (ASK) rests on e14, and e13 (KEEP) cites e9 only for the judge and bundle requirement, which the correction leaves standing. The core meets the 500-tier counts (32 events, 6 decisions), the change is 17 days before the task day with six core events after it, and echo e12 restates the stale date. The change is an ordinary notice with later events after it, though 'Please adjust your arrangements' is a slight hint."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6132,
+    "completion_tokens": 1654,
+    "reasoning_tokens": 1423,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014402,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e7eff45eab3bc8d47052d1ec93c15c3bcbc83a58b5ee0d1a368a54255c887313",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is sound: the clerk's notice (A) corrects the conference date, the prep session (B) rests on it and must move to 21 Oct with written confirmation to Ed per e4, and the interpreter booking (C) rests on B two hops out but requires Lena's written agreement under rule e3, matching the consent map and ASK mark; ORD-2 (D) cites only the judge/bundle requirement, which stands, so KEEP is right. Tier 500 met: 32 core events, 6 decisions, change 17 days before the task day with many core events after, and echoes e12/e16 restating the stale dates. The change is an ordinary mid-history email with later events after it and the task never hints at it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is sound: the clerk's notice (A) corrects the conference date, the prep session (B) rests on it and must move to 21 Oct with written confirmation to Ed per e4, and the interpreter booking (C) rests on B two hops out but requires Lena's written agreement under rule e3, matching the consent map and ASK mark; ORD-2 (D) cites only the judge/bundle requirement, which stands, so KEEP is right. Tier 500 met: 32 core events, 6 decisions, change 17 days before the task day with many core events after, and echoes e12/e16 restating the stale dates. The change is an ordinary mid-history email with later events after it and the task never hints at it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4323,
+    "completion_tokens": 413,
+    "reasoning_tokens": 197,
+    "cached_tokens": 256
+   },
+   "cost": 0.0184728,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e7eff45eab3bc8d47052d1ec93c15c3bcbc83a58b5ee0d1a368a54255c887313",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

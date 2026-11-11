@@ -1,0 +1,630 @@
+{
+ "id": "K500-1-03",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 1,
+ "idx": 2,
+ "setting": "Campground manager at Pinewoods Family Campground, a 90-site seasonal park",
+ "prompt_sha256": "d4120bfed980e93a6f49ddca0d3b71a30fbab9fbb5464a8e64c44b8abe62ea65",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Canoe rate rise at Pinewoods\",\n \"setting\": \"Campground manager at Pinewoods Family Campground, a 90-site seasonal park\",\n \"owner\": \"Marta\",\n \"org\": \"Pinewoods Family Campground\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule at Pinewoods: once a client's booking or package is confirmed, any change to its price or included items needs that client's explicit agreement before we alter it.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: any supplier order over 400 dollars must be signed off by me personally before it is placed or paid.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Pruitt (Lakeside Canoe Co)\", \"text\": \"Confirming our 2026 season rate for Pinewoods: canoe hire is 15 dollars per canoe per day, delivery to your boat launch included.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Tom Halsey (Riverbend Nature Club)\", \"text\": \"Our club will bring 22 children to Pinewoods for the weekend of Friday 6 November to Sunday 8 November 2026; we have reserved sites 40 to 47 and would like canoes for the Friday and Saturday.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Dana Pruitt (Lakeside Canoe Co)\", \"text\": \"We have 12 canoes free for the first weekend of November; just let me know numbers and days. Best contact for bookings is me, Dana Pruitt, at the usual address.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Harlan Beck (Hartwell Timber)\", \"text\": \"Firewood bundles for your camp store are 4.20 dollars per bundle this season, delivered Fridays to the store shed.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked 6 canoes from Lakeside Canoe Co for the Riverbend Nature Club weekend, Friday 6 November and Saturday 7 November 2026, at their season rate of 15 dollars per canoe per day.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-20\", \"type\": \"message\", \"from\": \"Sam Ellery (Pinewoods staff)\", \"text\": \"For the teen program on Sunday 8 November 2026 I need 4 canoes at the boat launch from 09:00, please.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 4 more canoes from Lakeside Canoe Co for the teen program on Sunday 8 November 2026, at the same 15 dollars per canoe per day we are paying for the Nature Club weekend booking.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e7\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Gwen Miller\", \"text\": \"The Miller family reunion is set for Saturday 14 November 2026 at Pinewoods, about 40 guests; we would love canoe time on the lake included in our package.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Miller family reunion package for Saturday 14 November 2026: 40 guests, 5 canoes included at 15 dollars per canoe per day. Any later change to that package price will need Gwen Miller's agreement under our confirmed-booking rule.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e3\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-03\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Pine Hollow Pavilion rents at 110 dollars per day and is free on Saturday 14 November 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Pine Hollow Pavilion for the Miller family reunion on Saturday 14 November 2026 at 110 dollars for the day.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e12\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 120 firewood bundles from Hartwell Timber for the camp store at 4.20 dollars a bundle, total 504 dollars; I signed off on it myself since it is over the 400 dollar threshold.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-15\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To do: pay Hartwell Timber the 200 dollar deposit for the firewood order by 2026-08-01.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Wren Kowalski (Pinewoods camp store)\", \"text\": \"Store hours for the rest of the season are 08:00 to 19:00 daily; ice and bundles are selling well on weekends.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-01\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Paid the 200 dollar firewood deposit to Hartwell Timber today.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the staff canoe safety refresher with Sam Ellery for Saturday 22 August 2026 at the boat launch, 10:00.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-15\", \"type\": \"email\", \"from\": \"Dana Pruitt (Lakeside Canoe Co)\", \"text\": \"Small update from our side: from October our tandem kayaks will be 18 dollars per day. Paddleboards and single kayaks stay as they are.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Dana Pruitt (Lakeside Canoe Co)\", \"text\": \"Confirming your November canoe bookings: 6 canoes for 6 and 7 November and 4 canoes for 8 November, all at 15 dollars per canoe per day, delivery to the boat launch included.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Pete Aldana (Clearflow Septic Services)\", \"text\": \"We will service the dump station near site 60 on 2026-09-24 between 07:00 and 09:00.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"notice\", \"from\": \"Marta\", \"text\": \"Swim ropes and the floating dock come out of the lake on 2026-10-01; beach area closes for the season then.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-25\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Staff meeting: winterising starts 2026-10-19; Wren counts store stock weekly; Sam runs the teen program through mid-November.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Marta\", \"text\": \"Water to sites 1 to 30 shuts off on 2026-10-15 for the season; tell arriving guests to use the central taps.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Dana Pruitt (Lakeside Canoe Co)\", \"text\": \"Fuel and transport costs have caught up with us, so our canoe hire rate is now 18 dollars per canoe per day, effective immediately and applying to all upcoming bookings including yours in November.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e26\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Tom Halsey (Riverbend Nature Club)\", \"text\": \"Final headcount for our November weekend is 24 children; the canoe plan for Friday and Saturday still works for us.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-09\", \"type\": \"call\", \"from\": \"Marta\", \"text\": \"Call notes: spoke with the electrician about the pedestal at site 12; repair visit expected 2026-10-16.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Gwen Miller\", \"text\": \"Quick question about our reunion on 14 November: can we bring our own caterer into the Pine Hollow Pavilion? The rest of the package suits us fine.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-14\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To do: renew the county lake use permit before 2026-10-30.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Wren Kowalski (Pinewoods camp store)\", \"text\": \"Store stock count done; we are low on marshmallows and lantern mantles for the last weekends.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Nature Club canoe booking\", \"fields\": {\"supplier\": \"Lakeside Canoe Co\", \"start\": \"2026-11-06\", \"end\": \"2026-11-07\", \"canoes\": \"6\", \"unit_cost\": \"15\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Extra canoes for teen Sunday\", \"fields\": {\"supplier\": \"Lakeside Canoe Co\", \"date\": \"2026-11-08\", \"canoes\": \"4\", \"unit_cost\": \"15\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Miller family reunion package\", \"fields\": {\"contact\": \"Gwen Miller\", \"date\": \"2026-11-14\", \"guests\": \"40\", \"canoes\": \"5\", \"canoe_rate\": \"15\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Pavilion booking Miller reunion\", \"fields\": {\"place\": \"Pine Hollow Pavilion\", \"date\": \"2026-11-14\", \"rate\": \"110\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Camp store firewood restock\", \"fields\": {\"supplier\": \"Hartwell Timber\", \"item\": \"firewood bundles\", \"quantity\": \"120\", \"unit_cost\": \"4.20\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Staff canoe safety refresher\", \"fields\": {\"lead\": \"Sam Ellery\", \"date\": \"2026-08-22\", \"time\": \"10:00\", \"place\": \"boat launch\", \"status\": \"scheduled\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Riverbend Nature Club weekend\", \"fields\": {\"contact\": \"Tom Halsey\", \"start\": \"2026-11-06\", \"end\": \"2026-11-08\", \"guests\": \"24\", \"sites\": \"40-47\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"canoe_rate\"], \"from\": \"Gwen Miller\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please send Dana Pruitt at Lakeside Canoe Co a confirmation of both of our November canoe bookings with the total we will owe, and make sure our records show what we are paying per canoe per day.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"unit_cost\", \"value\": \"18\", \"stale\": [\"15\"]},\n  {\"record\": \"ORD-2\", \"field\": \"unit_cost\", \"value\": \"18\", \"stale\": [\"15\"]},\n  {\"message_to\": \"Dana Pruitt (Lakeside Canoe Co)\", \"regarding\": \"EV-1\", \"says\": [\"18\", \"288\"], \"stale\": [\"15\", \"240\"], \"task\": true}\n ],\n \"why\": \"Lakeside's October email replaced the 15 dollar canoe rate with 18 dollars for all upcoming bookings, so both supplier-facing bookings (EV-1 directly on the rate, ORD-2 two hops away via EV-1) must be revised to 18 and the confirmation message must total 288 dollars (216 + 72), not 240. The Miller reunion package (CL-1) also rests on the old rate, but its price is part of a confirmed client package, so under the booking rule it may only change with Gwen Miller's consent: the right act is to ask, leaving the record untouched. The kayak rate email is a distractor and nothing else changes.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"firewood restock\", \"counterpart\": \"Harlan Beck\", \"org\": \"Hartwell Timber\", \"item\": \"firewood bundles\", \"unit\": \"bundles\", \"values\": [\"80\", \"100\", \"120\", \"150\"], \"place\": \"camp store shed\"},\n  {\"kind\": \"order\", \"topic\": \"propane cylinders\", \"counterpart\": \"Lila Wexler\", \"org\": \"Wexler Propane\", \"item\": \"propane cylinder\", \"unit\": \"cylinders\", \"values\": [\"10\", \"14\", \"20\", \"24\"], \"place\": \"maintenance yard\"},\n  {\"kind\": \"booking\", \"topic\": \"pavilion weekend hire\", \"counterpart\": \"Gwen Miller\", \"org\": \"Miller family\", \"item\": \"Pine Hollow Pavilion day hire\", \"unit\": \"day\", \"values\": [\"Pine Hollow Pavilion\", \"Lakeside Shelter\", \"Meadow Tent Pad\"], \"place\": \"Pine Hollow Pavilion\"},\n  {\"kind\": \"order\", \"topic\": \"camp store snacks\", \"counterpart\": \"Ravi Chen\", \"org\": \"Blueridge Wholesale Foods\", \"item\": \"mixed snack cases\", \"unit\": \"cases\", \"values\": [\"12\", \"18\", \"25\", \"30\"], \"place\": \"camp store\"},\n  {\"kind\": \"order\", \"topic\": \"ice delivery\", \"counterpart\": \"Ravi Chen\", \"org\": \"Blueridge Wholesale Foods\", \"item\": \"bagged ice\", \"unit\": \"bags\", \"values\": [\"40\", \"60\", \"90\", \"120\"], \"place\": \"camp store freezer\"},\n  {\"kind\": \"booking\", \"topic\": \"kayak hire for guests\", \"counterpart\": \"Dana Pruitt\", \"org\": \"Lakeside Canoe Co\", \"item\": \"single kayak day hire\", \"unit\": \"day\", \"values\": [\"boat launch\", \"north beach\", \"fishing pier\"], \"place\": \"boat launch\"},\n  {\"kind\": \"order\", \"topic\": \"laundry service\", \"counterpart\": \"Petra Voss\", \"org\": \"Pinelaundry Services\", \"item\": \"cabin linen bags\", \"unit\": \"bags\", \"values\": [\"6\", \"9\", \"12\", \"15\"], \"place\": \"laundry room\"},\n  {\"kind\": \"order\", \"topic\": \"pool chemicals\", \"counterpart\": \"Owen Marsh\", \"org\": \"Clearwater Supply\", \"item\": \"chlorine pails\", \"unit\": \"pails\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"pump house\"},\n  {\"kind\": \"booking\", \"topic\": \"craft room sessions\", \"counterpart\": \"Sam Ellery\", \"org\": \"Pinewoods staff\", \"item\": \"craft room afternoon session\", \"unit\": \"session\", \"values\": [\"craft room\", \"Pine Hollow Pavilion\", \"camp store porch\"], \"place\": \"craft room\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and cocoa\", \"counterpart\": \"Nadia Flores\", \"org\": \"Roast & Co Distributors\", \"item\": \"coffee tins\", \"unit\": \"tins\", \"values\": [\"8\", \"12\", \"16\", \"20\"], \"place\": \"camp store\"},\n  {\"kind\": \"booking\", \"topic\": \"septic service visits\", \"counterpart\": \"Pete Aldana\", \"org\": \"Clearflow Septic Services\", \"item\": \"dump station service visit\", \"unit\": \"visit\", \"values\": [\"dump station site 60\", \"north restroom block\", \"south restroom block\"], \"place\": \"dump station site 60\"},\n  {\"kind\": \"order\", \"topic\": \"marshmallow restock\", \"counterpart\": \"Ravi Chen\", \"org\": \"Blueridge Wholesale Foods\", \"item\": \"marshmallow cases\", \"unit\": \"cases\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"camp store\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3238,
+    "completion_tokens": 9523,
+    "reasoning_tokens": 5183,
+    "cached_tokens": 0
+   },
+   "cost": 0.152559,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Canoe rate rise at Pinewoods",
+  "setting": "Campground manager at Pinewoods Family Campground, a 90-site seasonal park",
+  "owner": "Marta",
+  "org": "Pinewoods Family Campground",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule at Pinewoods: once a client's booking or package is confirmed, any change to its price or included items needs that client's explicit agreement before we alter it.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: any supplier order over 400 dollars must be signed off by me personally before it is placed or paid.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Dana Pruitt (Lakeside Canoe Co)",
+    "text": "Confirming our 2026 season rate for Pinewoods: canoe hire is 15 dollars per canoe per day, delivery to your boat launch included.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Tom Halsey (Riverbend Nature Club)",
+    "text": "Our club will bring 22 children to Pinewoods for the weekend of Friday 6 November to Sunday 8 November 2026; we have reserved sites 40 to 47 and would like canoes for the Friday and Saturday.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Dana Pruitt (Lakeside Canoe Co)",
+    "text": "We have 12 canoes free for the first weekend of November; just let me know numbers and days. Best contact for bookings is me, Dana Pruitt, at the usual address.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Harlan Beck (Hartwell Timber)",
+    "text": "Firewood bundles for your camp store are 4.20 dollars per bundle this season, delivered Fridays to the store shed.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked 6 canoes from Lakeside Canoe Co for the Riverbend Nature Club weekend, Friday 6 November and Saturday 7 November 2026, at their season rate of 15 dollars per canoe per day.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4",
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-20",
+    "type": "message",
+    "from": "Sam Ellery (Pinewoods staff)",
+    "text": "For the teen program on Sunday 8 November 2026 I need 4 canoes at the boat launch from 09:00, please.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 4 more canoes from Lakeside Canoe Co for the teen program on Sunday 8 November 2026, at the same 15 dollars per canoe per day we are paying for the Nature Club weekend booking.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e7"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Gwen Miller",
+    "text": "The Miller family reunion is set for Saturday 14 November 2026 at Pinewoods, about 40 guests; we would love canoe time on the lake included in our package.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-29",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Confirmed the Miller family reunion package for Saturday 14 November 2026: 40 guests, 5 canoes included at 15 dollars per canoe per day. Any later change to that package price will need Gwen Miller's agreement under our confirmed-booking rule.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e3",
+     "e1"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-03",
+    "type": "note",
+    "from": "Marta",
+    "text": "Pine Hollow Pavilion rents at 110 dollars per day and is free on Saturday 14 November 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Pine Hollow Pavilion for the Miller family reunion on Saturday 14 November 2026 at 110 dollars for the day.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e12"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-09",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 120 firewood bundles from Hartwell Timber for the camp store at 4.20 dollars a bundle, total 504 dollars; I signed off on it myself since it is over the 400 dollar threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-15",
+    "type": "task",
+    "from": "Marta",
+    "text": "To do: pay Hartwell Timber the 200 dollar deposit for the firewood order by 2026-08-01.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Wren Kowalski (Pinewoods camp store)",
+    "text": "Store hours for the rest of the season are 08:00 to 19:00 daily; ice and bundles are selling well on weekends.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-01",
+    "type": "note",
+    "from": "Marta",
+    "text": "Paid the 200 dollar firewood deposit to Hartwell Timber today.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled the staff canoe safety refresher with Sam Ellery for Saturday 22 August 2026 at the boat launch, 10:00.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-15",
+    "type": "email",
+    "from": "Dana Pruitt (Lakeside Canoe Co)",
+    "text": "Small update from our side: from October our tandem kayaks will be 18 dollars per day. Paddleboards and single kayaks stay as they are.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Dana Pruitt (Lakeside Canoe Co)",
+    "text": "Confirming your November canoe bookings: 6 canoes for 6 and 7 November and 4 canoes for 8 November, all at 15 dollars per canoe per day, delivery to the boat launch included.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Pete Aldana (Clearflow Septic Services)",
+    "text": "We will service the dump station near site 60 on 2026-09-24 between 07:00 and 09:00.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-18",
+    "type": "notice",
+    "from": "Marta",
+    "text": "Swim ropes and the floating dock come out of the lake on 2026-10-01; beach area closes for the season then.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-25",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Staff meeting: winterising starts 2026-10-19; Wren counts store stock weekly; Sam runs the teen program through mid-November.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-01",
+    "type": "notice",
+    "from": "Marta",
+    "text": "Water to sites 1 to 30 shuts off on 2026-10-15 for the season; tell arriving guests to use the central taps.",
+    "role": "fact"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Dana Pruitt (Lakeside Canoe Co)",
+    "text": "Fuel and transport costs have caught up with us, so our canoe hire rate is now 18 dollars per canoe per day, effective immediately and applying to all upcoming bookings including yours in November.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-08",
+    "type": "message",
+    "from": "Tom Halsey (Riverbend Nature Club)",
+    "text": "Final headcount for our November weekend is 24 children; the canoe plan for Friday and Saturday still works for us.",
+    "role": "fact"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-09",
+    "type": "call",
+    "from": "Marta",
+    "text": "Call notes: spoke with the electrician about the pedestal at site 12; repair visit expected 2026-10-16.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Gwen Miller",
+    "text": "Quick question about our reunion on 14 November: can we bring our own caterer into the Pine Hollow Pavilion? The rest of the package suits us fine.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-14",
+    "type": "task",
+    "from": "Marta",
+    "text": "To do: renew the county lake use permit before 2026-10-30.",
+    "role": "obligation"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Wren Kowalski (Pinewoods camp store)",
+    "text": "Store stock count done; we are low on marshmallows and lantern mantles for the last weekends.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Nature Club canoe booking",
+    "fields": {
+     "supplier": "Lakeside Canoe Co",
+     "start": "2026-11-06",
+     "end": "2026-11-07",
+     "canoes": "6",
+     "unit_cost": "15",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Extra canoes for teen Sunday",
+    "fields": {
+     "supplier": "Lakeside Canoe Co",
+     "date": "2026-11-08",
+     "canoes": "4",
+     "unit_cost": "15",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Miller family reunion package",
+    "fields": {
+     "contact": "Gwen Miller",
+     "date": "2026-11-14",
+     "guests": "40",
+     "canoes": "5",
+     "canoe_rate": "15",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Pavilion booking Miller reunion",
+    "fields": {
+     "place": "Pine Hollow Pavilion",
+     "date": "2026-11-14",
+     "rate": "110",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Camp store firewood restock",
+    "fields": {
+     "supplier": "Hartwell Timber",
+     "item": "firewood bundles",
+     "quantity": "120",
+     "unit_cost": "4.20",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Staff canoe safety refresher",
+    "fields": {
+     "lead": "Sam Ellery",
+     "date": "2026-08-22",
+     "time": "10:00",
+     "place": "boat launch",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Riverbend Nature Club weekend",
+    "fields": {
+     "contact": "Tom Halsey",
+     "start": "2026-11-06",
+     "end": "2026-11-08",
+     "guests": "24",
+     "sites": "40-47",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "canoe_rate"
+    ],
+    "from": "Gwen Miller",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please send Dana Pruitt at Lakeside Canoe Co a confirmation of both of our November canoe bookings with the total we will owe, and make sure our records show what we are paying per canoe per day.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "unit_cost",
+    "value": "18",
+    "stale": [
+     "15"
+    ]
+   },
+   {
+    "record": "ORD-2",
+    "field": "unit_cost",
+    "value": "18",
+    "stale": [
+     "15"
+    ]
+   },
+   {
+    "message_to": "Dana Pruitt (Lakeside Canoe Co)",
+    "regarding": "EV-1",
+    "says": [
+     "18",
+     "288"
+    ],
+    "stale": [
+     "15",
+     "240"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Lakeside's October email replaced the 15 dollar canoe rate with 18 dollars for all upcoming bookings, so both supplier-facing bookings (EV-1 directly on the rate, ORD-2 two hops away via EV-1) must be revised to 18 and the confirmation message must total 288 dollars (216 + 72), not 240. The Miller reunion package (CL-1) also rests on the old rate, but its price is part of a confirmed client package, so under the booking rule it may only change with Gwen Miller's consent: the right act is to ask, leaving the record untouched. The kayak rate email is a distractor and nothing else changes.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "firewood restock",
+    "counterpart": "Harlan Beck",
+    "org": "Hartwell Timber",
+    "item": "firewood bundles",
+    "unit": "bundles",
+    "values": [
+     "80",
+     "100",
+     "120",
+     "150"
+    ],
+    "place": "camp store shed"
+   },
+   {
+    "kind": "order",
+    "topic": "propane cylinders",
+    "counterpart": "Lila Wexler",
+    "org": "Wexler Propane",
+    "item": "propane cylinder",
+    "unit": "cylinders",
+    "values": [
+     "10",
+     "14",
+     "20",
+     "24"
+    ],
+    "place": "maintenance yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "pavilion weekend hire",
+    "counterpart": "Gwen Miller",
+    "org": "Miller family",
+    "item": "Pine Hollow Pavilion day hire",
+    "unit": "day",
+    "values": [
+     "Pine Hollow Pavilion",
+     "Lakeside Shelter",
+     "Meadow Tent Pad"
+    ],
+    "place": "Pine Hollow Pavilion"
+   },
+   {
+    "kind": "order",
+    "topic": "camp store snacks",
+    "counterpart": "Ravi Chen",
+    "org": "Blueridge Wholesale Foods",
+    "item": "mixed snack cases",
+    "unit": "cases",
+    "values": [
+     "12",
+     "18",
+     "25",
+     "30"
+    ],
+    "place": "camp store"
+   },
+   {
+    "kind": "order",
+    "topic": "ice delivery",
+    "counterpart": "Ravi Chen",
+    "org": "Blueridge Wholesale Foods",
+    "item": "bagged ice",
+    "unit": "bags",
+    "values": [
+     "40",
+     "60",
+     "90",
+     "120"
+    ],
+    "place": "camp store freezer"
+   },
+   {
+    "kind": "booking",
+    "topic": "kayak hire for guests",
+    "counterpart": "Dana Pruitt",
+    "org": "Lakeside Canoe Co",
+    "item": "single kayak day hire",
+    "unit": "day",
+    "values": [
+     "boat launch",
+     "north beach",
+     "fishing pier"
+    ],
+    "place": "boat launch"
+   },
+   {
+    "kind": "order",
+    "topic": "laundry service",
+    "counterpart": "Petra Voss",
+    "org": "Pinelaundry Services",
+    "item": "cabin linen bags",
+    "unit": "bags",
+    "values": [
+     "6",
+     "9",
+     "12",
+     "15"
+    ],
+    "place": "laundry room"
+   },
+   {
+    "kind": "order",
+    "topic": "pool chemicals",
+    "counterpart": "Owen Marsh",
+    "org": "Clearwater Supply",
+    "item": "chlorine pails",
+    "unit": "pails",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "pump house"
+   },
+   {
+    "kind": "booking",
+    "topic": "craft room sessions",
+    "counterpart": "Sam Ellery",
+    "org": "Pinewoods staff",
+    "item": "craft room afternoon session",
+    "unit": "session",
+    "values": [
+     "craft room",
+     "Pine Hollow Pavilion",
+     "camp store porch"
+    ],
+    "place": "craft room"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee and cocoa",
+    "counterpart": "Nadia Flores",
+    "org": "Roast & Co Distributors",
+    "item": "coffee tins",
+    "unit": "tins",
+    "values": [
+     "8",
+     "12",
+     "16",
+     "20"
+    ],
+    "place": "camp store"
+   },
+   {
+    "kind": "booking",
+    "topic": "septic service visits",
+    "counterpart": "Pete Aldana",
+    "org": "Clearflow Septic Services",
+    "item": "dump station service visit",
+    "unit": "visit",
+    "values": [
+     "dump station site 60",
+     "north restroom block",
+     "south restroom block"
+    ],
+    "place": "dump station site 60"
+   },
+   {
+    "kind": "order",
+    "topic": "marshmallow restock",
+    "counterpart": "Ravi Chen",
+    "org": "Blueridge Wholesale Foods",
+    "item": "marshmallow cases",
+    "unit": "cases",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "camp store"
+   }
+  ],
+  "id": "K500-1-03",
+  "tier": 500,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

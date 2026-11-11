@@ -1,0 +1,635 @@
+{
+ "id": "K500-3-08",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 3,
+ "idx": 7,
+ "setting": "Events director at The Lighthouse Banquet Hall, a 300-guest wedding venue",
+ "prompt_sha256": "192116abac4b6621ef57819b633859910464936c9b9da0d5b4fb7a6e7210f747",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Catering price correction for the Lindqvist wedding\",\n \"setting\": \"Events director at The Lighthouse Banquet Hall, a 300-guest wedding venue\",\n \"owner\": \"Mara\",\n \"org\": \"The Lighthouse Banquet Hall\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction: any change to an amount on a client invoice that has already been confirmed must be agreed in writing by that client first. Do not just update it.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: supplier orders over 10000 need sign-off from Tomas Beck (finance) before they are placed. Anything under that I can confirm myself.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Hi Mara, confirming Fairway Catering can cover Friday and Saturday wedding dates at The Lighthouse Banquet Hall through November 2026, and our plated dinner price is 42 per guest, all-inclusive of staff.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Sofia Lindqvist\", \"text\": \"Hello Mara, we would love to hold our wedding at The Lighthouse Banquet Hall on Friday 13 November 2026, around 180 guests, with a plated dinner. Please pencil us in.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Lindqvist wedding for Friday 13 November 2026 in the main hall, 180 guests, status booked pending menu choices.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the catering order with Fairway Catering for the Lindqvist wedding on Friday 13 November: 180 plated dinners at 42 per guest, total 7560, delivery to The Lighthouse Banquet Hall kitchen by 15:00.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked a menu tasting with Fairway Catering for the Lindqvists on Thursday 2 July 2026 at 11:00 in the tasting room, using Fairway's confirmed Friday and Saturday coverage at the hall this season.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Issued the Lindqvist wedding invoice, including the catering line of 7560 for 180 plated dinners, and confirmed the invoice to Sofia Lindqvist.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Priya Nair (Bloom & Stem Florists)\", \"text\": \"Mara, our bridal bouquet and table arrangement package remains 1250 for up to 20 tables this season.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered the Bloom & Stem florals package at 1250 for the Lindqvist wedding, 18 table arrangements plus bridal flowers.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e5\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Tasting with Fairway went well; the Lindqvists chose the herb chicken and the mushroom wellington.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"quote\", \"from\": \"Coastal Kitchens (Leo Marsh)\", \"text\": \"Thanks for your enquiry, Mara. Coastal Kitchens can quote 45 per guest for plated dinners at The Lighthouse Banquet Hall this autumn, subject to date availability.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Harbour String Quartet (Iris Vale)\", \"text\": \"We are available Friday 13 November 2026 for a ceremony and drinks reception set, fee 900.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-13\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Harbour String Quartet for the Lindqvist wedding ceremony and drinks reception on Friday 13 November, fee 900.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e5\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"invoice\", \"from\": \"Brightline Linens\", \"text\": \"Invoice 2041: table linen hire for June events at The Lighthouse Banquet Hall, 480, due 19 August 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled extra evening staff, four servers and one bar lead, for the Lindqvist wedding on Friday 13 November, 14:00 to 00:30.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-14\", \"type\": \"message\", \"from\": \"Sofia Lindqvist\", \"text\": \"Quick note, our guest count is holding at about 180. Final numbers to you by mid-October.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-21\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Team meeting: autumn weddings are on track; reminders about coat-check staffing and the new loading bay rota.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Hi Mara, a friendly note that we are all set for the 13 November wedding at the hall, 180 plated dinners at 42 per guest as agreed. Looking forward to it.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Order replacement chair sashes before the October weddings; around 60 needed.\", \"role\": \"obligation\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Tomas Beck (finance)\", \"text\": \"September supplier payments are reconciled. Reminder that anything over 10000 still needs my sign-off first.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Hi Mara, I am sorry for the short notice: our produce and staffing costs have gone up, and our plated dinner price is now 48 per guest. This applies to all upcoming events we are catering for you, including the 13 November wedding. Everything else stands — same menus, same team, same delivery time.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e23\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Priya Nair (Bloom & Stem Florists)\", \"text\": \"Confirming the floral delivery for the 13 November wedding at 09:00, 18 table arrangements.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 60 replacement chair sashes from Brightline Linens for the ballroom, delivery to The Lighthouse Banquet Hall.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Sofia Lindqvist\", \"text\": \"Hi Mara, final headcount is confirmed at 180 guests. See you in November!\", \"role\": \"fact\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-16\", \"type\": \"call\", \"from\": \"Mara\", \"text\": \"Spoke with Iris Vale: quartet to arrive 13:00 on Friday 13 November for a sound check before the ceremony.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"November run-sheet drafted; loading bay reserved for Fairway Catering from 14:30 on the 13th.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Lindqvist wedding\", \"fields\": {\"date\": \"2026-11-13\", \"place\": \"Main hall\", \"guests\": \"180\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fairway Catering plated dinners - Lindqvist wedding\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-11-13\", \"plates\": \"180\", \"per_plate\": \"42\", \"total\": \"7560\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Lindqvist wedding invoice\", \"fields\": {\"client\": \"Sofia Lindqvist\", \"date\": \"2026-11-13\", \"catering_total\": \"7560\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Lindqvist menu tasting with Fairway\", \"fields\": {\"date\": \"2026-07-02\", \"time\": \"11:00\", \"place\": \"Tasting room\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bloom & Stem florals - Lindqvist wedding\", \"fields\": {\"supplier\": \"Bloom & Stem Florists\", \"date\": \"2026-11-13\", \"total\": \"1250\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Harbour String Quartet - Lindqvist ceremony\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"13:00\", \"fee\": \"900\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Evening staffing - Lindqvist wedding\", \"fields\": {\"date\": \"2026-11-13\", \"servers\": \"4\", \"bar_leads\": \"1\", \"status\": \"scheduled\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Chair sashes restock\", \"fields\": {\"supplier\": \"Brightline Linens\", \"quantity\": \"60\", \"place\": \"Ballroom\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"catering_total\"], \"from\": \"Sofia Lindqvist\", \"rule\": \"e1\"}\n ],\n \"task\": \"The Lindqvists have confirmed their final 180 guests. Please confirm the final catering order with Dana at Fairway for the wedding on Friday 13 November, and get Sofia's catering invoice sorted out.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"per_plate\", \"value\": \"48\", \"stale\": [\"42\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"8640\", \"stale\": [\"7560\"]},\n  {\"message_to\": \"Dana Ortiz (Fairway Catering)\", \"regarding\": \"ORD-1\", \"says\": [\"48\", \"8640\"], \"stale\": [\"42\", \"7560\"], \"task\": true}\n ],\n \"why\": \"Fairway's 5 October email replaces the 42 per-plate fact with 48, so the catering order (REVISE) must be updated to 48 and 8640, and the confirmation to Dana must carry those figures. The client invoice rests on that order, but its confirmed amount may only change with Sofia Lindqvist's written agreement under the billing rule, so it is ASK and stays untouched pending consent. The tasting booking only used Fairway's date availability, which the change leaves standing, so it is KEEP.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"table linen restock\", \"counterpart\": \"Nadia Grey\", \"org\": \"Brightline Linens\", \"item\": \"white table linens\", \"unit\": \"sets\", \"values\": [\"20\", \"35\", \"50\", \"60\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"order\", \"topic\": \"kitchen consumables\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"disposable serving trays\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"25\", \"40\"], \"place\": \"The Lighthouse Banquet Hall kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly team briefing\", \"counterpart\": \"Mara\", \"org\": \"The Lighthouse Banquet Hall\", \"item\": \"tasting room for staff briefing\", \"values\": [\"Tasting room\", \"Mezzanine\", \"Garden room\", \"Main hall\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"order\", \"topic\": \"bar stock\", \"counterpart\": \"Owen Pruitt\", \"org\": \"Harbour Spirits Co\", \"item\": \"house wine cases\", \"unit\": \"cases\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"The Lighthouse Banquet Hall cellar\"},\n  {\"kind\": \"order\", \"topic\": \"candles and decor\", \"counterpart\": \"Priya Nair\", \"org\": \"Bloom & Stem Florists\", \"item\": \"pillar candles\", \"unit\": \"boxes\", \"values\": [\"8\", \"12\", \"16\", \"20\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"vendor load-in slot\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"loading bay slot\", \"values\": [\"Loading bay A\", \"Loading bay B\", \"Service entrance\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Ruth Callum\", \"org\": \"Sparkle Janitorial Supply\", \"item\": \"floor cleaner\", \"unit\": \"litres\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"The Lighthouse Banquet Hall storage\"},\n  {\"kind\": \"booking\", \"topic\": \"quartet rehearsal space\", \"counterpart\": \"Iris Vale\", \"org\": \"Harbour String Quartet\", \"item\": \"rehearsal room\", \"values\": [\"Garden room\", \"Mezzanine\", \"Tasting room\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"order\", \"topic\": \"glassware replacement\", \"counterpart\": \"Nadia Grey\", \"org\": \"Brightline Linens\", \"item\": \"champagne flutes\", \"unit\": \"dozen\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"photographer scout visit\", \"counterpart\": \"Jonas Feld\", \"org\": \"Northlight Photography\", \"item\": \"venue walkthrough slot\", \"values\": [\"Main hall\", \"Garden terrace\", \"Mezzanine\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and tea service\", \"counterpart\": \"Owen Pruitt\", \"org\": \"Harbour Spirits Co\", \"item\": \"coffee beans\", \"unit\": \"kilos\", \"values\": [\"5\", \"8\", \"12\", \"15\"], \"place\": \"The Lighthouse Banquet Hall kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"couple planning meeting\", \"counterpart\": \"Sofia Lindqvist\", \"org\": \"The Lighthouse Banquet Hall\", \"item\": \"planning meeting room\", \"values\": [\"Tasting room\", \"Mezzanine\", \"Office snug\"], \"place\": \"The Lighthouse Banquet Hall\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3235,
+    "completion_tokens": 6026,
+    "reasoning_tokens": 1981,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0918006,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Catering price correction for the Lindqvist wedding\",\n \"setting\": \"Events director at The Lighthouse Banquet Hall, a 300-guest wedding venue\",\n \"owner\": \"Mara\",\n \"org\": \"The Lighthouse Banquet Hall\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction: any change to an amount on a client invoice that has already been confirmed must be agreed in writing by that client first. Do not just update it.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: supplier orders over 10000 need sign-off from Tomas Beck (finance) before they are placed. Anything under that I can confirm myself.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Hi Mara, confirming Fairway Catering can cover Friday and Saturday wedding dates at The Lighthouse Banquet Hall through November 2026, and our plated dinner price is 42 per guest, all-inclusive of staff.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Sofia Lindqvist\", \"text\": \"Hello Mara, we would love to hold our wedding at The Lighthouse Banquet Hall on Friday 13 November 2026, around 180 guests, with a plated dinner. Please pencil us in.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Lindqvist wedding for Friday 13 November 2026 in the main hall, 180 guests, status booked pending menu choices.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the catering order with Fairway Catering for the Lindqvist wedding on Friday 13 November: 180 plated dinners at 42 per guest, total 7560, delivery to The Lighthouse Banquet Hall kitchen by 15:00.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked a menu tasting with Fairway Catering for the Lindqvists on Thursday 2 July 2026 at 11:00 in the tasting room, using Fairway's confirmed Friday and Saturday coverage at the hall this season.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Issued the Lindqvist wedding invoice, including the catering line of 7560 for 180 plated dinners, and confirmed the invoice to Sofia Lindqvist.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Priya Nair (Bloom & Stem Florists)\", \"text\": \"Mara, our bridal bouquet and table arrangement package remains 1250 for up to 20 tables this season.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered the Bloom & Stem florals package at 1250 for the Lindqvist wedding, 18 table arrangements plus bridal flowers.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e5\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Tasting with Fairway went well; the Lindqvists chose the herb chicken and the mushroom wellington.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"quote\", \"from\": \"Coastal Kitchens (Leo Marsh)\", \"text\": \"Thanks for your enquiry, Mara. Coastal Kitchens can quote 45 per guest for plated dinners at The Lighthouse Banquet Hall this autumn, subject to date availability.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Harbour String Quartet (Iris Vale)\", \"text\": \"We are available Friday 13 November 2026 for a ceremony and drinks reception set, fee 900.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-13\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Harbour String Quartet for the Lindqvist wedding ceremony and drinks reception on Friday 13 November, fee 900.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e5\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"invoice\", \"from\": \"Brightline Linens\", \"text\": \"Invoice 2041: table linen hire for June events at The Lighthouse Banquet Hall, 480, due 19 August 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled extra evening staff, four servers and one bar lead, for the Lindqvist wedding on Friday 13 November, 14:00 to 00:30.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-14\", \"type\": \"message\", \"from\": \"Sofia Lindqvist\", \"text\": \"Quick note, our guest count is holding at about 180. Final numbers to you by mid-October.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-21\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Team meeting: autumn weddings are on track; reminders about coat-check staffing and the new loading bay rota.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Hi Mara, a friendly note that we are all set for the 13 November wedding at the hall, 180 plated dinners at 42 per guest as agreed. Looking forward to it.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Order replacement chair sashes before the October weddings; around 60 needed.\", \"role\": \"obligation\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Tomas Beck (finance)\", \"text\": \"September supplier payments are reconciled. Reminder that anything over 10000 still needs my sign-off first.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Hi Mara, I am sorry for the short notice: our produce and staffing costs have gone up, and our plated dinner price is now 48 per guest. This applies to all upcoming events we are catering for you, including the 13 November wedding. Everything else stands — same menus, same team, same delivery time.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e23\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Priya Nair (Bloom & Stem Florists)\", \"text\": \"Confirming the floral delivery for the 13 November wedding at 09:00, 18 table arrangements.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 60 replacement chair sashes from Brightline Linens for the ballroom, delivery to The Lighthouse Banquet Hall.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Sofia Lindqvist\", \"text\": \"Hi Mara, final headcount is confirmed at 180 guests. See you in November!\", \"role\": \"fact\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-16\", \"type\": \"call\", \"from\": \"Mara\", \"text\": \"Spoke with Iris Vale: quartet to arrive 13:00 on Friday 13 November for a sound check before the ceremony.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-17\", \"type\": \"notice\", \"from\": \"Harbourview Insurance Brokers\", \"text\": \"Your annual venue liability cover for The Lighthouse Banquet Hall renews on 1 December 2026; documents to follow by post.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"November run-sheet drafted; loading bay reserved for Fairway Catering from 14:30 on the 13th.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Lindqvist wedding\", \"fields\": {\"date\": \"2026-11-13\", \"place\": \"Main hall\", \"guests\": \"180\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fairway Catering plated dinners - Lindqvist wedding\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-11-13\", \"plates\": \"180\", \"per_plate\": \"42\", \"total\": \"7560\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Lindqvist wedding invoice\", \"fields\": {\"client\": \"Sofia Lindqvist\", \"date\": \"2026-11-13\", \"catering_total\": \"7560\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Lindqvist menu tasting with Fairway\", \"fields\": {\"date\": \"2026-07-02\", \"time\": \"11:00\", \"place\": \"Tasting room\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bloom & Stem florals - Lindqvist wedding\", \"fields\": {\"supplier\": \"Bloom & Stem Florists\", \"date\": \"2026-11-13\", \"total\": \"1250\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Harbour String Quartet - Lindqvist ceremony\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"13:00\", \"fee\": \"900\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Evening staffing - Lindqvist wedding\", \"fields\": {\"date\": \"2026-11-13\", \"servers\": \"4\", \"bar_leads\": \"1\", \"status\": \"scheduled\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Chair sashes restock\", \"fields\": {\"supplier\": \"Brightline Linens\", \"quantity\": \"60\", \"place\": \"Ballroom\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"catering_total\"], \"from\": \"Sofia Lindqvist\", \"rule\": \"e1\"}\n ],\n \"task\": \"The Lindqvists have confirmed their final 180 guests. Please confirm the final catering order with Dana at Fairway for the wedding on Friday 13 November, and get Sofia's catering invoice sorted out.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"per_plate\", \"value\": \"48\", \"stale\": [\"42\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"8640\", \"stale\": [\"7560\"]},\n  {\"message_to\": \"Dana Ortiz (Fairway Catering)\", \"regarding\": \"ORD-1\", \"says\": [\"48\", \"8640\"], \"stale\": [\"42\", \"7560\"], \"task\": true}\n ],\n \"why\": \"Fairway's 5 October email replaces the 42 per-plate fact with 48, so the catering order (REVISE) must be updated to 48 and 8640, and the confirmation to Dana must carry those figures. The client invoice rests on that order, but its confirmed amount may only change with Sofia Lindqvist's written agreement under the billing rule, so it is ASK and stays untouched pending consent. The tasting booking only used Fairway's date availability, which the change leaves standing, so it is KEEP.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"table linen restock\", \"counterpart\": \"Nadia Grey\", \"org\": \"Brightline Linens\", \"item\": \"white table linens\", \"unit\": \"sets\", \"values\": [\"20\", \"35\", \"50\", \"60\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"order\", \"topic\": \"kitchen consumables\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"disposable serving trays\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"25\", \"40\"], \"place\": \"The Lighthouse Banquet Hall kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly team briefing\", \"counterpart\": \"Mara\", \"org\": \"The Lighthouse Banquet Hall\", \"item\": \"tasting room for staff briefing\", \"values\": [\"Tasting room\", \"Mezzanine\", \"Garden room\", \"Main hall\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"order\", \"topic\": \"bar stock\", \"counterpart\": \"Owen Pruitt\", \"org\": \"Harbour Spirits Co\", \"item\": \"house wine cases\", \"unit\": \"cases\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"The Lighthouse Banquet Hall cellar\"},\n  {\"kind\": \"order\", \"topic\": \"candles and decor\", \"counterpart\": \"Priya Nair\", \"org\": \"Bloom & Stem Florists\", \"item\": \"pillar candles\", \"unit\": \"boxes\", \"values\": [\"8\", \"12\", \"16\", \"20\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"vendor load-in slot\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"loading bay slot\", \"values\": [\"Loading bay A\", \"Loading bay B\", \"Service entrance\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Ruth Callum\", \"org\": \"Sparkle Janitorial Supply\", \"item\": \"floor cleaner\", \"unit\": \"litres\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"The Lighthouse Banquet Hall storage\"},\n  {\"kind\": \"booking\", \"topic\": \"quartet rehearsal space\", \"counterpart\": \"Iris Vale\", \"org\": \"Harbour String Quartet\", \"item\": \"rehearsal room\", \"values\": [\"Garden room\", \"Mezzanine\", \"Tasting room\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"order\", \"topic\": \"glassware replacement\", \"counterpart\": \"Nadia Grey\", \"org\": \"Brightline Linens\", \"item\": \"champagne flutes\", \"unit\": \"dozen\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"photographer scout visit\", \"counterpart\": \"Jonas Feld\", \"org\": \"Northlight Photography\", \"item\": \"venue walkthrough slot\", \"values\": [\"Main hall\", \"Garden terrace\", \"Mezzanine\"], \"place\": \"The Lighthouse Banquet Hall\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and tea service\", \"counterpart\": \"Owen Pruitt\", \"org\": \"Harbour Spirits Co\", \"item\": \"coffee beans\", \"unit\": \"kilos\", \"values\": [\"5\", \"8\", \"12\", \"15\"], \"place\": \"The Lighthouse Banquet Hall kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"couple planning meeting\", \"counterpart\": \"Sofia Lindqvist\", \"org\": \"The Lighthouse Banquet Hall\", \"item\": \"planning meeting room\", \"values\": [\"Tasting room\", \"Mezzanine\", \"Office snug\"], \"place\": \"The Lighthouse Banquet Hall\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7345,
+    "completion_tokens": 4122,
+    "reasoning_tokens": 5,
+    "cached_tokens": 7168
+   },
+   "cost": 0.0645114,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: the core has 27 events; need 28–55\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Catering price correction for the Lindqvist wedding",
+  "setting": "Events director at The Lighthouse Banquet Hall, a 300-guest wedding venue",
+  "owner": "Mara",
+  "org": "The Lighthouse Banquet Hall",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing instruction: any change to an amount on a client invoice that has already been confirmed must be agreed in writing by that client first. Do not just update it.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Standing rule: supplier orders over 10000 need sign-off from Tomas Beck (finance) before they are placed. Anything under that I can confirm myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Hi Mara, confirming Fairway Catering can cover Friday and Saturday wedding dates at The Lighthouse Banquet Hall through November 2026, and our plated dinner price is 42 per guest, all-inclusive of staff.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Sofia Lindqvist",
+    "text": "Hello Mara, we would love to hold our wedding at The Lighthouse Banquet Hall on Friday 13 November 2026, around 180 guests, with a plated dinner. Please pencil us in.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the Lindqvist wedding for Friday 13 November 2026 in the main hall, 180 guests, status booked pending menu choices.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Placed the catering order with Fairway Catering for the Lindqvist wedding on Friday 13 November: 180 plated dinners at 42 per guest, total 7560, delivery to The Lighthouse Banquet Hall kitchen by 15:00.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked a menu tasting with Fairway Catering for the Lindqvists on Thursday 2 July 2026 at 11:00 in the tasting room, using Fairway's confirmed Friday and Saturday coverage at the hall this season.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Issued the Lindqvist wedding invoice, including the catering line of 7560 for 180 plated dinners, and confirmed the invoice to Sofia Lindqvist.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e1"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Priya Nair (Bloom & Stem Florists)",
+    "text": "Mara, our bridal bouquet and table arrangement package remains 1250 for up to 20 tables this season.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-29",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered the Bloom & Stem florals package at 1250 for the Lindqvist wedding, 18 table arrangements plus bridal flowers.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e5"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "note",
+    "from": "Mara",
+    "text": "Tasting with Fairway went well; the Lindqvists chose the herb chicken and the mushroom wellington.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-06",
+    "type": "quote",
+    "from": "Coastal Kitchens (Leo Marsh)",
+    "text": "Thanks for your enquiry, Mara. Coastal Kitchens can quote 45 per guest for plated dinners at The Lighthouse Banquet Hall this autumn, subject to date availability.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Harbour String Quartet (Iris Vale)",
+    "text": "We are available Friday 13 November 2026 for a ceremony and drinks reception set, fee 900.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-13",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the Harbour String Quartet for the Lindqvist wedding ceremony and drinks reception on Friday 13 November, fee 900.",
+    "role": "decision",
+    "rests_on": [
+     "e13",
+     "e5"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-20",
+    "type": "invoice",
+    "from": "Brightline Linens",
+    "text": "Invoice 2041: table linen hire for June events at The Lighthouse Banquet Hall, 480, due 19 August 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Scheduled extra evening staff, four servers and one bar lead, for the Lindqvist wedding on Friday 13 November, 14:00 to 00:30.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-14",
+    "type": "message",
+    "from": "Sofia Lindqvist",
+    "text": "Quick note, our guest count is holding at about 180. Final numbers to you by mid-October.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-21",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Team meeting: autumn weddings are on track; reminders about coat-check staffing and the new loading bay rota.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Hi Mara, a friendly note that we are all set for the 13 November wedding at the hall, 180 plated dinners at 42 per guest as agreed. Looking forward to it.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-18",
+    "type": "task",
+    "from": "Mara",
+    "text": "Order replacement chair sashes before the October weddings; around 60 needed.",
+    "role": "obligation"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Tomas Beck (finance)",
+    "text": "September supplier payments are reconciled. Reminder that anything over 10000 still needs my sign-off first.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Hi Mara, I am sorry for the short notice: our produce and staffing costs have gone up, and our plated dinner price is now 48 per guest. This applies to all upcoming events we are catering for you, including the 13 November wedding. Everything else stands — same menus, same team, same delivery time.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-08",
+    "type": "message",
+    "from": "Priya Nair (Bloom & Stem Florists)",
+    "text": "Confirming the floral delivery for the 13 November wedding at 09:00, 18 table arrangements.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-12",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 60 replacement chair sashes from Brightline Linens for the ballroom, delivery to The Lighthouse Banquet Hall.",
+    "role": "decision",
+    "rests_on": [
+     "e20"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Sofia Lindqvist",
+    "text": "Hi Mara, final headcount is confirmed at 180 guests. See you in November!",
+    "role": "fact"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-16",
+    "type": "call",
+    "from": "Mara",
+    "text": "Spoke with Iris Vale: quartet to arrive 13:00 on Friday 13 November for a sound check before the ceremony.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-17",
+    "type": "notice",
+    "from": "Harbourview Insurance Brokers",
+    "text": "Your annual venue liability cover for The Lighthouse Banquet Hall renews on 1 December 2026; documents to follow by post.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-19",
+    "type": "note",
+    "from": "Mara",
+    "text": "November run-sheet drafted; loading bay reserved for Fairway Catering from 14:30 on the 13th.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Lindqvist wedding",
+    "fields": {
+     "date": "2026-11-13",
+     "place": "Main hall",
+     "guests": "180",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Fairway Catering plated dinners - Lindqvist wedding",
+    "fields": {
+     "supplier": "Fairway Catering",
+     "date": "2026-11-13",
+     "plates": "180",
+     "per_plate": "42",
+     "total": "7560",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Lindqvist wedding invoice",
+    "fields": {
+     "client": "Sofia Lindqvist",
+     "date": "2026-11-13",
+     "catering_total": "7560",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Lindqvist menu tasting with Fairway",
+    "fields": {
+     "date": "2026-07-02",
+     "time": "11:00",
+     "place": "Tasting room",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Bloom & Stem florals - Lindqvist wedding",
+    "fields": {
+     "supplier": "Bloom & Stem Florists",
+     "date": "2026-11-13",
+     "total": "1250",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Harbour String Quartet - Lindqvist ceremony",
+    "fields": {
+     "date": "2026-11-13",
+     "time": "13:00",
+     "fee": "900",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Evening staffing - Lindqvist wedding",
+    "fields": {
+     "date": "2026-11-13",
+     "servers": "4",
+     "bar_leads": "1",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Chair sashes restock",
+    "fields": {
+     "supplier": "Brightline Linens",
+     "quantity": "60",
+     "place": "Ballroom",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "catering_total"
+    ],
+    "from": "Sofia Lindqvist",
+    "rule": "e1"
+   }
+  ],
+  "task": "The Lindqvists have confirmed their final 180 guests. Please confirm the final catering order with Dana at Fairway for the wedding on Friday 13 November, and get Sofia's catering invoice sorted out.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "per_plate",
+    "value": "48",
+    "stale": [
+     "42"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "8640",
+    "stale": [
+     "7560"
+    ]
+   },
+   {
+    "message_to": "Dana Ortiz (Fairway Catering)",
+    "regarding": "ORD-1",
+    "says": [
+     "48",
+     "8640"
+    ],
+    "stale": [
+     "42",
+     "7560"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Fairway's 5 October email replaces the 42 per-plate fact with 48, so the catering order (REVISE) must be updated to 48 and 8640, and the confirmation to Dana must carry those figures. The client invoice rests on that order, but its confirmed amount may only change with Sofia Lindqvist's written agreement under the billing rule, so it is ASK and stays untouched pending consent. The tasting booking only used Fairway's date availability, which the change leaves standing, so it is KEEP.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "table linen restock",
+    "counterpart": "Nadia Grey",
+    "org": "Brightline Linens",
+    "item": "white table linens",
+    "unit": "sets",
+    "values": [
+     "20",
+     "35",
+     "50",
+     "60"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "kitchen consumables",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "disposable serving trays",
+    "unit": "boxes",
+    "values": [
+     "10",
+     "15",
+     "25",
+     "40"
+    ],
+    "place": "The Lighthouse Banquet Hall kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekly team briefing",
+    "counterpart": "Mara",
+    "org": "The Lighthouse Banquet Hall",
+    "item": "tasting room for staff briefing",
+    "values": [
+     "Tasting room",
+     "Mezzanine",
+     "Garden room",
+     "Main hall"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "bar stock",
+    "counterpart": "Owen Pruitt",
+    "org": "Harbour Spirits Co",
+    "item": "house wine cases",
+    "unit": "cases",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "The Lighthouse Banquet Hall cellar"
+   },
+   {
+    "kind": "order",
+    "topic": "candles and decor",
+    "counterpart": "Priya Nair",
+    "org": "Bloom & Stem Florists",
+    "item": "pillar candles",
+    "unit": "boxes",
+    "values": [
+     "8",
+     "12",
+     "16",
+     "20"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "vendor load-in slot",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "loading bay slot",
+    "values": [
+     "Loading bay A",
+     "Loading bay B",
+     "Service entrance"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Ruth Callum",
+    "org": "Sparkle Janitorial Supply",
+    "item": "floor cleaner",
+    "unit": "litres",
+    "values": [
+     "20",
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "The Lighthouse Banquet Hall storage"
+   },
+   {
+    "kind": "booking",
+    "topic": "quartet rehearsal space",
+    "counterpart": "Iris Vale",
+    "org": "Harbour String Quartet",
+    "item": "rehearsal room",
+    "values": [
+     "Garden room",
+     "Mezzanine",
+     "Tasting room"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "glassware replacement",
+    "counterpart": "Nadia Grey",
+    "org": "Brightline Linens",
+    "item": "champagne flutes",
+    "unit": "dozen",
+    "values": [
+     "6",
+     "10",
+     "14",
+     "20"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "photographer scout visit",
+    "counterpart": "Jonas Feld",
+    "org": "Northlight Photography",
+    "item": "venue walkthrough slot",
+    "values": [
+     "Main hall",
+     "Garden terrace",
+     "Mezzanine"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee and tea service",
+    "counterpart": "Owen Pruitt",
+    "org": "Harbour Spirits Co",
+    "item": "coffee beans",
+    "unit": "kilos",
+    "values": [
+     "5",
+     "8",
+     "12",
+     "15"
+    ],
+    "place": "The Lighthouse Banquet Hall kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "couple planning meeting",
+    "counterpart": "Sofia Lindqvist",
+    "org": "The Lighthouse Banquet Hall",
+    "item": "planning meeting room",
+    "values": [
+     "Tasting room",
+     "Mezzanine",
+     "Office snug"
+    ],
+    "place": "The Lighthouse Banquet Hall"
+   }
+  ],
+  "id": "K500-3-08",
+  "tier": 500,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

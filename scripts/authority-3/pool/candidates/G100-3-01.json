@@ -612,5 +612,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The change specifies a readiness cutoff of 13:30, not a replacement time for the booked 15:00 collection, so EV-1's new time is not unambiguously fixed. The history also describes an existing two-hour packing window without explicitly requiring that duration to remain invariant, so the exact 11:30 start and proposed client cutoff need an additional premise.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change specifies a readiness cutoff of 13:30, not a replacement time for the booked 15:00 collection, so EV-1's new time is not unambiguously fixed. The history also describes an existing two-hour packing window without explicitly requiring that duration to remain invariant, so the exact 11:30 start and proposed client cutoff need an additional premise."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3542,
+    "completion_tokens": 262,
+    "reasoning_tokens": 150,
+    "cached_tokens": 0
+   },
+   "cost": 0.0573675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b77e347e3564b9a5b3ab71851e3cbd8d4c4b0b749533922649aa5275831abec6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The class is right: e19 revokes the 15:00 cutoff fact e3, e6 and e9 are touched through the chain, CL-1 needs Priya's consent, and KEEP e8 cites e3 for the courier and dock. The problem is that e6 separates the 15:00 pickup from the 'same-day cutoff', and e19 changes only the cutoff, so setting EV-1's pickup time to 13:30 is not clearly fixed by the history. The expected state treats the cutoff and pickup time as the same value without saying so.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The class is right: e19 revokes the 15:00 cutoff fact e3, e6 and e9 are touched through the chain, CL-1 needs Priya's consent, and KEEP e8 cites e3 for the courier and dock. The problem is that e6 separates the 15:00 pickup from the 'same-day cutoff', and e19 changes only the cutoff, so setting EV-1's pickup time to 13:30 is not clearly fixed by the history. The expected state treats the cutoff and pickup time as the same value without saying so."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5069,
+    "completion_tokens": 1893,
+    "reasoning_tokens": 1660,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014534,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b77e347e3564b9a5b3ab71851e3cbd8d4c4b0b749533922649aa5275831abec6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change corrects fact A (15:00→13:30 cutoff), touching decisions B on A (EV-1, EV-3, REVISE to 13:30 and 11:30–13:30) and C on B (CL-1 rests on the dispatch slot, its cutoff needing Priya's consent per rule e1, so ASK with 11:30), while ORD-1 cites the courier/dock aspect the change explicitly leaves standing (KEEP). The task requires acting now (posting the slot, messaging the packing team) without naming any change. Counts fit tier 100 (21 core events, 5 decisions, change 8 days before the task day, 6 later events).\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change corrects fact A (15:00→13:30 cutoff), touching decisions B on A (EV-1, EV-3, REVISE to 13:30 and 11:30–13:30) and C on B (CL-1 rests on the dispatch slot, its cutoff needing Priya's consent per rule e1, so ASK with 11:30), while ORD-1 cites the courier/dock aspect the change explicitly leaves standing (KEEP). The task requires acting now (posting the slot, messaging the packing team) without naming any change. Counts fit tier 100 (21 core events, 5 decisions, change 8 days before the task day, 6 later events)."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3658,
+    "completion_tokens": 471,
+    "reasoning_tokens": 265,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0104358,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b77e347e3564b9a5b3ab71851e3cbd8d4c4b0b749533922649aa5275831abec6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

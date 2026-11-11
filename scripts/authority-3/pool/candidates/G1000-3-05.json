@@ -1,0 +1,772 @@
+{
+ "id": "G1000-3-05",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 3,
+ "idx": 4,
+ "setting": "An osteopath at Marlowe Bodyworks whose assistant records patient histories, treatment notes, and insurance claims",
+ "prompt_sha256": "d264bd2359971b7c56e1e7b1b6b07810e8917123546a965596bb51e9087c208e",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Headwater session cap correction\",\n  \"setting\": \"An osteopath at Marlowe Bodyworks whose assistant records patient histories, treatment notes, and insurance claims\",\n  \"owner\": \"Nadia\",\n  \"org\": \"Marlowe Bodyworks\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing instruction for the practice: once a treatment appointment with a patient has been confirmed, it may only be moved or cancelled with that patient's agreement. Always ask the patient first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Practice policy: any insurance claim we submit above 500 in total must be signed off by the practice manager, Tomas Bishop, before it goes out.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"letter\", \"from\": \"Claims Team (Headwater Health)\", \"text\": \"Dear Marlowe Bodyworks, we confirm that policy PH-2214, held by Ruth Ellery, covers up to 9 physiotherapy sessions per policy year at 42 per session. The policy year runs to 31 December 2026.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"note\", \"from\": \"Dr Amara Osei (Whitfield Medical Centre)\", \"text\": \"Referral note: Ruth Ellery, lower back strain. I recommend a course of roughly nine treatment sessions at fortnightly intervals with an osteopath.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Ruth Ellery a 9-session physiotherapy course under her Headwater Health policy PH-2214, billed at 42 per session, starting 16 June. I took the session count and the fee straight from Headwater's letter.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"email\", \"from\": \"Ruth Ellery\", \"text\": \"Hi Nadia, first session went well, thanks. See you in a fortnight.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Room 2 is free on Tuesday mornings at 09:00 from July onwards, so that is our standing slot for Ruth's sessions.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"call\", \"from\": \"Nadia\", \"text\": \"Call note: Jonas Hale moved his one-off neck assessment to early July; no course booked.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"letter\", \"from\": \"Harold Bean (Landlord)\", \"text\": \"The heating in Room 1 will be serviced during the first week of September; treatment can continue as normal.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"invoice\", \"from\": \"Greta Voss (Kestrel Supplies)\", \"text\": \"Invoice for June restock: 12 bottles of massage oil at 6.50 each, total 78, delivered to Marlowe Bodyworks.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Claims Team (Headwater Health)\", \"text\": \"Good news for practices with patients on our premium tier: premium policies now cover up to 12 physiotherapy sessions per policy year. Standard policies are unchanged.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Is there parking at Marlowe Bodyworks for my appointment on 14 July?\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Team minutes: reception cover agreed for August; linen order handed to Greta at Kestrel Supplies; Ruth Ellery progressing well.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Submitted the interim claim to Headwater Health for Ruth Ellery's first three sessions at the policy rate of 42 each, total 126, referencing PH-2214. No sign-off needed as it is under 500.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-27\", \"type\": \"email\", \"from\": \"Claims Team (Headwater Health)\", \"text\": \"Claim for 126 under policy PH-2214 has been paid into your account. Thank you.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-30\", \"type\": \"cancellation\", \"from\": \"Jonas Hale\", \"text\": \"Sorry, please cancel my one-off neck assessment; I will rebook if the pain returns.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Fernwood Mutual\", \"text\": \"We confirm that policy FM-8891, held by Mila Voss, covers 5 physiotherapy sessions per policy year at 55 per session.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Mila Voss a 5-session course under her Fernwood Mutual policy FM-8891 at 55 per session, starting 12 August.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"EV-4\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-12\", \"type\": \"message\", \"from\": \"Ruth Ellery\", \"text\": \"The fortnightly rhythm is really helping. See you on the 25th.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-28\", \"type\": \"quote\", \"from\": \"Greta Voss (Kestrel Supplies)\", \"text\": \"Quote: massage oil 500ml at 6.50 per bottle for orders of 24 bottles or more, delivered to the practice.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Claims Team (Headwater Health)\", \"text\": \"Claim acknowledgment for policy PH-2214: 3 of the 9 covered sessions have been claimed so far this policy year. The rate of 42 per session applies.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e22\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 24 bottles of massage oil from Kestrel Supplies at the quoted 6.50 per bottle, total 156, for delivery to the practice store cupboard.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Scheduled Ruth Ellery's final three review sessions from her 9-session course for 3, 10 and 17 November at 09:00 in Room 2, our standing Tuesday slot, and confirmed the dates with her by phone.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e7\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Dr Amara Osei (Whitfield Medical Centre)\", \"text\": \"New referral: Sana Idris, shoulder stiffness. Six sessions suggested; her insurer details to follow.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-18\", \"type\": \"invoice\", \"from\": \"Marlowe Bodyworks\", \"text\": \"Invoice to Fernwood Mutual for Mila Voss, 2 sessions at 55 each, total 110, policy FM-8891.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-25\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Treatment note: Ruth Ellery has now used 6 of her 9 Headwater-covered sessions; three remain, all in November, at 42 each. Under the 500 threshold, so no Tomas sign-off needed for the next claim.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e27\", \"date\": \"2026-09-29\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Room 1 is free all day on 3 November if we want to hold the staff training then.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the staff manual-handling refresher for 3 November in Room 1, which is free that day.\", \"role\": \"decision\", \"rests_on\": [\"e27\"], \"record\": \"EV-5\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Claims Team (Headwater Health)\", \"text\": \"Dear Marlowe Bodyworks, following an audit we are correcting our letter of 5 June. Policy PH-2214 (Ruth Ellery) covers up to 6 physiotherapy sessions per policy year, not 9. The reimbursement rate of 42 per session is confirmed and unchanged. Apologies for the error.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e30\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Ruth Ellery\", \"text\": \"Hi Nadia, could someone send me the dates of my remaining appointments? I want to put them in my calendar.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Tomas Bishop\", \"text\": \"Reminder that I am on leave the first week of November, so send me any large claims before then.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Greta Voss (Kestrel Supplies)\", \"text\": \"Your oil order is scheduled for delivery on 2026-11-02 to Marlowe Bodyworks.\", \"role\": \"other\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-24\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"To do: renew the public liability insurance before 2026-11-15.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Ruth Ellery - treatment course\", \"fields\": {\"patient\": \"Ruth Ellery\", \"insurer\": \"Headwater Health\", \"policy\": \"PH-2214\", \"sessions_total\": \"9\", \"fee_per_session\": \"42\", \"status\": \"in_progress\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Ruth Ellery - November review sessions\", \"fields\": {\"patient\": \"Ruth Ellery\", \"dates\": \"2026-11-03, 2026-11-10, 2026-11-17\", \"time\": \"09:00\", \"room\": \"Room 2\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Ruth Ellery - sessions 4 to 6\", \"fields\": {\"patient\": \"Ruth Ellery\", \"dates\": \"2026-08-25, 2026-09-08, 2026-09-22\", \"time\": \"09:00\", \"room\": \"Room 2\", \"status\": \"completed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Headwater interim claim PH-2214\", \"fields\": {\"insurer\": \"Headwater Health\", \"policy\": \"PH-2214\", \"sessions\": \"1-3\", \"amount\": \"126\", \"status\": \"paid\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Kestrel massage oil restock\", \"fields\": {\"supplier\": \"Kestrel Supplies\", \"item\": \"massage oil 500ml\", \"quantity\": \"24\", \"unit_price\": \"6.50\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Mila Voss - treatment course\", \"fields\": {\"patient\": \"Mila Voss\", \"insurer\": \"Fernwood Mutual\", \"policy\": \"FM-8891\", \"sessions_total\": \"5\", \"fee_per_session\": \"55\", \"status\": \"in_progress\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Staff training - November\", \"fields\": {\"topic\": \"manual handling refresher\", \"date\": \"2026-11-03\", \"place\": \"Room 1\", \"status\": \"booked\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Ruth Ellery\", \"fields\": {\"name\": \"Ruth Ellery\", \"insurer\": \"Headwater Health\", \"policy\": \"PH-2214\", \"referred_by\": \"Dr Amara Osei\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"dates\", \"status\"], \"from\": \"Ruth Ellery\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Ruth messaged about her appointments - please send her the schedule for her remaining sessions.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"sessions_total\", \"value\": \"6\", \"stale\": [\"9\"], \"task\": true},\n    {\"message_to\": \"Ruth Ellery\", \"regarding\": \"EV-2\", \"says\": [\"Headwater Health covers 6 sessions per policy year on policy PH-2214\", \"her 6 covered sessions have already been used\", \"asking for her agreement to cancel the remaining November sessions on 2026-11-03, 2026-11-10 and 2026-11-17\"], \"stale\": [\"9 sessions covered\", \"three remaining sessions in November\", \"12 sessions covered\"], \"task\": true}\n  ],\n  \"why\": \"The change corrects Headwater's coverage for Ruth Ellery from 9 to 6 sessions per year while leaving the 42 rate standing. The course record EV-1 was set directly from the old letter, so its session total is revised to 6 without anyone's consent; the November review sessions EV-2 were scheduled from that course and, being confirmed appointments, may only be changed with Ruth's agreement under the standing rule, so the assistant must ask rather than act. The interim claim ORD-1 used only the unchanged 42 rate and the sessions 4-6 block sits inside the 6-session cap, so both are KEEP; everything else is untouched. The task asks for Ruth's remaining schedule, which cannot be answered correctly while passing off three November sessions as covered.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"linen restock\", \"counterpart\": \"Greta Voss\", \"org\": \"Kestrel Supplies\", \"item\": \"linen roll\", \"unit\": \"rolls\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Marlowe Bodyworks store cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"oil restock\", \"counterpart\": \"Greta Voss\", \"org\": \"Kestrel Supplies\", \"item\": \"massage oil 500ml\", \"unit\": \"bottles\", \"values\": [\"6\", \"12\", \"24\"], \"place\": \"treatment Room 2\"},\n    {\"kind\": \"order\", \"topic\": \"hot towel wipes\", \"counterpart\": \"Greta Voss\", \"org\": \"Kestrel Supplies\", \"item\": \"hot towel wipes\", \"unit\": \"boxes\", \"values\": [\"15\", \"30\", \"45\"], \"place\": \"treatment Room 2\"},\n    {\"kind\": \"booking\", \"topic\": \"case review meeting\", \"counterpart\": \"Claims Team\", \"org\": \"Headwater Health\", \"item\": \"case review meeting\", \"unit\": \"\", \"values\": [\"Meeting Room 1\", \"Meeting Room 2\"], \"place\": \"Marlowe Bodyworks\"},\n    {\"kind\": \"booking\", \"topic\": \"audit visit\", \"counterpart\": \"Claims Team\", \"org\": \"Headwater Health\", \"item\": \"audit visit\", \"unit\": \"\", \"values\": [\"Room 1\", \"Meeting Room 2\"], \"place\": \"Marlowe Bodyworks\"},\n    {\"kind\": \"booking\", \"topic\": \"patient appointment\", \"counterpart\": \"Priya Nair\", \"org\": \"patient\", \"item\": \"appointment slot\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\"], \"place\": \"Marlowe Bodyworks\"},\n    {\"kind\": \"booking\", \"topic\": \"Mila appointments\", \"counterpart\": \"Mila Voss\", \"org\": \"patient\", \"item\": \"appointment slot\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\"], \"place\": \"Marlowe Bodyworks\"},\n    {\"kind\": \"booking\", \"topic\": \"staff meeting\", \"counterpart\": \"Nadia\", \"org\": \"Marlowe Bodyworks\", \"item\": \"staff meeting\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\"], \"place\": \"Marlowe Bodyworks\"},\n    {\"kind\": \"order\", \"topic\": \"office paper\", \"counterpart\": \"Tomas Bishop\", \"org\": \"Marlowe Bodyworks\", \"item\": \"printer paper\", \"unit\": \"reams\", \"values\": [\"2\", \"5\", \"10\"], \"place\": \"reception\"},\n    {\"kind\": \"order\", \"topic\": \"kinesiology tape\", \"counterpart\": \"Marcus Reed\", \"org\": \"Riverbank Pharmacy\", \"item\": \"kinesiology tape\", \"unit\": \"rolls\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"treatment Room 1\"},\n    {\"kind\": \"order\", \"topic\": \"uniform tops\", \"counterpart\": \"Elise Grant\", \"org\": \"Brightline Uniforms\", \"item\": \"tunic tops\", \"unit\": \"items\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"reception\"},\n    {\"kind\": \"booking\", \"topic\": \"referral review call\", \"counterpart\": \"Dr Amara Osei\", \"org\": \"Whitfield Medical Centre\", \"item\": \"referral review call\", \"unit\": \"\", \"values\": [\"phone\", \"video\"], \"place\": \"Marlowe Bodyworks office\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3199,
+    "completion_tokens": 13309,
+    "reasoning_tokens": 8756,
+    "cached_tokens": 3136
+   },
+   "cost": 0.05946316,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Headwater session cap correction\",\n  \"setting\": \"An osteopath at Marlowe Bodyworks whose assistant records patient histories, treatment notes, and insurance claims\",\n  \"owner\": \"Nadia\",\n  \"org\": \"Marlowe Bodyworks\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing instruction for the practice: once a treatment appointment with a patient has been confirmed, it may only be moved or cancelled with that patient's agreement. Always ask the patient first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Practice policy: any insurance claim we submit above 500 in total must be signed off by the practice manager, Tomas Bishop, before it goes out.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"letter\", \"from\": \"Claims Team (Headwater Health)\", \"text\": \"Dear Marlowe Bodyworks, we confirm that policy PH-2214, held by Ruth Ellery, covers up to 9 physiotherapy sessions per policy year at 42 per session. The policy year runs to 31 December 2026.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"note\", \"from\": \"Dr Amara Osei (Whitfield Medical Centre)\", \"text\": \"Referral note: Ruth Ellery, lower back strain. I recommend a course of roughly nine treatment sessions at fortnightly intervals with an osteopath.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Ruth Ellery a 9-session physiotherapy course under her Headwater Health policy PH-2214, billed at 42 per session, starting 16 June. I took the session count and the fee straight from Headwater's letter.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"email\", \"from\": \"Ruth Ellery\", \"text\": \"Hi Nadia, first session went well, thanks. See you in a fortnight.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Room 2 is free on Tuesday mornings at 09:00 from July onwards, so that is our standing slot for Ruth's sessions.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"call\", \"from\": \"Nadia\", \"text\": \"Call note: Jonas Hale moved his one-off neck assessment to early July; no course booked.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"letter\", \"from\": \"Harold Bean (Landlord)\", \"text\": \"The heating in Room 1 will be serviced during the first week of September; treatment can continue as normal.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"invoice\", \"from\": \"Greta Voss (Kestrel Supplies)\", \"text\": \"Invoice for June restock: 12 bottles of massage oil at 6.50 each, total 78, delivered to Marlowe Bodyworks.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Claims Team (Headwater Health)\", \"text\": \"Good news for practices with patients on our premium tier: premium policies now cover up to 12 physiotherapy sessions per policy year. Standard policies are unchanged.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Is there parking at Marlowe Bodyworks for my appointment on 14 July?\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Team minutes: reception cover agreed for August; linen order handed to Greta at Kestrel Supplies; Ruth Ellery progressing well.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Submitted the interim claim to Headwater Health for Ruth Ellery's first three sessions at the policy rate of 42 each, total 126, referencing PH-2214. No sign-off needed as it is under 500.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-27\", \"type\": \"email\", \"from\": \"Claims Team (Headwater Health)\", \"text\": \"Claim for 126 under policy PH-2214 has been paid into your account. Thank you.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-30\", \"type\": \"cancellation\", \"from\": \"Jonas Hale\", \"text\": \"Sorry, please cancel my one-off neck assessment; I will rebook if the pain returns.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Fernwood Mutual\", \"text\": \"We confirm that policy FM-8891, held by Mila Voss, covers 5 physiotherapy sessions per policy year at 55 per session.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Mila Voss a 5-session course under her Fernwood Mutual policy FM-8891 at 55 per session, starting 12 August.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"EV-4\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-12\", \"type\": \"message\", \"from\": \"Ruth Ellery\", \"text\": \"The fortnightly rhythm is really helping. See you on the 25th.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-28\", \"type\": \"quote\", \"from\": \"Greta Voss (Kestrel Supplies)\", \"text\": \"Quote: massage oil 500ml at 6.50 per bottle for orders of 24 bottles or more, delivered to the practice.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Claims Team (Headwater Health)\", \"text\": \"Claim acknowledgment for policy PH-2214: 3 of the 9 covered sessions have been claimed so far this policy year. The rate of 42 per session applies.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e22\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 24 bottles of massage oil from Kestrel Supplies at the quoted 6.50 per bottle, total 156, for delivery to the practice store cupboard.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Scheduled Ruth Ellery's sessions 4 to 6 of her 9-session course for 25 August and 8 and 22 September, Tuesdays at 09:00 in Room 2, our standing slot.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e7\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Scheduled Ruth Ellery's final three review sessions from her 9-session course for 3, 10 and 17 November at 09:00 in Room 2, our standing Tuesday slot, and confirmed the dates with her by phone.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e7\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Dr Amara Osei (Whitfield Medical Centre)\", \"text\": \"New referral: Sana Idris, shoulder stiffness. Six sessions suggested; her insurer details to follow.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-18\", \"type\": \"invoice\", \"from\": \"Marlowe Bodyworks\", \"text\": \"Invoice to Fernwood Mutual for Mila Voss, 2 sessions at 55 each, total 110, policy FM-8891.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-25\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Treatment note: Ruth Ellery has now used 6 of her 9 Headwater-covered sessions; three remain, all in November, at 42 each. Under the 500 threshold, so no Tomas sign-off needed for the next claim.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e28\", \"date\": \"2026-09-29\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Room 1 is free all day on 3 November if we want to hold the staff training then.\", \"role\": \"fact\"},\n    {\"id\": \"e29\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the staff manual-handling refresher for 3 November in Room 1, which is free that day.\", \"role\": \"decision\", \"rests_on\": [\"e28\"], \"record\": \"EV-5\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Claims Team (Headwater Health)\", \"text\": \"Dear Marlowe Bodyworks, following an audit we are correcting our letter of 5 June. Policy PH-2214 (Ruth Ellery) covers up to 6 physiotherapy sessions per policy year, not 9. The reimbursement rate of 42 per session is confirmed and unchanged. Apologies for the error.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e31\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Ruth Ellery\", \"text\": \"Hi Nadia, could someone send me the dates of my remaining appointments? I want to put them in my calendar.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Tomas Bishop\", \"text\": \"Reminder that I am on leave the first week of November, so send me any large claims before then.\", \"role\": \"other\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Greta Voss (Kestrel Supplies)\", \"text\": \"Your oil order is scheduled for delivery on 2026-11-02 to Marlowe Bodyworks.\", \"role\": \"other\"},\n    {\"id\": \"e34\", \"date\": \"2026-10-24\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"To do: renew the public liability insurance before 2026-11-15.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Ruth Ellery - treatment course\", \"fields\": {\"patient\": \"Ruth Ellery\", \"insurer\": \"Headwater Health\", \"policy\": \"PH-2214\", \"sessions_total\": \"9\", \"fee_per_session\": \"42\", \"status\": \"in_progress\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Ruth Ellery - November review sessions\", \"fields\": {\"patient\": \"Ruth Ellery\", \"dates\": \"2026-11-03, 2026-11-10, 2026-11-17\", \"time\": \"09:00\", \"room\": \"Room 2\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Ruth Ellery - sessions 4 to 6\", \"fields\": {\"patient\": \"Ruth Ellery\", \"dates\": \"2026-08-25, 2026-09-08, 2026-09-22\", \"time\": \"09:00\", \"room\": \"Room 2\", \"status\": \"completed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Headwater interim claim PH-2214\", \"fields\": {\"insurer\": \"Headwater Health\", \"policy\": \"PH-2214\", \"sessions\": \"1-3\", \"amount\": \"126\", \"status\": \"paid\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Kestrel massage oil restock\", \"fields\": {\"supplier\": \"Kestrel Supplies\", \"item\": \"massage oil 500ml\", \"quantity\": \"24\", \"unit_price\": \"6.50\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Mila Voss - treatment course\", \"fields\": {\"patient\": \"Mila Voss\", \"insurer\": \"Fernwood Mutual\", \"policy\": \"FM-8891\", \"sessions_total\": \"5\", \"fee_per_session\": \"55\", \"status\": \"in_progress\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Staff training - November\", \"fields\": {\"topic\": \"manual handling refresher\", \"date\": \"2026-11-03\", \"place\": \"Room 1\", \"status\": \"booked\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Ruth Ellery\", \"fields\": {\"name\": \"Ruth Ellery\", \"insurer\": \"Headwater Health\", \"policy\": \"PH-2214\", \"referred_by\": \"Dr Amara Osei\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"dates\", \"status\"], \"from\": \"Ruth Ellery\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Ruth messaged about her appointments - please send her the schedule for her remaining sessions.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"sessions_total\", \"value\": \"6\", \"stale\": [\"9\"], \"task\": true},\n    {\"message_to\": \"Ruth Ellery\", \"regarding\": \"EV-2\", \"says\": [\"Headwater Health covers 6 sessions per policy year on policy PH-2214\", \"her 6 covered sessions have already been used\", \"asking for her agreement to cancel the remaining November sessions on 2026-11-03, 2026-11-10 and 2026-11-17\"], \"stale\": [\"9 sessions covered\", \"three remaining sessions in November\", \"12 sessions covered\"], \"task\": true}\n  ],\n  \"why\": \"The change corrects Headwater's coverage for Ruth Ellery from 9 to 6 sessions per year while leaving the 42 rate standing. The course record EV-1 was set directly from the old letter, so its session total is revised to 6 without anyone's consent; the November review sessions EV-2 were scheduled from that course and, being confirmed appointments, may only be changed with Ruth's agreement under the standing rule, so the assistant must ask rather than act. The interim claim ORD-1 used only the unchanged 42 rate, and the sessions 4-6 block EV-3 sits inside the 6-session cap, so both are KEEP; everything else is untouched. The task asks for Ruth's remaining schedule, which cannot be answered correctly while passing off three November sessions as covered.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"linen restock\", \"counterpart\": \"Greta Voss\", \"org\": \"Kestrel Supplies\", \"item\": \"linen roll\", \"unit\": \"rolls\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Marlowe Bodyworks store cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"oil restock\", \"counterpart\": \"Greta Voss\", \"org\": \"Kestrel Supplies\", \"item\": \"massage oil 500ml\", \"unit\": \"bottles\", \"values\": [\"6\", \"12\", \"24\"], \"place\": \"treatment Room 2\"},\n    {\"kind\": \"order\", \"topic\": \"hot towel wipes\", \"counterpart\": \"Greta Voss\", \"org\": \"Kestrel Supplies\", \"item\": \"hot towel wipes\", \"unit\": \"boxes\", \"values\": [\"15\", \"30\", \"45\"], \"place\": \"treatment Room 2\"},\n    {\"kind\": \"booking\", \"topic\": \"case review meeting\", \"counterpart\": \"Claims Team\", \"org\": \"Headwater Health\", \"item\": \"case review meeting\", \"unit\": \"\", \"values\": [\"Meeting Room 1\", \"Meeting Room 2\", \"Room 1\"], \"place\": \"Marlowe Bodyworks\"},\n    {\"kind\": \"booking\", \"topic\": \"audit visit\", \"counterpart\": \"Claims Team\", \"org\": \"Headwater Health\", \"item\": \"audit visit\", \"unit\": \"\", \"values\": [\"Meeting Room 1\", \"Meeting Room 2\", \"Room 1\"], \"place\": \"Marlowe Bodyworks\"},\n    {\"kind\": \"booking\", \"topic\": \"patient appointment\", \"counterpart\": \"Priya Nair\", \"org\": \"patient\", \"item\": \"appointment slot\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Meeting Room 1\"], \"place\": \"Marlowe Bodyworks\"},\n    {\"kind\": \"booking\", \"topic\": \"Mila appointments\", \"counterpart\": \"Mila Voss\", \"org\": \"patient\", \"item\": \"appointment slot\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Meeting Room 1\"], \"place\": \"Marlowe Bodyworks\"},\n    {\"kind\": \"booking\", \"topic\": \"staff meeting\", \"counterpart\": \"Nadia\", \"org\": \"Marlowe Bodyworks\", \"item\": \"staff meeting\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Meeting Room 1\"], \"place\": \"Marlowe Bodyworks\"},\n    {\"kind\": \"order\", \"topic\": \"office paper\", \"counterpart\": \"Tomas Bishop\", \"org\": \"Marlowe Bodyworks\", \"item\": \"printer paper\", \"unit\": \"reams\", \"values\": [\"2\", \"5\", \"10\"], \"place\": \"reception\"},\n    {\"kind\": \"order\", \"topic\": \"kinesiology tape\", \"counterpart\": \"Marcus Reed\", \"org\": \"Riverbank Pharmacy\", \"item\": \"kinesiology tape\", \"unit\": \"rolls\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"treatment Room 1\"},\n    {\"kind\": \"order\", \"topic\": \"uniform tops\", \"counterpart\": \"Elise Grant\", \"org\": \"Brightline Uniforms\", \"item\": \"tunic tops\", \"unit\": \"items\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"reception\"},\n    {\"kind\": \"booking\", \"topic\": \"referral review call\", \"counterpart\": \"Dr Amara Osei\", \"org\": \"Whitfield Medical Centre\", \"item\": \"referral review call\", \"unit\": \"\", \"values\": [\"phone\", \"video\", \"in person\"], \"place\": \"Marlowe Bodyworks office\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7884,
+    "completion_tokens": 4856,
+    "reasoning_tokens": 152,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02882896,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 1000: 6 decisions; need 7–18\n- noise topic 'case review meeting': values needs at least three entries\n- noise topic 'audit visit': values needs at least three entries\n- noise topic 'patient appointment': values needs at least three entries\n- noise topic 'Mila appointments': values needs at least three entries\n- noise topic 'staff meeting': values needs at least three entries\n- noise topic 'referral review call': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Headwater session cap correction",
+  "setting": "An osteopath at Marlowe Bodyworks whose assistant records patient histories, treatment notes, and insurance claims",
+  "owner": "Nadia",
+  "org": "Marlowe Bodyworks",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Standing instruction for the practice: once a treatment appointment with a patient has been confirmed, it may only be moved or cancelled with that patient's agreement. Always ask the patient first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Nadia",
+    "text": "Practice policy: any insurance claim we submit above 500 in total must be signed off by the practice manager, Tomas Bishop, before it goes out.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "letter",
+    "from": "Claims Team (Headwater Health)",
+    "text": "Dear Marlowe Bodyworks, we confirm that policy PH-2214, held by Ruth Ellery, covers up to 9 physiotherapy sessions per policy year at 42 per session. The policy year runs to 31 December 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "note",
+    "from": "Dr Amara Osei (Whitfield Medical Centre)",
+    "text": "Referral note: Ruth Ellery, lower back strain. I recommend a course of roughly nine treatment sessions at fortnightly intervals with an osteopath.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked Ruth Ellery a 9-session physiotherapy course under her Headwater Health policy PH-2214, billed at 42 per session, starting 16 June. I took the session count and the fee straight from Headwater's letter.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-16",
+    "type": "email",
+    "from": "Ruth Ellery",
+    "text": "Hi Nadia, first session went well, thanks. See you in a fortnight.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-18",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Room 2 is free on Tuesday mornings at 09:00 from July onwards, so that is our standing slot for Ruth's sessions.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "call",
+    "from": "Nadia",
+    "text": "Call note: Jonas Hale moved his one-off neck assessment to early July; no course booked.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "letter",
+    "from": "Harold Bean (Landlord)",
+    "text": "The heating in Room 1 will be serviced during the first week of September; treatment can continue as normal.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-29",
+    "type": "invoice",
+    "from": "Greta Voss (Kestrel Supplies)",
+    "text": "Invoice for June restock: 12 bottles of massage oil at 6.50 each, total 78, delivered to Marlowe Bodyworks.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Claims Team (Headwater Health)",
+    "text": "Good news for practices with patients on our premium tier: premium policies now cover up to 12 physiotherapy sessions per policy year. Standard policies are unchanged.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Is there parking at Marlowe Bodyworks for my appointment on 14 July?",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-15",
+    "type": "minutes",
+    "from": "Nadia",
+    "text": "Team minutes: reception cover agreed for August; linen order handed to Greta at Kestrel Supplies; Ruth Ellery progressing well.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Submitted the interim claim to Headwater Health for Ruth Ellery's first three sessions at the policy rate of 42 each, total 126, referencing PH-2214. No sign-off needed as it is under 500.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-27",
+    "type": "email",
+    "from": "Claims Team (Headwater Health)",
+    "text": "Claim for 126 under policy PH-2214 has been paid into your account. Thank you.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-30",
+    "type": "cancellation",
+    "from": "Jonas Hale",
+    "text": "Sorry, please cancel my one-off neck assessment; I will rebook if the pain returns.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Fernwood Mutual",
+    "text": "We confirm that policy FM-8891, held by Mila Voss, covers 5 physiotherapy sessions per policy year at 55 per session.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked Mila Voss a 5-session course under her Fernwood Mutual policy FM-8891 at 55 per session, starting 12 August.",
+    "role": "decision",
+    "rests_on": [
+     "e17"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-12",
+    "type": "message",
+    "from": "Ruth Ellery",
+    "text": "The fortnightly rhythm is really helping. See you on the 25th.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-28",
+    "type": "quote",
+    "from": "Greta Voss (Kestrel Supplies)",
+    "text": "Quote: massage oil 500ml at 6.50 per bottle for orders of 24 bottles or more, delivered to the practice.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Claims Team (Headwater Health)",
+    "text": "Claim acknowledgment for policy PH-2214: 3 of the 9 covered sessions have been claimed so far this policy year. The rate of 42 per session applies.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-04",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered 24 bottles of massage oil from Kestrel Supplies at the quoted 6.50 per bottle, total 156, for delivery to the practice store cupboard.",
+    "role": "decision",
+    "rests_on": [
+     "e20"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-08",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Scheduled Ruth Ellery's sessions 4 to 6 of her 9-session course for 25 August and 8 and 22 September, Tuesdays at 09:00 in Room 2, our standing slot.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e7"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Scheduled Ruth Ellery's final three review sessions from her 9-session course for 3, 10 and 17 November at 09:00 in Room 2, our standing Tuesday slot, and confirmed the dates with her by phone.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e7"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Dr Amara Osei (Whitfield Medical Centre)",
+    "text": "New referral: Sana Idris, shoulder stiffness. Six sessions suggested; her insurer details to follow.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-18",
+    "type": "invoice",
+    "from": "Marlowe Bodyworks",
+    "text": "Invoice to Fernwood Mutual for Mila Voss, 2 sessions at 55 each, total 110, policy FM-8891.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-25",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Treatment note: Ruth Ellery has now used 6 of her 9 Headwater-covered sessions; three remain, all in November, at 42 each. Under the 500 threshold, so no Tomas sign-off needed for the next claim.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-29",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Room 1 is free all day on 3 November if we want to hold the staff training then.",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-30",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked the staff manual-handling refresher for 3 November in Room 1, which is free that day.",
+    "role": "decision",
+    "rests_on": [
+     "e28"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-07",
+    "type": "email",
+    "from": "Claims Team (Headwater Health)",
+    "text": "Dear Marlowe Bodyworks, following an audit we are correcting our letter of 5 June. Policy PH-2214 (Ruth Ellery) covers up to 6 physiotherapy sessions per policy year, not 9. The reimbursement rate of 42 per session is confirmed and unchanged. Apologies for the error.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-12",
+    "type": "message",
+    "from": "Ruth Ellery",
+    "text": "Hi Nadia, could someone send me the dates of my remaining appointments? I want to put them in my calendar.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-17",
+    "type": "email",
+    "from": "Tomas Bishop",
+    "text": "Reminder that I am on leave the first week of November, so send me any large claims before then.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Greta Voss (Kestrel Supplies)",
+    "text": "Your oil order is scheduled for delivery on 2026-11-02 to Marlowe Bodyworks.",
+    "role": "other"
+   },
+   {
+    "id": "e34",
+    "date": "2026-10-24",
+    "type": "note",
+    "from": "Nadia",
+    "text": "To do: renew the public liability insurance before 2026-11-15.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Ruth Ellery - treatment course",
+    "fields": {
+     "patient": "Ruth Ellery",
+     "insurer": "Headwater Health",
+     "policy": "PH-2214",
+     "sessions_total": "9",
+     "fee_per_session": "42",
+     "status": "in_progress"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Ruth Ellery - November review sessions",
+    "fields": {
+     "patient": "Ruth Ellery",
+     "dates": "2026-11-03, 2026-11-10, 2026-11-17",
+     "time": "09:00",
+     "room": "Room 2",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Ruth Ellery - sessions 4 to 6",
+    "fields": {
+     "patient": "Ruth Ellery",
+     "dates": "2026-08-25, 2026-09-08, 2026-09-22",
+     "time": "09:00",
+     "room": "Room 2",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Headwater interim claim PH-2214",
+    "fields": {
+     "insurer": "Headwater Health",
+     "policy": "PH-2214",
+     "sessions": "1-3",
+     "amount": "126",
+     "status": "paid"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Kestrel massage oil restock",
+    "fields": {
+     "supplier": "Kestrel Supplies",
+     "item": "massage oil 500ml",
+     "quantity": "24",
+     "unit_price": "6.50",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Mila Voss - treatment course",
+    "fields": {
+     "patient": "Mila Voss",
+     "insurer": "Fernwood Mutual",
+     "policy": "FM-8891",
+     "sessions_total": "5",
+     "fee_per_session": "55",
+     "status": "in_progress"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Staff training - November",
+    "fields": {
+     "topic": "manual handling refresher",
+     "date": "2026-11-03",
+     "place": "Room 1",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Ruth Ellery",
+    "fields": {
+     "name": "Ruth Ellery",
+     "insurer": "Headwater Health",
+     "policy": "PH-2214",
+     "referred_by": "Dr Amara Osei",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "dates",
+     "status"
+    ],
+    "from": "Ruth Ellery",
+    "rule": "e1"
+   }
+  ],
+  "task": "Ruth messaged about her appointments - please send her the schedule for her remaining sessions.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "sessions_total",
+    "value": "6",
+    "stale": [
+     "9"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Ruth Ellery",
+    "regarding": "EV-2",
+    "says": [
+     "Headwater Health covers 6 sessions per policy year on policy PH-2214",
+     "her 6 covered sessions have already been used",
+     "asking for her agreement to cancel the remaining November sessions on 2026-11-03, 2026-11-10 and 2026-11-17"
+    ],
+    "stale": [
+     "9 sessions covered",
+     "three remaining sessions in November",
+     "12 sessions covered"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change corrects Headwater's coverage for Ruth Ellery from 9 to 6 sessions per year while leaving the 42 rate standing. The course record EV-1 was set directly from the old letter, so its session total is revised to 6 without anyone's consent; the November review sessions EV-2 were scheduled from that course and, being confirmed appointments, may only be changed with Ruth's agreement under the standing rule, so the assistant must ask rather than act. The interim claim ORD-1 used only the unchanged 42 rate, and the sessions 4-6 block EV-3 sits inside the 6-session cap, so both are KEEP; everything else is untouched. The task asks for Ruth's remaining schedule, which cannot be answered correctly while passing off three November sessions as covered.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "linen restock",
+    "counterpart": "Greta Voss",
+    "org": "Kestrel Supplies",
+    "item": "linen roll",
+    "unit": "rolls",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "Marlowe Bodyworks store cupboard"
+   },
+   {
+    "kind": "order",
+    "topic": "oil restock",
+    "counterpart": "Greta Voss",
+    "org": "Kestrel Supplies",
+    "item": "massage oil 500ml",
+    "unit": "bottles",
+    "values": [
+     "6",
+     "12",
+     "24"
+    ],
+    "place": "treatment Room 2"
+   },
+   {
+    "kind": "order",
+    "topic": "hot towel wipes",
+    "counterpart": "Greta Voss",
+    "org": "Kestrel Supplies",
+    "item": "hot towel wipes",
+    "unit": "boxes",
+    "values": [
+     "15",
+     "30",
+     "45"
+    ],
+    "place": "treatment Room 2"
+   },
+   {
+    "kind": "booking",
+    "topic": "case review meeting",
+    "counterpart": "Claims Team",
+    "org": "Headwater Health",
+    "item": "case review meeting",
+    "unit": "",
+    "values": [
+     "Meeting Room 1",
+     "Meeting Room 2",
+     "Room 1"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "booking",
+    "topic": "audit visit",
+    "counterpart": "Claims Team",
+    "org": "Headwater Health",
+    "item": "audit visit",
+    "unit": "",
+    "values": [
+     "Meeting Room 1",
+     "Meeting Room 2",
+     "Room 1"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "booking",
+    "topic": "patient appointment",
+    "counterpart": "Priya Nair",
+    "org": "patient",
+    "item": "appointment slot",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Meeting Room 1"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "booking",
+    "topic": "Mila appointments",
+    "counterpart": "Mila Voss",
+    "org": "patient",
+    "item": "appointment slot",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Meeting Room 1"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff meeting",
+    "counterpart": "Nadia",
+    "org": "Marlowe Bodyworks",
+    "item": "staff meeting",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Meeting Room 1"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "order",
+    "topic": "office paper",
+    "counterpart": "Tomas Bishop",
+    "org": "Marlowe Bodyworks",
+    "item": "printer paper",
+    "unit": "reams",
+    "values": [
+     "2",
+     "5",
+     "10"
+    ],
+    "place": "reception"
+   },
+   {
+    "kind": "order",
+    "topic": "kinesiology tape",
+    "counterpart": "Marcus Reed",
+    "org": "Riverbank Pharmacy",
+    "item": "kinesiology tape",
+    "unit": "rolls",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "treatment Room 1"
+   },
+   {
+    "kind": "order",
+    "topic": "uniform tops",
+    "counterpart": "Elise Grant",
+    "org": "Brightline Uniforms",
+    "item": "tunic tops",
+    "unit": "items",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "referral review call",
+    "counterpart": "Dr Amara Osei",
+    "org": "Whitfield Medical Centre",
+    "item": "referral review call",
+    "unit": "",
+    "values": [
+     "phone",
+     "video",
+     "in person"
+    ],
+    "place": "Marlowe Bodyworks office"
+   }
+  ],
+  "id": "G1000-3-05",
+  "tier": 1000,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The correction fixes insurance coverage, not the prescribed or booked treatment-course length; no rule requires reducing EV-1 to six sessions or seeking cancellation of uncovered appointments. Ruth still has three confirmed November appointments, so sending those dates with a coverage warning is a valid response that the expected state excludes. The hidden consent map does not establish that shortening the booked course is exempt from the stated patient-agreement rule.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The correction fixes insurance coverage, not the prescribed or booked treatment-course length; no rule requires reducing EV-1 to six sessions or seeking cancellation of uncovered appointments. Ruth still has three confirmed November appointments, so sending those dates with a coverage warning is a valid response that the expected state excludes. The hidden consent map does not establish that shortening the booked course is exempt from the stated patient-agreement rule."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4437,
+    "completion_tokens": 195,
+    "reasoning_tokens": 78,
+    "cached_tokens": 0
+   },
+   "cost": 0.065205,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e43cb29594a3269610a29e45dbbadc8d430538be0db354d1f97fa195d847e10a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The expected state follows from the history: EV-1 is revised to 6, ORD-1 and EV-3 stay as they are, and EV-2 needs Ruth's consent under rule e1. The change (e30) opens with \\\"we are correcting our letter of 5 June\\\" and ends with \\\"Apologies for the error\\\", which announces it as a correction rather than leaving it as an ordinary event. The core counts, the 19-day gap before the task day, and the two echoes all meet the 1,000 tier.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The expected state follows from the history: EV-1 is revised to 6, ORD-1 and EV-3 stay as they are, and EV-2 needs Ruth's consent under rule e1. The change (e30) opens with \"we are correcting our letter of 5 June\" and ends with \"Apologies for the error\", which announces it as a correction rather than leaving it as an ordinary event. The core counts, the 19-day gap before the task day, and the two echoes all meet the 1,000 tier."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6422,
+    "completion_tokens": 1993,
+    "reasoning_tokens": 1775,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016387,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e43cb29594a3269610a29e45dbbadc8d430538be0db354d1f97fa195d847e10a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Chain structure holds: A=e3 (coverage fact), B=e5 decided on A (REVISE to 6), C=e24 decided on B not A (ASK per rule e1, matching the consent map), D=e14 cites the unchanged 42 rate (KEEP) and e23 falls inside the new cap (KEEP). Tier counts fit (34 core events, 7 decisions, change 19 days before task day, 84 later events, two echoes e21/e27 restating 9 sessions). The task asks only for Ruth's schedule and never hints at the correction, yet requires a consent-request message rather than passing off November sessions as covered.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Chain structure holds: A=e3 (coverage fact), B=e5 decided on A (REVISE to 6), C=e24 decided on B not A (ASK per rule e1, matching the consent map), D=e14 cites the unchanged 42 rate (KEEP) and e23 falls inside the new cap (KEEP). Tier counts fit (34 core events, 7 decisions, change 19 days before task day, 84 later events, two echoes e21/e27 restating 9 sessions). The task asks only for Ruth's schedule and never hints at the correction, yet requires a consent-request message rather than passing off November sessions as covered."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4562,
+    "completion_tokens": 509,
+    "reasoning_tokens": 318,
+    "cached_tokens": 0
+   },
+   "cost": 0.021321,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e43cb29594a3269610a29e45dbbadc8d430538be0db354d1f97fa195d847e10a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,640 @@
+{
+ "id": "K500-2-06",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 2,
+ "idx": 5,
+ "setting": "Accounting practice manager at Ledger & Bright Accountants, a small CPA firm",
+ "prompt_sha256": "3b0526a803ccdc037b2c55b436802d730e94c390feb59e1653db6e18966acd9a",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Room B refit reshuffles November reviews\",\n \"setting\": \"Accounting practice manager at Ledger & Bright Accountants, a small CPA firm\",\n \"owner\": \"Marta\",\n \"org\": \"Ledger & Bright Accountants\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Office booking policy: every review meeting at Ledger & Bright, whether with a client or internal, is booked into Room B, the large meeting room, unless the host specifically asks for a different room.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Client courtesy rule: once a client meeting is confirmed, we never move it to a different room or time without the client's agreement first. Ask the client, then change the booking.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-03\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Meeting rooms at 14 Crane Street: Room A seats 8 and has a screen; Room B seats 14 and has the projector and speakerphone.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Nadia Hartley (Hartley & Moss)\", \"text\": \"Thank you for the engagement letter. Nadia Hartley is the contact for the Hartley & Moss year-end review; her email is nadia@hartleyandmoss.example.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Tomas Reyes (Pellinor Foods)\", \"text\": \"Tomas Reyes confirms Pellinor Foods will hold its quarterly accounts review with Ledger & Bright each quarter, and he is the contact for scheduling.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"invoice\", \"from\": \"Bean Counter Coffee Co\", \"text\": \"Invoice 1140 for 12 bags of office coffee delivered to reception at 14 Crane Street, total 156.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Hartley & Moss year-end review with Nadia Hartley for Friday 13 November at 10:00 in Room B, the large meeting room, as our policy puts client reviews there and she asked for nothing special.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-23\", \"type\": \"message\", \"from\": \"Priya Shah (Ledger & Bright)\", \"text\": \"Priya reminded the team that June timesheets are due by Friday 26 June.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the internal quarterly team review for Wednesday 18 November at 14:00 in Room B under the office booking policy, since all 12 staff need the big room.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Carter Print Services\", \"text\": \"Your order of 20 boxes of A4 paper and 5 toner cartridges has shipped, delivery expected Monday 6 July to reception at 14 Crane Street.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Marlow Antiques interim review for Friday 9 October at 11:00 in Room B, following the usual room policy for client reviews.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered sandwich and fruit platters from Bright Bites Catering for the internal team review on 18 November, 12 portions, delivery to Room B at 13:30.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Gillian Marlow (Marlow Antiques)\", \"text\": \"Gillian confirms she will bring the stock valuation paperwork to the interim review in October.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-21\", \"type\": \"quote\", \"from\": \"Bright Bites Catering\", \"text\": \"Quote: sandwich and fruit platters at 9.50 per portion, minimum 8 portions, 48 hours notice preferred.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-30\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Send the autumn engagement letters to all review clients by Wednesday 30 September.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-04\", \"type\": \"message\", \"from\": \"Priya Shah (Ledger & Bright)\", \"text\": \"The August payroll journal was posted and filed; nothing unusual this month.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Tomas Reyes (Pellinor Foods)\", \"text\": \"Tomas asks whether the Q3 review pack can include a breakdown of delivery-cost overheads for the two new depots.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-18\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Reminder that the office kettle in the small kitchen is replaced under warranty; the receipt is in the top drawer.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-27\", \"type\": \"letter\", \"from\": \"Harbour Self Storage\", \"text\": \"Your storage unit renewal for archive boxes runs from 1 October at 88 per month.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Nadia Hartley (Hartley & Moss)\", \"text\": \"Nadia asks that the November review covers the new hire's payroll setup and the van lease; she looks forward to the meeting.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Priya Shah (Ledger & Bright)\", \"text\": \"Calendar confirmation: the Hartley & Moss year-end review with Nadia Hartley is on Friday 13 November at 10:00 in Room B, as booked. echo of the standing arrangement for the front desk.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Tomas Reyes (Pellinor Foods)\", \"text\": \"Tomas confirms the Pellinor Foods audit committee session is booked for Monday 16 November at 09:30 in Room C at their request, separate from the quarterly review series.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-29\", \"type\": \"invoice\", \"from\": \"Carter Print Services\", \"text\": \"Invoice 2218 for bound copies of the summer client reports, total 214, payable by 29 October.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-05\", \"type\": \"instruction\", \"from\": \"Daniel Okafor (Crane Street Facilities)\", \"text\": \"From Monday 12 October Room B at 14 Crane Street closes for a full projector and wiring refit, expected to last into December. Until it reopens, every review meeting that would have used Room B must be held in Room A, which is being fitted with a temporary screen. Meetings already held or finishing before 12 October are not affected.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Gillian Marlow (Marlow Antiques)\", \"text\": \"Gillian thanks the team for the interim review on Friday 9 October and says the valuation notes were very clear.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Daniel Okafor (Crane Street Facilities)\", \"text\": \"The temporary screen in Room A is now working; the fitters are in Room B daily from 08:00.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Bean Counter Coffee Co\", \"text\": \"Your standing coffee order will next deliver on Monday 26 October to reception, 12 bags as usual.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-27\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Chase the signed engagement letter from Pellinor Foods by Friday 6 November if it has not arrived.\", \"role\": \"obligation\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-30\", \"type\": \"message\", \"from\": \"Priya Shah (Ledger & Bright)\", \"text\": \"October timesheets are due today; please submit before 17:00 so payroll runs on Monday.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Hartley & Moss year-end review\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"10:00\", \"place\": \"Room B\", \"client\": \"Nadia Hartley\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Internal quarterly team review\", \"fields\": {\"date\": \"2026-11-18\", \"time\": \"14:00\", \"place\": \"Room B\", \"host\": \"Marta\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Marlow Antiques interim review\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"11:00\", \"place\": \"Room B\", \"client\": \"Gillian Marlow\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Catering for internal team review\", \"fields\": {\"supplier\": \"Bright Bites Catering\", \"date\": \"2026-11-18\", \"portions\": \"12\", \"delivery_place\": \"Room B\", \"delivery_time\": \"13:30\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hartley & Moss client card\", \"fields\": {\"contact\": \"Nadia Hartley\", \"email\": \"nadia@hartleyandmoss.example\", \"service\": \"year-end accounts review\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"place\"], \"from\": \"Nadia Hartley (Hartley & Moss)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Could you tidy up our November meeting arrangements today: get in touch with Nadia Hartley to sort out where her 13 November review meeting will be held, and make sure the schedule and anything hanging off it are properly set.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"place\", \"value\": \"Room A\", \"stale\": [\"Room B\"]},\n  {\"record\": \"ORD-1\", \"field\": \"delivery_place\", \"value\": \"Room A\", \"stale\": [\"Room B\"]},\n  {\"message_to\": \"Nadia Hartley\", \"regarding\": \"EV-1\", \"says\": [\"Room A\", \"2026-11-13\"], \"stale\": [\"Room B\"], \"task\": true}\n ],\n \"why\": \"The facilities instruction amends the room rule from 12 October, so only meetings after that date move to Room A: the internal review on 18 November and its catering delivery are REVISE (no consent needed, two hops for the order), while the Marlow review on 9 October is KEEP because it predates the change's terms. The Hartley client review on 13 November is ASK: the client-consent rule means Marta must get Nadia's agreement before moving a confirmed client meeting, so the record stays in Room B and the right act is a consent request proposing Room A, never asserting Room B as current.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"coffee restock\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Bean Counter Coffee Co\", \"item\": \"bags of office coffee\", \"unit\": \"bags\", \"values\": [\"8\", \"10\", \"12\", \"14\"], \"place\": \"reception at 14 Crane Street\"},\n  {\"kind\": \"order\", \"topic\": \"paper and toner\", \"counterpart\": \"Lena Carter\", \"org\": \"Carter Print Services\", \"item\": \"boxes of A4 paper\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"reception at 14 Crane Street\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly staff catch-up\", \"counterpart\": \"Priya Shah\", \"org\": \"Ledger & Bright Accountants\", \"item\": \"room for the Monday staff catch-up\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"the small kitchen\"], \"place\": \"14 Crane Street\"},\n  {\"kind\": \"booking\", \"topic\": \"payroll working session\", \"counterpart\": \"Priya Shah\", \"org\": \"Ledger & Bright Accountants\", \"item\": \"room for payroll work sessions\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"the quiet booth\"], \"place\": \"14 Crane Street\"},\n  {\"kind\": \"order\", \"topic\": \"client lunch platters\", \"counterpart\": \"Owen Bright\", \"org\": \"Bright Bites Catering\", \"item\": \"sandwich platters\", \"unit\": \"portions\", \"values\": [\"8\", \"10\", \"12\", \"16\"], \"place\": \"Room B\"},\n  {\"kind\": \"booking\", \"topic\": \"Pellinor review slot\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Pellinor Foods\", \"item\": \"quarterly review meeting room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"Room C\"], \"place\": \"14 Crane Street\"},\n  {\"kind\": \"booking\", \"topic\": \"Hartley file review\", \"counterpart\": \"Nadia Hartley\", \"org\": \"Hartley & Moss\", \"item\": \"follow-up working room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\"], \"place\": \"14 Crane Street\"},\n  {\"kind\": \"order\", \"topic\": \"archive box top-up\", \"counterpart\": \"Ruth Harbour\", \"org\": \"Harbour Self Storage\", \"item\": \"archive boxes\", \"unit\": \"boxes\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"storage unit reception\"},\n  {\"kind\": \"order\", \"topic\": \"kitchen supplies\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Bean Counter Coffee Co\", \"item\": \"boxes of tea and biscuits\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"6\"], \"place\": \"reception at 14 Crane Street\"},\n  {\"kind\": \"booking\", \"topic\": \"facilities inspection\", \"counterpart\": \"Daniel Okafor\", \"org\": \"Crane Street Facilities\", \"item\": \"room access window for inspections\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"the server cupboard\"], \"place\": \"14 Crane Street\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3233,
+    "completion_tokens": 6275,
+    "reasoning_tokens": 2445,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0955296,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Room B refit reshuffles November reviews\",\n \"setting\": \"Accounting practice manager at Ledger & Bright Accountants, a small CPA firm\",\n \"owner\": \"Marta\",\n \"org\": \"Ledger & Bright Accountants\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Office booking policy: every review meeting at Ledger & Bright, whether with a client or internal, is booked into Room B, the large meeting room, unless the host specifically asks for a different room.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Client courtesy rule: once a client meeting is confirmed, we never move it to a different room or time without the client's agreement first. Ask the client, then change the booking.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-03\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Meeting rooms at 14 Crane Street: Room A seats 8 and has a screen; Room B seats 14 and has the projector and speakerphone.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Nadia Hartley (Hartley & Moss)\", \"text\": \"Thank you for the engagement letter. Nadia Hartley is the contact for the Hartley & Moss year-end review; her email is nadia@hartleyandmoss.example.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Tomas Reyes (Pellinor Foods)\", \"text\": \"Tomas Reyes confirms Pellinor Foods will hold its quarterly accounts review with Ledger & Bright each quarter, and he is the contact for scheduling.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"invoice\", \"from\": \"Bean Counter Coffee Co\", \"text\": \"Invoice 1140 for 12 bags of office coffee delivered to reception at 14 Crane Street, total 156.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Hartley & Moss year-end review with Nadia Hartley for Friday 13 November at 10:00 in Room B, the large meeting room, as our policy puts client reviews there and she asked for nothing special.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-23\", \"type\": \"message\", \"from\": \"Priya Shah (Ledger & Bright)\", \"text\": \"Priya reminded the team that June timesheets are due by Friday 26 June.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the internal quarterly team review for Wednesday 18 November at 14:00 in Room B under the office booking policy, since all 12 staff need the big room.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Carter Print Services\", \"text\": \"Your order of 20 boxes of A4 paper and 5 toner cartridges has shipped, delivery expected Monday 6 July to reception at 14 Crane Street.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Marlow Antiques interim review for Friday 9 October at 11:00 in Room B, following the usual room policy for client reviews.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered sandwich and fruit platters from Bright Bites Catering for the internal team review on 18 November, 12 portions, delivery to Room B at 13:30.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Gillian Marlow (Marlow Antiques)\", \"text\": \"Gillian confirms she will bring the stock valuation paperwork to the interim review in October.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-21\", \"type\": \"quote\", \"from\": \"Bright Bites Catering\", \"text\": \"Quote: sandwich and fruit platters at 9.50 per portion, minimum 8 portions, 48 hours notice preferred.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-30\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Send the autumn engagement letters to all review clients by Wednesday 30 September.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-04\", \"type\": \"message\", \"from\": \"Priya Shah (Ledger & Bright)\", \"text\": \"The August payroll journal was posted and filed; nothing unusual this month.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Tomas Reyes (Pellinor Foods)\", \"text\": \"Tomas asks whether the Q3 review pack can include a breakdown of delivery-cost overheads for the two new depots.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the internal tax-update training session for Wednesday 25 November at 15:00 in Room B, following the office booking policy since all 12 staff attend.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-27\", \"type\": \"letter\", \"from\": \"Harbour Self Storage\", \"text\": \"Your storage unit renewal for archive boxes runs from 1 October at 88 per month.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Nadia Hartley (Hartley & Moss)\", \"text\": \"Nadia asks that the November review covers the new hire's payroll setup and the van lease; she looks forward to the meeting.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Marlow Antiques year-end planning meeting with Gillian Marlow for Friday 4 December at 10:30 in Room B, under the usual room policy for client meetings.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e13\"], \"record\": \"EV-5\", \"mark\": \"ASK\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Priya Shah (Ledger & Bright)\", \"text\": \"Calendar confirmation: the Hartley & Moss year-end review with Nadia Hartley is on Friday 13 November at 10:00 in Room B, as booked. echo of the standing arrangement for the front desk.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Tomas Reyes (Pellinor Foods)\", \"text\": \"Tomas confirms the Pellinor Foods audit committee session is booked for Monday 16 November at 09:30 in Room C at their request, separate from the quarterly review series.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-29\", \"type\": \"invoice\", \"from\": \"Carter Print Services\", \"text\": \"Invoice 2218 for bound copies of the summer client reports, total 214, payable by 29 October.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-05\", \"type\": \"instruction\", \"from\": \"Daniel Okafor (Crane Street Facilities)\", \"text\": \"From Monday 12 October Room B at 14 Crane Street closes for a full projector and wiring refit, expected to last into December. Until it reopens, every review meeting that would have used Room B must be held in Room A, which is being fitted with a temporary screen. Meetings already held or finishing before 12 October are not affected.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e26\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Gillian Marlow (Marlow Antiques)\", \"text\": \"Gillian thanks the team for the interim review on Friday 9 October and says the valuation notes were very clear.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Daniel Okafor (Crane Street Facilities)\", \"text\": \"The temporary screen in Room A is now working; the fitters are in Room B daily from 08:00.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Bean Counter Coffee Co\", \"text\": \"Your standing coffee order will next deliver on Monday 26 October to reception, 12 bags as usual.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-27\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Chase the signed engagement letter from Pellinor Foods by Friday 6 November if it has not arrived.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-30\", \"type\": \"message\", \"from\": \"Priya Shah (Ledger & Bright)\", \"text\": \"October timesheets are due today; please submit before 17:00 so payroll runs on Monday.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Hartley & Moss year-end review\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"10:00\", \"place\": \"Room B\", \"client\": \"Nadia Hartley\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Internal quarterly team review\", \"fields\": {\"date\": \"2026-11-18\", \"time\": \"14:00\", \"place\": \"Room B\", \"host\": \"Marta\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Marlow Antiques interim review\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"11:00\", \"place\": \"Room B\", \"client\": \"Gillian Marlow\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Internal tax-update training session\", \"fields\": {\"date\": \"2026-11-25\", \"time\": \"15:00\", \"place\": \"Room B\", \"host\": \"Priya Shah\", \"status\": \"booked\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Marlow Antiques year-end planning meeting\", \"fields\": {\"date\": \"2026-12-04\", \"time\": \"10:30\", \"place\": \"Room B\", \"client\": \"Gillian Marlow\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Catering for internal team review\", \"fields\": {\"supplier\": \"Bright Bites Catering\", \"date\": \"2026-11-18\", \"portions\": \"12\", \"delivery_place\": \"Room B\", \"delivery_time\": \"13:30\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hartley & Moss client card\", \"fields\": {\"contact\": \"Nadia Hartley\", \"email\": \"nadia@hartleyandmoss.example\", \"service\": \"year-end accounts review\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"place\"], \"from\": \"Nadia Hartley (Hartley & Moss)\", \"rule\": \"e2\"},\n  {\"record\": \"EV-5\", \"fields\": [\"place\"], \"from\": \"Gillian Marlow (Marlow Antiques)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Could you tidy up our November meeting arrangements today: get in touch with Nadia Hartley to sort out where her 13 November review meeting will be held, and make sure the schedule and anything hanging off it are properly set.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"place\", \"value\": \"Room A\", \"stale\": [\"Room B\"]},\n  {\"record\": \"EV-4\", \"field\": \"place\", \"value\": \"Room A\", \"stale\": [\"Room B\"]},\n  {\"record\": \"ORD-1\", \"field\": \"delivery_place\", \"value\": \"Room A\", \"stale\": [\"Room B\"]},\n  {\"message_to\": \"Nadia Hartley\", \"regarding\": \"EV-1\", \"says\": [\"Room A\", \"2026-11-13\"], \"stale\": [\"Room B\"], \"task\": true},\n  {\"message_to\": \"Gillian Marlow\", \"regarding\": \"EV-5\", \"says\": [\"Room A\", \"2026-12-04\"], \"stale\": [\"Room B\"]}\n ],\n \"why\": \"The facilities instruction amends the room rule from 12 October, so only meetings after that date move to Room A: the internal review on 18 November, the training session on 25 November and the catering delivery hanging off the review are REVISE (no consent needed; the order is two hops from the rule), while the Marlow interim review on 9 October is KEEP because it predates the change's terms. The Hartley review on 13 November and the Marlow planning meeting on 4 December are ASK: the client-consent rule requires the client's agreement before moving a confirmed client meeting, so those records stay in Room B and the right act is a consent request proposing Room A.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"coffee restock\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Bean Counter Coffee Co\", \"item\": \"bags of office coffee\", \"unit\": \"bags\", \"values\": [\"8\", \"10\", \"12\", \"14\"], \"place\": \"reception at 14 Crane Street\"},\n  {\"kind\": \"order\", \"topic\": \"paper and toner\", \"counterpart\": \"Lena Carter\", \"org\": \"Carter Print Services\", \"item\": \"boxes of A4 paper\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"reception at 14 Crane Street\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly staff catch-up\", \"counterpart\": \"Priya Shah\", \"org\": \"Ledger & Bright Accountants\", \"item\": \"room for the Monday staff catch-up\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"the small kitchen\"], \"place\": \"14 Crane Street\"},\n  {\"kind\": \"booking\", \"topic\": \"payroll working session\", \"counterpart\": \"Priya Shah\", \"org\": \"Ledger & Bright Accountants\", \"item\": \"room for payroll work sessions\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"the quiet booth\"], \"place\": \"14 Crane Street\"},\n  {\"kind\": \"order\", \"topic\": \"client lunch platters\", \"counterpart\": \"Owen Bright\", \"org\": \"Bright Bites Catering\", \"item\": \"sandwich platters\", \"unit\": \"portions\", \"values\": [\"8\", \"10\", \"12\", \"16\"], \"place\": \"Room B\"},\n  {\"kind\": \"booking\", \"topic\": \"Pellinor review slot\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Pellinor Foods\", \"item\": \"quarterly review meeting room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"Room C\"], \"place\": \"14 Crane Street\"},\n  {\"kind\": \"booking\", \"topic\": \"Hartley file review\", \"counterpart\": \"Nadia Hartley\", \"org\": \"Hartley & Moss\", \"item\": \"follow-up working room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"the quiet booth\"], \"place\": \"14 Crane Street\"},\n  {\"kind\": \"order\", \"topic\": \"archive box top-up\", \"counterpart\": \"Ruth Harbour\", \"org\": \"Harbour Self Storage\", \"item\": \"archive boxes\", \"unit\": \"boxes\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"storage unit reception\"},\n  {\"kind\": \"order\", \"topic\": \"kitchen supplies\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Bean Counter Coffee Co\", \"item\": \"boxes of tea and biscuits\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"6\"], \"place\": \"reception at 14 Crane Street\"},\n  {\"kind\": \"booking\", \"topic\": \"facilities inspection\", \"counterpart\": \"Daniel Okafor\", \"org\": \"Crane Street Facilities\", \"item\": \"room access window for inspections\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"the server cupboard\"], \"place\": \"14 Crane Street\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7142,
+    "completion_tokens": 4638,
+    "reasoning_tokens": 382,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0827016,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: 4 decisions; need 6–14\n- noise topic 'Hartley file review': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Room B refit reshuffles November reviews",
+  "setting": "Accounting practice manager at Ledger & Bright Accountants, a small CPA firm",
+  "owner": "Marta",
+  "org": "Ledger & Bright Accountants",
+  "now": "2026-11-02",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Office booking policy: every review meeting at Ledger & Bright, whether with a client or internal, is booked into Room B, the large meeting room, unless the host specifically asks for a different room.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Client courtesy rule: once a client meeting is confirmed, we never move it to a different room or time without the client's agreement first. Ask the client, then change the booking.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-03",
+    "type": "note",
+    "from": "Marta",
+    "text": "Meeting rooms at 14 Crane Street: Room A seats 8 and has a screen; Room B seats 14 and has the projector and speakerphone.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Nadia Hartley (Hartley & Moss)",
+    "text": "Thank you for the engagement letter. Nadia Hartley is the contact for the Hartley & Moss year-end review; her email is nadia@hartleyandmoss.example.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Tomas Reyes (Pellinor Foods)",
+    "text": "Tomas Reyes confirms Pellinor Foods will hold its quarterly accounts review with Ledger & Bright each quarter, and he is the contact for scheduling.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "invoice",
+    "from": "Bean Counter Coffee Co",
+    "text": "Invoice 1140 for 12 bags of office coffee delivered to reception at 14 Crane Street, total 156.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-19",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Hartley & Moss year-end review with Nadia Hartley for Friday 13 November at 10:00 in Room B, the large meeting room, as our policy puts client reviews there and she asked for nothing special.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-23",
+    "type": "message",
+    "from": "Priya Shah (Ledger & Bright)",
+    "text": "Priya reminded the team that June timesheets are due by Friday 26 June.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-26",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled the internal quarterly team review for Wednesday 18 November at 14:00 in Room B under the office booking policy, since all 12 staff need the big room.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Carter Print Services",
+    "text": "Your order of 20 boxes of A4 paper and 5 toner cartridges has shipped, delivery expected Monday 6 July to reception at 14 Crane Street.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Marlow Antiques interim review for Friday 9 October at 11:00 in Room B, following the usual room policy for client reviews.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered sandwich and fruit platters from Bright Bites Catering for the internal team review on 18 November, 12 portions, delivery to Room B at 13:30.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Gillian Marlow (Marlow Antiques)",
+    "text": "Gillian confirms she will bring the stock valuation paperwork to the interim review in October.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-21",
+    "type": "quote",
+    "from": "Bright Bites Catering",
+    "text": "Quote: sandwich and fruit platters at 9.50 per portion, minimum 8 portions, 48 hours notice preferred.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-30",
+    "type": "task",
+    "from": "Marta",
+    "text": "Send the autumn engagement letters to all review clients by Wednesday 30 September.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-04",
+    "type": "message",
+    "from": "Priya Shah (Ledger & Bright)",
+    "text": "The August payroll journal was posted and filed; nothing unusual this month.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-11",
+    "type": "email",
+    "from": "Tomas Reyes (Pellinor Foods)",
+    "text": "Tomas asks whether the Q3 review pack can include a breakdown of delivery-cost overheads for the two new depots.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled the internal tax-update training session for Wednesday 25 November at 15:00 in Room B, following the office booking policy since all 12 staff attend.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-27",
+    "type": "letter",
+    "from": "Harbour Self Storage",
+    "text": "Your storage unit renewal for archive boxes runs from 1 October at 88 per month.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-03",
+    "type": "email",
+    "from": "Nadia Hartley (Hartley & Moss)",
+    "text": "Nadia asks that the November review covers the new hire's payroll setup and the van lease; she looks forward to the meeting.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-08",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Marlow Antiques year-end planning meeting with Gillian Marlow for Friday 4 December at 10:30 in Room B, under the usual room policy for client meetings.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3",
+     "e13"
+    ],
+    "record": "EV-5",
+    "mark": "ASK"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Priya Shah (Ledger & Bright)",
+    "text": "Calendar confirmation: the Hartley & Moss year-end review with Nadia Hartley is on Friday 13 November at 10:00 in Room B, as booked. echo of the standing arrangement for the front desk.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Tomas Reyes (Pellinor Foods)",
+    "text": "Tomas confirms the Pellinor Foods audit committee session is booked for Monday 16 November at 09:30 in Room C at their request, separate from the quarterly review series.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-29",
+    "type": "invoice",
+    "from": "Carter Print Services",
+    "text": "Invoice 2218 for bound copies of the summer client reports, total 214, payable by 29 October.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-05",
+    "type": "instruction",
+    "from": "Daniel Okafor (Crane Street Facilities)",
+    "text": "From Monday 12 October Room B at 14 Crane Street closes for a full projector and wiring refit, expected to last into December. Until it reopens, every review meeting that would have used Room B must be held in Room A, which is being fitted with a temporary screen. Meetings already held or finishing before 12 October are not affected.",
+    "role": "change",
+    "revokes": [
+     "e1"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Gillian Marlow (Marlow Antiques)",
+    "text": "Gillian thanks the team for the interim review on Friday 9 October and says the valuation notes were very clear.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-14",
+    "type": "message",
+    "from": "Daniel Okafor (Crane Street Facilities)",
+    "text": "The temporary screen in Room A is now working; the fitters are in Room B daily from 08:00.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Bean Counter Coffee Co",
+    "text": "Your standing coffee order will next deliver on Monday 26 October to reception, 12 bags as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-27",
+    "type": "task",
+    "from": "Marta",
+    "text": "Chase the signed engagement letter from Pellinor Foods by Friday 6 November if it has not arrived.",
+    "role": "obligation"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-30",
+    "type": "message",
+    "from": "Priya Shah (Ledger & Bright)",
+    "text": "October timesheets are due today; please submit before 17:00 so payroll runs on Monday.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Hartley & Moss year-end review",
+    "fields": {
+     "date": "2026-11-13",
+     "time": "10:00",
+     "place": "Room B",
+     "client": "Nadia Hartley",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Internal quarterly team review",
+    "fields": {
+     "date": "2026-11-18",
+     "time": "14:00",
+     "place": "Room B",
+     "host": "Marta",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Marlow Antiques interim review",
+    "fields": {
+     "date": "2026-10-09",
+     "time": "11:00",
+     "place": "Room B",
+     "client": "Gillian Marlow",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Internal tax-update training session",
+    "fields": {
+     "date": "2026-11-25",
+     "time": "15:00",
+     "place": "Room B",
+     "host": "Priya Shah",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Marlow Antiques year-end planning meeting",
+    "fields": {
+     "date": "2026-12-04",
+     "time": "10:30",
+     "place": "Room B",
+     "client": "Gillian Marlow",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Catering for internal team review",
+    "fields": {
+     "supplier": "Bright Bites Catering",
+     "date": "2026-11-18",
+     "portions": "12",
+     "delivery_place": "Room B",
+     "delivery_time": "13:30",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Hartley & Moss client card",
+    "fields": {
+     "contact": "Nadia Hartley",
+     "email": "nadia@hartleyandmoss.example",
+     "service": "year-end accounts review",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "place"
+    ],
+    "from": "Nadia Hartley (Hartley & Moss)",
+    "rule": "e2"
+   },
+   {
+    "record": "EV-5",
+    "fields": [
+     "place"
+    ],
+    "from": "Gillian Marlow (Marlow Antiques)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Could you tidy up our November meeting arrangements today: get in touch with Nadia Hartley to sort out where her 13 November review meeting will be held, and make sure the schedule and anything hanging off it are properly set.",
+  "expect": [
+   {
+    "record": "EV-2",
+    "field": "place",
+    "value": "Room A",
+    "stale": [
+     "Room B"
+    ]
+   },
+   {
+    "record": "EV-4",
+    "field": "place",
+    "value": "Room A",
+    "stale": [
+     "Room B"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "delivery_place",
+    "value": "Room A",
+    "stale": [
+     "Room B"
+    ]
+   },
+   {
+    "message_to": "Nadia Hartley",
+    "regarding": "EV-1",
+    "says": [
+     "Room A",
+     "2026-11-13"
+    ],
+    "stale": [
+     "Room B"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Gillian Marlow",
+    "regarding": "EV-5",
+    "says": [
+     "Room A",
+     "2026-12-04"
+    ],
+    "stale": [
+     "Room B"
+    ]
+   }
+  ],
+  "why": "The facilities instruction amends the room rule from 12 October, so only meetings after that date move to Room A: the internal review on 18 November, the training session on 25 November and the catering delivery hanging off the review are REVISE (no consent needed; the order is two hops from the rule), while the Marlow interim review on 9 October is KEEP because it predates the change's terms. The Hartley review on 13 November and the Marlow planning meeting on 4 December are ASK: the client-consent rule requires the client's agreement before moving a confirmed client meeting, so those records stay in Room B and the right act is a consent request proposing Room A.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "coffee restock",
+    "counterpart": "Sam Whitfield",
+    "org": "Bean Counter Coffee Co",
+    "item": "bags of office coffee",
+    "unit": "bags",
+    "values": [
+     "8",
+     "10",
+     "12",
+     "14"
+    ],
+    "place": "reception at 14 Crane Street"
+   },
+   {
+    "kind": "order",
+    "topic": "paper and toner",
+    "counterpart": "Lena Carter",
+    "org": "Carter Print Services",
+    "item": "boxes of A4 paper",
+    "unit": "boxes",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "reception at 14 Crane Street"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekly staff catch-up",
+    "counterpart": "Priya Shah",
+    "org": "Ledger & Bright Accountants",
+    "item": "room for the Monday staff catch-up",
+    "unit": "room",
+    "values": [
+     "Room A",
+     "Room B",
+     "the small kitchen"
+    ],
+    "place": "14 Crane Street"
+   },
+   {
+    "kind": "booking",
+    "topic": "payroll working session",
+    "counterpart": "Priya Shah",
+    "org": "Ledger & Bright Accountants",
+    "item": "room for payroll work sessions",
+    "unit": "room",
+    "values": [
+     "Room A",
+     "Room B",
+     "the quiet booth"
+    ],
+    "place": "14 Crane Street"
+   },
+   {
+    "kind": "order",
+    "topic": "client lunch platters",
+    "counterpart": "Owen Bright",
+    "org": "Bright Bites Catering",
+    "item": "sandwich platters",
+    "unit": "portions",
+    "values": [
+     "8",
+     "10",
+     "12",
+     "16"
+    ],
+    "place": "Room B"
+   },
+   {
+    "kind": "booking",
+    "topic": "Pellinor review slot",
+    "counterpart": "Tomas Reyes",
+    "org": "Pellinor Foods",
+    "item": "quarterly review meeting room",
+    "unit": "room",
+    "values": [
+     "Room A",
+     "Room B",
+     "Room C"
+    ],
+    "place": "14 Crane Street"
+   },
+   {
+    "kind": "booking",
+    "topic": "Hartley file review",
+    "counterpart": "Nadia Hartley",
+    "org": "Hartley & Moss",
+    "item": "follow-up working room",
+    "unit": "room",
+    "values": [
+     "Room A",
+     "Room B",
+     "the quiet booth"
+    ],
+    "place": "14 Crane Street"
+   },
+   {
+    "kind": "order",
+    "topic": "archive box top-up",
+    "counterpart": "Ruth Harbour",
+    "org": "Harbour Self Storage",
+    "item": "archive boxes",
+    "unit": "boxes",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "storage unit reception"
+   },
+   {
+    "kind": "order",
+    "topic": "kitchen supplies",
+    "counterpart": "Sam Whitfield",
+    "org": "Bean Counter Coffee Co",
+    "item": "boxes of tea and biscuits",
+    "unit": "boxes",
+    "values": [
+     "3",
+     "5",
+     "6"
+    ],
+    "place": "reception at 14 Crane Street"
+   },
+   {
+    "kind": "booking",
+    "topic": "facilities inspection",
+    "counterpart": "Daniel Okafor",
+    "org": "Crane Street Facilities",
+    "item": "room access window for inspections",
+    "unit": "room",
+    "values": [
+     "Room A",
+     "Room B",
+     "the server cupboard"
+    ],
+    "place": "14 Crane Street"
+   }
+  ],
+  "id": "K500-2-06",
+  "tier": 500,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

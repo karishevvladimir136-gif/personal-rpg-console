@@ -658,5 +658,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure holds: the delivery-date correction (e20 revoking e5) touches the hall booking e10 (REVISE to 2026-11-11), the housebound round e14 two hops away (ASK on Dr. Sandhu's consent), and the order e11, which cites e5 but stands (KEEP). The counts (25 core events, 5 decisions, 12 days between change and task) meet tier 100, and e20 is an ordinary supplier email with later events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure holds: the delivery-date correction (e20 revoking e5) touches the hall booking e10 (REVISE to 2026-11-11), the housebound round e14 two hops away (ASK on Dr. Sandhu's consent), and the order e11, which cites e5 but stands (KEEP). The counts (25 core events, 5 decisions, 12 days between change and task) meet tier 100, and e20 is an ordinary supplier email with later events after it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4988,
+    "completion_tokens": 2082,
+    "reasoning_tokens": 1870,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015398,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "535b105a1a0910c1ac7fbd7090d96e55c0df92586e6364954189dfc7e414ae5b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The delivery change moves the main clinic to 11 November; the dependent, patient-confirmed home visits require Dr. Sandhu’s consent before rescheduling, while the vaccine order remains unchanged. The task requires sending a patient confirmation without mentioning the change. The core has 25 events and 6 decisions, and the change occurs 12 days before the task with four later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The delivery change moves the main clinic to 11 November; the dependent, patient-confirmed home visits require Dr. Sandhu’s consent before rescheduling, while the vaccine order remains unchanged. The task requires sending a patient confirmation without mentioning the change. The core has 25 events and 6 decisions, and the change occurs 12 days before the task with four later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3445,
+    "completion_tokens": 376,
+    "reasoning_tokens": 262,
+    "cached_tokens": 0
+   },
+   "cost": 0.061855,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "535b105a1a0910c1ac7fbd7090d96e55c0df92586e6364954189dfc7e414ae5b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is well-formed: e5 (A) is corrected, e10 (B) rests on A and e14 (C) rests on B only, and e11 (D) cites A for supplier/quantity, which the correction explicitly leaves standing (KEEP). Values are fixed by e1 (morning after delivery = 2026-11-11, a Wednesday the hall is free per e6), EV-1 is a draft so no consent is needed, while EV-2 was confirmed to patients (e16) so e2 makes it ASK, matching the consent map. Tier 100 is met: 25 core events, 5 decisions, change 12 days before the task day with 4 core events after it, and the change sits mid-history unannounced.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is well-formed: e5 (A) is corrected, e10 (B) rests on A and e14 (C) rests on B only, and e11 (D) cites A for supplier/quantity, which the correction explicitly leaves standing (KEEP). Values are fixed by e1 (morning after delivery = 2026-11-11, a Wednesday the hall is free per e6), EV-1 is a draft so no consent is needed, while EV-2 was confirmed to patients (e16) so e2 makes it ASK, matching the consent map. Tier 100 is met: 25 core events, 5 decisions, change 12 days before the task day with 4 core events after it, and the change sits mid-history unannounced."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3527,
+    "completion_tokens": 594,
+    "reasoning_tokens": 376,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0118878,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "535b105a1a0910c1ac7fbd7090d96e55c0df92586e6364954189dfc7e414ae5b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

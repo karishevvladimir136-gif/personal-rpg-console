@@ -647,5 +647,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The room value (Barn Hall) follows from the capacities in e4, but the staff value of 3 is not fixed by anything in the history, even though the scenario marks EV-3 as a REVISE that takes the new value from the change. The change (e17) fixes only the headcount of 22, so the writer's expected values for EV-2 and EV-3 depend on unstated judgment. The rest of the structure (class 1, 20 core events, 5 decisions, a change 9 days before the task, and later core events) meets the spec.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The room value (Barn Hall) follows from the capacities in e4, but the staff value of 3 is not fixed by anything in the history, even though the scenario marks EV-3 as a REVISE that takes the new value from the change. The change (e17) fixes only the headcount of 22, so the writer's expected values for EV-2 and EV-3 depend on unstated judgment. The rest of the structure (class 1, 20 core events, 5 decisions, a change 9 days before the task, and later core events) meets the spec."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5170,
+    "completion_tokens": 1555,
+    "reasoning_tokens": 1331,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012945,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0769f9c10c3f47b0f79f80e39f3651a9012176e13f20da5cdcf8f248c754bf2b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Nothing in the history fixes staffing at three people. The consent map omits Callum's sign-off for the revised £572 catering order, and requiring fresh consent for the headcount is ambiguous because Ines already requested 22 attendees in writing. The dependency chain plus the overnight-room decision that cites the original fact but remains valid fits class 3 specifically.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Nothing in the history fixes staffing at three people. The consent map omits Callum's sign-off for the revised £572 catering order, and requiring fresh consent for the headcount is ambiguous because Ines already requested 22 attendees in writing. The dependency chain plus the overnight-room decision that cites the original fact but remains valid fits class 3 specifically."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3554,
+    "completion_tokens": 363,
+    "reasoning_tokens": 255,
+    "cached_tokens": 0
+   },
+   "cost": 0.0625675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0769f9c10c3f47b0f79f80e39f3651a9012176e13f20da5cdcf8f248c754bf2b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Most of the expected state is well-grounded (Barn Hall for 22 given capacities, ASK on EV-1/ORD-1 under e1, KEEP on EV-4), but the staffing value is not fixed by the history: nothing states a staff-to-attendee ratio, so changing EV-3 staff from 2 to 3 is an arbitrary value rather than one the history fixes, and the room move for EV-2/EV-3 also bypasses the written-agreement question of whether internal setup records tied to the booking's room should change before Ines consents to the room move. Tier counts, change distance (9 days, 7 later events), and concealment of the change all check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Most of the expected state is well-grounded (Barn Hall for 22 given capacities, ASK on EV-1/ORD-1 under e1, KEEP on EV-4), but the staffing value is not fixed by the history: nothing states a staff-to-attendee ratio, so changing EV-3 staff from 2 to 3 is an arbitrary value rather than one the history fixes, and the room move for EV-2/EV-3 also bypasses the written-agreement question of whether internal setup records tied to the booking's room should change before Ines consents to the room move. Tier counts, change distance (9 days, 7 later events), and concealment of the change all check out."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3659,
+    "completion_tokens": 651,
+    "reasoning_tokens": 447,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0131388,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0769f9c10c3f47b0f79f80e39f3651a9012176e13f20da5cdcf8f248c754bf2b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

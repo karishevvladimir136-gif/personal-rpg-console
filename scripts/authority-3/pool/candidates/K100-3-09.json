@@ -1,0 +1,541 @@
+{
+ "id": "K100-3-09",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 3,
+ "idx": 8,
+ "setting": "Daycare director at Little Sprouts Childcare Centre, a 60-child daycare",
+ "prompt_sha256": "5694be2e01cc888a13a9ed5870171e2d37559bcb11c9adc3f57c419d20b830e5",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Bus pickup time moves, daycare chain\",\n \"setting\": \"Daycare director at Little Sprouts Childcare Centre, a 60-child daycare\",\n \"owner\": \"Maren\",\n \"org\": \"Little Sprouts Childcare Centre\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Maren\", \"text\": \"Standing rule: any change to a confirmed booking we have made with an outside supplier, such as Harbourside Bus Co or a venue, needs that supplier's agreement before we alter the date or time. We ask first, then amend.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Tomas Veiga (Harbourside Bus Co)\", \"text\": \"Confirming our arrangement with Little Sprouts Childcare Centre: the 20-seat minibus is reserved for your trips, and our morning pickups run at 09:15 from the centre's front gate on booked days.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing rule for rosters: as director I may adjust internal educator coverage times myself, but parents must be told of any change to a child's outing by the Thursday before the outing at the latest.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"June Parris (Maple Street Library)\", \"text\": \"Good news — the story corner at Maple Street Library is free for your preschool group on Thursday mornings from 10:30, and we can hold that through the autumn term.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"I booked the Harbourside Bus Co 20-seat minibus for the preschool room's library trip on Thursday 12 November 2026, pickup at 09:15 from the front gate, 18 children, so the group reaches the Maple Street Library story corner for its 10:30 opening.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Roster: Nora Bell covers the preschool room's remaining children from 09:15 to 12:30 on Thursday 12 November 2026, the full window while the library trip group is out of the room.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"I booked the Harbourside Bus Co minibus for the toddler room's garden centre trip on Thursday 19 November 2026: 16 children fit comfortably in the 20 seats, and we agreed a 10:00 pickup that day to suit the venue.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e1\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Ana Ruiz (Green Basket Produce)\", \"text\": \"Confirming Green Basket Produce delivers to Little Sprouts every Monday morning; your standing quantity of 45 mixed fruit boxes a week is on our route sheet.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"I placed the standing weekly order with Green Basket Produce: 45 mixed fruit boxes delivered each Monday to the centre kitchen.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Pete Lang (Lang Safety Training)\", \"text\": \"I can run your paediatric first-aid refresher on Wednesday 18 November 2026, 09:30 to 12:30, in your staff room, for up to 8 educators.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked Pete Lang's first-aid refresher for Wednesday 18 November 2026, 09:30, in the staff room; six educators attend.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-21\", \"type\": \"task\", \"from\": \"Maren\", \"text\": \"To-do: renew the centre's premises insurance before 30 November 2026 and file the certificate in the office.\", \"role\": \"obligation\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-04\", \"type\": \"notice\", \"from\": \"Maren\", \"text\": \"September newsletter to families: autumn trips are being planned for both the toddler and preschool rooms, and the Monday fruit deliveries continue as usual.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Tomas Veiga (Harbourside Bus Co)\", \"text\": \"Just a note that our new 24-seat coach is now available for weekend hires at 240 per day, in case Little Sprouts ever needs a bigger vehicle for a family event.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e15\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Nora Bell (preschool room educator)\", \"text\": \"Happy to keep covering the preschool room whenever the older group is out on trips — mornings suit me best.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Ida Kroll (Petal & Pot Garden Centre)\", \"text\": \"We look forward to the Little Sprouts toddler visit on Thursday 19 November 2026; your slot with our planting demonstrator is 11:00.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-23\", \"type\": \"email\", \"from\": \"Tomas Veiga (Harbourside Bus Co)\", \"text\": \"A route reshuffle means that from 2 November our morning pickups from Little Sprouts will run at 10:00 instead of the current time. The 20-seat minibus, the drivers and our booking terms all stay exactly the same.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e18\", \"date\": \"2026-10-26\", \"type\": \"minutes\", \"from\": \"Maren\", \"text\": \"Staff meeting notes: cloakroom labels to be replaced, the toddler room needs more aprons for painting, and winter rotas will be drafted next week.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-28\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Reminder to myself: send the November trip details to parents once the schedule is settled, and check snack stock before Monday.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-29\", \"type\": \"invoice\", \"from\": \"Ana Ruiz (Green Basket Produce)\", \"text\": \"Invoice for October: four Monday deliveries of 45 mixed fruit boxes each to Little Sprouts Childcare Centre, payable by 15 November 2026.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Preschool room library trip\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"09:15\", \"place\": \"Maple Street Library\", \"children\": \"18\", \"supplier\": \"Harbourside Bus Co\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Preschool room coverage during library trip\", \"fields\": {\"date\": \"2026-11-12\", \"start\": \"09:15\", \"end\": \"12:30\", \"educator\": \"Nora Bell\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Toddler room garden centre trip\", \"fields\": {\"date\": \"2026-11-19\", \"time\": \"10:00\", \"place\": \"Petal & Pot Garden Centre\", \"children\": \"16\", \"supplier\": \"Harbourside Bus Co\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Staff first-aid refresher\", \"fields\": {\"date\": \"2026-11-18\", \"start\": \"09:30\", \"end\": \"12:30\", \"trainer\": \"Pete Lang\", \"attendees\": \"6\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing weekly fruit order\", \"fields\": {\"supplier\": \"Green Basket Produce\", \"item\": \"mixed fruit boxes\", \"quantity\": \"45\", \"delivery_day\": \"Monday\", \"place\": \"centre kitchen\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Tomas Veiga (Harbourside Bus Co)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please add a lunch-prep block for the preschool room on the library trip day, right after the trip coverage finishes — 45 minutes, with educator Sam Whitfield — and put it on the schedule.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"start\", \"value\": \"10:00\", \"stale\": [\"09:15\"]},\n  {\"record\": \"EV-2\", \"field\": \"end\", \"value\": \"13:00\", \"stale\": [\"12:30\"]},\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-12\", \"start\": \"13:00\", \"end\": \"13:45\", \"educator\": \"Sam Whitfield\", \"room\": \"preschool room\"}, \"stale\": {\"start\": [\"12:30\"], \"end\": [\"13:15\"]}, \"task\": true}\n ],\n \"why\": \"Harbourside's email moves morning pickups from 09:15 to 10:00 while leaving the 20-seat minibus unchanged. The library trip booking (EV-1) rests on the 09:15 pickup, but moving a confirmed supplier booking needs Harbourside's consent, so it is ASK and its record stays put pending a consent request. Nora Bell's coverage (EV-2) sits one hop further down the chain and is an internal roster matter, so it is REVISE to 10:00–13:00; the lunch-prep block the owner asks for must therefore start at 13:00, not the stale 12:30. The garden centre trip (EV-3) is KEEP: it relies only on the 20 seats, which the correction leaves standing, and its pickup was already 10:00. The 24-seat coach offer is a distractor and touches nothing.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"weekly fruit restock\", \"counterpart\": \"Ana Ruiz\", \"org\": \"Green Basket Produce\", \"item\": \"mixed fruit boxes\", \"unit\": \"boxes\", \"values\": [\"40\", \"45\", \"48\", \"50\", \"42\"], \"place\": \"centre kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"milk and dairy delivery\", \"counterpart\": \"Jonas Feld\", \"org\": \"Meadowlane Dairy\", \"item\": \"litres of whole milk\", \"unit\": \"litres\", \"values\": [\"30\", \"36\", \"40\", \"28\"], \"place\": \"centre kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"nappy and wipes supply\", \"counterpart\": \"Sara Lindt\", \"org\": \"Treetop Supplies\", \"item\": \"packs of size-4 nappies\", \"unit\": \"packs\", \"values\": [\"12\", \"15\", \"18\", \"20\"], \"place\": \"toddler room store\"},\n  {\"kind\": \"order\", \"topic\": \"craft materials restock\", \"counterpart\": \"Ana Ruiz\", \"org\": \"Green Basket Produce\", \"item\": \"pots of washable paint\", \"unit\": \"pots\", \"values\": [\"10\", \"14\", \"16\", \"8\"], \"place\": \"art cupboard\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Marco Iles\", \"org\": \"Brightwell Janitorial\", \"item\": \"bottles of sanitising spray\", \"unit\": \"bottles\", \"values\": [\"20\", \"24\", \"30\", \"18\"], \"place\": \"cleaning cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"library story corner visits\", \"counterpart\": \"June Parris\", \"org\": \"Maple Street Library\", \"item\": \"story corner session\", \"unit\": \"session\", \"values\": [\"story corner\", \"children's reading room\", \"activity alcove\"], \"place\": \"Maple Street Library\"},\n  {\"kind\": \"booking\", \"topic\": \"swim run minibus\", \"counterpart\": \"Tomas Veiga\", \"org\": \"Harbourside Bus Co\", \"item\": \"minibus for weekly swim run\", \"unit\": \"run\", \"values\": [\"front gate\", \"side entrance\", \"car park bay 2\"], \"place\": \"Riverside Leisure Pool\"},\n  {\"kind\": \"booking\", \"topic\": \"hall for music mornings\", \"counterpart\": \"Wendy Okafor\", \"org\": \"St Albans Community Hall\", \"item\": \"hall hire for music morning\", \"unit\": \"morning\", \"values\": [\"main hall\", \"small hall\", \"garden room\"], \"place\": \"St Albans Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"staff room for training\", \"counterpart\": \"Pete Lang\", \"org\": \"Lang Safety Training\", \"item\": \"training session space\", \"unit\": \"session\", \"values\": [\"staff room\", \"office annex\", \"preschool room\"], \"place\": \"Little Sprouts Childcare Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"parent meeting evenings\", \"counterpart\": \"Maren\", \"org\": \"Little Sprouts Childcare Centre\", \"item\": \"room for parent evening\", \"unit\": \"evening\", \"values\": [\"preschool room\", \"toddler room\", \"staff room\"], \"place\": \"Little Sprouts Childcare Centre\"},\n  {\"kind\": \"order\", \"topic\": \"paper and stationery\", \"counterpart\": \"Dev Anand\", \"org\": \"Quill & Co Stationers\", \"item\": \"reams of A4 paper\", \"unit\": \"reams\", \"values\": [\"10\", \"12\", \"15\", \"8\"], \"place\": \"office\"},\n  {\"kind\": \"booking\", \"topic\": \"garden centre visit slots\", \"counterpart\": \"Ida Kroll\", \"org\": \"Petal & Pot Garden Centre\", \"item\": \"planting demonstrator slot\", \"unit\": \"slot\", \"values\": [\"demonstration greenhouse\", \"potting shed\", \"outdoor beds\"], \"place\": \"Petal & Pot Garden Centre\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3180,
+    "completion_tokens": 7946,
+    "reasoning_tokens": 4314,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1204356,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Bus pickup time moves, daycare chain\",\n \"setting\": \"Daycare director at Little Sprouts Childcare Centre, a 60-child daycare\",\n \"owner\": \"Maren\",\n \"org\": \"Little Sprouts Childcare Centre\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Maren\", \"text\": \"Standing rule: any change to a confirmed booking we have made with an outside supplier, such as Harbourside Bus Co or a venue, needs that supplier's agreement before we alter the date or time. We ask first, then amend.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Tomas Veiga (Harbourside Bus Co)\", \"text\": \"Confirming our arrangement with Little Sprouts Childcare Centre: the 20-seat minibus is reserved for your trips, and our morning pickups run at 09:15 from the centre's front gate on booked days.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing rule for rosters: as director I may adjust internal educator coverage times myself, but parents must be told of any change to a child's outing by the Thursday before the outing at the latest.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"June Parris (Maple Street Library)\", \"text\": \"Good news — the story corner at Maple Street Library is free for your preschool group on Thursday mornings from 10:30, and we can hold that through the autumn term.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"I booked the Harbourside Bus Co 20-seat minibus for the preschool room's library trip on Thursday 12 November 2026, pickup at 09:15 from the front gate, 18 children, so the group reaches the Maple Street Library story corner for its 10:30 opening.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Roster: Nora Bell covers the preschool room's remaining children from 09:15 to 12:30 on Thursday 12 November 2026, the full window while the library trip group is out of the room.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"I booked the Harbourside Bus Co minibus for the toddler room's garden centre trip on Thursday 19 November 2026: 16 children fit comfortably in the 20 seats, and we agreed a 10:00 pickup that day to suit the venue.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e1\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Ana Ruiz (Green Basket Produce)\", \"text\": \"Confirming Green Basket Produce delivers to Little Sprouts every Monday morning; your standing quantity of 45 mixed fruit boxes a week is on our route sheet.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"I placed the standing weekly order with Green Basket Produce: 45 mixed fruit boxes delivered each Monday to the centre kitchen.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Pete Lang (Lang Safety Training)\", \"text\": \"I can run your paediatric first-aid refresher on Wednesday 18 November 2026, 09:30 to 12:30, in your staff room, for up to 8 educators.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked Pete Lang's first-aid refresher for Wednesday 18 November 2026, 09:30, in the staff room; six educators attend.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-21\", \"type\": \"task\", \"from\": \"Maren\", \"text\": \"To-do: renew the centre's premises insurance before 30 November 2026 and file the certificate in the office.\", \"role\": \"obligation\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-04\", \"type\": \"notice\", \"from\": \"Maren\", \"text\": \"September newsletter to families: autumn trips are being planned for both the toddler and preschool rooms, and the Monday fruit deliveries continue as usual.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Tomas Veiga (Harbourside Bus Co)\", \"text\": \"Just a note that our new 24-seat coach is now available for weekend hires at 240 per day, in case Little Sprouts ever needs a bigger vehicle for a family event.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e15\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Nora Bell (preschool room educator)\", \"text\": \"Happy to keep covering the preschool room whenever the older group is out on trips — mornings suit me best.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Tomas Veiga (Harbourside Bus Co)\", \"text\": \"A route reshuffle means that from 2 November our morning pickups from Little Sprouts will run at 10:00 instead of the current time. The 20-seat minibus, the drivers and our booking terms all stay exactly the same.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e16\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Ida Kroll (Petal & Pot Garden Centre)\", \"text\": \"We look forward to the Little Sprouts toddler visit on Thursday 19 November 2026; your slot with our planting demonstrator is 11:00.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-21\", \"type\": \"minutes\", \"from\": \"Maren\", \"text\": \"Staff meeting notes: cloakroom labels to be replaced, the toddler room needs more aprons for painting, and winter rotas will be drafted next week.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-26\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Reminder to myself: send the November trip details to parents once the schedule is settled, and check snack stock before Monday.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-28\", \"type\": \"invoice\", \"from\": \"Ana Ruiz (Green Basket Produce)\", \"text\": \"Invoice for October: four Monday deliveries of 45 mixed fruit boxes each to Little Sprouts Childcare Centre, payable by 15 November 2026.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Preschool room library trip\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"09:15\", \"place\": \"Maple Street Library\", \"children\": \"18\", \"supplier\": \"Harbourside Bus Co\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Preschool room coverage during library trip\", \"fields\": {\"date\": \"2026-11-12\", \"start\": \"09:15\", \"end\": \"12:30\", \"educator\": \"Nora Bell\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Toddler room garden centre trip\", \"fields\": {\"date\": \"2026-11-19\", \"time\": \"10:00\", \"place\": \"Petal & Pot Garden Centre\", \"children\": \"16\", \"supplier\": \"Harbourside Bus Co\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Staff first-aid refresher\", \"fields\": {\"date\": \"2026-11-18\", \"start\": \"09:30\", \"end\": \"12:30\", \"trainer\": \"Pete Lang\", \"attendees\": \"6\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing weekly fruit order\", \"fields\": {\"supplier\": \"Green Basket Produce\", \"item\": \"mixed fruit boxes\", \"quantity\": \"45\", \"delivery_day\": \"Monday\", \"place\": \"centre kitchen\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Tomas Veiga (Harbourside Bus Co)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please add a lunch-prep block for the preschool room on the library trip day, right after the trip coverage finishes — 45 minutes, with educator Sam Whitfield — and put it on the schedule.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"start\", \"value\": \"10:00\", \"stale\": [\"09:15\"]},\n  {\"record\": \"EV-2\", \"field\": \"end\", \"value\": \"13:00\", \"stale\": [\"12:30\"]},\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-12\", \"start\": \"13:00\", \"end\": \"13:45\", \"educator\": \"Sam Whitfield\", \"room\": \"preschool room\"}, \"stale\": {\"start\": [\"12:30\"], \"end\": [\"13:15\"]}, \"task\": true}\n ],\n \"why\": \"Harbourside's email moves morning pickups from 09:15 to 10:00 while leaving the 20-seat minibus unchanged. The library trip booking (EV-1) rests on the 09:15 pickup, but moving a confirmed supplier booking needs Harbourside's consent, so it is ASK and its record stays put pending a consent request. Nora Bell's coverage (EV-2) sits one hop further down the chain and is an internal roster matter, so it is REVISE to 10:00–13:00; the lunch-prep block the owner asks for must therefore start at 13:00, not the stale 12:30. The garden centre trip (EV-3) is KEEP: it relies only on the 20 seats, which the correction leaves standing, and its pickup was already 10:00. The 24-seat coach offer is a distractor and touches nothing.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"weekly fruit restock\", \"counterpart\": \"Ana Ruiz\", \"org\": \"Green Basket Produce\", \"item\": \"mixed fruit boxes\", \"unit\": \"boxes\", \"values\": [\"40\", \"45\", \"48\", \"50\", \"42\"], \"place\": \"centre kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"milk and dairy delivery\", \"counterpart\": \"Jonas Feld\", \"org\": \"Meadowlane Dairy\", \"item\": \"litres of whole milk\", \"unit\": \"litres\", \"values\": [\"30\", \"36\", \"40\", \"28\"], \"place\": \"centre kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"nappy and wipes supply\", \"counterpart\": \"Sara Lindt\", \"org\": \"Treetop Supplies\", \"item\": \"packs of size-4 nappies\", \"unit\": \"packs\", \"values\": [\"12\", \"15\", \"18\", \"20\"], \"place\": \"toddler room store\"},\n  {\"kind\": \"order\", \"topic\": \"craft materials restock\", \"counterpart\": \"Ana Ruiz\", \"org\": \"Green Basket Produce\", \"item\": \"pots of washable paint\", \"unit\": \"pots\", \"values\": [\"10\", \"14\", \"16\", \"8\"], \"place\": \"art cupboard\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Marco Iles\", \"org\": \"Brightwell Janitorial\", \"item\": \"bottles of sanitising spray\", \"unit\": \"bottles\", \"values\": [\"20\", \"24\", \"30\", \"18\"], \"place\": \"cleaning cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"library story corner visits\", \"counterpart\": \"June Parris\", \"org\": \"Maple Street Library\", \"item\": \"story corner session\", \"unit\": \"session\", \"values\": [\"story corner\", \"children's reading room\", \"activity alcove\"], \"place\": \"Maple Street Library\"},\n  {\"kind\": \"booking\", \"topic\": \"swim run minibus\", \"counterpart\": \"Tomas Veiga\", \"org\": \"Harbourside Bus Co\", \"item\": \"minibus for weekly swim run\", \"unit\": \"run\", \"values\": [\"front gate\", \"side entrance\", \"car park bay 2\"], \"place\": \"Riverside Leisure Pool\"},\n  {\"kind\": \"booking\", \"topic\": \"hall for music mornings\", \"counterpart\": \"Wendy Okafor\", \"org\": \"St Albans Community Hall\", \"item\": \"hall hire for music morning\", \"unit\": \"morning\", \"values\": [\"main hall\", \"small hall\", \"garden room\"], \"place\": \"St Albans Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"staff room for training\", \"counterpart\": \"Pete Lang\", \"org\": \"Lang Safety Training\", \"item\": \"training session space\", \"unit\": \"session\", \"values\": [\"staff room\", \"office annex\", \"preschool room\"], \"place\": \"Little Sprouts Childcare Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"parent meeting evenings\", \"counterpart\": \"Maren\", \"org\": \"Little Sprouts Childcare Centre\", \"item\": \"room for parent evening\", \"unit\": \"evening\", \"values\": [\"preschool room\", \"toddler room\", \"staff room\"], \"place\": \"Little Sprouts Childcare Centre\"},\n  {\"kind\": \"order\", \"topic\": \"paper and stationery\", \"counterpart\": \"Dev Anand\", \"org\": \"Quill & Co Stationers\", \"item\": \"reams of A4 paper\", \"unit\": \"reams\", \"values\": [\"10\", \"12\", \"15\", \"8\"], \"place\": \"office\"},\n  {\"kind\": \"booking\", \"topic\": \"garden centre visit slots\", \"counterpart\": \"Ida Kroll\", \"org\": \"Petal & Pot Garden Centre\", \"item\": \"planting demonstrator slot\", \"unit\": \"slot\", \"values\": [\"demonstration greenhouse\", \"potting shed\", \"outdoor beds\"], \"place\": \"Petal & Pot Garden Centre\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6885,
+    "completion_tokens": 3899,
+    "reasoning_tokens": 267,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0708456,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- the change is too close to now: only 3 of 100 events would come after it; move the change earlier\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Bus pickup time moves, daycare chain",
+  "setting": "Daycare director at Little Sprouts Childcare Centre, a 60-child daycare",
+  "owner": "Maren",
+  "org": "Little Sprouts Childcare Centre",
+  "now": "2026-10-30",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-08",
+    "type": "policy",
+    "from": "Maren",
+    "text": "Standing rule: any change to a confirmed booking we have made with an outside supplier, such as Harbourside Bus Co or a venue, needs that supplier's agreement before we alter the date or time. We ask first, then amend.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Tomas Veiga (Harbourside Bus Co)",
+    "text": "Confirming our arrangement with Little Sprouts Childcare Centre: the 20-seat minibus is reserved for your trips, and our morning pickups run at 09:15 from the centre's front gate on booked days.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-15",
+    "type": "instruction",
+    "from": "Maren",
+    "text": "Standing rule for rosters: as director I may adjust internal educator coverage times myself, but parents must be told of any change to a child's outing by the Thursday before the outing at the latest.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "June Parris (Maple Street Library)",
+    "text": "Good news — the story corner at Maple Street Library is free for your preschool group on Thursday mornings from 10:30, and we can hold that through the autumn term.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Maren",
+    "text": "I booked the Harbourside Bus Co 20-seat minibus for the preschool room's library trip on Thursday 12 November 2026, pickup at 09:15 from the front gate, 18 children, so the group reaches the Maple Street Library story corner for its 10:30 opening.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e4",
+     "e1"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-26",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Roster: Nora Bell covers the preschool room's remaining children from 09:15 to 12:30 on Thursday 12 November 2026, the full window while the library trip group is out of the room.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Maren",
+    "text": "I booked the Harbourside Bus Co minibus for the toddler room's garden centre trip on Thursday 19 November 2026: 16 children fit comfortably in the 20 seats, and we agreed a 10:00 pickup that day to suit the venue.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e1"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Ana Ruiz (Green Basket Produce)",
+    "text": "Confirming Green Basket Produce delivers to Little Sprouts every Monday morning; your standing quantity of 45 mixed fruit boxes a week is on our route sheet.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Maren",
+    "text": "I placed the standing weekly order with Green Basket Produce: 45 mixed fruit boxes delivered each Monday to the centre kitchen.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-03",
+    "type": "email",
+    "from": "Pete Lang (Lang Safety Training)",
+    "text": "I can run your paediatric first-aid refresher on Wednesday 18 November 2026, 09:30 to 12:30, in your staff room, for up to 8 educators.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-07",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Booked Pete Lang's first-aid refresher for Wednesday 18 November 2026, 09:30, in the staff room; six educators attend.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-21",
+    "type": "task",
+    "from": "Maren",
+    "text": "To-do: renew the centre's premises insurance before 30 November 2026 and file the certificate in the office.",
+    "role": "obligation"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-04",
+    "type": "notice",
+    "from": "Maren",
+    "text": "September newsletter to families: autumn trips are being planned for both the toddler and preschool rooms, and the Monday fruit deliveries continue as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Tomas Veiga (Harbourside Bus Co)",
+    "text": "Just a note that our new 24-seat coach is now available for weekend hires at 240 per day, in case Little Sprouts ever needs a bigger vehicle for a family event.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-05",
+    "type": "message",
+    "from": "Nora Bell (preschool room educator)",
+    "text": "Happy to keep covering the preschool room whenever the older group is out on trips — mornings suit me best.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Tomas Veiga (Harbourside Bus Co)",
+    "text": "A route reshuffle means that from 2 November our morning pickups from Little Sprouts will run at 10:00 instead of the current time. The 20-seat minibus, the drivers and our booking terms all stay exactly the same.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Ida Kroll (Petal & Pot Garden Centre)",
+    "text": "We look forward to the Little Sprouts toddler visit on Thursday 19 November 2026; your slot with our planting demonstrator is 11:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-21",
+    "type": "minutes",
+    "from": "Maren",
+    "text": "Staff meeting notes: cloakroom labels to be replaced, the toddler room needs more aprons for painting, and winter rotas will be drafted next week.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-26",
+    "type": "note",
+    "from": "Maren",
+    "text": "Reminder to myself: send the November trip details to parents once the schedule is settled, and check snack stock before Monday.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-28",
+    "type": "invoice",
+    "from": "Ana Ruiz (Green Basket Produce)",
+    "text": "Invoice for October: four Monday deliveries of 45 mixed fruit boxes each to Little Sprouts Childcare Centre, payable by 15 November 2026.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Preschool room library trip",
+    "fields": {
+     "date": "2026-11-12",
+     "time": "09:15",
+     "place": "Maple Street Library",
+     "children": "18",
+     "supplier": "Harbourside Bus Co",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Preschool room coverage during library trip",
+    "fields": {
+     "date": "2026-11-12",
+     "start": "09:15",
+     "end": "12:30",
+     "educator": "Nora Bell",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Toddler room garden centre trip",
+    "fields": {
+     "date": "2026-11-19",
+     "time": "10:00",
+     "place": "Petal & Pot Garden Centre",
+     "children": "16",
+     "supplier": "Harbourside Bus Co",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Staff first-aid refresher",
+    "fields": {
+     "date": "2026-11-18",
+     "start": "09:30",
+     "end": "12:30",
+     "trainer": "Pete Lang",
+     "attendees": "6",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Standing weekly fruit order",
+    "fields": {
+     "supplier": "Green Basket Produce",
+     "item": "mixed fruit boxes",
+     "quantity": "45",
+     "delivery_day": "Monday",
+     "place": "centre kitchen",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Tomas Veiga (Harbourside Bus Co)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please add a lunch-prep block for the preschool room on the library trip day, right after the trip coverage finishes — 45 minutes, with educator Sam Whitfield — and put it on the schedule.",
+  "expect": [
+   {
+    "record": "EV-2",
+    "field": "start",
+    "value": "10:00",
+    "stale": [
+     "09:15"
+    ]
+   },
+   {
+    "record": "EV-2",
+    "field": "end",
+    "value": "13:00",
+    "stale": [
+     "12:30"
+    ]
+   },
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-11-12",
+     "start": "13:00",
+     "end": "13:45",
+     "educator": "Sam Whitfield",
+     "room": "preschool room"
+    },
+    "stale": {
+     "start": [
+      "12:30"
+     ],
+     "end": [
+      "13:15"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "Harbourside's email moves morning pickups from 09:15 to 10:00 while leaving the 20-seat minibus unchanged. The library trip booking (EV-1) rests on the 09:15 pickup, but moving a confirmed supplier booking needs Harbourside's consent, so it is ASK and its record stays put pending a consent request. Nora Bell's coverage (EV-2) sits one hop further down the chain and is an internal roster matter, so it is REVISE to 10:00–13:00; the lunch-prep block the owner asks for must therefore start at 13:00, not the stale 12:30. The garden centre trip (EV-3) is KEEP: it relies only on the 20 seats, which the correction leaves standing, and its pickup was already 10:00. The 24-seat coach offer is a distractor and touches nothing.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "weekly fruit restock",
+    "counterpart": "Ana Ruiz",
+    "org": "Green Basket Produce",
+    "item": "mixed fruit boxes",
+    "unit": "boxes",
+    "values": [
+     "40",
+     "45",
+     "48",
+     "50",
+     "42"
+    ],
+    "place": "centre kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "milk and dairy delivery",
+    "counterpart": "Jonas Feld",
+    "org": "Meadowlane Dairy",
+    "item": "litres of whole milk",
+    "unit": "litres",
+    "values": [
+     "30",
+     "36",
+     "40",
+     "28"
+    ],
+    "place": "centre kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "nappy and wipes supply",
+    "counterpart": "Sara Lindt",
+    "org": "Treetop Supplies",
+    "item": "packs of size-4 nappies",
+    "unit": "packs",
+    "values": [
+     "12",
+     "15",
+     "18",
+     "20"
+    ],
+    "place": "toddler room store"
+   },
+   {
+    "kind": "order",
+    "topic": "craft materials restock",
+    "counterpart": "Ana Ruiz",
+    "org": "Green Basket Produce",
+    "item": "pots of washable paint",
+    "unit": "pots",
+    "values": [
+     "10",
+     "14",
+     "16",
+     "8"
+    ],
+    "place": "art cupboard"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Marco Iles",
+    "org": "Brightwell Janitorial",
+    "item": "bottles of sanitising spray",
+    "unit": "bottles",
+    "values": [
+     "20",
+     "24",
+     "30",
+     "18"
+    ],
+    "place": "cleaning cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "library story corner visits",
+    "counterpart": "June Parris",
+    "org": "Maple Street Library",
+    "item": "story corner session",
+    "unit": "session",
+    "values": [
+     "story corner",
+     "children's reading room",
+     "activity alcove"
+    ],
+    "place": "Maple Street Library"
+   },
+   {
+    "kind": "booking",
+    "topic": "swim run minibus",
+    "counterpart": "Tomas Veiga",
+    "org": "Harbourside Bus Co",
+    "item": "minibus for weekly swim run",
+    "unit": "run",
+    "values": [
+     "front gate",
+     "side entrance",
+     "car park bay 2"
+    ],
+    "place": "Riverside Leisure Pool"
+   },
+   {
+    "kind": "booking",
+    "topic": "hall for music mornings",
+    "counterpart": "Wendy Okafor",
+    "org": "St Albans Community Hall",
+    "item": "hall hire for music morning",
+    "unit": "morning",
+    "values": [
+     "main hall",
+     "small hall",
+     "garden room"
+    ],
+    "place": "St Albans Community Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff room for training",
+    "counterpart": "Pete Lang",
+    "org": "Lang Safety Training",
+    "item": "training session space",
+    "unit": "session",
+    "values": [
+     "staff room",
+     "office annex",
+     "preschool room"
+    ],
+    "place": "Little Sprouts Childcare Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "parent meeting evenings",
+    "counterpart": "Maren",
+    "org": "Little Sprouts Childcare Centre",
+    "item": "room for parent evening",
+    "unit": "evening",
+    "values": [
+     "preschool room",
+     "toddler room",
+     "staff room"
+    ],
+    "place": "Little Sprouts Childcare Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "paper and stationery",
+    "counterpart": "Dev Anand",
+    "org": "Quill & Co Stationers",
+    "item": "reams of A4 paper",
+    "unit": "reams",
+    "values": [
+     "10",
+     "12",
+     "15",
+     "8"
+    ],
+    "place": "office"
+   },
+   {
+    "kind": "booking",
+    "topic": "garden centre visit slots",
+    "counterpart": "Ida Kroll",
+    "org": "Petal & Pot Garden Centre",
+    "item": "planting demonstrator slot",
+    "unit": "slot",
+    "values": [
+     "demonstration greenhouse",
+     "potting shed",
+     "outdoor beds"
+    ],
+    "place": "Petal & Pot Garden Centre"
+   }
+  ],
+  "id": "K100-3-09",
+  "tier": 100,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

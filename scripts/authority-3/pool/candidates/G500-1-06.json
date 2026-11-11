@@ -622,5 +622,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core meets tier 500 (28 events, 7 decisions, change 15 days before the task, 7 core events after it, and an echo in e17), and the marks follow from the consent rule and the revoked 55-dollar fact. One minor ambiguity: Dana's e27 says she will pay her deposit this week, and if that payment confirmed her package it would become ASK rather than REVISE, but no later event confirms payment and the record still shows pending.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core meets tier 500 (28 events, 7 decisions, change 15 days before the task, 7 core events after it, and an echo in e17), and the marks follow from the consent rule and the revoked 55-dollar fact. One minor ambiguity: Dana's e27 says she will pay her deposit this week, and if that payment confirmed her package it would become ASK rather than REVISE, but no later event confirms payment and the record still shows pending."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5620,
+    "completion_tokens": 1780,
+    "reasoning_tokens": 1578,
+    "cached_tokens": 0
+   },
+   "cost": 0.001452,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "24b4a6f6c8d8f5a8c0eb52b9bd78cd41abbe08a9ecaee64adb26dbc6087878fa",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Marco's new rate clearly applies to Elena's new booking, but the announcement does not unambiguously reprice previously agreed packages, especially Tomás's confirmed package already underway. The consent rule governs how confirmed bookings may be changed; it does not itself require proposing a price change, so Dana's mandatory revision and Tomás's mandatory consent request are not uniquely supported.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Marco's new rate clearly applies to Elena's new booking, but the announcement does not unambiguously reprice previously agreed packages, especially Tomás's confirmed package already underway. The consent rule governs how confirmed bookings may be changed; it does not itself require proposing a price change, so Dana's mandatory revision and Tomás's mandatory consent request are not uniquely supported."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3838,
+    "completion_tokens": 310,
+    "reasoning_tokens": 200,
+    "cached_tokens": 0
+   },
+   "cost": 0.0634675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "24b4a6f6c8d8f5a8c0eb52b9bd78cd41abbe08a9ecaee64adb26dbc6087878fa",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The rate change (e19) revokes the 55-dollar fact; EV-1 is directly repriced (pending, no consent), EV-2 is two hops away and confirmed so the e1 consent rule forces ASK, and EV-3 only uses unchanged availability so KEEP. The echo e17 restates the stale price, the consent map matches e1, and the change sits at event 453 of 500 with 47 later events, meeting all tier 500 constraints.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The rate change (e19) revokes the 55-dollar fact; EV-1 is directly repriced (pending, no consent), EV-2 is two hops away and confirmed so the e1 consent rule forces ASK, and EV-3 only uses unchanged availability so KEEP. The echo e17 restates the stale price, the consent map matches e1, and the change sits at event 453 of 500 with 47 later events, meeting all tier 500 constraints."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3955,
+    "completion_tokens": 407,
+    "reasoning_tokens": 253,
+    "cached_tokens": 0
+   },
+   "cost": 0.01797,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "24b4a6f6c8d8f5a8c0eb52b9bd78cd41abbe08a9ecaee64adb26dbc6087878fa",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

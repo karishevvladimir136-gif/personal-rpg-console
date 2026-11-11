@@ -596,5 +596,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Northquay notice (e16) revokes no fact or rule, so the control class and the no-mark expected state are consistent with the history, and the consent map is right because confirming does not move EV-1. The task forces a send and a status change, and it does not mention the change. The core has 21 events, 4 decisions, and a change 14 days before the task day with five events after it, so it meets tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Northquay notice (e16) revokes no fact or rule, so the control class and the no-mark expected state are consistent with the history, and the consent map is right because confirming does not move EV-1. The task forces a send and a status change, and it does not mention the change. The core has 21 events, 4 decisions, and a change 14 days before the task day with five events after it, so it meets tier 100."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4833,
+    "completion_tokens": 1240,
+    "reasoning_tokens": 1059,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011033,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "db8845b05ff9234679a161c2f6f698f49cf0a2c641627c32944d1d3cebf09e25",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history contradicts itself: e19 reports the lift on 13 October and recut planned for 14 October, whereas the booking and e21 support 12 and 13 October; the task also requests booking confirmation after reported completion. Additionally, ORD-1 totals 5,760, contradicting its claimed exemption from the mandatory sign-off rule and undermining the unambiguous unchanged-state expectation. Northquay's notice itself changes nothing, and the core meets the tier and hiding requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history contradicts itself: e19 reports the lift on 13 October and recut planned for 14 October, whereas the booking and e21 support 12 and 13 October; the task also requests booking confirmation after reported completion. Additionally, ORD-1 totals 5,760, contradicting its claimed exemption from the mandatory sign-off rule and undermining the unambiguous unchanged-state expectation. Northquay's notice itself changes nothing, and the core meets the tier and hiding requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3423,
+    "completion_tokens": 246,
+    "reasoning_tokens": 109,
+    "cached_tokens": 0
+   },
+   "cost": 0.05508,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "db8845b05ff9234679a161c2f6f698f49cf0a2c641627c32944d1d3cebf09e25",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Northquay notice revokes nothing and the expected confirmation plus status change on EV-1 follows unambiguously, with consent fields untouched. Tier 100 counts and change distance are met (21 core events, 4 decisions, change 14 days before task day, 5 core events after). Minor wrinkle: e19's 'this morning' (2026-10-13) mismatches the 10-12 lift, and the task asks to confirm a booking already executed, but neither undermines the expected state.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Northquay notice revokes nothing and the expected confirmation plus status change on EV-1 follows unambiguously, with consent fields untouched. Tier 100 counts and change distance are met (21 core events, 4 decisions, change 14 days before task day, 5 core events after). Minor wrinkle: e19's 'this morning' (2026-10-13) mismatches the 10-12 lift, and the task asks to confirm a booking already executed, but neither undermines the expected state."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3524,
+    "completion_tokens": 501,
+    "reasoning_tokens": 338,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0104838,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "db8845b05ff9234679a161c2f6f698f49cf0a2c641627c32944d1d3cebf09e25",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

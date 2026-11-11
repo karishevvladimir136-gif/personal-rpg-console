@@ -632,5 +632,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The kitchen and parking update changes none of the recorded booking terms or other decisions, so confirming the existing Main Hall booking is correct. The task requires sending a confirmation and updating the schedule. The core has 31 events and 9 decisions, with the change 16 days before the task and four core events after it; class 4 requires no stale-value echo.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The kitchen and parking update changes none of the recorded booking terms or other decisions, so confirming the existing Main Hall booking is correct. The task requires sending a confirmation and updating the schedule. The core has 31 events and 9 decisions, with the change 16 days before the task and four core events after it; class 4 requires no stale-value echo."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4276,
+    "completion_tokens": 186,
+    "reasoning_tokens": 76,
+    "cached_tokens": 0
+   },
+   "cost": 0.0627425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "421f137bd74442483b5effd63d7f1051042fc81eb9c8b6801d279daac4825cce",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e27, kitchen refurbishment and car park charge) touches no decision, and the expected state correctly keeps EV-1's date, time, Main Hall and 45/hour rate while setting status to confirmed. Core counts (31 events, 9 decisions), the change's distance from the task day (16 days), and the two later core events all meet tier 500, and the change is an ordinary mid-history email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e27, kitchen refurbishment and car park charge) touches no decision, and the expected state correctly keeps EV-1's date, time, Main Hall and 45/hour rate while setting status to confirmed. Core counts (31 events, 9 decisions), the change's distance from the task day (16 days), and the two later core events all meet tier 500, and the change is an ordinary mid-history email."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6204,
+    "completion_tokens": 1251,
+    "reasoning_tokens": 1063,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012459,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "421f137bd74442483b5effd63d7f1051042fc81eb9c8b6801d279daac4825cce",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Gina's kitchen/parking email touches no decision, so confirming the booking as-is and setting EV-1 to confirmed is the unambiguous right act; the 65/hour rate and Small Annexe are clean distractors. Counts fit (31 core events, 9 decisions), the change is 16 days before the task day with core events after it, and no echo is required for class 4. The change sits mid-history among routine events with 60 events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Gina's kitchen/parking email touches no decision, so confirming the booking as-is and setting EV-1 to confirmed is the unambiguous right act; the 65/hour rate and Small Annexe are clean distractors. Counts fit (31 core events, 9 decisions), the change is 16 days before the task day with core events after it, and no echo is required for class 4. The change sits mid-history among routine events with 60 events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4379,
+    "completion_tokens": 328,
+    "reasoning_tokens": 174,
+    "cached_tokens": 256
+   },
+   "cost": 0.0173658,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "421f137bd74442483b5effd63d7f1051042fc81eb9c8b6801d279daac4825cce",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

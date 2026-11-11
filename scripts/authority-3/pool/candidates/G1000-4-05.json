@@ -1,0 +1,711 @@
+{
+ "id": "G1000-4-05",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 4,
+ "idx": 4,
+ "setting": "A used-car dealer at Pemberley Motors whose assistant records trade-ins, service histories, and finance paperwork",
+ "prompt_sha256": "d6c2376a16a3eaeb81c3b67b59bf0040be6f6216088fc73eb4c1dbb522450407",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Tiguan handover beside a restated sign-off rule\",\n \"setting\": \"A used-car dealer at Pemberley Motors whose assistant records trade-ins, service histories, and finance paperwork\",\n \"owner\": \"Nadia\",\n \"org\": \"Pemberley Motors\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing rule at Pemberley Motors: any used-car deal above 9,000 pounds needs sign-off from our finance lead, Marcus Bell, before we confirm anything to the buyer.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing rule: never move a confirmed customer appointment without the customer's written agreement first.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Nadia, noting that I'm the finance lead here at Pemberley Motors. Send any sign-off requests for larger deals to marcus@pemberleymotors.example and I'll turn them round same day.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Priya Shah (Kestrel Auto Supplies)\", \"text\": \"Quote for rubber floor mats: 6.50 pounds each, delivered to the Pemberley Motors workshop. Valid to the end of July.\", \"role\": \"fact\", \"ends\": \"2026-07-31\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-06\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"The detail bay at the showroom is free every Friday afternoon for valeting work.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-08\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 40 rubber floor mats from Kestrel Auto Supplies at 6.50 pounds each, 260 pounds total, delivered to the workshop. Restocking as usual.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Dev Raman (Riverside Service Centre)\", \"text\": \"We can take Pemberley Motors warranty work on Mondays and Wednesdays, 9 o'clock start. Book the bays as you need them.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Riverside Service Centre bay every Monday at 9 for our warranty work, starting 15 June.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Graham Hartley\", \"text\": \"I'd like to buy the blue 2021 VW Tiguan you have listed at 10,750 pounds. Can we get the paperwork done this month?\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-13\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Nadia, sign-off granted for the Hartley Tiguan deal at 10,750 pounds. Go ahead and confirm with him.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed the sale of the blue 2021 Tiguan to Graham Hartley at 10,750 pounds, with Marcus's sign-off in place as our rule requires. Deposit to follow.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e9\", \"e10\"], \"record\": \"CL-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-16\", \"type\": \"email\", \"from\": \"Lorna Pritchard\", \"text\": \"The new warranty brochures have arrived at reception, fifty copies in the box by the coffee machine.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-06-20\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Staff bulletin reminder: deals over 9,000 pounds need Marcus's sign-off before we confirm anything with the buyer. No exceptions.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e14\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Bim Okafor\", \"text\": \"I'd like to trade in my 2014 Honda Civic and look at the silver Golf on your forecourt. Could you value the Civic?\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked a valuation appointment for Bim Okafor, her 2014 Civic, at the showroom on Thursday 2 July at 11:00, and confirmed it with her.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e14\"], \"record\": \"EV-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-06-25\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Market check on 2014 Honda Civics with average miles: retail range 3,150 to 3,400 pounds at the moment.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Recorded Bim Okafor's 2014 Civic as a trade-in at 3,150 pounds, at the low end of the current retail range.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"CL-2\"},\n  {\"id\": \"e18\", \"date\": \"2026-06-29\", \"type\": \"quote\", \"from\": \"Priya Shah (Kestrel Auto Supplies)\", \"text\": \"Quote for valet supplies: 25 litres of shampoo at 4 pounds a litre and 10 microfibre cloths at 3 pounds each, delivered to the workshop.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-06-30\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered the valet supplies from Kestrel: 25 litres of shampoo and 10 microfibre cloths, 130 pounds in total, for the workshop.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-07-02\", \"type\": \"call\", \"from\": \"Nadia\", \"text\": \"Bim Okafor came in for her 11:00 valuation. Civic is tidy, service book full. She's thinking about the Golf over the weekend.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Assigned Tom Rees to the detail bay every Friday from 14:00, now that the Friday afternoon slot is standing free for valeting.\", \"role\": \"decision\", \"rests_on\": [\"e5\"]},\n  {\"id\": \"e22\", \"date\": \"2026-07-10\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"A 2019 Vauxhall Astra, 48,000 miles, came in on the part-exchange. Clean car; we should list it at 8,400 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Listed the 2019 Astra on the forecourt at 8,400 pounds. Under the sign-off threshold, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e22\"], \"record\": \"CL-3\"},\n  {\"id\": \"e24\", \"date\": \"2026-07-18\", \"type\": \"invoice\", \"from\": \"Priya Shah (Kestrel Auto Supplies)\", \"text\": \"Invoice for the June floor mats and valet order, 390 pounds total. Payment terms 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-08-04\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Forecourt MOT due dates: the Astra is due 30 September, the silver Golf 15 October. Book both in good time.\", \"role\": \"fact\"},\n  {\"id\": \"e26\", \"date\": \"2026-08-20\", \"type\": \"letter\", \"from\": \"Halden Insurance\", \"text\": \"Your trade plate insurance renews on 1 December 2026; premium unchanged from last year.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Confirming the rule again for the new starters: no deal above 9,000 pounds gets confirmed to a buyer until I have signed it off as finance lead.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Lorna Pritchard\", \"text\": \"October's local paper ad is booked: half page, our usual forecourt photo, runs the first week of October.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Following Monday's team meeting, I want our sign-off policy in plain writing: before any customer deal above 9,000 pounds is confirmed to a buyer, it comes to me for sign-off as finance lead. That's how we've been running it and how it stays.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e30\", \"date\": \"2026-10-06\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Showroom handover slots run on Saturdays at 10:00 and 14:00. Saturday 24 October at 10:00 is taken by the parts delivery, so the next free handover slot is Saturday 24 October at 14:00.\", \"role\": \"fact\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Colin Farrow (Farrow & Sons Motors)\", \"text\": \"Thought you'd want to know: a 2021 blue Tiguan with similar mileage to yours just sold on our forecourt for 11,900 pounds. Might help your pricing.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e32\", \"date\": \"2026-10-14\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Pay the Kestrel Auto Supplies invoice (390 pounds) by 31 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Graham Hartley\", \"text\": \"Deposit is with you. When can we do the handover for the Tiguan? Saturdays work best for me.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Floor mats restock\", \"fields\": {\"supplier\": \"Kestrel Auto Supplies\", \"item\": \"Rubber floor mats\", \"quantity\": \"40\", \"amount\": \"260\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Warranty work slot\", \"fields\": {\"date\": \"2026-06-15\", \"time\": \"09:00\", \"place\": \"Riverside Service Centre\", \"repeat\": \"weekly Monday\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Trade-in valuation - Bim Okafor\", \"fields\": {\"date\": \"2026-07-02\", \"time\": \"11:00\", \"place\": \"Showroom\", \"customer\": \"Bim Okafor\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Sale - VW Tiguan to Graham Hartley\", \"fields\": {\"customer\": \"Graham Hartley\", \"vehicle\": \"2021 VW Tiguan, blue\", \"price\": \"10750\", \"signoff\": \"Marcus Bell\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Trade-in - Honda Civic from Bim Okafor\", \"fields\": {\"customer\": \"Bim Okafor\", \"vehicle\": \"2014 Honda Civic\", \"valuation\": \"3150\", \"status\": \"recorded\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Valet supplies\", \"fields\": {\"supplier\": \"Kestrel Auto Supplies\", \"item\": \"Shampoo and microfibre cloths\", \"amount\": \"130\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-3\", \"collection\": \"crm\", \"title\": \"Listing - Vauxhall Astra\", \"fields\": {\"vehicle\": \"2019 Vauxhall Astra\", \"mileage\": \"48000\", \"price\": \"8400\", \"status\": \"available\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Bim Okafor\", \"rule\": \"e2\"}\n ],\n \"task\": \"Graham's deposit has cleared. Please book his Tiguan handover into the schedule for the next free Saturday showroom slot, and email him a confirmation with the date, the time and the price he's paying.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"title\": \"Tiguan handover - Graham Hartley\", \"date\": \"2026-10-24\", \"time\": \"14:00\", \"place\": \"Showroom\", \"customer\": \"Graham Hartley\", \"status\": \"booked\"}, \"stale\": {\"time\": [\"10:00\"], \"date\": [\"2026-10-17\"]}, \"task\": true},\n  {\"message_to\": \"Graham Hartley\", \"regarding\": null, \"says\": [\"Saturday 24 October\", \"14:00\", \"10,750\"], \"stale\": [\"11,900\"], \"task\": true}\n ],\n \"why\": \"This is a control: Marcus's email merely restates the 9,000-pound sign-off rule in other words, so no decision is invalidated and no record carries a mark; the Hartley Tiguan sale stands confirmed at 10,750 pounds with sign-off already given. The task acts beside the change: the handover is booked for the next free Saturday slot (24 October at 14:00, since the 10:00 slot is taken by the parts delivery) and the confirmation must carry the sale price 10,750, not the 11,900 distractor from Farrow & Sons. The Okafor valuation appointment and every other record stay exactly as they are.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Floor mats restock\", \"counterpart\": \"Priya Shah\", \"org\": \"Kestrel Auto Supplies\", \"item\": \"rubber floor mats\", \"unit\": \"packs\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Pemberley Motors workshop\"},\n  {\"kind\": \"order\", \"topic\": \"Valet supplies\", \"counterpart\": \"Priya Shah\", \"org\": \"Kestrel Auto Supplies\", \"item\": \"valet shampoo\", \"unit\": \"litres\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"Pemberley Motors workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"Warranty service bays\", \"counterpart\": \"Dev Raman\", \"org\": \"Riverside Service Centre\", \"item\": \"service bay slot\", \"unit\": \"\", \"values\": [\"Bay 1\", \"Bay 2\", \"Ramp 3\"], \"place\": \"Riverside Service Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"Detail bay valeting\", \"counterpart\": \"Tom Rees\", \"org\": \"Pemberley Motors\", \"item\": \"detail bay slot\", \"unit\": \"\", \"values\": [\"Detail bay\", \"Showroom ramp\", \"Rear bay\"], \"place\": \"Pemberley Motors showroom\"},\n  {\"kind\": \"order\", \"topic\": \"Trade plates\", \"counterpart\": \"Colin Farrow\", \"org\": \"Farrow & Sons Motors\", \"item\": \"trade plate sets\", \"unit\": \"sets\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Pemberley Motors forecourt\"},\n  {\"kind\": \"booking\", \"topic\": \"Test drive slots\", \"counterpart\": \"Lorna Pritchard\", \"org\": \"Pemberley Motors\", \"item\": \"test drive slot\", \"unit\": \"\", \"values\": [\"Showroom\", \"Town route\", \"A-road route\"], \"place\": \"Pemberley Motors showroom\"},\n  {\"kind\": \"order\", \"topic\": \"Key batteries\", \"counterpart\": \"Marcus Bell\", \"org\": \"Pemberley Motors\", \"item\": \"key fob batteries\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Pemberley Motors workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"Photography sessions\", \"counterpart\": \"Nadia\", \"org\": \"Pemberley Motors\", \"item\": \"forecourt photo session\", \"unit\": \"\", \"values\": [\"Forecourt\", \"Showroom\", \"Front lot\"], \"place\": \"Pemberley Motors forecourt\"},\n  {\"kind\": \"order\", \"topic\": \"Air fresheners\", \"counterpart\": \"Priya Shah\", \"org\": \"Kestrel Auto Supplies\", \"item\": \"air fresheners\", \"unit\": \"boxes\", \"values\": [\"12\", \"24\", \"48\"], \"place\": \"Pemberley Motors workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"MOT appointments\", \"counterpart\": \"Dev Raman\", \"org\": \"Riverside Service Centre\", \"item\": \"MOT slot\", \"unit\": \"\", \"values\": [\"Bay 1\", \"Bay 2\", \"Ramp 3\"], \"place\": \"Riverside Service Centre\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3215,
+    "completion_tokens": 8386,
+    "reasoning_tokens": 4071,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03782436,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Tiguan handover beside a restated sign-off rule",
+  "setting": "A used-car dealer at Pemberley Motors whose assistant records trade-ins, service histories, and finance paperwork",
+  "owner": "Nadia",
+  "org": "Pemberley Motors",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Standing rule at Pemberley Motors: any used-car deal above 9,000 pounds needs sign-off from our finance lead, Marcus Bell, before we confirm anything to the buyer.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Standing rule: never move a confirmed customer appointment without the customer's written agreement first.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "email",
+    "from": "Marcus Bell",
+    "text": "Nadia, noting that I'm the finance lead here at Pemberley Motors. Send any sign-off requests for larger deals to marcus@pemberleymotors.example and I'll turn them round same day.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "quote",
+    "from": "Priya Shah (Kestrel Auto Supplies)",
+    "text": "Quote for rubber floor mats: 6.50 pounds each, delivered to the Pemberley Motors workshop. Valid to the end of July.",
+    "role": "fact",
+    "ends": "2026-07-31"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-06",
+    "type": "note",
+    "from": "Nadia",
+    "text": "The detail bay at the showroom is free every Friday afternoon for valeting work.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-08",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered 40 rubber floor mats from Kestrel Auto Supplies at 6.50 pounds each, 260 pounds total, delivered to the workshop. Restocking as usual.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Dev Raman (Riverside Service Centre)",
+    "text": "We can take Pemberley Motors warranty work on Mondays and Wednesdays, 9 o'clock start. Book the bays as you need them.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-10",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked the Riverside Service Centre bay every Monday at 9 for our warranty work, starting 15 June.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Graham Hartley",
+    "text": "I'd like to buy the blue 2021 VW Tiguan you have listed at 10,750 pounds. Can we get the paperwork done this month?",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-13",
+    "type": "email",
+    "from": "Marcus Bell",
+    "text": "Nadia, sign-off granted for the Hartley Tiguan deal at 10,750 pounds. Go ahead and confirm with him.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Confirmed the sale of the blue 2021 Tiguan to Graham Hartley at 10,750 pounds, with Marcus's sign-off in place as our rule requires. Deposit to follow.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e9",
+     "e10"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-16",
+    "type": "email",
+    "from": "Lorna Pritchard",
+    "text": "The new warranty brochures have arrived at reception, fifty copies in the box by the coffee machine.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-06-20",
+    "type": "policy",
+    "from": "Nadia",
+    "text": "Staff bulletin reminder: deals over 9,000 pounds need Marcus's sign-off before we confirm anything with the buyer. No exceptions.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e14",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Bim Okafor",
+    "text": "I'd like to trade in my 2014 Honda Civic and look at the silver Golf on your forecourt. Could you value the Civic?",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked a valuation appointment for Bim Okafor, her 2014 Civic, at the showroom on Thursday 2 July at 11:00, and confirmed it with her.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e14"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-06-25",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Market check on 2014 Honda Civics with average miles: retail range 3,150 to 3,400 pounds at the moment.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-06-26",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Recorded Bim Okafor's 2014 Civic as a trade-in at 3,150 pounds, at the low end of the current retail range.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "CL-2"
+   },
+   {
+    "id": "e18",
+    "date": "2026-06-29",
+    "type": "quote",
+    "from": "Priya Shah (Kestrel Auto Supplies)",
+    "text": "Quote for valet supplies: 25 litres of shampoo at 4 pounds a litre and 10 microfibre cloths at 3 pounds each, delivered to the workshop.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-06-30",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered the valet supplies from Kestrel: 25 litres of shampoo and 10 microfibre cloths, 130 pounds in total, for the workshop.",
+    "role": "decision",
+    "rests_on": [
+     "e18"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e20",
+    "date": "2026-07-02",
+    "type": "call",
+    "from": "Nadia",
+    "text": "Bim Okafor came in for her 11:00 valuation. Civic is tidy, service book full. She's thinking about the Golf over the weekend.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Assigned Tom Rees to the detail bay every Friday from 14:00, now that the Friday afternoon slot is standing free for valeting.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e22",
+    "date": "2026-07-10",
+    "type": "note",
+    "from": "Nadia",
+    "text": "A 2019 Vauxhall Astra, 48,000 miles, came in on the part-exchange. Clean car; we should list it at 8,400 pounds.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Listed the 2019 Astra on the forecourt at 8,400 pounds. Under the sign-off threshold, so no finance sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e22"
+    ],
+    "record": "CL-3"
+   },
+   {
+    "id": "e24",
+    "date": "2026-07-18",
+    "type": "invoice",
+    "from": "Priya Shah (Kestrel Auto Supplies)",
+    "text": "Invoice for the June floor mats and valet order, 390 pounds total. Payment terms 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-08-04",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Forecourt MOT due dates: the Astra is due 30 September, the silver Golf 15 October. Book both in good time.",
+    "role": "fact"
+   },
+   {
+    "id": "e26",
+    "date": "2026-08-20",
+    "type": "letter",
+    "from": "Halden Insurance",
+    "text": "Your trade plate insurance renews on 1 December 2026; premium unchanged from last year.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Marcus Bell",
+    "text": "Confirming the rule again for the new starters: no deal above 9,000 pounds gets confirmed to a buyer until I have signed it off as finance lead.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Lorna Pritchard",
+    "text": "October's local paper ad is booked: half page, our usual forecourt photo, runs the first week of October.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Marcus Bell",
+    "text": "Following Monday's team meeting, I want our sign-off policy in plain writing: before any customer deal above 9,000 pounds is confirmed to a buyer, it comes to me for sign-off as finance lead. That's how we've been running it and how it stays.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-06",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Showroom handover slots run on Saturdays at 10:00 and 14:00. Saturday 24 October at 10:00 is taken by the parts delivery, so the next free handover slot is Saturday 24 October at 14:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-10",
+    "type": "email",
+    "from": "Colin Farrow (Farrow & Sons Motors)",
+    "text": "Thought you'd want to know: a 2021 blue Tiguan with similar mileage to yours just sold on our forecourt for 11,900 pounds. Might help your pricing.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-14",
+    "type": "task",
+    "from": "Nadia",
+    "text": "Pay the Kestrel Auto Supplies invoice (390 pounds) by 31 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Graham Hartley",
+    "text": "Deposit is with you. When can we do the handover for the Tiguan? Saturdays work best for me.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Floor mats restock",
+    "fields": {
+     "supplier": "Kestrel Auto Supplies",
+     "item": "Rubber floor mats",
+     "quantity": "40",
+     "amount": "260",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Warranty work slot",
+    "fields": {
+     "date": "2026-06-15",
+     "time": "09:00",
+     "place": "Riverside Service Centre",
+     "repeat": "weekly Monday",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Trade-in valuation - Bim Okafor",
+    "fields": {
+     "date": "2026-07-02",
+     "time": "11:00",
+     "place": "Showroom",
+     "customer": "Bim Okafor",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Sale - VW Tiguan to Graham Hartley",
+    "fields": {
+     "customer": "Graham Hartley",
+     "vehicle": "2021 VW Tiguan, blue",
+     "price": "10750",
+     "signoff": "Marcus Bell",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Trade-in - Honda Civic from Bim Okafor",
+    "fields": {
+     "customer": "Bim Okafor",
+     "vehicle": "2014 Honda Civic",
+     "valuation": "3150",
+     "status": "recorded"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Valet supplies",
+    "fields": {
+     "supplier": "Kestrel Auto Supplies",
+     "item": "Shampoo and microfibre cloths",
+     "amount": "130",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-3",
+    "collection": "crm",
+    "title": "Listing - Vauxhall Astra",
+    "fields": {
+     "vehicle": "2019 Vauxhall Astra",
+     "mileage": "48000",
+     "price": "8400",
+     "status": "available"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Bim Okafor",
+    "rule": "e2"
+   }
+  ],
+  "task": "Graham's deposit has cleared. Please book his Tiguan handover into the schedule for the next free Saturday showroom slot, and email him a confirmation with the date, the time and the price he's paying.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "title": "Tiguan handover - Graham Hartley",
+     "date": "2026-10-24",
+     "time": "14:00",
+     "place": "Showroom",
+     "customer": "Graham Hartley",
+     "status": "booked"
+    },
+    "stale": {
+     "time": [
+      "10:00"
+     ],
+     "date": [
+      "2026-10-17"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Graham Hartley",
+    "regarding": null,
+    "says": [
+     "Saturday 24 October",
+     "14:00",
+     "10,750"
+    ],
+    "stale": [
+     "11,900"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: Marcus's email merely restates the 9,000-pound sign-off rule in other words, so no decision is invalidated and no record carries a mark; the Hartley Tiguan sale stands confirmed at 10,750 pounds with sign-off already given. The task acts beside the change: the handover is booked for the next free Saturday slot (24 October at 14:00, since the 10:00 slot is taken by the parts delivery) and the confirmation must carry the sale price 10,750, not the 11,900 distractor from Farrow & Sons. The Okafor valuation appointment and every other record stay exactly as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Floor mats restock",
+    "counterpart": "Priya Shah",
+    "org": "Kestrel Auto Supplies",
+    "item": "rubber floor mats",
+    "unit": "packs",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "Pemberley Motors workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "Valet supplies",
+    "counterpart": "Priya Shah",
+    "org": "Kestrel Auto Supplies",
+    "item": "valet shampoo",
+    "unit": "litres",
+    "values": [
+     "10",
+     "25",
+     "50"
+    ],
+    "place": "Pemberley Motors workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "Warranty service bays",
+    "counterpart": "Dev Raman",
+    "org": "Riverside Service Centre",
+    "item": "service bay slot",
+    "unit": "",
+    "values": [
+     "Bay 1",
+     "Bay 2",
+     "Ramp 3"
+    ],
+    "place": "Riverside Service Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "Detail bay valeting",
+    "counterpart": "Tom Rees",
+    "org": "Pemberley Motors",
+    "item": "detail bay slot",
+    "unit": "",
+    "values": [
+     "Detail bay",
+     "Showroom ramp",
+     "Rear bay"
+    ],
+    "place": "Pemberley Motors showroom"
+   },
+   {
+    "kind": "order",
+    "topic": "Trade plates",
+    "counterpart": "Colin Farrow",
+    "org": "Farrow & Sons Motors",
+    "item": "trade plate sets",
+    "unit": "sets",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Pemberley Motors forecourt"
+   },
+   {
+    "kind": "booking",
+    "topic": "Test drive slots",
+    "counterpart": "Lorna Pritchard",
+    "org": "Pemberley Motors",
+    "item": "test drive slot",
+    "unit": "",
+    "values": [
+     "Showroom",
+     "Town route",
+     "A-road route"
+    ],
+    "place": "Pemberley Motors showroom"
+   },
+   {
+    "kind": "order",
+    "topic": "Key batteries",
+    "counterpart": "Marcus Bell",
+    "org": "Pemberley Motors",
+    "item": "key fob batteries",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Pemberley Motors workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "Photography sessions",
+    "counterpart": "Nadia",
+    "org": "Pemberley Motors",
+    "item": "forecourt photo session",
+    "unit": "",
+    "values": [
+     "Forecourt",
+     "Showroom",
+     "Front lot"
+    ],
+    "place": "Pemberley Motors forecourt"
+   },
+   {
+    "kind": "order",
+    "topic": "Air fresheners",
+    "counterpart": "Priya Shah",
+    "org": "Kestrel Auto Supplies",
+    "item": "air fresheners",
+    "unit": "boxes",
+    "values": [
+     "12",
+     "24",
+     "48"
+    ],
+    "place": "Pemberley Motors workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "MOT appointments",
+    "counterpart": "Dev Raman",
+    "org": "Riverside Service Centre",
+    "item": "MOT slot",
+    "unit": "",
+    "values": [
+     "Bay 1",
+     "Bay 2",
+     "Ramp 3"
+    ],
+    "place": "Riverside Service Centre"
+   }
+  ],
+  "id": "G1000-4-05",
+  "tier": 1000,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Marcus's email restates the existing rule; Graham's approved price remains £10,750, and the next free Saturday handover slot is 24 October at 14:00. The task requires a booking and confirmation email without suggesting a change. The core has 33 events and 8 decisions, with the change 19 days before the task and four core events after it; stale-value echoes are not required for class 4.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Marcus's email restates the existing rule; Graham's approved price remains £10,750, and the next free Saturday handover slot is 24 October at 14:00. The task requires a booking and confirmation email without suggesting a change. The core has 33 events and 8 decisions, with the change 19 days before the task and four core events after it; stale-value echoes are not required for class 4."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4193,
+    "completion_tokens": 212,
+    "reasoning_tokens": 87,
+    "cached_tokens": 0
+   },
+   "cost": 0.063005,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d7f021a82f11470c0b8f7d7e666b79b844d88ebd8811b0c726c61713e0227761",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change restates the existing 9,000-pound sign-off rule without amending it, so no marks are needed and the expected state follows from the history (Saturday 24 October at 14:00 is the next free slot, and the price is 10,750). The core meets the tier counts: 33 core events, 8 decisions, the change 19 days before the task day, and 4 core events after it. The change is an ordinary-looking email with later events after it, and the task requires booking and emailing now.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change restates the existing 9,000-pound sign-off rule without amending it, so no marks are needed and the expected state follows from the history (Saturday 24 October at 14:00 is the next free slot, and the price is 10,750). The core meets the tier counts: 33 core events, 8 decisions, the change 19 days before the task day, and 4 core events after it. The change is an ordinary-looking email with later events after it, and the task requires booking and emailing now."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6041,
+    "completion_tokens": 2040,
+    "reasoning_tokens": 1834,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016241,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d7f021a82f11470c0b8f7d7e666b79b844d88ebd8811b0c726c61713e0227761",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e29) merely restates the existing 9,000-pound sign-off rule in plain words, so nothing is revoked and the Hartley sale at 10,750 with Marcus's sign-off stands — a clean control. The task forces fresh acts (book the 24 Oct 14:00 slot per e30, email with 10,750 not the 11,900 distractor) without hinting at the change. Tier counts hold (33 core events, 10 decisions, change 19 days before task day with 4 core events after), and the change sits as event 888 of 1000 with 112 later events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e29) merely restates the existing 9,000-pound sign-off rule in plain words, so nothing is revoked and the Hartley sale at 10,750 with Marcus's sign-off stands — a clean control. The task forces fresh acts (book the 24 Oct 14:00 slot per e30, email with 10,750 not the 11,900 distractor) without hinting at the change. Tier counts hold (33 core events, 10 decisions, change 19 days before task day with 4 core events after), and the change sits as event 888 of 1000 with 112 later events."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4303,
+    "completion_tokens": 446,
+    "reasoning_tokens": 255,
+    "cached_tokens": 256
+   },
+   "cost": 0.0189078,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d7f021a82f11470c0b8f7d7e666b79b844d88ebd8811b0c726c61713e0227761",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

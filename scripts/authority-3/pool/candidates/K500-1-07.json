@@ -1,0 +1,628 @@
+{
+ "id": "K500-1-07",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 1,
+ "idx": 6,
+ "setting": "Driving school owner at SafeWay Driver Training, with eight instructors",
+ "prompt_sha256": "98d3520d9bf64b806fcf428bab20dafe702cd4309e5d8d0e405179137b19ed5f",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Garage slot moved from Friday to Tuesday\",\n \"setting\": \"Driving school owner at SafeWay Driver Training, with eight instructors\",\n \"owner\": \"Marta\",\n \"org\": \"SafeWay Driver Training\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: once a student's lesson is confirmed in the diary, we do not move its date or time without that student's own agreement. If we need to move it, we ask the student first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: any supplier order over 400 must be approved by our bookkeeper Priya Nair before it is placed. Orders of 400 or less I can approve myself.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"SafeWay Driver Training runs eight instructors. Bruno Vella leads the practical garage sessions where students see how a workshop inspection works.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Marcus Bell (AutoServe Garage)\", \"text\": \"Our workshop is at 14 Mill Lane, and I am your contact for anything to do with your training cars. Just email me and I will sort it.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Nina Shaw\", \"text\": \"Delighted to accept the instructor post. I will start with SafeWay Driver Training on 1 July as your eighth instructor.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 60 L-plates and 40 magnetic roof signs from SignMakers Ltd for 240 in total. That is under my own approval limit of 400, so no need to trouble Priya.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Marcus Bell (AutoServe Garage)\", \"text\": \"Good news: SafeWay has a standing fleet inspection slot here every Friday at 08:00, and I am holding that for you for the rest of 2026. Just tell me which car is coming each week.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Amy Costa\", \"text\": \"Thank you, I am enrolled on the SafeWay autumn practical programme and happy to take part in the workshop visit session you mentioned.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Golf 2 in for its fleet inspection at AutoServe Garage on Mill Lane on Friday 6 November 2026 at 08:00, using our standing Friday morning slot there.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Monthly fuel budget for the school cars stays at 900 for the autumn term. All fuel card statements come to me.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the classroom at Elm Street Community Hall every Tuesday at 18:00 through November for the theory sessions, with Bruno Vella's team rotating as tutors.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-4\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Fiesta 5 in for its fleet inspection at AutoServe Garage on Friday 13 November 2026 at 08:00, the week after the Golf 2, using the same standing Friday morning arrangement at the garage.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-21\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed Amy Costa's garage-visit lesson for Friday 6 November 2026 at 08:00 at AutoServe Garage, with Bruno Vella teaching, timed to match our standing Friday morning slot at the workshop.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e8\", \"e3\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-29\", \"type\": \"email\", \"from\": \"Marcus Bell (AutoServe Garage)\", \"text\": \"The Fiesta 5 passed its MOT today with no advisories. Certificate runs to August 2027.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered four sets of replacement dual-control mirrors from AutoParts Direct for 180, within my own approval limit of 400.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Instructor meeting: all eight instructors present. Agreed the autumn mock-test rota and that Bruno Vella keeps leading the workshop visit sessions.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Marcus Bell (AutoServe Garage)\", \"text\": \"If you ever need MOT work outside your usual arrangement, our MOT lane has space most Thursdays at 14:00, at 60 per car.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Marcus Bell (AutoServe Garage)\", \"text\": \"Just a reminder that your Friday 08:00 fleet inspection slot carries on right through the autumn. Looking forward to seeing the SafeWay cars.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-10-01\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Pay AutoServe Garage's September invoice of 410 by 15 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Bruno Vella\", \"text\": \"For the November rota: I am available every weekday except Wednesday.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Marcus Bell (AutoServe Garage)\", \"text\": \"One change on our side: from Monday 2 November we can no longer hold your Friday 08:00 arrangement, as we have taken on a contract that fills Friday mornings. Your fleet inspections move to Tuesday at 09:30 instead, same service, same price. The first Tuesday under the new arrangement is 3 November.\", \"role\": \"change\", \"revokes\": [\"e7\"]},\n  {\"id\": \"e22\", \"date\": \"2026-10-16\", \"type\": \"letter\", \"from\": \"Marcus Bell (AutoServe Garage)\", \"text\": \"Enclosed is our autumn price list for routine servicing and parts. Prices are unchanged for existing account customers like SafeWay.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-20\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Golf 2 will need two new tyres in December; get quotes nearer the time.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-23\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Renew the fleet insurance policy before it expires on 30 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-26\", \"type\": \"message\", \"from\": \"Bruno Vella\", \"text\": \"Roster is looking fine for November. The students are keen on the workshop visit session with Amy Costa's group.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Amy Costa\", \"text\": \"Could you remind me of the date of my theory test? Also looking forward to the garage visit lesson.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-30\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked an extra theory session in the classroom at Elm Street Community Hall for Tuesday 17 November 2026 at 18:00, with Bruno Vella's team covering it.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-5\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-31\", \"type\": \"notice\", \"from\": \"Elm Street Community Hall\", \"text\": \"The hall closes at 21:00 throughout November. Please ensure all evening classes finish by 20:30.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Golf 2 fleet inspection at AutoServe Garage\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"08:00\", \"car\": \"Golf 2\", \"place\": \"AutoServe Garage, 14 Mill Lane\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Fiesta 5 fleet inspection at AutoServe Garage\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"08:00\", \"car\": \"Fiesta 5\", \"place\": \"AutoServe Garage, 14 Mill Lane\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Amy Costa garage-visit lesson\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"08:00\", \"student\": \"Amy Costa\", \"instructor\": \"Bruno Vella\", \"place\": \"AutoServe Garage, 14 Mill Lane\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Tuesday evening theory class\", \"fields\": {\"date\": \"2026-11-03\", \"time\": \"18:00\", \"place\": \"Elm Street Community Hall\", \"recurrence\": \"weekly\", \"status\": \"booked\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Extra theory session\", \"fields\": {\"date\": \"2026-11-17\", \"time\": \"18:00\", \"place\": \"Elm Street Community Hall\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"L-plates and roof signs\", \"fields\": {\"supplier\": \"SignMakers Ltd\", \"item\": \"60 L-plates and 40 roof signs\", \"amount\": \"240\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Dual-control mirrors\", \"fields\": {\"supplier\": \"AutoParts Direct\", \"item\": \"4 sets of dual-control mirrors\", \"amount\": \"180\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"date\", \"time\"], \"from\": \"Amy Costa\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please email Marcus at AutoServe to confirm our two November fleet inspections, and make sure the diary entries for the Golf 2 and the Fiesta 5 show the right day and time for what the garage is holding for us.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-03\", \"stale\": [\"2026-11-06\"]},\n  {\"record\": \"EV-1\", \"field\": \"time\", \"value\": \"09:30\", \"stale\": [\"08:00\"]},\n  {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-11-10\", \"stale\": [\"2026-11-13\"]},\n  {\"record\": \"EV-2\", \"field\": \"time\", \"value\": \"09:30\", \"stale\": [\"08:00\"]},\n  {\"message_to\": \"Marcus Bell (AutoServe Garage)\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-03\", \"09:30\", \"2026-11-10\"], \"stale\": [\"2026-11-06\", \"2026-11-13\", \"08:00\", \"Friday\"], \"task\": true}\n ],\n \"why\": \"Marcus Bell's October email ends the standing Friday 08:00 slot and moves SafeWay's fleet inspections to Tuesday 09:30 from 2 November, so both inspection bookings (EV-1, EV-2, the second resting on the first) must be revised to the Tuesdays of their booked weeks: 3 and 10 November at 09:30. Amy Costa's confirmed lesson also sat on the Friday slot, but moving a confirmed student booking needs her own agreement under Marta's standing rule, so EV-3 is ASK: it stays unchanged pending a consent request. The Thursday 14:00 MOT lane offer is a different service and is untouched by the change.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"engine oil restock\", \"counterpart\": \"Marcus Bell\", \"org\": \"AutoServe Garage\", \"item\": \"litres of 5W-30 engine oil\", \"unit\": \"litre\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"AutoServe Garage, 14 Mill Lane\"},\n  {\"kind\": \"order\", \"topic\": \"screen wash restock\", \"counterpart\": \"Marcus Bell\", \"org\": \"AutoServe Garage\", \"item\": \"bottles of screen wash\", \"unit\": \"bottle\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"AutoServe Garage, 14 Mill Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"theory classroom\", \"counterpart\": \"Hall Manager\", \"org\": \"Elm Street Community Hall\", \"item\": \"classroom for theory revision\", \"unit\": \"\", \"values\": [\"Main Classroom\", \"Small Meeting Room\", \"Upstairs Room\"], \"place\": \"Elm Street Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"mock test bay\", \"counterpart\": \"Hall Manager\", \"org\": \"Elm Street Community Hall\", \"item\": \"hall for mock theory tests\", \"unit\": \"\", \"values\": [\"Main Hall\", \"Main Classroom\", \"Annex Room\"], \"place\": \"Elm Street Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"L-plate restock\", \"counterpart\": \"Gary Pope\", \"org\": \"SignMakers Ltd\", \"item\": \"L-plates\", \"unit\": \"plate\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"SafeWay office, 3 Church Road\"},\n  {\"kind\": \"order\", \"topic\": \"mirror replacements\", \"counterpart\": \"Sue Aldis\", \"org\": \"AutoParts Direct\", \"item\": \"dual-control mirror sets\", \"unit\": \"set\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"SafeWay office, 3 Church Road\"},\n  {\"kind\": \"order\", \"topic\": \"wiper blades\", \"counterpart\": \"Sue Aldis\", \"org\": \"AutoParts Direct\", \"item\": \"wiper blade pairs\", \"unit\": \"pair\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"SafeWay office, 3 Church Road\"},\n  {\"kind\": \"order\", \"topic\": \"fuel card top-up\", \"counterpart\": \"Priya Nair\", \"org\": \"SafeWay Driver Training\", \"item\": \"fuel card top-up\", \"unit\": \"card\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"SafeWay office, 3 Church Road\"},\n  {\"kind\": \"booking\", \"topic\": \"car wash slots\", \"counterpart\": \"Deniz Yilmaz\", \"org\": \"Sparkle Hand Car Wash\", \"item\": \"wash slot for training car\", \"unit\": \"\", \"values\": [\"Bay 1\", \"Bay 2\", \"Bay 3\"], \"place\": \"Sparkle Hand Car Wash, Station Yard\"},\n  {\"kind\": \"order\", \"topic\": \"tyre supply\", \"counterpart\": \"Deniz Yilmaz\", \"org\": \"Sparkle Hand Car Wash\", \"item\": \"budget tyres\", \"unit\": \"tyre\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Sparkle Hand Car Wash, Station Yard\"},\n  {\"kind\": \"booking\", \"topic\": \"instructor briefing room\", \"counterpart\": \"Hall Manager\", \"org\": \"Elm Street Community Hall\", \"item\": \"room for instructor briefings\", \"unit\": \"\", \"values\": [\"Small Meeting Room\", \"Annex Room\", \"Upstairs Room\"], \"place\": \"Elm Street Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"high-vis vests\", \"counterpart\": \"Gary Pope\", \"org\": \"SignMakers Ltd\", \"item\": \"high-vis vests\", \"unit\": \"vest\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"SafeWay office, 3 Church Road\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3233,
+    "completion_tokens": 8719,
+    "reasoning_tokens": 4494,
+    "cached_tokens": 0
+   },
+   "cost": 0.140484,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Garage slot moved from Friday to Tuesday",
+  "setting": "Driving school owner at SafeWay Driver Training, with eight instructors",
+  "owner": "Marta",
+  "org": "SafeWay Driver Training",
+  "now": "2026-11-02",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: once a student's lesson is confirmed in the diary, we do not move its date or time without that student's own agreement. If we need to move it, we ask the student first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-04",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: any supplier order over 400 must be approved by our bookkeeper Priya Nair before it is placed. Orders of 400 or less I can approve myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "note",
+    "from": "Marta",
+    "text": "SafeWay Driver Training runs eight instructors. Bruno Vella leads the practical garage sessions where students see how a workshop inspection works.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Marcus Bell (AutoServe Garage)",
+    "text": "Our workshop is at 14 Mill Lane, and I am your contact for anything to do with your training cars. Just email me and I will sort it.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-19",
+    "type": "email",
+    "from": "Nina Shaw",
+    "text": "Delighted to accept the instructor post. I will start with SafeWay Driver Training on 1 July as your eighth instructor.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 60 L-plates and 40 magnetic roof signs from SignMakers Ltd for 240 in total. That is under my own approval limit of 400, so no need to trouble Priya.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Marcus Bell (AutoServe Garage)",
+    "text": "Good news: SafeWay has a standing fleet inspection slot here every Friday at 08:00, and I am holding that for you for the rest of 2026. Just tell me which car is coming each week.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Amy Costa",
+    "text": "Thank you, I am enrolled on the SafeWay autumn practical programme and happy to take part in the workshop visit session you mentioned.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Golf 2 in for its fleet inspection at AutoServe Garage on Mill Lane on Friday 6 November 2026 at 08:00, using our standing Friday morning slot there.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-28",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Monthly fuel budget for the school cars stays at 900 for the autumn term. All fuel card statements come to me.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the classroom at Elm Street Community Hall every Tuesday at 18:00 through November for the theory sessions, with Bruno Vella's team rotating as tutors.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Fiesta 5 in for its fleet inspection at AutoServe Garage on Friday 13 November 2026 at 08:00, the week after the Golf 2, using the same standing Friday morning arrangement at the garage.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-21",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Confirmed Amy Costa's garage-visit lesson for Friday 6 November 2026 at 08:00 at AutoServe Garage, with Bruno Vella teaching, timed to match our standing Friday morning slot at the workshop.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e8",
+     "e3"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-29",
+    "type": "email",
+    "from": "Marcus Bell (AutoServe Garage)",
+    "text": "The Fiesta 5 passed its MOT today with no advisories. Certificate runs to August 2027.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-05",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered four sets of replacement dual-control mirrors from AutoParts Direct for 180, within my own approval limit of 400.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-12",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Instructor meeting: all eight instructors present. Agreed the autumn mock-test rota and that Bruno Vella keeps leading the workshop visit sessions.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Marcus Bell (AutoServe Garage)",
+    "text": "If you ever need MOT work outside your usual arrangement, our MOT lane has space most Thursdays at 14:00, at 60 per car.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Marcus Bell (AutoServe Garage)",
+    "text": "Just a reminder that your Friday 08:00 fleet inspection slot carries on right through the autumn. Looking forward to seeing the SafeWay cars.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-01",
+    "type": "task",
+    "from": "Marta",
+    "text": "Pay AutoServe Garage's September invoice of 410 by 15 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-05",
+    "type": "message",
+    "from": "Bruno Vella",
+    "text": "For the November rota: I am available every weekday except Wednesday.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Marcus Bell (AutoServe Garage)",
+    "text": "One change on our side: from Monday 2 November we can no longer hold your Friday 08:00 arrangement, as we have taken on a contract that fills Friday mornings. Your fleet inspections move to Tuesday at 09:30 instead, same service, same price. The first Tuesday under the new arrangement is 3 November.",
+    "role": "change",
+    "revokes": [
+     "e7"
+    ]
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-16",
+    "type": "letter",
+    "from": "Marcus Bell (AutoServe Garage)",
+    "text": "Enclosed is our autumn price list for routine servicing and parts. Prices are unchanged for existing account customers like SafeWay.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-20",
+    "type": "note",
+    "from": "Marta",
+    "text": "Golf 2 will need two new tyres in December; get quotes nearer the time.",
+    "role": "fact"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-23",
+    "type": "task",
+    "from": "Marta",
+    "text": "Renew the fleet insurance policy before it expires on 30 November 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-26",
+    "type": "message",
+    "from": "Bruno Vella",
+    "text": "Roster is looking fine for November. The students are keen on the workshop visit session with Amy Costa's group.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-28",
+    "type": "email",
+    "from": "Amy Costa",
+    "text": "Could you remind me of the date of my theory test? Also looking forward to the garage visit lesson.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-30",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked an extra theory session in the classroom at Elm Street Community Hall for Tuesday 17 November 2026 at 18:00, with Bruno Vella's team covering it.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-31",
+    "type": "notice",
+    "from": "Elm Street Community Hall",
+    "text": "The hall closes at 21:00 throughout November. Please ensure all evening classes finish by 20:30.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Golf 2 fleet inspection at AutoServe Garage",
+    "fields": {
+     "date": "2026-11-06",
+     "time": "08:00",
+     "car": "Golf 2",
+     "place": "AutoServe Garage, 14 Mill Lane",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Fiesta 5 fleet inspection at AutoServe Garage",
+    "fields": {
+     "date": "2026-11-13",
+     "time": "08:00",
+     "car": "Fiesta 5",
+     "place": "AutoServe Garage, 14 Mill Lane",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Amy Costa garage-visit lesson",
+    "fields": {
+     "date": "2026-11-06",
+     "time": "08:00",
+     "student": "Amy Costa",
+     "instructor": "Bruno Vella",
+     "place": "AutoServe Garage, 14 Mill Lane",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Tuesday evening theory class",
+    "fields": {
+     "date": "2026-11-03",
+     "time": "18:00",
+     "place": "Elm Street Community Hall",
+     "recurrence": "weekly",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Extra theory session",
+    "fields": {
+     "date": "2026-11-17",
+     "time": "18:00",
+     "place": "Elm Street Community Hall",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "L-plates and roof signs",
+    "fields": {
+     "supplier": "SignMakers Ltd",
+     "item": "60 L-plates and 40 roof signs",
+     "amount": "240",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Dual-control mirrors",
+    "fields": {
+     "supplier": "AutoParts Direct",
+     "item": "4 sets of dual-control mirrors",
+     "amount": "180",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Amy Costa",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please email Marcus at AutoServe to confirm our two November fleet inspections, and make sure the diary entries for the Golf 2 and the Fiesta 5 show the right day and time for what the garage is holding for us.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-11-03",
+    "stale": [
+     "2026-11-06"
+    ]
+   },
+   {
+    "record": "EV-1",
+    "field": "time",
+    "value": "09:30",
+    "stale": [
+     "08:00"
+    ]
+   },
+   {
+    "record": "EV-2",
+    "field": "date",
+    "value": "2026-11-10",
+    "stale": [
+     "2026-11-13"
+    ]
+   },
+   {
+    "record": "EV-2",
+    "field": "time",
+    "value": "09:30",
+    "stale": [
+     "08:00"
+    ]
+   },
+   {
+    "message_to": "Marcus Bell (AutoServe Garage)",
+    "regarding": "EV-1",
+    "says": [
+     "2026-11-03",
+     "09:30",
+     "2026-11-10"
+    ],
+    "stale": [
+     "2026-11-06",
+     "2026-11-13",
+     "08:00",
+     "Friday"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Marcus Bell's October email ends the standing Friday 08:00 slot and moves SafeWay's fleet inspections to Tuesday 09:30 from 2 November, so both inspection bookings (EV-1, EV-2, the second resting on the first) must be revised to the Tuesdays of their booked weeks: 3 and 10 November at 09:30. Amy Costa's confirmed lesson also sat on the Friday slot, but moving a confirmed student booking needs her own agreement under Marta's standing rule, so EV-3 is ASK: it stays unchanged pending a consent request. The Thursday 14:00 MOT lane offer is a different service and is untouched by the change.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "engine oil restock",
+    "counterpart": "Marcus Bell",
+    "org": "AutoServe Garage",
+    "item": "litres of 5W-30 engine oil",
+    "unit": "litre",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "AutoServe Garage, 14 Mill Lane"
+   },
+   {
+    "kind": "order",
+    "topic": "screen wash restock",
+    "counterpart": "Marcus Bell",
+    "org": "AutoServe Garage",
+    "item": "bottles of screen wash",
+    "unit": "bottle",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "AutoServe Garage, 14 Mill Lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "theory classroom",
+    "counterpart": "Hall Manager",
+    "org": "Elm Street Community Hall",
+    "item": "classroom for theory revision",
+    "unit": "",
+    "values": [
+     "Main Classroom",
+     "Small Meeting Room",
+     "Upstairs Room"
+    ],
+    "place": "Elm Street Community Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "mock test bay",
+    "counterpart": "Hall Manager",
+    "org": "Elm Street Community Hall",
+    "item": "hall for mock theory tests",
+    "unit": "",
+    "values": [
+     "Main Hall",
+     "Main Classroom",
+     "Annex Room"
+    ],
+    "place": "Elm Street Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "L-plate restock",
+    "counterpart": "Gary Pope",
+    "org": "SignMakers Ltd",
+    "item": "L-plates",
+    "unit": "plate",
+    "values": [
+     "20",
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "SafeWay office, 3 Church Road"
+   },
+   {
+    "kind": "order",
+    "topic": "mirror replacements",
+    "counterpart": "Sue Aldis",
+    "org": "AutoParts Direct",
+    "item": "dual-control mirror sets",
+    "unit": "set",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "6"
+    ],
+    "place": "SafeWay office, 3 Church Road"
+   },
+   {
+    "kind": "order",
+    "topic": "wiper blades",
+    "counterpart": "Sue Aldis",
+    "org": "AutoParts Direct",
+    "item": "wiper blade pairs",
+    "unit": "pair",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "SafeWay office, 3 Church Road"
+   },
+   {
+    "kind": "order",
+    "topic": "fuel card top-up",
+    "counterpart": "Priya Nair",
+    "org": "SafeWay Driver Training",
+    "item": "fuel card top-up",
+    "unit": "card",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "SafeWay office, 3 Church Road"
+   },
+   {
+    "kind": "booking",
+    "topic": "car wash slots",
+    "counterpart": "Deniz Yilmaz",
+    "org": "Sparkle Hand Car Wash",
+    "item": "wash slot for training car",
+    "unit": "",
+    "values": [
+     "Bay 1",
+     "Bay 2",
+     "Bay 3"
+    ],
+    "place": "Sparkle Hand Car Wash, Station Yard"
+   },
+   {
+    "kind": "order",
+    "topic": "tyre supply",
+    "counterpart": "Deniz Yilmaz",
+    "org": "Sparkle Hand Car Wash",
+    "item": "budget tyres",
+    "unit": "tyre",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Sparkle Hand Car Wash, Station Yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "instructor briefing room",
+    "counterpart": "Hall Manager",
+    "org": "Elm Street Community Hall",
+    "item": "room for instructor briefings",
+    "unit": "",
+    "values": [
+     "Small Meeting Room",
+     "Annex Room",
+     "Upstairs Room"
+    ],
+    "place": "Elm Street Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "high-vis vests",
+    "counterpart": "Gary Pope",
+    "org": "SignMakers Ltd",
+    "item": "high-vis vests",
+    "unit": "vest",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "SafeWay office, 3 Church Road"
+   }
+  ],
+  "id": "K500-1-07",
+  "tier": 500,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

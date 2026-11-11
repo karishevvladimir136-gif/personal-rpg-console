@@ -625,5 +625,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Issuing the final invoice at 95 per night reprices the confirmed stay before Ines gives written consent, contrary to e1. That rule governs repricing the booking in substance, not merely editing EV-1, so the consent map and expected state unjustifiably exempt issuing ORD-1 at the new rate. The chain structure, tier requirements, and placement of the change otherwise fit.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Issuing the final invoice at 95 per night reprices the confirmed stay before Ines gives written consent, contrary to e1. That rule governs repricing the booking in substance, not merely editing EV-1, so the consent map and expected state unjustifiably exempt issuing ORD-1 at the new rate. The chain structure, tier requirements, and placement of the change otherwise fit."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3673,
+    "completion_tokens": 209,
+    "reasoning_tokens": 93,
+    "cached_tokens": 0
+   },
+   "cost": 0.056355,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "77306dc43c2d23d2cd149f1d90e4f9d7488a29566dec6498e9a6594a9118ded5",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The expected state sends Ines an invoice at 95 per night while her confirmed booking EV-1 stays at 120 pending consent, which effectively reprices her stay without the consent the history's rule requires, so the expected act is questionable. The correction email opens with 'there's a correction' and says '120 ... was a misprint', which announces the change rather than hiding it. The core counts, the change's distance from the task day, and the class 3 chain structure all check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The expected state sends Ines an invoice at 95 per night while her confirmed booking EV-1 stays at 120 pending consent, which effectively reprices her stay without the consent the history's rule requires, so the expected act is questionable. The correction email opens with 'there's a correction' and says '120 ... was a misprint', which announces the change rather than hiding it. The core counts, the change's distance from the task day, and the class 3 chain structure all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5154,
+    "completion_tokens": 2175,
+    "reasoning_tokens": 1973,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016029,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "77306dc43c2d23d2cd149f1d90e4f9d7488a29566dec6498e9a6594a9118ded5",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The correction (A: rate 95) touches the booking (B), the invoice resting on the booking (C, REVISE to 95/1140 and issue), while EV-2 cites the notice only for hook-up inclusion, which the change explicitly leaves standing (KEEP), and the booking's repricing requires consent under the stated rule (ASK). Core has 21 events and 5 decisions, change is 12 days before the task day with 12 events after, and it sits as an ordinary email at position 88 of 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The correction (A: rate 95) touches the booking (B), the invoice resting on the booking (C, REVISE to 95/1140 and issue), while EV-2 cites the notice only for hook-up inclusion, which the change explicitly leaves standing (KEEP), and the booking's repricing requires consent under the stated rule (ASK). Core has 21 events and 5 decisions, change is 12 days before the task day with 12 events after, and it sits as an ordinary email at position 88 of 100."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3779,
+    "completion_tokens": 464,
+    "reasoning_tokens": 297,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0100026,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "77306dc43c2d23d2cd149f1d90e4f9d7488a29566dec6498e9a6594a9118ded5",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

@@ -565,5 +565,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history supports the chain structure, but it does not unambiguously require reassigning the separately confirmed group implant review from Dr Reyes when Dr Nolan's rota is restored. The standing rule requires consent if that appointment is reassigned; it does not itself require reassignment or a consent request, so the mandatory ASK outcome is underdetermined.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history supports the chain structure, but it does not unambiguously require reassigning the separately confirmed group implant review from Dr Reyes when Dr Nolan's rota is restored. The standing rule requires consent if that appointment is reassigned; it does not itself require reassignment or a consent request, so the mandatory ASK outcome is underdetermined."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3881,
+    "completion_tokens": 293,
+    "reasoning_tokens": 187,
+    "cached_tokens": 0
+   },
+   "cost": 0.063155,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3ad6e6fdb5f9042b8d598798d87158da207b82368b47721b6fc8bbbd62d4d30d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is structurally sound: e22 corrects the masterclass dates (A), e14 (EV-1) rests on A and is REVISE, e16 (EV-2) rests on e14 and is ASK, and e12 (ORD-2) is KEEP. The echo e20, the 28 core events, six decisions, and a change 13 days before the task day all meet tier 500. One minor flaw is that the routine noise uses $ while the core uses £, which is a small realism inconsistency rather than a logic problem.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is structurally sound: e22 corrects the masterclass dates (A), e14 (EV-1) rests on A and is REVISE, e16 (EV-2) rests on e14 and is ASK, and e12 (ORD-2) is KEEP. The echo e20, the 28 core events, six decisions, and a change 13 days before the task day all meet tier 500. One minor flaw is that the routine noise uses $ while the core uses £, which is a small realism inconsistency rather than a logic problem."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5812,
+    "completion_tokens": 2075,
+    "reasoning_tokens": 1851,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016187,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3ad6e6fdb5f9042b8d598798d87158da207b82368b47721b6fc8bbbd62d4d30d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: the change (e22) revokes fact A (e11), touching B (EV-1, REVISE, no consent needed since not a confirmed patient appointment) and C (EV-2, resting on B and consent-protected under rule e1, so ASK), while D (ORD-2) cites only the course's existence, venue and fee (KEEP). The task forces sending a message and revising records without naming the change. Tier met: 28 core events, 6 decisions, change 13 days before the task day with echo e20, and the change sits mid-history with 54 later events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: the change (e22) revokes fact A (e11), touching B (EV-1, REVISE, no consent needed since not a confirmed patient appointment) and C (EV-2, resting on B and consent-protected under rule e1, so ASK), while D (ORD-2) cites only the course's existence, venue and fee (KEEP). The task forces sending a message and revising records without naming the change. Tier met: 28 core events, 6 decisions, change 13 days before the task day with echo e20, and the change sits mid-history with 54 later events."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4001,
+    "completion_tokens": 429,
+    "reasoning_tokens": 240,
+    "cached_tokens": 256
+   },
+   "cost": 0.0177468,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3ad6e6fdb5f9042b8d598798d87158da207b82368b47721b6fc8bbbd62d4d30d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

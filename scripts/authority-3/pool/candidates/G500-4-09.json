@@ -617,5 +617,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The merch correction affects no recorded decision, and the task explicitly preserves the confirmed 30-minute support set while requiring a message and a loading-bay booking. The core has 28 events and 7 decisions, with the change 15 days before the task and five core events after it. The change appears as an ordinary email within the history; no stale-value echo is required for class 4.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The merch correction affects no recorded decision, and the task explicitly preserves the confirmed 30-minute support set while requiring a message and a loading-bay booking. The core has 28 events and 7 decisions, with the change 15 days before the task and five core events after it. The change appears as an ordinary email within the history; no stale-value echo is required for class 4."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3994,
+    "completion_tokens": 231,
+    "reasoning_tokens": 114,
+    "cached_tokens": 0
+   },
+   "cost": 0.0614675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9e47ed2e77fbe946a952f8bf12184eec7b6b83cf67c1387b6e1811099f0149c1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The merch-split correction (e23) revokes e5, and no decision (e6, e9, e10, e12, e14, e15, e16) rests on e5, so this is a valid control with no marks and no record changes. The core meets the tier: 28 core events, 7 decisions, the change 15 days before the task day, and 5 core events after it. Minor wording issue: the 21:00 headliner time appears only in the task, and 'My earlier figures were wrong' slightly flags the correction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The merch-split correction (e23) revokes e5, and no decision (e6, e9, e10, e12, e14, e15, e16) rests on e5, so this is a valid control with no marks and no record changes. The core meets the tier: 28 core events, 7 decisions, the change 15 days before the task day, and 5 core events after it. Minor wording issue: the 21:00 headliner time appears only in the task, and 'My earlier figures were wrong' slightly flags the correction."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5708,
+    "completion_tokens": 1488,
+    "reasoning_tokens": 1274,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013148,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9e47ed2e77fbe946a952f8bf12184eec7b6b83cf67c1387b6e1811099f0149c1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The merch-split correction (e23) revokes e5, which no decision rests on and no record stores, so the plan stands unchanged; the task (send running order with the booked 30-minute set, book Bay 2) follows from the history, and Dana's 45-minute message is an unconfirmed distractor. Consent map covers only EV-1 date/venue, which the task doesn't alter. Tier met: 28 core events, 7 decisions, change 15 days before task day with 5 core events after it, and the change sits mid-history among routine events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The merch-split correction (e23) revokes e5, which no decision rests on and no record stores, so the plan stands unchanged; the task (send running order with the booked 30-minute set, book Bay 2) follows from the history, and Dana's 45-minute message is an unconfirmed distractor. Consent map covers only EV-1 date/venue, which the task doesn't alter. Tier met: 28 core events, 7 decisions, change 15 days before task day with 5 core events after it, and the change sits mid-history among routine events."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4084,
+    "completion_tokens": 488,
+    "reasoning_tokens": 311,
+    "cached_tokens": 256
+   },
+   "cost": 0.0188808,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9e47ed2e77fbe946a952f8bf12184eec7b6b83cf67c1387b6e1811099f0149c1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

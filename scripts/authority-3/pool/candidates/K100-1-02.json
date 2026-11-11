@@ -1,0 +1,661 @@
+{
+ "id": "K100-1-02",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 1,
+ "idx": 1,
+ "setting": "Operations coordinator at Maple & Grain Bakery, a wholesale artisan bakery",
+ "prompt_sha256": "30866c91bcd779c95ea00f6d43d0bd4b217ee9238a7cafffdba69a8160b6dac7",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Flour delivery day moves at Maple & Grain\",\n  \"setting\": \"Operations coordinator at Maple & Grain Bakery, a wholesale artisan bakery\",\n  \"owner\": \"Priya\",\n  \"org\": \"Maple & Grain Bakery\",\n  \"now\": \"2026-10-19\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Maple & Grain Bakery bakes and ships wholesale bread from our premises at 14 Ferry Street; all deliveries come into the loading dock at the back of that building.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule: any change to a confirmed standing delivery for a client must be agreed with the account manager Marta Reyes before the client record is altered. If her agreement has not come through, ask her first; do not edit the record.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule: supplier standing orders live in the orders system. When a supplier changes a delivery arrangement, update the order record to match and confirm the arrangement in writing with the supplier's contact.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"Confirming our arrangement: Halloway Mills will deliver your bread flour every Tuesday at 06:00 to your loading dock at 14 Ferry Street, on an ongoing basis.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"Our price for bread flour holds at 24 per 25kg sack through the autumn, with delivery included.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-09\", \"type\": \"message\", \"from\": \"Tomás Alvarez (head baker)\", \"text\": \"For planning: the wholesale bake needs all flour on hand before bake day. The big weekly bake produces the sourdough loaves that go to Hearthside Cafes.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Marta Reyes (account manager)\", \"text\": \"Hearthside Cafes have settled on 120 sourdough loaves a week from us, delivered to their kitchen each Friday at 08:00. They are happy for this to run as a standing delivery.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Set up the standing flour order with Halloway Mills: 40 sacks of bread flour at 24 per 25kg sack, delivered every Tuesday at 06:00 to the Ferry Street dock. Logged in the orders system as confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the weekly dock clean-down for Tuesdays at 14:00, since the dock at Ferry Street is free once the morning flour delivery has been unloaded.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled the weekly wholesale bake for Thursdays at 04:00 in the main bakery. The flour arrives Tuesday morning, so it is on hand well before the bake, and the bake covers the Hearthside loaves.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed the standing delivery to Hearthside Cafes: 120 sourdough loaves from the Thursday bake, delivered every Friday at 08:00 to their kitchen. Entered in the client records as confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e7\", \"e2\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"quote\", \"from\": \"Greta Lind (Greenfield Mills)\", \"text\": \"Thank you for your enquiry. Greenfield Mills can supply bread flour at 26 per 25kg sack, delivery extra, should you ever want a second mill.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"message\", \"from\": \"Tomás Alvarez (head baker)\", \"text\": \"The new proving baskets have arrived and are in the dry store. No action needed.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Measured the flour store: it holds a maximum of 60 sacks of 25kg, so our standing order of 40 sacks a week leaves comfortable headroom.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-20\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Team meeting: discussed autumn wholesale volumes, van servicing in September, and holiday rotas for November. No changes to the bake schedule.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-01\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To-do: renew the annual supply agreement with Halloway Mills before it lapses on 2026-11-15.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Rey Fontaine (driver)\", \"text\": \"Just to confirm my availability for the autumn: I can do delivery runs Tuesday to Saturday mornings, any route from the Ferry Street bakery.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"message\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"Heads up from our dispatch desk: we currently have a Wednesday 06:00 delivery slot open on your route, in case you ever want to move your flour day.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-10-01\", \"type\": \"invoice\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"September invoice: 160 sacks of bread flour at 24 per sack, total 3840, paid on receipt. Thank you.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"Route change on our side: from Thursday 15 October 2026 your bread flour delivery moves from Tuesdays to Thursdays, still arriving at 06:00 at your Ferry Street dock, same 40 sacks at the same price. Sorry for the short notice.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n    {\"id\": \"e21\", \"date\": \"2026-10-13\", \"type\": \"message\", \"from\": \"Tomás Alvarez (head baker)\", \"text\": \"Rye flour is running low in the dry store — please order another 10 sacks when convenient.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Marta Reyes (account manager)\", \"text\": \"Hearthside Cafes let me know their kitchen is closed on Monday 26 October 2026 for staff training. No delivery is due that day, so nothing to change.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"Autumn wheat quality note: this season's harvest is milling well and our bread flour price is unchanged through November.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing flour order - Halloway Mills\", \"fields\": {\"supplier\": \"Halloway Mills\", \"item\": \"bread flour 25kg sacks\", \"quantity\": \"40\", \"day\": \"Tuesday\", \"time\": \"06:00\", \"price\": \"24\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly wholesale bake\", \"fields\": {\"date\": \"2026-10-22\", \"time\": \"04:00\", \"room\": \"Main bakery\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly dock clean-down\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"14:00\", \"place\": \"Ferry Street loading dock\", \"status\": \"booked\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hearthside Cafes standing delivery\", \"fields\": {\"client\": \"Hearthside Cafes\", \"item\": \"sourdough loaves\", \"quantity\": \"120\", \"day\": \"Friday\", \"time\": \"08:00\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"day\", \"time\"], \"from\": \"Marta Reyes (account manager)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Morning — can you confirm this week's flour delivery with Nina at Halloway Mills in writing, and make sure our order and this week's bake schedule line up with it?\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"day\", \"value\": \"Thursday\", \"stale\": [\"Tuesday\"], \"task\": true},\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-23\", \"stale\": [\"2026-10-22\"]},\n    {\"message_to\": \"Nina Park (Halloway Mills)\", \"regarding\": \"ORD-1\", \"says\": [\"Thursday\"], \"stale\": [\"Tuesday\", \"Wednesday\"], \"task\": true}\n  ],\n  \"why\": \"Halloway Mills moved the flour delivery from Tuesday to Thursday effective 15 October, so the standing order record ORD-1 must say Thursday and the written confirmation to Nina must say Thursday — not Tuesday, and not the unrelated Wednesday slot she once mentioned. The Thursday 04:00 bake can no longer rely on flour arriving two days earlier, so it moves to Friday 2026-10-23 (REVISE, two hops via ORD-1). The Hearthside delivery rests on the bake, but its day and time are protected by Marta's consent rule, so the assistant must ask her rather than edit CL-1 (ASK). The Tuesday dock clean-down only relies on the dock being free after the morning delivery, which the change leaves standing, so EV-2 stays untouched (KEEP).\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"rye flour restock\", \"counterpart\": \"Nina Park\", \"org\": \"Halloway Mills\", \"item\": \"rye flour 25kg sacks\", \"unit\": \"sacks\", \"values\": [\"10\", \"12\", \"8\", \"15\", \"6\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"order\", \"topic\": \"seed mix restock\", \"counterpart\": \"Nina Park\", \"org\": \"Halloway Mills\", \"item\": \"sunflower and linseed mix 10kg bags\", \"unit\": \"bags\", \"values\": [\"4\", \"6\", \"3\", \"5\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"order\", \"topic\": \"pastry box restock\", \"counterpart\": \"Colm Draper\", \"org\": \"Hearthside Cafes\", \"item\": \"morning pastry boxes\", \"unit\": \"boxes\", \"values\": [\"12\", \"18\", \"20\", \"15\"], \"place\": \"Hearthside Cafes kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"baguette top-up\", \"counterpart\": \"Colm Draper\", \"org\": \"Hearthside Cafes\", \"item\": \"baguettes\", \"unit\": \"loaves\", \"values\": [\"30\", \"40\", \"24\", \"36\"], \"place\": \"Hearthside Cafes kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"delivery van bay\", \"counterpart\": \"Rey Fontaine\", \"org\": \"Maple & Grain Bakery\", \"item\": \"delivery van loading bay\", \"unit\": \"bay\", \"values\": [\"Bay 1\", \"Bay 2\", \"Bay 3\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"booking\", \"topic\": \"drivers room\", \"counterpart\": \"Rey Fontaine\", \"org\": \"Maple & Grain Bakery\", \"item\": \"drivers break room\", \"unit\": \"room\", \"values\": [\"Break room\", \"Annex room\", \"Office snug\"], \"place\": \"14 Ferry Street\"},\n    {\"kind\": \"order\", \"topic\": \"butter restock\", \"counterpart\": \"Agnes Vale\", \"org\": \"Dairygold Farm\", \"item\": \"unsalted butter 5kg blocks\", \"unit\": \"blocks\", \"values\": [\"10\", \"14\", \"8\", \"12\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"order\", \"topic\": \"eggs restock\", \"counterpart\": \"Agnes Vale\", \"org\": \"Dairygold Farm\", \"item\": \"free range eggs\", \"unit\": \"trays\", \"values\": [\"20\", \"25\", \"30\", \"15\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"booking\", \"topic\": \"bakers planning room\", \"counterpart\": \"Tomás Alvarez\", \"org\": \"Maple & Grain Bakery\", \"item\": \"planning meeting room\", \"unit\": \"room\", \"values\": [\"Front office\", \"Annex room\", \"Kitchen table\"], \"place\": \"14 Ferry Street\"},\n    {\"kind\": \"order\", \"topic\": \"packaging restock\", \"counterpart\": \"Ida Novak\", \"org\": \"Wrapwell Packaging\", \"item\": \"kraft bread bags\", \"unit\": \"bundles\", \"values\": [\"50\", \"40\", \"60\", \"35\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"booking\", \"topic\": \"mill tour slot\", \"counterpart\": \"Greta Lind\", \"org\": \"Greenfield Mills\", \"item\": \"visitor tour slot\", \"unit\": \"slot\", \"values\": [\"Mill hall\", \"Grain store\", \"Visitor centre\"], \"place\": \"Greenfield Mills\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Petra Shaw\", \"org\": \"Shine & Co\", \"item\": \"food-safe surface cleaner\", \"unit\": \"litres\", \"values\": [\"20\", \"25\", \"15\", \"30\"], \"place\": \"Ferry Street loading dock\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3178,
+    "completion_tokens": 7517,
+    "reasoning_tokens": 3880,
+    "cached_tokens": 0
+   },
+   "cost": 0.122289,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Flour delivery day moves at Maple & Grain\",\n  \"setting\": \"Operations coordinator at Maple & Grain Bakery, a wholesale artisan bakery\",\n  \"owner\": \"Priya\",\n  \"org\": \"Maple & Grain Bakery\",\n  \"now\": \"2026-10-19\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Maple & Grain Bakery bakes and ships wholesale bread from our premises at 14 Ferry Street; all deliveries come into the loading dock at the back of that building.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule: any change to a confirmed standing delivery for a client must be agreed with the account manager Marta Reyes before the client record is altered. If her agreement has not come through, ask her first; do not edit the record.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule: supplier standing orders live in the orders system. When a supplier changes a delivery arrangement, update the order record to match and confirm the arrangement in writing with the supplier's contact.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"Confirming our arrangement: Halloway Mills will deliver your bread flour every Tuesday at 06:00 to your loading dock at 14 Ferry Street, on an ongoing basis.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"Our price for bread flour holds at 24 per 25kg sack through the autumn, with delivery included.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-09\", \"type\": \"message\", \"from\": \"Tomás Alvarez (head baker)\", \"text\": \"For planning: the wholesale bake needs all flour on hand before bake day. The big weekly bake produces the sourdough loaves that go to Hearthside Cafes.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Marta Reyes (account manager)\", \"text\": \"Hearthside Cafes have settled on 120 sourdough loaves a week from us, delivered to their kitchen each Friday at 08:00. They are happy for this to run as a standing delivery.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Set up the standing flour order with Halloway Mills: 40 sacks of bread flour at 24 per 25kg sack, delivered every Tuesday at 06:00 to the Ferry Street dock. Logged in the orders system as confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the weekly dock clean-down for Tuesdays at 14:00, since the dock at Ferry Street is free once the morning flour delivery has been unloaded.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled the weekly wholesale bake for Thursdays at 04:00 in the main bakery. The flour arrives Tuesday morning, so it is on hand well before the bake, and the bake covers the Hearthside loaves.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed the standing delivery to Hearthside Cafes: 120 sourdough loaves from the Thursday bake, delivered every Friday at 08:00 to their kitchen. Entered in the client records as confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e7\", \"e2\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"quote\", \"from\": \"Greta Lind (Greenfield Mills)\", \"text\": \"Thank you for your enquiry. Greenfield Mills can supply bread flour at 26 per 25kg sack, delivery extra, should you ever want a second mill.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"message\", \"from\": \"Tomás Alvarez (head baker)\", \"text\": \"The new proving baskets have arrived and are in the dry store. No action needed.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Measured the flour store: it holds a maximum of 60 sacks of 25kg, so our standing order of 40 sacks a week leaves comfortable headroom.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-20\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Team meeting: discussed autumn wholesale volumes, van servicing in September, and holiday rotas for November. No changes to the bake schedule.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-01\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To-do: renew the annual supply agreement with Halloway Mills before it lapses on 2026-11-15.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Rey Fontaine (driver)\", \"text\": \"Just to confirm my availability for the autumn: I can do delivery runs Tuesday to Saturday mornings, any route from the Ferry Street bakery.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"message\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"Heads up from our dispatch desk: we currently have a Wednesday 06:00 delivery slot open on your route, in case you ever want to move your flour day.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-10-01\", \"type\": \"invoice\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"September invoice: 160 sacks of bread flour at 24 per sack, total 3840, paid on receipt. Thank you.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"Route change on our side: from Thursday 15 October 2026 your bread flour delivery moves from Tuesdays to Thursdays, still arriving at 06:00 at your Ferry Street dock, same 40 sacks at the same price. Sorry for the short notice.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n    {\"id\": \"e21\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Tomás Alvarez (head baker)\", \"text\": \"Rye flour is running low in the dry store — please order another 10 sacks when convenient.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Marta Reyes (account manager)\", \"text\": \"Hearthside Cafes let me know their kitchen is closed on Monday 26 October 2026 for staff training. No delivery is due that day, so nothing to change.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Nina Park (Halloway Mills)\", \"text\": \"Autumn wheat quality note: this season's harvest is milling well and our bread flour price is unchanged through November.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-15\", \"type\": \"call\", \"from\": \"Rey Fontaine (driver)\", \"text\": \"Called to say the van passed its service check and is ready for the usual runs this week and next.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-16\", \"type\": \"message\", \"from\": \"Tomás Alvarez (head baker)\", \"text\": \"Reminder that the oven stones need a deep clean before the end of October; I have put it on the maintenance list.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-17\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Checked the dry store inventory after Friday's bake: packaging, seeds and butter all at normal levels.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing flour order - Halloway Mills\", \"fields\": {\"supplier\": \"Halloway Mills\", \"item\": \"bread flour 25kg sacks\", \"quantity\": \"40\", \"day\": \"Tuesday\", \"time\": \"06:00\", \"price\": \"24\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly wholesale bake\", \"fields\": {\"date\": \"2026-10-22\", \"time\": \"04:00\", \"room\": \"Main bakery\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly dock clean-down\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"14:00\", \"place\": \"Ferry Street loading dock\", \"status\": \"booked\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hearthside Cafes standing delivery\", \"fields\": {\"client\": \"Hearthside Cafes\", \"item\": \"sourdough loaves\", \"quantity\": \"120\", \"day\": \"Friday\", \"time\": \"08:00\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"day\", \"time\"], \"from\": \"Marta Reyes (account manager)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Morning — can you confirm this week's flour delivery with Nina at Halloway Mills in writing, and make sure our order and this week's bake schedule line up with it?\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"day\", \"value\": \"Thursday\", \"stale\": [\"Tuesday\"], \"task\": true},\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-23\", \"stale\": [\"2026-10-22\"]},\n    {\"message_to\": \"Nina Park (Halloway Mills)\", \"regarding\": \"ORD-1\", \"says\": [\"Thursday\"], \"stale\": [\"Tuesday\", \"Wednesday\"], \"task\": true}\n  ],\n  \"why\": \"Halloway Mills moved the flour delivery from Tuesday to Thursday effective 15 October, so the standing order record ORD-1 must say Thursday and the written confirmation to Nina must say Thursday — not Tuesday, and not the unrelated Wednesday slot she once mentioned. The Thursday 04:00 bake can no longer rely on flour arriving two days earlier, so it moves to Friday 2026-10-23 (REVISE, two hops via ORD-1). The Hearthside delivery rests on the bake, but its day and time are protected by Marta's consent rule, so the assistant must ask her rather than edit CL-1 (ASK). The Tuesday dock clean-down only relies on the dock being free after the morning delivery, which the change leaves standing, so EV-2 stays untouched (KEEP).\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"rye flour restock\", \"counterpart\": \"Nina Park\", \"org\": \"Halloway Mills\", \"item\": \"rye flour 25kg sacks\", \"unit\": \"sacks\", \"values\": [\"10\", \"12\", \"8\", \"15\", \"6\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"order\", \"topic\": \"seed mix restock\", \"counterpart\": \"Nina Park\", \"org\": \"Halloway Mills\", \"item\": \"sunflower and linseed mix 10kg bags\", \"unit\": \"bags\", \"values\": [\"4\", \"6\", \"3\", \"5\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"order\", \"topic\": \"pastry box restock\", \"counterpart\": \"Colm Draper\", \"org\": \"Hearthside Cafes\", \"item\": \"morning pastry boxes\", \"unit\": \"boxes\", \"values\": [\"12\", \"18\", \"20\", \"15\"], \"place\": \"Hearthside Cafes kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"baguette top-up\", \"counterpart\": \"Colm Draper\", \"org\": \"Hearthside Cafes\", \"item\": \"baguettes\", \"unit\": \"loaves\", \"values\": [\"30\", \"40\", \"24\", \"36\"], \"place\": \"Hearthside Cafes kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"delivery van bay\", \"counterpart\": \"Rey Fontaine\", \"org\": \"Maple & Grain Bakery\", \"item\": \"delivery van loading bay\", \"unit\": \"bay\", \"values\": [\"Bay 1\", \"Bay 2\", \"Bay 3\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"booking\", \"topic\": \"drivers room\", \"counterpart\": \"Rey Fontaine\", \"org\": \"Maple & Grain Bakery\", \"item\": \"drivers break room\", \"unit\": \"room\", \"values\": [\"Break room\", \"Annex room\", \"Office snug\"], \"place\": \"14 Ferry Street\"},\n    {\"kind\": \"order\", \"topic\": \"butter restock\", \"counterpart\": \"Agnes Vale\", \"org\": \"Dairygold Farm\", \"item\": \"unsalted butter 5kg blocks\", \"unit\": \"blocks\", \"values\": [\"10\", \"14\", \"8\", \"12\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"order\", \"topic\": \"eggs restock\", \"counterpart\": \"Agnes Vale\", \"org\": \"Dairygold Farm\", \"item\": \"free range eggs\", \"unit\": \"trays\", \"values\": [\"20\", \"25\", \"30\", \"15\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"booking\", \"topic\": \"bakers planning room\", \"counterpart\": \"Tomás Alvarez\", \"org\": \"Maple & Grain Bakery\", \"item\": \"planning meeting room\", \"unit\": \"room\", \"values\": [\"Front office\", \"Annex room\", \"Kitchen table\"], \"place\": \"14 Ferry Street\"},\n    {\"kind\": \"order\", \"topic\": \"packaging restock\", \"counterpart\": \"Ida Novak\", \"org\": \"Wrapwell Packaging\", \"item\": \"kraft bread bags\", \"unit\": \"bundles\", \"values\": [\"50\", \"40\", \"60\", \"35\"], \"place\": \"Ferry Street loading dock\"},\n    {\"kind\": \"booking\", \"topic\": \"mill tour slot\", \"counterpart\": \"Greta Lind\", \"org\": \"Greenfield Mills\", \"item\": \"visitor tour slot\", \"unit\": \"slot\", \"values\": [\"Mill hall\", \"Grain store\", \"Visitor centre\"], \"place\": \"Greenfield Mills\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Petra Shaw\", \"org\": \"Shine & Co\", \"item\": \"food-safe surface cleaner\", \"unit\": \"litres\", \"values\": [\"20\", \"25\", \"15\", \"30\"], \"place\": \"Ferry Street loading dock\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6888,
+    "completion_tokens": 3976,
+    "reasoning_tokens": 139,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0720096,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- the change is too close to now: only 4 of 100 events would come after it; move the change earlier\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Flour delivery day moves at Maple & Grain",
+  "setting": "Operations coordinator at Maple & Grain Bakery, a wholesale artisan bakery",
+  "owner": "Priya",
+  "org": "Maple & Grain Bakery",
+  "now": "2026-10-19",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-01",
+    "type": "note",
+    "from": "Priya",
+    "text": "Maple & Grain Bakery bakes and ships wholesale bread from our premises at 14 Ferry Street; all deliveries come into the loading dock at the back of that building.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Standing rule: any change to a confirmed standing delivery for a client must be agreed with the account manager Marta Reyes before the client record is altered. If her agreement has not come through, ask her first; do not edit the record.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Standing rule: supplier standing orders live in the orders system. When a supplier changes a delivery arrangement, update the order record to match and confirm the arrangement in writing with the supplier's contact.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Nina Park (Halloway Mills)",
+    "text": "Confirming our arrangement: Halloway Mills will deliver your bread flour every Tuesday at 06:00 to your loading dock at 14 Ferry Street, on an ongoing basis.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Nina Park (Halloway Mills)",
+    "text": "Our price for bread flour holds at 24 per 25kg sack through the autumn, with delivery included.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-09",
+    "type": "message",
+    "from": "Tomás Alvarez (head baker)",
+    "text": "For planning: the wholesale bake needs all flour on hand before bake day. The big weekly bake produces the sourdough loaves that go to Hearthside Cafes.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Marta Reyes (account manager)",
+    "text": "Hearthside Cafes have settled on 120 sourdough loaves a week from us, delivered to their kitchen each Friday at 08:00. They are happy for this to run as a standing delivery.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Set up the standing flour order with Halloway Mills: 40 sacks of bread flour at 24 per 25kg sack, delivered every Tuesday at 06:00 to the Ferry Street dock. Logged in the orders system as confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e5",
+     "e3"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked the weekly dock clean-down for Tuesdays at 14:00, since the dock at Ferry Street is free once the morning flour delivery has been unloaded.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Scheduled the weekly wholesale bake for Thursdays at 04:00 in the main bakery. The flour arrives Tuesday morning, so it is on hand well before the bake, and the bake covers the Hearthside loaves.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e6"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Confirmed the standing delivery to Hearthside Cafes: 120 sourdough loaves from the Thursday bake, delivered every Friday at 08:00 to their kitchen. Entered in the client records as confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e7",
+     "e2"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-06",
+    "type": "quote",
+    "from": "Greta Lind (Greenfield Mills)",
+    "text": "Thank you for your enquiry. Greenfield Mills can supply bread flour at 26 per 25kg sack, delivery extra, should you ever want a second mill.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-20",
+    "type": "message",
+    "from": "Tomás Alvarez (head baker)",
+    "text": "The new proving baskets have arrived and are in the dry store. No action needed.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-03",
+    "type": "note",
+    "from": "Priya",
+    "text": "Measured the flour store: it holds a maximum of 60 sacks of 25kg, so our standing order of 40 sacks a week leaves comfortable headroom.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-20",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Team meeting: discussed autumn wholesale volumes, van servicing in September, and holiday rotas for November. No changes to the bake schedule.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-01",
+    "type": "task",
+    "from": "Priya",
+    "text": "To-do: renew the annual supply agreement with Halloway Mills before it lapses on 2026-11-15.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Rey Fontaine (driver)",
+    "text": "Just to confirm my availability for the autumn: I can do delivery runs Tuesday to Saturday mornings, any route from the Ferry Street bakery.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-22",
+    "type": "message",
+    "from": "Nina Park (Halloway Mills)",
+    "text": "Heads up from our dispatch desk: we currently have a Wednesday 06:00 delivery slot open on your route, in case you ever want to move your flour day.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-01",
+    "type": "invoice",
+    "from": "Nina Park (Halloway Mills)",
+    "text": "September invoice: 160 sacks of bread flour at 24 per sack, total 3840, paid on receipt. Thank you.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-09",
+    "type": "email",
+    "from": "Nina Park (Halloway Mills)",
+    "text": "Route change on our side: from Thursday 15 October 2026 your bread flour delivery moves from Tuesdays to Thursdays, still arriving at 06:00 at your Ferry Street dock, same 40 sacks at the same price. Sorry for the short notice.",
+    "role": "change",
+    "revokes": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-12",
+    "type": "message",
+    "from": "Tomás Alvarez (head baker)",
+    "text": "Rye flour is running low in the dry store — please order another 10 sacks when convenient.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-13",
+    "type": "email",
+    "from": "Marta Reyes (account manager)",
+    "text": "Hearthside Cafes let me know their kitchen is closed on Monday 26 October 2026 for staff training. No delivery is due that day, so nothing to change.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Nina Park (Halloway Mills)",
+    "text": "Autumn wheat quality note: this season's harvest is milling well and our bread flour price is unchanged through November.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-15",
+    "type": "call",
+    "from": "Rey Fontaine (driver)",
+    "text": "Called to say the van passed its service check and is ready for the usual runs this week and next.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-16",
+    "type": "message",
+    "from": "Tomás Alvarez (head baker)",
+    "text": "Reminder that the oven stones need a deep clean before the end of October; I have put it on the maintenance list.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-17",
+    "type": "note",
+    "from": "Priya",
+    "text": "Checked the dry store inventory after Friday's bake: packaging, seeds and butter all at normal levels.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Standing flour order - Halloway Mills",
+    "fields": {
+     "supplier": "Halloway Mills",
+     "item": "bread flour 25kg sacks",
+     "quantity": "40",
+     "day": "Tuesday",
+     "time": "06:00",
+     "price": "24",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Weekly wholesale bake",
+    "fields": {
+     "date": "2026-10-22",
+     "time": "04:00",
+     "room": "Main bakery",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Weekly dock clean-down",
+    "fields": {
+     "date": "2026-10-20",
+     "time": "14:00",
+     "place": "Ferry Street loading dock",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Hearthside Cafes standing delivery",
+    "fields": {
+     "client": "Hearthside Cafes",
+     "item": "sourdough loaves",
+     "quantity": "120",
+     "day": "Friday",
+     "time": "08:00",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "day",
+     "time"
+    ],
+    "from": "Marta Reyes (account manager)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Morning — can you confirm this week's flour delivery with Nina at Halloway Mills in writing, and make sure our order and this week's bake schedule line up with it?",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "day",
+    "value": "Thursday",
+    "stale": [
+     "Tuesday"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-10-23",
+    "stale": [
+     "2026-10-22"
+    ]
+   },
+   {
+    "message_to": "Nina Park (Halloway Mills)",
+    "regarding": "ORD-1",
+    "says": [
+     "Thursday"
+    ],
+    "stale": [
+     "Tuesday",
+     "Wednesday"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Halloway Mills moved the flour delivery from Tuesday to Thursday effective 15 October, so the standing order record ORD-1 must say Thursday and the written confirmation to Nina must say Thursday — not Tuesday, and not the unrelated Wednesday slot she once mentioned. The Thursday 04:00 bake can no longer rely on flour arriving two days earlier, so it moves to Friday 2026-10-23 (REVISE, two hops via ORD-1). The Hearthside delivery rests on the bake, but its day and time are protected by Marta's consent rule, so the assistant must ask her rather than edit CL-1 (ASK). The Tuesday dock clean-down only relies on the dock being free after the morning delivery, which the change leaves standing, so EV-2 stays untouched (KEEP).",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "rye flour restock",
+    "counterpart": "Nina Park",
+    "org": "Halloway Mills",
+    "item": "rye flour 25kg sacks",
+    "unit": "sacks",
+    "values": [
+     "10",
+     "12",
+     "8",
+     "15",
+     "6"
+    ],
+    "place": "Ferry Street loading dock"
+   },
+   {
+    "kind": "order",
+    "topic": "seed mix restock",
+    "counterpart": "Nina Park",
+    "org": "Halloway Mills",
+    "item": "sunflower and linseed mix 10kg bags",
+    "unit": "bags",
+    "values": [
+     "4",
+     "6",
+     "3",
+     "5"
+    ],
+    "place": "Ferry Street loading dock"
+   },
+   {
+    "kind": "order",
+    "topic": "pastry box restock",
+    "counterpart": "Colm Draper",
+    "org": "Hearthside Cafes",
+    "item": "morning pastry boxes",
+    "unit": "boxes",
+    "values": [
+     "12",
+     "18",
+     "20",
+     "15"
+    ],
+    "place": "Hearthside Cafes kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "baguette top-up",
+    "counterpart": "Colm Draper",
+    "org": "Hearthside Cafes",
+    "item": "baguettes",
+    "unit": "loaves",
+    "values": [
+     "30",
+     "40",
+     "24",
+     "36"
+    ],
+    "place": "Hearthside Cafes kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "delivery van bay",
+    "counterpart": "Rey Fontaine",
+    "org": "Maple & Grain Bakery",
+    "item": "delivery van loading bay",
+    "unit": "bay",
+    "values": [
+     "Bay 1",
+     "Bay 2",
+     "Bay 3"
+    ],
+    "place": "Ferry Street loading dock"
+   },
+   {
+    "kind": "booking",
+    "topic": "drivers room",
+    "counterpart": "Rey Fontaine",
+    "org": "Maple & Grain Bakery",
+    "item": "drivers break room",
+    "unit": "room",
+    "values": [
+     "Break room",
+     "Annex room",
+     "Office snug"
+    ],
+    "place": "14 Ferry Street"
+   },
+   {
+    "kind": "order",
+    "topic": "butter restock",
+    "counterpart": "Agnes Vale",
+    "org": "Dairygold Farm",
+    "item": "unsalted butter 5kg blocks",
+    "unit": "blocks",
+    "values": [
+     "10",
+     "14",
+     "8",
+     "12"
+    ],
+    "place": "Ferry Street loading dock"
+   },
+   {
+    "kind": "order",
+    "topic": "eggs restock",
+    "counterpart": "Agnes Vale",
+    "org": "Dairygold Farm",
+    "item": "free range eggs",
+    "unit": "trays",
+    "values": [
+     "20",
+     "25",
+     "30",
+     "15"
+    ],
+    "place": "Ferry Street loading dock"
+   },
+   {
+    "kind": "booking",
+    "topic": "bakers planning room",
+    "counterpart": "Tomás Alvarez",
+    "org": "Maple & Grain Bakery",
+    "item": "planning meeting room",
+    "unit": "room",
+    "values": [
+     "Front office",
+     "Annex room",
+     "Kitchen table"
+    ],
+    "place": "14 Ferry Street"
+   },
+   {
+    "kind": "order",
+    "topic": "packaging restock",
+    "counterpart": "Ida Novak",
+    "org": "Wrapwell Packaging",
+    "item": "kraft bread bags",
+    "unit": "bundles",
+    "values": [
+     "50",
+     "40",
+     "60",
+     "35"
+    ],
+    "place": "Ferry Street loading dock"
+   },
+   {
+    "kind": "booking",
+    "topic": "mill tour slot",
+    "counterpart": "Greta Lind",
+    "org": "Greenfield Mills",
+    "item": "visitor tour slot",
+    "unit": "slot",
+    "values": [
+     "Mill hall",
+     "Grain store",
+     "Visitor centre"
+    ],
+    "place": "Greenfield Mills"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Petra Shaw",
+    "org": "Shine & Co",
+    "item": "food-safe surface cleaner",
+    "unit": "litres",
+    "values": [
+     "20",
+     "25",
+     "15",
+     "30"
+    ],
+    "place": "Ferry Street loading dock"
+   }
+  ],
+  "id": "K100-1-02",
+  "tier": 100,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history requires flour before bake day but does not uniquely fix the replacement bake date as Friday 2026-10-23. It also gives no bake duration or delivery lead time establishing that a Friday bake prevents the existing Friday 08:00 client delivery, so the required consent request does not follow unambiguously.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history requires flour before bake day but does not uniquely fix the replacement bake date as Friday 2026-10-23. It also gives no bake duration or delivery lead time establishing that a Friday bake prevents the existing Friday 08:00 client delivery, so the required consent request does not follow unambiguously."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3759,
+    "completion_tokens": 210,
+    "reasoning_tokens": 109,
+    "cached_tokens": 0
+   },
+   "cost": 0.05748,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9f3be8c075433f9c62cee3a08a1d82df1120fed8b0500cf37b7c9ea9239fe892",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes e4 and the marks follow: ORD-1 and the bake chain off it are REVISE with values fixed by the change (Thursday delivery forces a Friday bake after 06:00 and before the Friday 08:00 client delivery), CL-1 is a two-hop ASK under Marta's consent rule e2, and EV-2 is a defensible KEEP since the dock remains free Tuesday afternoons. The task requires acting (written confirmation plus record updates) without hinting at the change, and tier-100 counts (26 core events, 4 decisions, change 10 days before, events after) are met. No material flaws found.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes e4 and the marks follow: ORD-1 and the bake chain off it are REVISE with values fixed by the change (Thursday delivery forces a Friday bake after 06:00 and before the Friday 08:00 client delivery), CL-1 is a two-hop ASK under Marta's consent rule e2, and EV-2 is a defensible KEEP since the dock remains free Tuesday afternoons. The task requires acting (written confirmation plus record updates) without hinting at the change, and tier-100 counts (26 core events, 4 decisions, change 10 days before, events after) are met. No material flaws found."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3799,
+    "completion_tokens": 558,
+    "reasoning_tokens": 376,
+    "cached_tokens": 0
+   },
+   "cost": 0.0077738,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9f3be8c075433f9c62cee3a08a1d82df1120fed8b0500cf37b7c9ea9239fe892",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e20 revokes the Tuesday delivery fact e4, and the marks follow: ORD-1 is REVISE, EV-1 is REVISE via ORD-1 (two hops), CL-1 is ASK under Marta's consent rule e2, and EV-2 is KEEP because the dock is still free on Tuesdays. The core has 26 events, 4 decisions, and the change falls 10 days before the task day with 6 core events after it, and the change is an ordinary 'route change' notice rather than a flagged correction. The one soft spot is that EV-2's KEEP depends on reading its rationale as only needing the dock to be free on Tuesdays, which is defensible but could be argued either way.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e20 revokes the Tuesday delivery fact e4, and the marks follow: ORD-1 is REVISE, EV-1 is REVISE via ORD-1 (two hops), CL-1 is ASK under Marta's consent rule e2, and EV-2 is KEEP because the dock is still free on Tuesdays. The core has 26 events, 4 decisions, and the change falls 10 days before the task day with 6 core events after it, and the change is an ordinary 'route change' notice rather than a flagged correction. The one soft spot is that EV-2's KEEP depends on reading its rationale as only needing the dock to be free on Tuesdays, which is defensible but could be argued either way."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5453,
+    "completion_tokens": 2389,
+    "reasoning_tokens": 2100,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017398,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9f3be8c075433f9c62cee3a08a1d82df1120fed8b0500cf37b7c9ea9239fe892",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

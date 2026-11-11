@@ -612,5 +612,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The intended class 3 is wrong: e14 revokes fact e2 (a price change in the world, not a correction of an error), which matches the class 1 stale-fact pattern, and e6 sits two hops from e2 through e5. The expected state is internally consistent: 25 × 21.50 = 537.50, the ASK on CL-1 follows from the e1 consent rule, and EV-1 is correctly KEEP. Tier counts (22 core events, 4 decisions, change 12 days before the task, 4 core events after it) and the hidden placement of the change also check out.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The intended class 3 is wrong: e14 revokes fact e2 (a price change in the world, not a correction of an error), which matches the class 1 stale-fact pattern, and e6 sits two hops from e2 through e5. The expected state is internally consistent: 25 × 21.50 = 537.50, the ASK on CL-1 follows from the e1 consent rule, and EV-1 is correctly KEEP. Tier counts (22 core events, 4 decisions, change 12 days before the task, 4 core events after it) and the hidden placement of the change also check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4978,
+    "completion_tokens": 1595,
+    "reasoning_tokens": 1351,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012953,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e4321218622da84ca5c259c7f27d6c39fd04e745cee611436011c147d13e8715",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The new-order rate fixes ORD-1 at 21.50 per copy and 537.50 total; the explicit cost-change rule requires asking Priya while leaving her confirmed price unchanged pending consent. The downstream customer decision forms the chain, while the unchanged lead time preserves the discussion booking. The core has 23 events and five decisions, with the change 12 days before the task and four later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The new-order rate fixes ORD-1 at 21.50 per copy and 537.50 total; the explicit cost-change rule requires asking Priya while leaving her confirmed price unchanged pending consent. The downstream customer decision forms the chain, while the unchanged lead time preserves the discussion booking. The core has 23 events and five decisions, with the change 12 days before the task and four later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3479,
+    "completion_tokens": 327,
+    "reasoning_tokens": 207,
+    "cached_tokens": 0
+   },
+   "cost": 0.05983,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e4321218622da84ca5c259c7f27d6c39fd04e745cee611436011c147d13e8715",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Clean chain: fact A (e2, 18.50 price) revoked by e14; decision B (ORD-1) revised to 537.50 and PO sent; decision C (CL-1) rests on B and under rule e1 needs Priya's written consent, so ASK with CL-1 unchanged; decision D (EV-1) cites only the lead time, which the change leaves standing, so KEEP. Tier 100 satisfied: 23 core events, 4 decisions, change 12 days before task day with 5 events after, placed at event 95/100 unannounced. The 18.50 paperback offer is a distractor and ORD-2 is clearly untouched.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Clean chain: fact A (e2, 18.50 price) revoked by e14; decision B (ORD-1) revised to 537.50 and PO sent; decision C (CL-1) rests on B and under rule e1 needs Priya's written consent, so ASK with CL-1 unchanged; decision D (EV-1) cites only the lead time, which the change leaves standing, so KEEP. Tier 100 satisfied: 23 core events, 4 decisions, change 12 days before task day with 5 events after, placed at event 95/100 unannounced. The 18.50 paperback offer is a distractor and ORD-2 is clearly untouched."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3574,
+    "completion_tokens": 501,
+    "reasoning_tokens": 298,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0106338,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e4321218622da84ca5c259c7f27d6c39fd04e745cee611436011c147d13e8715",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

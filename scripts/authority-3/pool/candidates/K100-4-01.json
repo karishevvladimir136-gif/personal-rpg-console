@@ -1,0 +1,496 @@
+{
+ "id": "K100-4-01",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 4,
+ "idx": 0,
+ "setting": "Kennel manager at Wagging Tails Boarding Kennels, a 40-dog boarding facility",
+ "prompt_sha256": "bd58bf472df99256049225e2830f96a8e26e3c5ab08954aca622efb8a1fce911",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Weekly kibble order with a new contact beside it\",\n \"setting\": \"Kennel manager at Wagging Tails Boarding Kennels, a 40-dog boarding facility\",\n \"owner\": \"Mara\",\n \"org\": \"Wagging Tails Boarding Kennels\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"House rule from today: any supplier order over 800 must be signed off by our finance lead Tomas Vela before it is placed. Orders at or under 800 I can approve myself.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: once a boarding booking is confirmed with a client, the booking dates may not be changed without that client's explicit agreement. Ask the client first, every time.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dave Lindt (Pawsome Provisions)\", \"text\": \"Hi Mara, confirming our 2026 supply terms for Wagging Tails: the regular adult kibble (20 kg bags) is 45 per bag, delivery every Wednesday, and orders need to be with me by Tuesday noon to catch that week's run.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up our standing weekly food order with Pawsome Provisions: 12 bags of the regular 20 kg adult kibble at 45 a bag, delivered Wednesdays to the main kennel store. At 540 a week it is well under the 800 line, so no sign-off from Tomas Vela is needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Petra Halloran\", \"text\": \"Hello, I would like to board my labrador Biscuit with you from Monday 2 November to Monday 9 November 2026. She eats twice a day and gets on with other dogs.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Confirmed Biscuit's boarding with Petra Halloran: run 14, Monday 2 November to Monday 9 November 2026, standard rate. Plenty of space in the 40-run kennel that week.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Greta Moss (CleanPaws Supplies)\", \"text\": \"Our oatmeal grooming shampoo is 18 per 5-litre bottle this quarter, minimum order 4 bottles, free delivery to the kennels on Fridays.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-07\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 6 bottles of the oatmeal grooming shampoo from CleanPaws Supplies at 18 each, 108 total, so under my own approval limit. Delivery to the kennels on Friday.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-20\", \"type\": \"message\", \"from\": \"Jonas Beck (Happy Paws Vet Clinic)\", \"text\": \"Reminder that our mobile vet visits your kennels every second Tuesday at 09:00. The van bay at the side gate should be kept free.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-21\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the side-gate van bay for Happy Paws Vet Clinic's mobile vet every second Tuesday at 09:00, starting 28 July 2026.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Tomas Vela\", \"text\": \"Quarterly note: kennel food spend is tracking fine at roughly 540 a week. Keep the standing order as it is unless prices move.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-18\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"Staff reminder: the freezer in the feed room is for raw diets only; dry kibble stays on the racks in the main kennel store.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-01\", \"type\": \"email\", \"from\": \"Petra Halloran\", \"text\": \"Thanks for confirming Biscuit's stay from 2 to 9 November. I will drop her off around 08:30 on the Monday.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"quote\", \"from\": \"Dave Lindt (Pawsome Provisions)\", \"text\": \"As requested, a quote if you ever want to upgrade: our premium grain-free kibble (20 kg) would be 52 per bag on the same Wednesday delivery. No obligation, the regular kibble stays at 45.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e15\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Team huddle: winter bedding check next week, and we restock waste bags and cleaning spray on the usual monthly cycle.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Dave Lindt (Pawsome Provisions)\", \"text\": \"Quick hello: my colleague Ana Ruiz has joined our sales team as backup contact for your area. If I am ever away, you can reach her on the same office number. Nothing else changes on your account — same prices, same Wednesday run.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e17\", \"date\": \"2026-10-14\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Order a fresh box of tick combs and replacement clipper blades before 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Greta Moss (CleanPaws Supplies)\", \"text\": \"Your shampoo order is running smoothly. Let us know when you want the next 6-bottle box; price holds at 18 until year end.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-21\", \"type\": \"message\", \"from\": \"Jonas Beck (Happy Paws Vet Clinic)\", \"text\": \"Confirming our next mobile visit Tuesday 3 November at 09:00. Please have the vaccination files ready.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-23\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Feed room stock count this morning: 9 bags of regular kibble left. The standing weekly delivery keeps us comfortably ahead.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing weekly kibble order\", \"fields\": {\"supplier\": \"Pawsome Provisions\", \"item\": \"regular adult kibble 20kg\", \"quantity\": \"12\", \"unit_price\": \"45\", \"delivery_day\": \"Wednesday\", \"delivery_place\": \"main kennel store\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Boarding: Biscuit (Petra Halloran)\", \"fields\": {\"dog\": \"Biscuit\", \"client\": \"Petra Halloran\", \"start\": \"2026-11-02\", \"end\": \"2026-11-09\", \"run\": \"14\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Grooming shampoo restock\", \"fields\": {\"supplier\": \"CleanPaws Supplies\", \"item\": \"oatmeal shampoo 5L\", \"quantity\": \"6\", \"unit_price\": \"18\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Mobile vet van bay\", \"fields\": {\"visitor\": \"Happy Paws Vet Clinic\", \"day\": \"Tuesday\", \"time\": \"09:00\", \"place\": \"side-gate van bay\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Client: Petra Halloran\", \"fields\": {\"name\": \"Petra Halloran\", \"dog\": \"Biscuit\", \"phone\": \"01422 555 018\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"start\", \"end\"], \"from\": \"Petra Halloran\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please place this week's food order with Pawsome Provisions — the usual 12 bags of the regular kibble for Wednesday delivery to the main kennel store.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Pawsome Provisions\", \"item\": \"regular adult kibble 20kg\", \"quantity\": \"12\", \"unit_price\": \"45\", \"delivery_place\": \"main kennel store\", \"status\": \"confirmed\"}, \"stale\": {\"unit_price\": [\"52\"], \"item\": [\"premium grain-free kibble 20kg\"]}, \"task\": true}\n ],\n \"why\": \"The only change is a new fact beside the topic — Ana Ruiz joining as a backup contact at Pawsome Provisions — which touches no decision and changes no price, quantity or place. The task is the routine weekly order on the plan as it stands: 12 bags of regular kibble at 45, under the 800 sign-off line, delivered Wednesday to the main kennel store. The premium kibble quote at 52 is a distractor and must not be used, and no record or consent boundary is affected.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"waste bag restock\", \"counterpart\": \"Greta Moss\", \"org\": \"CleanPaws Supplies\", \"item\": \"waste bags\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"kennels\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning spray restock\", \"counterpart\": \"Greta Moss\", \"org\": \"CleanPaws Supplies\", \"item\": \"disinfectant spray\", \"unit\": \"bottle\", \"values\": [\"6\", \"8\", \"12\", \"16\"], \"place\": \"main kennel store\"},\n  {\"kind\": \"order\", \"topic\": \"treat restock\", \"counterpart\": \"Dave Lindt\", \"org\": \"Pawsome Provisions\", \"item\": \"training treats\", \"unit\": \"tub\", \"values\": [\"3\", \"5\", \"6\", \"8\"], \"place\": \"main kennel store\"},\n  {\"kind\": \"booking\", \"topic\": \"grooming room slot\", \"counterpart\": \"Lena Pryce\", \"org\": \"Wagging Tails Boarding Kennels\", \"item\": \"grooming room\", \"unit\": \"slot\", \"values\": [\"grooming room A\", \"grooming room B\", \"wash bay\"], \"place\": \"grooming wing\"},\n  {\"kind\": \"booking\", \"topic\": \"exercise paddock slot\", \"counterpart\": \"Sam Oduya\", \"org\": \"Wagging Tails Boarding Kennels\", \"item\": \"exercise paddock\", \"unit\": \"slot\", \"values\": [\"north paddock\", \"south paddock\", \"small-dog paddock\"], \"place\": \"outdoor yards\"},\n  {\"kind\": \"booking\", \"topic\": \"collection van run\", \"counterpart\": \"Mara\", \"org\": \"Wagging Tails Boarding Kennels\", \"item\": \"collection van\", \"unit\": \"run\", \"values\": [\"van 1\", \"van 2\"], \"place\": \"side-gate van bay\"},\n  {\"kind\": \"order\", \"topic\": \"bedding restock\", \"counterpart\": \"Hugo Tran\", \"org\": \"SoftNest Linens\", \"item\": \"fleece dog beds\", \"unit\": \"bed\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"kennels\"},\n  {\"kind\": \"order\", \"topic\": \"raw diet delivery\", \"counterpart\": \"Ines Barreto\", \"org\": \"RawBox Pet Foods\", \"item\": \"frozen raw blocks\", \"unit\": \"box\", \"values\": [\"5\", \"7\", \"9\"], \"place\": \"feed room freezer\"},\n  {\"kind\": \"booking\", \"topic\": \"staff training room\", \"counterpart\": \"Tomas Vela\", \"org\": \"Wagging Tails Boarding Kennels\", \"item\": \"meeting room\", \"unit\": \"slot\", \"values\": [\"office meeting room\", \"break room\"], \"place\": \"office block\"},\n  {\"kind\": \"order\", \"topic\": \"lead and collar stock\", \"counterpart\": \"Hugo Tran\", \"org\": \"SoftNest Linens\", \"item\": \"slip leads\", \"unit\": \"lead\", \"values\": [\"5\", \"10\", \"12\"], \"place\": \"kennels\"},\n  {\"kind\": \"booking\", \"topic\": \"farrier yard visit\", \"counterpart\": \"Jonas Beck\", \"org\": \"Happy Paws Vet Clinic\", \"item\": \"inspection room\", \"unit\": \"slot\", \"values\": [\"exam room 1\", \"exam room 2\"], \"place\": \"office block\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3195,
+    "completion_tokens": 3994,
+    "reasoning_tokens": 717,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0612006,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Weekly kibble order with a new contact beside it\",\n \"setting\": \"Kennel manager at Wagging Tails Boarding Kennels, a 40-dog boarding facility\",\n \"owner\": \"Mara\",\n \"org\": \"Wagging Tails Boarding Kennels\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"House rule from today: any supplier order over 800 must be signed off by our finance lead Tomas Vela before it is placed. Orders at or under 800 I can approve myself.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: once a boarding booking is confirmed with a client, the booking dates may not be changed without that client's explicit agreement. Ask the client first, every time.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dave Lindt (Pawsome Provisions)\", \"text\": \"Hi Mara, confirming our 2026 supply terms for Wagging Tails: the regular adult kibble (20 kg bags) is 45 per bag, delivery every Wednesday, and orders need to be with me by Tuesday noon to catch that week's run.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up our standing weekly food order with Pawsome Provisions: 12 bags of the regular 20 kg adult kibble at 45 a bag, delivered Wednesdays to the main kennel store. At 540 a week it is well under the 800 line, so no sign-off from Tomas Vela is needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Petra Halloran\", \"text\": \"Hello, I would like to board my labrador Biscuit with you from Monday 2 November to Monday 9 November 2026. She eats twice a day and gets on with other dogs.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Confirmed Biscuit's boarding with Petra Halloran: run 14, Monday 2 November to Monday 9 November 2026, standard rate. Plenty of space in the 40-run kennel that week.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Greta Moss (CleanPaws Supplies)\", \"text\": \"Our oatmeal grooming shampoo is 18 per 5-litre bottle this quarter, minimum order 4 bottles, free delivery to the kennels on Fridays.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-07\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 6 bottles of the oatmeal grooming shampoo from CleanPaws Supplies at 18 each, 108 total, so under my own approval limit. Delivery to the kennels on Friday.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-20\", \"type\": \"message\", \"from\": \"Jonas Beck (Happy Paws Vet Clinic)\", \"text\": \"Reminder that our mobile vet visits your kennels every second Tuesday at 09:00. The van bay at the side gate should be kept free.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-21\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the side-gate van bay for Happy Paws Vet Clinic's mobile vet every second Tuesday at 09:00, starting 28 July 2026.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Tomas Vela\", \"text\": \"Quarterly note: kennel food spend is tracking fine at roughly 540 a week. Keep the standing order as it is unless prices move.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-18\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"Staff reminder: the freezer in the feed room is for raw diets only; dry kibble stays on the racks in the main kennel store.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-01\", \"type\": \"email\", \"from\": \"Petra Halloran\", \"text\": \"Thanks for confirming Biscuit's stay from 2 to 9 November. I will drop her off around 08:30 on the Monday.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"quote\", \"from\": \"Dave Lindt (Pawsome Provisions)\", \"text\": \"As requested, a quote if you ever want to upgrade: our premium grain-free kibble (20 kg) would be 52 per bag on the same Wednesday delivery. No obligation, the regular kibble stays at 45.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e15\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Team huddle: winter bedding check next week, and we restock waste bags and cleaning spray on the usual monthly cycle.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Dave Lindt (Pawsome Provisions)\", \"text\": \"Quick hello: my colleague Ana Ruiz has joined our sales team as backup contact for your area. If I am ever away, you can reach her on the same office number. Nothing else changes on your account — same prices, same Wednesday run.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e17\", \"date\": \"2026-10-14\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Order a fresh box of tick combs and replacement clipper blades before 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Greta Moss (CleanPaws Supplies)\", \"text\": \"Your shampoo order is running smoothly. Let us know when you want the next 6-bottle box; price holds at 18 until year end.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-21\", \"type\": \"message\", \"from\": \"Jonas Beck (Happy Paws Vet Clinic)\", \"text\": \"Confirming our next mobile visit Tuesday 3 November at 09:00. Please have the vaccination files ready.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-23\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Feed room stock count this morning: 9 bags of regular kibble left. The standing weekly delivery keeps us comfortably ahead.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing weekly kibble order\", \"fields\": {\"supplier\": \"Pawsome Provisions\", \"item\": \"regular adult kibble 20kg\", \"quantity\": \"12\", \"unit_price\": \"45\", \"delivery_day\": \"Wednesday\", \"delivery_place\": \"main kennel store\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Boarding: Biscuit (Petra Halloran)\", \"fields\": {\"dog\": \"Biscuit\", \"client\": \"Petra Halloran\", \"start\": \"2026-11-02\", \"end\": \"2026-11-09\", \"run\": \"14\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Grooming shampoo restock\", \"fields\": {\"supplier\": \"CleanPaws Supplies\", \"item\": \"oatmeal shampoo 5L\", \"quantity\": \"6\", \"unit_price\": \"18\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Mobile vet van bay\", \"fields\": {\"visitor\": \"Happy Paws Vet Clinic\", \"day\": \"Tuesday\", \"time\": \"09:00\", \"place\": \"side-gate van bay\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Client: Petra Halloran\", \"fields\": {\"name\": \"Petra Halloran\", \"dog\": \"Biscuit\", \"phone\": \"01422 555 018\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"start\", \"end\"], \"from\": \"Petra Halloran\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please place this week's food order with Pawsome Provisions — the usual 12 bags of the regular kibble for Wednesday delivery to the main kennel store.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Pawsome Provisions\", \"item\": \"regular adult kibble 20kg\", \"quantity\": \"12\", \"unit_price\": \"45\", \"delivery_place\": \"main kennel store\", \"status\": \"confirmed\"}, \"stale\": {\"unit_price\": [\"52\"], \"item\": [\"premium grain-free kibble 20kg\"]}, \"task\": true}\n ],\n \"why\": \"The only change is a new fact beside the topic — Ana Ruiz joining as a backup contact at Pawsome Provisions — which touches no decision and changes no price, quantity or place. The task is the routine weekly order on the plan as it stands: 12 bags of regular kibble at 45, under the 800 sign-off line, delivered Wednesday to the main kennel store. The premium kibble quote at 52 is a distractor and must not be used, and no record or consent boundary is affected.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"waste bag restock\", \"counterpart\": \"Greta Moss\", \"org\": \"CleanPaws Supplies\", \"item\": \"waste bags\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"kennels\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning spray restock\", \"counterpart\": \"Greta Moss\", \"org\": \"CleanPaws Supplies\", \"item\": \"disinfectant spray\", \"unit\": \"bottle\", \"values\": [\"6\", \"8\", \"12\", \"16\"], \"place\": \"main kennel store\"},\n  {\"kind\": \"order\", \"topic\": \"treat restock\", \"counterpart\": \"Dave Lindt\", \"org\": \"Pawsome Provisions\", \"item\": \"training treats\", \"unit\": \"tub\", \"values\": [\"3\", \"5\", \"6\", \"8\"], \"place\": \"main kennel store\"},\n  {\"kind\": \"booking\", \"topic\": \"grooming room slot\", \"counterpart\": \"Lena Pryce\", \"org\": \"Wagging Tails Boarding Kennels\", \"item\": \"grooming room\", \"unit\": \"slot\", \"values\": [\"grooming room A\", \"grooming room B\", \"wash bay\"], \"place\": \"grooming wing\"},\n  {\"kind\": \"booking\", \"topic\": \"exercise paddock slot\", \"counterpart\": \"Sam Oduya\", \"org\": \"Wagging Tails Boarding Kennels\", \"item\": \"exercise paddock\", \"unit\": \"slot\", \"values\": [\"north paddock\", \"south paddock\", \"small-dog paddock\"], \"place\": \"outdoor yards\"},\n  {\"kind\": \"booking\", \"topic\": \"collection van run\", \"counterpart\": \"Mara\", \"org\": \"Wagging Tails Boarding Kennels\", \"item\": \"collection van\", \"unit\": \"run\", \"values\": [\"van 1\", \"van 2\", \"van 3\"], \"place\": \"side-gate van bay\"},\n  {\"kind\": \"order\", \"topic\": \"bedding restock\", \"counterpart\": \"Hugo Tran\", \"org\": \"SoftNest Linens\", \"item\": \"fleece dog beds\", \"unit\": \"bed\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"kennels\"},\n  {\"kind\": \"order\", \"topic\": \"raw diet delivery\", \"counterpart\": \"Ines Barreto\", \"org\": \"RawBox Pet Foods\", \"item\": \"frozen raw blocks\", \"unit\": \"box\", \"values\": [\"5\", \"7\", \"9\"], \"place\": \"feed room freezer\"},\n  {\"kind\": \"booking\", \"topic\": \"staff training room\", \"counterpart\": \"Tomas Vela\", \"org\": \"Wagging Tails Boarding Kennels\", \"item\": \"meeting room\", \"unit\": \"slot\", \"values\": [\"office meeting room\", \"break room\", \"training annex\"], \"place\": \"office block\"},\n  {\"kind\": \"order\", \"topic\": \"lead and collar stock\", \"counterpart\": \"Hugo Tran\", \"org\": \"SoftNest Linens\", \"item\": \"slip leads\", \"unit\": \"lead\", \"values\": [\"5\", \"10\", \"12\"], \"place\": \"kennels\"},\n  {\"kind\": \"booking\", \"topic\": \"farrier yard visit\", \"counterpart\": \"Jonas Beck\", \"org\": \"Happy Paws Vet Clinic\", \"item\": \"inspection room\", \"unit\": \"slot\", \"values\": [\"exam room 1\", \"exam room 2\", \"exam room 3\"], \"place\": \"office block\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6565,
+    "completion_tokens": 3303,
+    "reasoning_tokens": 11,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0609456,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'collection van run': values needs at least three entries\n- noise topic 'staff training room': values needs at least three entries\n- noise topic 'farrier yard visit': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Weekly kibble order with a new contact beside it",
+  "setting": "Kennel manager at Wagging Tails Boarding Kennels, a 40-dog boarding facility",
+  "owner": "Mara",
+  "org": "Wagging Tails Boarding Kennels",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "House rule from today: any supplier order over 800 must be signed off by our finance lead Tomas Vela before it is placed. Orders at or under 800 I can approve myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Standing rule: once a boarding booking is confirmed with a client, the booking dates may not be changed without that client's explicit agreement. Ask the client first, every time.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Dave Lindt (Pawsome Provisions)",
+    "text": "Hi Mara, confirming our 2026 supply terms for Wagging Tails: the regular adult kibble (20 kg bags) is 45 per bag, delivery every Wednesday, and orders need to be with me by Tuesday noon to catch that week's run.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-09",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Set up our standing weekly food order with Pawsome Provisions: 12 bags of the regular 20 kg adult kibble at 45 a bag, delivered Wednesdays to the main kennel store. At 540 a week it is well under the 800 line, so no sign-off from Tomas Vela is needed.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Petra Halloran",
+    "text": "Hello, I would like to board my labrador Biscuit with you from Monday 2 November to Monday 9 November 2026. She eats twice a day and gets on with other dogs.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Confirmed Biscuit's boarding with Petra Halloran: run 14, Monday 2 November to Monday 9 November 2026, standard rate. Plenty of space in the 40-run kennel that week.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Greta Moss (CleanPaws Supplies)",
+    "text": "Our oatmeal grooming shampoo is 18 per 5-litre bottle this quarter, minimum order 4 bottles, free delivery to the kennels on Fridays.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-07",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 6 bottles of the oatmeal grooming shampoo from CleanPaws Supplies at 18 each, 108 total, so under my own approval limit. Delivery to the kennels on Friday.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-20",
+    "type": "message",
+    "from": "Jonas Beck (Happy Paws Vet Clinic)",
+    "text": "Reminder that our mobile vet visits your kennels every second Tuesday at 09:00. The van bay at the side gate should be kept free.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-21",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the side-gate van bay for Happy Paws Vet Clinic's mobile vet every second Tuesday at 09:00, starting 28 July 2026.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Tomas Vela",
+    "text": "Quarterly note: kennel food spend is tracking fine at roughly 540 a week. Keep the standing order as it is unless prices move.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-18",
+    "type": "notice",
+    "from": "Mara",
+    "text": "Staff reminder: the freezer in the feed room is for raw diets only; dry kibble stays on the racks in the main kennel store.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-01",
+    "type": "email",
+    "from": "Petra Halloran",
+    "text": "Thanks for confirming Biscuit's stay from 2 to 9 November. I will drop her off around 08:30 on the Monday.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-10",
+    "type": "quote",
+    "from": "Dave Lindt (Pawsome Provisions)",
+    "text": "As requested, a quote if you ever want to upgrade: our premium grain-free kibble (20 kg) would be 52 per bag on the same Wednesday delivery. No obligation, the regular kibble stays at 45.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-22",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Team huddle: winter bedding check next week, and we restock waste bags and cleaning spray on the usual monthly cycle.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Dave Lindt (Pawsome Provisions)",
+    "text": "Quick hello: my colleague Ana Ruiz has joined our sales team as backup contact for your area. If I am ever away, you can reach her on the same office number. Nothing else changes on your account — same prices, same Wednesday run.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-14",
+    "type": "task",
+    "from": "Mara",
+    "text": "Order a fresh box of tick combs and replacement clipper blades before 30 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Greta Moss (CleanPaws Supplies)",
+    "text": "Your shampoo order is running smoothly. Let us know when you want the next 6-bottle box; price holds at 18 until year end.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-21",
+    "type": "message",
+    "from": "Jonas Beck (Happy Paws Vet Clinic)",
+    "text": "Confirming our next mobile visit Tuesday 3 November at 09:00. Please have the vaccination files ready.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-23",
+    "type": "note",
+    "from": "Mara",
+    "text": "Feed room stock count this morning: 9 bags of regular kibble left. The standing weekly delivery keeps us comfortably ahead.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Standing weekly kibble order",
+    "fields": {
+     "supplier": "Pawsome Provisions",
+     "item": "regular adult kibble 20kg",
+     "quantity": "12",
+     "unit_price": "45",
+     "delivery_day": "Wednesday",
+     "delivery_place": "main kennel store",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Boarding: Biscuit (Petra Halloran)",
+    "fields": {
+     "dog": "Biscuit",
+     "client": "Petra Halloran",
+     "start": "2026-11-02",
+     "end": "2026-11-09",
+     "run": "14",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Grooming shampoo restock",
+    "fields": {
+     "supplier": "CleanPaws Supplies",
+     "item": "oatmeal shampoo 5L",
+     "quantity": "6",
+     "unit_price": "18",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Mobile vet van bay",
+    "fields": {
+     "visitor": "Happy Paws Vet Clinic",
+     "day": "Tuesday",
+     "time": "09:00",
+     "place": "side-gate van bay",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Client: Petra Halloran",
+    "fields": {
+     "name": "Petra Halloran",
+     "dog": "Biscuit",
+     "phone": "01422 555 018",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "start",
+     "end"
+    ],
+    "from": "Petra Halloran",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please place this week's food order with Pawsome Provisions — the usual 12 bags of the regular kibble for Wednesday delivery to the main kennel store.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Pawsome Provisions",
+     "item": "regular adult kibble 20kg",
+     "quantity": "12",
+     "unit_price": "45",
+     "delivery_place": "main kennel store",
+     "status": "confirmed"
+    },
+    "stale": {
+     "unit_price": [
+      "52"
+     ],
+     "item": [
+      "premium grain-free kibble 20kg"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "The only change is a new fact beside the topic — Ana Ruiz joining as a backup contact at Pawsome Provisions — which touches no decision and changes no price, quantity or place. The task is the routine weekly order on the plan as it stands: 12 bags of regular kibble at 45, under the 800 sign-off line, delivered Wednesday to the main kennel store. The premium kibble quote at 52 is a distractor and must not be used, and no record or consent boundary is affected.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "waste bag restock",
+    "counterpart": "Greta Moss",
+    "org": "CleanPaws Supplies",
+    "item": "waste bags",
+    "unit": "box",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "kennels"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning spray restock",
+    "counterpart": "Greta Moss",
+    "org": "CleanPaws Supplies",
+    "item": "disinfectant spray",
+    "unit": "bottle",
+    "values": [
+     "6",
+     "8",
+     "12",
+     "16"
+    ],
+    "place": "main kennel store"
+   },
+   {
+    "kind": "order",
+    "topic": "treat restock",
+    "counterpart": "Dave Lindt",
+    "org": "Pawsome Provisions",
+    "item": "training treats",
+    "unit": "tub",
+    "values": [
+     "3",
+     "5",
+     "6",
+     "8"
+    ],
+    "place": "main kennel store"
+   },
+   {
+    "kind": "booking",
+    "topic": "grooming room slot",
+    "counterpart": "Lena Pryce",
+    "org": "Wagging Tails Boarding Kennels",
+    "item": "grooming room",
+    "unit": "slot",
+    "values": [
+     "grooming room A",
+     "grooming room B",
+     "wash bay"
+    ],
+    "place": "grooming wing"
+   },
+   {
+    "kind": "booking",
+    "topic": "exercise paddock slot",
+    "counterpart": "Sam Oduya",
+    "org": "Wagging Tails Boarding Kennels",
+    "item": "exercise paddock",
+    "unit": "slot",
+    "values": [
+     "north paddock",
+     "south paddock",
+     "small-dog paddock"
+    ],
+    "place": "outdoor yards"
+   },
+   {
+    "kind": "booking",
+    "topic": "collection van run",
+    "counterpart": "Mara",
+    "org": "Wagging Tails Boarding Kennels",
+    "item": "collection van",
+    "unit": "run",
+    "values": [
+     "van 1",
+     "van 2",
+     "van 3"
+    ],
+    "place": "side-gate van bay"
+   },
+   {
+    "kind": "order",
+    "topic": "bedding restock",
+    "counterpart": "Hugo Tran",
+    "org": "SoftNest Linens",
+    "item": "fleece dog beds",
+    "unit": "bed",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "kennels"
+   },
+   {
+    "kind": "order",
+    "topic": "raw diet delivery",
+    "counterpart": "Ines Barreto",
+    "org": "RawBox Pet Foods",
+    "item": "frozen raw blocks",
+    "unit": "box",
+    "values": [
+     "5",
+     "7",
+     "9"
+    ],
+    "place": "feed room freezer"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff training room",
+    "counterpart": "Tomas Vela",
+    "org": "Wagging Tails Boarding Kennels",
+    "item": "meeting room",
+    "unit": "slot",
+    "values": [
+     "office meeting room",
+     "break room",
+     "training annex"
+    ],
+    "place": "office block"
+   },
+   {
+    "kind": "order",
+    "topic": "lead and collar stock",
+    "counterpart": "Hugo Tran",
+    "org": "SoftNest Linens",
+    "item": "slip leads",
+    "unit": "lead",
+    "values": [
+     "5",
+     "10",
+     "12"
+    ],
+    "place": "kennels"
+   },
+   {
+    "kind": "booking",
+    "topic": "farrier yard visit",
+    "counterpart": "Jonas Beck",
+    "org": "Happy Paws Vet Clinic",
+    "item": "inspection room",
+    "unit": "slot",
+    "values": [
+     "exam room 1",
+     "exam room 2",
+     "exam room 3"
+    ],
+    "place": "office block"
+   }
+  ],
+  "id": "K100-4-01",
+  "tier": 100,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

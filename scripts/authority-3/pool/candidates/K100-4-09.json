@@ -1,0 +1,545 @@
+{
+ "id": "K100-4-09",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 4,
+ "idx": 8,
+ "setting": "Charity shop manager at Second Chance Thrift, run by a homelessness charity",
+ "prompt_sha256": "89d382d99f935b947345b779f115bd418b6aae4305b48e0de0f6c7a604de4723",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"The stationery supplier's corrected contact name\",\n \"setting\": \"Charity shop manager at Second Chance Thrift, run by a homelessness charity\",\n \"owner\": \"Priya\",\n \"org\": \"Second Chance Thrift\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Tom Ellery (Second Chance Thrift finance lead)\", \"text\": \"Finance policy: any supplier order over £300 needs my written sign-off before it is placed. Orders at or under £300 can go ahead on the shop manager's authority.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule for the rota: once a furniture pickup is confirmed with a date and driver, the date, start time or driver on that booking may only be changed with the agreement of Marta Voss, our volunteer driver, since she arranges her Saturdays around these runs.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Reid (Greenway Van Hire)\", \"text\": \"Hi Priya, confirming our standing arrangement: the Ford Transit is £85 per day for Second Chance Thrift, collect from our depot on Mill Lane from 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Renata (Papertrail Stationery)\", \"text\": \"Quote for Second Chance Thrift: a roll of 2000 price labels is £46, and a box of 500 coat hangers is £32. Prices held for orders placed this year.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Colin Marsh (St Aldate's Church Hall)\", \"text\": \"The community room at St Aldate's Church Hall is free for charity use on Tuesday evenings, 18:00 to 21:00, if you ever want it for volunteer events.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"message\", \"from\": \"Marta Voss (volunteer driver)\", \"text\": \"Just so you know for planning, I can drive the pickup van on Saturdays only — weekdays I'm at the depot job.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Mrs Alvarez (donor)\", \"text\": \"Dear Second Chance Thrift, I have about 12 pieces of good furniture to donate — a sofa, two wardrobes, chairs and a dining table — at 14 Chestnut Avenue. A Saturday collection would suit me best.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the Greenway Transit van (£85 for the day) for Saturday 17 October 2026, start 09:30, for the furniture pickup from Mrs Alvarez at 14 Chestnut Avenue, with Marta Voss driving since she covers Saturdays.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e6\", \"e7\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I ordered one roll of 2000 price labels from Papertrail Stationery at the quoted £46 — well under the £300 finance sign-off threshold, so I placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the community room at St Aldate's Church Hall for the volunteer thank-you social on Tuesday 20 October 2026, 18:00 to 21:00, using the free Tuesday-evening charity slot.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Renata (Papertrail Stationery)\", \"text\": \"Following up: the box of 500 coat hangers from our quote is in stock and can be delivered to the shop within a week of ordering.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I ordered a box of 500 coat hangers from Papertrail Stationery at the quoted £32, again within my own spending authority.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Jonelle Preece (new volunteer)\", \"text\": \"Thank you for taking me on as a weekend shop volunteer. I can start mid-October and would appreciate a proper induction before my first shift.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I scheduled Jonelle Preece's volunteer induction with me at the shop for Wednesday 14 October 2026 at 10:00, before her first weekend shift.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"CL-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note to self: Gift Aid declarations for the summer donor forms need checking against the till records before the autumn submission.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-01\", \"type\": \"task\", \"from\": \"Tom Ellery (Second Chance Thrift finance lead)\", \"text\": \"Please send me the quarterly stock and sales figures for the shop by Friday 30 October 2026 for the trustees' pack.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Renata Kline (Papertrail Stationery accounts)\", \"text\": \"Hello Second Chance Thrift, just an introduction: I'm Renata Kline in accounts at Papertrail Stationery, and I'll be handling your invoices from now on.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-22\", \"type\": \"message\", \"from\": \"Colin Marsh (St Aldate's Church Hall)\", \"text\": \"The new kettle for the community room kitchen has arrived, so teas and coffees for your October social will be easier this year.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Renata Kohl (Papertrail Stationery accounts)\", \"text\": \"Apologies for the confusion — my surname is actually spelled Kohl, not Kline, and my earlier introduction had it wrong. Please address anything for accounts to Renata Kohl.\", \"role\": \"change\", \"revokes\": [\"e17\"]},\n  {\"id\": \"e20\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Papertrail Stationery sales team\", \"text\": \"Autumn offer for regular customers: our smaller rolls of 500 price labels are now £14 each, ideal for topping up between big orders.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dana Reid (Greenway Van Hire)\", \"text\": \"The Ford Transit is reserved for you on Saturday 17 October, collect from 08:00 at Mill Lane as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Marta Voss (volunteer driver)\", \"text\": \"Looking forward to Saturday's pickup. Could you send me the final details — address and timings — so I can plan the route?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Alvarez furniture pickup\", \"fields\": {\"date\": \"2026-10-17\", \"start\": \"09:30\", \"place\": \"14 Chestnut Avenue\", \"driver\": \"Marta Voss\", \"van\": \"Greenway Ford Transit\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Volunteer thank-you social\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"18:00\", \"place\": \"St Aldate's Church Hall community room\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Price labels restock\", \"fields\": {\"supplier\": \"Papertrail Stationery\", \"item\": \"roll of 2000 price labels\", \"quantity\": \"1\", \"amount\": \"46\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Coat hangers restock\", \"fields\": {\"supplier\": \"Papertrail Stationery\", \"item\": \"box of 500 coat hangers\", \"quantity\": \"1\", \"amount\": \"32\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Jonelle Preece volunteer induction\", \"fields\": {\"volunteer\": \"Jonelle Preece\", \"date\": \"2026-10-14\", \"time\": \"10:00\", \"place\": \"Second Chance Thrift shop\", \"status\": \"scheduled\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"start\", \"driver\"], \"from\": \"Marta Voss (volunteer driver)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Marta asked for the final details of Saturday's furniture pickup from Mrs Alvarez — please email her confirming the date, the 09:30 start, the address on Chestnut Avenue and that the Greenway van is reserved for her.\",\n \"expect\": [\n  {\"message_to\": \"Marta Voss (volunteer driver)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-17\", \"09:30\", \"14 Chestnut Avenue\", \"Greenway\"], \"stale\": [\"2026-10-18\", \"10:00\", \"Papertrail\"], \"task\": true}\n ],\n \"why\": \"This is a control scenario: the only change corrects the spelling of the Papertrail accounts contact's surname (Kohl, not Kline), and no decision or record ever used that contact, so nothing in the workplace may be altered — including the tempting new £14 price for the smaller 500-label rolls, which is a different product from the confirmed 2000-label order. The task is simply to send Marta the pickup confirmation on the plan exactly as it stands (17 October, 09:30, 14 Chestnut Avenue, Greenway van), consistent with the booked record and her standing consent rule, which is not triggered because nothing about the booking changes.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"regular van hire for donation runs\", \"counterpart\": \"Dana Reid\", \"org\": \"Greenway Van Hire\", \"item\": \"Ford Transit day hire\", \"unit\": \"day\", \"values\": [\"Mill Lane depot\", \"shop forecourt\", \"Chestnut Avenue\", \"Riverside estate\"], \"place\": \"Mill Lane depot\"},\n  {\"kind\": \"order\", \"topic\": \"carrier bag restock\", \"counterpart\": \"Renata Kohl\", \"org\": \"Papertrail Stationery\", \"item\": \"pack of 1000 carrier bags\", \"unit\": \"pack\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"order\", \"topic\": \"swing tag restock\", \"counterpart\": \"Papertrail Stationery sales team\", \"org\": \"Papertrail Stationery\", \"item\": \"box of 1000 swing tags\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"community room for volunteer meetings\", \"counterpart\": \"Colin Marsh\", \"org\": \"St Aldate's Church Hall\", \"item\": \"community room evening slot\", \"unit\": \"evening\", \"values\": [\"community room\", \"small hall\", \"kitchen annexe\"], \"place\": \"St Aldate's Church Hall\"},\n  {\"kind\": \"order\", \"topic\": \"steamer servicing supplies\", \"counterpart\": \"Fix-It Tony\", \"org\": \"Tony's Appliance Repairs\", \"item\": \"steamer descaler and filters\", \"unit\": \"kit\", \"values\": [\"1\", \"2\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly rag-and-bone collection\", \"counterpart\": \"Sal Okonkwo\", \"org\": \"Reclaim Textiles\", \"item\": \"textile recycling collection\", \"unit\": \"collection\", \"values\": [\"back door bay\", \"shop forecourt\", \"storage unit\"], \"place\": \"Second Chance Thrift back door\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Hana Byrne\", \"org\": \"Brightbox Supplies\", \"item\": \"box of shop cleaning supplies\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"pat tester visit\", \"counterpart\": \"Lee Garner\", \"org\": \"SafeSpark Testing\", \"item\": \"portable appliance testing visit\", \"unit\": \"visit\", \"values\": [\"shop floor\", \"stockroom\", \"sorting room\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"order\", \"topic\": \"till roll restock\", \"counterpart\": \"Papertrail Stationery sales team\", \"org\": \"Papertrail Stationery\", \"item\": \"pack of 20 till rolls\", \"unit\": \"pack\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"window display photographer\", \"counterpart\": \"Ada Lindt\", \"org\": \"Lindt Studio\", \"item\": \"charity shop window photo session\", \"unit\": \"session\", \"values\": [\"front window\", \"shop floor\", \"community room\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"order\", \"topic\": \"donation sack restock\", \"counterpart\": \"Sal Okonkwo\", \"org\": \"Reclaim Textiles\", \"item\": \"bale of donation sacks\", \"unit\": \"bale\", \"values\": [\"1\", \"2\"], \"place\": \"Second Chance Thrift back door\"},\n  {\"kind\": \"booking\", \"topic\": \"trustee visit walkaround\", \"counterpart\": \"Tom Ellery\", \"org\": \"Second Chance Thrift\", \"item\": \"trustee shop walkaround slot\", \"unit\": \"slot\", \"values\": [\"shop floor\", \"stockroom\", \"sorting room\"], \"place\": \"Second Chance Thrift shop\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3192,
+    "completion_tokens": 5231,
+    "reasoning_tokens": 1629,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0797466,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"The stationery supplier's corrected contact name\",\n \"setting\": \"Charity shop manager at Second Chance Thrift, run by a homelessness charity\",\n \"owner\": \"Priya\",\n \"org\": \"Second Chance Thrift\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Tom Ellery (Second Chance Thrift finance lead)\", \"text\": \"Finance policy: any supplier order over £300 needs my written sign-off before it is placed. Orders at or under £300 can go ahead on the shop manager's authority.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule for the rota: once a furniture pickup is confirmed with a date and driver, the date, start time or driver on that booking may only be changed with the agreement of Marta Voss, our volunteer driver, since she arranges her Saturdays around these runs.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Reid (Greenway Van Hire)\", \"text\": \"Hi Priya, confirming our standing arrangement: the Ford Transit is £85 per day for Second Chance Thrift, collect from our depot on Mill Lane from 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Renata (Papertrail Stationery)\", \"text\": \"Quote for Second Chance Thrift: a roll of 2000 price labels is £46, and a box of 500 coat hangers is £32. Prices held for orders placed this year.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Colin Marsh (St Aldate's Church Hall)\", \"text\": \"The community room at St Aldate's Church Hall is free for charity use on Tuesday evenings, 18:00 to 21:00, if you ever want it for volunteer events.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"message\", \"from\": \"Marta Voss (volunteer driver)\", \"text\": \"Just so you know for planning, I can drive the pickup van on Saturdays only — weekdays I'm at the depot job.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Mrs Alvarez (donor)\", \"text\": \"Dear Second Chance Thrift, I have about 12 pieces of good furniture to donate — a sofa, two wardrobes, chairs and a dining table — at 14 Chestnut Avenue. A Saturday collection would suit me best.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the Greenway Transit van (£85 for the day) for Saturday 17 October 2026, start 09:30, for the furniture pickup from Mrs Alvarez at 14 Chestnut Avenue, with Marta Voss driving since she covers Saturdays.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e6\", \"e7\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I ordered one roll of 2000 price labels from Papertrail Stationery at the quoted £46 — well under the £300 finance sign-off threshold, so I placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the community room at St Aldate's Church Hall for the volunteer thank-you social on Tuesday 20 October 2026, 18:00 to 21:00, using the free Tuesday-evening charity slot.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Renata (Papertrail Stationery)\", \"text\": \"Following up: the box of 500 coat hangers from our quote is in stock and can be delivered to the shop within a week of ordering.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I ordered a box of 500 coat hangers from Papertrail Stationery at the quoted £32, again within my own spending authority.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Jonelle Preece (new volunteer)\", \"text\": \"Thank you for taking me on as a weekend shop volunteer. I can start mid-October and would appreciate a proper induction before my first shift.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I scheduled Jonelle Preece's volunteer induction with me at the shop for Wednesday 14 October 2026 at 10:00, before her first weekend shift.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"CL-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note to self: Gift Aid declarations for the summer donor forms need checking against the till records before the autumn submission.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-01\", \"type\": \"task\", \"from\": \"Tom Ellery (Second Chance Thrift finance lead)\", \"text\": \"Please send me the quarterly stock and sales figures for the shop by Friday 30 October 2026 for the trustees' pack.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Renata Kline (Papertrail Stationery accounts)\", \"text\": \"Hello Second Chance Thrift, just an introduction: I'm Renata Kline in accounts at Papertrail Stationery, and I'll be handling your invoices from now on.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-22\", \"type\": \"message\", \"from\": \"Colin Marsh (St Aldate's Church Hall)\", \"text\": \"The new kettle for the community room kitchen has arrived, so teas and coffees for your October social will be easier this year.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Renata Kohl (Papertrail Stationery accounts)\", \"text\": \"Apologies for the confusion — my surname is actually spelled Kohl, not Kline, and my earlier introduction had it wrong. Please address anything for accounts to Renata Kohl.\", \"role\": \"change\", \"revokes\": [\"e17\"]},\n  {\"id\": \"e20\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Papertrail Stationery sales team\", \"text\": \"Autumn offer for regular customers: our smaller rolls of 500 price labels are now £14 each, ideal for topping up between big orders.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dana Reid (Greenway Van Hire)\", \"text\": \"The Ford Transit is reserved for you on Saturday 17 October, collect from 08:00 at Mill Lane as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Marta Voss (volunteer driver)\", \"text\": \"Looking forward to Saturday's pickup. Could you send me the final details — address and timings — so I can plan the route?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Alvarez furniture pickup\", \"fields\": {\"date\": \"2026-10-17\", \"start\": \"09:30\", \"place\": \"14 Chestnut Avenue\", \"driver\": \"Marta Voss\", \"van\": \"Greenway Ford Transit\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Volunteer thank-you social\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"18:00\", \"place\": \"St Aldate's Church Hall community room\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Price labels restock\", \"fields\": {\"supplier\": \"Papertrail Stationery\", \"item\": \"roll of 2000 price labels\", \"quantity\": \"1\", \"amount\": \"46\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Coat hangers restock\", \"fields\": {\"supplier\": \"Papertrail Stationery\", \"item\": \"box of 500 coat hangers\", \"quantity\": \"1\", \"amount\": \"32\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Jonelle Preece volunteer induction\", \"fields\": {\"volunteer\": \"Jonelle Preece\", \"date\": \"2026-10-14\", \"time\": \"10:00\", \"place\": \"Second Chance Thrift shop\", \"status\": \"scheduled\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"start\", \"driver\"], \"from\": \"Marta Voss (volunteer driver)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Marta asked for the final details of Saturday's furniture pickup from Mrs Alvarez — please email her confirming the date, the 09:30 start, the address on Chestnut Avenue and that the Greenway van is reserved for her.\",\n \"expect\": [\n  {\"message_to\": \"Marta Voss (volunteer driver)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-17\", \"09:30\", \"14 Chestnut Avenue\", \"Greenway\"], \"stale\": [\"2026-10-18\", \"10:00\", \"Papertrail\"], \"task\": true}\n ],\n \"why\": \"This is a control scenario: the only change corrects the spelling of the Papertrail accounts contact's surname (Kohl, not Kline), and no decision or record ever used that contact, so nothing in the workplace may be altered — including the tempting new £14 price for the smaller 500-label rolls, which is a different product from the confirmed 2000-label order. The task is simply to send Marta the pickup confirmation on the plan exactly as it stands (17 October, 09:30, 14 Chestnut Avenue, Greenway van), consistent with the booked record and her standing consent rule, which is not triggered because nothing about the booking changes.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"regular van hire for donation runs\", \"counterpart\": \"Dana Reid\", \"org\": \"Greenway Van Hire\", \"item\": \"Ford Transit day hire\", \"unit\": \"day\", \"values\": [\"Mill Lane depot\", \"shop forecourt\", \"Chestnut Avenue\", \"Riverside estate\"], \"place\": \"Mill Lane depot\"},\n  {\"kind\": \"order\", \"topic\": \"carrier bag restock\", \"counterpart\": \"Renata Kohl\", \"org\": \"Papertrail Stationery\", \"item\": \"pack of 1000 carrier bags\", \"unit\": \"pack\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"order\", \"topic\": \"swing tag restock\", \"counterpart\": \"Papertrail Stationery sales team\", \"org\": \"Papertrail Stationery\", \"item\": \"box of 1000 swing tags\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"community room for volunteer meetings\", \"counterpart\": \"Colin Marsh\", \"org\": \"St Aldate's Church Hall\", \"item\": \"community room evening slot\", \"unit\": \"evening\", \"values\": [\"community room\", \"small hall\", \"kitchen annexe\"], \"place\": \"St Aldate's Church Hall\"},\n  {\"kind\": \"order\", \"topic\": \"steamer servicing supplies\", \"counterpart\": \"Fix-It Tony\", \"org\": \"Tony's Appliance Repairs\", \"item\": \"steamer descaler and filters\", \"unit\": \"kit\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly rag-and-bone collection\", \"counterpart\": \"Sal Okonkwo\", \"org\": \"Reclaim Textiles\", \"item\": \"textile recycling collection\", \"unit\": \"collection\", \"values\": [\"back door bay\", \"shop forecourt\", \"storage unit\"], \"place\": \"Second Chance Thrift back door\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Hana Byrne\", \"org\": \"Brightbox Supplies\", \"item\": \"box of shop cleaning supplies\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"pat tester visit\", \"counterpart\": \"Lee Garner\", \"org\": \"SafeSpark Testing\", \"item\": \"portable appliance testing visit\", \"unit\": \"visit\", \"values\": [\"shop floor\", \"stockroom\", \"sorting room\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"order\", \"topic\": \"till roll restock\", \"counterpart\": \"Papertrail Stationery sales team\", \"org\": \"Papertrail Stationery\", \"item\": \"pack of 20 till rolls\", \"unit\": \"pack\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"window display photographer\", \"counterpart\": \"Ada Lindt\", \"org\": \"Lindt Studio\", \"item\": \"charity shop window photo session\", \"unit\": \"session\", \"values\": [\"front window\", \"shop floor\", \"community room\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"order\", \"topic\": \"donation sack restock\", \"counterpart\": \"Sal Okonkwo\", \"org\": \"Reclaim Textiles\", \"item\": \"bale of donation sacks\", \"unit\": \"bale\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift back door\"},\n  {\"kind\": \"booking\", \"topic\": \"trustee visit walkaround\", \"counterpart\": \"Tom Ellery\", \"org\": \"Second Chance Thrift\", \"item\": \"trustee shop walkaround slot\", \"unit\": \"slot\", \"values\": [\"shop floor\", \"stockroom\", \"sorting room\"], \"place\": \"Second Chance Thrift shop\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6874,
+    "completion_tokens": 3621,
+    "reasoning_tokens": 13,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0666426,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'steamer servicing supplies': values needs at least three entries\n- noise topic 'donation sack restock': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"The stationery supplier's corrected contact name\",\n \"setting\": \"Charity shop manager at Second Chance Thrift, run by a homelessness charity\",\n \"owner\": \"Priya\",\n \"org\": \"Second Chance Thrift\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Tom Ellery (Second Chance Thrift finance lead)\", \"text\": \"Finance policy: any supplier order over £300 needs my written sign-off before it is placed. Orders at or under £300 can go ahead on the shop manager's authority.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule for the rota: once a furniture pickup is confirmed with a date and driver, the date, start time or driver on that booking may only be changed with the agreement of Marta Voss, our volunteer driver, since she arranges her Saturdays around these runs.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Reid (Greenway Van Hire)\", \"text\": \"Hi Priya, confirming our standing arrangement: the Ford Transit is £85 per day for Second Chance Thrift, collect from our depot on Mill Lane from 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Renata (Papertrail Stationery)\", \"text\": \"Quote for Second Chance Thrift: a roll of 2000 price labels is £46, and a box of 500 coat hangers is £32. Prices held for orders placed this year.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Colin Marsh (St Aldate's Church Hall)\", \"text\": \"The community room at St Aldate's Church Hall is free for charity use on Tuesday evenings, 18:00 to 21:00, if you ever want it for volunteer events.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"message\", \"from\": \"Marta Voss (volunteer driver)\", \"text\": \"Just so you know for planning, I can drive the pickup van on Saturdays only — weekdays I'm at the depot job.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Mrs Alvarez (donor)\", \"text\": \"Dear Second Chance Thrift, I have about 12 pieces of good furniture to donate — a sofa, two wardrobes, chairs and a dining table — at 14 Chestnut Avenue. A Saturday collection would suit me best.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the Greenway Transit van (£85 for the day) for Saturday 17 October 2026, start 09:30, for the furniture pickup from Mrs Alvarez at 14 Chestnut Avenue, with Marta Voss driving since she covers Saturdays.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e6\", \"e7\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I ordered one roll of 2000 price labels from Papertrail Stationery at the quoted £46 — well under the £300 finance sign-off threshold, so I placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the community room at St Aldate's Church Hall for the volunteer thank-you social on Tuesday 20 October 2026, 18:00 to 21:00, using the free Tuesday-evening charity slot.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Renata (Papertrail Stationery)\", \"text\": \"Following up: the box of 500 coat hangers from our quote is in stock and can be delivered to the shop within a week of ordering.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I ordered a box of 500 coat hangers from Papertrail Stationery at the quoted £32, again within my own spending authority.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Jonelle Preece (new volunteer)\", \"text\": \"Thank you for taking me on as a weekend shop volunteer. I can start mid-October and would appreciate a proper induction before my first shift.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I scheduled Jonelle Preece's volunteer induction with me at the shop for Wednesday 14 October 2026 at 10:00, before her first weekend shift.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"CL-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note to self: Gift Aid declarations for the summer donor forms need checking against the till records before the autumn submission.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-01\", \"type\": \"task\", \"from\": \"Tom Ellery (Second Chance Thrift finance lead)\", \"text\": \"Please send me the quarterly stock and sales figures for the shop by Friday 30 October 2026 for the trustees' pack.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Renata Kline (Papertrail Stationery accounts)\", \"text\": \"Hello Second Chance Thrift, just an introduction: I'm Renata Kline in accounts at Papertrail Stationery, and I'll be handling your invoices from now on.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-22\", \"type\": \"message\", \"from\": \"Colin Marsh (St Aldate's Church Hall)\", \"text\": \"The new kettle for the community room kitchen has arrived, so teas and coffees for your October social will be easier this year.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Renata Kohl (Papertrail Stationery accounts)\", \"text\": \"Apologies for the confusion — my surname is actually spelled Kohl, not Kline, and my earlier introduction had it wrong. Please address anything for accounts to Renata Kohl.\", \"role\": \"change\", \"revokes\": [\"e17\"]},\n  {\"id\": \"e20\", \"date\": \"2026-09-16\", \"type\": \"email\", \"from\": \"Papertrail Stationery sales team\", \"text\": \"Autumn offer for regular customers: our smaller rolls of 500 price labels are now £14 each, ideal for topping up between big orders.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dana Reid (Greenway Van Hire)\", \"text\": \"The Ford Transit is reserved for you on Saturday 17 October, collect from 08:00 at Mill Lane as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Marta Voss (volunteer driver)\", \"text\": \"Looking forward to Saturday's pickup. Could you send me the final details — address and timings — so I can plan the route?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Alvarez furniture pickup\", \"fields\": {\"date\": \"2026-10-17\", \"start\": \"09:30\", \"place\": \"14 Chestnut Avenue\", \"driver\": \"Marta Voss\", \"van\": \"Greenway Ford Transit\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Volunteer thank-you social\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"18:00\", \"place\": \"St Aldate's Church Hall community room\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Price labels restock\", \"fields\": {\"supplier\": \"Papertrail Stationery\", \"item\": \"roll of 2000 price labels\", \"quantity\": \"1\", \"amount\": \"46\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Coat hangers restock\", \"fields\": {\"supplier\": \"Papertrail Stationery\", \"item\": \"box of 500 coat hangers\", \"quantity\": \"1\", \"amount\": \"32\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Jonelle Preece volunteer induction\", \"fields\": {\"volunteer\": \"Jonelle Preece\", \"date\": \"2026-10-14\", \"time\": \"10:00\", \"place\": \"Second Chance Thrift shop\", \"status\": \"scheduled\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"start\", \"driver\"], \"from\": \"Marta Voss (volunteer driver)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Marta asked for the final details of Saturday's furniture pickup from Mrs Alvarez — please email her confirming the date, the 09:30 start, the address on Chestnut Avenue and that the Greenway van is reserved for her.\",\n \"expect\": [\n  {\"message_to\": \"Marta Voss (volunteer driver)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-17\", \"09:30\", \"14 Chestnut Avenue\", \"Greenway\"], \"stale\": [\"2026-10-18\", \"10:00\", \"Papertrail\"], \"task\": true}\n ],\n \"why\": \"This is a control scenario: the only change corrects the spelling of the Papertrail accounts contact's surname (Kohl, not Kline), and no decision or record ever used that contact, so nothing in the workplace may be altered — including the tempting new £14 price for the smaller 500-label rolls, which is a different product from the confirmed 2000-label order. The task is simply to send Marta the pickup confirmation on the plan exactly as it stands (17 October, 09:30, 14 Chestnut Avenue, Greenway van), consistent with the booked record and her standing consent rule, which is not triggered because nothing about the booking changes.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"regular van hire for donation runs\", \"counterpart\": \"Dana Reid\", \"org\": \"Greenway Van Hire\", \"item\": \"Ford Transit day hire\", \"unit\": \"day\", \"values\": [\"Mill Lane depot\", \"shop forecourt\", \"Chestnut Avenue\", \"Riverside estate\"], \"place\": \"Mill Lane depot\"},\n  {\"kind\": \"order\", \"topic\": \"carrier bag restock\", \"counterpart\": \"Renata Kohl\", \"org\": \"Papertrail Stationery\", \"item\": \"pack of 1000 carrier bags\", \"unit\": \"pack\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"order\", \"topic\": \"swing tag restock\", \"counterpart\": \"Papertrail Stationery sales team\", \"org\": \"Papertrail Stationery\", \"item\": \"box of 1000 swing tags\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"community room for volunteer meetings\", \"counterpart\": \"Colin Marsh\", \"org\": \"St Aldate's Church Hall\", \"item\": \"community room evening slot\", \"unit\": \"evening\", \"values\": [\"community room\", \"small hall\", \"kitchen annexe\"], \"place\": \"St Aldate's Church Hall\"},\n  {\"kind\": \"order\", \"topic\": \"steamer servicing supplies\", \"counterpart\": \"Fix-It Tony\", \"org\": \"Tony's Appliance Repairs\", \"item\": \"steamer descaler and filters\", \"unit\": \"kit\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly rag-and-bone collection\", \"counterpart\": \"Sal Okonkwo\", \"org\": \"Reclaim Textiles\", \"item\": \"textile recycling collection\", \"unit\": \"collection\", \"values\": [\"back door bay\", \"shop forecourt\", \"storage unit\"], \"place\": \"Second Chance Thrift back door\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Hana Byrne\", \"org\": \"Brightbox Supplies\", \"item\": \"box of shop cleaning supplies\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"pat tester visit\", \"counterpart\": \"Lee Garner\", \"org\": \"SafeSpark Testing\", \"item\": \"portable appliance testing visit\", \"unit\": \"visit\", \"values\": [\"shop floor\", \"stockroom\", \"sorting room\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"order\", \"topic\": \"till roll restock\", \"counterpart\": \"Papertrail Stationery sales team\", \"org\": \"Papertrail Stationery\", \"item\": \"pack of 20 till rolls\", \"unit\": \"pack\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"booking\", \"topic\": \"window display photographer\", \"counterpart\": \"Ada Lindt\", \"org\": \"Lindt Studio\", \"item\": \"charity shop window photo session\", \"unit\": \"session\", \"values\": [\"front window\", \"shop floor\", \"community room\"], \"place\": \"Second Chance Thrift shop\"},\n  {\"kind\": \"order\", \"topic\": \"donation sack restock\", \"counterpart\": \"Sal Okonkwo\", \"org\": \"Reclaim Textiles\", \"item\": \"bale of donation sacks\", \"unit\": \"bale\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Second Chance Thrift back door\"},\n  {\"kind\": \"booking\", \"topic\": \"trustee visit walkaround\", \"counterpart\": \"Tom Ellery\", \"org\": \"Second Chance Thrift\", \"item\": \"trustee shop walkaround slot\", \"unit\": \"slot\", \"values\": [\"shop floor\", \"stockroom\", \"sorting room\"], \"place\": \"Second Chance Thrift shop\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 10555,
+    "completion_tokens": 3736,
+    "reasoning_tokens": 128,
+    "cached_tokens": 6656
+   },
+   "cost": 0.0697338,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- the change is too close to now: only 4 of 100 events would come after it; move the change earlier\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "The stationery supplier's corrected contact name",
+  "setting": "Charity shop manager at Second Chance Thrift, run by a homelessness charity",
+  "owner": "Priya",
+  "org": "Second Chance Thrift",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Tom Ellery (Second Chance Thrift finance lead)",
+    "text": "Finance policy: any supplier order over £300 needs my written sign-off before it is placed. Orders at or under £300 can go ahead on the shop manager's authority.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Standing rule for the rota: once a furniture pickup is confirmed with a date and driver, the date, start time or driver on that booking may only be changed with the agreement of Marta Voss, our volunteer driver, since she arranges her Saturdays around these runs.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Dana Reid (Greenway Van Hire)",
+    "text": "Hi Priya, confirming our standing arrangement: the Ford Transit is £85 per day for Second Chance Thrift, collect from our depot on Mill Lane from 08:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "quote",
+    "from": "Renata (Papertrail Stationery)",
+    "text": "Quote for Second Chance Thrift: a roll of 2000 price labels is £46, and a box of 500 coat hangers is £32. Prices held for orders placed this year.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Colin Marsh (St Aldate's Church Hall)",
+    "text": "The community room at St Aldate's Church Hall is free for charity use on Tuesday evenings, 18:00 to 21:00, if you ever want it for volunteer events.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-16",
+    "type": "message",
+    "from": "Marta Voss (volunteer driver)",
+    "text": "Just so you know for planning, I can drive the pickup van on Saturdays only — weekdays I'm at the depot job.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Mrs Alvarez (donor)",
+    "text": "Dear Second Chance Thrift, I have about 12 pieces of good furniture to donate — a sofa, two wardrobes, chairs and a dining table — at 14 Chestnut Avenue. A Saturday collection would suit me best.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I booked the Greenway Transit van (£85 for the day) for Saturday 17 October 2026, start 09:30, for the furniture pickup from Mrs Alvarez at 14 Chestnut Avenue, with Marta Voss driving since she covers Saturdays.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e6",
+     "e7",
+     "e2"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-26",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I ordered one roll of 2000 price labels from Papertrail Stationery at the quoted £46 — well under the £300 finance sign-off threshold, so I placed it directly.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I booked the community room at St Aldate's Church Hall for the volunteer thank-you social on Tuesday 20 October 2026, 18:00 to 21:00, using the free Tuesday-evening charity slot.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Renata (Papertrail Stationery)",
+    "text": "Following up: the box of 500 coat hangers from our quote is in stock and can be delivered to the shop within a week of ordering.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I ordered a box of 500 coat hangers from Papertrail Stationery at the quoted £32, again within my own spending authority.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Jonelle Preece (new volunteer)",
+    "text": "Thank you for taking me on as a weekend shop volunteer. I can start mid-October and would appreciate a proper induction before my first shift.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-16",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I scheduled Jonelle Preece's volunteer induction with me at the shop for Wednesday 14 October 2026 at 10:00, before her first weekend shift.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-20",
+    "type": "note",
+    "from": "Priya",
+    "text": "Note to self: Gift Aid declarations for the summer donor forms need checking against the till records before the autumn submission.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-01",
+    "type": "task",
+    "from": "Tom Ellery (Second Chance Thrift finance lead)",
+    "text": "Please send me the quarterly stock and sales figures for the shop by Friday 30 October 2026 for the trustees' pack.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-10",
+    "type": "email",
+    "from": "Renata Kline (Papertrail Stationery accounts)",
+    "text": "Hello Second Chance Thrift, just an introduction: I'm Renata Kline in accounts at Papertrail Stationery, and I'll be handling your invoices from now on.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-22",
+    "type": "message",
+    "from": "Colin Marsh (St Aldate's Church Hall)",
+    "text": "The new kettle for the community room kitchen has arrived, so teas and coffees for your October social will be easier this year.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Renata Kohl (Papertrail Stationery accounts)",
+    "text": "Apologies for the confusion — my surname is actually spelled Kohl, not Kline, and my earlier introduction had it wrong. Please address anything for accounts to Renata Kohl.",
+    "role": "change",
+    "revokes": [
+     "e17"
+    ]
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-16",
+    "type": "email",
+    "from": "Papertrail Stationery sales team",
+    "text": "Autumn offer for regular customers: our smaller rolls of 500 price labels are now £14 each, ideal for topping up between big orders.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Dana Reid (Greenway Van Hire)",
+    "text": "The Ford Transit is reserved for you on Saturday 17 October, collect from 08:00 at Mill Lane as usual.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-10",
+    "type": "message",
+    "from": "Marta Voss (volunteer driver)",
+    "text": "Looking forward to Saturday's pickup. Could you send me the final details — address and timings — so I can plan the route?",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Alvarez furniture pickup",
+    "fields": {
+     "date": "2026-10-17",
+     "start": "09:30",
+     "place": "14 Chestnut Avenue",
+     "driver": "Marta Voss",
+     "van": "Greenway Ford Transit",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Volunteer thank-you social",
+    "fields": {
+     "date": "2026-10-20",
+     "time": "18:00",
+     "place": "St Aldate's Church Hall community room",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Price labels restock",
+    "fields": {
+     "supplier": "Papertrail Stationery",
+     "item": "roll of 2000 price labels",
+     "quantity": "1",
+     "amount": "46",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Coat hangers restock",
+    "fields": {
+     "supplier": "Papertrail Stationery",
+     "item": "box of 500 coat hangers",
+     "quantity": "1",
+     "amount": "32",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Jonelle Preece volunteer induction",
+    "fields": {
+     "volunteer": "Jonelle Preece",
+     "date": "2026-10-14",
+     "time": "10:00",
+     "place": "Second Chance Thrift shop",
+     "status": "scheduled"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "start",
+     "driver"
+    ],
+    "from": "Marta Voss (volunteer driver)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Marta asked for the final details of Saturday's furniture pickup from Mrs Alvarez — please email her confirming the date, the 09:30 start, the address on Chestnut Avenue and that the Greenway van is reserved for her.",
+  "expect": [
+   {
+    "message_to": "Marta Voss (volunteer driver)",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-17",
+     "09:30",
+     "14 Chestnut Avenue",
+     "Greenway"
+    ],
+    "stale": [
+     "2026-10-18",
+     "10:00",
+     "Papertrail"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control scenario: the only change corrects the spelling of the Papertrail accounts contact's surname (Kohl, not Kline), and no decision or record ever used that contact, so nothing in the workplace may be altered — including the tempting new £14 price for the smaller 500-label rolls, which is a different product from the confirmed 2000-label order. The task is simply to send Marta the pickup confirmation on the plan exactly as it stands (17 October, 09:30, 14 Chestnut Avenue, Greenway van), consistent with the booked record and her standing consent rule, which is not triggered because nothing about the booking changes.",
+  "noise_kit": [
+   {
+    "kind": "booking",
+    "topic": "regular van hire for donation runs",
+    "counterpart": "Dana Reid",
+    "org": "Greenway Van Hire",
+    "item": "Ford Transit day hire",
+    "unit": "day",
+    "values": [
+     "Mill Lane depot",
+     "shop forecourt",
+     "Chestnut Avenue",
+     "Riverside estate"
+    ],
+    "place": "Mill Lane depot"
+   },
+   {
+    "kind": "order",
+    "topic": "carrier bag restock",
+    "counterpart": "Renata Kohl",
+    "org": "Papertrail Stationery",
+    "item": "pack of 1000 carrier bags",
+    "unit": "pack",
+    "values": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Second Chance Thrift shop"
+   },
+   {
+    "kind": "order",
+    "topic": "swing tag restock",
+    "counterpart": "Papertrail Stationery sales team",
+    "org": "Papertrail Stationery",
+    "item": "box of 1000 swing tags",
+    "unit": "box",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Second Chance Thrift shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "community room for volunteer meetings",
+    "counterpart": "Colin Marsh",
+    "org": "St Aldate's Church Hall",
+    "item": "community room evening slot",
+    "unit": "evening",
+    "values": [
+     "community room",
+     "small hall",
+     "kitchen annexe"
+    ],
+    "place": "St Aldate's Church Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "steamer servicing supplies",
+    "counterpart": "Fix-It Tony",
+    "org": "Tony's Appliance Repairs",
+    "item": "steamer descaler and filters",
+    "unit": "kit",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Second Chance Thrift shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekly rag-and-bone collection",
+    "counterpart": "Sal Okonkwo",
+    "org": "Reclaim Textiles",
+    "item": "textile recycling collection",
+    "unit": "collection",
+    "values": [
+     "back door bay",
+     "shop forecourt",
+     "storage unit"
+    ],
+    "place": "Second Chance Thrift back door"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies restock",
+    "counterpart": "Hana Byrne",
+    "org": "Brightbox Supplies",
+    "item": "box of shop cleaning supplies",
+    "unit": "box",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Second Chance Thrift shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "pat tester visit",
+    "counterpart": "Lee Garner",
+    "org": "SafeSpark Testing",
+    "item": "portable appliance testing visit",
+    "unit": "visit",
+    "values": [
+     "shop floor",
+     "stockroom",
+     "sorting room"
+    ],
+    "place": "Second Chance Thrift shop"
+   },
+   {
+    "kind": "order",
+    "topic": "till roll restock",
+    "counterpart": "Papertrail Stationery sales team",
+    "org": "Papertrail Stationery",
+    "item": "pack of 20 till rolls",
+    "unit": "pack",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Second Chance Thrift shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "window display photographer",
+    "counterpart": "Ada Lindt",
+    "org": "Lindt Studio",
+    "item": "charity shop window photo session",
+    "unit": "session",
+    "values": [
+     "front window",
+     "shop floor",
+     "community room"
+    ],
+    "place": "Second Chance Thrift shop"
+   },
+   {
+    "kind": "order",
+    "topic": "donation sack restock",
+    "counterpart": "Sal Okonkwo",
+    "org": "Reclaim Textiles",
+    "item": "bale of donation sacks",
+    "unit": "bale",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Second Chance Thrift back door"
+   },
+   {
+    "kind": "booking",
+    "topic": "trustee visit walkaround",
+    "counterpart": "Tom Ellery",
+    "org": "Second Chance Thrift",
+    "item": "trustee shop walkaround slot",
+    "unit": "slot",
+    "values": [
+     "shop floor",
+     "stockroom",
+     "sorting room"
+    ],
+    "place": "Second Chance Thrift shop"
+   }
+  ],
+  "id": "K100-4-09",
+  "tier": 100,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

@@ -1,0 +1,621 @@
+{
+ "id": "K500-4-04",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 4,
+ "idx": 3,
+ "setting": "Booking coordinator at Clearview Optometry, a family eye-care practice",
+ "prompt_sha256": "baa630dcd6abd70981387ee72569920afb2e77d106af167a45bf4cf1e2d5dab2",
+ "rounds": [
+  {
+   "text": "{\"title\": \"Lens clinic restock beside a rep handover\", \"setting\": \"Booking coordinator at Clearview Optometry, a family eye-care practice\", \"owner\": \"Mira\", \"org\": \"Clearview Optometry\", \"now\": \"2026-09-14\", \"events\": [{\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Standing rule at Clearview Optometry: any supplier order over 400 must be signed off by our finance lead Priya Nair before it is placed.\", \"role\": \"rule\"}, {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing rule: once a confirmed delivery date is agreed with a supplier, it cannot be moved without that supplier's own representative agreeing in writing.\", \"role\": \"rule\"}, {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Tom Reyes (practice manager)\", \"text\": \"Confirming Room 2 at Clearview Optometry is free every Thursday from 14:00 to 17:00 for the contact-lens teaching clinic, all through autumn.\", \"role\": \"fact\"}, {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"quote\", \"from\": \"Sofia Lind (ClearSolutions)\", \"text\": \"ClearSolutions quote for Clearview Optometry: multipurpose contact-lens solution at 6 per bottle, minimum order 60 bottles, delivery to the practice's back storeroom.\", \"role\": \"fact\"}, {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Owen Price (Harbour Frames)\", \"text\": \"Owen Price of Harbour Frames confirms he will keep visiting Clearview Optometry on the first Tuesday of each month with the seasonal frame samples.\", \"role\": \"fact\"}, {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Lena Vogt (optometrist)\", \"text\": \"Lena Vogt confirms she is available to run the Thursday afternoon contact-lens teaching clinic throughout October.\", \"role\": \"fact\"}, {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Priya Nair reminded the team that petty cash covers orders up to 400; anything above goes to her desk first.\", \"role\": \"other\"}, {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I booked Room 2 every Thursday 14:00 to 17:00 in October for the contact-lens teaching clinic, as Tom confirmed it is free then.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-1\"}, {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I placed our usual order with ClearSolutions: 60 bottles of multipurpose contact-lens solution at 6 per bottle, 360 total, delivered to the back storeroom; under 400 so no sign-off needed from Priya.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-1\"}, {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I confirmed the Harbour Frames display order of 40 frames, with delivery to the practice on Tuesday 6 October, agreed with Owen Price.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-2\"}, {\"id\": \"e11\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I scheduled Lena Vogt as the optometrist for the October Thursday contact-lens teaching clinic in Room 2, since she confirmed her availability.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e8\"], \"record\": \"EV-2\"}, {\"id\": \"e12\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"ClearSolutions (accounts)\", \"text\": \"ClearSolutions invoice 1187: 60 bottles multipurpose solution, 360, payable within 30 days.\", \"role\": \"other\"}, {\"id\": \"e13\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I booked Room 1 for the staff training afternoon on Wednesday 21 October, 13:00 to 16:00.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"EV-3\"}, {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"invoice\", \"from\": \"Harbour Frames\", \"text\": \"Harbour Frames invoice for the frame display order of 40 frames, delivery confirmed for Tuesday 6 October.\", \"role\": \"other\"}, {\"id\": \"e15\", \"date\": \"2026-07-09\", \"type\": \"message\", \"from\": \"Tom Reyes (practice manager)\", \"text\": \"Tom asked whether the lens clinic wants the new patient leaflets printed before October; Mira said yes, 200 copies.\", \"role\": \"other\"}, {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"To-do: pay the ClearSolutions invoice 1187 for 360 by 11 August.\", \"role\": \"obligation\"}, {\"id\": \"e17\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Sofia Lind (ClearSolutions)\", \"text\": \"ClearSolutions confirms the next solution delivery slot to Clearview Optometry's back storeroom can be any weekday morning with two days' notice.\", \"role\": \"fact\"}, {\"id\": \"e18\", \"date\": \"2026-07-23\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Staff meeting notes: October clinic rota approved; Lena runs Thursdays, Tom covers the front desk, leaflets arrive late September.\", \"role\": \"other\"}, {\"id\": \"e19\", \"date\": \"2026-07-30\", \"type\": \"email\", \"from\": \"Owen Price (Harbour Frames)\", \"text\": \"Owen popped in with August frame samples and reminded us the 40-frame display delivery is set for Tuesday 6 October.\", \"role\": \"other\", \"echo\": true}, {\"id\": \"e20\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I booked the practice's display cabinet lighting repair for Friday 18 September with our usual electrician, before the frame delivery.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"EV-4\"}, {\"id\": \"e21\", \"date\": \"2026-08-10\", \"type\": \"message\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Priya confirmed the ClearSolutions invoice of 360 was paid on time and nothing else is outstanding this month.\", \"role\": \"other\"}, {\"id\": \"e22\", \"date\": \"2026-08-17\", \"type\": \"email\", \"from\": \"Tom Reyes (practice manager)\", \"text\": \"Tom confirmed Room 2 remains blocked every Thursday 14:00 to 17:00 for the contact-lens teaching clinic through October, no clashes.\", \"role\": \"other\", \"echo\": true}, {\"id\": \"e23\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Owen Price (Harbour Frames)\", \"text\": \"Harbour Frames news: from October, our North region accounts move to my colleague Daniel Marsh. Owen will still handle Clearview Optometry's visits and deliveries as usual, so nothing changes for the practice.\", \"role\": \"change\", \"revokes\": []}, {\"id\": \"e24\", \"date\": \"2026-09-02\", \"type\": \"message\", \"from\": \"Harbour Frames (marketing)\", \"text\": \"Harbour Frames autumn catalogue: selected acetate frames now listed at 95 each for new orders placed from November onward.\", \"role\": \"other\", \"distractor\": true}, {\"id\": \"e25\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Lena Vogt (optometrist)\", \"text\": \"Lena asked whether solution stock in the storeroom is running low for the October teaching clinic; the shelf looks close to empty.\", \"role\": \"other\"}, {\"id\": \"e26\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I confirmed the leaflet printer will deliver 200 clinic leaflets to the practice on 25 September.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"ORD-3\"}, {\"id\": \"e27\", \"date\": \"2026-09-11\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Reminded the front desk that the lens clinic booking list for October opens next week.\", \"role\": \"other\"}, {\"id\": \"e28\", \"date\": \"2026-09-13\", \"type\": \"message\", \"from\": \"Tom Reyes (practice manager)\", \"text\": \"Tom double-checked the storeroom: only 4 bottles of solution left, so a restock is due before the October clinic starts.\", \"role\": \"fact\"}], \"records\": [{\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"October contact-lens teaching clinic\", \"fields\": {\"day\": \"Thursday\", \"time\": \"14:00\", \"place\": \"Room 2\", \"status\": \"booked\"}}, {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Clinic optometrist rota October\", \"fields\": {\"staff\": \"Lena Vogt\", \"day\": \"Thursday\", \"place\": \"Room 2\", \"status\": \"confirmed\"}}, {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"ClearSolutions solution order\", \"fields\": {\"supplier\": \"ClearSolutions\", \"item\": \"multipurpose contact-lens solution\", \"quantity\": \"60\", \"amount\": \"360\", \"place\": \"back storeroom\", \"status\": \"confirmed\"}}, {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Harbour Frames display order\", \"fields\": {\"supplier\": \"Harbour Frames\", \"item\": \"display frames\", \"quantity\": \"40\", \"delivery\": \"2026-10-06\", \"status\": \"confirmed\"}}, {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Staff training afternoon\", \"fields\": {\"date\": \"2026-10-21\", \"time\": \"13:00\", \"place\": \"Room 1\", \"status\": \"booked\"}}, {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Display cabinet lighting repair\", \"fields\": {\"date\": \"2026-09-18\", \"place\": \"front display\", \"status\": \"booked\"}}, {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Clinic leaflet print run\", \"fields\": {\"item\": \"clinic leaflets\", \"quantity\": \"200\", \"delivery\": \"2026-09-25\", \"status\": \"confirmed\"}}], \"consent\": [{\"record\": \"ORD-2\", \"fields\": [\"delivery\"], \"from\": \"Owen Price (Harbour Frames)\", \"rule\": \"e2\"}], \"task\": \"The solution shelf is nearly empty and the October clinic is coming up — please reorder our usual contact-lens solution stock from ClearSolutions, same as last time.\", \"expect\": [{\"create\": \"orders\", \"fields\": {\"supplier\": \"ClearSolutions\", \"item\": \"multipurpose contact-lens solution\", \"quantity\": \"60\", \"amount\": \"360\"}, \"task\": true}], \"why\": \"The only real change is a staff reshuffle at Harbour Frames that explicitly leaves Clearview's visits and deliveries untouched, so nothing in the workplace should move; the catalogue price of 95 is a distractor for future November orders only. The task is a routine restock: the standing plan is 60 bottles at 360 from ClearSolutions, under the 400 sign-off threshold, so the assistant should simply create the matching order and change nothing else.\", \"noise_kit\": [{\"kind\": \"order\", \"topic\": \"cleaning cloth restock\", \"counterpart\": \"Sofia Lind\", \"org\": \"ClearSolutions\", \"item\": \"microfibre lens cloths\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"back storeroom\"}, {\"kind\": \"order\", \"topic\": \"eye drop restock\", \"counterpart\": \"Sofia Lind\", \"org\": \"ClearSolutions\", \"item\": \"comfort eye drops\", \"unit\": \"boxes\", \"values\": [\"8\", \"12\", \"16\", \"20\"], \"place\": \"back storeroom\"}, {\"kind\": \"booking\", \"topic\": \"weekly staff catch-up\", \"counterpart\": \"Tom Reyes\", \"org\": \"Clearview Optometry\", \"item\": \"staff meeting\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 2\", \"break room\"], \"place\": \"Clearview Optometry\"}, {\"kind\": \"booking\", \"topic\": \"frame rep sample visit\", \"counterpart\": \"Owen Price\", \"org\": \"Harbour Frames\", \"item\": \"sample display slot\", \"unit\": \"slot\", \"values\": [\"morning\", \"midday\", \"afternoon\"], \"place\": \"front display\"}, {\"kind\": \"order\", \"topic\": \"lens case restock\", \"counterpart\": \"Daniel Osei\", \"org\": \"OptiSupply\", \"item\": \"contact-lens cases\", \"unit\": \"packs\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"back storeroom\"}, {\"kind\": \"booking\", \"topic\": \"evening repair access\", \"counterpart\": \"Ruth Ames\", \"org\": \"Ames Electrical\", \"item\": \"electrician visit\", \"unit\": \"visit\", \"values\": [\"front display\", \"Room 1\", \"storeroom\"], \"place\": \"Clearview Optometry\"}, {\"kind\": \"order\", \"topic\": \"appointment card print\", \"counterpart\": \"Kim Sato\", \"org\": \"Printwell\", \"item\": \"appointment cards\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"front desk\"}, {\"kind\": \"booking\", \"topic\": \"Saturday driver for outreach\", \"counterpart\": \"Tom Reyes\", \"org\": \"Clearview Optometry\", \"item\": \"practice car\", \"unit\": \"vehicle\", \"values\": [\"car park bay 1\", \"car park bay 2\"], \"place\": \"Clearview Optometry\"}, {\"kind\": \"order\", \"topic\": \"trial lens sanitiser\", \"counterpart\": \"Daniel Osei\", \"org\": \"OptiSupply\", \"item\": \"sanitising wipes\", \"unit\": \"tubs\", \"values\": [\"6\", \"9\", \"12\"], \"place\": \"back storeroom\"}, {\"kind\": \"booking\", \"topic\": \"monthly window cleaning\", \"counterpart\": \"Ana Ruiz\", \"org\": \"BrightPane\", \"item\": \"window clean\", \"unit\": \"visit\", \"values\": [\"shopfront\", \"front display\", \"waiting area\"], \"place\": \"Clearview Optometry\"}, {\"kind\": \"order\", \"topic\": \"frame repair screws\", \"counterpart\": \"Owen Price\", \"org\": \"Harbour Frames\", \"item\": \"repair screw kits\", \"unit\": \"kits\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"back storeroom\"}, {\"kind\": \"booking\", \"topic\": \"quiet room for phone triage\", \"counterpart\": \"Priya Nair\", \"org\": \"Clearview Optometry\", \"item\": \"triage session\", \"unit\": \"room\", \"values\": [\"Room 1\", \"office nook\", \"Room 2\"], \"place\": \"Clearview Optometry\"}]}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3243,
+    "completion_tokens": 4743,
+    "reasoning_tokens": 1026,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0725796,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "{\"title\": \"Lens clinic restock beside a rep handover\", \"setting\": \"Booking coordinator at Clearview Optometry, a family eye-care practice\", \"owner\": \"Mira\", \"org\": \"Clearview Optometry\", \"now\": \"2026-09-14\", \"events\": [{\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Standing rule at Clearview Optometry: any supplier order over 400 must be signed off by our finance lead Priya Nair before it is placed.\", \"role\": \"rule\"}, {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing rule: once a confirmed delivery date is agreed with a supplier, it cannot be moved without that supplier's own representative agreeing in writing.\", \"role\": \"rule\"}, {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Tom Reyes (practice manager)\", \"text\": \"Confirming Room 2 at Clearview Optometry is free every Thursday from 14:00 to 17:00 for the contact-lens teaching clinic, all through autumn.\", \"role\": \"fact\"}, {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"quote\", \"from\": \"Sofia Lind (ClearSolutions)\", \"text\": \"ClearSolutions quote for Clearview Optometry: multipurpose contact-lens solution at 6 per bottle, minimum order 60 bottles, delivery to the practice's back storeroom.\", \"role\": \"fact\"}, {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Owen Price (Harbour Frames)\", \"text\": \"Owen Price of Harbour Frames confirms he will keep visiting Clearview Optometry on the first Tuesday of each month with the seasonal frame samples.\", \"role\": \"fact\"}, {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Lena Vogt (optometrist)\", \"text\": \"Lena Vogt confirms she is available to run the Thursday afternoon contact-lens teaching clinic throughout October.\", \"role\": \"fact\"}, {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Priya Nair reminded the team that petty cash covers orders up to 400; anything above goes to her desk first.\", \"role\": \"other\"}, {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I booked Room 2 every Thursday 14:00 to 17:00 in October for the contact-lens teaching clinic, as Tom confirmed it is free then.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-1\"}, {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I placed our usual order with ClearSolutions: 60 bottles of multipurpose contact-lens solution at 6 per bottle, 360 total, delivered to the back storeroom; under 400 so no sign-off needed from Priya.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-1\"}, {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I confirmed the Harbour Frames display order of 40 frames, with delivery to the practice on Tuesday 6 October, agreed with Owen Price.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-2\"}, {\"id\": \"e11\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I scheduled Lena Vogt as the optometrist for the October Thursday contact-lens teaching clinic in Room 2, since she confirmed her availability.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e8\"], \"record\": \"EV-2\"}, {\"id\": \"e12\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"ClearSolutions (accounts)\", \"text\": \"ClearSolutions invoice 1187: 60 bottles multipurpose solution, 360, payable within 30 days.\", \"role\": \"other\"}, {\"id\": \"e13\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Tom Reyes (practice manager)\", \"text\": \"Tom confirms Room 1 at Clearview Optometry is free every Wednesday afternoon in October, 13:00 to 16:00, for internal use.\", \"role\": \"fact\"}, {\"id\": \"e14\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I booked Room 1 for the staff training afternoon on Wednesday 21 October, 13:00 to 16:00, since Tom confirmed it is free then.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-3\"}, {\"id\": \"e15\", \"date\": \"2026-07-06\", \"type\": \"invoice\", \"from\": \"Harbour Frames\", \"text\": \"Harbour Frames invoice for the frame display order of 40 frames, delivery confirmed for Tuesday 6 October.\", \"role\": \"other\"}, {\"id\": \"e16\", \"date\": \"2026-07-09\", \"type\": \"message\", \"from\": \"Tom Reyes (practice manager)\", \"text\": \"Tom asked whether the lens clinic wants the new patient leaflets printed before October; Mira said yes, 200 copies.\", \"role\": \"other\"}, {\"id\": \"e17\", \"date\": \"2026-07-14\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"To-do: pay the ClearSolutions invoice 1187 for 360 by 11 August.\", \"role\": \"obligation\"}, {\"id\": \"e18\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Sofia Lind (ClearSolutions)\", \"text\": \"ClearSolutions confirms the next solution delivery slot to Clearview Optometry's back storeroom can be any weekday morning with two days' notice.\", \"role\": \"fact\"}, {\"id\": \"e19\", \"date\": \"2026-07-23\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Staff meeting notes: October clinic rota approved; Lena runs Thursdays, Tom covers the front desk, leaflets arrive late September.\", \"role\": \"other\"}, {\"id\": \"e20\", \"date\": \"2026-07-30\", \"type\": \"email\", \"from\": \"Owen Price (Harbour Frames)\", \"text\": \"Owen popped in with August frame samples and reminded us the 40-frame display delivery is set for Tuesday 6 October.\", \"role\": \"other\", \"echo\": true}, {\"id\": \"e21\", \"date\": \"2026-08-01\", \"type\": \"email\", \"from\": \"Ruth Ames (Ames Electrical)\", \"text\": \"Ruth Ames confirms she can take small repair jobs at Clearview Optometry on Fridays in September, including the display cabinet lighting.\", \"role\": \"fact\"}, {\"id\": \"e22\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I booked Ruth Ames to repair the display cabinet lighting on Friday 18 September, before the Harbour Frames delivery arrives on Tuesday 6 October.\", \"role\": \"decision\", \"rests_on\": [\"e21\", \"e10\"], \"record\": \"EV-4\"}, {\"id\": \"e23\", \"date\": \"2026-08-10\", \"type\": \"message\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Priya confirmed the ClearSolutions invoice of 360 was paid on time and nothing else is outstanding this month.\", \"role\": \"other\"}, {\"id\": \"e24\", \"date\": \"2026-08-17\", \"type\": \"email\", \"from\": \"Tom Reyes (practice manager)\", \"text\": \"Tom confirmed Room 2 remains blocked every Thursday 14:00 to 17:00 for the contact-lens teaching clinic through October, no clashes.\", \"role\": \"other\", \"echo\": true}, {\"id\": \"e25\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Owen Price (Harbour Frames)\", \"text\": \"Harbour Frames news: from October, our North region accounts move to my colleague Daniel Marsh. Owen will still handle Clearview Optometry's visits and deliveries as usual, so nothing changes for the practice.\", \"role\": \"change\", \"revokes\": []}, {\"id\": \"e26\", \"date\": \"2026-09-02\", \"type\": \"message\", \"from\": \"Harbour Frames (marketing)\", \"text\": \"Harbour Frames autumn catalogue: selected acetate frames now listed at 95 each for new orders placed from November onward.\", \"role\": \"other\", \"distractor\": true}, {\"id\": \"e27\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Lena Vogt (optometrist)\", \"text\": \"Lena asked whether solution stock in the storeroom is running low for the October teaching clinic; the shelf looks close to empty.\", \"role\": \"other\"}, {\"id\": \"e28\", \"date\": \"2026-09-09\", \"type\": \"quote\", \"from\": \"Kim Sato (Printwell)\", \"text\": \"Printwell quote: 200 clinic leaflets for Clearview Optometry, delivery to the practice possible on 25 September.\", \"role\": \"fact\"}, {\"id\": \"e29\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I confirmed with Printwell that they will deliver the 200 clinic leaflets Tom requested to the practice on 25 September.\", \"role\": \"decision\", \"rests_on\": [\"e28\", \"e16\"], \"record\": \"ORD-3\"}, {\"id\": \"e30\", \"date\": \"2026-09-11\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Reminded the front desk that the lens clinic booking list for October opens next week.\", \"role\": \"other\"}, {\"id\": \"e31\", \"date\": \"2026-09-13\", \"type\": \"message\", \"from\": \"Tom Reyes (practice manager)\", \"text\": \"Tom double-checked the storeroom: only 4 bottles of solution left, so a restock is due before the October clinic starts.\", \"role\": \"fact\"}], \"records\": [{\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"October contact-lens teaching clinic\", \"fields\": {\"day\": \"Thursday\", \"time\": \"14:00\", \"place\": \"Room 2\", \"status\": \"booked\"}}, {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Clinic optometrist rota October\", \"fields\": {\"staff\": \"Lena Vogt\", \"day\": \"Thursday\", \"place\": \"Room 2\", \"status\": \"confirmed\"}}, {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"ClearSolutions solution order\", \"fields\": {\"supplier\": \"ClearSolutions\", \"item\": \"multipurpose contact-lens solution\", \"quantity\": \"60\", \"amount\": \"360\", \"place\": \"back storeroom\", \"status\": \"confirmed\"}}, {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Harbour Frames display order\", \"fields\": {\"supplier\": \"Harbour Frames\", \"item\": \"display frames\", \"quantity\": \"40\", \"delivery\": \"2026-10-06\", \"status\": \"confirmed\"}}, {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Staff training afternoon\", \"fields\": {\"date\": \"2026-10-21\", \"time\": \"13:00\", \"place\": \"Room 1\", \"status\": \"booked\"}}, {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Display cabinet lighting repair\", \"fields\": {\"date\": \"2026-09-18\", \"place\": \"front display\", \"status\": \"booked\"}}, {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Clinic leaflet print run\", \"fields\": {\"item\": \"clinic leaflets\", \"quantity\": \"200\", \"delivery\": \"2026-09-25\", \"status\": \"confirmed\"}}], \"consent\": [{\"record\": \"ORD-2\", \"fields\": [\"delivery\"], \"from\": \"Owen Price (Harbour Frames)\", \"rule\": \"e2\"}], \"task\": \"The solution shelf is nearly empty and the October clinic is coming up — please reorder our usual contact-lens solution stock from ClearSolutions, same as last time.\", \"expect\": [{\"create\": \"orders\", \"fields\": {\"supplier\": \"ClearSolutions\", \"item\": \"multipurpose contact-lens solution\", \"quantity\": \"60\", \"amount\": \"360\"}, \"task\": true}], \"why\": \"The only real change is a staff reshuffle at Harbour Frames that explicitly leaves Clearview's visits and deliveries untouched, so nothing in the workplace should move; the catalogue price of 95 is a distractor for future November orders only. The task is a routine restock: the standing plan is 60 bottles at 360 from ClearSolutions, under the 400 sign-off threshold, so the assistant should simply create the matching order and change nothing else.\", \"noise_kit\": [{\"kind\": \"order\", \"topic\": \"cleaning cloth restock\", \"counterpart\": \"Sofia Lind\", \"org\": \"ClearSolutions\", \"item\": \"microfibre lens cloths\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"back storeroom\"}, {\"kind\": \"order\", \"topic\": \"eye drop restock\", \"counterpart\": \"Sofia Lind\", \"org\": \"ClearSolutions\", \"item\": \"comfort eye drops\", \"unit\": \"boxes\", \"values\": [\"8\", \"12\", \"16\", \"20\"], \"place\": \"back storeroom\"}, {\"kind\": \"booking\", \"topic\": \"weekly staff catch-up\", \"counterpart\": \"Tom Reyes\", \"org\": \"Clearview Optometry\", \"item\": \"staff meeting\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 2\", \"break room\"], \"place\": \"Clearview Optometry\"}, {\"kind\": \"booking\", \"topic\": \"frame rep sample visit\", \"counterpart\": \"Owen Price\", \"org\": \"Harbour Frames\", \"item\": \"sample display slot\", \"unit\": \"slot\", \"values\": [\"morning\", \"midday\", \"afternoon\"], \"place\": \"front display\"}, {\"kind\": \"order\", \"topic\": \"lens case restock\", \"counterpart\": \"Daniel Osei\", \"org\": \"OptiSupply\", \"item\": \"contact-lens cases\", \"unit\": \"packs\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"back storeroom\"}, {\"kind\": \"booking\", \"topic\": \"evening repair access\", \"counterpart\": \"Ruth Ames\", \"org\": \"Ames Electrical\", \"item\": \"electrician visit\", \"unit\": \"visit\", \"values\": [\"front display\", \"Room 1\", \"storeroom\"], \"place\": \"Clearview Optometry\"}, {\"kind\": \"order\", \"topic\": \"appointment card print\", \"counterpart\": \"Kim Sato\", \"org\": \"Printwell\", \"item\": \"appointment cards\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"front desk\"}, {\"kind\": \"booking\", \"topic\": \"Saturday driver for outreach\", \"counterpart\": \"Tom Reyes\", \"org\": \"Clearview Optometry\", \"item\": \"practice car\", \"unit\": \"vehicle\", \"values\": [\"car park bay 1\", \"car park bay 2\", \"side street bay\"], \"place\": \"Clearview Optometry\"}, {\"kind\": \"order\", \"topic\": \"trial lens sanitiser\", \"counterpart\": \"Daniel Osei\", \"org\": \"OptiSupply\", \"item\": \"sanitising wipes\", \"unit\": \"tubs\", \"values\": [\"6\", \"9\", \"12\"], \"place\": \"back storeroom\"}, {\"kind\": \"booking\", \"topic\": \"monthly window cleaning\", \"counterpart\": \"Ana Ruiz\", \"org\": \"BrightPane\", \"item\": \"window clean\", \"unit\": \"visit\", \"values\": [\"shopfront\", \"front display\", \"waiting area\"], \"place\": \"Clearview Optometry\"}, {\"kind\": \"order\", \"topic\": \"frame repair screws\", \"counterpart\": \"Owen Price\", \"org\": \"Harbour Frames\", \"item\": \"repair screw kits\", \"unit\": \"kits\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"back storeroom\"}, {\"kind\": \"booking\", \"topic\": \"quiet room for phone triage\", \"counterpart\": \"Priya Nair\", \"org\": \"Clearview Optometry\", \"item\": \"triage session\", \"unit\": \"room\", \"values\": [\"Room 1\", \"office nook\", \"Room 2\"], \"place\": \"Clearview Optometry\"}]}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7068,
+    "completion_tokens": 4608,
+    "reasoning_tokens": 631,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0820296,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e13: a decision must rest on at least one earlier event\n- e20: a decision must rest on at least one earlier event\n- e26: a decision must rest on at least one earlier event\n- noise topic 'Saturday driver for outreach': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Lens clinic restock beside a rep handover",
+  "setting": "Booking coordinator at Clearview Optometry, a family eye-care practice",
+  "owner": "Mira",
+  "org": "Clearview Optometry",
+  "now": "2026-09-14",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Mira",
+    "text": "Standing rule at Clearview Optometry: any supplier order over 400 must be signed off by our finance lead Priya Nair before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mira",
+    "text": "Standing rule: once a confirmed delivery date is agreed with a supplier, it cannot be moved without that supplier's own representative agreeing in writing.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "email",
+    "from": "Tom Reyes (practice manager)",
+    "text": "Confirming Room 2 at Clearview Optometry is free every Thursday from 14:00 to 17:00 for the contact-lens teaching clinic, all through autumn.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "quote",
+    "from": "Sofia Lind (ClearSolutions)",
+    "text": "ClearSolutions quote for Clearview Optometry: multipurpose contact-lens solution at 6 per bottle, minimum order 60 bottles, delivery to the practice's back storeroom.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Owen Price (Harbour Frames)",
+    "text": "Owen Price of Harbour Frames confirms he will keep visiting Clearview Optometry on the first Tuesday of each month with the seasonal frame samples.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Lena Vogt (optometrist)",
+    "text": "Lena Vogt confirms she is available to run the Thursday afternoon contact-lens teaching clinic throughout October.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "note",
+    "from": "Mira",
+    "text": "Priya Nair reminded the team that petty cash covers orders up to 400; anything above goes to her desk first.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Mira",
+    "text": "I booked Room 2 every Thursday 14:00 to 17:00 in October for the contact-lens teaching clinic, as Tom confirmed it is free then.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Mira",
+    "text": "I placed our usual order with ClearSolutions: 60 bottles of multipurpose contact-lens solution at 6 per bottle, 360 total, delivered to the back storeroom; under 400 so no sign-off needed from Priya.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Mira",
+    "text": "I confirmed the Harbour Frames display order of 40 frames, with delivery to the practice on Tuesday 6 October, agreed with Owen Price.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Mira",
+    "text": "I scheduled Lena Vogt as the optometrist for the October Thursday contact-lens teaching clinic in Room 2, since she confirmed her availability.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e8"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-29",
+    "type": "email",
+    "from": "ClearSolutions (accounts)",
+    "text": "ClearSolutions invoice 1187: 60 bottles multipurpose solution, 360, payable within 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Tom Reyes (practice manager)",
+    "text": "Tom confirms Room 1 at Clearview Optometry is free every Wednesday afternoon in October, 13:00 to 16:00, for internal use.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Mira",
+    "text": "I booked Room 1 for the staff training afternoon on Wednesday 21 October, 13:00 to 16:00, since Tom confirmed it is free then.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-06",
+    "type": "invoice",
+    "from": "Harbour Frames",
+    "text": "Harbour Frames invoice for the frame display order of 40 frames, delivery confirmed for Tuesday 6 October.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-09",
+    "type": "message",
+    "from": "Tom Reyes (practice manager)",
+    "text": "Tom asked whether the lens clinic wants the new patient leaflets printed before October; Mira said yes, 200 copies.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-14",
+    "type": "task",
+    "from": "Mira",
+    "text": "To-do: pay the ClearSolutions invoice 1187 for 360 by 11 August.",
+    "role": "obligation"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Sofia Lind (ClearSolutions)",
+    "text": "ClearSolutions confirms the next solution delivery slot to Clearview Optometry's back storeroom can be any weekday morning with two days' notice.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-23",
+    "type": "minutes",
+    "from": "Mira",
+    "text": "Staff meeting notes: October clinic rota approved; Lena runs Thursdays, Tom covers the front desk, leaflets arrive late September.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-07-30",
+    "type": "email",
+    "from": "Owen Price (Harbour Frames)",
+    "text": "Owen popped in with August frame samples and reminded us the 40-frame display delivery is set for Tuesday 6 October.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-01",
+    "type": "email",
+    "from": "Ruth Ames (Ames Electrical)",
+    "text": "Ruth Ames confirms she can take small repair jobs at Clearview Optometry on Fridays in September, including the display cabinet lighting.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Mira",
+    "text": "I booked Ruth Ames to repair the display cabinet lighting on Friday 18 September, before the Harbour Frames delivery arrives on Tuesday 6 October.",
+    "role": "decision",
+    "rests_on": [
+     "e21",
+     "e10"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-10",
+    "type": "message",
+    "from": "Priya Nair (finance lead)",
+    "text": "Priya confirmed the ClearSolutions invoice of 360 was paid on time and nothing else is outstanding this month.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-08-17",
+    "type": "email",
+    "from": "Tom Reyes (practice manager)",
+    "text": "Tom confirmed Room 2 remains blocked every Thursday 14:00 to 17:00 for the contact-lens teaching clinic through October, no clashes.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Owen Price (Harbour Frames)",
+    "text": "Harbour Frames news: from October, our North region accounts move to my colleague Daniel Marsh. Owen will still handle Clearview Optometry's visits and deliveries as usual, so nothing changes for the practice.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-02",
+    "type": "message",
+    "from": "Harbour Frames (marketing)",
+    "text": "Harbour Frames autumn catalogue: selected acetate frames now listed at 95 each for new orders placed from November onward.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Lena Vogt (optometrist)",
+    "text": "Lena asked whether solution stock in the storeroom is running low for the October teaching clinic; the shelf looks close to empty.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-09",
+    "type": "quote",
+    "from": "Kim Sato (Printwell)",
+    "text": "Printwell quote: 200 clinic leaflets for Clearview Optometry, delivery to the practice possible on 25 September.",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Mira",
+    "text": "I confirmed with Printwell that they will deliver the 200 clinic leaflets Tom requested to the practice on 25 September.",
+    "role": "decision",
+    "rests_on": [
+     "e28",
+     "e16"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e30",
+    "date": "2026-09-11",
+    "type": "note",
+    "from": "Mira",
+    "text": "Reminded the front desk that the lens clinic booking list for October opens next week.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-09-13",
+    "type": "message",
+    "from": "Tom Reyes (practice manager)",
+    "text": "Tom double-checked the storeroom: only 4 bottles of solution left, so a restock is due before the October clinic starts.",
+    "role": "fact"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "October contact-lens teaching clinic",
+    "fields": {
+     "day": "Thursday",
+     "time": "14:00",
+     "place": "Room 2",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Clinic optometrist rota October",
+    "fields": {
+     "staff": "Lena Vogt",
+     "day": "Thursday",
+     "place": "Room 2",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "ClearSolutions solution order",
+    "fields": {
+     "supplier": "ClearSolutions",
+     "item": "multipurpose contact-lens solution",
+     "quantity": "60",
+     "amount": "360",
+     "place": "back storeroom",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Harbour Frames display order",
+    "fields": {
+     "supplier": "Harbour Frames",
+     "item": "display frames",
+     "quantity": "40",
+     "delivery": "2026-10-06",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Staff training afternoon",
+    "fields": {
+     "date": "2026-10-21",
+     "time": "13:00",
+     "place": "Room 1",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Display cabinet lighting repair",
+    "fields": {
+     "date": "2026-09-18",
+     "place": "front display",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Clinic leaflet print run",
+    "fields": {
+     "item": "clinic leaflets",
+     "quantity": "200",
+     "delivery": "2026-09-25",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-2",
+    "fields": [
+     "delivery"
+    ],
+    "from": "Owen Price (Harbour Frames)",
+    "rule": "e2"
+   }
+  ],
+  "task": "The solution shelf is nearly empty and the October clinic is coming up — please reorder our usual contact-lens solution stock from ClearSolutions, same as last time.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "ClearSolutions",
+     "item": "multipurpose contact-lens solution",
+     "quantity": "60",
+     "amount": "360"
+    },
+    "task": true
+   }
+  ],
+  "why": "The only real change is a staff reshuffle at Harbour Frames that explicitly leaves Clearview's visits and deliveries untouched, so nothing in the workplace should move; the catalogue price of 95 is a distractor for future November orders only. The task is a routine restock: the standing plan is 60 bottles at 360 from ClearSolutions, under the 400 sign-off threshold, so the assistant should simply create the matching order and change nothing else.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "cleaning cloth restock",
+    "counterpart": "Sofia Lind",
+    "org": "ClearSolutions",
+    "item": "microfibre lens cloths",
+    "unit": "packs",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "back storeroom"
+   },
+   {
+    "kind": "order",
+    "topic": "eye drop restock",
+    "counterpart": "Sofia Lind",
+    "org": "ClearSolutions",
+    "item": "comfort eye drops",
+    "unit": "boxes",
+    "values": [
+     "8",
+     "12",
+     "16",
+     "20"
+    ],
+    "place": "back storeroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekly staff catch-up",
+    "counterpart": "Tom Reyes",
+    "org": "Clearview Optometry",
+    "item": "staff meeting",
+    "unit": "room",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "break room"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "booking",
+    "topic": "frame rep sample visit",
+    "counterpart": "Owen Price",
+    "org": "Harbour Frames",
+    "item": "sample display slot",
+    "unit": "slot",
+    "values": [
+     "morning",
+     "midday",
+     "afternoon"
+    ],
+    "place": "front display"
+   },
+   {
+    "kind": "order",
+    "topic": "lens case restock",
+    "counterpart": "Daniel Osei",
+    "org": "OptiSupply",
+    "item": "contact-lens cases",
+    "unit": "packs",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "back storeroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "evening repair access",
+    "counterpart": "Ruth Ames",
+    "org": "Ames Electrical",
+    "item": "electrician visit",
+    "unit": "visit",
+    "values": [
+     "front display",
+     "Room 1",
+     "storeroom"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "order",
+    "topic": "appointment card print",
+    "counterpart": "Kim Sato",
+    "org": "Printwell",
+    "item": "appointment cards",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "front desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "Saturday driver for outreach",
+    "counterpart": "Tom Reyes",
+    "org": "Clearview Optometry",
+    "item": "practice car",
+    "unit": "vehicle",
+    "values": [
+     "car park bay 1",
+     "car park bay 2",
+     "side street bay"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "order",
+    "topic": "trial lens sanitiser",
+    "counterpart": "Daniel Osei",
+    "org": "OptiSupply",
+    "item": "sanitising wipes",
+    "unit": "tubs",
+    "values": [
+     "6",
+     "9",
+     "12"
+    ],
+    "place": "back storeroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "monthly window cleaning",
+    "counterpart": "Ana Ruiz",
+    "org": "BrightPane",
+    "item": "window clean",
+    "unit": "visit",
+    "values": [
+     "shopfront",
+     "front display",
+     "waiting area"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "order",
+    "topic": "frame repair screws",
+    "counterpart": "Owen Price",
+    "org": "Harbour Frames",
+    "item": "repair screw kits",
+    "unit": "kits",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "back storeroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "quiet room for phone triage",
+    "counterpart": "Priya Nair",
+    "org": "Clearview Optometry",
+    "item": "triage session",
+    "unit": "room",
+    "values": [
+     "Room 1",
+     "office nook",
+     "Room 2"
+    ],
+    "place": "Clearview Optometry"
+   }
+  ],
+  "id": "K500-4-04",
+  "tier": 500,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

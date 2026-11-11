@@ -1,0 +1,739 @@
+{
+ "id": "K500-4-02",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 4,
+ "idx": 1,
+ "setting": "Workshop foreman at Ironline Custom Fabrication, a metalworking shop",
+ "prompt_sha256": "d6e8eb986742c4ce7140a0a3b86c239a758e7b474c28230377934378d8b5584a",
+ "rounds": [
+  {
+   "text": "{\n \"title\": \"Ironline shop — standing rules restated\",\n \"setting\": \"Workshop foreman at Ironline Custom Fabrication, a metalworking shop\",\n \"owner\": \"Ray\",\n \"org\": \"Ironline Custom Fabrication\",\n \"now\": \"2026-10-14\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Shop safety policy reminder: any hot-work booking in Bay 2 needs a fire watch booked at least 24 hours ahead, and all grinding before 07:00 needs day-shift supervisor sign-off.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Tomas Reyes (Peak Industrial Supply)\", \"text\": \"Confirming our standing price for 25 mm mild steel plate: 1480 per pallet of 20 sheets, delivered to Ironline's receiving dock on Tuesdays.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Payroll note: overtime for shop floor staff must be approved in writing by Marta Voss before the hours are worked if it exceeds 10 hours per person per week.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering can deliver crew lunches to the Ironline break room any weekday for 11 per person, minimum 8 people, with 48 hours notice.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Henrik Dahl (Dahl Powder Coating)\", \"text\": \"Dahl Powder Coating confirms our turnaround for Ironline jobs: standard black powder coat, 5 working days from pickup; rush service in 2 working days for a 90 surcharge per batch.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"message\", \"from\": \"Lena Brooks (Northgate Properties)\", \"text\": \"Northgate Properties confirms Ironline's forklift service agreement: quarterly service visits booked two weeks ahead, weekday mornings only, service bay kept clear.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Ordered one pallet of 25 mm mild steel plate from Peak Industrial Supply at 1480 per pallet for delivery to the receiving dock on Tuesday 23 June.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Fairway Catering to deliver crew lunches for 12 people to the break room on Friday 26 June at 11 per person.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Sam Whitfield (Whitfield Haulage)\", \"text\": \"Whitfield Haulage can run flatbed pickups from Dahl Powder Coating to Ironline on weekday afternoons for 130 per run, booked one day ahead.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Scheduled the quarterly forklift service with Northgate Properties for the morning of Wednesday 8 July, with the service bay kept clear as agreed.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-25\", \"type\": \"note\", \"from\": \"Ray\", \"text\": \"Crew note: welder Pete Lindqvist finishes his certification renewal on 3 July; keep him off arc work until the card arrives.\", \"role\": \"fact\", \"ends\": \"2026-07-03\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Priya Nair (Nair Abrasives)\", \"text\": \"Nair Abrasives July price list: 125 mm flap discs at 3.40 each in boxes of 50, grinding wheels 2.10 each in boxes of 25, free delivery over 300.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Sent the first summer batch of 40 railing sections to Dahl Powder Coating for standard black powder coat at the 5-working-day turnaround, pickup Monday 6 July.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Whitfield Haulage for a flatbed run from Dahl Powder Coating on the afternoon of Friday 10 July at 130 to bring back the coated railing sections.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e13\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-09\", \"type\": \"minutes\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Toolbox talk minutes: crew reminded that Bay 2 hot work needs the fire watch booked a day ahead, and early grinding needs supervisor sign-off.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Tomas Reyes (Peak Industrial Supply)\", \"text\": \"Peak Industrial Supply summer notice: Tuesday dock deliveries continue through August; September schedule to follow.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Ordered two boxes of 125 mm flap discs and two boxes of grinding wheels from Nair Abrasives, total 296 with delivery charges since it is under the 300 free-delivery line.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering August note: weekday crew lunch deliveries to workshops continue at 11 per person, minimum 8 people.\", \"role\": \"echo\", \"distractor\": false},\n  {\"id\": \"e19\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Fairway Catering for crew lunches for 10 people to the break room on Friday 14 August at 11 per person.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Henrik Dahl (Dahl Powder Coating)\", \"text\": \"Dahl Powder Coating reminder: our standard black powder coat turnaround for Ironline jobs is 5 working days from pickup; rush is 2 working days at 90 per batch.\", \"role\": \"echo\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Sent the gate frame batch of 26 pieces to Dahl Powder Coating for standard black powder coat, pickup Thursday 20 August, expecting return after the 5-working-day turnaround.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Oskar Lund (Lund Safety Services)\", \"text\": \"Lund Safety Services can supply a certified fire watch for Bay 2 hot work at 220 per day, booked at least 24 hours ahead.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-01\", \"type\": \"email\", \"from\": \"Tomas Reyes (Peak Industrial Supply)\", \"text\": \"Peak Industrial Supply September schedule: Tuesday dock deliveries to Ironline continue unchanged through autumn at the standing pallet price of 1480.\", \"role\": \"distractor-note\", \"distractor\": true, \"role_note\": \"\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Lund Safety Services for a certified fire watch in Bay 2 on Thursday 10 September at 220 for the railing weld-out, arranged the day before as required.\", \"role\": \"decision\", \"rests_on\": [\"e22\", \"e1\"], \"record\": \"EV-5\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-10\", \"type\": \"call\", \"from\": \"Ray\", \"text\": \"Call log: confirmed with Sam Whitfield that the Friday afternoon flatbed slot pattern from Dahl Powder Coating still works for autumn batches.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Scheduled the autumn quarterly forklift service with Northgate Properties for the morning of Wednesday 7 October, service bay kept clear.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-6\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-21\", \"type\": \"email\", \"from\": \"Priya Nair (Nair Abrasives)\", \"text\": \"Nair Abrasives autumn list: 125 mm flap discs still 3.40 each in boxes of 50, grinding wheels 2.10 each, free delivery over 300.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-09-28\", \"type\": \"policy\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Policy restatement for the noticeboard: before any hot work runs in Bay 2, a certified fire watch must be on the rota at least a full day in advance, and no grinding may start before 07:00 unless the day-shift supervisor has signed it off. This is the same standing safety arrangement as before, just rewritten for the new board.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Whitfield Haulage for a flatbed run from Dahl Powder Coating on the afternoon of Friday 16 October at 130 to collect the autumn bracket batch.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-7\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Henrik Dahl (Dahl Powder Coating)\", \"text\": \"Dahl Powder Coating confirms the autumn bracket batch of 30 pieces is booked in for standard black powder coat, pickup Wednesday 7 October, return after 5 working days.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Lena Brooks (Northgate Properties)\", \"text\": \"Northgate Properties confirms the forklift service on the morning of Wednesday 7 October went ahead as booked; next quarterly visit to be scheduled two weeks ahead.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering checking in: any crew lunch orders for late October? Same terms, 11 per person, minimum 8, 48 hours notice.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Steel plate pallet — Peak Industrial Supply\", \"fields\": {\"supplier\": \"Peak Industrial Supply\", \"item\": \"25 mm mild steel plate\", \"qty\": \"1 pallet\", \"amount\": \"1480\", \"delivery\": \"2026-06-23\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Crew lunch 26 June — Fairway Catering\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-06-26\", \"people\": \"12\", \"per_person\": \"11\", \"place\": \"break room\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Abrasives restock — Nair Abrasives\", \"fields\": {\"supplier\": \"Nair Abrasives\", \"item\": \"flap discs and grinding wheels\", \"qty\": \"4 boxes\", \"amount\": \"296\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Crew lunch 14 August — Fairway Catering\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-08-14\", \"people\": \"10\", \"per_person\": \"11\", \"place\": \"break room\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Forklift service — July\", \"fields\": {\"date\": \"2026-07-08\", \"time\": \"08:00\", \"provider\": \"Northgate Properties\", \"place\": \"service bay\", \"status\": \"done\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Powder coat batch — railings\", \"fields\": {\"provider\": \"Dahl Powder Coating\", \"pieces\": \"40\", \"pickup\": \"2026-07-06\", \"turnaround\": \"5 working days\", \"status\": \"done\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Flatbed run 10 July — Whitfield Haulage\", \"fields\": {\"provider\": \"Whitfield Haulage\", \"date\": \"2026-07-10\", \"time\": \"15:00\", \"route\": \"Dahl Powder Coating to Ironline\", \"amount\": \"130\", \"status\": \"done\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Powder coat batch — gate frames\", \"fields\": {\"provider\": \"Dahl Powder Coating\", \"pieces\": \"26\", \"pickup\": \"2026-08-20\", \"turnaround\": \"5 working days\", \"status\": \"done\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Fire watch 10 September — Lund Safety Services\", \"fields\": {\"provider\": \"Lund Safety Services\", \"date\": \"2026-09-10\", \"place\": \"Bay 2\", \"amount\": \"220\", \"status\": \"done\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Forklift service — October\", \"fields\": {\"date\": \"2026-10-07\", \"time\": \"08:00\", \"provider\": \"Northgate Properties\", \"place\": \"service bay\", \"status\": \"done\"}},\n  {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Flatbed run 16 October — Whitfield Haulage\", \"fields\": {\"provider\": \"Whitfield Haulage\", \"date\": \"2026-10-16\", \"time\": \"15:00\", \"route\": \"Dahl Powder Coating to Ironline\", \"amount\": \"130\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-7\", \"fields\": [\"date\", \"time\"], \"from\": \"Sam Whitfield (Whitfield Haulage)\", \"rule\": \"e9\"}\n ],\n \"task\": \"Please book Fairway Catering to deliver crew lunches for 14 people to the break room this Friday 16 October, and send Dana a confirmation message with the headcount.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-10-16\", \"people\": \"14\", \"per_person\": \"11\", \"place\": \"break room\", \"status\": \"confirmed\"}, \"task\": true},\n  {\"message_to\": \"Dana Ortiz (Fairway Catering)\", \"regarding\": null, \"says\": [\"14\", \"2026-10-16\", \"break room\"], \"stale\": [\"12\", \"10\"], \"task\": true}\n ],\n \"why\": \"The change event e28 merely restates the standing Bay 2 safety rule in other words and revokes nothing, so no decision is touched and every existing record stays exactly as it is. The task is independent of it: book a new Fairway Catering crew lunch for 14 people on Friday 16 October at the standing 11-per-person terms, and message Dana with the headcount.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"steel plate restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Peak Industrial Supply\", \"item\": \"mild steel plate sheets\", \"unit\": \"pallet\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"order\", \"topic\": \"welding wire restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Peak Industrial Supply\", \"item\": \"MIG welding wire spools\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"order\", \"topic\": \"abrasives restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Nair Abrasives\", \"item\": \"flap discs\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"order\", \"topic\": \"grinding wheels restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Nair Abrasives\", \"item\": \"grinding wheels\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"booking\", \"topic\": \"crew lunch\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"crew lunch delivery\", \"unit\": \"order\", \"values\": [\"break room\", \"yard tent\", \"mezzanine\"], \"place\": \"break room\"},\n  {\"kind\": \"booking\", \"topic\": \"powder coat batch\", \"counterpart\": \"Henrik Dahl\", \"org\": \"Dahl Powder Coating\", \"item\": \"powder coat batch\", \"unit\": \"batch\", \"values\": [\"railing sections\", \"brackets\", \"gate frames\"], \"place\": \"loading yard\"},\n  {\"kind\": \"booking\", \"topic\": \"flatbed run\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Whitfield Haulage\", \"item\": \"flatbed pickup run\", \"unit\": \"run\", \"values\": [\"Dahl Powder Coating\", \"Peak Industrial Supply\", \"Nair Abrasives\"], \"place\": \"loading yard\"},\n  {\"kind\": \"booking\", \"topic\": \"fire watch cover\", \"counterpart\": \"Oskar Lund\", \"org\": \"Lund Safety Services\", \"item\": \"certified fire watch\", \"unit\": \"day\", \"values\": [\"Bay 2\", \"Bay 1\", \"welding annex\"], \"place\": \"Bay 2\"},\n  {\"kind\": \"booking\", \"topic\": \"forklift service\", \"counterpart\": \"Lena Brooks\", \"org\": \"Northgate Properties\", \"item\": \"forklift quarterly service\", \"unit\": \"visit\", \"values\": [\"service bay\", \"yard bay\", \"north bay\"], \"place\": \"service bay\"},\n  {\"kind\": \"order\", \"topic\": \"gas bottle exchange\", \"counterpart\": \"Kurt Malm\", \"org\": \"Malm Industrial Gases\", \"item\": \"argon bottles\", \"unit\": \"bottle\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"gas cage\"},\n  {\"kind\": \"booking\", \"topic\": \"skip collection\", \"counterpart\": \"Vera Falk\", \"org\": \"Falk Recycling\", \"item\": \"scrap metal skip swap\", \"unit\": \"swap\", \"values\": [\"yard corner\", \"gate lane\", \"south fence\"], \"place\": \"loading yard\"},\n  {\"kind\": \"order\", \"topic\": \"consumables restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Peak Industrial Supply\", \"item\": \"cutting tips and nozzles\", \"unit\": \"set\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"receiving dock\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3249,
+    "completion_tokens": 4917,
+    "reasoning_tokens": 43,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0752076,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "{\n \"title\": \"Ironline shop — standing rules restated\",\n \"setting\": \"Workshop foreman at Ironline Custom Fabrication, a metalworking shop\",\n \"owner\": \"Ray\",\n \"org\": \"Ironline Custom Fabrication\",\n \"now\": \"2026-10-14\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Shop safety policy reminder: any hot-work booking in Bay 2 needs a fire watch booked at least 24 hours ahead, and all grinding before 07:00 needs day-shift supervisor sign-off.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Tomas Reyes (Peak Industrial Supply)\", \"text\": \"Confirming our standing price for 25 mm mild steel plate: 1480 per pallet of 20 sheets, delivered to Ironline's receiving dock on Tuesdays.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Payroll note: overtime for shop floor staff must be approved in writing by Marta Voss before the hours are worked if it exceeds 10 hours per person per week.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering can deliver crew lunches to the Ironline break room any weekday for 11 per person, minimum 8 people, with 48 hours notice.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Henrik Dahl (Dahl Powder Coating)\", \"text\": \"Dahl Powder Coating confirms our turnaround for Ironline jobs: standard black powder coat, 5 working days from pickup; rush service in 2 working days for a 90 surcharge per batch.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"message\", \"from\": \"Lena Brooks (Northgate Properties)\", \"text\": \"Northgate Properties confirms Ironline's forklift service agreement: quarterly service visits booked two weeks ahead, weekday mornings only, service bay kept clear.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Ordered one pallet of 25 mm mild steel plate from Peak Industrial Supply at 1480 per pallet for delivery to the receiving dock on Tuesday 23 June.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Fairway Catering to deliver crew lunches for 12 people to the break room on Friday 26 June at 11 per person.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Sam Whitfield (Whitfield Haulage)\", \"text\": \"Whitfield Haulage can run flatbed pickups from Dahl Powder Coating to Ironline on weekday afternoons for 130 per run, booked one day ahead.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Scheduled the quarterly forklift service with Northgate Properties for the morning of Wednesday 8 July, with the service bay kept clear as agreed.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-25\", \"type\": \"note\", \"from\": \"Ray\", \"text\": \"Crew note: welder Pete Lindqvist finishes his certification renewal on 3 July; keep him off arc work until the card arrives.\", \"role\": \"fact\", \"ends\": \"2026-07-03\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Priya Nair (Nair Abrasives)\", \"text\": \"Nair Abrasives July price list: 125 mm flap discs at 3.40 each in boxes of 50, grinding wheels 2.10 each in boxes of 25, free delivery over 300.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Sent the first summer batch of 40 railing sections to Dahl Powder Coating for standard black powder coat at the 5-working-day turnaround, pickup Monday 6 July.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Whitfield Haulage for a flatbed run from Dahl Powder Coating on the afternoon of Friday 10 July at 130 to bring back the coated railing sections.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e13\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-09\", \"type\": \"minutes\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Toolbox talk minutes: crew reminded that Bay 2 hot work needs the fire watch booked a day ahead, and early grinding needs supervisor sign-off.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Tomas Reyes (Peak Industrial Supply)\", \"text\": \"Peak Industrial Supply summer notice: Tuesday dock deliveries continue through August; September schedule to follow.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Ordered two boxes of 125 mm flap discs and two boxes of grinding wheels from Nair Abrasives, total 296 with delivery charges since it is under the 300 free-delivery line.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering August note: weekday crew lunch deliveries to workshops continue at 11 per person, minimum 8 people.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Fairway Catering for crew lunches for 10 people to the break room on Friday 14 August at 11 per person.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Henrik Dahl (Dahl Powder Coating)\", \"text\": \"Dahl Powder Coating reminder: our standard black powder coat turnaround for Ironline jobs is 5 working days from pickup; rush is 2 working days at 90 per batch.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Sent the gate frame batch of 26 pieces to Dahl Powder Coating for standard black powder coat, pickup Thursday 20 August, expecting return after the 5-working-day turnaround.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Oskar Lund (Lund Safety Services)\", \"text\": \"Lund Safety Services can supply a certified fire watch for Bay 2 hot work at 220 per day, booked at least 24 hours ahead.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-01\", \"type\": \"email\", \"from\": \"Tomas Reyes (Peak Industrial Supply)\", \"text\": \"Peak Industrial Supply September schedule: Tuesday dock deliveries to Ironline continue unchanged through autumn at the standing pallet price of 1480.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Lund Safety Services for a certified fire watch in Bay 2 on Thursday 10 September at 220 for the railing weld-out, arranged the day before as required.\", \"role\": \"decision\", \"rests_on\": [\"e22\", \"e1\"], \"record\": \"EV-5\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-10\", \"type\": \"call\", \"from\": \"Ray\", \"text\": \"Call log: confirmed with Sam Whitfield that the Friday afternoon flatbed slot pattern from Dahl Powder Coating still works for autumn batches.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Scheduled the autumn quarterly forklift service with Northgate Properties for the morning of Wednesday 7 October, service bay kept clear.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-6\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-21\", \"type\": \"email\", \"from\": \"Priya Nair (Nair Abrasives)\", \"text\": \"Nair Abrasives autumn list: 125 mm flap discs still 3.40 each in boxes of 50, grinding wheels 2.10 each, free delivery over 300.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-09-28\", \"type\": \"policy\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Policy restatement for the noticeboard: before any hot work runs in Bay 2, a certified fire watch must be on the rota at least a full day in advance, and no grinding may start before 07:00 unless the day-shift supervisor has signed it off. This is the same standing safety arrangement as before, just rewritten for the new board.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Whitfield Haulage for a flatbed run from Dahl Powder Coating on the afternoon of Friday 16 October at 130 to collect the autumn bracket batch.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-7\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Henrik Dahl (Dahl Powder Coating)\", \"text\": \"Dahl Powder Coating confirms the autumn bracket batch of 30 pieces is booked in for standard black powder coat, pickup Wednesday 7 October, return after 5 working days.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Lena Brooks (Northgate Properties)\", \"text\": \"Northgate Properties confirms the forklift service on the morning of Wednesday 7 October went ahead as booked; next quarterly visit to be scheduled two weeks ahead.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering checking in: any crew lunch orders for late October? Same terms, 11 per person, minimum 8, 48 hours notice.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Steel plate pallet — Peak Industrial Supply\", \"fields\": {\"supplier\": \"Peak Industrial Supply\", \"item\": \"25 mm mild steel plate\", \"qty\": \"1 pallet\", \"amount\": \"1480\", \"delivery\": \"2026-06-23\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Crew lunch 26 June — Fairway Catering\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-06-26\", \"people\": \"12\", \"per_person\": \"11\", \"place\": \"break room\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Abrasives restock — Nair Abrasives\", \"fields\": {\"supplier\": \"Nair Abrasives\", \"item\": \"flap discs and grinding wheels\", \"qty\": \"4 boxes\", \"amount\": \"296\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Crew lunch 14 August — Fairway Catering\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-08-14\", \"people\": \"10\", \"per_person\": \"11\", \"place\": \"break room\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Forklift service — July\", \"fields\": {\"date\": \"2026-07-08\", \"time\": \"08:00\", \"provider\": \"Northgate Properties\", \"place\": \"service bay\", \"status\": \"done\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Powder coat batch — railings\", \"fields\": {\"provider\": \"Dahl Powder Coating\", \"pieces\": \"40\", \"pickup\": \"2026-07-06\", \"turnaround\": \"5 working days\", \"status\": \"done\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Flatbed run 10 July — Whitfield Haulage\", \"fields\": {\"provider\": \"Whitfield Haulage\", \"date\": \"2026-07-10\", \"time\": \"15:00\", \"route\": \"Dahl Powder Coating to Ironline\", \"amount\": \"130\", \"status\": \"done\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Powder coat batch — gate frames\", \"fields\": {\"provider\": \"Dahl Powder Coating\", \"pieces\": \"26\", \"pickup\": \"2026-08-20\", \"turnaround\": \"5 working days\", \"status\": \"done\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Fire watch 10 September — Lund Safety Services\", \"fields\": {\"provider\": \"Lund Safety Services\", \"date\": \"2026-09-10\", \"place\": \"Bay 2\", \"amount\": \"220\", \"status\": \"done\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Forklift service — October\", \"fields\": {\"date\": \"2026-10-07\", \"time\": \"08:00\", \"provider\": \"Northgate Properties\", \"place\": \"service bay\", \"status\": \"done\"}},\n  {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Flatbed run 16 October — Whitfield Haulage\", \"fields\": {\"provider\": \"Whitfield Haulage\", \"date\": \"2026-10-16\", \"time\": \"15:00\", \"route\": \"Dahl Powder Coating to Ironline\", \"amount\": \"130\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-7\", \"fields\": [\"date\", \"time\"], \"from\": \"Sam Whitfield (Whitfield Haulage)\", \"rule\": \"e9\"}\n ],\n \"task\": \"Please book Fairway Catering to deliver crew lunches for 14 people to the break room this Friday 16 October, and send Dana a confirmation message with the headcount.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-10-16\", \"people\": \"14\", \"per_person\": \"11\", \"place\": \"break room\", \"status\": \"confirmed\"}, \"task\": true},\n  {\"message_to\": \"Dana Ortiz (Fairway Catering)\", \"regarding\": null, \"says\": [\"14\", \"2026-10-16\", \"break room\"], \"stale\": [\"12\", \"10\"], \"task\": true}\n ],\n \"why\": \"The change event e28 merely restates the standing Bay 2 safety rule in other words and revokes nothing, so no decision is touched and every existing record stays exactly as it is. The task is independent of it: book a new Fairway Catering crew lunch for 14 people on Friday 16 October at the standing 11-per-person terms, and message Dana with the headcount.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"steel plate restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Peak Industrial Supply\", \"item\": \"mild steel plate sheets\", \"unit\": \"pallet\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"order\", \"topic\": \"welding wire restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Peak Industrial Supply\", \"item\": \"MIG welding wire spools\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"order\", \"topic\": \"abrasives restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Nair Abrasives\", \"item\": \"flap discs\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"order\", \"topic\": \"grinding wheels restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Nair Abrasives\", \"item\": \"grinding wheels\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"booking\", \"topic\": \"crew lunch\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"crew lunch delivery\", \"unit\": \"order\", \"values\": [\"break room\", \"yard tent\", \"mezzanine\"], \"place\": \"break room\"},\n  {\"kind\": \"booking\", \"topic\": \"powder coat batch\", \"counterpart\": \"Henrik Dahl\", \"org\": \"Dahl Powder Coating\", \"item\": \"powder coat batch\", \"unit\": \"batch\", \"values\": [\"railing sections\", \"brackets\", \"gate frames\"], \"place\": \"loading yard\"},\n  {\"kind\": \"booking\", \"topic\": \"flatbed run\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Whitfield Haulage\", \"item\": \"flatbed pickup run\", \"unit\": \"run\", \"values\": [\"Dahl Powder Coating\", \"Peak Industrial Supply\", \"Nair Abrasives\"], \"place\": \"loading yard\"},\n  {\"kind\": \"booking\", \"topic\": \"fire watch cover\", \"counterpart\": \"Oskar Lund\", \"org\": \"Lund Safety Services\", \"item\": \"certified fire watch\", \"unit\": \"day\", \"values\": [\"Bay 2\", \"Bay 1\", \"welding annex\"], \"place\": \"Bay 2\"},\n  {\"kind\": \"booking\", \"topic\": \"forklift service\", \"counterpart\": \"Lena Brooks\", \"org\": \"Northgate Properties\", \"item\": \"forklift quarterly service\", \"unit\": \"visit\", \"values\": [\"service bay\", \"yard bay\", \"north bay\"], \"place\": \"service bay\"},\n  {\"kind\": \"order\", \"topic\": \"gas bottle exchange\", \"counterpart\": \"Kurt Malm\", \"org\": \"Malm Industrial Gases\", \"item\": \"argon bottles\", \"unit\": \"bottle\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"gas cage\"},\n  {\"kind\": \"booking\", \"topic\": \"skip collection\", \"counterpart\": \"Vera Falk\", \"org\": \"Falk Recycling\", \"item\": \"scrap metal skip swap\", \"unit\": \"swap\", \"values\": [\"yard corner\", \"gate lane\", \"south fence\"], \"place\": \"loading yard\"},\n  {\"kind\": \"order\", \"topic\": \"consumables restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Peak Industrial Supply\", \"item\": \"cutting tips and nozzles\", \"unit\": \"set\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"receiving dock\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 8230,
+    "completion_tokens": 4875,
+    "reasoning_tokens": 17,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0895206,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e18: role «echo» not in ['change', 'decision', 'fact', 'obligation', 'other', 'rule']\n- e20: role «echo» not in ['change', 'decision', 'fact', 'obligation', 'other', 'rule']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "{\n \"title\": \"Ironline shop — standing rules restated\",\n \"setting\": \"Workshop foreman at Ironline Custom Fabrication, a metalworking shop\",\n \"owner\": \"Ray\",\n \"org\": \"Ironline Custom Fabrication\",\n \"now\": \"2026-10-14\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Shop safety policy reminder: any hot-work booking in Bay 2 needs a fire watch booked at least 24 hours ahead, and all grinding before 07:00 needs day-shift supervisor sign-off.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Tomas Reyes (Peak Industrial Supply)\", \"text\": \"Confirming our standing price for 25 mm mild steel plate: 1480 per pallet of 20 sheets, delivered to Ironline's receiving dock on Tuesdays.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Payroll note: overtime for shop floor staff must be approved in writing by Marta Voss before the hours are worked if it exceeds 10 hours per person per week.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering can deliver crew lunches to the Ironline break room any weekday for 11 per person, minimum 8 people, with 48 hours notice.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Henrik Dahl (Dahl Powder Coating)\", \"text\": \"Dahl Powder Coating confirms our turnaround for Ironline jobs: standard black powder coat, 5 working days from pickup; rush service in 2 working days for a 90 surcharge per batch.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"message\", \"from\": \"Lena Brooks (Northgate Properties)\", \"text\": \"Northgate Properties confirms Ironline's forklift service agreement: quarterly service visits booked two weeks ahead, weekday mornings only, service bay kept clear.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Ordered one pallet of 25 mm mild steel plate from Peak Industrial Supply at 1480 per pallet for delivery to the receiving dock on Tuesday 23 June.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Fairway Catering to deliver crew lunches for 12 people to the break room on Friday 26 June at 11 per person.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Sam Whitfield (Whitfield Haulage)\", \"text\": \"Whitfield Haulage can run flatbed pickups from Dahl Powder Coating to Ironline on weekday afternoons for 130 per run, booked one day ahead.\", \"role\": \"fact\"},\n  {\"id\": \"e33\", \"date\": \"2026-06-19\", \"type\": \"instruction\", \"from\": \"Sam Whitfield (Whitfield Haulage)\", \"text\": \"Booking terms from Whitfield Haulage: once a flatbed run is confirmed with us, the date or time can only be moved if Sam Whitfield agrees to the new slot in advance.\", \"role\": \"rule\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Scheduled the quarterly forklift service with Northgate Properties for the morning of Wednesday 8 July, with the service bay kept clear as agreed.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-25\", \"type\": \"note\", \"from\": \"Ray\", \"text\": \"Crew note: welder Pete Lindqvist finishes his certification renewal on 3 July; keep him off arc work until the card arrives.\", \"role\": \"fact\", \"ends\": \"2026-07-03\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Priya Nair (Nair Abrasives)\", \"text\": \"Nair Abrasives July price list: 125 mm flap discs at 3.40 each in boxes of 50, grinding wheels 2.10 each in boxes of 25, free delivery over 300.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Sent the first summer batch of 40 railing sections to Dahl Powder Coating for standard black powder coat at the 5-working-day turnaround, pickup Monday 6 July.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Whitfield Haulage for a flatbed run from Dahl Powder Coating on the afternoon of Friday 10 July at 130 to bring back the coated railing sections.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e13\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-09\", \"type\": \"minutes\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Toolbox talk minutes: crew reminded that Bay 2 hot work needs the fire watch booked a day ahead, and early grinding needs supervisor sign-off.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Tomas Reyes (Peak Industrial Supply)\", \"text\": \"Peak Industrial Supply summer notice: Tuesday dock deliveries continue through August; September schedule to follow.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Ordered two boxes of 125 mm flap discs and two boxes of grinding wheels from Nair Abrasives, total 296 with delivery charges since it is under the 300 free-delivery line.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering August note: weekday crew lunch deliveries to workshops continue at 11 per person, minimum 8 people.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Fairway Catering for crew lunches for 10 people to the break room on Friday 14 August at 11 per person.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Henrik Dahl (Dahl Powder Coating)\", \"text\": \"Dahl Powder Coating reminder: our standard black powder coat turnaround for Ironline jobs is 5 working days from pickup; rush is 2 working days at 90 per batch.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Sent the gate frame batch of 26 pieces to Dahl Powder Coating for standard black powder coat, pickup Thursday 20 August, expecting return after the 5-working-day turnaround.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Oskar Lund (Lund Safety Services)\", \"text\": \"Lund Safety Services can supply a certified fire watch for Bay 2 hot work at 220 per day, booked at least 24 hours ahead.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-01\", \"type\": \"email\", \"from\": \"Tomas Reyes (Peak Industrial Supply)\", \"text\": \"Peak Industrial Supply September schedule: Tuesday dock deliveries to Ironline continue unchanged through autumn at the standing pallet price of 1480.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Lund Safety Services for a certified fire watch in Bay 2 on Thursday 10 September at 220 for the railing weld-out, arranged the day before as required.\", \"role\": \"decision\", \"rests_on\": [\"e22\", \"e1\"], \"record\": \"EV-5\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-10\", \"type\": \"call\", \"from\": \"Ray\", \"text\": \"Call log: confirmed with Sam Whitfield that the Friday afternoon flatbed slot pattern from Dahl Powder Coating still works for autumn batches.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Scheduled the autumn quarterly forklift service with Northgate Properties for the morning of Wednesday 7 October, service bay kept clear.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-6\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-21\", \"type\": \"email\", \"from\": \"Priya Nair (Nair Abrasives)\", \"text\": \"Nair Abrasives autumn list: 125 mm flap discs still 3.40 each in boxes of 50, grinding wheels 2.10 each, free delivery over 300.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-09-28\", \"type\": \"policy\", \"from\": \"Marta Voss (Ironline Custom Fabrication, HR)\", \"text\": \"Policy restatement for the noticeboard: before any hot work runs in Bay 2, a certified fire watch must be on the rota at least a full day in advance, and no grinding may start before 07:00 unless the day-shift supervisor has signed it off. This is the same standing safety arrangement as before, just rewritten for the new board.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Ray\", \"text\": \"Booked Whitfield Haulage for a flatbed run from Dahl Powder Coating on the afternoon of Friday 16 October at 130 to collect the autumn bracket batch.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-7\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Henrik Dahl (Dahl Powder Coating)\", \"text\": \"Dahl Powder Coating confirms the autumn bracket batch of 30 pieces is booked in for standard black powder coat, pickup Wednesday 7 October, return after 5 working days.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Lena Brooks (Northgate Properties)\", \"text\": \"Northgate Properties confirms the forklift service on the morning of Wednesday 7 October went ahead as booked; next quarterly visit to be scheduled two weeks ahead.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering checking in: any crew lunch orders for late October? Same terms, 11 per person, minimum 8, 48 hours notice.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Steel plate pallet — Peak Industrial Supply\", \"fields\": {\"supplier\": \"Peak Industrial Supply\", \"item\": \"25 mm mild steel plate\", \"qty\": \"1 pallet\", \"amount\": \"1480\", \"delivery\": \"2026-06-23\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Crew lunch 26 June — Fairway Catering\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-06-26\", \"people\": \"12\", \"per_person\": \"11\", \"place\": \"break room\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Abrasives restock — Nair Abrasives\", \"fields\": {\"supplier\": \"Nair Abrasives\", \"item\": \"flap discs and grinding wheels\", \"qty\": \"4 boxes\", \"amount\": \"296\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Crew lunch 14 August — Fairway Catering\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-08-14\", \"people\": \"10\", \"per_person\": \"11\", \"place\": \"break room\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Forklift service — July\", \"fields\": {\"date\": \"2026-07-08\", \"time\": \"08:00\", \"provider\": \"Northgate Properties\", \"place\": \"service bay\", \"status\": \"done\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Powder coat batch — railings\", \"fields\": {\"provider\": \"Dahl Powder Coating\", \"pieces\": \"40\", \"pickup\": \"2026-07-06\", \"turnaround\": \"5 working days\", \"status\": \"done\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Flatbed run 10 July — Whitfield Haulage\", \"fields\": {\"provider\": \"Whitfield Haulage\", \"date\": \"2026-07-10\", \"time\": \"15:00\", \"route\": \"Dahl Powder Coating to Ironline\", \"amount\": \"130\", \"status\": \"done\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Powder coat batch — gate frames\", \"fields\": {\"provider\": \"Dahl Powder Coating\", \"pieces\": \"26\", \"pickup\": \"2026-08-20\", \"turnaround\": \"5 working days\", \"status\": \"done\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Fire watch 10 September — Lund Safety Services\", \"fields\": {\"provider\": \"Lund Safety Services\", \"date\": \"2026-09-10\", \"place\": \"Bay 2\", \"amount\": \"220\", \"status\": \"done\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Forklift service — October\", \"fields\": {\"date\": \"2026-10-07\", \"time\": \"08:00\", \"provider\": \"Northgate Properties\", \"place\": \"service bay\", \"status\": \"done\"}},\n  {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Flatbed run 16 October — Whitfield Haulage\", \"fields\": {\"provider\": \"Whitfield Haulage\", \"date\": \"2026-10-16\", \"time\": \"15:00\", \"route\": \"Dahl Powder Coating to Ironline\", \"amount\": \"130\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-7\", \"fields\": [\"date\", \"time\"], \"from\": \"Sam Whitfield (Whitfield Haulage)\", \"rule\": \"e33\"}\n ],\n \"task\": \"Please book Fairway Catering to deliver crew lunches for 14 people to the break room this Friday 16 October, and send Dana a confirmation message with the headcount.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-10-16\", \"people\": \"14\", \"per_person\": \"11\", \"place\": \"break room\", \"status\": \"confirmed\"}, \"task\": true},\n  {\"message_to\": \"Dana Ortiz (Fairway Catering)\", \"regarding\": null, \"says\": [\"14\", \"2026-10-16\", \"break room\"], \"stale\": [\"12\", \"10\"], \"task\": true}\n ],\n \"why\": \"The change event e28 merely restates the standing Bay 2 safety rule in other words and revokes nothing, so no decision is touched and every existing record stays exactly as it is. The task is independent of it: book a new Fairway Catering crew lunch for 14 people on Friday 16 October at the standing 11-per-person terms, and message Dana with the headcount.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"steel plate restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Peak Industrial Supply\", \"item\": \"mild steel plate sheets\", \"unit\": \"pallet\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"order\", \"topic\": \"welding wire restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Peak Industrial Supply\", \"item\": \"MIG welding wire spools\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"order\", \"topic\": \"abrasives restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Nair Abrasives\", \"item\": \"flap discs\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"order\", \"topic\": \"grinding wheels restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Nair Abrasives\", \"item\": \"grinding wheels\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"receiving dock\"},\n  {\"kind\": \"booking\", \"topic\": \"crew lunch\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"crew lunch delivery\", \"unit\": \"order\", \"values\": [\"break room\", \"yard tent\", \"mezzanine\"], \"place\": \"break room\"},\n  {\"kind\": \"booking\", \"topic\": \"powder coat batch\", \"counterpart\": \"Henrik Dahl\", \"org\": \"Dahl Powder Coating\", \"item\": \"powder coat batch\", \"unit\": \"batch\", \"values\": [\"railing sections\", \"brackets\", \"gate frames\"], \"place\": \"loading yard\"},\n  {\"kind\": \"booking\", \"topic\": \"flatbed run\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Whitfield Haulage\", \"item\": \"flatbed pickup run\", \"unit\": \"run\", \"values\": [\"Dahl Powder Coating\", \"Peak Industrial Supply\", \"Nair Abrasives\"], \"place\": \"loading yard\"},\n  {\"kind\": \"booking\", \"topic\": \"fire watch cover\", \"counterpart\": \"Oskar Lund\", \"org\": \"Lund Safety Services\", \"item\": \"certified fire watch\", \"unit\": \"day\", \"values\": [\"Bay 2\", \"Bay 1\", \"welding annex\"], \"place\": \"Bay 2\"},\n  {\"kind\": \"booking\", \"topic\": \"forklift service\", \"counterpart\": \"Lena Brooks\", \"org\": \"Northgate Properties\", \"item\": \"forklift quarterly service\", \"unit\": \"visit\", \"values\": [\"service bay\", \"yard bay\", \"north bay\"], \"place\": \"service bay\"},\n  {\"kind\": \"order\", \"topic\": \"gas bottle exchange\", \"counterpart\": \"Kurt Malm\", \"org\": \"Malm Industrial Gases\", \"item\": \"argon bottles\", \"unit\": \"bottle\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"gas cage\"},\n  {\"kind\": \"booking\", \"topic\": \"skip collection\", \"counterpart\": \"Vera Falk\", \"org\": \"Falk Recycling\", \"item\": \"scrap metal skip swap\", \"unit\": \"swap\", \"values\": [\"yard corner\", \"gate lane\", \"south fence\"], \"place\": \"loading yard\"},\n  {\"kind\": \"order\", \"topic\": \"consumables restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Peak Industrial Supply\", \"item\": \"cutting tips and nozzles\", \"unit\": \"set\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"receiving dock\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 13155,
+    "completion_tokens": 5078,
+    "reasoning_tokens": 132,
+    "cached_tokens": 8192
+   },
+   "cost": 0.0935166,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- consent on EV-7: «rule» must name the rule event that requires the consent\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Ironline shop — standing rules restated",
+  "setting": "Workshop foreman at Ironline Custom Fabrication, a metalworking shop",
+  "owner": "Ray",
+  "org": "Ironline Custom Fabrication",
+  "now": "2026-10-14",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta Voss (Ironline Custom Fabrication, HR)",
+    "text": "Shop safety policy reminder: any hot-work booking in Bay 2 needs a fire watch booked at least 24 hours ahead, and all grinding before 07:00 needs day-shift supervisor sign-off.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-04",
+    "type": "email",
+    "from": "Tomas Reyes (Peak Industrial Supply)",
+    "text": "Confirming our standing price for 25 mm mild steel plate: 1480 per pallet of 20 sheets, delivered to Ironline's receiving dock on Tuesdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Marta Voss (Ironline Custom Fabrication, HR)",
+    "text": "Payroll note: overtime for shop floor staff must be approved in writing by Marta Voss before the hours are worked if it exceeds 10 hours per person per week.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Fairway Catering can deliver crew lunches to the Ironline break room any weekday for 11 per person, minimum 8 people, with 48 hours notice.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Henrik Dahl (Dahl Powder Coating)",
+    "text": "Dahl Powder Coating confirms our turnaround for Ironline jobs: standard black powder coat, 5 working days from pickup; rush service in 2 working days for a 90 surcharge per batch.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "message",
+    "from": "Lena Brooks (Northgate Properties)",
+    "text": "Northgate Properties confirms Ironline's forklift service agreement: quarterly service visits booked two weeks ahead, weekday mornings only, service bay kept clear.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Ordered one pallet of 25 mm mild steel plate from Peak Industrial Supply at 1480 per pallet for delivery to the receiving dock on Tuesday 23 June.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Booked Fairway Catering to deliver crew lunches for 12 people to the break room on Friday 26 June at 11 per person.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Sam Whitfield (Whitfield Haulage)",
+    "text": "Whitfield Haulage can run flatbed pickups from Dahl Powder Coating to Ironline on weekday afternoons for 130 per run, booked one day ahead.",
+    "role": "fact"
+   },
+   {
+    "id": "e33",
+    "date": "2026-06-19",
+    "type": "instruction",
+    "from": "Sam Whitfield (Whitfield Haulage)",
+    "text": "Booking terms from Whitfield Haulage: once a flatbed run is confirmed with us, the date or time can only be moved if Sam Whitfield agrees to the new slot in advance.",
+    "role": "rule"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Scheduled the quarterly forklift service with Northgate Properties for the morning of Wednesday 8 July, with the service bay kept clear as agreed.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-25",
+    "type": "note",
+    "from": "Ray",
+    "text": "Crew note: welder Pete Lindqvist finishes his certification renewal on 3 July; keep him off arc work until the card arrives.",
+    "role": "fact",
+    "ends": "2026-07-03"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Priya Nair (Nair Abrasives)",
+    "text": "Nair Abrasives July price list: 125 mm flap discs at 3.40 each in boxes of 50, grinding wheels 2.10 each in boxes of 25, free delivery over 300.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Sent the first summer batch of 40 railing sections to Dahl Powder Coating for standard black powder coat at the 5-working-day turnaround, pickup Monday 6 July.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Booked Whitfield Haulage for a flatbed run from Dahl Powder Coating on the afternoon of Friday 10 July at 130 to bring back the coated railing sections.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e13"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-09",
+    "type": "minutes",
+    "from": "Marta Voss (Ironline Custom Fabrication, HR)",
+    "text": "Toolbox talk minutes: crew reminded that Bay 2 hot work needs the fire watch booked a day ahead, and early grinding needs supervisor sign-off.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Tomas Reyes (Peak Industrial Supply)",
+    "text": "Peak Industrial Supply summer notice: Tuesday dock deliveries continue through August; September schedule to follow.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Ordered two boxes of 125 mm flap discs and two boxes of grinding wheels from Nair Abrasives, total 296 with delivery charges since it is under the 300 free-delivery line.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-28",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Fairway Catering August note: weekday crew lunch deliveries to workshops continue at 11 per person, minimum 8 people.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Booked Fairway Catering for crew lunches for 10 people to the break room on Friday 14 August at 11 per person.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-11",
+    "type": "email",
+    "from": "Henrik Dahl (Dahl Powder Coating)",
+    "text": "Dahl Powder Coating reminder: our standard black powder coat turnaround for Ironline jobs is 5 working days from pickup; rush is 2 working days at 90 per batch.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-18",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Sent the gate frame batch of 26 pieces to Dahl Powder Coating for standard black powder coat, pickup Thursday 20 August, expecting return after the 5-working-day turnaround.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-25",
+    "type": "email",
+    "from": "Oskar Lund (Lund Safety Services)",
+    "text": "Lund Safety Services can supply a certified fire watch for Bay 2 hot work at 220 per day, booked at least 24 hours ahead.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-01",
+    "type": "email",
+    "from": "Tomas Reyes (Peak Industrial Supply)",
+    "text": "Peak Industrial Supply September schedule: Tuesday dock deliveries to Ironline continue unchanged through autumn at the standing pallet price of 1480.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-08",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Booked Lund Safety Services for a certified fire watch in Bay 2 on Thursday 10 September at 220 for the railing weld-out, arranged the day before as required.",
+    "role": "decision",
+    "rests_on": [
+     "e22",
+     "e1"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-10",
+    "type": "call",
+    "from": "Ray",
+    "text": "Call log: confirmed with Sam Whitfield that the Friday afternoon flatbed slot pattern from Dahl Powder Coating still works for autumn batches.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-15",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Scheduled the autumn quarterly forklift service with Northgate Properties for the morning of Wednesday 7 October, service bay kept clear.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-6"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-21",
+    "type": "email",
+    "from": "Priya Nair (Nair Abrasives)",
+    "text": "Nair Abrasives autumn list: 125 mm flap discs still 3.40 each in boxes of 50, grinding wheels 2.10 each, free delivery over 300.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-28",
+    "type": "policy",
+    "from": "Marta Voss (Ironline Custom Fabrication, HR)",
+    "text": "Policy restatement for the noticeboard: before any hot work runs in Bay 2, a certified fire watch must be on the rota at least a full day in advance, and no grinding may start before 07:00 unless the day-shift supervisor has signed it off. This is the same standing safety arrangement as before, just rewritten for the new board.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-01",
+    "type": "decision",
+    "from": "Ray",
+    "text": "Booked Whitfield Haulage for a flatbed run from Dahl Powder Coating on the afternoon of Friday 16 October at 130 to collect the autumn bracket batch.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-7"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Henrik Dahl (Dahl Powder Coating)",
+    "text": "Dahl Powder Coating confirms the autumn bracket batch of 30 pieces is booked in for standard black powder coat, pickup Wednesday 7 October, return after 5 working days.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-08",
+    "type": "notice",
+    "from": "Lena Brooks (Northgate Properties)",
+    "text": "Northgate Properties confirms the forklift service on the morning of Wednesday 7 October went ahead as booked; next quarterly visit to be scheduled two weeks ahead.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-12",
+    "type": "message",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Fairway Catering checking in: any crew lunch orders for late October? Same terms, 11 per person, minimum 8, 48 hours notice.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Steel plate pallet — Peak Industrial Supply",
+    "fields": {
+     "supplier": "Peak Industrial Supply",
+     "item": "25 mm mild steel plate",
+     "qty": "1 pallet",
+     "amount": "1480",
+     "delivery": "2026-06-23",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Crew lunch 26 June — Fairway Catering",
+    "fields": {
+     "supplier": "Fairway Catering",
+     "date": "2026-06-26",
+     "people": "12",
+     "per_person": "11",
+     "place": "break room",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Abrasives restock — Nair Abrasives",
+    "fields": {
+     "supplier": "Nair Abrasives",
+     "item": "flap discs and grinding wheels",
+     "qty": "4 boxes",
+     "amount": "296",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Crew lunch 14 August — Fairway Catering",
+    "fields": {
+     "supplier": "Fairway Catering",
+     "date": "2026-08-14",
+     "people": "10",
+     "per_person": "11",
+     "place": "break room",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Forklift service — July",
+    "fields": {
+     "date": "2026-07-08",
+     "time": "08:00",
+     "provider": "Northgate Properties",
+     "place": "service bay",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Powder coat batch — railings",
+    "fields": {
+     "provider": "Dahl Powder Coating",
+     "pieces": "40",
+     "pickup": "2026-07-06",
+     "turnaround": "5 working days",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Flatbed run 10 July — Whitfield Haulage",
+    "fields": {
+     "provider": "Whitfield Haulage",
+     "date": "2026-07-10",
+     "time": "15:00",
+     "route": "Dahl Powder Coating to Ironline",
+     "amount": "130",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Powder coat batch — gate frames",
+    "fields": {
+     "provider": "Dahl Powder Coating",
+     "pieces": "26",
+     "pickup": "2026-08-20",
+     "turnaround": "5 working days",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Fire watch 10 September — Lund Safety Services",
+    "fields": {
+     "provider": "Lund Safety Services",
+     "date": "2026-09-10",
+     "place": "Bay 2",
+     "amount": "220",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Forklift service — October",
+    "fields": {
+     "date": "2026-10-07",
+     "time": "08:00",
+     "provider": "Northgate Properties",
+     "place": "service bay",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-7",
+    "collection": "schedule",
+    "title": "Flatbed run 16 October — Whitfield Haulage",
+    "fields": {
+     "provider": "Whitfield Haulage",
+     "date": "2026-10-16",
+     "time": "15:00",
+     "route": "Dahl Powder Coating to Ironline",
+     "amount": "130",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-7",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Sam Whitfield (Whitfield Haulage)",
+    "rule": "e33"
+   }
+  ],
+  "task": "Please book Fairway Catering to deliver crew lunches for 14 people to the break room this Friday 16 October, and send Dana a confirmation message with the headcount.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Fairway Catering",
+     "date": "2026-10-16",
+     "people": "14",
+     "per_person": "11",
+     "place": "break room",
+     "status": "confirmed"
+    },
+    "task": true
+   },
+   {
+    "message_to": "Dana Ortiz (Fairway Catering)",
+    "regarding": null,
+    "says": [
+     "14",
+     "2026-10-16",
+     "break room"
+    ],
+    "stale": [
+     "12",
+     "10"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change event e28 merely restates the standing Bay 2 safety rule in other words and revokes nothing, so no decision is touched and every existing record stays exactly as it is. The task is independent of it: book a new Fairway Catering crew lunch for 14 people on Friday 16 October at the standing 11-per-person terms, and message Dana with the headcount.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "steel plate restock",
+    "counterpart": "Tomas Reyes",
+    "org": "Peak Industrial Supply",
+    "item": "mild steel plate sheets",
+    "unit": "pallet",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "receiving dock"
+   },
+   {
+    "kind": "order",
+    "topic": "welding wire restock",
+    "counterpart": "Tomas Reyes",
+    "org": "Peak Industrial Supply",
+    "item": "MIG welding wire spools",
+    "unit": "box",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "receiving dock"
+   },
+   {
+    "kind": "order",
+    "topic": "abrasives restock",
+    "counterpart": "Priya Nair",
+    "org": "Nair Abrasives",
+    "item": "flap discs",
+    "unit": "box",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "receiving dock"
+   },
+   {
+    "kind": "order",
+    "topic": "grinding wheels restock",
+    "counterpart": "Priya Nair",
+    "org": "Nair Abrasives",
+    "item": "grinding wheels",
+    "unit": "box",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "receiving dock"
+   },
+   {
+    "kind": "booking",
+    "topic": "crew lunch",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "crew lunch delivery",
+    "unit": "order",
+    "values": [
+     "break room",
+     "yard tent",
+     "mezzanine"
+    ],
+    "place": "break room"
+   },
+   {
+    "kind": "booking",
+    "topic": "powder coat batch",
+    "counterpart": "Henrik Dahl",
+    "org": "Dahl Powder Coating",
+    "item": "powder coat batch",
+    "unit": "batch",
+    "values": [
+     "railing sections",
+     "brackets",
+     "gate frames"
+    ],
+    "place": "loading yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "flatbed run",
+    "counterpart": "Sam Whitfield",
+    "org": "Whitfield Haulage",
+    "item": "flatbed pickup run",
+    "unit": "run",
+    "values": [
+     "Dahl Powder Coating",
+     "Peak Industrial Supply",
+     "Nair Abrasives"
+    ],
+    "place": "loading yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "fire watch cover",
+    "counterpart": "Oskar Lund",
+    "org": "Lund Safety Services",
+    "item": "certified fire watch",
+    "unit": "day",
+    "values": [
+     "Bay 2",
+     "Bay 1",
+     "welding annex"
+    ],
+    "place": "Bay 2"
+   },
+   {
+    "kind": "booking",
+    "topic": "forklift service",
+    "counterpart": "Lena Brooks",
+    "org": "Northgate Properties",
+    "item": "forklift quarterly service",
+    "unit": "visit",
+    "values": [
+     "service bay",
+     "yard bay",
+     "north bay"
+    ],
+    "place": "service bay"
+   },
+   {
+    "kind": "order",
+    "topic": "gas bottle exchange",
+    "counterpart": "Kurt Malm",
+    "org": "Malm Industrial Gases",
+    "item": "argon bottles",
+    "unit": "bottle",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "gas cage"
+   },
+   {
+    "kind": "booking",
+    "topic": "skip collection",
+    "counterpart": "Vera Falk",
+    "org": "Falk Recycling",
+    "item": "scrap metal skip swap",
+    "unit": "swap",
+    "values": [
+     "yard corner",
+     "gate lane",
+     "south fence"
+    ],
+    "place": "loading yard"
+   },
+   {
+    "kind": "order",
+    "topic": "consumables restock",
+    "counterpart": "Tomas Reyes",
+    "org": "Peak Industrial Supply",
+    "item": "cutting tips and nozzles",
+    "unit": "set",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "receiving dock"
+   }
+  ],
+  "id": "K500-4-02",
+  "tier": 500,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

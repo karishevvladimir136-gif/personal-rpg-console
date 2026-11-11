@@ -1,0 +1,686 @@
+{
+ "id": "K500-4-03",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 4,
+ "idx": 2,
+ "setting": "Studio manager at Solstice Yoga & Pilates Studio, a boutique fitness studio",
+ "prompt_sha256": "9c16ab103998b6b098006d8d554a2a2ab73abda3fbc5c0269dbdb573756c1480",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Solstice Studio — corrected open day flyer date\",\n \"setting\": \"Studio manager at Solstice Yoga & Pilates Studio, a boutique fitness studio\",\n \"owner\": \"Maya\",\n \"org\": \"Solstice Yoga & Pilates Studio\",\n \"now\": \"2026-10-15\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule at Solstice Yoga & Pilates Studio: any supplier order over 800 needs sign-off from our finance lead, Tomas Reyes, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule: a confirmed class booking in the Main Studio may not be moved or retimed without the agreement of the instructor leading that class.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Petra Lindqvist (PureForm Equipment)\", \"text\": \"Hello Maya, our current price for the ProGrip cork yoga mat is 34 each, and the studio bundle of 20 mats is 620. Delivery to Solstice takes five working days.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Instructor Lena Vogt\", \"text\": \"Hi Maya, confirming I can teach the Tuesday evening vinyasa class in the Main Studio at 18:30 through the autumn term.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Front Desk (Solstice)\", \"text\": \"The Garden Room holds 12 people comfortably for mat classes; the Main Studio holds 24.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Lena Vogt's Tuesday vinyasa class for 18:30 in the Main Studio, running every Tuesday through the autumn term.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"CleanWave Laundry\", \"text\": \"Maya, our weekly towel service for Solstice is 85 per week, collected Monday and returned Thursday.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up the weekly towel service with CleanWave Laundry at 85 per week, Monday collection and Thursday return.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Instructor Marco Bell\", \"text\": \"Maya, I can run a Saturday morning pilates reformer class at 09:00 in the Garden Room from July, maximum 6 clients.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled Marco Bell's Saturday pilates reformer class at 09:00 in the Garden Room, capped at 6 clients, starting in July.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e5\", \"e2\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Petra Lindqvist (PureForm Equipment)\", \"text\": \"Just a note that PureForm's resistance bands are 9 each and the small foam rollers are 15 each this quarter.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 30 ProGrip cork yoga mats from PureForm Equipment: 20 in the studio bundle at 620 plus 10 singles at 34 each, total 960. Tomas Reyes signed off since it is over 800.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Tomas Reyes (Finance)\", \"text\": \"Confirming I signed off the 960 mat order to PureForm Equipment yesterday; budget line is fine.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Marketing (Solstice)\", \"text\": \"The summer open day at Solstice is planned for Saturday 15 August, 10:00 to 14:00, free taster classes in the Main Studio. The flyer goes to print this week.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Instructor Lena Vogt\", \"text\": \"Maya, could we add a Thursday lunchtime gentle flow class at 12:15 in the Garden Room from September? I have the slot free.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Added Lena Vogt's Thursday gentle flow class at 12:15 in the Garden Room starting in September.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e5\", \"e2\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-28\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Staff meeting notes: front desk to keep 40 spare towels in stock, retail shelf to be restocked with resistance bands monthly, and the autumn workshop series to be priced at 25 per person.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 60 resistance bands from PureForm Equipment at 9 each, total 540, under the sign-off threshold so no finance approval needed.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Front Desk (Solstice)\", \"text\": \"Reminder: the summer open day flyer went to print yesterday with Saturday 15 August, 10:00 to 14:00 in the Main Studio.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"CleanWave Laundry\", \"text\": \"Maya, from October our weekly towel service rate rises to 92 per week; collection and return days stay the same.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Instructor Marco Bell\", \"text\": \"The Saturday reformer class is full every week; clients are asking for a second section.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Updated the CleanWave towel service record to the new weekly rate of 92 effective from October, same Monday collection and Thursday return.\", \"role\": \"decision\", \"rests_on\": [\"e20\", \"e8\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Member Services (Solstice)\", \"text\": \"September membership count is 214 active members; 38 of them hold reformer add-ons.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Main Studio for the autumn workshop series on Saturdays 3, 10 and 17 October, 15:00 to 17:00, priced at 25 per person as agreed in the staff meeting.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e5\"], \"record\": \"EV-4\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-19\", \"type\": \"email\", \"from\": \"Marketing (Solstice)\", \"text\": \"Correction about the summer open day flyer: the date we sent to print was wrong. The open day actually took place on Saturday 22 August, not Saturday 15 August. Nothing else on the flyer changes.\", \"role\": \"change\", \"revokes\": [\"e14\"]},\n  {\"id\": \"e26\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Petra Lindqvist (PureForm Equipment)\", \"text\": \"Maya, a heads-up: the ProGrip cork mat price moves to 36 each from 1 November; orders placed before then still get 34.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Instructor Lena Vogt\", \"text\": \"Confirming Tuesday vinyasa at 18:30 in the Main Studio is running well; attendance is steady at about 20.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Marketing (Solstice)\", \"text\": \"Thinking ahead: shall we pencil a winter open day for Saturday 24 January, 10:00 to 14:00 in the Main Studio? No print order yet.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e29\", \"date\": \"2026-10-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 20 foam rollers from PureForm Equipment at 15 each, total 300, no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"To-do: confirm final attendance numbers for the 17 October workshop by Friday 16 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Front Desk (Solstice)\", \"text\": \"The mat stock in the storeroom is down to 6 usable mats; several have worn surfaces.\", \"role\": \"fact\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Tomas Reyes (Finance)\", \"text\": \"Maya, just flagging October spend is tracking normally; nothing unusual to report.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tuesday vinyasa with Lena Vogt\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"18:30\", \"place\": \"Main Studio\", \"instructor\": \"Lena Vogt\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Saturday pilates reformer with Marco Bell\", \"fields\": {\"day\": \"Saturday\", \"time\": \"09:00\", \"place\": \"Garden Room\", \"instructor\": \"Marco Bell\", \"capacity\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Thursday gentle flow with Lena Vogt\", \"fields\": {\"day\": \"Thursday\", \"time\": \"12:15\", \"place\": \"Garden Room\", \"instructor\": \"Lena Vogt\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Autumn workshop series\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"15:00\", \"place\": \"Main Studio\", \"price\": \"25\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly towel service — CleanWave Laundry\", \"fields\": {\"supplier\": \"CleanWave Laundry\", \"item\": \"towel service\", \"rate\": \"92\", \"collection_day\": \"Monday\", \"return_day\": \"Thursday\", \"status\": \"active\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"ProGrip cork mats — PureForm Equipment\", \"fields\": {\"supplier\": \"PureForm Equipment\", \"item\": \"ProGrip cork yoga mat\", \"quantity\": \"30\", \"total\": \"960\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Resistance bands — PureForm Equipment\", \"fields\": {\"supplier\": \"PureForm Equipment\", \"item\": \"resistance band\", \"quantity\": \"60\", \"total\": \"540\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Foam rollers — PureForm Equipment\", \"fields\": {\"supplier\": \"PureForm Equipment\", \"item\": \"foam roller\", \"quantity\": \"20\", \"total\": \"300\", \"status\": \"delivered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"day\", \"time\"], \"from\": \"Lena Vogt\", \"rule\": \"e2\"},\n  {\"record\": \"EV-2\", \"fields\": [\"day\", \"time\"], \"from\": \"Marco Bell\", \"rule\": \"e2\"},\n  {\"record\": \"EV-3\", \"fields\": [\"day\", \"time\"], \"from\": \"Lena Vogt\", \"rule\": \"e2\"}\n ],\n \"task\": \"The storeroom mats are nearly gone. Please order 25 more ProGrip cork yoga mats from PureForm Equipment at the current price and have them delivered to the studio.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"PureForm Equipment\", \"item\": \"ProGrip cork yoga mat\", \"quantity\": \"25\", \"total\": \"850\"}, \"stale\": {\"total\": [\"900\"], \"quantity\": [\"30\"]}, \"task\": true}\n ],\n \"why\": \"The only change corrects the August open day flyer date, an event no decision rests on, so no decision is marked and all existing records stay exactly as they are. The task is a fresh order: 25 mats at the current 34 each gives 850, which is above 800 — but the owner explicitly instructs the order now, so the scored state is the created order at 850; the wrong value would be 900 (25 at the November price of 36, which is not yet in force).\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"towel stock top-up\", \"counterpart\": \"Ana Costa\", \"org\": \"CleanWave Laundry\", \"item\": \"hand towel\", \"unit\": \"piece\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Front Desk\"},\n  {\"kind\": \"order\", \"topic\": \"mat cleaner refill\", \"counterpart\": \"Petra Lindqvist\", \"org\": \"PureForm Equipment\", \"item\": \"mat cleaning spray\", \"unit\": \"bottle\", \"values\": [\"6\", \"8\", \"12\", \"15\"], \"place\": \"Storeroom\"},\n  {\"kind\": \"order\", \"topic\": \"resistance band restock\", \"counterpart\": \"Petra Lindqvist\", \"org\": \"PureForm Equipment\", \"item\": \"resistance band\", \"unit\": \"piece\", \"values\": [\"10\", \"20\", \"30\", \"45\"], \"place\": \"Retail Shelf\"},\n  {\"kind\": \"order\", \"topic\": \"water bottle restock\", \"counterpart\": \"Jonas Feld\", \"org\": \"ClearSpring Supplies\", \"item\": \"branded water bottle\", \"unit\": \"piece\", \"values\": [\"24\", \"36\", \"48\"], \"place\": \"Retail Shelf\"},\n  {\"kind\": \"order\", \"topic\": \"herbal tea supply\", \"counterpart\": \"Sofia Marchetti\", \"org\": \"Leaf & Stem Teas\", \"item\": \"herbal tea box\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Reception Kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"staff rota meeting\", \"counterpart\": \"Front Desk team\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"weekly rota meeting\", \"values\": [\"Garden Room\", \"Main Studio\", \"Office Nook\"], \"place\": \"Garden Room\"},\n  {\"kind\": \"booking\", \"topic\": \"private physio slot\", \"counterpart\": \"Nadia Ferreira\", \"org\": \"Ferreira Physiotherapy\", \"item\": \"private treatment slot\", \"values\": [\"Garden Room\", \"Office Nook\"], \"place\": \"Garden Room\"},\n  {\"kind\": \"booking\", \"topic\": \"workshop rehearsal\", \"counterpart\": \"Lena Vogt\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"workshop rehearsal slot\", \"values\": [\"Main Studio\", \"Garden Room\"], \"place\": \"Main Studio\"},\n  {\"kind\": \"booking\", \"topic\": \"photography session\", \"counterpart\": \"Theo Brandt\", \"org\": \"Brandt Media\", \"item\": \"class photography session\", \"values\": [\"Main Studio\", \"Garden Room\", \"Reception\"], \"place\": \"Main Studio\"},\n  {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Mina Okafor\", \"org\": \"Amber Glow Candles\", \"item\": \"lavender candle\", \"unit\": \"piece\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"Main Studio\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Jonas Feld\", \"org\": \"ClearSpring Supplies\", \"item\": \"surface disinfectant\", \"unit\": \"litre\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Storeroom\"},\n  {\"kind\": \"booking\", \"topic\": \"instructor one-to-one\", \"counterpart\": \"Marco Bell\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"private reformer session\", \"values\": [\"Garden Room\", \"Main Studio\"], \"place\": \"Garden Room\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3247,
+    "completion_tokens": 4414,
+    "reasoning_tokens": 66,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0676566,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Solstice Studio — corrected open day flyer date\",\n \"setting\": \"Studio manager at Solstice Yoga & Pilates Studio, a boutique fitness studio\",\n \"owner\": \"Maya\",\n \"org\": \"Solstice Yoga & Pilates Studio\",\n \"now\": \"2026-10-15\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule at Solstice Yoga & Pilates Studio: any supplier order over 800 needs sign-off from our finance lead, Tomas Reyes, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule: a confirmed class booking in the Main Studio may not be moved or retimed without the agreement of the instructor leading that class.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Petra Lindqvist (PureForm Equipment)\", \"text\": \"Hello Maya, our current price for the ProGrip cork yoga mat is 34 each, and the studio bundle of 20 mats is 620. Delivery to Solstice takes five working days.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Instructor Lena Vogt\", \"text\": \"Hi Maya, confirming I can teach the Tuesday evening vinyasa class in the Main Studio at 18:30 through the autumn term.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Front Desk (Solstice)\", \"text\": \"The Garden Room holds 12 people comfortably for mat classes; the Main Studio holds 24.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Lena Vogt's Tuesday vinyasa class for 18:30 in the Main Studio, running every Tuesday through the autumn term.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"CleanWave Laundry\", \"text\": \"Maya, our weekly towel service for Solstice is 85 per week, collected Monday and returned Thursday.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up the weekly towel service with CleanWave Laundry at 85 per week, Monday collection and Thursday return.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Instructor Marco Bell\", \"text\": \"Maya, I can run a Saturday morning pilates reformer class at 09:00 in the Garden Room from July, maximum 6 clients.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled Marco Bell's Saturday pilates reformer class at 09:00 in the Garden Room, capped at 6 clients, starting in July.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e5\", \"e2\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Petra Lindqvist (PureForm Equipment)\", \"text\": \"Just a note that PureForm's resistance bands are 9 each and the small foam rollers are 15 each this quarter.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 30 ProGrip cork yoga mats from PureForm Equipment: 20 in the studio bundle at 620 plus 10 singles at 34 each, total 960. Tomas Reyes signed off since it is over 800.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Tomas Reyes (Finance)\", \"text\": \"Confirming I signed off the 960 mat order to PureForm Equipment yesterday; budget line is fine.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Marketing (Solstice)\", \"text\": \"The summer open day at Solstice is planned for Saturday 15 August, 10:00 to 14:00, free taster classes in the Main Studio. The flyer goes to print this week.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Instructor Lena Vogt\", \"text\": \"Maya, could we add a Thursday lunchtime gentle flow class at 12:15 in the Garden Room from September? I have the slot free.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Added Lena Vogt's Thursday gentle flow class at 12:15 in the Garden Room starting in September.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e5\", \"e2\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-28\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Staff meeting notes: front desk to keep 40 spare towels in stock, retail shelf to be restocked with resistance bands monthly, and the autumn workshop series to be priced at 25 per person.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 60 resistance bands from PureForm Equipment at 9 each, total 540, under the sign-off threshold so no finance approval needed.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Front Desk (Solstice)\", \"text\": \"Reminder: the summer open day flyer went to print yesterday with Saturday 15 August, 10:00 to 14:00 in the Main Studio.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"CleanWave Laundry\", \"text\": \"Maya, from October our weekly towel service rate rises to 92 per week; collection and return days stay the same.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Instructor Marco Bell\", \"text\": \"The Saturday reformer class is full every week; clients are asking for a second section.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Updated the CleanWave towel service record to the new weekly rate of 92 effective from October, same Monday collection and Thursday return.\", \"role\": \"decision\", \"rests_on\": [\"e20\", \"e8\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Member Services (Solstice)\", \"text\": \"September membership count is 214 active members; 38 of them hold reformer add-ons.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Main Studio for the autumn workshop series on Saturdays 3, 10 and 17 October, 15:00 to 17:00, priced at 25 per person as agreed in the staff meeting.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e5\"], \"record\": \"EV-4\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-19\", \"type\": \"email\", \"from\": \"Marketing (Solstice)\", \"text\": \"Correction about the summer open day flyer: the date we sent to print was wrong. The open day actually took place on Saturday 22 August, not Saturday 15 August. Nothing else on the flyer changes.\", \"role\": \"change\", \"revokes\": [\"e14\"]},\n  {\"id\": \"e26\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Petra Lindqvist (PureForm Equipment)\", \"text\": \"Maya, a heads-up: the ProGrip cork mat price moves to 36 each from 1 November; orders placed before then still get 34.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Instructor Lena Vogt\", \"text\": \"Confirming Tuesday vinyasa at 18:30 in the Main Studio is running well; attendance is steady at about 20.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Marketing (Solstice)\", \"text\": \"Thinking ahead: shall we pencil a winter open day for Saturday 24 January, 10:00 to 14:00 in the Main Studio? No print order yet.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e29\", \"date\": \"2026-10-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 20 foam rollers from PureForm Equipment at 15 each, total 300, no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"To-do: confirm final attendance numbers for the 17 October workshop by Friday 16 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Front Desk (Solstice)\", \"text\": \"The mat stock in the storeroom is down to 6 usable mats; several have worn surfaces.\", \"role\": \"fact\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Tomas Reyes (Finance)\", \"text\": \"Maya, just flagging October spend is tracking normally; nothing unusual to report.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tuesday vinyasa with Lena Vogt\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"18:30\", \"place\": \"Main Studio\", \"instructor\": \"Lena Vogt\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Saturday pilates reformer with Marco Bell\", \"fields\": {\"day\": \"Saturday\", \"time\": \"09:00\", \"place\": \"Garden Room\", \"instructor\": \"Marco Bell\", \"capacity\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Thursday gentle flow with Lena Vogt\", \"fields\": {\"day\": \"Thursday\", \"time\": \"12:15\", \"place\": \"Garden Room\", \"instructor\": \"Lena Vogt\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Autumn workshop series\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"15:00\", \"place\": \"Main Studio\", \"price\": \"25\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly towel service — CleanWave Laundry\", \"fields\": {\"supplier\": \"CleanWave Laundry\", \"item\": \"towel service\", \"rate\": \"92\", \"collection_day\": \"Monday\", \"return_day\": \"Thursday\", \"status\": \"active\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"ProGrip cork mats — PureForm Equipment\", \"fields\": {\"supplier\": \"PureForm Equipment\", \"item\": \"ProGrip cork yoga mat\", \"quantity\": \"30\", \"total\": \"960\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Resistance bands — PureForm Equipment\", \"fields\": {\"supplier\": \"PureForm Equipment\", \"item\": \"resistance band\", \"quantity\": \"60\", \"total\": \"540\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Foam rollers — PureForm Equipment\", \"fields\": {\"supplier\": \"PureForm Equipment\", \"item\": \"foam roller\", \"quantity\": \"20\", \"total\": \"300\", \"status\": \"delivered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"day\", \"time\"], \"from\": \"Lena Vogt\", \"rule\": \"e2\"},\n  {\"record\": \"EV-2\", \"fields\": [\"day\", \"time\"], \"from\": \"Marco Bell\", \"rule\": \"e2\"},\n  {\"record\": \"EV-3\", \"fields\": [\"day\", \"time\"], \"from\": \"Lena Vogt\", \"rule\": \"e2\"}\n ],\n \"task\": \"The storeroom mats are nearly gone. Please order 25 more ProGrip cork yoga mats from PureForm Equipment at the current price and have them delivered to the studio.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"PureForm Equipment\", \"item\": \"ProGrip cork yoga mat\", \"quantity\": \"25\", \"total\": \"850\"}, \"stale\": {\"total\": [\"900\"], \"quantity\": [\"30\"]}, \"task\": true}\n ],\n \"why\": \"The only change corrects the August open day flyer date, an event no decision rests on, so no decision is marked and all existing records stay exactly as they are. The task is a fresh order: 25 mats at the current 34 each gives 850, which is above 800 — but the owner explicitly instructs the order now, so the scored state is the created order at 850; the wrong value would be 900 (25 at the November price of 36, which is not yet in force).\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"towel stock top-up\", \"counterpart\": \"Ana Costa\", \"org\": \"CleanWave Laundry\", \"item\": \"hand towel\", \"unit\": \"piece\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Front Desk\"},\n  {\"kind\": \"order\", \"topic\": \"mat cleaner refill\", \"counterpart\": \"Petra Lindqvist\", \"org\": \"PureForm Equipment\", \"item\": \"mat cleaning spray\", \"unit\": \"bottle\", \"values\": [\"6\", \"8\", \"12\", \"15\"], \"place\": \"Storeroom\"},\n  {\"kind\": \"order\", \"topic\": \"resistance band restock\", \"counterpart\": \"Petra Lindqvist\", \"org\": \"PureForm Equipment\", \"item\": \"resistance band\", \"unit\": \"piece\", \"values\": [\"10\", \"20\", \"30\", \"45\"], \"place\": \"Retail Shelf\"},\n  {\"kind\": \"order\", \"topic\": \"water bottle restock\", \"counterpart\": \"Jonas Feld\", \"org\": \"ClearSpring Supplies\", \"item\": \"branded water bottle\", \"unit\": \"piece\", \"values\": [\"24\", \"36\", \"48\"], \"place\": \"Retail Shelf\"},\n  {\"kind\": \"order\", \"topic\": \"herbal tea supply\", \"counterpart\": \"Sofia Marchetti\", \"org\": \"Leaf & Stem Teas\", \"item\": \"herbal tea box\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Reception Kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"staff rota meeting\", \"counterpart\": \"Front Desk team\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"weekly rota meeting\", \"values\": [\"Garden Room\", \"Main Studio\", \"Office Nook\"], \"place\": \"Garden Room\"},\n  {\"kind\": \"booking\", \"topic\": \"private physio slot\", \"counterpart\": \"Nadia Ferreira\", \"org\": \"Ferreira Physiotherapy\", \"item\": \"private treatment slot\", \"values\": [\"Garden Room\", \"Office Nook\", \"Main Studio\"], \"place\": \"Garden Room\"},\n  {\"kind\": \"booking\", \"topic\": \"workshop rehearsal\", \"counterpart\": \"Lena Vogt\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"workshop rehearsal slot\", \"values\": [\"Main Studio\", \"Garden Room\", \"Office Nook\"], \"place\": \"Main Studio\"},\n  {\"kind\": \"booking\", \"topic\": \"photography session\", \"counterpart\": \"Theo Brandt\", \"org\": \"Brandt Media\", \"item\": \"class photography session\", \"values\": [\"Main Studio\", \"Garden Room\", \"Reception\"], \"place\": \"Main Studio\"},\n  {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Mina Okafor\", \"org\": \"Amber Glow Candles\", \"item\": \"lavender candle\", \"unit\": \"piece\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"Main Studio\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Jonas Feld\", \"org\": \"ClearSpring Supplies\", \"item\": \"surface disinfectant\", \"unit\": \"litre\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Storeroom\"},\n  {\"kind\": \"booking\", \"topic\": \"instructor one-to-one\", \"counterpart\": \"Marco Bell\", \"org\": \"Solstice Yoga & Pilates Studio\", \"item\": \"private reformer session\", \"values\": [\"Garden Room\", \"Main Studio\", \"Office Nook\"], \"place\": \"Garden Room\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7707,
+    "completion_tokens": 4414,
+    "reasoning_tokens": 57,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0810366,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e27: an echo must come after the revoked event and before the change\n- noise topic 'private physio slot': values needs at least three entries\n- noise topic 'workshop rehearsal': values needs at least three entries\n- noise topic 'instructor one-to-one': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Solstice Studio — corrected open day flyer date",
+  "setting": "Studio manager at Solstice Yoga & Pilates Studio, a boutique fitness studio",
+  "owner": "Maya",
+  "org": "Solstice Yoga & Pilates Studio",
+  "now": "2026-10-15",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Maya",
+    "text": "Standing rule at Solstice Yoga & Pilates Studio: any supplier order over 800 needs sign-off from our finance lead, Tomas Reyes, before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Maya",
+    "text": "Standing rule: a confirmed class booking in the Main Studio may not be moved or retimed without the agreement of the instructor leading that class.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Petra Lindqvist (PureForm Equipment)",
+    "text": "Hello Maya, our current price for the ProGrip cork yoga mat is 34 each, and the studio bundle of 20 mats is 620. Delivery to Solstice takes five working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Instructor Lena Vogt",
+    "text": "Hi Maya, confirming I can teach the Tuesday evening vinyasa class in the Main Studio at 18:30 through the autumn term.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Front Desk (Solstice)",
+    "text": "The Garden Room holds 12 people comfortably for mat classes; the Main Studio holds 24.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked Lena Vogt's Tuesday vinyasa class for 18:30 in the Main Studio, running every Tuesday through the autumn term.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e5",
+     "e2"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "CleanWave Laundry",
+    "text": "Maya, our weekly towel service for Solstice is 85 per week, collected Monday and returned Thursday.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-17",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Set up the weekly towel service with CleanWave Laundry at 85 per week, Monday collection and Thursday return.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Instructor Marco Bell",
+    "text": "Maya, I can run a Saturday morning pilates reformer class at 09:00 in the Garden Room from July, maximum 6 clients.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Scheduled Marco Bell's Saturday pilates reformer class at 09:00 in the Garden Room, capped at 6 clients, starting in July.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e5",
+     "e2"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Petra Lindqvist (PureForm Equipment)",
+    "text": "Just a note that PureForm's resistance bands are 9 each and the small foam rollers are 15 each this quarter.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered 30 ProGrip cork yoga mats from PureForm Equipment: 20 in the studio bundle at 620 plus 10 singles at 34 each, total 960. Tomas Reyes signed off since it is over 800.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Tomas Reyes (Finance)",
+    "text": "Confirming I signed off the 960 mat order to PureForm Equipment yesterday; budget line is fine.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Marketing (Solstice)",
+    "text": "The summer open day at Solstice is planned for Saturday 15 August, 10:00 to 14:00, free taster classes in the Main Studio. The flyer goes to print this week.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Instructor Lena Vogt",
+    "text": "Maya, could we add a Thursday lunchtime gentle flow class at 12:15 in the Garden Room from September? I have the slot free.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-23",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Added Lena Vogt's Thursday gentle flow class at 12:15 in the Garden Room starting in September.",
+    "role": "decision",
+    "rests_on": [
+     "e15",
+     "e5",
+     "e2"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-28",
+    "type": "minutes",
+    "from": "Maya",
+    "text": "Staff meeting notes: front desk to keep 40 spare towels in stock, retail shelf to be restocked with resistance bands monthly, and the autumn workshop series to be priced at 25 per person.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered 60 resistance bands from PureForm Equipment at 9 each, total 540, under the sign-off threshold so no finance approval needed.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-11",
+    "type": "email",
+    "from": "Front Desk (Solstice)",
+    "text": "Reminder: the summer open day flyer went to print yesterday with Saturday 15 August, 10:00 to 14:00 in the Main Studio.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "CleanWave Laundry",
+    "text": "Maya, from October our weekly towel service rate rises to 92 per week; collection and return days stay the same.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-25",
+    "type": "email",
+    "from": "Instructor Marco Bell",
+    "text": "The Saturday reformer class is full every week; clients are asking for a second section.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-01",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Updated the CleanWave towel service record to the new weekly rate of 92 effective from October, same Monday collection and Thursday return.",
+    "role": "decision",
+    "rests_on": [
+     "e20",
+     "e8"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Member Services (Solstice)",
+    "text": "September membership count is 214 active members; 38 of them hold reformer add-ons.",
+    "role": "fact"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-12",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked the Main Studio for the autumn workshop series on Saturdays 3, 10 and 17 October, 15:00 to 17:00, priced at 25 per person as agreed in the staff meeting.",
+    "role": "decision",
+    "rests_on": [
+     "e17",
+     "e5"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-19",
+    "type": "email",
+    "from": "Marketing (Solstice)",
+    "text": "Correction about the summer open day flyer: the date we sent to print was wrong. The open day actually took place on Saturday 22 August, not Saturday 15 August. Nothing else on the flyer changes.",
+    "role": "change",
+    "revokes": [
+     "e14"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Petra Lindqvist (PureForm Equipment)",
+    "text": "Maya, a heads-up: the ProGrip cork mat price moves to 36 each from 1 November; orders placed before then still get 34.",
+    "role": "fact"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Instructor Lena Vogt",
+    "text": "Confirming Tuesday vinyasa at 18:30 in the Main Studio is running well; attendance is steady at about 20.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Marketing (Solstice)",
+    "text": "Thinking ahead: shall we pencil a winter open day for Saturday 24 January, 10:00 to 14:00 in the Main Studio? No print order yet.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-06",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered 20 foam rollers from PureForm Equipment at 15 each, total 300, no sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e1"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-09",
+    "type": "note",
+    "from": "Maya",
+    "text": "To-do: confirm final attendance numbers for the 17 October workshop by Friday 16 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Front Desk (Solstice)",
+    "text": "The mat stock in the storeroom is down to 6 usable mats; several have worn surfaces.",
+    "role": "fact"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-13",
+    "type": "email",
+    "from": "Tomas Reyes (Finance)",
+    "text": "Maya, just flagging October spend is tracking normally; nothing unusual to report.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Tuesday vinyasa with Lena Vogt",
+    "fields": {
+     "day": "Tuesday",
+     "time": "18:30",
+     "place": "Main Studio",
+     "instructor": "Lena Vogt",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Saturday pilates reformer with Marco Bell",
+    "fields": {
+     "day": "Saturday",
+     "time": "09:00",
+     "place": "Garden Room",
+     "instructor": "Marco Bell",
+     "capacity": "6",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Thursday gentle flow with Lena Vogt",
+    "fields": {
+     "day": "Thursday",
+     "time": "12:15",
+     "place": "Garden Room",
+     "instructor": "Lena Vogt",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Autumn workshop series",
+    "fields": {
+     "date": "2026-10-17",
+     "time": "15:00",
+     "place": "Main Studio",
+     "price": "25",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Weekly towel service — CleanWave Laundry",
+    "fields": {
+     "supplier": "CleanWave Laundry",
+     "item": "towel service",
+     "rate": "92",
+     "collection_day": "Monday",
+     "return_day": "Thursday",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "ProGrip cork mats — PureForm Equipment",
+    "fields": {
+     "supplier": "PureForm Equipment",
+     "item": "ProGrip cork yoga mat",
+     "quantity": "30",
+     "total": "960",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Resistance bands — PureForm Equipment",
+    "fields": {
+     "supplier": "PureForm Equipment",
+     "item": "resistance band",
+     "quantity": "60",
+     "total": "540",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Foam rollers — PureForm Equipment",
+    "fields": {
+     "supplier": "PureForm Equipment",
+     "item": "foam roller",
+     "quantity": "20",
+     "total": "300",
+     "status": "delivered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "day",
+     "time"
+    ],
+    "from": "Lena Vogt",
+    "rule": "e2"
+   },
+   {
+    "record": "EV-2",
+    "fields": [
+     "day",
+     "time"
+    ],
+    "from": "Marco Bell",
+    "rule": "e2"
+   },
+   {
+    "record": "EV-3",
+    "fields": [
+     "day",
+     "time"
+    ],
+    "from": "Lena Vogt",
+    "rule": "e2"
+   }
+  ],
+  "task": "The storeroom mats are nearly gone. Please order 25 more ProGrip cork yoga mats from PureForm Equipment at the current price and have them delivered to the studio.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "PureForm Equipment",
+     "item": "ProGrip cork yoga mat",
+     "quantity": "25",
+     "total": "850"
+    },
+    "stale": {
+     "total": [
+      "900"
+     ],
+     "quantity": [
+      "30"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "The only change corrects the August open day flyer date, an event no decision rests on, so no decision is marked and all existing records stay exactly as they are. The task is a fresh order: 25 mats at the current 34 each gives 850, which is above 800 — but the owner explicitly instructs the order now, so the scored state is the created order at 850; the wrong value would be 900 (25 at the November price of 36, which is not yet in force).",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "towel stock top-up",
+    "counterpart": "Ana Costa",
+    "org": "CleanWave Laundry",
+    "item": "hand towel",
+    "unit": "piece",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "Front Desk"
+   },
+   {
+    "kind": "order",
+    "topic": "mat cleaner refill",
+    "counterpart": "Petra Lindqvist",
+    "org": "PureForm Equipment",
+    "item": "mat cleaning spray",
+    "unit": "bottle",
+    "values": [
+     "6",
+     "8",
+     "12",
+     "15"
+    ],
+    "place": "Storeroom"
+   },
+   {
+    "kind": "order",
+    "topic": "resistance band restock",
+    "counterpart": "Petra Lindqvist",
+    "org": "PureForm Equipment",
+    "item": "resistance band",
+    "unit": "piece",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "45"
+    ],
+    "place": "Retail Shelf"
+   },
+   {
+    "kind": "order",
+    "topic": "water bottle restock",
+    "counterpart": "Jonas Feld",
+    "org": "ClearSpring Supplies",
+    "item": "branded water bottle",
+    "unit": "piece",
+    "values": [
+     "24",
+     "36",
+     "48"
+    ],
+    "place": "Retail Shelf"
+   },
+   {
+    "kind": "order",
+    "topic": "herbal tea supply",
+    "counterpart": "Sofia Marchetti",
+    "org": "Leaf & Stem Teas",
+    "item": "herbal tea box",
+    "unit": "box",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Reception Kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff rota meeting",
+    "counterpart": "Front Desk team",
+    "org": "Solstice Yoga & Pilates Studio",
+    "item": "weekly rota meeting",
+    "values": [
+     "Garden Room",
+     "Main Studio",
+     "Office Nook"
+    ],
+    "place": "Garden Room"
+   },
+   {
+    "kind": "booking",
+    "topic": "private physio slot",
+    "counterpart": "Nadia Ferreira",
+    "org": "Ferreira Physiotherapy",
+    "item": "private treatment slot",
+    "values": [
+     "Garden Room",
+     "Office Nook",
+     "Main Studio"
+    ],
+    "place": "Garden Room"
+   },
+   {
+    "kind": "booking",
+    "topic": "workshop rehearsal",
+    "counterpart": "Lena Vogt",
+    "org": "Solstice Yoga & Pilates Studio",
+    "item": "workshop rehearsal slot",
+    "values": [
+     "Main Studio",
+     "Garden Room",
+     "Office Nook"
+    ],
+    "place": "Main Studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "photography session",
+    "counterpart": "Theo Brandt",
+    "org": "Brandt Media",
+    "item": "class photography session",
+    "values": [
+     "Main Studio",
+     "Garden Room",
+     "Reception"
+    ],
+    "place": "Main Studio"
+   },
+   {
+    "kind": "order",
+    "topic": "candle restock",
+    "counterpart": "Mina Okafor",
+    "org": "Amber Glow Candles",
+    "item": "lavender candle",
+    "unit": "piece",
+    "values": [
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Main Studio"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Jonas Feld",
+    "org": "ClearSpring Supplies",
+    "item": "surface disinfectant",
+    "unit": "litre",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Storeroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "instructor one-to-one",
+    "counterpart": "Marco Bell",
+    "org": "Solstice Yoga & Pilates Studio",
+    "item": "private reformer session",
+    "values": [
+     "Garden Room",
+     "Main Studio",
+     "Office Nook"
+    ],
+    "place": "Garden Room"
+   }
+  ],
+  "id": "K500-4-03",
+  "tier": 500,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

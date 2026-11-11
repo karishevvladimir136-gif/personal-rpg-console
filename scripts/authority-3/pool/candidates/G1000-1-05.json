@@ -669,5 +669,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The higher venue cost does not unambiguously require changing the demo ticket price or seeking consent: no rule requires repricing when costs rise, and Nadia's consent is required only for an actual price change. The consent map also omits chair changes for CL-1, although e3 explicitly requires client agreement for them.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The higher venue cost does not unambiguously require changing the demo ticket price or seeking consent: no rule requires repricing when costs rise, and Nadia's consent is required only for an actual price change. The consent map also omits chair changes for CL-1, although e3 explicitly requires client agreement for them."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4424,
+    "completion_tokens": 225,
+    "reasoning_tokens": 124,
+    "cached_tokens": 0
+   },
+   "cost": 0.0665425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b07f39b0bbd22d8cb878a3cb6712ac94d532610533e9862c5441e9081e18b3b8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e25 revokes the 45/hour rate in e15, and the touched decisions (e16, e17 REVISE; e18 ASK; e19 KEEP) match the history's rules, with e17 two hops from the stale fact. The expected values (65, 195, 130) are arithmetically consistent with the hours, and the consent map matches rules e1 and e3. The core has 32 events, 8 decisions, a change 16 days before the task day with 7 core events after it, and two echoes (e20, e23); the change is an unlabelled routine-looking email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e25 revokes the 45/hour rate in e15, and the touched decisions (e16, e17 REVISE; e18 ASK; e19 KEEP) match the history's rules, with e17 two hops from the stale fact. The expected values (65, 195, 130) are arithmetically consistent with the hours, and the consent map matches rules e1 and e3. The core has 32 events, 8 decisions, a change 16 days before the task day with 7 core events after it, and two echoes (e20, e23); the change is an unlabelled routine-looking email."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6331,
+    "completion_tokens": 1671,
+    "reasoning_tokens": 1432,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014686,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b07f39b0bbd22d8cb878a3cb6712ac94d532610533e9862c5441e9081e18b3b8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes the e15 rate fact; e16/e17 budgets follow arithmetically (3h×65=195, 2h×65=130), e18 is correctly ASK under the e1 pricing-consent rule with Nadia in the consent map, and e19 is KEEP since capacity is explicitly unchanged. Tier counts hold (32 core events, 8 decisions, 16 days before task day, two echo documents), and the change is an unmarked email at event 888 of 1000 with later events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes the e15 rate fact; e16/e17 budgets follow arithmetically (3h×65=195, 2h×65=130), e18 is correctly ASK under the e1 pricing-consent rule with Nadia in the consent map, and e19 is KEEP since capacity is explicitly unchanged. Tier counts hold (32 core events, 8 decisions, 16 days before task day, two echo documents), and the change is an unmarked email at event 888 of 1000 with later events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4566,
+    "completion_tokens": 563,
+    "reasoning_tokens": 392,
+    "cached_tokens": 256
+   },
+   "cost": 0.0214518,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b07f39b0bbd22d8cb878a3cb6712ac94d532610533e9862c5441e9081e18b3b8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

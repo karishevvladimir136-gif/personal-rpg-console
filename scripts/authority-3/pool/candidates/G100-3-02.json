@@ -600,5 +600,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The original delivery being one week before the open day does not unambiguously establish a rule requiring it to move when the open day moves. Even if that shift is intended, delivery remains subject to Ingrid's approval, so confirming 20 November with Tove and unconditionally moving the proof review to 13 November are not justified before consent.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The original delivery being one week before the open day does not unambiguously establish a rule requiring it to move when the open day moves. Even if that shift is intended, delivery remains subject to Ingrid's approval, so confirming 20 November with Tove and unconditionally moving the proof review to 13 November are not justified before consent."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3346,
+    "completion_tokens": 184,
+    "reasoning_tokens": 79,
+    "cached_tokens": 0
+   },
+   "cost": 0.0510175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c69b606e502bcb21d04d7b919d286618c6afd0791fbc834b13a3296ad473ed80",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state tells Tove the new delivery date of 20 November while ORD-3's delivery_date is an ASK record that needs Ingrid Nordvik's consent, which conflicts with 'ask, do not act'. The change revokes the open-day date fact and then flows through direct and two-hop decisions, which fits the stale-fact pattern better than a chain. The core meets the tier counts, the change is 6 days before the task day with 3 core events after it, and it reads as an ordinary email.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state tells Tove the new delivery date of 20 November while ORD-3's delivery_date is an ASK record that needs Ingrid Nordvik's consent, which conflicts with 'ask, do not act'. The change revokes the open-day date fact and then flows through direct and two-hop decisions, which fits the stale-fact pattern better than a chain. The core meets the tier counts, the change is 6 days before the task day with 3 core events after it, and it reads as an ordinary email."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4800,
+    "completion_tokens": 2329,
+    "reasoning_tokens": 2112,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016445,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c69b606e502bcb21d04d7b919d286618c6afd0791fbc834b13a3296ad473ed80",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is well-formed: e17 corrects e4 (open day 20→27 Nov), touching e6/e8 (directly on e4, ASK per policy e2 requiring Ingrid's written sign-off, which Lars's email is not) and e9 (one hop via e6, REVISE to 13 Nov, seven days before the new 20 Nov delivery), while e7 rests only on the unchanged guest count (KEEP). Tier 100 met: 20 core events, 5 decisions, change 6 days before task day with 5 events after; consent map matches e2 as stated. The change is an ordinary mid-history email among routine noise.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is well-formed: e17 corrects e4 (open day 20→27 Nov), touching e6/e8 (directly on e4, ASK per policy e2 requiring Ingrid's written sign-off, which Lars's email is not) and e9 (one hop via e6, REVISE to 13 Nov, seven days before the new 20 Nov delivery), while e7 rests only on the unchanged guest count (KEEP). Tier 100 met: 20 core events, 5 decisions, change 6 days before task day with 5 events after; consent map matches e2 as stated. The change is an ordinary mid-history email among routine noise."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3478,
+    "completion_tokens": 496,
+    "reasoning_tokens": 300,
+    "cached_tokens": 2560
+   },
+   "cost": 0.010962,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c69b606e502bcb21d04d7b919d286618c6afd0791fbc834b13a3296ad473ed80",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

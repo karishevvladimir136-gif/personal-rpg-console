@@ -1,0 +1,660 @@
+{
+ "id": "K100-2-09",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 2,
+ "idx": 8,
+ "setting": "Golf club secretary at Fairhaven Golf & Country Club, an 18-hole private club",
+ "prompt_sha256": "837f0e5a690fdaf13cc9f3f24d67ef63330f82b14e8c428d9b3bc9f65e7ecb9c",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Saturday society rate rise at Fairhaven\",\n \"setting\": \"Golf club secretary at Fairhaven Golf & Country Club, an 18-hole private club\",\n \"owner\": \"Marcus\",\n \"org\": \"Fairhaven Golf & Country Club\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Marcus\", \"text\": \"Club policy: the visitor society rate for days booked at Fairhaven is 45 per player, including coffee on arrival and use of the clubhouse dining room.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Marcus\", \"text\": \"Standing rule: once a society booking is confirmed, its agreed per-player rate and total may not be changed without the society organiser's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Paul Whitfield (Greenfield Society)\", \"text\": \"Confirming Greenfield Society would like to hold our autumn day at Fairhaven on Saturday 14 November 2026 with 56 players.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Sarah Kemp (Hartley Society)\", \"text\": \"Hartley Society is planning a day at Fairhaven on Saturday 21 November 2026 for around 40 players; please send us a quote when you can.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-09\", \"type\": \"email\", \"from\": \"Tom Vickers (Littlemarsh Society)\", \"text\": \"Littlemarsh Society would like to book our annual day at Fairhaven on Thursday 12 November 2026 for 32 players.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked and confirmed the Greenfield Society day for Saturday 14 November 2026: 56 players at the society rate of 45 per player, total 2520, dining room reserved.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Raised the draft invoice for the Greenfield Society day on 14 November 2026: 56 players at 45 per player, total 2520, to be sent after the event.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"CL-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Prepared a draft quote for the Hartley Society day on Saturday 21 November 2026: 40 players at the society rate of 45 per player, total 1800.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e4\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked and confirmed the Littlemarsh Society day for Thursday 12 November 2026: 32 players at the society rate of 45 per player, total 1440.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Dana Ortiz (Spotless Linens)\", \"text\": \"Spotless Linens will continue collecting Fairhaven's table linen every Tuesday morning; our office number is unchanged.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-28\", \"type\": \"minutes\", \"from\": \"Marcus\", \"text\": \"August committee minutes: greens staff reported the 12th green drainage work finished; the autumn newsletter goes out in the first week of October.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Colin Hartwell (Hartwell Foods)\", \"text\": \"Hartwell Foods delivers fresh produce to the Fairhaven clubhouse kitchen on Mondays and Thursdays; orders need phoning in by 15:00 the day before.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Elaine Brooks (Fairhaven Treasurer)\", \"text\": \"For the winter brochure: the weekday twilight guest green fee stays at 30 after 14:00 from November; no change needed there.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e14\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Marcus\", \"text\": \"Reminder: renew the clubhouse equipment insurance with Fenland Mutual before 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-25\", \"type\": \"note\", \"from\": \"Marcus\", \"text\": \"The pro shop will open at 07:30 on competition days through the winter; head pro Nina Aldridge holds the spare keys.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Elaine Brooks (Fairhaven Treasurer)\", \"text\": \"Following the finance meeting: because Saturday staffing and catering costs have risen, the visitor society rate for Saturdays is 55 per player for all society days held on or after 1 November 2026. Weekday society days are unaffected and stay at the current rate. Please update any open quotes and drafts for Saturdays accordingly.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e17\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Marcus\", \"text\": \"October committee minutes: the autumn newsletter went out on 5 October; the clubhouse Christmas lunch booking sheet opens for members on 2 November 2026.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-14\", \"type\": \"call\", \"from\": \"Nina Aldridge (Fairhaven Head Pro)\", \"text\": \"Nina called: the new batch of range balls arrived and the practice ground is fully stocked for the winter.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Dana Ortiz (Spotless Linens)\", \"text\": \"Spotless Linens will add an extra Friday collection on 13 November 2026 ahead of the busy weekend; usual rates apply.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Marcus\", \"text\": \"Greens committee meets in the clubhouse boardroom at 18:00 on 27 October 2026; ask head greenkeeper to bring the winter programme.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Greenfield Society autumn day\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"Fairhaven clubhouse\", \"players\": \"56\", \"rate\": \"45\", \"total\": \"2520\", \"status\": \"confirmed\", \"contact\": \"Paul Whitfield\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Littlemarsh Society annual day\", \"fields\": {\"date\": \"2026-11-12\", \"place\": \"Fairhaven clubhouse\", \"players\": \"32\", \"rate\": \"45\", \"total\": \"1440\", \"status\": \"confirmed\", \"contact\": \"Tom Vickers\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hartley Society quote\", \"fields\": {\"date\": \"2026-11-21\", \"players\": \"40\", \"rate\": \"45\", \"total\": \"1800\", \"status\": \"draft\", \"contact\": \"Sarah Kemp\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Greenfield Society invoice\", \"fields\": {\"date\": \"2026-11-14\", \"players\": \"56\", \"rate\": \"45\", \"total\": \"2520\", \"status\": \"draft\", \"contact\": \"Paul Whitfield\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly linen service\", \"fields\": {\"supplier\": \"Spotless Linens\", \"day\": \"Tuesday\", \"place\": \"Fairhaven clubhouse\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"rate\", \"total\"], \"from\": \"Paul Whitfield (Greenfield Society)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Sarah Kemp at Hartley Society our quote for their 40-player society day here on Saturday 21 November 2026, with the per-player rate and the total for the day.\",\n \"expect\": [\n  {\"record\": \"CL-1\", \"field\": \"rate\", \"value\": \"55\", \"stale\": [\"45\"]},\n  {\"record\": \"CL-1\", \"field\": \"total\", \"value\": \"2200\", \"stale\": [\"1800\"]},\n  {\"record\": \"CL-2\", \"field\": \"rate\", \"value\": \"55\", \"stale\": [\"45\"]},\n  {\"record\": \"CL-2\", \"field\": \"total\", \"value\": \"3080\", \"stale\": [\"2520\"]},\n  {\"message_to\": \"Sarah Kemp (Hartley Society)\", \"regarding\": \"CL-1\", \"says\": [\"55\", \"2200\"], \"stale\": [\"45\", \"1800\"], \"task\": true}\n ],\n \"why\": \"The treasurer's email of 10 October replaces the 45 society rate with 55 for Saturdays from 1 November 2026. The Hartley draft quote (Saturday 21 November) and the draft Greenfield invoice (Saturday 14 November, resting on the Greenfield booking) must be revised to 55 — 2200 and 3080 — since drafts need no consent; the task's quote message must carry those new figures. The confirmed Greenfield booking itself also falls under the new rate, but changing a confirmed society's agreed rate needs Paul Whitfield's written agreement under the standing rule, so it is ASK and stays untouched pending consent. Littlemarsh (Thursday 12 November) is KEEP: the amendment covers Saturdays only, so 45 stands.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"linen restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Spotless Linens\", \"item\": \"table linen sets\", \"unit\": \"set\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Fairhaven clubhouse\"},\n  {\"kind\": \"order\", \"topic\": \"kitchen produce\", \"counterpart\": \"Colin Hartwell\", \"org\": \"Hartwell Foods\", \"item\": \"fresh vegetable boxes\", \"unit\": \"box\", \"values\": [\"6\", \"8\", \"10\", \"14\"], \"place\": \"Fairhaven clubhouse kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"bar restock\", \"counterpart\": \"Ruth Pell\", \"org\": \"Beacon Drinks\", \"item\": \"cases of tonic water\", \"unit\": \"case\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Fairhaven clubhouse bar\"},\n  {\"kind\": \"order\", \"topic\": \"range balls\", \"counterpart\": \"Nina Aldridge\", \"org\": \"Fairhaven pro shop\", \"item\": \"practice range balls\", \"unit\": \"bag\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"practice ground\"},\n  {\"kind\": \"booking\", \"topic\": \"boardroom meetings\", \"counterpart\": \"Elaine Brooks\", \"org\": \"Fairhaven committee\", \"item\": \"boardroom evening booking\", \"unit\": \"room\", \"values\": [\"boardroom\", \"committee room\", \"snooker room\"], \"place\": \"Fairhaven clubhouse\"},\n  {\"kind\": \"booking\", \"topic\": \"buggy hire\", \"counterpart\": \"Paul Whitfield\", \"org\": \"Greenfield Society\", \"item\": \"buggy hire for members\", \"unit\": \"buggy\", \"values\": [\"buggy 1\", \"buggy 3\", \"buggy 5\", \"buggy 7\"], \"place\": \"pro shop\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Gwen Storey\", \"org\": \"Storey Janitorial\", \"item\": \"cleaning supply cartons\", \"unit\": \"carton\", \"values\": [\"3\", \"5\", \"7\", \"9\"], \"place\": \"Fairhaven clubhouse\"},\n  {\"kind\": \"booking\", \"topic\": \"dining room lunches\", \"counterpart\": \"Tom Vickers\", \"org\": \"Littlemarsh Society\", \"item\": \"dining room lunch table\", \"unit\": \"table\", \"values\": [\"window table\", \"terrace table\", \"corner table\"], \"place\": \"Fairhaven dining room\"},\n  {\"kind\": \"order\", \"topic\": \"pro shop stock\", \"counterpart\": \"Nina Aldridge\", \"org\": \"Fairhaven pro shop\", \"item\": \"boxes of golf balls\", \"unit\": \"box\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"pro shop\"},\n  {\"kind\": \"booking\", \"topic\": \"tee time blocks\", \"counterpart\": \"Sarah Kemp\", \"org\": \"Hartley Society\", \"item\": \"member guest tee times\", \"unit\": \"tee\", \"values\": [\"first tee\", \"tenth tee\"], \"place\": \"Fairhaven course\"},\n  {\"kind\": \"order\", \"topic\": \"towel service\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Spotless Linens\", \"item\": \"locker room towels\", \"unit\": \"bundle\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Fairhaven locker rooms\"},\n  {\"kind\": \"order\", \"topic\": \"milk and dairy\", \"counterpart\": \"Colin Hartwell\", \"org\": \"Hartwell Foods\", \"item\": \"dairy delivery crates\", \"unit\": \"crate\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Fairhaven clubhouse kitchen\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3182,
+    "completion_tokens": 6290,
+    "reasoning_tokens": 2877,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0956016,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Saturday society rate rise at Fairhaven\",\n \"setting\": \"Golf club secretary at Fairhaven Golf & Country Club, an 18-hole private club\",\n \"owner\": \"Marcus\",\n \"org\": \"Fairhaven Golf & Country Club\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Marcus\", \"text\": \"Club policy: the visitor society rate for days booked at Fairhaven is 45 per player, including coffee on arrival and use of the clubhouse dining room.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Marcus\", \"text\": \"Standing rule: once a society booking is confirmed, its agreed per-player rate and total may not be changed without the society organiser's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Paul Whitfield (Greenfield Society)\", \"text\": \"Confirming Greenfield Society would like to hold our autumn day at Fairhaven on Saturday 14 November 2026 with 56 players.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Sarah Kemp (Hartley Society)\", \"text\": \"Hartley Society is planning a day at Fairhaven on Saturday 21 November 2026 for around 40 players; please send us a quote when you can.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-09\", \"type\": \"email\", \"from\": \"Tom Vickers (Littlemarsh Society)\", \"text\": \"Littlemarsh Society would like to book our annual day at Fairhaven on Thursday 12 November 2026 for 32 players.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked and confirmed the Greenfield Society day for Saturday 14 November 2026: 56 players at the society rate of 45 per player, total 2520, dining room reserved.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Raised the draft invoice for the Greenfield Society day on 14 November 2026: 56 players at 45 per player, total 2520, to be sent after the event.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"CL-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Prepared a draft quote for the Hartley Society day on Saturday 21 November 2026: 40 players at the society rate of 45 per player, total 1800.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e4\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked and confirmed the Littlemarsh Society day for Thursday 12 November 2026: 32 players at the society rate of 45 per player, total 1440.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Dana Ortiz (Spotless Linens)\", \"text\": \"Spotless Linens will continue collecting Fairhaven's table linen every Tuesday morning; our office number is unchanged.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-28\", \"type\": \"minutes\", \"from\": \"Marcus\", \"text\": \"August committee minutes: greens staff reported the 12th green drainage work finished; the autumn newsletter goes out in the first week of October.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Colin Hartwell (Hartwell Foods)\", \"text\": \"Hartwell Foods delivers fresh produce to the Fairhaven clubhouse kitchen on Mondays and Thursdays; orders need phoning in by 15:00 the day before.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Elaine Brooks (Fairhaven Treasurer)\", \"text\": \"For the winter brochure: the weekday twilight guest green fee stays at 30 after 14:00 from November; no change needed there.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e14\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Marcus\", \"text\": \"Reminder: renew the clubhouse equipment insurance with Fenland Mutual before 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-25\", \"type\": \"note\", \"from\": \"Marcus\", \"text\": \"The pro shop will open at 07:30 on competition days through the winter; head pro Nina Aldridge holds the spare keys.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Elaine Brooks (Fairhaven Treasurer)\", \"text\": \"Following the finance meeting: because Saturday staffing and catering costs have risen, the visitor society rate for Saturdays is 55 per player for all society days held on or after 1 November 2026. Weekday society days are unaffected and stay at the current rate. Please update any open quotes and drafts for Saturdays accordingly.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e17\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Marcus\", \"text\": \"October committee minutes: the autumn newsletter went out on 5 October; the clubhouse Christmas lunch booking sheet opens for members on 2 November 2026.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-14\", \"type\": \"call\", \"from\": \"Nina Aldridge (Fairhaven Head Pro)\", \"text\": \"Nina called: the new batch of range balls arrived and the practice ground is fully stocked for the winter.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Dana Ortiz (Spotless Linens)\", \"text\": \"Spotless Linens will add an extra Friday collection on 13 November 2026 ahead of the busy weekend; usual rates apply.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Marcus\", \"text\": \"Greens committee meets in the clubhouse boardroom at 18:00 on 27 October 2026; ask head greenkeeper to bring the winter programme.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Greenfield Society autumn day\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"Fairhaven clubhouse\", \"players\": \"56\", \"rate\": \"45\", \"total\": \"2520\", \"status\": \"confirmed\", \"contact\": \"Paul Whitfield\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Littlemarsh Society annual day\", \"fields\": {\"date\": \"2026-11-12\", \"place\": \"Fairhaven clubhouse\", \"players\": \"32\", \"rate\": \"45\", \"total\": \"1440\", \"status\": \"confirmed\", \"contact\": \"Tom Vickers\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hartley Society quote\", \"fields\": {\"date\": \"2026-11-21\", \"players\": \"40\", \"rate\": \"45\", \"total\": \"1800\", \"status\": \"draft\", \"contact\": \"Sarah Kemp\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Greenfield Society invoice\", \"fields\": {\"date\": \"2026-11-14\", \"players\": \"56\", \"rate\": \"45\", \"total\": \"2520\", \"status\": \"draft\", \"contact\": \"Paul Whitfield\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly linen service\", \"fields\": {\"supplier\": \"Spotless Linens\", \"day\": \"Tuesday\", \"place\": \"Fairhaven clubhouse\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"rate\", \"total\"], \"from\": \"Paul Whitfield (Greenfield Society)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Sarah Kemp at Hartley Society our quote for their 40-player society day here on Saturday 21 November 2026, with the per-player rate and the total for the day.\",\n \"expect\": [\n  {\"record\": \"CL-1\", \"field\": \"rate\", \"value\": \"55\", \"stale\": [\"45\"]},\n  {\"record\": \"CL-1\", \"field\": \"total\", \"value\": \"2200\", \"stale\": [\"1800\"]},\n  {\"record\": \"CL-2\", \"field\": \"rate\", \"value\": \"55\", \"stale\": [\"45\"]},\n  {\"record\": \"CL-2\", \"field\": \"total\", \"value\": \"3080\", \"stale\": [\"2520\"]},\n  {\"message_to\": \"Sarah Kemp (Hartley Society)\", \"regarding\": \"CL-1\", \"says\": [\"55\", \"2200\"], \"stale\": [\"45\", \"1800\"], \"task\": true}\n ],\n \"why\": \"The treasurer's email of 10 October replaces the 45 society rate with 55 for Saturdays from 1 November 2026. The Hartley draft quote (Saturday 21 November) and the draft Greenfield invoice (Saturday 14 November, resting on the Greenfield booking) must be revised to 55 — 2200 and 3080 — since drafts need no consent; the task's quote message must carry those new figures. The confirmed Greenfield booking itself also falls under the new rate, but changing a confirmed society's agreed rate needs Paul Whitfield's written agreement under the standing rule, so it is ASK and stays untouched pending consent. Littlemarsh (Thursday 12 November) is KEEP: the amendment covers Saturdays only, so 45 stands.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"linen restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Spotless Linens\", \"item\": \"table linen sets\", \"unit\": \"set\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Fairhaven clubhouse\"},\n  {\"kind\": \"order\", \"topic\": \"kitchen produce\", \"counterpart\": \"Colin Hartwell\", \"org\": \"Hartwell Foods\", \"item\": \"fresh vegetable boxes\", \"unit\": \"box\", \"values\": [\"6\", \"8\", \"10\", \"14\"], \"place\": \"Fairhaven clubhouse kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"bar restock\", \"counterpart\": \"Ruth Pell\", \"org\": \"Beacon Drinks\", \"item\": \"cases of tonic water\", \"unit\": \"case\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Fairhaven clubhouse bar\"},\n  {\"kind\": \"order\", \"topic\": \"range balls\", \"counterpart\": \"Nina Aldridge\", \"org\": \"Fairhaven pro shop\", \"item\": \"practice range balls\", \"unit\": \"bag\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"practice ground\"},\n  {\"kind\": \"booking\", \"topic\": \"boardroom meetings\", \"counterpart\": \"Elaine Brooks\", \"org\": \"Fairhaven committee\", \"item\": \"boardroom evening booking\", \"unit\": \"room\", \"values\": [\"boardroom\", \"committee room\", \"snooker room\"], \"place\": \"Fairhaven clubhouse\"},\n  {\"kind\": \"booking\", \"topic\": \"buggy hire\", \"counterpart\": \"Paul Whitfield\", \"org\": \"Greenfield Society\", \"item\": \"buggy hire for members\", \"unit\": \"buggy\", \"values\": [\"buggy 1\", \"buggy 3\", \"buggy 5\", \"buggy 7\"], \"place\": \"pro shop\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Gwen Storey\", \"org\": \"Storey Janitorial\", \"item\": \"cleaning supply cartons\", \"unit\": \"carton\", \"values\": [\"3\", \"5\", \"7\", \"9\"], \"place\": \"Fairhaven clubhouse\"},\n  {\"kind\": \"booking\", \"topic\": \"dining room lunches\", \"counterpart\": \"Tom Vickers\", \"org\": \"Littlemarsh Society\", \"item\": \"dining room lunch table\", \"unit\": \"table\", \"values\": [\"window table\", \"terrace table\", \"corner table\"], \"place\": \"Fairhaven dining room\"},\n  {\"kind\": \"order\", \"topic\": \"pro shop stock\", \"counterpart\": \"Nina Aldridge\", \"org\": \"Fairhaven pro shop\", \"item\": \"boxes of golf balls\", \"unit\": \"box\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"pro shop\"},\n  {\"kind\": \"booking\", \"topic\": \"tee time blocks\", \"counterpart\": \"Sarah Kemp\", \"org\": \"Hartley Society\", \"item\": \"member guest tee times\", \"unit\": \"tee\", \"values\": [\"first tee\", \"tenth tee\", \"halfway hut tee\"], \"place\": \"Fairhaven course\"},\n  {\"kind\": \"order\", \"topic\": \"towel service\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Spotless Linens\", \"item\": \"locker room towels\", \"unit\": \"bundle\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Fairhaven locker rooms\"},\n  {\"kind\": \"order\", \"topic\": \"milk and dairy\", \"counterpart\": \"Colin Hartwell\", \"org\": \"Hartwell Foods\", \"item\": \"dairy delivery crates\", \"unit\": \"crate\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Fairhaven clubhouse kitchen\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6655,
+    "completion_tokens": 3419,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0629556,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'tee time blocks': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Saturday society rate rise at Fairhaven\",\n \"setting\": \"Golf club secretary at Fairhaven Golf & Country Club, an 18-hole private club\",\n \"owner\": \"Marcus\",\n \"org\": \"Fairhaven Golf & Country Club\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Marcus\", \"text\": \"Club policy: the visitor society rate for days booked at Fairhaven is 45 per player, including coffee on arrival and use of the clubhouse dining room.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Marcus\", \"text\": \"Standing rule: once a society booking is confirmed, its agreed per-player rate and total may not be changed without the society organiser's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Paul Whitfield (Greenfield Society)\", \"text\": \"Confirming Greenfield Society would like to hold our autumn day at Fairhaven on Saturday 14 November 2026 with 56 players.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Sarah Kemp (Hartley Society)\", \"text\": \"Hartley Society is planning a day at Fairhaven on Saturday 21 November 2026 for around 40 players; please send us a quote when you can.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-09\", \"type\": \"email\", \"from\": \"Tom Vickers (Littlemarsh Society)\", \"text\": \"Littlemarsh Society would like to book our annual day at Fairhaven on Thursday 12 November 2026 for 32 players.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked and confirmed the Greenfield Society day for Saturday 14 November 2026: 56 players at the society rate of 45 per player, total 2520, dining room reserved.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Raised the draft invoice for the Greenfield Society day on 14 November 2026: 56 players at 45 per player, total 2520, to be sent after the event.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"CL-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Prepared a draft quote for the Hartley Society day on Saturday 21 November 2026: 40 players at the society rate of 45 per player, total 1800.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e4\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked and confirmed the Littlemarsh Society day for Thursday 12 November 2026: 32 players at the society rate of 45 per player, total 1440.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Dana Ortiz (Spotless Linens)\", \"text\": \"Spotless Linens will continue collecting Fairhaven's table linen every Tuesday morning; our office number is unchanged.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-28\", \"type\": \"minutes\", \"from\": \"Marcus\", \"text\": \"August committee minutes: greens staff reported the 12th green drainage work finished; the autumn newsletter goes out in the first week of October.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Colin Hartwell (Hartwell Foods)\", \"text\": \"Hartwell Foods delivers fresh produce to the Fairhaven clubhouse kitchen on Mondays and Thursdays; orders need phoning in by 15:00 the day before.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Elaine Brooks (Fairhaven Treasurer)\", \"text\": \"Following the finance meeting: because Saturday staffing and catering costs have risen, the visitor society rate for Saturdays is 55 per player for all society days held on or after 1 November 2026. Weekday society days are unaffected and stay at the current rate. Please update any open quotes and drafts for Saturdays accordingly.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e13\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Elaine Brooks (Fairhaven Treasurer)\", \"text\": \"For the winter brochure: the weekday twilight guest green fee stays at 30 after 14:00 from November; no change needed there.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e14\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Marcus\", \"text\": \"Reminder: renew the clubhouse equipment insurance with Fenland Mutual before 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-25\", \"type\": \"note\", \"from\": \"Marcus\", \"text\": \"The pro shop will open at 07:30 on competition days through the winter; head pro Nina Aldridge holds the spare keys.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Marcus\", \"text\": \"October committee minutes: the autumn newsletter went out on 5 October; the clubhouse Christmas lunch booking sheet opens for members on 2 November 2026.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-14\", \"type\": \"call\", \"from\": \"Nina Aldridge (Fairhaven Head Pro)\", \"text\": \"Nina called: the new batch of range balls arrived and the practice ground is fully stocked for the winter.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Dana Ortiz (Spotless Linens)\", \"text\": \"Spotless Linens will add an extra Friday collection on 13 November 2026 ahead of the busy weekend; usual rates apply.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Marcus\", \"text\": \"Greens committee meets in the clubhouse boardroom at 18:00 on 27 October 2026; ask head greenkeeper to bring the winter programme.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Greenfield Society autumn day\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"Fairhaven clubhouse\", \"players\": \"56\", \"rate\": \"45\", \"total\": \"2520\", \"status\": \"confirmed\", \"contact\": \"Paul Whitfield\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Littlemarsh Society annual day\", \"fields\": {\"date\": \"2026-11-12\", \"place\": \"Fairhaven clubhouse\", \"players\": \"32\", \"rate\": \"45\", \"total\": \"1440\", \"status\": \"confirmed\", \"contact\": \"Tom Vickers\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hartley Society quote\", \"fields\": {\"date\": \"2026-11-21\", \"players\": \"40\", \"rate\": \"45\", \"total\": \"1800\", \"status\": \"draft\", \"contact\": \"Sarah Kemp\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Greenfield Society invoice\", \"fields\": {\"date\": \"2026-11-14\", \"players\": \"56\", \"rate\": \"45\", \"total\": \"2520\", \"status\": \"draft\", \"contact\": \"Paul Whitfield\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly linen service\", \"fields\": {\"supplier\": \"Spotless Linens\", \"day\": \"Tuesday\", \"place\": \"Fairhaven clubhouse\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"rate\", \"total\"], \"from\": \"Paul Whitfield (Greenfield Society)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Sarah Kemp at Hartley Society our quote for their 40-player society day here on Saturday 21 November 2026, with the per-player rate and the total for the day.\",\n \"expect\": [\n  {\"record\": \"CL-1\", \"field\": \"rate\", \"value\": \"55\", \"stale\": [\"45\"]},\n  {\"record\": \"CL-1\", \"field\": \"total\", \"value\": \"2200\", \"stale\": [\"1800\"]},\n  {\"record\": \"CL-2\", \"field\": \"rate\", \"value\": \"55\", \"stale\": [\"45\"]},\n  {\"record\": \"CL-2\", \"field\": \"total\", \"value\": \"3080\", \"stale\": [\"2520\"]},\n  {\"message_to\": \"Sarah Kemp (Hartley Society)\", \"regarding\": \"CL-1\", \"says\": [\"55\", \"2200\"], \"stale\": [\"45\", \"1800\"], \"task\": true}\n ],\n \"why\": \"The treasurer's email of 8 September replaces the 45 society rate with 55 for Saturdays from 1 November 2026. The Hartley draft quote (Saturday 21 November) and the draft Greenfield invoice (Saturday 14 November, resting on the Greenfield booking) must be revised to 55 — 2200 and 3080 — since drafts need no consent; the task's quote message must carry those new figures. The confirmed Greenfield booking itself also falls under the new rate, but changing a confirmed society's agreed rate needs Paul Whitfield's written agreement under the standing rule, so it is ASK and stays untouched pending consent. Littlemarsh (Thursday 12 November) is KEEP: the amendment covers Saturdays only, so 45 stands.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"linen restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Spotless Linens\", \"item\": \"table linen sets\", \"unit\": \"set\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Fairhaven clubhouse\"},\n  {\"kind\": \"order\", \"topic\": \"kitchen produce\", \"counterpart\": \"Colin Hartwell\", \"org\": \"Hartwell Foods\", \"item\": \"fresh vegetable boxes\", \"unit\": \"box\", \"values\": [\"6\", \"8\", \"10\", \"14\"], \"place\": \"Fairhaven clubhouse kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"bar restock\", \"counterpart\": \"Ruth Pell\", \"org\": \"Beacon Drinks\", \"item\": \"cases of tonic water\", \"unit\": \"case\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Fairhaven clubhouse bar\"},\n  {\"kind\": \"order\", \"topic\": \"range balls\", \"counterpart\": \"Nina Aldridge\", \"org\": \"Fairhaven pro shop\", \"item\": \"practice range balls\", \"unit\": \"bag\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"practice ground\"},\n  {\"kind\": \"booking\", \"topic\": \"boardroom meetings\", \"counterpart\": \"Elaine Brooks\", \"org\": \"Fairhaven committee\", \"item\": \"boardroom evening booking\", \"unit\": \"room\", \"values\": [\"boardroom\", \"committee room\", \"snooker room\"], \"place\": \"Fairhaven clubhouse\"},\n  {\"kind\": \"booking\", \"topic\": \"buggy hire\", \"counterpart\": \"Paul Whitfield\", \"org\": \"Greenfield Society\", \"item\": \"buggy hire for members\", \"unit\": \"buggy\", \"values\": [\"buggy 1\", \"buggy 3\", \"buggy 5\", \"buggy 7\"], \"place\": \"pro shop\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Gwen Storey\", \"org\": \"Storey Janitorial\", \"item\": \"cleaning supply cartons\", \"unit\": \"carton\", \"values\": [\"3\", \"5\", \"7\", \"9\"], \"place\": \"Fairhaven clubhouse\"},\n  {\"kind\": \"booking\", \"topic\": \"dining room lunches\", \"counterpart\": \"Tom Vickers\", \"org\": \"Littlemarsh Society\", \"item\": \"dining room lunch table\", \"unit\": \"table\", \"values\": [\"window table\", \"terrace table\", \"corner table\"], \"place\": \"Fairhaven dining room\"},\n  {\"kind\": \"order\", \"topic\": \"pro shop stock\", \"counterpart\": \"Nina Aldridge\", \"org\": \"Fairhaven pro shop\", \"item\": \"boxes of golf balls\", \"unit\": \"box\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"pro shop\"},\n  {\"kind\": \"booking\", \"topic\": \"tee time blocks\", \"counterpart\": \"Sarah Kemp\", \"org\": \"Hartley Society\", \"item\": \"member guest tee times\", \"unit\": \"tee\", \"values\": [\"first tee\", \"tenth tee\", \"halfway hut tee\"], \"place\": \"Fairhaven course\"},\n  {\"kind\": \"order\", \"topic\": \"towel service\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Spotless Linens\", \"item\": \"locker room towels\", \"unit\": \"bundle\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Fairhaven locker rooms\"},\n  {\"kind\": \"order\", \"topic\": \"milk and dairy\", \"counterpart\": \"Colin Hartwell\", \"org\": \"Hartwell Foods\", \"item\": \"dairy delivery crates\", \"unit\": \"crate\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Fairhaven clubhouse kitchen\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 10145,
+    "completion_tokens": 3599,
+    "reasoning_tokens": 179,
+    "cached_tokens": 6656
+   },
+   "cost": 0.0664488,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- the change is too close to now: only 4 of 100 events would come after it; move the change earlier\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Saturday society rate rise at Fairhaven",
+  "setting": "Golf club secretary at Fairhaven Golf & Country Club, an 18-hole private club",
+  "owner": "Marcus",
+  "org": "Fairhaven Golf & Country Club",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Marcus",
+    "text": "Club policy: the visitor society rate for days booked at Fairhaven is 45 per player, including coffee on arrival and use of the clubhouse dining room.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Marcus",
+    "text": "Standing rule: once a society booking is confirmed, its agreed per-player rate and total may not be changed without the society organiser's written agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Paul Whitfield (Greenfield Society)",
+    "text": "Confirming Greenfield Society would like to hold our autumn day at Fairhaven on Saturday 14 November 2026 with 56 players.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Sarah Kemp (Hartley Society)",
+    "text": "Hartley Society is planning a day at Fairhaven on Saturday 21 November 2026 for around 40 players; please send us a quote when you can.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-09",
+    "type": "email",
+    "from": "Tom Vickers (Littlemarsh Society)",
+    "text": "Littlemarsh Society would like to book our annual day at Fairhaven on Thursday 12 November 2026 for 32 players.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Booked and confirmed the Greenfield Society day for Saturday 14 November 2026: 56 players at the society rate of 45 per player, total 2520, dining room reserved.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3",
+     "e2"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Raised the draft invoice for the Greenfield Society day on 14 November 2026: 56 players at 45 per player, total 2520, to be sent after the event.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "CL-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Prepared a draft quote for the Hartley Society day on Saturday 21 November 2026: 40 players at the society rate of 45 per player, total 1800.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e4"
+    ],
+    "record": "CL-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Booked and confirmed the Littlemarsh Society day for Thursday 12 November 2026: 32 players at the society rate of 45 per player, total 1440.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Dana Ortiz (Spotless Linens)",
+    "text": "Spotless Linens will continue collecting Fairhaven's table linen every Tuesday morning; our office number is unchanged.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-28",
+    "type": "minutes",
+    "from": "Marcus",
+    "text": "August committee minutes: greens staff reported the 12th green drainage work finished; the autumn newsletter goes out in the first week of October.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Colin Hartwell (Hartwell Foods)",
+    "text": "Hartwell Foods delivers fresh produce to the Fairhaven clubhouse kitchen on Mondays and Thursdays; orders need phoning in by 15:00 the day before.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Elaine Brooks (Fairhaven Treasurer)",
+    "text": "Following the finance meeting: because Saturday staffing and catering costs have risen, the visitor society rate for Saturdays is 55 per player for all society days held on or after 1 November 2026. Weekday society days are unaffected and stay at the current rate. Please update any open quotes and drafts for Saturdays accordingly.",
+    "role": "change",
+    "revokes": [
+     "e1"
+    ]
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Elaine Brooks (Fairhaven Treasurer)",
+    "text": "For the winter brochure: the weekday twilight guest green fee stays at 30 after 14:00 from November; no change needed there.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-18",
+    "type": "task",
+    "from": "Marcus",
+    "text": "Reminder: renew the clubhouse equipment insurance with Fenland Mutual before 30 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-25",
+    "type": "note",
+    "from": "Marcus",
+    "text": "The pro shop will open at 07:30 on competition days through the winter; head pro Nina Aldridge holds the spare keys.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-12",
+    "type": "minutes",
+    "from": "Marcus",
+    "text": "October committee minutes: the autumn newsletter went out on 5 October; the clubhouse Christmas lunch booking sheet opens for members on 2 November 2026.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-14",
+    "type": "call",
+    "from": "Nina Aldridge (Fairhaven Head Pro)",
+    "text": "Nina called: the new batch of range balls arrived and the practice ground is fully stocked for the winter.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Dana Ortiz (Spotless Linens)",
+    "text": "Spotless Linens will add an extra Friday collection on 13 November 2026 ahead of the busy weekend; usual rates apply.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-19",
+    "type": "note",
+    "from": "Marcus",
+    "text": "Greens committee meets in the clubhouse boardroom at 18:00 on 27 October 2026; ask head greenkeeper to bring the winter programme.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Greenfield Society autumn day",
+    "fields": {
+     "date": "2026-11-14",
+     "place": "Fairhaven clubhouse",
+     "players": "56",
+     "rate": "45",
+     "total": "2520",
+     "status": "confirmed",
+     "contact": "Paul Whitfield"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Littlemarsh Society annual day",
+    "fields": {
+     "date": "2026-11-12",
+     "place": "Fairhaven clubhouse",
+     "players": "32",
+     "rate": "45",
+     "total": "1440",
+     "status": "confirmed",
+     "contact": "Tom Vickers"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Hartley Society quote",
+    "fields": {
+     "date": "2026-11-21",
+     "players": "40",
+     "rate": "45",
+     "total": "1800",
+     "status": "draft",
+     "contact": "Sarah Kemp"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Greenfield Society invoice",
+    "fields": {
+     "date": "2026-11-14",
+     "players": "56",
+     "rate": "45",
+     "total": "2520",
+     "status": "draft",
+     "contact": "Paul Whitfield"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Weekly linen service",
+    "fields": {
+     "supplier": "Spotless Linens",
+     "day": "Tuesday",
+     "place": "Fairhaven clubhouse",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "rate",
+     "total"
+    ],
+    "from": "Paul Whitfield (Greenfield Society)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please send Sarah Kemp at Hartley Society our quote for their 40-player society day here on Saturday 21 November 2026, with the per-player rate and the total for the day.",
+  "expect": [
+   {
+    "record": "CL-1",
+    "field": "rate",
+    "value": "55",
+    "stale": [
+     "45"
+    ]
+   },
+   {
+    "record": "CL-1",
+    "field": "total",
+    "value": "2200",
+    "stale": [
+     "1800"
+    ]
+   },
+   {
+    "record": "CL-2",
+    "field": "rate",
+    "value": "55",
+    "stale": [
+     "45"
+    ]
+   },
+   {
+    "record": "CL-2",
+    "field": "total",
+    "value": "3080",
+    "stale": [
+     "2520"
+    ]
+   },
+   {
+    "message_to": "Sarah Kemp (Hartley Society)",
+    "regarding": "CL-1",
+    "says": [
+     "55",
+     "2200"
+    ],
+    "stale": [
+     "45",
+     "1800"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The treasurer's email of 8 September replaces the 45 society rate with 55 for Saturdays from 1 November 2026. The Hartley draft quote (Saturday 21 November) and the draft Greenfield invoice (Saturday 14 November, resting on the Greenfield booking) must be revised to 55 — 2200 and 3080 — since drafts need no consent; the task's quote message must carry those new figures. The confirmed Greenfield booking itself also falls under the new rate, but changing a confirmed society's agreed rate needs Paul Whitfield's written agreement under the standing rule, so it is ASK and stays untouched pending consent. Littlemarsh (Thursday 12 November) is KEEP: the amendment covers Saturdays only, so 45 stands.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "linen restock",
+    "counterpart": "Dana Ortiz",
+    "org": "Spotless Linens",
+    "item": "table linen sets",
+    "unit": "set",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "Fairhaven clubhouse"
+   },
+   {
+    "kind": "order",
+    "topic": "kitchen produce",
+    "counterpart": "Colin Hartwell",
+    "org": "Hartwell Foods",
+    "item": "fresh vegetable boxes",
+    "unit": "box",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "14"
+    ],
+    "place": "Fairhaven clubhouse kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "bar restock",
+    "counterpart": "Ruth Pell",
+    "org": "Beacon Drinks",
+    "item": "cases of tonic water",
+    "unit": "case",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Fairhaven clubhouse bar"
+   },
+   {
+    "kind": "order",
+    "topic": "range balls",
+    "counterpart": "Nina Aldridge",
+    "org": "Fairhaven pro shop",
+    "item": "practice range balls",
+    "unit": "bag",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "practice ground"
+   },
+   {
+    "kind": "booking",
+    "topic": "boardroom meetings",
+    "counterpart": "Elaine Brooks",
+    "org": "Fairhaven committee",
+    "item": "boardroom evening booking",
+    "unit": "room",
+    "values": [
+     "boardroom",
+     "committee room",
+     "snooker room"
+    ],
+    "place": "Fairhaven clubhouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "buggy hire",
+    "counterpart": "Paul Whitfield",
+    "org": "Greenfield Society",
+    "item": "buggy hire for members",
+    "unit": "buggy",
+    "values": [
+     "buggy 1",
+     "buggy 3",
+     "buggy 5",
+     "buggy 7"
+    ],
+    "place": "pro shop"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Gwen Storey",
+    "org": "Storey Janitorial",
+    "item": "cleaning supply cartons",
+    "unit": "carton",
+    "values": [
+     "3",
+     "5",
+     "7",
+     "9"
+    ],
+    "place": "Fairhaven clubhouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "dining room lunches",
+    "counterpart": "Tom Vickers",
+    "org": "Littlemarsh Society",
+    "item": "dining room lunch table",
+    "unit": "table",
+    "values": [
+     "window table",
+     "terrace table",
+     "corner table"
+    ],
+    "place": "Fairhaven dining room"
+   },
+   {
+    "kind": "order",
+    "topic": "pro shop stock",
+    "counterpart": "Nina Aldridge",
+    "org": "Fairhaven pro shop",
+    "item": "boxes of golf balls",
+    "unit": "box",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "pro shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "tee time blocks",
+    "counterpart": "Sarah Kemp",
+    "org": "Hartley Society",
+    "item": "member guest tee times",
+    "unit": "tee",
+    "values": [
+     "first tee",
+     "tenth tee",
+     "halfway hut tee"
+    ],
+    "place": "Fairhaven course"
+   },
+   {
+    "kind": "order",
+    "topic": "towel service",
+    "counterpart": "Dana Ortiz",
+    "org": "Spotless Linens",
+    "item": "locker room towels",
+    "unit": "bundle",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Fairhaven locker rooms"
+   },
+   {
+    "kind": "order",
+    "topic": "milk and dairy",
+    "counterpart": "Colin Hartwell",
+    "org": "Hartwell Foods",
+    "item": "dairy delivery crates",
+    "unit": "crate",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Fairhaven clubhouse kitchen"
+   }
+  ],
+  "id": "K100-2-09",
+  "tier": 100,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Revising Greenfield’s draft invoice to 55 and 3080 before consent is not unambiguously authorized: e2 protects the confirmed booking’s agreed rate and total, without expressly exempting draft invoices. The instruction to update Saturday drafts does not clearly resolve that conflict, so the REVISE mark on CL-2 and the consent map’s restriction to EV-1 are not securely supported.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Revising Greenfield’s draft invoice to 55 and 3080 before consent is not unambiguously authorized: e2 protects the confirmed booking’s agreed rate and total, without expressly exempting draft invoices. The instruction to update Saturday drafts does not clearly resolve that conflict, so the REVISE mark on CL-2 and the consent map’s restriction to EV-1 are not securely supported."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3406,
+    "completion_tokens": 256,
+    "reasoning_tokens": 138,
+    "cached_tokens": 0
+   },
+   "cost": 0.0553675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "40136f4460d3b3a012a40d7b48daed2109104c9a4868841ae06b95ec226fa7fd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment's own terms (Saturdays on/after 1 Nov at 55, weekdays unaffected) cleanly yield REVISE for the Saturday draft quote and invoice (55/2200 and 55/3080), ASK for the confirmed Greenfield booking under the written-agreement rule e2, and KEEP for the Thursday Littlemarsh booking. The task requires sending the quote with the updated figures without hinting at any change. Core meets tier 100 (20 core events, 4 decisions, change 42 days before task day with multiple core events after) and the change sits mid-history at event 73 of 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment's own terms (Saturdays on/after 1 Nov at 55, weekdays unaffected) cleanly yield REVISE for the Saturday draft quote and invoice (55/2200 and 55/3080), ASK for the confirmed Greenfield booking under the written-agreement rule e2, and KEEP for the Thursday Littlemarsh booking. The task requires sending the quote with the updated figures without hinting at any change. Core meets tier 100 (20 core events, 4 decisions, change 42 days before task day with multiple core events after) and the change sits mid-history at event 73 of 100."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3432,
+    "completion_tokens": 512,
+    "reasoning_tokens": 340,
+    "cached_tokens": 384
+   },
+   "cost": 0.00661984,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "40136f4460d3b3a012a40d7b48daed2109104c9a4868841ae06b95ec226fa7fd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change explicitly revokes the fact in e1 (the 45 rate) rather than amending a separate rule, so the class is 1 (stale fact), not 2; the Thursday KEEP and the e2 consent rule still follow from it. The expected state, marks, consent map and tier counts (20 core events, 4 decisions, change 42 days before the task, 4 core events after it) all check out.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change explicitly revokes the fact in e1 (the 45 rate) rather than amending a separate rule, so the class is 1 (stale fact), not 2; the Thursday KEEP and the e2 consent rule still follow from it. The expected state, marks, consent map and tier counts (20 core events, 4 decisions, change 42 days before the task, 4 core events after it) all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4980,
+    "completion_tokens": 1684,
+    "reasoning_tokens": 1499,
+    "cached_tokens": 0
+   },
+   "cost": 0.00134,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "40136f4460d3b3a012a40d7b48daed2109104c9a4868841ae06b95ec226fa7fd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

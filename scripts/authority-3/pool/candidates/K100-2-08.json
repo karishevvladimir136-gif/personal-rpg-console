@@ -1,0 +1,601 @@
+{
+ "id": "K100-2-08",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 2,
+ "idx": 7,
+ "setting": "Property manager at Juniper Court Apartments, a 40-unit residential building",
+ "prompt_sha256": "72370acd8f553d32aa70f86c527c112045e899fdcccd574b1ccc131b0c1fcefc",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Board approval threshold raised at Juniper Court\",\n \"setting\": \"Property manager at Juniper Court Apartments, a 40-unit residential building\",\n \"owner\": \"Mara\",\n \"org\": \"Juniper Court Apartments\",\n \"now\": \"2026-10-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for Juniper Court: any contractor order over $800 needs written approval from the board chair, Ines Duarte, before I confirm it with the contractor.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule: once an apartment entry for non-emergency work is confirmed with a tenant, the date or time can only be changed with that tenant's agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"quote\", \"from\": \"Peter Calder (Calder Plumbing)\", \"text\": \"Quote from Calder Plumbing for replacing the corroded pipework in the Juniper Court boiler room: $1240, all materials included. Quote valid for 90 days.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Sofia Brandt (Brightline Electrical)\", \"text\": \"Brightline Electrical quotes $950 to replace the lobby light fittings at Juniper Court with LED panels.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"I'll take Calder Plumbing's $1240 quote for the boiler room pipework, but since it's over $800 it stays as a draft order until Ines Duarte approves it in writing.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ines Duarte has signed off on the $950 lobby lighting job, so I'm confirming the Brightline Electrical order.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Sofia Brandt (Brightline Electrical)\", \"text\": \"Brightline can install the lobby LED panels at Juniper Court on 8 October 2026, starting 09:00.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Brightline Electrical to install the lobby lights on 8 October 2026 at 09:00, now that their confirmed order is in place.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e7\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-06\", \"type\": \"quote\", \"from\": \"Peter Calder (Calder Plumbing)\", \"text\": \"Calder Plumbing can supply a spare circulator pump for the Juniper Court boiler for $1600.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"The spare circulator pump at $1600 is worth having, but that's well over $800, so the order stays pending until Ines Duarte approves it.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e1\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-12\", \"type\": \"quote\", \"from\": \"Ruth Kessler (LiftLine Services)\", \"text\": \"LiftLine Services quotes $860 for the annual safety inspection of the Juniper Court elevator.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"I'll go ahead with LiftLine's $860 annual elevator inspection, but it's just over $800, so I'm keeping it as a draft until Ines Duarte signs off.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-5\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Lena Ortiz (Unit 1A tenant)\", \"text\": \"Lena Ortiz in unit 1A confirms the plumbers can come in for the riser pipework on 14 October 2026 at 09:00.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled the confirmed entry to unit 1A for 14 October 2026 at 09:00 so Calder Plumbing can do the riser section of the boiler room pipework; the tenant Lena Ortiz has agreed that slot.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e13\", \"e2\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-10\", \"type\": \"minutes\", \"from\": \"Ines Duarte (board chair)\", \"text\": \"Minutes of the Juniper Court board meeting: landscaping contract renewed, reserve fund policy to be reviewed before the autumn budget.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Ines Duarte (board chair)\", \"text\": \"Hi Mara — following the new reserve-fund policy the board adopted, from 20 September 2026 my written pre-approval is only needed for contractor orders of $1500 or more. Anything below that you can confirm yourself. Thanks, Ines.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e17\", \"date\": \"2026-10-02\", \"type\": \"quote\", \"from\": \"Ruth Kessler (LiftLine Services)\", \"text\": \"Following our visit, LiftLine quotes $1300 to upgrade the elevator door sensors at Juniper Court; we could fit the work in the week of 19 October.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-10-03\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Autumn checklist: gutter cleaning, boiler service, draught-proofing the lobby doors before November.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-04\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Arrange the winter boiler service with Calder Plumbing by 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Lena Ortiz (Unit 1A tenant)\", \"text\": \"Just checking everything is still on for the plumbing visit to unit 1A — I'll be working from home that day either way.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Boiler room pipework replacement - Calder Plumbing\", \"fields\": {\"supplier\": \"Calder Plumbing\", \"item\": \"boiler room pipework replacement\", \"amount\": \"1240\", \"status\": \"draft\", \"place\": \"boiler room\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Lobby LED lighting - Brightline Electrical\", \"fields\": {\"supplier\": \"Brightline Electrical\", \"item\": \"lobby LED panel replacement\", \"amount\": \"950\", \"status\": \"confirmed\", \"place\": \"lobby\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Spare circulator pump - Calder Plumbing\", \"fields\": {\"supplier\": \"Calder Plumbing\", \"item\": \"spare circulator pump\", \"amount\": \"1600\", \"status\": \"pending approval\", \"place\": \"boiler room\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Annual elevator safety inspection - LiftLine Services\", \"fields\": {\"supplier\": \"LiftLine Services\", \"item\": \"annual elevator safety inspection\", \"amount\": \"860\", \"status\": \"draft\", \"place\": \"elevator\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Lobby lighting installation\", \"fields\": {\"date\": \"2026-10-08\", \"time\": \"09:00\", \"contractor\": \"Brightline Electrical\", \"place\": \"lobby\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Unit 1A entry for riser pipework\", \"fields\": {\"date\": \"2026-10-14\", \"time\": \"09:00\", \"contractor\": \"Calder Plumbing\", \"place\": \"unit 1A\", \"tenant\": \"Lena Ortiz\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"date\", \"time\"], \"from\": \"Lena Ortiz (Unit 1A tenant)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please give Calder Plumbing the go-ahead for the boiler room pipework and send them confirmation that the order is on.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"draft\"], \"task\": true},\n  {\"record\": \"ORD-5\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"draft\"]},\n  {\"message_to\": \"Peter Calder (Calder Plumbing)\", \"regarding\": \"ORD-1\", \"says\": [\"1240\", \"go-ahead\"], \"stale\": [\"draft\", \"pending approval\"], \"task\": true}\n ],\n \"why\": \"The board chair's email raises the pre-approval threshold from $800 to $1500 effective 20 September 2026, so the $1240 pipework order (ORD-1) and the $860 elevator inspection (ORD-5) no longer need sign-off and should move from draft to confirmed — REVISE. The $950 lighting order was already confirmed and stays (KEEP), the $1600 pump still exceeds the new threshold (KEEP), and the unit 1A entry stands as confirmed with the tenant; any change to it would need Lena Ortiz's agreement, so it is ASK and stays untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"plumbing consumables restock\", \"counterpart\": \"Peter Calder\", \"org\": \"Calder Plumbing\", \"item\": \"pipe fittings and washers\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"10\", \"12\"], \"place\": \"boiler room\"},\n  {\"kind\": \"booking\", \"topic\": \"elevator maintenance slot\", \"counterpart\": \"Ruth Kessler\", \"org\": \"LiftLine Services\", \"item\": \"routine elevator service visit\", \"unit\": null, \"values\": [\"elevator machine room\", \"elevator car\", \"ground floor lobby\"], \"place\": \"elevator\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Ana Ruiz\", \"org\": \"Crystal Cleaning Co\", \"item\": \"cleaning supplies\", \"unit\": \"case\", \"values\": [\"3\", \"5\", \"8\", \"10\"], \"place\": \"ground floor lobby\"},\n  {\"kind\": \"booking\", \"topic\": \"landscaping visit\", \"counterpart\": \"Tom Aldis\", \"org\": \"Greenrow Landscaping\", \"item\": \"garden maintenance visit\", \"unit\": null, \"values\": [\"courtyard\", \"front beds\", \"rear car park edge\"], \"place\": \"courtyard\"},\n  {\"kind\": \"order\", \"topic\": \"light bulbs restock\", \"counterpart\": \"Sofia Brandt\", \"org\": \"Brightline Electrical\", \"item\": \"replacement LED tubes\", \"unit\": \"pack\", \"values\": [\"6\", \"12\", \"20\", \"24\"], \"place\": \"ground floor lobby\"},\n  {\"kind\": \"booking\", \"topic\": \"window cleaning\", \"counterpart\": \"Marta Silva\", \"org\": \"ClearView Windows\", \"item\": \"exterior window cleaning\", \"unit\": null, \"values\": [\"north facade\", \"south facade\", \"courtyard side\"], \"place\": \"front entrance\"},\n  {\"kind\": \"order\", \"topic\": \"HVAC filters restock\", \"counterpart\": \"Jonas Weil\", \"org\": \"AirRight Systems\", \"item\": \"HVAC filters\", \"unit\": \"unit\", \"values\": [\"10\", \"20\", \"40\", \"60\"], \"place\": \"boiler room\"},\n  {\"kind\": \"booking\", \"topic\": \"community room hire\", \"counterpart\": \"Lena Ortiz\", \"org\": \"Juniper Court Residents\", \"item\": \"community room booking\", \"unit\": null, \"values\": [\"community room A\", \"community room B\", \"lobby corner\"], \"place\": \"ground floor lobby\"},\n  {\"kind\": \"order\", \"topic\": \"waste contract bins\", \"counterpart\": \"Owen Ford\", \"org\": \"Citywide Waste\", \"item\": \"recycling bins\", \"unit\": \"bin\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"rear car park edge\"},\n  {\"kind\": \"booking\", \"topic\": \"pest control round\", \"counterpart\": \"Priya Nair\", \"org\": \"SurePest\", \"item\": \"quarterly pest inspection\", \"unit\": null, \"values\": [\"basement\", \"bin store\", \"boiler room\"], \"place\": \"basement\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3179,
+    "completion_tokens": 6520,
+    "reasoning_tokens": 3247,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0990426,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Board approval threshold raised at Juniper Court",
+  "setting": "Property manager at Juniper Court Apartments, a 40-unit residential building",
+  "owner": "Mara",
+  "org": "Juniper Court Apartments",
+  "now": "2026-10-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-08",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing instruction for Juniper Court: any contractor order over $800 needs written approval from the board chair, Ines Duarte, before I confirm it with the contractor.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "policy",
+    "from": "Mara",
+    "text": "House rule: once an apartment entry for non-emergency work is confirmed with a tenant, the date or time can only be changed with that tenant's agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-15",
+    "type": "quote",
+    "from": "Peter Calder (Calder Plumbing)",
+    "text": "Quote from Calder Plumbing for replacing the corroded pipework in the Juniper Court boiler room: $1240, all materials included. Quote valid for 90 days.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-18",
+    "type": "quote",
+    "from": "Sofia Brandt (Brightline Electrical)",
+    "text": "Brightline Electrical quotes $950 to replace the lobby light fittings at Juniper Court with LED panels.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Mara",
+    "text": "I'll take Calder Plumbing's $1240 quote for the boiler room pipework, but since it's over $800 it stays as a draft order until Ines Duarte approves it in writing.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ines Duarte has signed off on the $950 lobby lighting job, so I'm confirming the Brightline Electrical order.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Sofia Brandt (Brightline Electrical)",
+    "text": "Brightline can install the lobby LED panels at Juniper Court on 8 October 2026, starting 09:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-29",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Brightline Electrical to install the lobby lights on 8 October 2026 at 09:00, now that their confirmed order is in place.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e7"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-06",
+    "type": "quote",
+    "from": "Peter Calder (Calder Plumbing)",
+    "text": "Calder Plumbing can supply a spare circulator pump for the Juniper Court boiler for $1600.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-09",
+    "type": "decision",
+    "from": "Mara",
+    "text": "The spare circulator pump at $1600 is worth having, but that's well over $800, so the order stays pending until Ines Duarte approves it.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e1"
+    ],
+    "record": "ORD-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-12",
+    "type": "quote",
+    "from": "Ruth Kessler (LiftLine Services)",
+    "text": "LiftLine Services quotes $860 for the annual safety inspection of the Juniper Court elevator.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-18",
+    "type": "decision",
+    "from": "Mara",
+    "text": "I'll go ahead with LiftLine's $860 annual elevator inspection, but it's just over $800, so I'm keeping it as a draft until Ines Duarte signs off.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e1"
+    ],
+    "record": "ORD-5",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Lena Ortiz (Unit 1A tenant)",
+    "text": "Lena Ortiz in unit 1A confirms the plumbers can come in for the riser pipework on 14 October 2026 at 09:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-04",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Scheduled the confirmed entry to unit 1A for 14 October 2026 at 09:00 so Calder Plumbing can do the riser section of the boiler room pipework; the tenant Lena Ortiz has agreed that slot.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e13",
+     "e2"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-10",
+    "type": "minutes",
+    "from": "Ines Duarte (board chair)",
+    "text": "Minutes of the Juniper Court board meeting: landscaping contract renewed, reserve fund policy to be reviewed before the autumn budget.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Ines Duarte (board chair)",
+    "text": "Hi Mara — following the new reserve-fund policy the board adopted, from 20 September 2026 my written pre-approval is only needed for contractor orders of $1500 or more. Anything below that you can confirm yourself. Thanks, Ines.",
+    "role": "change",
+    "revokes": [
+     "e1"
+    ]
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-02",
+    "type": "quote",
+    "from": "Ruth Kessler (LiftLine Services)",
+    "text": "Following our visit, LiftLine quotes $1300 to upgrade the elevator door sensors at Juniper Court; we could fit the work in the week of 19 October.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-03",
+    "type": "note",
+    "from": "Mara",
+    "text": "Autumn checklist: gutter cleaning, boiler service, draught-proofing the lobby doors before November.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-04",
+    "type": "task",
+    "from": "Mara",
+    "text": "Arrange the winter boiler service with Calder Plumbing by 30 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Lena Ortiz (Unit 1A tenant)",
+    "text": "Just checking everything is still on for the plumbing visit to unit 1A — I'll be working from home that day either way.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Boiler room pipework replacement - Calder Plumbing",
+    "fields": {
+     "supplier": "Calder Plumbing",
+     "item": "boiler room pipework replacement",
+     "amount": "1240",
+     "status": "draft",
+     "place": "boiler room"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Lobby LED lighting - Brightline Electrical",
+    "fields": {
+     "supplier": "Brightline Electrical",
+     "item": "lobby LED panel replacement",
+     "amount": "950",
+     "status": "confirmed",
+     "place": "lobby"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Spare circulator pump - Calder Plumbing",
+    "fields": {
+     "supplier": "Calder Plumbing",
+     "item": "spare circulator pump",
+     "amount": "1600",
+     "status": "pending approval",
+     "place": "boiler room"
+    }
+   },
+   {
+    "id": "ORD-5",
+    "collection": "orders",
+    "title": "Annual elevator safety inspection - LiftLine Services",
+    "fields": {
+     "supplier": "LiftLine Services",
+     "item": "annual elevator safety inspection",
+     "amount": "860",
+     "status": "draft",
+     "place": "elevator"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Lobby lighting installation",
+    "fields": {
+     "date": "2026-10-08",
+     "time": "09:00",
+     "contractor": "Brightline Electrical",
+     "place": "lobby",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Unit 1A entry for riser pipework",
+    "fields": {
+     "date": "2026-10-14",
+     "time": "09:00",
+     "contractor": "Calder Plumbing",
+     "place": "unit 1A",
+     "tenant": "Lena Ortiz",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Lena Ortiz (Unit 1A tenant)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please give Calder Plumbing the go-ahead for the boiler room pipework and send them confirmation that the order is on.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "draft"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-5",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "draft"
+    ]
+   },
+   {
+    "message_to": "Peter Calder (Calder Plumbing)",
+    "regarding": "ORD-1",
+    "says": [
+     "1240",
+     "go-ahead"
+    ],
+    "stale": [
+     "draft",
+     "pending approval"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The board chair's email raises the pre-approval threshold from $800 to $1500 effective 20 September 2026, so the $1240 pipework order (ORD-1) and the $860 elevator inspection (ORD-5) no longer need sign-off and should move from draft to confirmed — REVISE. The $950 lighting order was already confirmed and stays (KEEP), the $1600 pump still exceeds the new threshold (KEEP), and the unit 1A entry stands as confirmed with the tenant; any change to it would need Lena Ortiz's agreement, so it is ASK and stays untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "plumbing consumables restock",
+    "counterpart": "Peter Calder",
+    "org": "Calder Plumbing",
+    "item": "pipe fittings and washers",
+    "unit": "box",
+    "values": [
+     "4",
+     "6",
+     "10",
+     "12"
+    ],
+    "place": "boiler room"
+   },
+   {
+    "kind": "booking",
+    "topic": "elevator maintenance slot",
+    "counterpart": "Ruth Kessler",
+    "org": "LiftLine Services",
+    "item": "routine elevator service visit",
+    "unit": null,
+    "values": [
+     "elevator machine room",
+     "elevator car",
+     "ground floor lobby"
+    ],
+    "place": "elevator"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies restock",
+    "counterpart": "Ana Ruiz",
+    "org": "Crystal Cleaning Co",
+    "item": "cleaning supplies",
+    "unit": "case",
+    "values": [
+     "3",
+     "5",
+     "8",
+     "10"
+    ],
+    "place": "ground floor lobby"
+   },
+   {
+    "kind": "booking",
+    "topic": "landscaping visit",
+    "counterpart": "Tom Aldis",
+    "org": "Greenrow Landscaping",
+    "item": "garden maintenance visit",
+    "unit": null,
+    "values": [
+     "courtyard",
+     "front beds",
+     "rear car park edge"
+    ],
+    "place": "courtyard"
+   },
+   {
+    "kind": "order",
+    "topic": "light bulbs restock",
+    "counterpart": "Sofia Brandt",
+    "org": "Brightline Electrical",
+    "item": "replacement LED tubes",
+    "unit": "pack",
+    "values": [
+     "6",
+     "12",
+     "20",
+     "24"
+    ],
+    "place": "ground floor lobby"
+   },
+   {
+    "kind": "booking",
+    "topic": "window cleaning",
+    "counterpart": "Marta Silva",
+    "org": "ClearView Windows",
+    "item": "exterior window cleaning",
+    "unit": null,
+    "values": [
+     "north facade",
+     "south facade",
+     "courtyard side"
+    ],
+    "place": "front entrance"
+   },
+   {
+    "kind": "order",
+    "topic": "HVAC filters restock",
+    "counterpart": "Jonas Weil",
+    "org": "AirRight Systems",
+    "item": "HVAC filters",
+    "unit": "unit",
+    "values": [
+     "10",
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "boiler room"
+   },
+   {
+    "kind": "booking",
+    "topic": "community room hire",
+    "counterpart": "Lena Ortiz",
+    "org": "Juniper Court Residents",
+    "item": "community room booking",
+    "unit": null,
+    "values": [
+     "community room A",
+     "community room B",
+     "lobby corner"
+    ],
+    "place": "ground floor lobby"
+   },
+   {
+    "kind": "order",
+    "topic": "waste contract bins",
+    "counterpart": "Owen Ford",
+    "org": "Citywide Waste",
+    "item": "recycling bins",
+    "unit": "bin",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "rear car park edge"
+   },
+   {
+    "kind": "booking",
+    "topic": "pest control round",
+    "counterpart": "Priya Nair",
+    "org": "SurePest",
+    "item": "quarterly pest inspection",
+    "unit": null,
+    "values": [
+     "basement",
+     "bin store",
+     "boiler room"
+    ],
+    "place": "basement"
+   }
+  ],
+  "id": "K100-2-08",
+  "tier": 100,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"EV-3 should be KEEP, not ASK: neither the amendment nor the task requires changing the tenant's confirmed entry time, so no consent request is warranted. Calder's $1240 quote was valid for only 90 days from 15 June and expired before the amendment and task, so confirmation at that price is not unambiguously supported.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "EV-3 should be KEEP, not ASK: neither the amendment nor the task requires changing the tenant's confirmed entry time, so no consent request is warranted. Calder's $1240 quote was valid for only 90 days from 15 June and expired before the amendment and task, so confirmation at that price is not unambiguously supported."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3366,
+    "completion_tokens": 195,
+    "reasoning_tokens": 89,
+    "cached_tokens": 0
+   },
+   "cost": 0.0518175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "908ca0d750d14e582a46accfc139cde09358c38dcfe7802d1390212c3a87e054",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The ASK mark on e14 (EV-3) is unjustified: the change amends only the pre-approval threshold in e1, and nothing in it alters EV-3's date or time, so the expected state's required consent request to Lena Ortiz has no basis in the change's own terms. The task forces an action (confirming ORD-1 and messaging Calder), and the change is an ordinary mid-history email with later events after it, so the class-2 structure, tier counts (20 core events, 6 decisions, change 8 days before the task day with 4 later core events) and concealment all hold.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The ASK mark on e14 (EV-3) is unjustified: the change amends only the pre-approval threshold in e1, and nothing in it alters EV-3's date or time, so the expected state's required consent request to Lena Ortiz has no basis in the change's own terms. The task forces an action (confirming ORD-1 and messaging Calder), and the change is an ordinary mid-history email with later events after it, so the class-2 structure, tier counts (20 core events, 6 decisions, change 8 days before the task day with 4 later core events) and concealment all hold."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4904,
+    "completion_tokens": 2212,
+    "reasoning_tokens": 1971,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015964,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "908ca0d750d14e582a46accfc139cde09358c38dcfe7802d1390212c3a87e054",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The ASK mark on e14 does not follow: the threshold change fixes no new value for EV-3 (date, time and contractor are untouched), and the history's consent rule (e2) only applies to changing a confirmed entry, so EV-3 should be KEEP, not a consent request to Lena Ortiz. Everything else (REVISE ORD-1 and ORD-5, KEEP ORD-2/EV-1/ORD-4) follows cleanly from the amended rule. The task forces a real act (confirming ORD-1 and messaging Calder) without hinting at the change, the change is buried mid-history with events after it, and tier-100 counts and timing are met.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The ASK mark on e14 does not follow: the threshold change fixes no new value for EV-3 (date, time and contractor are untouched), and the history's consent rule (e2) only applies to changing a confirmed entry, so EV-3 should be KEEP, not a consent request to Lena Ortiz. Everything else (REVISE ORD-1 and ORD-5, KEEP ORD-2/EV-1/ORD-4) follows cleanly from the amended rule. The task forces a real act (confirming ORD-1 and messaging Calder) without hinting at the change, the change is buried mid-history with events after it, and tier-100 counts and timing are met."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3412,
+    "completion_tokens": 572,
+    "reasoning_tokens": 386,
+    "cached_tokens": 384
+   },
+   "cost": 0.00685584,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "908ca0d750d14e582a46accfc139cde09358c38dcfe7802d1390212c3a87e054",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

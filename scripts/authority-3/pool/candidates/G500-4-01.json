@@ -619,5 +619,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e23, Sweet Meridian pricing) revokes or amends nothing that any decision rests on, so the control class and the all-KEEP expected state hold. The task is a fresh booking that the history's facts support (Priya free on the morning of 17 October, 190 per session, and a 07:00 start consistent with Rosa's timeline). The expected-state \\\"stale\\\" key referencing 09:00 is an odd marker, but it does not make the state wrong.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e23, Sweet Meridian pricing) revokes or amends nothing that any decision rests on, so the control class and the all-KEEP expected state hold. The task is a fresh booking that the history's facts support (Priya free on the morning of 17 October, 190 per session, and a 07:00 start consistent with Rosa's timeline). The expected-state \"stale\" key referencing 09:00 is an odd marker, but it does not make the state wrong."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6148,
+    "completion_tokens": 1504,
+    "reasoning_tokens": 1296,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013668,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "74bbd4e0a9902f84b67364da4af30f621f551691db8986b04472e12173cb0f8a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The consent map is narrower than e1: that rule protects date, place, time and vendor for every confirmed couple booking, but the map covers only selected fields on EV-1 and EV-2, omitting even EV-2's vendor. The unrelated dessert advertisement otherwise supports class 4, and the core meets the tier and change-placement requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The consent map is narrower than e1: that rule protects date, place, time and vendor for every confirmed couple booking, but the map covers only selected fields on EV-1 and EV-2, omitting even EV-2's vendor. The unrelated dessert advertisement otherwise supports class 4, and the core meets the tier and change-placement requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4203,
+    "completion_tokens": 299,
+    "reasoning_tokens": 191,
+    "cached_tokens": 0
+   },
+   "cost": 0.06748,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "74bbd4e0a9902f84b67364da4af30f621f551691db8986b04472e12173cb0f8a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (Sweet Meridian's new dessert menus) supports no existing decision, so the correct act is just the fresh wedding-morning booking at Priya's established 190-dollar rate; the 09:00 distractor is explicitly for another couple. The consent rule covers only changes to confirmed bookings, so directly creating the new record is consistent with the consent map. Tier counts (29 core events, 8 decisions, change 15 days before the task day with later core events, change at event 456/500) all hold.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (Sweet Meridian's new dessert menus) supports no existing decision, so the correct act is just the fresh wedding-morning booking at Priya's established 190-dollar rate; the 09:00 distractor is explicitly for another couple. The consent rule covers only changes to confirmed bookings, so directly creating the new record is consistent with the consent map. Tier counts (29 core events, 8 decisions, change 15 days before the task day with later core events, change at event 456/500) all hold."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4275,
+    "completion_tokens": 450,
+    "reasoning_tokens": 287,
+    "cached_tokens": 256
+   },
+   "cost": 0.0188838,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "74bbd4e0a9902f84b67364da4af30f621f551691db8986b04472e12173cb0f8a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

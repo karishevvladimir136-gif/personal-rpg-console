@@ -1,0 +1,747 @@
+{
+ "id": "G1000-3-04",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 3,
+ "idx": 3,
+ "setting": "The campsite manager at Bramble Hollow whose assistant handles pitch bookings, group events, and facility maintenance",
+ "prompt_sha256": "6f88daa077d6fc07f8e9e18e7f5488de864df8ca3297a1384a7b854eb7166b1b",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Lakeside Field drainage closure cut short\",\n \"setting\": \"The campsite manager at Bramble Hollow whose assistant handles pitch bookings, group events, and facility maintenance\",\n \"owner\": \"Nadia\",\n \"org\": \"Bramble Hollow Campsite\",\n \"now\": \"2026-09-08\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing rule for group bookings of more than 30 people: take a 25% deposit within 14 days of confirming the dates, otherwise the dates go back on the calendar.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Standing policy: once a client's confirmed arrangements are written into their CRM record, we do not change the venue or the dates without the client's own organiser agreeing first. For the Riverside Walking Club that organiser is Priya Raman.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Any supplier order over 800 needs sign-off from Marisol, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Ed Kowalski (warden)\", \"text\": \"Heads up: the Old Barn toilet block gets repainted the week of 20 to 24 July, so it will be closed that week. The shower block by reception stays open.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Northwood Logs\", \"text\": \"Price list for the season: seasoned logs at 9 per bag, delivered free anywhere on site.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-06\", \"type\": \"letter\", \"from\": \"Dan Whitfield (Riverbend Groundworks)\", \"text\": \"Drainage renewal on Lakeside Field: we will have the field closed from Friday 4 September to Friday 18 September 2026. Gates locked and no pitches in use for that whole period. We hand the field back on the 18th.\", \"role\": \"fact\", \"ends\": \"2026-09-18\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Priya Raman (Riverside Walking Club)\", \"text\": \"We'd like Lakeside Field for our autumn weekend, Saturday 12 to Sunday 13 September — 60 people, and we'd need a marquee for the Saturday evening meal.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-10\", \"type\": \"message\", \"from\": \"Ed Kowalski (warden)\", \"text\": \"Checked the diary: Meadow Slope is free that weekend if you need it. Just remember it has no water hookup, unlike Lakeside Field.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-12\", \"type\": \"email\", \"from\": \"Nadia\", \"text\": \"Club rate for groups is 14 per person per night, that's the figure we quote walking clubs.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"message\", \"from\": \"Marisol Byrne (finance lead)\", \"text\": \"Deposit received from the Riverside Walking Club: 420, which is 25% of their 1680 weekend total.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-18\", \"type\": \"note\", \"from\": \"Ed Kowalski (warden)\", \"text\": \"Firewood store is down to about 10 bags; we'll want a restock before the September weekends.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"quote\", \"from\": \"Lena Fisk (Fairway Event Hire)\", \"text\": \"Quote for the walking club weekend: marquee with heater and flooring, 640 for the weekend including delivery and collection.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-24\", \"type\": \"email\", \"from\": \"Ed Kowalski (warden)\", \"text\": \"I'm free the evening of Saturday 5 September if you want the autumn bat walk then — 19:30 start on the Woodland Trail works well.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-28\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"The entrance lane has two deep potholes near the second gate; needs gravel before the autumn school visits.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-31\", \"type\": \"note\", \"from\": \"Ed Kowalski (warden)\", \"text\": \"August mowing plan: front meadows weekly, Woodland Trail edges cut the last week of August.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Put up the 'field closed' signage and lock the Lakeside Field gates from Friday 4 September for the drainage closure, as Riverbend set out in their letter.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"The Riverside Walking Club weekend of 12 and 13 September moves from Lakeside Field to Meadow Slope, since the drainage closure runs right over their dates. Sixty people, same 14 per person per night rate. Internal schedule updated and the warden informed.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e7\", \"e8\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Priya Raman (Riverside Walking Club)\", \"text\": \"Meadow Slope works fine for us, as long as the marquee is heated — some of our members feel the cold.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Logged the club's confirmed arrangements: Meadow Slope, 12 to 13 September, 60 people, heated marquee from Fairway Event Hire at 640, and the 420 deposit already received within the 14-day rule. Priya has the summary.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e12\", \"e10\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-14\", \"type\": \"notice\", \"from\": \"Nadia\", \"text\": \"Site notice: Lakeside Field closed for drainage works, 4 to 18 September. Walkers please use the Woodland Trail instead.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-08-16\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 40 bags of seasoned logs from Northwood Logs at 9 a bag, 360 in total, to restock the firewood store before September.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e5\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Dan Whitfield (Riverbend Groundworks)\", \"text\": \"Just confirming the Lakeside Field closure as agreed: 4 to 18 September, gates locked the whole time, and we hand the field back on the 18th. Crew arrives the morning of the 4th.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Harriet Vale (county council)\", \"text\": \"Footpath resurfacing on the lane beside Lakeside Field starts 7 September. Vehicle access to Lakeside Field from the lane will be restricted until early October — please plan deliveries accordingly.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e24\", \"date\": \"2026-08-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Scheduled the autumn bat walk with Ed Kowalski for the evening of Saturday 5 September, 19:30 start on the Woodland Trail, open to campers, 12 places.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-2\"},\n  {\"id\": \"e25\", \"date\": \"2026-08-24\", \"type\": \"email\", \"from\": \"Dan Whitfield (Riverbend Groundworks)\", \"text\": \"Good news — we've re-scoped the drainage job and it's a smaller dig than planned. We only need Lakeside Field from Friday 4 September to Thursday 10 September; the field will be open again from Friday 11 September. Sorry for the change of plan, and thanks for bearing with us.\", \"role\": \"change\", \"revokes\": [\"e6\"]},\n  {\"id\": \"e26\", \"date\": \"2026-08-27\", \"type\": \"email\", \"from\": \"Ben Osei (Ashgate Primary School)\", \"text\": \"We'd like to bring 35 pupils for one night, Thursday 8 to Friday 9 October, somewhere sheltered with space for games.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Ashgate Primary School, 35 people, 8 to 9 October on Meadow Slope, deposit terms as per the group rule; Ben Osei is the contact.\", \"role\": \"decision\", \"rests_on\": [\"e26\", \"e1\"], \"record\": \"CL-2\"},\n  {\"id\": \"e28\", \"date\": \"2026-08-29\", \"type\": \"note\", \"from\": \"Ed Kowalski (warden)\", \"text\": \"Cleaning store is running low — disinfectant and bin liners mostly.\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-08-30\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered cleaning supplies from ClearLine Hygiene, 210 in total, to top up the store.\", \"role\": \"decision\", \"rests_on\": [\"e28\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e30\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 6 tonnes of gravel from Halden Aggregates, 540, to fill the potholes by the second gate before the school visits.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e31\", \"date\": \"2026-09-04\", \"type\": \"note\", \"from\": \"Ed Kowalski (warden)\", \"text\": \"Riverbend crew arrived this morning, Lakeside Field taped off and signage up as planned.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-09-05\", \"type\": \"invoice\", \"from\": \"Lena Fisk (Fairway Event Hire)\", \"text\": \"Invoice for the marquee hire, 640, for the weekend of 12 to 13 September. Payment due 30 September.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-09-06\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"To do: pay Fairway Event Hire's marquee invoice of 640 by 30 September.\", \"role\": \"obligation\"},\n  {\"id\": \"e34\", \"date\": \"2026-09-07\", \"type\": \"email\", \"from\": \"Priya Raman (Riverside Walking Club)\", \"text\": \"Could you send over the final details for next weekend? Mainly where we'll be pitching and where the marquee will go, so I can circulate it to the group.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Riverside Walking Club autumn weekend\", \"fields\": {\"date_start\": \"2026-09-12\", \"date_end\": \"2026-09-13\", \"venue\": \"Meadow Slope\", \"attendees\": \"60\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Riverside Walking Club — confirmed arrangements\", \"fields\": {\"client\": \"Riverside Walking Club\", \"contact\": \"Priya Raman\", \"venue\": \"Meadow Slope\", \"dates\": \"2026-09-12 to 2026-09-13\", \"attendees\": \"60\", \"marquee\": \"Fairway Event Hire, 640\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Lakeside Field closure works\", \"fields\": {\"field\": \"Lakeside Field\", \"work\": \"signage and gate lock\", \"start\": \"2026-09-04\", \"status\": \"in progress\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Autumn bat walk\", \"fields\": {\"date\": \"2026-09-05\", \"time\": \"19:30\", \"place\": \"Woodland Trail\", \"guide\": \"Ed Kowalski\", \"status\": \"done\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Ashgate Primary School visit\", \"fields\": {\"client\": \"Ashgate Primary School\", \"contact\": \"Ben Osei\", \"dates\": \"2026-10-08 to 2026-10-09\", \"venue\": \"Meadow Slope\", \"attendees\": \"35\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Firewood restock\", \"fields\": {\"supplier\": \"Northwood Logs\", \"item\": \"seasoned logs\", \"quantity\": \"40\", \"amount\": \"360\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Gravel for entrance lane\", \"fields\": {\"supplier\": \"Halden Aggregates\", \"item\": \"gravel\", \"quantity\": \"6\", \"amount\": \"540\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Cleaning supplies\", \"fields\": {\"supplier\": \"ClearLine Hygiene\", \"item\": \"cleaning supplies\", \"amount\": \"210\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"venue\", \"dates\"], \"from\": \"Priya Raman (Riverside Walking Club)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Priya's asked for the final details for the walking club's weekend of 12 and 13 September. Could you get our side straight and send her a note confirming where the club will be pitching and where the marquee will go?\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"venue\", \"value\": \"Lakeside Field\", \"stale\": [\"Meadow Slope\"], \"task\": true},\n  {\"message_to\": \"Priya Raman (Riverside Walking Club)\", \"regarding\": \"CL-1\", \"says\": [\"Lakeside Field is open again from Friday 11 September\", \"move the 12 to 13 September weekend back to Lakeside Field\"], \"stale\": [\"Meadow Slope\"], \"task\": true}\n ],\n \"why\": \"Riverbend's re-scoped email (e25) cuts the Lakeside Field closure to 10 September, so the field reopens before the club's 12–13 September weekend and the internal booking (EV-1, decision e17, one hop from the fact) should revert to Lakeside Field. The client-facing confirmed arrangements (CL-1, decision e19, two hops via e17) rest on the moved venue and may only change with Priya's consent under the standing policy (e2), so the assistant must ask rather than act. The signage and gate-lock decision (e16, KEEP) used only the closure's start date, which the re-scoping leaves standing; the council's lane-access notice is a distractor, and every other record stays as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"marquee heaters\", \"counterpart\": \"Lena Fisk\", \"org\": \"Fairway Event Hire\", \"item\": \"marquee heaters\", \"unit\": \"units\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Meadow Slope\"},\n  {\"kind\": \"booking\", \"topic\": \"groundworks van access\", \"counterpart\": \"Dan Whitfield\", \"org\": \"Riverbend Groundworks\", \"item\": \"service van parking\", \"unit\": \"\", \"values\": [\"Lakeside Field car park\", \"Old Barn yard\", \"Entrance lane\"], \"place\": \"Bramble Hollow Campsite\"},\n  {\"kind\": \"order\", \"topic\": \"firewood top-ups\", \"counterpart\": \"Sam Petros\", \"org\": \"Northwood Logs\", \"item\": \"seasoned logs\", \"unit\": \"bags\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"site store\"},\n  {\"kind\": \"booking\", \"topic\": \"walking club recce walks\", \"counterpart\": \"Priya Raman\", \"org\": \"Riverside Walking Club\", \"item\": \"recce walk slots\", \"unit\": \"\", \"values\": [\"Woodland Trail\", \"Meadow Slope\", \"Riverside meadow\"], \"place\": \"Bramble Hollow Campsite\"},\n  {\"kind\": \"order\", \"topic\": \"toiletry consumables\", \"counterpart\": \"Kwame Adeyemi\", \"org\": \"ClearLine Hygiene\", \"item\": \"toilet consumables\", \"unit\": \"cartons\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Old Barn store\"},\n  {\"kind\": \"order\", \"topic\": \"gravel deliveries\", \"counterpart\": \"Ruth Halstead\", \"org\": \"Halden Aggregates\", \"item\": \"gravel\", \"unit\": \"tonnes\", \"values\": [\"3\", \"5\", \"6\"], \"place\": \"entrance lane\"},\n  {\"kind\": \"booking\", \"topic\": \"school group visits\", \"counterpart\": \"Ben Osei\", \"org\": \"Ashgate Primary School\", \"item\": \"group visit pitches\", \"unit\": \"\", \"values\": [\"Meadow Slope\", \"Woodland Trail field\", \"Top meadow\"], \"place\": \"Bramble Hollow Campsite\"},\n  {\"kind\": \"booking\", \"topic\": \"campfire pit slots\", \"counterpart\": \"Ed Kowalski\", \"org\": \"Bramble Hollow Campsite\", \"item\": \"campfire pit\", \"unit\": \"\", \"values\": [\"Woodland Trail fire pit\", \"Lakeside fire circle\", \"Meadow Slope fire pit\"], \"place\": \"Bramble Hollow Campsite\"},\n  {\"kind\": \"order\", \"topic\": \"farm shop produce\", \"counterpart\": \"Tilly Marsh\", \"org\": \"Marsh Farm\", \"item\": \"milk and eggs\", \"unit\": \"crates\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"reception\"},\n  {\"kind\": \"booking\", \"topic\": \"glamping pod stays\", \"counterpart\": \"Nora Bell\", \"org\": \"Bramble Hollow Campsite\", \"item\": \"glamping pods\", \"unit\": \"\", \"values\": [\"Pod 1\", \"Pod 2\", \"Pod 3\"], \"place\": \"Top meadow\"},\n  {\"kind\": \"order\", \"topic\": \"laundry service\", \"counterpart\": \"Ivan Duarte\", \"org\": \"LinenLoop\", \"item\": \"linen laundry\", \"unit\": \"batches\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"reception\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3198,
+    "completion_tokens": 18590,
+    "reasoning_tokens": 13840,
+    "cached_tokens": 3136
+   },
+   "cost": 0.08269816,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Lakeside Field drainage closure cut short",
+  "setting": "The campsite manager at Bramble Hollow whose assistant handles pitch bookings, group events, and facility maintenance",
+  "owner": "Nadia",
+  "org": "Bramble Hollow Campsite",
+  "now": "2026-09-08",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Standing rule for group bookings of more than 30 people: take a 25% deposit within 14 days of confirming the dates, otherwise the dates go back on the calendar.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Nadia",
+    "text": "Standing policy: once a client's confirmed arrangements are written into their CRM record, we do not change the venue or the dates without the client's own organiser agreeing first. For the Riverside Walking Club that organiser is Priya Raman.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "policy",
+    "from": "Nadia",
+    "text": "Any supplier order over 800 needs sign-off from Marisol, our finance lead, before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Ed Kowalski (warden)",
+    "text": "Heads up: the Old Barn toilet block gets repainted the week of 20 to 24 July, so it will be closed that week. The shower block by reception stays open.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-02",
+    "type": "quote",
+    "from": "Northwood Logs",
+    "text": "Price list for the season: seasoned logs at 9 per bag, delivered free anywhere on site.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-06",
+    "type": "letter",
+    "from": "Dan Whitfield (Riverbend Groundworks)",
+    "text": "Drainage renewal on Lakeside Field: we will have the field closed from Friday 4 September to Friday 18 September 2026. Gates locked and no pitches in use for that whole period. We hand the field back on the 18th.",
+    "role": "fact",
+    "ends": "2026-09-18"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Priya Raman (Riverside Walking Club)",
+    "text": "We'd like Lakeside Field for our autumn weekend, Saturday 12 to Sunday 13 September — 60 people, and we'd need a marquee for the Saturday evening meal.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-10",
+    "type": "message",
+    "from": "Ed Kowalski (warden)",
+    "text": "Checked the diary: Meadow Slope is free that weekend if you need it. Just remember it has no water hookup, unlike Lakeside Field.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-12",
+    "type": "email",
+    "from": "Nadia",
+    "text": "Club rate for groups is 14 per person per night, that's the figure we quote walking clubs.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-15",
+    "type": "message",
+    "from": "Marisol Byrne (finance lead)",
+    "text": "Deposit received from the Riverside Walking Club: 420, which is 25% of their 1680 weekend total.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-18",
+    "type": "note",
+    "from": "Ed Kowalski (warden)",
+    "text": "Firewood store is down to about 10 bags; we'll want a restock before the September weekends.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-20",
+    "type": "quote",
+    "from": "Lena Fisk (Fairway Event Hire)",
+    "text": "Quote for the walking club weekend: marquee with heater and flooring, 640 for the weekend including delivery and collection.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-24",
+    "type": "email",
+    "from": "Ed Kowalski (warden)",
+    "text": "I'm free the evening of Saturday 5 September if you want the autumn bat walk then — 19:30 start on the Woodland Trail works well.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-28",
+    "type": "note",
+    "from": "Nadia",
+    "text": "The entrance lane has two deep potholes near the second gate; needs gravel before the autumn school visits.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-31",
+    "type": "note",
+    "from": "Ed Kowalski (warden)",
+    "text": "August mowing plan: front meadows weekly, Woodland Trail edges cut the last week of August.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-02",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Put up the 'field closed' signage and lock the Lakeside Field gates from Friday 4 September for the drainage closure, as Riverbend set out in their letter.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "The Riverside Walking Club weekend of 12 and 13 September moves from Lakeside Field to Meadow Slope, since the drainage closure runs right over their dates. Sixty people, same 14 per person per night rate. Internal schedule updated and the warden informed.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e7",
+     "e8"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-06",
+    "type": "email",
+    "from": "Priya Raman (Riverside Walking Club)",
+    "text": "Meadow Slope works fine for us, as long as the marquee is heated — some of our members feel the cold.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Logged the club's confirmed arrangements: Meadow Slope, 12 to 13 September, 60 people, heated marquee from Fairway Event Hire at 640, and the 420 deposit already received within the 14-day rule. Priya has the summary.",
+    "role": "decision",
+    "rests_on": [
+     "e17",
+     "e12",
+     "e10",
+     "e1"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-14",
+    "type": "notice",
+    "from": "Nadia",
+    "text": "Site notice: Lakeside Field closed for drainage works, 4 to 18 September. Walkers please use the Woodland Trail instead.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-16",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered 40 bags of seasoned logs from Northwood Logs at 9 a bag, 360 in total, to restock the firewood store before September.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e5"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Dan Whitfield (Riverbend Groundworks)",
+    "text": "Just confirming the Lakeside Field closure as agreed: 4 to 18 September, gates locked the whole time, and we hand the field back on the 18th. Crew arrives the morning of the 4th.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Harriet Vale (county council)",
+    "text": "Footpath resurfacing on the lane beside Lakeside Field starts 7 September. Vehicle access to Lakeside Field from the lane will be restricted until early October — please plan deliveries accordingly.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-08-22",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Scheduled the autumn bat walk with Ed Kowalski for the evening of Saturday 5 September, 19:30 start on the Woodland Trail, open to campers, 12 places.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e25",
+    "date": "2026-08-24",
+    "type": "email",
+    "from": "Dan Whitfield (Riverbend Groundworks)",
+    "text": "Good news — we've re-scoped the drainage job and it's a smaller dig than planned. We only need Lakeside Field from Friday 4 September to Thursday 10 September; the field will be open again from Friday 11 September. Sorry for the change of plan, and thanks for bearing with us.",
+    "role": "change",
+    "revokes": [
+     "e6"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-08-27",
+    "type": "email",
+    "from": "Ben Osei (Ashgate Primary School)",
+    "text": "We'd like to bring 35 pupils for one night, Thursday 8 to Friday 9 October, somewhere sheltered with space for games.",
+    "role": "fact"
+   },
+   {
+    "id": "e27",
+    "date": "2026-08-28",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked Ashgate Primary School, 35 people, 8 to 9 October on Meadow Slope, deposit terms as per the group rule; Ben Osei is the contact.",
+    "role": "decision",
+    "rests_on": [
+     "e26",
+     "e1"
+    ],
+    "record": "CL-2"
+   },
+   {
+    "id": "e28",
+    "date": "2026-08-29",
+    "type": "note",
+    "from": "Ed Kowalski (warden)",
+    "text": "Cleaning store is running low — disinfectant and bin liners mostly.",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-08-30",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered cleaning supplies from ClearLine Hygiene, 210 in total, to top up the store.",
+    "role": "decision",
+    "rests_on": [
+     "e28"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e30",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered 6 tonnes of gravel from Halden Aggregates, 540, to fill the potholes by the second gate before the school visits.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e31",
+    "date": "2026-09-04",
+    "type": "note",
+    "from": "Ed Kowalski (warden)",
+    "text": "Riverbend crew arrived this morning, Lakeside Field taped off and signage up as planned.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-09-05",
+    "type": "invoice",
+    "from": "Lena Fisk (Fairway Event Hire)",
+    "text": "Invoice for the marquee hire, 640, for the weekend of 12 to 13 September. Payment due 30 September.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-09-06",
+    "type": "task",
+    "from": "Nadia",
+    "text": "To do: pay Fairway Event Hire's marquee invoice of 640 by 30 September.",
+    "role": "obligation"
+   },
+   {
+    "id": "e34",
+    "date": "2026-09-07",
+    "type": "email",
+    "from": "Priya Raman (Riverside Walking Club)",
+    "text": "Could you send over the final details for next weekend? Mainly where we'll be pitching and where the marquee will go, so I can circulate it to the group.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Riverside Walking Club autumn weekend",
+    "fields": {
+     "date_start": "2026-09-12",
+     "date_end": "2026-09-13",
+     "venue": "Meadow Slope",
+     "attendees": "60",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Riverside Walking Club — confirmed arrangements",
+    "fields": {
+     "client": "Riverside Walking Club",
+     "contact": "Priya Raman",
+     "venue": "Meadow Slope",
+     "dates": "2026-09-12 to 2026-09-13",
+     "attendees": "60",
+     "marquee": "Fairway Event Hire, 640",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Lakeside Field closure works",
+    "fields": {
+     "field": "Lakeside Field",
+     "work": "signage and gate lock",
+     "start": "2026-09-04",
+     "status": "in progress"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Autumn bat walk",
+    "fields": {
+     "date": "2026-09-05",
+     "time": "19:30",
+     "place": "Woodland Trail",
+     "guide": "Ed Kowalski",
+     "status": "done"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Ashgate Primary School visit",
+    "fields": {
+     "client": "Ashgate Primary School",
+     "contact": "Ben Osei",
+     "dates": "2026-10-08 to 2026-10-09",
+     "venue": "Meadow Slope",
+     "attendees": "35",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Firewood restock",
+    "fields": {
+     "supplier": "Northwood Logs",
+     "item": "seasoned logs",
+     "quantity": "40",
+     "amount": "360",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Gravel for entrance lane",
+    "fields": {
+     "supplier": "Halden Aggregates",
+     "item": "gravel",
+     "quantity": "6",
+     "amount": "540",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Cleaning supplies",
+    "fields": {
+     "supplier": "ClearLine Hygiene",
+     "item": "cleaning supplies",
+     "amount": "210",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "venue",
+     "dates"
+    ],
+    "from": "Priya Raman (Riverside Walking Club)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Priya's asked for the final details for the walking club's weekend of 12 and 13 September. Could you get our side straight and send her a note confirming where the club will be pitching and where the marquee will go?",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "venue",
+    "value": "Lakeside Field",
+    "stale": [
+     "Meadow Slope"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Priya Raman (Riverside Walking Club)",
+    "regarding": "CL-1",
+    "says": [
+     "Lakeside Field is open again from Friday 11 September",
+     "move the 12 to 13 September weekend back to Lakeside Field"
+    ],
+    "stale": [
+     "Meadow Slope"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Riverbend's re-scoped email (e25) cuts the Lakeside Field closure to 10 September, so the field reopens before the club's 12–13 September weekend and the internal booking (EV-1, decision e17, one hop from the fact) should revert to Lakeside Field. The client-facing confirmed arrangements (CL-1, decision e19, two hops via e17) rest on the moved venue and may only change with Priya's consent under the standing policy (e2), so the assistant must ask rather than act. The signage and gate-lock decision (e16, KEEP) used only the closure's start date, which the re-scoping leaves standing; the council's lane-access notice is a distractor, and every other record stays as it is.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "marquee heaters",
+    "counterpart": "Lena Fisk",
+    "org": "Fairway Event Hire",
+    "item": "marquee heaters",
+    "unit": "units",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Meadow Slope"
+   },
+   {
+    "kind": "booking",
+    "topic": "groundworks van access",
+    "counterpart": "Dan Whitfield",
+    "org": "Riverbend Groundworks",
+    "item": "service van parking",
+    "unit": "",
+    "values": [
+     "Lakeside Field car park",
+     "Old Barn yard",
+     "Entrance lane"
+    ],
+    "place": "Bramble Hollow Campsite"
+   },
+   {
+    "kind": "order",
+    "topic": "firewood top-ups",
+    "counterpart": "Sam Petros",
+    "org": "Northwood Logs",
+    "item": "seasoned logs",
+    "unit": "bags",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "site store"
+   },
+   {
+    "kind": "booking",
+    "topic": "walking club recce walks",
+    "counterpart": "Priya Raman",
+    "org": "Riverside Walking Club",
+    "item": "recce walk slots",
+    "unit": "",
+    "values": [
+     "Woodland Trail",
+     "Meadow Slope",
+     "Riverside meadow"
+    ],
+    "place": "Bramble Hollow Campsite"
+   },
+   {
+    "kind": "order",
+    "topic": "toiletry consumables",
+    "counterpart": "Kwame Adeyemi",
+    "org": "ClearLine Hygiene",
+    "item": "toilet consumables",
+    "unit": "cartons",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Old Barn store"
+   },
+   {
+    "kind": "order",
+    "topic": "gravel deliveries",
+    "counterpart": "Ruth Halstead",
+    "org": "Halden Aggregates",
+    "item": "gravel",
+    "unit": "tonnes",
+    "values": [
+     "3",
+     "5",
+     "6"
+    ],
+    "place": "entrance lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "school group visits",
+    "counterpart": "Ben Osei",
+    "org": "Ashgate Primary School",
+    "item": "group visit pitches",
+    "unit": "",
+    "values": [
+     "Meadow Slope",
+     "Woodland Trail field",
+     "Top meadow"
+    ],
+    "place": "Bramble Hollow Campsite"
+   },
+   {
+    "kind": "booking",
+    "topic": "campfire pit slots",
+    "counterpart": "Ed Kowalski",
+    "org": "Bramble Hollow Campsite",
+    "item": "campfire pit",
+    "unit": "",
+    "values": [
+     "Woodland Trail fire pit",
+     "Lakeside fire circle",
+     "Meadow Slope fire pit"
+    ],
+    "place": "Bramble Hollow Campsite"
+   },
+   {
+    "kind": "order",
+    "topic": "farm shop produce",
+    "counterpart": "Tilly Marsh",
+    "org": "Marsh Farm",
+    "item": "milk and eggs",
+    "unit": "crates",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "glamping pod stays",
+    "counterpart": "Nora Bell",
+    "org": "Bramble Hollow Campsite",
+    "item": "glamping pods",
+    "unit": "",
+    "values": [
+     "Pod 1",
+     "Pod 2",
+     "Pod 3"
+    ],
+    "place": "Top meadow"
+   },
+   {
+    "kind": "order",
+    "topic": "laundry service",
+    "counterpart": "Ivan Duarte",
+    "org": "LinenLoop",
+    "item": "linen laundry",
+    "unit": "batches",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "reception"
+   }
+  ],
+  "id": "G1000-3-04",
+  "tier": 1000,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Reopening Lakeside Field makes a return possible, but does not require reversing Priya's confirmed choice of Meadow Slope. Rule e2 requires her agreement before changing the confirmed venue, not merely before editing the CRM, so changing EV-1 unconditionally is unsupported and the consent map is too narrow.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Reopening Lakeside Field makes a return possible, but does not require reversing Priya's confirmed choice of Meadow Slope. Rule e2 requires her agreement before changing the confirmed venue, not merely before editing the CRM, so changing EV-1 unconditionally is unsupported and the consent map is too narrow."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4478,
+    "completion_tokens": 175,
+    "reasoning_tokens": 77,
+    "cached_tokens": 0
+   },
+   "cost": 0.0647175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "51ec68cd2f501d6dcf885fb1ed645f7cf389bccbcdbb610297161ead722ba11b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure holds: e25 corrects the closure end date (A = e6), e17 and e19 are touched through it (B and C), and e16 is a KEEP that cites e6 for a start date the correction leaves standing. Counts are within tier (34 core events, 8 decisions, 15 days between change and task, 9 core events after the change, 2 echoes e20 and e22). The change is an ordinary mid-history email with no correction label.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure holds: e25 corrects the closure end date (A = e6), e17 and e19 are touched through it (B and C), and e16 is a KEEP that cites e6 for a start date the correction leaves standing. Counts are within tier (34 core events, 8 decisions, 15 days between change and task, 9 core events after the change, 2 echoes e20 and e22). The change is an ordinary mid-history email with no correction label."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6467,
+    "completion_tokens": 2293,
+    "reasoning_tokens": 2093,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017932,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "51ec68cd2f501d6dcf885fb1ed645f7cf389bccbcdbb610297161ead722ba11b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The re-scoped closure (e25) revokes e6's end date while leaving the 4 Sept start, so e17 (EV-1, one hop) reverts to Lakeside Field, e19 (CL-1, two hops via e17) is client-facing and needs Priya's consent under e2 (ASK), and e16 keeps since it used only the unchanged start date. The consent map matches e2, the task forces action without naming the change, counts and the 15-day gap fit tier 1,000 with two stale echoes (e20, e22), and the change sits mid-history with 164 later events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The re-scoped closure (e25) revokes e6's end date while leaving the 4 Sept start, so e17 (EV-1, one hop) reverts to Lakeside Field, e19 (CL-1, two hops via e17) is client-facing and needs Priya's consent under e2 (ASK), and e16 keeps since it used only the unchanged start date. The consent map matches e2, the task forces action without naming the change, counts and the 15-day gap fit tier 1,000 with two stale echoes (e20, e22), and the change sits mid-history with 164 later events."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4625,
+    "completion_tokens": 1321,
+    "reasoning_tokens": 1129,
+    "cached_tokens": 0
+   },
+   "cost": 0.03369,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "51ec68cd2f501d6dcf885fb1ed645f7cf389bccbcdbb610297161ead722ba11b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

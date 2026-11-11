@@ -1,0 +1,600 @@
+{
+ "id": "K100-1-07",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 1,
+ "idx": 6,
+ "setting": "Facilities supervisor at Stonebridge Business Park, a 20-tenant commercial complex",
+ "prompt_sha256": "47aabe44406cf4fca9e6e347bf90e084d73e67139e2281127b556e57add17c7f",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Gatehouse cover reduced before the Halloran move-in\",\n \"setting\": \"Facilities supervisor at Stonebridge Business Park, a 20-tenant commercial complex\",\n \"owner\": \"Marta\",\n \"org\": \"Stonebridge Business Park\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the facilities team: once an arrangement has been confirmed with a tenant, nothing in that confirmed arrangement may be changed without the tenant manager's written agreement. Ask first, change after.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-15\", \"type\": \"policy\", \"from\": \"Tomás Reyes (Finance)\", \"text\": \"Finance policy for Stonebridge Business Park: any contractor order or invoice above 500 must be countersigned by me before payment or commitment. Anything at 500 or below can go through on the supervisor's signature.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Nair (Solent Security)\", \"text\": \"Confirming our cover for the Block D gatehouse at Stonebridge Business Park: two officers on duty every night, 18:00 to 06:00, continuing through to the end of 2026 under the current contract.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Jude Prewitt (Halloran Media)\", \"text\": \"Halloran Media moves into Unit 12, Block D on Friday 13 November 2026. About 30 staff, and the furniture and kit come in that evening between 18:00 and 22:00. I'm the office manager and your contact for everything on the day.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-22\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Block D fire-alarm drill is due in November. The sweep needs the gatehouse officers to walk the floors with the tenant fire wardens while the alarm is tested.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-28\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Minutes of the July tenant forum: cycle-rack lighting in Block B, a query about skip permits, and thanks to the gatehouse team for help during the Block A delivery week.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Block D gatehouse visitor-pass desk for Halloran Media's move-in night, Friday 13 November 2026, 19:00 to 23:00, staffed with two officers to match the two-officer night cover Solent has in place at the gatehouse.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the move-in arrangements with Jude Prewitt at Halloran Media: on Friday 13 November 2026 the evening move into Unit 12, Block D will have a two-officer escort from the gatehouse team, since the gatehouse runs two officers a night.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the Block D fire-alarm drill sweep for Friday 13 November 2026 at 10:00, assigning the two gatehouse officers from the move-in night rota to walk the floors with the tenant fire wardens.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up the nightly key-safe handover at the Block D gatehouse at 22:00, starting Monday 2 November 2026, since the gatehouse is staffed every night through to the end of 2026 and the duty officer can hold the tenant keys.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"Priya Nair (Solent Security)\", \"text\": \"Quote for the Stonebridge Christmas market on Saturday 12 December 2026: we could put two officers on the plaza from 10:00 to 16:00 for 640. Let me know by mid-November if you want it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e12\", \"date\": \"2026-08-28\", \"type\": \"invoice\", \"from\": \"Priya Nair (Solent Security)\", \"text\": \"Invoice 4471 for July gatehouse cover at Stonebridge Business Park: 1680. As this is above 500 it will need Tomás Reyes to countersign before payment.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-04\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To-do: renew the gatehouse radio licences with the communications supplier by 30 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Colm Duffy (Everline Landscaping)\", \"text\": \"The autumn hedge cut around Blocks C and D is booked for the week of 12 October. We'll keep clear of the Block D gatehouse during shift changes.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Jude Prewitt (Halloran Media)\", \"text\": \"Quick question ahead of our move: can our furniture lorries use the Block D loading bay from 17:30 on Friday 13 November 2026? Three lorries, each about 40 minutes.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Sandra Voss (Safety Officer)\", \"text\": \"Reminder that the Block D fire-alarm drill must happen before the end of November 2026 and the sweep plan should name the officers walking each floor.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Priya Nair (Solent Security)\", \"text\": \"A heads-up on the Block D gatehouse at Stonebridge: from Sunday 1 November 2026 our night cover there reduces to one officer per night, following the contract rebalance we discussed. The nightly rota otherwise stays exactly as agreed - same hours, 18:00 to 06:00, same gatehouse base.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e18\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Pinnacle Lifts are servicing the Block D goods lift on 5 November; keep the loading bay clear that morning.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-22\", \"type\": \"email\", \"from\": \"Jude Prewitt (Halloran Media)\", \"text\": \"Locking in the details for Friday 13 November: our first furniture lorry arrives at 18:00 and the last should be away by 21:30. Looking forward to seeing the final arrangements from your side.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-24\", \"type\": \"task\", \"from\": \"Tomás Reyes (Finance)\", \"text\": \"Reminder: the Solent Security September invoice needs paying by 31 October 2026.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Block D gatehouse visitor-pass desk, Halloran move-in night\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"19:00\", \"place\": \"Block D gatehouse\", \"officers\": \"2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Block D fire-alarm drill sweep\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"10:00\", \"place\": \"Block D\", \"officers\": \"2\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Nightly key-safe handover, Block D gatehouse\", \"fields\": {\"date\": \"2026-11-02\", \"time\": \"22:00\", \"place\": \"Block D gatehouse\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Halloran Media move-in arrangements, Unit 12 Block D\", \"fields\": {\"contact\": \"Jude Prewitt\", \"date\": \"2026-11-13\", \"escort\": \"2 officers\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Gatehouse radio batteries restock\", \"fields\": {\"supplier\": \"Solent Security\", \"item\": \"radio batteries\", \"quantity\": \"24\", \"status\": \"pending\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"escort\"], \"from\": \"Jude Prewitt (Halloran Media)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please finalise the gatehouse visitor-pass desk for Halloran Media's move-in night on Friday 13 November - make sure our schedule shows the staffing we'll actually have on the night, and send Jude Prewitt at Halloran Media a message with the confirmed arrangements, including how many officers will escort the evening move.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"officers\", \"value\": \"1\", \"stale\": [\"2\"], \"task\": true},\n  {\"record\": \"EV-2\", \"field\": \"officers\", \"value\": \"1\", \"stale\": [\"2\"]},\n  {\"message_to\": \"Jude Prewitt (Halloran Media)\", \"regarding\": \"CL-1\", \"says\": [\"one officer\"], \"stale\": [\"two officers\", \"2 officers\"], \"task\": true}\n ],\n \"why\": \"Solent's 15 October email replaces the two-officer night cover with one officer from 1 November, so every plan built on two officers for 13 November is stale. EV-1 and (two hops away, via EV-1) EV-2 are REVISE: Marta can fix the staffing figure herself. CL-1 is ASK because it was confirmed with the tenant, so the escort field stays untouched and Jude's consent is sought instead. EV-3 is KEEP: the change leaves the nightly rota and hours standing, so the key-safe handover still works with the duty officer. The Christmas market quote's two officers is a distractor and nothing else changes.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"patrol torch batteries\", \"counterpart\": \"Priya Nair\", \"org\": \"Solent Security\", \"item\": \"torch batteries\", \"unit\": \"pack\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"Block D gatehouse\"},\n  {\"kind\": \"booking\", \"topic\": \"weekend courtesy patrol\", \"counterpart\": \"Priya Nair\", \"org\": \"Solent Security\", \"item\": \"courtyard patrol slot\", \"unit\": \"slot\", \"values\": [\"Block A courtyard\", \"Block B courtyard\", \"central plaza\", \"car park north\"], \"place\": \"central plaza\"},\n  {\"kind\": \"booking\", \"topic\": \"gatehouse interview room\", \"counterpart\": \"Sandra Voss\", \"org\": \"Stonebridge Business Park\", \"item\": \"interview room\", \"unit\": \"room\", \"values\": [\"gatehouse room 1\", \"gatehouse room 2\", \"Block D meeting room\"], \"place\": \"Block D gatehouse\"},\n  {\"kind\": \"order\", \"topic\": \"landscaping mulch\", \"counterpart\": \"Colm Duffy\", \"org\": \"Everline Landscaping\", \"item\": \"bark mulch\", \"unit\": \"bag\", \"values\": [\"20\", \"30\", \"45\", \"60\"], \"place\": \"Block C beds\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning consumables\", \"counterpart\": \"Ruth Amadi\", \"org\": \"Brightway Cleaning\", \"item\": \"paper towel rolls\", \"unit\": \"case\", \"values\": [\"6\", \"10\", \"14\", \"18\"], \"place\": \"Block B store\"},\n  {\"kind\": \"booking\", \"topic\": \"tenant forum room\", \"counterpart\": \"Marta\", \"org\": \"Stonebridge Business Park\", \"item\": \"forum room\", \"unit\": \"room\", \"values\": [\"pavilion room A\", \"pavilion room B\", \"Block A lobby room\"], \"place\": \"central pavilion\"},\n  {\"kind\": \"order\", \"topic\": \"grit salt winter stock\", \"counterpart\": \"Huw Llewellyn\", \"org\": \"Moorland Supplies\", \"item\": \"grit salt\", \"unit\": \"bag\", \"values\": [\"25\", \"40\", \"55\", \"80\"], \"place\": \"maintenance yard\"},\n  {\"kind\": \"booking\", \"topic\": \"window cleaning cradle\", \"counterpart\": \"Elena Petrova\", \"org\": \"Clearview Access\", \"item\": \"cradle booking\", \"unit\": \"day\", \"values\": [\"Block A east face\", \"Block B west face\", \"Block D south face\"], \"place\": \"Block A east face\"},\n  {\"kind\": \"order\", \"topic\": \"lighting tubes\", \"counterpart\": \"Gary Oakes\", \"org\": \"Voltline Electrical\", \"item\": \"LED tubes\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"12\", \"20\"], \"place\": \"Block C corridor\"},\n  {\"kind\": \"booking\", \"topic\": \"skip permit bay\", \"counterpart\": \"Marta\", \"org\": \"Stonebridge Business Park\", \"item\": \"skip bay\", \"unit\": \"bay\", \"values\": [\"loading bay 1\", \"loading bay 2\", \"loading bay 3\"], \"place\": \"Block B loading area\"},\n  {\"kind\": \"order\", \"topic\": \"gatehouse radio batteries\", \"counterpart\": \"Priya Nair\", \"org\": \"Solent Security\", \"item\": \"radio batteries\", \"unit\": \"pack\", \"values\": [\"6\", \"12\", \"24\"], \"place\": \"Block D gatehouse\"},\n  {\"kind\": \"booking\", \"topic\": \"fire warden training room\", \"counterpart\": \"Sandra Voss\", \"org\": \"Stonebridge Business Park\", \"item\": \"training room\", \"unit\": \"room\", \"values\": [\"pavilion room A\", \"Block D meeting room\", \"Block C seminar room\"], \"place\": \"central pavilion\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3181,
+    "completion_tokens": 7209,
+    "reasoning_tokens": 3622,
+    "cached_tokens": 0
+   },
+   "cost": 0.117678,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Gatehouse cover reduced before the Halloran move-in",
+  "setting": "Facilities supervisor at Stonebridge Business Park, a 20-tenant commercial complex",
+  "owner": "Marta",
+  "org": "Stonebridge Business Park",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-08",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule for the facilities team: once an arrangement has been confirmed with a tenant, nothing in that confirmed arrangement may be changed without the tenant manager's written agreement. Ask first, change after.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-15",
+    "type": "policy",
+    "from": "Tomás Reyes (Finance)",
+    "text": "Finance policy for Stonebridge Business Park: any contractor order or invoice above 500 must be countersigned by me before payment or commitment. Anything at 500 or below can go through on the supervisor's signature.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Priya Nair (Solent Security)",
+    "text": "Confirming our cover for the Block D gatehouse at Stonebridge Business Park: two officers on duty every night, 18:00 to 06:00, continuing through to the end of 2026 under the current contract.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Jude Prewitt (Halloran Media)",
+    "text": "Halloran Media moves into Unit 12, Block D on Friday 13 November 2026. About 30 staff, and the furniture and kit come in that evening between 18:00 and 22:00. I'm the office manager and your contact for everything on the day.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-22",
+    "type": "note",
+    "from": "Marta",
+    "text": "Block D fire-alarm drill is due in November. The sweep needs the gatehouse officers to walk the floors with the tenant fire wardens while the alarm is tested.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-28",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Minutes of the July tenant forum: cycle-rack lighting in Block B, a query about skip permits, and thanks to the gatehouse team for help during the Block A delivery week.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Block D gatehouse visitor-pass desk for Halloran Media's move-in night, Friday 13 November 2026, 19:00 to 23:00, staffed with two officers to match the two-officer night cover Solent has in place at the gatehouse.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-07",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Confirmed the move-in arrangements with Jude Prewitt at Halloran Media: on Friday 13 November 2026 the evening move into Unit 12, Block D will have a two-officer escort from the gatehouse team, since the gatehouse runs two officers a night.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4",
+     "e1"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled the Block D fire-alarm drill sweep for Friday 13 November 2026 at 10:00, assigning the two gatehouse officers from the move-in night rota to walk the floors with the tenant fire wardens.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Set up the nightly key-safe handover at the Block D gatehouse at 22:00, starting Monday 2 November 2026, since the gatehouse is staffed every night through to the end of 2026 and the duty officer can hold the tenant keys.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-20",
+    "type": "quote",
+    "from": "Priya Nair (Solent Security)",
+    "text": "Quote for the Stonebridge Christmas market on Saturday 12 December 2026: we could put two officers on the plaza from 10:00 to 16:00 for 640. Let me know by mid-November if you want it.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-28",
+    "type": "invoice",
+    "from": "Priya Nair (Solent Security)",
+    "text": "Invoice 4471 for July gatehouse cover at Stonebridge Business Park: 1680. As this is above 500 it will need Tomás Reyes to countersign before payment.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-04",
+    "type": "task",
+    "from": "Marta",
+    "text": "To-do: renew the gatehouse radio licences with the communications supplier by 30 November 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Colm Duffy (Everline Landscaping)",
+    "text": "The autumn hedge cut around Blocks C and D is booked for the week of 12 October. We'll keep clear of the Block D gatehouse during shift changes.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Jude Prewitt (Halloran Media)",
+    "text": "Quick question ahead of our move: can our furniture lorries use the Block D loading bay from 17:30 on Friday 13 November 2026? Three lorries, each about 40 minutes.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Sandra Voss (Safety Officer)",
+    "text": "Reminder that the Block D fire-alarm drill must happen before the end of November 2026 and the sweep plan should name the officers walking each floor.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Priya Nair (Solent Security)",
+    "text": "A heads-up on the Block D gatehouse at Stonebridge: from Sunday 1 November 2026 our night cover there reduces to one officer per night, following the contract rebalance we discussed. The nightly rota otherwise stays exactly as agreed - same hours, 18:00 to 06:00, same gatehouse base.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-19",
+    "type": "note",
+    "from": "Marta",
+    "text": "Pinnacle Lifts are servicing the Block D goods lift on 5 November; keep the loading bay clear that morning.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-22",
+    "type": "email",
+    "from": "Jude Prewitt (Halloran Media)",
+    "text": "Locking in the details for Friday 13 November: our first furniture lorry arrives at 18:00 and the last should be away by 21:30. Looking forward to seeing the final arrangements from your side.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-24",
+    "type": "task",
+    "from": "Tomás Reyes (Finance)",
+    "text": "Reminder: the Solent Security September invoice needs paying by 31 October 2026.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Block D gatehouse visitor-pass desk, Halloran move-in night",
+    "fields": {
+     "date": "2026-11-13",
+     "time": "19:00",
+     "place": "Block D gatehouse",
+     "officers": "2",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Block D fire-alarm drill sweep",
+    "fields": {
+     "date": "2026-11-13",
+     "time": "10:00",
+     "place": "Block D",
+     "officers": "2",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Nightly key-safe handover, Block D gatehouse",
+    "fields": {
+     "date": "2026-11-02",
+     "time": "22:00",
+     "place": "Block D gatehouse",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Halloran Media move-in arrangements, Unit 12 Block D",
+    "fields": {
+     "contact": "Jude Prewitt",
+     "date": "2026-11-13",
+     "escort": "2 officers",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Gatehouse radio batteries restock",
+    "fields": {
+     "supplier": "Solent Security",
+     "item": "radio batteries",
+     "quantity": "24",
+     "status": "pending"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "escort"
+    ],
+    "from": "Jude Prewitt (Halloran Media)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please finalise the gatehouse visitor-pass desk for Halloran Media's move-in night on Friday 13 November - make sure our schedule shows the staffing we'll actually have on the night, and send Jude Prewitt at Halloran Media a message with the confirmed arrangements, including how many officers will escort the evening move.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "officers",
+    "value": "1",
+    "stale": [
+     "2"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-2",
+    "field": "officers",
+    "value": "1",
+    "stale": [
+     "2"
+    ]
+   },
+   {
+    "message_to": "Jude Prewitt (Halloran Media)",
+    "regarding": "CL-1",
+    "says": [
+     "one officer"
+    ],
+    "stale": [
+     "two officers",
+     "2 officers"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Solent's 15 October email replaces the two-officer night cover with one officer from 1 November, so every plan built on two officers for 13 November is stale. EV-1 and (two hops away, via EV-1) EV-2 are REVISE: Marta can fix the staffing figure herself. CL-1 is ASK because it was confirmed with the tenant, so the escort field stays untouched and Jude's consent is sought instead. EV-3 is KEEP: the change leaves the nightly rota and hours standing, so the key-safe handover still works with the duty officer. The Christmas market quote's two officers is a distractor and nothing else changes.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "patrol torch batteries",
+    "counterpart": "Priya Nair",
+    "org": "Solent Security",
+    "item": "torch batteries",
+    "unit": "pack",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "Block D gatehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekend courtesy patrol",
+    "counterpart": "Priya Nair",
+    "org": "Solent Security",
+    "item": "courtyard patrol slot",
+    "unit": "slot",
+    "values": [
+     "Block A courtyard",
+     "Block B courtyard",
+     "central plaza",
+     "car park north"
+    ],
+    "place": "central plaza"
+   },
+   {
+    "kind": "booking",
+    "topic": "gatehouse interview room",
+    "counterpart": "Sandra Voss",
+    "org": "Stonebridge Business Park",
+    "item": "interview room",
+    "unit": "room",
+    "values": [
+     "gatehouse room 1",
+     "gatehouse room 2",
+     "Block D meeting room"
+    ],
+    "place": "Block D gatehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "landscaping mulch",
+    "counterpart": "Colm Duffy",
+    "org": "Everline Landscaping",
+    "item": "bark mulch",
+    "unit": "bag",
+    "values": [
+     "20",
+     "30",
+     "45",
+     "60"
+    ],
+    "place": "Block C beds"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning consumables",
+    "counterpart": "Ruth Amadi",
+    "org": "Brightway Cleaning",
+    "item": "paper towel rolls",
+    "unit": "case",
+    "values": [
+     "6",
+     "10",
+     "14",
+     "18"
+    ],
+    "place": "Block B store"
+   },
+   {
+    "kind": "booking",
+    "topic": "tenant forum room",
+    "counterpart": "Marta",
+    "org": "Stonebridge Business Park",
+    "item": "forum room",
+    "unit": "room",
+    "values": [
+     "pavilion room A",
+     "pavilion room B",
+     "Block A lobby room"
+    ],
+    "place": "central pavilion"
+   },
+   {
+    "kind": "order",
+    "topic": "grit salt winter stock",
+    "counterpart": "Huw Llewellyn",
+    "org": "Moorland Supplies",
+    "item": "grit salt",
+    "unit": "bag",
+    "values": [
+     "25",
+     "40",
+     "55",
+     "80"
+    ],
+    "place": "maintenance yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "window cleaning cradle",
+    "counterpart": "Elena Petrova",
+    "org": "Clearview Access",
+    "item": "cradle booking",
+    "unit": "day",
+    "values": [
+     "Block A east face",
+     "Block B west face",
+     "Block D south face"
+    ],
+    "place": "Block A east face"
+   },
+   {
+    "kind": "order",
+    "topic": "lighting tubes",
+    "counterpart": "Gary Oakes",
+    "org": "Voltline Electrical",
+    "item": "LED tubes",
+    "unit": "box",
+    "values": [
+     "5",
+     "8",
+     "12",
+     "20"
+    ],
+    "place": "Block C corridor"
+   },
+   {
+    "kind": "booking",
+    "topic": "skip permit bay",
+    "counterpart": "Marta",
+    "org": "Stonebridge Business Park",
+    "item": "skip bay",
+    "unit": "bay",
+    "values": [
+     "loading bay 1",
+     "loading bay 2",
+     "loading bay 3"
+    ],
+    "place": "Block B loading area"
+   },
+   {
+    "kind": "order",
+    "topic": "gatehouse radio batteries",
+    "counterpart": "Priya Nair",
+    "org": "Solent Security",
+    "item": "radio batteries",
+    "unit": "pack",
+    "values": [
+     "6",
+     "12",
+     "24"
+    ],
+    "place": "Block D gatehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "fire warden training room",
+    "counterpart": "Sandra Voss",
+    "org": "Stonebridge Business Park",
+    "item": "training room",
+    "unit": "room",
+    "values": [
+     "pavilion room A",
+     "Block D meeting room",
+     "Block C seminar room"
+    ],
+    "place": "central pavilion"
+   }
+  ],
+  "id": "K100-1-07",
+  "tier": 100,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (E0087) revokes fact E0003, and the marks follow cleanly: EV-1 and the two-hop EV-2 are REVISE with the value fixed by the history (one officer), CL-1 is ASK under rule E0001 matching the consent map, and EV-3 is KEEP because the nightly rota and hours survive the change. The task requires acting (updating the schedule and messaging Jude) without hinting at the change. Core has 20 events, 5 decisions, the change 11 days before the task day with later core events, and it sits hidden mid-history as event 87.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (E0087) revokes fact E0003, and the marks follow cleanly: EV-1 and the two-hop EV-2 are REVISE with the value fixed by the history (one officer), CL-1 is ASK under rule E0001 matching the consent map, and EV-3 is KEEP because the nightly rota and hours survive the change. The task requires acting (updating the schedule and messaging Jude) without hinting at the change. Core has 20 events, 5 decisions, the change 11 days before the task day with later core events, and it sits hidden mid-history as event 87."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3627,
+    "completion_tokens": 317,
+    "reasoning_tokens": 141,
+    "cached_tokens": 384
+   },
+   "cost": 0.00603484,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9142fc65c3890b2dd08c0056d3d5b4c482846ad9a197939e54ca689edfdbb52a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"no\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core meets tier 100 (20 events, 4 decisions, change 11 days before the task day, 3 core events after it), and the change revokes e3 with REVISE, ASK and KEEP marks that follow from the history. The task's phrase 'the staffing we'll actually have' hints that the booked staffing no longer matches reality, which weakens the requirement that the task be completed without any hint of a change. The consent map's 'tenant manager' versus Jude as office manager is a minor wording ambiguity.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "no",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core meets tier 100 (20 events, 4 decisions, change 11 days before the task day, 3 core events after it), and the change revokes e3 with REVISE, ASK and KEEP marks that follow from the history. The task's phrase 'the staffing we'll actually have' hints that the booked staffing no longer matches reality, which weakens the requirement that the task be completed without any hint of a change. The consent map's 'tenant manager' versus Jude as office manager is a minor wording ambiguity."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5078,
+    "completion_tokens": 2324,
+    "reasoning_tokens": 2103,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016698,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9142fc65c3890b2dd08c0056d3d5b4c482846ad9a197939e54ca689edfdbb52a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The night-cover reduction does not establish one-officer staffing for the 10:00 fire drill, which falls outside the unchanged 18:00–06:00 shift. A one-officer escort also cannot be communicated as confirmed before Jude consents; it must be presented as a proposed revision. The dependency chain plus EV-3's reliance on an unchanged aspect of the same fact fits class 3.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The night-cover reduction does not establish one-officer staffing for the 10:00 fire drill, which falls outside the unchanged 18:00–06:00 shift. A one-officer escort also cannot be communicated as confirmed before Jude consents; it must be presented as a proposed revision. The dependency chain plus EV-3's reliance on an unchanged aspect of the same fact fits class 3."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3567,
+    "completion_tokens": 354,
+    "reasoning_tokens": 235,
+    "cached_tokens": 0
+   },
+   "cost": 0.06228,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9142fc65c3890b2dd08c0056d3d5b4c482846ad9a197939e54ca689edfdbb52a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

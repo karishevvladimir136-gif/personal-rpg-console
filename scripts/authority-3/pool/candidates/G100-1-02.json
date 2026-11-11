@@ -628,5 +628,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The new price applies 'from this month onwards', so it does not unambiguously re-price the June and July orders or the wedding's already-allocated boxes; Rosa instead requires recording prices actually agreed. Even if ORD-1 must increase to 840, Marco's written approval of 720 does not clearly authorize that increase, making its unconditional REVISE mark and omission from the consent map unsupported. The core meets the tier requirements, but the intended two-hop stale-fact propagation is not established by the change's actual terms.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The new price applies 'from this month onwards', so it does not unambiguously re-price the June and July orders or the wedding's already-allocated boxes; Rosa instead requires recording prices actually agreed. Even if ORD-1 must increase to 840, Marco's written approval of 720 does not clearly authorize that increase, making its unconditional REVISE mark and omission from the consent map unsupported. The core meets the tier requirements, but the intended two-hop stale-fact propagation is not established by the change's actual terms."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3445,
+    "completion_tokens": 292,
+    "reasoning_tokens": 148,
+    "cached_tokens": 0
+   },
+   "cost": 0.057655,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3c3007b2bce0ae6025dbc04b55cbad050f4a9a45e482e1a55da85e274f7c1472",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state reprices ORD-1 and ORD-2 to 2.10, but e1 requires orders to carry the price actually agreed, and e16 says the new price applies 'from this month onwards', so already-placed June and July orders are arguably not revised. That makes the REVISE marks and the Marco and totals values contestable rather than fixed by the history. Structure, class 1 chain distance, tier counts, and the hidden change all check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state reprices ORD-1 and ORD-2 to 2.10, but e1 requires orders to carry the price actually agreed, and e16 says the new price applies 'from this month onwards', so already-placed June and July orders are arguably not revised. That makes the REVISE marks and the Marco and totals values contestable rather than fixed by the history. Structure, class 1 chain distance, tier counts, and the hidden change all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4867,
+    "completion_tokens": 2056,
+    "reasoning_tokens": 1856,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015147,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3c3007b2bce0ae6025dbc04b55cbad050f4a9a45e482e1a55da85e274f7c1472",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The revoked 1.80 price cleanly drives REVISE on ORD-1/ORD-2/CL-1 with recomputed totals, and e3 makes the EV-1 re-price an ASK with a matching consent map; EV-1 is two hops from the revoked fact via e7, satisfying class 1. Counts (21 core events, 4 decisions), the 12-day gap, and post-change core events all meet tier 100, and the change sits mid-history among plausible noise. The only mild softness is whether already-placed orders must be retroactively re-priced, but e16's wording ('the 1.80 figure ... no longer applies') resolves it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The revoked 1.80 price cleanly drives REVISE on ORD-1/ORD-2/CL-1 with recomputed totals, and e3 makes the EV-1 re-price an ASK with a matching consent map; EV-1 is two hops from the revoked fact via e7, satisfying class 1. Counts (21 core events, 4 decisions), the 12-day gap, and post-change core events all meet tier 100, and the change sits mid-history among plausible noise. The only mild softness is whether already-placed orders must be retroactively re-priced, but e16's wording ('the 1.80 figure ... no longer applies') resolves it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3532,
+    "completion_tokens": 494,
+    "reasoning_tokens": 297,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0104028,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3c3007b2bce0ae6025dbc04b55cbad050f4a9a45e482e1a55da85e274f7c1472",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

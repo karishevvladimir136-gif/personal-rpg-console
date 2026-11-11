@@ -1,0 +1,656 @@
+{
+ "id": "K500-1-01",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 1,
+ "idx": 0,
+ "setting": "Food bank coordinator at Bright Harbour Food Bank, serving 500 households weekly",
+ "prompt_sha256": "984691f83ec31fd26bd73ea83c77642aae3b3a31c4e6db5c6731bafb68ac0b39",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Bread pickup moved by bakery\",\n  \"setting\": \"Food bank coordinator at Bright Harbour Food Bank, serving 500 households weekly\",\n  \"owner\": \"Mara\",\n  \"org\": \"Bright Harbour Food Bank\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for the team: if a confirmed volunteer shift is moved to a different day, time or meeting point, the volunteer must agree to the move personally before we treat it as set. Never just update the rota and assume.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Finance policy for Bright Harbour Food Bank: any supplier order over £500 needs sign-off from our finance lead Priya Shah before it is placed. Orders of £500 or less I can place directly.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Nadia Price (Harvest Mill Bakery)\", \"text\": \"Hello Mara, confirming our standing surplus arrangement with Bright Harbour Food Bank: 80 trays of bread for collection every Friday at 14:00 from our Dock Road depot. Your driver can ask for the duty baker at the loading bay.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-06\", \"type\": \"message\", \"from\": \"Tom Weller\", \"text\": \"Hi Mara, happy to keep doing the bread run for the food bank. Fridays suit me best, I can do the afternoon pickup every week with the van.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up the weekly bread run: Tom Weller collects 80 trays from Harvest Mill Bakery's Dock Road depot every Friday at 14:00 and brings them to the food bank. Confirmed with Tom and entered on the schedule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 80 stacking bread crates from PackRight Supplies at £4 each (£320 total) so we can handle the 80 trays coming in each Friday from Harvest Mill Bakery. Under the £500 line so I placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Planned the Saturday distribution food parcels around the weekly bread run: 80 bread portions set aside each week from the Friday collection, one per household in the first queue group.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Colin Avery (St Aldhelm's Hall)\", \"text\": \"Dear Mara, St Aldhelm's Hall is free on Saturdays between 08:00 and 12:00 through the autumn if Bright Harbour Food Bank wants to run anything here. Kitchen use included.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-13\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked St Aldhelm's Hall for a community cooking workshop on Saturday 24 October, 09:00 to 11:30, using their Saturday morning slot and kitchen.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-3\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-15\", \"type\": \"message\", \"from\": \"Ruth Kwan\", \"text\": \"Mara, I can drive the Wednesday vegetable run for the food bank every week, mornings or early afternoon both fine.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Ruth Kwan as the regular driver for the Wednesday vegetable run, collecting from the market gardeners and delivering to the food bank by 15:00.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-5\"},\n    {\"id\": \"e12\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Imran Doyle (Harbourside Wholesale)\", \"text\": \"Quote for Bright Harbour Food Bank: tinned tomatoes at £0.62 per tin for orders of 1,000 tins or more, delivery included to your warehouse.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 1,100 tins of tomatoes from Harbourside Wholesale at £0.62 per tin (£682). As it is over £500, Priya Shah signed it off before I placed the order.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e14\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Jess Mallory (volunteer coordinator)\", \"text\": \"Hi Mara, we now have 26 volunteers confirmed for the Saturday distributions at the main hall, enough for five packing tables plus the welcome desk.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-06-23\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set the weekly Saturday distribution at the main hall, 09:00 start, staffed by the 26 confirmed volunteers across five packing tables and the welcome desk.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-4\"},\n    {\"id\": \"e16\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Sofia Lindt (Quay Stores)\", \"text\": \"Hello Mara, we can supply long-grain rice at £8.40 per 10kg sack for the food bank, any quantity up to 60 sacks a month, delivered free.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 45 sacks of rice from Quay Stores at £8.40 a sack (£378 total). Under £500 so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e2\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-03\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Note to self: fridge thermometer checks now happen every morning at 08:30, logged in the kitchen folder.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-07-10\", \"type\": \"letter\", \"from\": \"Bright Harbour Council\", \"text\": \"Dear Ms Mara Ellison, thank you for your community update. The council newsletter will feature Bright Harbour Food Bank in the autumn edition.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-07-17\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: renew the van insurance before 2026-11-30 and file the certificate in the office drawer.\", \"role\": \"obligation\"},\n    {\"id\": \"e21\", \"date\": \"2026-07-24\", \"type\": \"minutes\", \"from\": \"Jess Mallory (volunteer coordinator)\", \"text\": \"Minutes of the July volunteer meeting: tea rota agreed, two new volunteers welcomed, next meeting in October.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Nadia Price (Harvest Mill Bakery)\", \"text\": \"Hi Mara, just confirming everything carries on as usual after the summer: 80 trays of bread for you every Friday at 14:00 from our Dock Road depot. See your driver then.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e23\", \"date\": \"2026-08-21\", \"type\": \"letter\", \"from\": \"The Okafor family\", \"text\": \"Dear everyone at Bright Harbour Food Bank, thank you for the parcels this summer. The bread on Saturdays made a real difference to us.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-04\", \"type\": \"notice\", \"from\": \"Bright Harbour Council\", \"text\": \"Notice: the warehouse car park on Plover Street will be closed for resurfacing on Saturday 12 September and Sunday 13 September. Please plan deliveries around these dates.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-10\", \"type\": \"quote\", \"from\": \"Daneka Moss (Saltrock Bakery)\", \"text\": \"Hello Mara, Saltrock Bakery can offer 60 trays of bread weekly at £1.20 per tray, delivered to your door every Friday morning. Happy to start any week that suits you.\", \"role\": \"quote\", \"distractor\": true},\n    {\"id\": \"e26\", \"date\": \"2026-09-18\", \"type\": \"message\", \"from\": \"Tom Weller\", \"text\": \"Mara, the van has new tyres as of today, so no worries about the Friday runs in the wet weather.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Nadia Price (Harvest Mill Bakery)\", \"text\": \"Hello Mara, a heads-up from Harvest Mill Bakery: we have lost a supermarket contract, so our surplus is smaller and we are consolidating sites. From Friday 9 October your collection will be 40 trays at 11:00 from our Riverside depot instead of Dock Road. Sorry for the short notice and thanks for bearing with us.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Jess Mallory (volunteer coordinator)\", \"text\": \"Hi Mara, the October volunteer rota is now circulated. All 26 Saturday volunteers have confirmed for this month.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-06\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"The Harbourside Wholesale tinned tomato delivery arrived in good order; stacked in aisle 2 of the warehouse.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly Friday bread run - Harvest Mill Bakery\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"14:00\", \"place\": \"Dock Road depot\", \"driver\": \"Tom Weller\", \"quantity\": \"80 trays\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Saturday distribution bread allocation\", \"fields\": {\"date\": \"2026-10-17\", \"place\": \"Main hall\", \"bread_portions\": \"80\", \"status\": \"planned\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Stacking bread crates - PackRight Supplies\", \"fields\": {\"supplier\": \"PackRight Supplies\", \"item\": \"stacking bread crates\", \"quantity\": \"80\", \"amount\": \"320\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Community cooking workshop\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"09:00\", \"place\": \"St Aldhelm's Hall\", \"status\": \"booked\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Weekly Saturday distribution\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"09:00\", \"place\": \"Main hall\", \"volunteers\": \"26\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Wednesday vegetable run\", \"fields\": {\"date\": \"2026-10-14\", \"driver\": \"Ruth Kwan\", \"deliver_by\": \"15:00\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Tinned tomatoes - Harbourside Wholesale\", \"fields\": {\"supplier\": \"Harbourside Wholesale\", \"item\": \"tinned tomatoes\", \"quantity\": \"1100\", \"amount\": \"682\", \"status\": \"delivered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Long-grain rice - Quay Stores\", \"fields\": {\"supplier\": \"Quay Stores\", \"item\": \"long-grain rice 10kg sacks\", \"quantity\": \"45\", \"amount\": \"378\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"time\", \"place\"], \"from\": \"Tom Weller\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Can you get this Friday's bread pickup squared away and let Tom Weller know the final plan for the run?\",\n  \"expect\": [\n    {\"record\": \"EV-2\", \"field\": \"bread_portions\", \"value\": \"40\", \"stale\": [\"80\"]},\n    {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"40\", \"stale\": [\"80\"]},\n    {\"record\": \"ORD-1\", \"field\": \"amount\", \"value\": \"160\", \"stale\": [\"320\"]},\n    {\"message_to\": \"Tom Weller\", \"regarding\": \"EV-1\", \"says\": [\"11:00\", \"Riverside depot\"], \"stale\": [\"14:00\", \"Dock Road\"], \"task\": true}\n  ],\n  \"why\": \"Harvest Mill Bakery's September email ends the old standing arrangement (80 trays, 14:00, Dock Road) and fixes 40 trays at 11:00 from the Riverside depot from 9 October. The crate order and Saturday bread allocation rest only on that fact, so they are REVISED to 40 crates/£160 and 40 portions. Moving Tom's confirmed Friday run to a new time and meeting point needs his own agreement under the standing instruction, so EV-1 is ASK: the record stays as it is and the assistant asks Tom, passing the new 11:00 Riverside depot plan rather than the stale 14:00 Dock Road details.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"nappies restock\", \"counterpart\": \"Imran Doyle\", \"org\": \"Harbourside Wholesale\", \"item\": \"packs of nappies\", \"unit\": \"pack\", \"values\": [\"30\", \"45\", \"60\", \"25\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"tinned beans restock\", \"counterpart\": \"Imran Doyle\", \"org\": \"Harbourside Wholesale\", \"item\": \"tinned beans\", \"unit\": \"tin\", \"values\": [\"400\", \"550\", \"720\", \"300\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"rice top-up\", \"counterpart\": \"Sofia Lindt\", \"org\": \"Quay Stores\", \"item\": \"long-grain rice 10kg sacks\", \"unit\": \"sack\", \"values\": [\"20\", \"35\", \"50\", \"15\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"packaging supplies\", \"counterpart\": \"Lena Ford\", \"org\": \"PackRight Supplies\", \"item\": \"food parcel bags\", \"unit\": \"box\", \"values\": [\"10\", \"14\", \"8\", \"20\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"hall for volunteer meetings\", \"counterpart\": \"Colin Avery\", \"org\": \"St Aldhelm's Hall\", \"item\": \"hall hire for volunteer meeting\", \"unit\": \"booking\", \"values\": [\"Main room\", \"Side room\", \"Kitchen annex\"], \"place\": \"St Aldhelm's Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"van service slots\", \"counterpart\": \"Pete Drummond\", \"org\": \"Harbour Garage\", \"item\": \"van service slot\", \"unit\": \"slot\", \"values\": [\"Morning bay 1\", \"Afternoon bay 2\", \"Saturday bay\"], \"place\": \"Harbour Garage\"},\n    {\"kind\": \"order\", \"topic\": \"cooking oil restock\", \"counterpart\": \"Sofia Lindt\", \"org\": \"Quay Stores\", \"item\": \"vegetable oil 5l bottles\", \"unit\": \"bottle\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"hygiene kits\", \"counterpart\": \"Lena Ford\", \"org\": \"PackRight Supplies\", \"item\": \"hygiene kit cartons\", \"unit\": \"carton\", \"values\": [\"15\", \"22\", \"30\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"main hall setup\", \"counterpart\": \"Jess Mallory\", \"org\": \"Bright Harbour Food Bank\", \"item\": \"packing table setup session\", \"unit\": \"session\", \"values\": [\"Table row A\", \"Table row B\", \"Welcome desk\"], \"place\": \"Main hall\"},\n    {\"kind\": \"order\", \"topic\": \"tea and coffee restock\", \"counterpart\": \"Imran Doyle\", \"org\": \"Harbourside Wholesale\", \"item\": \"tea and coffee catering packs\", \"unit\": \"pack\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"pasta restock\", \"counterpart\": \"Sofia Lindt\", \"org\": \"Quay Stores\", \"item\": \"dried pasta 5kg bags\", \"unit\": \"bag\", \"values\": [\"25\", \"40\", \"55\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"community room for advice drop-in\", \"counterpart\": \"Colin Avery\", \"org\": \"St Aldhelm's Hall\", \"item\": \"community room for weekly advice drop-in\", \"unit\": \"booking\", \"values\": [\"Main room\", \"Side room\", \"Upstairs room\"], \"place\": \"St Aldhelm's Hall\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3235,
+    "completion_tokens": 7800,
+    "reasoning_tokens": 3406,
+    "cached_tokens": 0
+   },
+   "cost": 0.126705,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Bread pickup moved by bakery\",\n  \"setting\": \"Food bank coordinator at Bright Harbour Food Bank, serving 500 households weekly\",\n  \"owner\": \"Mara\",\n  \"org\": \"Bright Harbour Food Bank\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for the team: if a confirmed volunteer shift is moved to a different day, time or meeting point, the volunteer must agree to the move personally before we treat it as set. Never just update the rota and assume.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Finance policy for Bright Harbour Food Bank: any supplier order over £500 needs sign-off from our finance lead Priya Shah before it is placed. Orders of £500 or less I can place directly.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Nadia Price (Harvest Mill Bakery)\", \"text\": \"Hello Mara, confirming our standing surplus arrangement with Bright Harbour Food Bank: 80 trays of bread for collection every Friday at 14:00 from our Dock Road depot. Your driver can ask for the duty baker at the loading bay.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-06\", \"type\": \"message\", \"from\": \"Tom Weller\", \"text\": \"Hi Mara, happy to keep doing the bread run for the food bank. Fridays suit me best, I can do the afternoon pickup every week with the van.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up the weekly bread run: Tom Weller collects 80 trays from Harvest Mill Bakery's Dock Road depot every Friday at 14:00 and brings them to the food bank. Confirmed with Tom and entered on the schedule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 80 stacking bread crates from PackRight Supplies at £4 each (£320 total) so we can handle the 80 trays coming in each Friday from Harvest Mill Bakery. Under the £500 line so I placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Planned the Saturday distribution food parcels around the weekly bread run: 80 bread portions set aside each week from the Friday collection, one per household in the first queue group.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Colin Avery (St Aldhelm's Hall)\", \"text\": \"Dear Mara, St Aldhelm's Hall is free on Saturdays between 08:00 and 12:00 through the autumn if Bright Harbour Food Bank wants to run anything here. Kitchen use included.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-13\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked St Aldhelm's Hall for a community cooking workshop on Saturday 24 October, 09:00 to 11:30, using their Saturday morning slot and kitchen.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-3\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-15\", \"type\": \"message\", \"from\": \"Ruth Kwan\", \"text\": \"Mara, I can drive the Wednesday vegetable run for the food bank every week, mornings or early afternoon both fine.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Ruth Kwan as the regular driver for the Wednesday vegetable run, collecting from the market gardeners and delivering to the food bank by 15:00.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-5\"},\n    {\"id\": \"e12\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Imran Doyle (Harbourside Wholesale)\", \"text\": \"Quote for Bright Harbour Food Bank: tinned tomatoes at £0.62 per tin for orders of 1,000 tins or more, delivery included to your warehouse.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 1,100 tins of tomatoes from Harbourside Wholesale at £0.62 per tin (£682). As it is over £500, Priya Shah signed it off before I placed the order.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e14\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Jess Mallory (volunteer coordinator)\", \"text\": \"Hi Mara, we now have 26 volunteers confirmed for the Saturday distributions at the main hall, enough for five packing tables plus the welcome desk.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-06-23\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set the weekly Saturday distribution at the main hall, 09:00 start, staffed by the 26 confirmed volunteers across five packing tables and the welcome desk.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-4\"},\n    {\"id\": \"e16\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Sofia Lindt (Quay Stores)\", \"text\": \"Hello Mara, we can supply long-grain rice at £8.40 per 10kg sack for the food bank, any quantity up to 60 sacks a month, delivered free.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 45 sacks of rice from Quay Stores at £8.40 a sack (£378 total). Under £500 so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e2\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-03\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Note to self: fridge thermometer checks now happen every morning at 08:30, logged in the kitchen folder.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-07-10\", \"type\": \"letter\", \"from\": \"Bright Harbour Council\", \"text\": \"Dear Ms Mara Ellison, thank you for your community update. The council newsletter will feature Bright Harbour Food Bank in the autumn edition.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-07-17\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: renew the van insurance before 2026-11-30 and file the certificate in the office drawer.\", \"role\": \"obligation\"},\n    {\"id\": \"e21\", \"date\": \"2026-07-24\", \"type\": \"minutes\", \"from\": \"Jess Mallory (volunteer coordinator)\", \"text\": \"Minutes of the July volunteer meeting: tea rota agreed, two new volunteers welcomed, next meeting in October.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Nadia Price (Harvest Mill Bakery)\", \"text\": \"Hi Mara, just confirming everything carries on as usual after the summer: 80 trays of bread for you every Friday at 14:00 from our Dock Road depot. See your driver then.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e23\", \"date\": \"2026-08-21\", \"type\": \"letter\", \"from\": \"The Okafor family\", \"text\": \"Dear everyone at Bright Harbour Food Bank, thank you for the parcels this summer. The bread on Saturdays made a real difference to us.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-04\", \"type\": \"notice\", \"from\": \"Bright Harbour Council\", \"text\": \"Notice: the warehouse car park on Plover Street will be closed for resurfacing on Saturday 12 September and Sunday 13 September. Please plan deliveries around these dates.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-10\", \"type\": \"quote\", \"from\": \"Daneka Moss (Saltrock Bakery)\", \"text\": \"Hello Mara, Saltrock Bakery can offer 60 trays of bread weekly at £1.20 per tray, delivered to your door every Friday morning. Happy to start any week that suits you.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e26\", \"date\": \"2026-09-18\", \"type\": \"message\", \"from\": \"Tom Weller\", \"text\": \"Mara, the van has new tyres as of today, so no worries about the Friday runs in the wet weather.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Nadia Price (Harvest Mill Bakery)\", \"text\": \"Hello Mara, a heads-up from Harvest Mill Bakery: we have lost a supermarket contract, so our surplus is smaller and we are consolidating sites. From Friday 9 October your collection will be 40 trays at 11:00 from our Riverside depot instead of Dock Road. Sorry for the short notice and thanks for bearing with us.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Jess Mallory (volunteer coordinator)\", \"text\": \"Hi Mara, the October volunteer rota is now circulated. All 26 Saturday volunteers have confirmed for this month.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-06\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"The Harbourside Wholesale tinned tomato delivery arrived in good order; stacked in aisle 2 of the warehouse.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly Friday bread run - Harvest Mill Bakery\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"14:00\", \"place\": \"Dock Road depot\", \"driver\": \"Tom Weller\", \"quantity\": \"80 trays\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Saturday distribution bread allocation\", \"fields\": {\"date\": \"2026-10-17\", \"place\": \"Main hall\", \"bread_portions\": \"80\", \"status\": \"planned\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Stacking bread crates - PackRight Supplies\", \"fields\": {\"supplier\": \"PackRight Supplies\", \"item\": \"stacking bread crates\", \"quantity\": \"80\", \"amount\": \"320\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Community cooking workshop\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"09:00\", \"place\": \"St Aldhelm's Hall\", \"status\": \"booked\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Weekly Saturday distribution\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"09:00\", \"place\": \"Main hall\", \"volunteers\": \"26\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Wednesday vegetable run\", \"fields\": {\"date\": \"2026-10-14\", \"driver\": \"Ruth Kwan\", \"deliver_by\": \"15:00\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Tinned tomatoes - Harbourside Wholesale\", \"fields\": {\"supplier\": \"Harbourside Wholesale\", \"item\": \"tinned tomatoes\", \"quantity\": \"1100\", \"amount\": \"682\", \"status\": \"delivered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Long-grain rice - Quay Stores\", \"fields\": {\"supplier\": \"Quay Stores\", \"item\": \"long-grain rice 10kg sacks\", \"quantity\": \"45\", \"amount\": \"378\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"time\", \"place\"], \"from\": \"Tom Weller\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Can you get this Friday's bread pickup squared away and let Tom Weller know the final plan for the run?\",\n  \"expect\": [\n    {\"record\": \"EV-2\", \"field\": \"bread_portions\", \"value\": \"40\", \"stale\": [\"80\"]},\n    {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"40\", \"stale\": [\"80\"]},\n    {\"record\": \"ORD-1\", \"field\": \"amount\", \"value\": \"160\", \"stale\": [\"320\"]},\n    {\"message_to\": \"Tom Weller\", \"regarding\": \"EV-1\", \"says\": [\"11:00\", \"Riverside depot\"], \"stale\": [\"14:00\", \"Dock Road\"], \"task\": true}\n  ],\n  \"why\": \"Harvest Mill Bakery's September email ends the old standing arrangement (80 trays, 14:00, Dock Road) and fixes 40 trays at 11:00 from the Riverside depot from 9 October. The crate order and Saturday bread allocation rest only on that fact, so they are REVISED to 40 crates/£160 and 40 portions. Moving Tom's confirmed Friday run to a new time and meeting point needs his own agreement under the standing instruction, so EV-1 is ASK: the record stays as it is and the assistant asks Tom, passing the new 11:00 Riverside depot plan rather than the stale 14:00 Dock Road details.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"nappies restock\", \"counterpart\": \"Imran Doyle\", \"org\": \"Harbourside Wholesale\", \"item\": \"packs of nappies\", \"unit\": \"pack\", \"values\": [\"30\", \"45\", \"60\", \"25\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"tinned beans restock\", \"counterpart\": \"Imran Doyle\", \"org\": \"Harbourside Wholesale\", \"item\": \"tinned beans\", \"unit\": \"tin\", \"values\": [\"400\", \"550\", \"720\", \"300\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"rice top-up\", \"counterpart\": \"Sofia Lindt\", \"org\": \"Quay Stores\", \"item\": \"long-grain rice 10kg sacks\", \"unit\": \"sack\", \"values\": [\"20\", \"35\", \"50\", \"15\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"packaging supplies\", \"counterpart\": \"Lena Ford\", \"org\": \"PackRight Supplies\", \"item\": \"food parcel bags\", \"unit\": \"box\", \"values\": [\"10\", \"14\", \"8\", \"20\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"hall for volunteer meetings\", \"counterpart\": \"Colin Avery\", \"org\": \"St Aldhelm's Hall\", \"item\": \"hall hire for volunteer meeting\", \"unit\": \"booking\", \"values\": [\"Main room\", \"Side room\", \"Kitchen annex\"], \"place\": \"St Aldhelm's Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"van service slots\", \"counterpart\": \"Pete Drummond\", \"org\": \"Harbour Garage\", \"item\": \"van service slot\", \"unit\": \"slot\", \"values\": [\"Morning bay 1\", \"Afternoon bay 2\", \"Saturday bay\"], \"place\": \"Harbour Garage\"},\n    {\"kind\": \"order\", \"topic\": \"cooking oil restock\", \"counterpart\": \"Sofia Lindt\", \"org\": \"Quay Stores\", \"item\": \"vegetable oil 5l bottles\", \"unit\": \"bottle\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"hygiene kits\", \"counterpart\": \"Lena Ford\", \"org\": \"PackRight Supplies\", \"item\": \"hygiene kit cartons\", \"unit\": \"carton\", \"values\": [\"15\", \"22\", \"30\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"main hall setup\", \"counterpart\": \"Jess Mallory\", \"org\": \"Bright Harbour Food Bank\", \"item\": \"packing table setup session\", \"unit\": \"session\", \"values\": [\"Table row A\", \"Table row B\", \"Welcome desk\"], \"place\": \"Main hall\"},\n    {\"kind\": \"order\", \"topic\": \"tea and coffee restock\", \"counterpart\": \"Imran Doyle\", \"org\": \"Harbourside Wholesale\", \"item\": \"tea and coffee catering packs\", \"unit\": \"pack\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"pasta restock\", \"counterpart\": \"Sofia Lindt\", \"org\": \"Quay Stores\", \"item\": \"dried pasta 5kg bags\", \"unit\": \"bag\", \"values\": [\"25\", \"40\", \"55\"], \"place\": \"Plover Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"community room for advice drop-in\", \"counterpart\": \"Colin Avery\", \"org\": \"St Aldhelm's Hall\", \"item\": \"community room for weekly advice drop-in\", \"unit\": \"booking\", \"values\": [\"Main room\", \"Side room\", \"Upstairs room\"], \"place\": \"St Aldhelm's Hall\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7706,
+    "completion_tokens": 4402,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0808536,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e25: role «quote» not in ['change', 'decision', 'fact', 'obligation', 'other', 'rule']\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Bread pickup moved by bakery",
+  "setting": "Food bank coordinator at Bright Harbour Food Bank, serving 500 households weekly",
+  "owner": "Mara",
+  "org": "Bright Harbour Food Bank",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing instruction for the team: if a confirmed volunteer shift is moved to a different day, time or meeting point, the volunteer must agree to the move personally before we treat it as set. Never just update the rota and assume.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Finance policy for Bright Harbour Food Bank: any supplier order over £500 needs sign-off from our finance lead Priya Shah before it is placed. Orders of £500 or less I can place directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Nadia Price (Harvest Mill Bakery)",
+    "text": "Hello Mara, confirming our standing surplus arrangement with Bright Harbour Food Bank: 80 trays of bread for collection every Friday at 14:00 from our Dock Road depot. Your driver can ask for the duty baker at the loading bay.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-06",
+    "type": "message",
+    "from": "Tom Weller",
+    "text": "Hi Mara, happy to keep doing the bread run for the food bank. Fridays suit me best, I can do the afternoon pickup every week with the van.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-08",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Set up the weekly bread run: Tom Weller collects 80 trays from Harvest Mill Bakery's Dock Road depot every Friday at 14:00 and brings them to the food bank. Confirmed with Tom and entered on the schedule.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-10",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 80 stacking bread crates from PackRight Supplies at £4 each (£320 total) so we can handle the 80 trays coming in each Friday from Harvest Mill Bakery. Under the £500 line so I placed it directly.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-10",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Planned the Saturday distribution food parcels around the weekly bread run: 80 bread portions set aside each week from the Friday collection, one per household in the first queue group.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Colin Avery (St Aldhelm's Hall)",
+    "text": "Dear Mara, St Aldhelm's Hall is free on Saturdays between 08:00 and 12:00 through the autumn if Bright Harbour Food Bank wants to run anything here. Kitchen use included.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-13",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked St Aldhelm's Hall for a community cooking workshop on Saturday 24 October, 09:00 to 11:30, using their Saturday morning slot and kitchen.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-15",
+    "type": "message",
+    "from": "Ruth Kwan",
+    "text": "Mara, I can drive the Wednesday vegetable run for the food bank every week, mornings or early afternoon both fine.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Assigned Ruth Kwan as the regular driver for the Wednesday vegetable run, collecting from the market gardeners and delivering to the food bank by 15:00.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-18",
+    "type": "quote",
+    "from": "Imran Doyle (Harbourside Wholesale)",
+    "text": "Quote for Bright Harbour Food Bank: tinned tomatoes at £0.62 per tin for orders of 1,000 tins or more, delivery included to your warehouse.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-06-19",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 1,100 tins of tomatoes from Harbourside Wholesale at £0.62 per tin (£682). As it is over £500, Priya Shah signed it off before I placed the order.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Jess Mallory (volunteer coordinator)",
+    "text": "Hi Mara, we now have 26 volunteers confirmed for the Saturday distributions at the main hall, enough for five packing tables plus the welcome desk.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-06-23",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Set the weekly Saturday distribution at the main hall, 09:00 start, staffed by the 26 confirmed volunteers across five packing tables and the welcome desk.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e16",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Sofia Lindt (Quay Stores)",
+    "text": "Hello Mara, we can supply long-grain rice at £8.40 per 10kg sack for the food bank, any quantity up to 60 sacks a month, delivered free.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-06-26",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 45 sacks of rice from Quay Stores at £8.40 a sack (£378 total). Under £500 so no finance sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e16",
+     "e2"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-03",
+    "type": "note",
+    "from": "Mara",
+    "text": "Note to self: fridge thermometer checks now happen every morning at 08:30, logged in the kitchen folder.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-10",
+    "type": "letter",
+    "from": "Bright Harbour Council",
+    "text": "Dear Ms Mara Ellison, thank you for your community update. The council newsletter will feature Bright Harbour Food Bank in the autumn edition.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-07-17",
+    "type": "task",
+    "from": "Mara",
+    "text": "To-do: renew the van insurance before 2026-11-30 and file the certificate in the office drawer.",
+    "role": "obligation"
+   },
+   {
+    "id": "e21",
+    "date": "2026-07-24",
+    "type": "minutes",
+    "from": "Jess Mallory (volunteer coordinator)",
+    "text": "Minutes of the July volunteer meeting: tea rota agreed, two new volunteers welcomed, next meeting in October.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-14",
+    "type": "email",
+    "from": "Nadia Price (Harvest Mill Bakery)",
+    "text": "Hi Mara, just confirming everything carries on as usual after the summer: 80 trays of bread for you every Friday at 14:00 from our Dock Road depot. See your driver then.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-21",
+    "type": "letter",
+    "from": "The Okafor family",
+    "text": "Dear everyone at Bright Harbour Food Bank, thank you for the parcels this summer. The bread on Saturdays made a real difference to us.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-04",
+    "type": "notice",
+    "from": "Bright Harbour Council",
+    "text": "Notice: the warehouse car park on Plover Street will be closed for resurfacing on Saturday 12 September and Sunday 13 September. Please plan deliveries around these dates.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-10",
+    "type": "quote",
+    "from": "Daneka Moss (Saltrock Bakery)",
+    "text": "Hello Mara, Saltrock Bakery can offer 60 trays of bread weekly at £1.20 per tray, delivered to your door every Friday morning. Happy to start any week that suits you.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-18",
+    "type": "message",
+    "from": "Tom Weller",
+    "text": "Mara, the van has new tyres as of today, so no worries about the Friday runs in the wet weather.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Nadia Price (Harvest Mill Bakery)",
+    "text": "Hello Mara, a heads-up from Harvest Mill Bakery: we have lost a supermarket contract, so our surplus is smaller and we are consolidating sites. From Friday 9 October your collection will be 40 trays at 11:00 from our Riverside depot instead of Dock Road. Sorry for the short notice and thanks for bearing with us.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Jess Mallory (volunteer coordinator)",
+    "text": "Hi Mara, the October volunteer rota is now circulated. All 26 Saturday volunteers have confirmed for this month.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-06",
+    "type": "note",
+    "from": "Mara",
+    "text": "The Harbourside Wholesale tinned tomato delivery arrived in good order; stacked in aisle 2 of the warehouse.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Weekly Friday bread run - Harvest Mill Bakery",
+    "fields": {
+     "date": "2026-10-16",
+     "time": "14:00",
+     "place": "Dock Road depot",
+     "driver": "Tom Weller",
+     "quantity": "80 trays",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Saturday distribution bread allocation",
+    "fields": {
+     "date": "2026-10-17",
+     "place": "Main hall",
+     "bread_portions": "80",
+     "status": "planned"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Stacking bread crates - PackRight Supplies",
+    "fields": {
+     "supplier": "PackRight Supplies",
+     "item": "stacking bread crates",
+     "quantity": "80",
+     "amount": "320",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Community cooking workshop",
+    "fields": {
+     "date": "2026-10-24",
+     "time": "09:00",
+     "place": "St Aldhelm's Hall",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Weekly Saturday distribution",
+    "fields": {
+     "date": "2026-10-17",
+     "time": "09:00",
+     "place": "Main hall",
+     "volunteers": "26",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Wednesday vegetable run",
+    "fields": {
+     "date": "2026-10-14",
+     "driver": "Ruth Kwan",
+     "deliver_by": "15:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Tinned tomatoes - Harbourside Wholesale",
+    "fields": {
+     "supplier": "Harbourside Wholesale",
+     "item": "tinned tomatoes",
+     "quantity": "1100",
+     "amount": "682",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Long-grain rice - Quay Stores",
+    "fields": {
+     "supplier": "Quay Stores",
+     "item": "long-grain rice 10kg sacks",
+     "quantity": "45",
+     "amount": "378",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "time",
+     "place"
+    ],
+    "from": "Tom Weller",
+    "rule": "e1"
+   }
+  ],
+  "task": "Can you get this Friday's bread pickup squared away and let Tom Weller know the final plan for the run?",
+  "expect": [
+   {
+    "record": "EV-2",
+    "field": "bread_portions",
+    "value": "40",
+    "stale": [
+     "80"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "quantity",
+    "value": "40",
+    "stale": [
+     "80"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "amount",
+    "value": "160",
+    "stale": [
+     "320"
+    ]
+   },
+   {
+    "message_to": "Tom Weller",
+    "regarding": "EV-1",
+    "says": [
+     "11:00",
+     "Riverside depot"
+    ],
+    "stale": [
+     "14:00",
+     "Dock Road"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Harvest Mill Bakery's September email ends the old standing arrangement (80 trays, 14:00, Dock Road) and fixes 40 trays at 11:00 from the Riverside depot from 9 October. The crate order and Saturday bread allocation rest only on that fact, so they are REVISED to 40 crates/£160 and 40 portions. Moving Tom's confirmed Friday run to a new time and meeting point needs his own agreement under the standing instruction, so EV-1 is ASK: the record stays as it is and the assistant asks Tom, passing the new 11:00 Riverside depot plan rather than the stale 14:00 Dock Road details.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "nappies restock",
+    "counterpart": "Imran Doyle",
+    "org": "Harbourside Wholesale",
+    "item": "packs of nappies",
+    "unit": "pack",
+    "values": [
+     "30",
+     "45",
+     "60",
+     "25"
+    ],
+    "place": "Plover Street warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "tinned beans restock",
+    "counterpart": "Imran Doyle",
+    "org": "Harbourside Wholesale",
+    "item": "tinned beans",
+    "unit": "tin",
+    "values": [
+     "400",
+     "550",
+     "720",
+     "300"
+    ],
+    "place": "Plover Street warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "rice top-up",
+    "counterpart": "Sofia Lindt",
+    "org": "Quay Stores",
+    "item": "long-grain rice 10kg sacks",
+    "unit": "sack",
+    "values": [
+     "20",
+     "35",
+     "50",
+     "15"
+    ],
+    "place": "Plover Street warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "packaging supplies",
+    "counterpart": "Lena Ford",
+    "org": "PackRight Supplies",
+    "item": "food parcel bags",
+    "unit": "box",
+    "values": [
+     "10",
+     "14",
+     "8",
+     "20"
+    ],
+    "place": "Plover Street warehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "hall for volunteer meetings",
+    "counterpart": "Colin Avery",
+    "org": "St Aldhelm's Hall",
+    "item": "hall hire for volunteer meeting",
+    "unit": "booking",
+    "values": [
+     "Main room",
+     "Side room",
+     "Kitchen annex"
+    ],
+    "place": "St Aldhelm's Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "van service slots",
+    "counterpart": "Pete Drummond",
+    "org": "Harbour Garage",
+    "item": "van service slot",
+    "unit": "slot",
+    "values": [
+     "Morning bay 1",
+     "Afternoon bay 2",
+     "Saturday bay"
+    ],
+    "place": "Harbour Garage"
+   },
+   {
+    "kind": "order",
+    "topic": "cooking oil restock",
+    "counterpart": "Sofia Lindt",
+    "org": "Quay Stores",
+    "item": "vegetable oil 5l bottles",
+    "unit": "bottle",
+    "values": [
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Plover Street warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "hygiene kits",
+    "counterpart": "Lena Ford",
+    "org": "PackRight Supplies",
+    "item": "hygiene kit cartons",
+    "unit": "carton",
+    "values": [
+     "15",
+     "22",
+     "30"
+    ],
+    "place": "Plover Street warehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "main hall setup",
+    "counterpart": "Jess Mallory",
+    "org": "Bright Harbour Food Bank",
+    "item": "packing table setup session",
+    "unit": "session",
+    "values": [
+     "Table row A",
+     "Table row B",
+     "Welcome desk"
+    ],
+    "place": "Main hall"
+   },
+   {
+    "kind": "order",
+    "topic": "tea and coffee restock",
+    "counterpart": "Imran Doyle",
+    "org": "Harbourside Wholesale",
+    "item": "tea and coffee catering packs",
+    "unit": "pack",
+    "values": [
+     "8",
+     "12",
+     "16"
+    ],
+    "place": "Plover Street warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "pasta restock",
+    "counterpart": "Sofia Lindt",
+    "org": "Quay Stores",
+    "item": "dried pasta 5kg bags",
+    "unit": "bag",
+    "values": [
+     "25",
+     "40",
+     "55"
+    ],
+    "place": "Plover Street warehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "community room for advice drop-in",
+    "counterpart": "Colin Avery",
+    "org": "St Aldhelm's Hall",
+    "item": "community room for weekly advice drop-in",
+    "unit": "booking",
+    "values": [
+     "Main room",
+     "Side room",
+     "Upstairs room"
+    ],
+    "place": "St Aldhelm's Hall"
+   }
+  ],
+  "id": "K500-1-01",
+  "tier": 500,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

@@ -736,5 +736,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history does not clearly exempt billing from the rule requiring skipper consent to change a confirmed booking’s rate. Revising and sending Kestrel’s final account at 2.80 while consent to that rate remains pending is therefore not unambiguously authorized; the ORD-6 REVISE mark and consent map assume an unstated distinction between booking and billing rates.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history does not clearly exempt billing from the rule requiring skipper consent to change a confirmed booking’s rate. Revising and sending Kestrel’s final account at 2.80 while consent to that rate remains pending is therefore not unambiguously authorized; the ORD-6 REVISE mark and consent map assume an unstated distinction between booking and billing rates."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 5060,
+    "completion_tokens": 264,
+    "reasoning_tokens": 154,
+    "cached_tokens": 0
+   },
+   "cost": 0.0764425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6efdedc6c8c466a1dc4e674051d692697976869384baf32611518d211d71cee4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state sends Ines a 336 account at 2.80 while her confirmed booking EV-3 stays at 3.90 pending her consent under rule e2, so the 'REVISE' on ORD-6 conflicts with the consent-protected rate and the expected state does not resolve that tension. The core otherwise meets the tier (33 events, 9 decisions, change 16 days before the task day with 4 core events after it), the change is an ordinary dated event with later events after it, and the task forces an act without naming the change.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state sends Ines a 336 account at 2.80 while her confirmed booking EV-3 stays at 3.90 pending her consent under rule e2, so the 'REVISE' on ORD-6 conflicts with the consent-protected rate and the expected state does not resolve that tension. The core otherwise meets the tier (33 events, 9 decisions, change 16 days before the task day with 4 core events after it), the change is an ordinary dated event with later events after it, and the task forces an act without naming the change."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 7160,
+    "completion_tokens": 2367,
+    "reasoning_tokens": 2143,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018995,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6efdedc6c8c466a1dc4e674051d692697976869384baf32611518d211d71cee4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment's own terms cleanly split KEEP (October stay at summer rate, December stay already at winter rate) from REVISE (ORD-6 and provisional EV-6 re-rate to 2.80/336) and ASK (confirmed EV-3's rate protected by the skipper-consent rule e2). Counts meet tier (33 core events, 9 decisions, change 16 days before task day, two echoes e9/e24), the task (send Kestrel's final account) forces an act without naming the change, and the change sits at event 912 of 1000 with routine events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment's own terms cleanly split KEEP (October stay at summer rate, December stay already at winter rate) from REVISE (ORD-6 and provisional EV-6 re-rate to 2.80/336) and ASK (confirmed EV-3's rate protected by the skipper-consent rule e2). Counts meet tier (33 core events, 9 decisions, change 16 days before task day, two echoes e9/e24), the task (send Kestrel's final account) forces an act without naming the change, and the change sits at event 912 of 1000 with routine events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 5184,
+    "completion_tokens": 661,
+    "reasoning_tokens": 475,
+    "cached_tokens": 256
+   },
+   "cost": 0.0247758,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6efdedc6c8c466a1dc4e674051d692697976869384baf32611518d211d71cee4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

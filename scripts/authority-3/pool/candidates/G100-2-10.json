@@ -654,5 +654,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The order total is inconsistent: 12 tubes at £26.70 cost £320.40, not £320. Marta's rule requires a completed patch test and direct client confirmation, not simply consent to change her status, so the prescribed consent request is not unambiguously established. The changed-rule structure, tier requirements, and placement of the change otherwise qualify.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The order total is inconsistent: 12 tubes at £26.70 cost £320.40, not £320. Marta's rule requires a completed patch test and direct client confirmation, not simply consent to change her status, so the prescribed consent request is not unambiguously established. The changed-rule structure, tier requirements, and placement of the change otherwise qualify."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3732,
+    "completion_tokens": 259,
+    "reasoning_tokens": 149,
+    "cached_tokens": 0
+   },
+   "cost": 0.0595925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "49cd5007dfcd0ad8fab75a248d77627fc68372e64698aa1fdba08dc91a4a3c63",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core meets tier (20 events, 6 decisions, change 12 days before the task day with three core events after it) and is class 2, since Priya's amendment voids the sign-off rule for ORD-1 and EV-3 while EV-2 still stands. The expected state is not fully unambiguous, though: Nadia's e4 rule requires that a patch-tested client's booking be confirmed 'with them directly', yet EV-1 is marked confirmed with no client contact and no consent map entry. Also, 12 tubes at £26.70 is £320.40, not the £320 the record and expected message state.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core meets tier (20 events, 6 decisions, change 12 days before the task day with three core events after it) and is class 2, since Priya's amendment voids the sign-off rule for ORD-1 and EV-3 while EV-2 still stands. The expected state is not fully unambiguous, though: Nadia's e4 rule requires that a patch-tested client's booking be confirmed 'with them directly', yet EV-1 is marked confirmed with no client contact and no consent map entry. Also, 12 tubes at £26.70 is £320.40, not the £320 the record and expected message state."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5359,
+    "completion_tokens": 2262,
+    "reasoning_tokens": 2012,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016669,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "49cd5007dfcd0ad8fab75a248d77627fc68372e64698aa1fdba08dc91a4a3c63",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Priya's amendment voids sign-off for the £320 order and register confirmation for tints/glosses, while Grace's full-head bleach correctly KEEPs under the amended rule's own terms; Marta's gloss stays blocked by the separate patch-test rule (e4), justifying the ASK to her per the consent map. The task requests sends/confirms without mentioning the rule change, and the change sits at event 80 of 100 with later routine events. Tier 100 counts hold: 20 core events, 6 decisions, change 12 days before the task day with 20 events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Priya's amendment voids sign-off for the £320 order and register confirmation for tints/glosses, while Grace's full-head bleach correctly KEEPs under the amended rule's own terms; Marta's gloss stays blocked by the separate patch-test rule (e4), justifying the ASK to her per the consent map. The task requests sends/confirms without mentioning the rule change, and the change sits at event 80 of 100 with later routine events. Tier 100 counts hold: 20 core events, 6 decisions, change 12 days before the task day with 20 events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3857,
+    "completion_tokens": 496,
+    "reasoning_tokens": 316,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0107166,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "49cd5007dfcd0ad8fab75a248d77627fc68372e64698aa1fdba08dc91a4a3c63",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

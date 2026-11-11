@@ -1,0 +1,675 @@
+{
+ "id": "K500-3-06",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 3,
+ "idx": 5,
+ "setting": "Front desk lead at Cedar Hills Veterinary Clinic, a four-vet animal hospital",
+ "prompt_sha256": "7640d1dc7cbd37741164fb0743278ff464e447444ad1e3b10384d7df11b98b74",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Okafor's surgery day moves to Thursdays\",\n  \"setting\": \"Front desk lead at Cedar Hills Veterinary Clinic, a four-vet animal hospital\",\n  \"owner\": \"Mira\",\n  \"org\": \"Cedar Hills Veterinary Clinic\",\n  \"now\": \"2026-10-21\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing rule for the front desk: any confirmed client appointment at Cedar Hills Veterinary Clinic may only be moved to a different date or time with that client's explicit agreement. Ask the client first, then change the booking.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Any supplier order over 300 needs sign-off from Tomás Reyes, our practice manager, before it is placed. Orders of 300 or less can go ahead without it.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Dr. Nia Okafor (Cedar Hills Veterinary Clinic)\", \"text\": \"Confirming my surgery schedule: my operating day is Tuesday, and I will be in Surgery 2 for all my procedures, including dental work under anaesthetic.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Our delivery run to Cedar Hills Veterinary Clinic is every Wednesday morning. Orders placed by Monday noon make that week's run.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"message\", \"from\": \"Lena Brooks (Cedar Hills Veterinary Clinic)\", \"text\": \"For the rota: I am available Tuesdays and Thursdays as senior surgery technician. Happy to cover anaesthetic monitoring on either day.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Ana Almeida\", \"text\": \"Registering my dog Maple, a seven-year-old Labrador, at Cedar Hills Veterinary Clinic. My phone is 555-0142 and email is ana.almeida@example.net. Maple needs a dental cleaning under anaesthetic soon.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I have scheduled Dr. Okafor's weekly dental surgery block: every Tuesday in Surgery 2, since that is her operating day. First block on the calendar is Tuesday 27 October 2026.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Lena Brooks is assigned as surgery support on Tuesdays, matching Dr. Okafor's Tuesday operating day; Lena confirmed she can work Tuesdays.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"quote\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Quote for Cedar Hills Veterinary Clinic: suture packs, box of 20, at 24 per box; anaesthetic monitoring line filters, 9 each.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked Maple Almeida's dental cleaning under anaesthetic with Dr. Okafor for Tuesday 27 October 2026 at 09:00, slotted into Okafor's Tuesday dental block. Confirmed with Ana Almeida by phone.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e6\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 10 boxes of suture packs from PawMed Supplies (240 total, so no sign-off needed) because Dr. Okafor handles all of the clinic's soft-tissue and dental surgery and we go through these steadily. Delivery on the Wednesday run.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Your 10 boxes of suture packs went out on this week's Wednesday run to Cedar Hills Veterinary Clinic. Invoice to follow.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"invoice\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Invoice PM-1188: 10 boxes suture packs, 240, payable within 30 days.\", \"role\": \"obligation\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Staff meeting notes: reminder that the autumn diary is filling up; front desk to keep Tuesday surgery mornings clear of routine consults.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Dr. Nia Okafor (Cedar Hills Veterinary Clinic)\", \"text\": \"Just reconfirming for the autumn rota: my Tuesday surgery days in Surgery 2 stand through October and November, so the Tuesday dental block and Maple Almeida's dental on Tuesday 27 October are fine on my side.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e16\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Lena Brooks (Cedar Hills Veterinary Clinic)\", \"text\": \"Rota check: I'm still down for Tuesday surgery support through November. Anything changing?\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-30\", \"type\": \"reply\", \"from\": \"Mira\", \"text\": \"Nothing changing, Lena — Tuesdays stand.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dr. Sofia Reyes (Cedar Hills Veterinary Clinic)\", \"text\": \"Heads-up for the diary: I can offer Thursday consult slots through November if the front desk needs extra capacity on Thursdays.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"Reminder to self: chase PawMed for the autumn vaccine fridge thermometer quote by Friday 16 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dr. Nia Okafor (Cedar Hills Veterinary Clinic)\", \"text\": \"Bad news on scheduling: the university has moved my teaching day, so from the week of 12 October I cannot operate on Tuesdays any more. My surgery day moves to Thursdays, still in Surgery 2. Everything else about my surgical work stays the same — I will still be doing all the clinic's soft-tissue and dental surgery, just on Thursdays.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e21\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Monday huddle notes: vaccine stock is healthy; two new puppy registrations this week; Tomás on leave Thursday 15 October.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Lena Brooks (Cedar Hills Veterinary Clinic)\", \"text\": \"Left a note at reception: I can cover extra Thursday shifts in November if needed.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Autumn catalogue attached. Note our Wednesday delivery schedule is unchanged through December.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-19\", \"type\": \"call\", \"from\": \"Ana Almeida\", \"text\": \"Ana Almeida phoned to ask about post-dental care for Maple and said she is looking forward to the appointment. Front desk took a message.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Dr. Sofia Reyes (Cedar Hills Veterinary Clinic)\", \"text\": \"I saw two walk-ins this morning; no diary clashes on my side.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-21\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Front desk morning note: postman delivered the PawMed autumn catalogue; kettle in the staff room is leaking again.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Dr. Okafor weekly dental surgery block\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"09:00\", \"vet\": \"Dr. Nia Okafor\", \"room\": \"Surgery 2\", \"type\": \"dental surgery block\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Maple Almeida dental cleaning under anaesthetic\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"09:00\", \"vet\": \"Dr. Nia Okafor\", \"pet\": \"Maple\", \"client\": \"Ana Almeida\", \"room\": \"Surgery 2\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Surgery support rota: Lena Brooks\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"08:30\", \"staff\": \"Lena Brooks\", \"duty\": \"surgery support and anaesthetic monitoring\", \"status\": \"assigned\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"PawMed suture packs\", \"fields\": {\"supplier\": \"PawMed Supplies\", \"item\": \"suture packs box of 20\", \"quantity\": \"10\", \"amount\": \"240\", \"delivery_day\": \"Wednesday\", \"status\": \"delivered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Ana Almeida and Maple\", \"fields\": {\"client\": \"Ana Almeida\", \"pet\": \"Maple\", \"species\": \"dog Labrador\", \"phone\": \"555-0142\", \"email\": \"ana.almeida@example.net\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Ana Almeida\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please book Maple Almeida's routine post-dental recheck with Dr. Okafor, two weeks after her dental, and put it on the schedule.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-29\", \"stale\": [\"2026-10-27\"]},\n    {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-29\", \"stale\": [\"2026-10-27\"]},\n    {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-12\", \"vet\": \"Dr. Nia Okafor\", \"pet\": \"Maple\", \"client\": \"Ana Almeida\", \"type\": \"post-dental recheck\", \"status\": \"booked\"}, \"stale\": {\"date\": [\"2026-11-10\"]}, \"task\": true}\n  ],\n  \"why\": \"Dr. Okafor's surgery day moved from Tuesday to Thursday, revoking the fact the dental block (EV-1) and Lena's surgery support rota (EV-3) rest on, so both move to Thursday 29 October 2026 (REVISE, no consent needed). Maple's dental (EV-2) rests on the block, but moving a confirmed client appointment needs Ana Almeida's agreement under the standing rule, so it is ASK and its date stays until she consents. The suture order is KEEP: it relied on Okafor doing the clinic's surgery, which the change explicitly leaves standing. The recheck falls two weeks after the dental; with the dental now on a Thursday footing, the recheck is Thursday 12 November 2026, not Tuesday 10 November.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"PawMed consumables restock\", \"counterpart\": \"Petra Lind\", \"org\": \"PawMed Supplies\", \"item\": \"examination gloves case\", \"unit\": \"cases\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"order\", \"topic\": \"PawMed bandage restock\", \"counterpart\": \"Petra Lind\", \"org\": \"PawMed Supplies\", \"item\": \"cohesive bandage rolls\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"order\", \"topic\": \"PawMed syringe restock\", \"counterpart\": \"Petra Lind\", \"org\": \"PawMed Supplies\", \"item\": \"5ml syringes\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"booking\", \"topic\": \"Surgery 2 dental overflow\", \"counterpart\": \"Dr. Nia Okafor\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"Surgery 2 for dental procedures\", \"unit\": \"room\", \"values\": [\"Surgery 2\", \"Surgery 1\", \"Consult 3\"], \"place\": \"Surgery wing\"},\n    {\"kind\": \"booking\", \"topic\": \"Consult room weekly bookings\", \"counterpart\": \"Dr. Sofia Reyes\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"consult room for routine appointments\", \"unit\": \"room\", \"values\": [\"Consult 1\", \"Consult 2\", \"Consult 3\"], \"place\": \"Consult wing\"},\n    {\"kind\": \"booking\", \"topic\": \"Staff rota coverage swaps\", \"counterpart\": \"Lena Brooks\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"technician cover shift\", \"unit\": \"shift\", \"values\": [\"morning\", \"afternoon\", \"evening\", \"Saturday morning\"], \"place\": \"Treatment area\"},\n    {\"kind\": \"order\", \"topic\": \"VetPet Foods clinic diet restock\", \"counterpart\": \"Owen Hartley\", \"org\": \"VetPet Foods\", \"item\": \"prescription renal diet tins\", \"unit\": \"cases\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"order\", \"topic\": \"CleanCage kennel supplies\", \"counterpart\": \"Rosa Delgado\", \"org\": \"CleanCage Ltd\", \"item\": \"kennel disinfectant\", \"unit\": \"containers\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Kennel block\"},\n    {\"kind\": \"booking\", \"topic\": \"Grooming van visits\", \"counterpart\": \"Tessa Bloom\", \"org\": \"Bloom Mobile Grooming\", \"item\": \"grooming van parking slot\", \"unit\": \"slot\", \"values\": [\"Monday\", \"Wednesday\", \"Friday\"], \"place\": \"Cedar Hills car park\"},\n    {\"kind\": \"order\", \"topic\": \"Lab courier sample pickups\", \"counterpart\": \"Dev Anand\", \"org\": \"NorthPath Labs\", \"item\": \"blood sample courier pickup\", \"unit\": \"pickups\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Cedar Hills reception\"},\n    {\"kind\": \"booking\", \"topic\": \"Puppy class room hire\", \"counterpart\": \"Gill Farrow\", \"org\": \"Farrow Dog Training\", \"item\": \"evening training room\", \"unit\": \"room\", \"values\": [\"Reception hall\", \"Consult 3\", \"Boarding lounge\"], \"place\": \"Reception hall\"},\n    {\"kind\": \"order\", \"topic\": \"Stationery restock\", \"counterpart\": \"Henry Iles\", \"org\": \"Iles Office Supplies\", \"item\": \"appointment reminder cards\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Cedar Hills reception\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3234,
+    "completion_tokens": 6274,
+    "reasoning_tokens": 2258,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0955176,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Okafor's surgery day moves to Thursdays\",\n  \"setting\": \"Front desk lead at Cedar Hills Veterinary Clinic, a four-vet animal hospital\",\n  \"owner\": \"Mira\",\n  \"org\": \"Cedar Hills Veterinary Clinic\",\n  \"now\": \"2026-10-21\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing rule for the front desk: any confirmed client appointment at Cedar Hills Veterinary Clinic may only be moved to a different date or time with that client's explicit agreement. Ask the client first, then change the booking.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Any supplier order over 300 needs sign-off from Tomás Reyes, our practice manager, before it is placed. Orders of 300 or less can go ahead without it.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Dr. Nia Okafor (Cedar Hills Veterinary Clinic)\", \"text\": \"Confirming my surgery schedule: my operating day is Tuesday, and I will be in Surgery 2 for all my procedures, including dental work under anaesthetic.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Our delivery run to Cedar Hills Veterinary Clinic is every Wednesday morning. Orders placed by Monday noon make that week's run.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"message\", \"from\": \"Lena Brooks (Cedar Hills Veterinary Clinic)\", \"text\": \"For the rota: I am available Tuesdays and Thursdays as senior surgery technician. Happy to cover anaesthetic monitoring on either day.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Ana Almeida\", \"text\": \"Registering my dog Maple, a seven-year-old Labrador, at Cedar Hills Veterinary Clinic. My phone is 555-0142 and email is ana.almeida@example.net. Maple needs a dental cleaning under anaesthetic soon.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I have scheduled Dr. Okafor's weekly dental surgery block: every Tuesday in Surgery 2, since that is her operating day. First block on the calendar is Tuesday 27 October 2026.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Lena Brooks is assigned as surgery support on Tuesdays, matching Dr. Okafor's Tuesday operating day; Lena confirmed she can work Tuesdays.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"quote\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Quote for Cedar Hills Veterinary Clinic: suture packs, box of 20, at 24 per box; anaesthetic monitoring line filters, 9 each.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked Maple Almeida's dental cleaning under anaesthetic with Dr. Okafor for Tuesday 27 October 2026 at 09:00, slotted into Okafor's Tuesday dental block. Confirmed with Ana Almeida by phone.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e6\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 10 boxes of suture packs from PawMed Supplies (240 total, so no sign-off needed) because Dr. Okafor handles all of the clinic's soft-tissue and dental surgery and we go through these steadily. Delivery on the Wednesday run.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Your 10 boxes of suture packs went out on this week's Wednesday run to Cedar Hills Veterinary Clinic. Invoice to follow.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"invoice\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Invoice PM-1188: 10 boxes suture packs, 240, payable within 30 days.\", \"role\": \"obligation\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Staff meeting notes: reminder that the autumn diary is filling up; front desk to keep Tuesday surgery mornings clear of routine consults.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Tomás Reyes (Cedar Hills Veterinary Clinic)\", \"text\": \"Monthly admin note: please log all supplier invoices in the ledger the week they arrive, and flag anything over 300 to me before ordering.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Reception whiteboard: autumn vaccine clinics start mid-October; ask owners at check-in whether their pets are due boosters.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Dr. Nia Okafor (Cedar Hills Veterinary Clinic)\", \"text\": \"Just reconfirming for the autumn rota: my Tuesday surgery days in Surgery 2 stand through October and November, so the Tuesday dental block and Maple Almeida's dental on Tuesday 27 October are fine on my side.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e18\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Lena Brooks (Cedar Hills Veterinary Clinic)\", \"text\": \"Rota check: I'm still down for Tuesday surgery support through November. Anything changing?\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-30\", \"type\": \"message\", \"from\": \"Mira\", \"text\": \"Nothing changing, Lena — Tuesdays stand.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dr. Sofia Reyes (Cedar Hills Veterinary Clinic)\", \"text\": \"Heads-up for the diary: I can offer Thursday consult slots through November if the front desk needs extra capacity on Thursdays.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e21\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"Reminder to self: chase PawMed for the autumn vaccine fridge thermometer quote by Friday 16 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dr. Nia Okafor (Cedar Hills Veterinary Clinic)\", \"text\": \"Bad news on scheduling: the university has moved my teaching day, so from the week of 12 October I cannot operate on Tuesdays any more. My surgery day moves to Thursdays, still in Surgery 2. Everything else about my surgical work stays the same — I will still be doing all the clinic's soft-tissue and dental surgery, just on Thursdays.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e23\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Monday huddle notes: vaccine stock is healthy; two new puppy registrations this week; Tomás on leave Thursday 15 October.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Lena Brooks (Cedar Hills Veterinary Clinic)\", \"text\": \"Left a note at reception: I can cover extra Thursday shifts in November if needed.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Autumn catalogue attached. Note our Wednesday delivery schedule is unchanged through December.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-19\", \"type\": \"call\", \"from\": \"Ana Almeida\", \"text\": \"Ana Almeida phoned to ask about post-dental care for Maple and said she is looking forward to the appointment. Front desk took a message.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Dr. Sofia Reyes (Cedar Hills Veterinary Clinic)\", \"text\": \"I saw two walk-ins this morning; no diary clashes on my side.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-21\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Front desk morning note: postman delivered the PawMed autumn catalogue; kettle in the staff room is leaking again.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Dr. Okafor weekly dental surgery block\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"09:00\", \"vet\": \"Dr. Nia Okafor\", \"room\": \"Surgery 2\", \"type\": \"dental surgery block\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Maple Almeida dental cleaning under anaesthetic\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"09:00\", \"vet\": \"Dr. Nia Okafor\", \"pet\": \"Maple\", \"client\": \"Ana Almeida\", \"room\": \"Surgery 2\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Surgery support rota: Lena Brooks\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"08:30\", \"staff\": \"Lena Brooks\", \"duty\": \"surgery support and anaesthetic monitoring\", \"status\": \"assigned\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"PawMed suture packs\", \"fields\": {\"supplier\": \"PawMed Supplies\", \"item\": \"suture packs box of 20\", \"quantity\": \"10\", \"amount\": \"240\", \"delivery_day\": \"Wednesday\", \"status\": \"delivered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Ana Almeida and Maple\", \"fields\": {\"client\": \"Ana Almeida\", \"pet\": \"Maple\", \"species\": \"dog Labrador\", \"phone\": \"555-0142\", \"email\": \"ana.almeida@example.net\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Ana Almeida\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please book Maple Almeida's routine post-dental recheck with Dr. Okafor, two weeks after her dental, and put it on the schedule.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-29\", \"stale\": [\"2026-10-27\"]},\n    {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-29\", \"stale\": [\"2026-10-27\"]},\n    {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-12\", \"vet\": \"Dr. Nia Okafor\", \"pet\": \"Maple\", \"client\": \"Ana Almeida\", \"type\": \"post-dental recheck\", \"status\": \"booked\"}, \"stale\": {\"date\": [\"2026-11-10\"]}, \"task\": true}\n  ],\n  \"why\": \"Dr. Okafor's surgery day moved from Tuesday to Thursday, revoking the fact the dental block (EV-1) and Lena's surgery support rota (EV-3) rest on, so both move to Thursday 29 October 2026 (REVISE, no consent needed). Maple's dental (EV-2) rests on the block, but moving a confirmed client appointment needs Ana Almeida's agreement under the standing rule, so it is ASK and its date stays until she consents. The suture order is KEEP: it relied on Okafor doing the clinic's surgery, which the change explicitly leaves standing. The recheck falls two weeks after the dental; with the dental now on a Thursday footing, the recheck is Thursday 12 November 2026, not Tuesday 10 November.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"PawMed consumables restock\", \"counterpart\": \"Petra Lind\", \"org\": \"PawMed Supplies\", \"item\": \"examination gloves case\", \"unit\": \"cases\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"order\", \"topic\": \"PawMed bandage restock\", \"counterpart\": \"Petra Lind\", \"org\": \"PawMed Supplies\", \"item\": \"cohesive bandage rolls\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"order\", \"topic\": \"PawMed syringe restock\", \"counterpart\": \"Petra Lind\", \"org\": \"PawMed Supplies\", \"item\": \"5ml syringes\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"booking\", \"topic\": \"Surgery 2 dental overflow\", \"counterpart\": \"Dr. Nia Okafor\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"Surgery 2 for dental procedures\", \"unit\": \"room\", \"values\": [\"Surgery 2\", \"Surgery 1\", \"Consult 3\"], \"place\": \"Surgery wing\"},\n    {\"kind\": \"booking\", \"topic\": \"Consult room weekly bookings\", \"counterpart\": \"Dr. Sofia Reyes\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"consult room for routine appointments\", \"unit\": \"room\", \"values\": [\"Consult 1\", \"Consult 2\", \"Consult 3\"], \"place\": \"Consult wing\"},\n    {\"kind\": \"booking\", \"topic\": \"Staff rota coverage swaps\", \"counterpart\": \"Lena Brooks\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"technician cover shift\", \"unit\": \"shift\", \"values\": [\"morning\", \"afternoon\", \"evening\", \"Saturday morning\"], \"place\": \"Treatment area\"},\n    {\"kind\": \"order\", \"topic\": \"VetPet Foods clinic diet restock\", \"counterpart\": \"Owen Hartley\", \"org\": \"VetPet Foods\", \"item\": \"prescription renal diet tins\", \"unit\": \"cases\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"order\", \"topic\": \"CleanCage kennel supplies\", \"counterpart\": \"Rosa Delgado\", \"org\": \"CleanCage Ltd\", \"item\": \"kennel disinfectant\", \"unit\": \"containers\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Kennel block\"},\n    {\"kind\": \"booking\", \"topic\": \"Grooming van visits\", \"counterpart\": \"Tessa Bloom\", \"org\": \"Bloom Mobile Grooming\", \"item\": \"grooming van parking slot\", \"unit\": \"slot\", \"values\": [\"Monday\", \"Wednesday\", \"Friday\"], \"place\": \"Cedar Hills car park\"},\n    {\"kind\": \"order\", \"topic\": \"Lab courier sample pickups\", \"counterpart\": \"Dev Anand\", \"org\": \"NorthPath Labs\", \"item\": \"blood sample courier pickup\", \"unit\": \"pickups\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Cedar Hills reception\"},\n    {\"kind\": \"booking\", \"topic\": \"Puppy class room hire\", \"counterpart\": \"Gill Farrow\", \"org\": \"Farrow Dog Training\", \"item\": \"evening training room\", \"unit\": \"room\", \"values\": [\"Reception hall\", \"Consult 3\", \"Boarding lounge\"], \"place\": \"Reception hall\"},\n    {\"kind\": \"order\", \"topic\": \"Stationery restock\", \"counterpart\": \"Henry Iles\", \"org\": \"Iles Office Supplies\", \"item\": \"appointment reminder cards\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Cedar Hills reception\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7371,
+    "completion_tokens": 4178,
+    "reasoning_tokens": 17,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0764886,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: the core has 26 events; need 28–55\n- e17: type «reply» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Okafor's surgery day moves to Thursdays\",\n  \"setting\": \"Front desk lead at Cedar Hills Veterinary Clinic, a four-vet animal hospital\",\n  \"owner\": \"Mira\",\n  \"org\": \"Cedar Hills Veterinary Clinic\",\n  \"now\": \"2026-10-21\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing rule for the front desk: any confirmed client appointment at Cedar Hills Veterinary Clinic may only be moved to a different date or time with that client's explicit agreement. Ask the client first, then change the booking.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Any supplier order over 300 needs sign-off from Tomás Reyes, our practice manager, before it is placed. Orders of 300 or less can go ahead without it.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Dr. Nia Okafor (Cedar Hills Veterinary Clinic)\", \"text\": \"Confirming my surgery schedule: my operating day is Tuesday, and I will be in Surgery 2 for all my procedures, including dental work under anaesthetic.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Our delivery run to Cedar Hills Veterinary Clinic is every Wednesday morning. Orders placed by Monday noon make that week's run.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"message\", \"from\": \"Lena Brooks (Cedar Hills Veterinary Clinic)\", \"text\": \"For the rota: I am available Tuesdays and Thursdays as senior surgery technician. Happy to cover anaesthetic monitoring on either day.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Ana Almeida\", \"text\": \"Registering my dog Maple, a seven-year-old Labrador, at Cedar Hills Veterinary Clinic. My phone is 555-0142 and email is ana.almeida@example.net. Maple needs a dental cleaning under anaesthetic soon.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"I have scheduled Dr. Okafor's weekly dental surgery block: every Tuesday in Surgery 2, since that is her operating day. First block on the calendar is Tuesday 27 October 2026.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Lena Brooks is assigned as surgery support on Tuesdays, matching Dr. Okafor's Tuesday operating day; Lena confirmed she can work Tuesdays.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"quote\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Quote for Cedar Hills Veterinary Clinic: suture packs, box of 20, at 24 per box; anaesthetic monitoring line filters, 9 each; examination gloves, 42 per case.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked Maple Almeida's dental cleaning under anaesthetic with Dr. Okafor for Tuesday 27 October 2026 at 09:00, slotted into Okafor's Tuesday dental block. Confirmed with Ana Almeida by phone.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e6\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 10 boxes of suture packs from PawMed Supplies (240 total, so no sign-off needed) because Dr. Okafor handles all of the clinic's soft-tissue and dental surgery and we go through these steadily. Delivery on the Wednesday run.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Your 10 boxes of suture packs went out on this week's Wednesday run to Cedar Hills Veterinary Clinic. Invoice to follow.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"invoice\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Invoice PM-1188: 10 boxes suture packs, 240, payable within 30 days.\", \"role\": \"obligation\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Staff meeting notes: reminder that the autumn diary is filling up; front desk to keep Tuesday surgery mornings clear of routine consults.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 3 cases of examination gloves from PawMed Supplies (126 total, so no sign-off needed) for the reception store, to arrive on the Wednesday delivery run.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\", \"e9\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Tomás Reyes (Cedar Hills Veterinary Clinic)\", \"text\": \"Monthly admin note: please log all supplier invoices in the ledger the week they arrive, and flag anything over 300 to me before ordering.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-24\", \"type\": \"email\", \"from\": \"Gill Farrow (Farrow Dog Training)\", \"text\": \"Confirming our autumn puppy classes at Cedar Hills: we would like the reception hall on Wednesday evenings, 19:00 to 20:00, through November.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked the reception hall for Farrow Dog Training's puppy classes every Wednesday at 19:00 through November, as Gill Farrow confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"EV-5\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Reception whiteboard: autumn vaccine clinics start mid-October; ask owners at check-in whether their pets are due boosters.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Dr. Nia Okafor (Cedar Hills Veterinary Clinic)\", \"text\": \"Just reconfirming for the autumn rota: my Tuesday surgery days in Surgery 2 stand through October and November, so the Tuesday dental block and Maple Almeida's dental on Tuesday 27 October are fine on my side.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e21\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Lena Brooks (Cedar Hills Veterinary Clinic)\", \"text\": \"Rota check: I'm still down for Tuesday surgery support through November. Anything changing?\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-30\", \"type\": \"message\", \"from\": \"Mira\", \"text\": \"Nothing changing, Lena — Tuesdays stand.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dr. Sofia Reyes (Cedar Hills Veterinary Clinic)\", \"text\": \"Heads-up for the diary: I can offer Thursday consult slots through November if the front desk needs extra capacity on Thursdays.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e24\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"Reminder to self: chase PawMed for the autumn vaccine fridge thermometer quote by Friday 16 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dr. Nia Okafor (Cedar Hills Veterinary Clinic)\", \"text\": \"Bad news on scheduling: the university has moved my teaching day, so from the week of 12 October I cannot operate on Tuesdays any more. My surgery day moves to Thursdays, still in Surgery 2. Everything else about my surgical work stays the same — I will still be doing all the clinic's soft-tissue and dental surgery, just on Thursdays.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e26\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Monday huddle notes: vaccine stock is healthy; two new puppy registrations this week; Tomás on leave Thursday 15 October.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Lena Brooks (Cedar Hills Veterinary Clinic)\", \"text\": \"Left a note at reception: I can cover extra Thursday shifts in November if needed.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Petra Lind (PawMed Supplies)\", \"text\": \"Autumn catalogue attached. Note our Wednesday delivery schedule is unchanged through December.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-19\", \"type\": \"call\", \"from\": \"Ana Almeida\", \"text\": \"Ana Almeida phoned to ask about post-dental care for Maple and said she is looking forward to the appointment. Front desk took a message.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Dr. Sofia Reyes (Cedar Hills Veterinary Clinic)\", \"text\": \"I saw two walk-ins this morning; no diary clashes on my side.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-21\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Front desk morning note: postman delivered the PawMed autumn catalogue; kettle in the staff room is leaking again.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Dr. Okafor weekly dental surgery block\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"09:00\", \"vet\": \"Dr. Nia Okafor\", \"room\": \"Surgery 2\", \"type\": \"dental surgery block\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Maple Almeida dental cleaning under anaesthetic\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"09:00\", \"vet\": \"Dr. Nia Okafor\", \"pet\": \"Maple\", \"client\": \"Ana Almeida\", \"room\": \"Surgery 2\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Surgery support rota: Lena Brooks\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"08:30\", \"staff\": \"Lena Brooks\", \"duty\": \"surgery support and anaesthetic monitoring\", \"status\": \"assigned\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Farrow puppy classes, reception hall\", \"fields\": {\"date\": \"2026-10-21\", \"time\": \"19:00\", \"organiser\": \"Gill Farrow\", \"room\": \"Reception hall\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"PawMed suture packs\", \"fields\": {\"supplier\": \"PawMed Supplies\", \"item\": \"suture packs box of 20\", \"quantity\": \"10\", \"amount\": \"240\", \"delivery_day\": \"Wednesday\", \"status\": \"delivered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"PawMed examination gloves\", \"fields\": {\"supplier\": \"PawMed Supplies\", \"item\": \"examination gloves case\", \"quantity\": \"3\", \"amount\": \"126\", \"delivery_day\": \"Wednesday\", \"status\": \"delivered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Ana Almeida and Maple\", \"fields\": {\"client\": \"Ana Almeida\", \"pet\": \"Maple\", \"species\": \"dog Labrador\", \"phone\": \"555-0142\", \"email\": \"ana.almeida@example.net\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Ana Almeida\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please book Maple Almeida's routine post-dental recheck with Dr. Okafor, two weeks after her dental, and put it on the schedule.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-29\", \"stale\": [\"2026-10-27\"]},\n    {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-29\", \"stale\": [\"2026-10-27\"]},\n    {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-12\", \"vet\": \"Dr. Nia Okafor\", \"pet\": \"Maple\", \"client\": \"Ana Almeida\", \"type\": \"post-dental recheck\", \"status\": \"booked\"}, \"stale\": {\"date\": [\"2026-11-10\"]}, \"task\": true}\n  ],\n  \"why\": \"Dr. Okafor's surgery day moved from Tuesday to Thursday, revoking the fact the dental block (EV-1) and Lena's surgery support rota (EV-3) rest on, so both move to Thursday 29 October 2026 (REVISE, no consent needed). Maple's dental (EV-2) rests on the block, but moving a confirmed client appointment needs Ana Almeida's agreement under the standing rule, so it is ASK and its date stays until she consents. The suture order is KEEP: it relied on Okafor doing the clinic's surgery, which the change explicitly leaves standing; the gloves order and puppy-class booking are untouched. The recheck falls two weeks after the dental; with the dental now on a Thursday footing, the recheck is Thursday 12 November 2026, not Tuesday 10 November.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"PawMed consumables restock\", \"counterpart\": \"Petra Lind\", \"org\": \"PawMed Supplies\", \"item\": \"examination gloves case\", \"unit\": \"cases\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"order\", \"topic\": \"PawMed bandage restock\", \"counterpart\": \"Petra Lind\", \"org\": \"PawMed Supplies\", \"item\": \"cohesive bandage rolls\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"order\", \"topic\": \"PawMed syringe restock\", \"counterpart\": \"Petra Lind\", \"org\": \"PawMed Supplies\", \"item\": \"5ml syringes\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"booking\", \"topic\": \"Surgery 2 dental overflow\", \"counterpart\": \"Dr. Nia Okafor\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"Surgery 2 for dental procedures\", \"unit\": \"room\", \"values\": [\"Surgery 2\", \"Surgery 1\", \"Consult 3\"], \"place\": \"Surgery wing\"},\n    {\"kind\": \"booking\", \"topic\": \"Consult room weekly bookings\", \"counterpart\": \"Dr. Sofia Reyes\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"consult room for routine appointments\", \"unit\": \"room\", \"values\": [\"Consult 1\", \"Consult 2\", \"Consult 3\"], \"place\": \"Consult wing\"},\n    {\"kind\": \"booking\", \"topic\": \"Staff rota coverage swaps\", \"counterpart\": \"Lena Brooks\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"technician cover shift\", \"unit\": \"shift\", \"values\": [\"morning\", \"afternoon\", \"evening\", \"Saturday morning\"], \"place\": \"Treatment area\"},\n    {\"kind\": \"order\", \"topic\": \"VetPet Foods clinic diet restock\", \"counterpart\": \"Owen Hartley\", \"org\": \"VetPet Foods\", \"item\": \"prescription renal diet tins\", \"unit\": \"cases\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Cedar Hills reception store\"},\n    {\"kind\": \"order\", \"topic\": \"CleanCage kennel supplies\", \"counterpart\": \"Rosa Delgado\", \"org\": \"CleanCage Ltd\", \"item\": \"kennel disinfectant\", \"unit\": \"containers\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Kennel block\"},\n    {\"kind\": \"booking\", \"topic\": \"Grooming van visits\", \"counterpart\": \"Tessa Bloom\", \"org\": \"Bloom Mobile Grooming\", \"item\": \"grooming van parking slot\", \"unit\": \"slot\", \"values\": [\"Monday\", \"Wednesday\", \"Friday\"], \"place\": \"Cedar Hills car park\"},\n    {\"kind\": \"order\", \"topic\": \"Lab courier sample pickups\", \"counterpart\": \"Dev Anand\", \"org\": \"NorthPath Labs\", \"item\": \"blood sample courier pickup\", \"unit\": \"pickups\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Cedar Hills reception\"},\n    {\"kind\": \"booking\", \"topic\": \"Puppy class room hire\", \"counterpart\": \"Gill Farrow\", \"org\": \"Farrow Dog Training\", \"item\": \"evening training room\", \"unit\": \"room\", \"values\": [\"Reception hall\", \"Consult 3\", \"Boarding lounge\"], \"place\": \"Reception hall\"},\n    {\"kind\": \"order\", \"topic\": \"Stationery restock\", \"counterpart\": \"Henry Iles\", \"org\": \"Iles Office Supplies\", \"item\": \"appointment reminder cards\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Cedar Hills reception\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 11594,
+    "completion_tokens": 4909,
+    "reasoning_tokens": 310,
+    "cached_tokens": 11520
+   },
+   "cost": 0.077313,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: 4 decisions; need 6–14\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Okafor's surgery day moves to Thursdays",
+  "setting": "Front desk lead at Cedar Hills Veterinary Clinic, a four-vet animal hospital",
+  "owner": "Mira",
+  "org": "Cedar Hills Veterinary Clinic",
+  "now": "2026-10-21",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mira",
+    "text": "Standing rule for the front desk: any confirmed client appointment at Cedar Hills Veterinary Clinic may only be moved to a different date or time with that client's explicit agreement. Ask the client first, then change the booking.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Mira",
+    "text": "Any supplier order over 300 needs sign-off from Tomás Reyes, our practice manager, before it is placed. Orders of 300 or less can go ahead without it.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Dr. Nia Okafor (Cedar Hills Veterinary Clinic)",
+    "text": "Confirming my surgery schedule: my operating day is Tuesday, and I will be in Surgery 2 for all my procedures, including dental work under anaesthetic.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Petra Lind (PawMed Supplies)",
+    "text": "Our delivery run to Cedar Hills Veterinary Clinic is every Wednesday morning. Orders placed by Monday noon make that week's run.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "message",
+    "from": "Lena Brooks (Cedar Hills Veterinary Clinic)",
+    "text": "For the rota: I am available Tuesdays and Thursdays as senior surgery technician. Happy to cover anaesthetic monitoring on either day.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Ana Almeida",
+    "text": "Registering my dog Maple, a seven-year-old Labrador, at Cedar Hills Veterinary Clinic. My phone is 555-0142 and email is ana.almeida@example.net. Maple needs a dental cleaning under anaesthetic soon.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Mira",
+    "text": "I have scheduled Dr. Okafor's weekly dental surgery block: every Tuesday in Surgery 2, since that is her operating day. First block on the calendar is Tuesday 27 October 2026.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Lena Brooks is assigned as surgery support on Tuesdays, matching Dr. Okafor's Tuesday operating day; Lena confirmed she can work Tuesdays.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-30",
+    "type": "quote",
+    "from": "Petra Lind (PawMed Supplies)",
+    "text": "Quote for Cedar Hills Veterinary Clinic: suture packs, box of 20, at 24 per box; anaesthetic monitoring line filters, 9 each; examination gloves, 42 per case.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Booked Maple Almeida's dental cleaning under anaesthetic with Dr. Okafor for Tuesday 27 October 2026 at 09:00, slotted into Okafor's Tuesday dental block. Confirmed with Ana Almeida by phone.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e6"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Ordered 10 boxes of suture packs from PawMed Supplies (240 total, so no sign-off needed) because Dr. Okafor handles all of the clinic's soft-tissue and dental surgery and we go through these steadily. Delivery on the Wednesday run.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Petra Lind (PawMed Supplies)",
+    "text": "Your 10 boxes of suture packs went out on this week's Wednesday run to Cedar Hills Veterinary Clinic. Invoice to follow.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-20",
+    "type": "invoice",
+    "from": "Petra Lind (PawMed Supplies)",
+    "text": "Invoice PM-1188: 10 boxes suture packs, 240, payable within 30 days.",
+    "role": "obligation"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-03",
+    "type": "minutes",
+    "from": "Mira",
+    "text": "Staff meeting notes: reminder that the autumn diary is filling up; front desk to keep Tuesday surgery mornings clear of routine consults.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Ordered 3 cases of examination gloves from PawMed Supplies (126 total, so no sign-off needed) for the reception store, to arrive on the Wednesday delivery run.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2",
+     "e9"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Tomás Reyes (Cedar Hills Veterinary Clinic)",
+    "text": "Monthly admin note: please log all supplier invoices in the ledger the week they arrive, and flag anything over 300 to me before ordering.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-24",
+    "type": "email",
+    "from": "Gill Farrow (Farrow Dog Training)",
+    "text": "Confirming our autumn puppy classes at Cedar Hills: we would like the reception hall on Wednesday evenings, 19:00 to 20:00, through November.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-01",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Booked the reception hall for Farrow Dog Training's puppy classes every Wednesday at 19:00 through November, as Gill Farrow confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e17"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-02",
+    "type": "note",
+    "from": "Mira",
+    "text": "Reception whiteboard: autumn vaccine clinics start mid-October; ask owners at check-in whether their pets are due boosters.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Dr. Nia Okafor (Cedar Hills Veterinary Clinic)",
+    "text": "Just reconfirming for the autumn rota: my Tuesday surgery days in Surgery 2 stand through October and November, so the Tuesday dental block and Maple Almeida's dental on Tuesday 27 October are fine on my side.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-28",
+    "type": "message",
+    "from": "Lena Brooks (Cedar Hills Veterinary Clinic)",
+    "text": "Rota check: I'm still down for Tuesday surgery support through November. Anything changing?",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-30",
+    "type": "message",
+    "from": "Mira",
+    "text": "Nothing changing, Lena — Tuesdays stand.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Dr. Sofia Reyes (Cedar Hills Veterinary Clinic)",
+    "text": "Heads-up for the diary: I can offer Thursday consult slots through November if the front desk needs extra capacity on Thursdays.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-05",
+    "type": "task",
+    "from": "Mira",
+    "text": "Reminder to self: chase PawMed for the autumn vaccine fridge thermometer quote by Friday 16 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Dr. Nia Okafor (Cedar Hills Veterinary Clinic)",
+    "text": "Bad news on scheduling: the university has moved my teaching day, so from the week of 12 October I cannot operate on Tuesdays any more. My surgery day moves to Thursdays, still in Surgery 2. Everything else about my surgical work stays the same — I will still be doing all the clinic's soft-tissue and dental surgery, just on Thursdays.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-12",
+    "type": "minutes",
+    "from": "Mira",
+    "text": "Monday huddle notes: vaccine stock is healthy; two new puppy registrations this week; Tomás on leave Thursday 15 October.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-14",
+    "type": "note",
+    "from": "Lena Brooks (Cedar Hills Veterinary Clinic)",
+    "text": "Left a note at reception: I can cover extra Thursday shifts in November if needed.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Petra Lind (PawMed Supplies)",
+    "text": "Autumn catalogue attached. Note our Wednesday delivery schedule is unchanged through December.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-19",
+    "type": "call",
+    "from": "Ana Almeida",
+    "text": "Ana Almeida phoned to ask about post-dental care for Maple and said she is looking forward to the appointment. Front desk took a message.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-20",
+    "type": "message",
+    "from": "Dr. Sofia Reyes (Cedar Hills Veterinary Clinic)",
+    "text": "I saw two walk-ins this morning; no diary clashes on my side.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-21",
+    "type": "note",
+    "from": "Mira",
+    "text": "Front desk morning note: postman delivered the PawMed autumn catalogue; kettle in the staff room is leaking again.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Dr. Okafor weekly dental surgery block",
+    "fields": {
+     "date": "2026-10-27",
+     "time": "09:00",
+     "vet": "Dr. Nia Okafor",
+     "room": "Surgery 2",
+     "type": "dental surgery block",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Maple Almeida dental cleaning under anaesthetic",
+    "fields": {
+     "date": "2026-10-27",
+     "time": "09:00",
+     "vet": "Dr. Nia Okafor",
+     "pet": "Maple",
+     "client": "Ana Almeida",
+     "room": "Surgery 2",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Surgery support rota: Lena Brooks",
+    "fields": {
+     "date": "2026-10-27",
+     "time": "08:30",
+     "staff": "Lena Brooks",
+     "duty": "surgery support and anaesthetic monitoring",
+     "status": "assigned"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Farrow puppy classes, reception hall",
+    "fields": {
+     "date": "2026-10-21",
+     "time": "19:00",
+     "organiser": "Gill Farrow",
+     "room": "Reception hall",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "PawMed suture packs",
+    "fields": {
+     "supplier": "PawMed Supplies",
+     "item": "suture packs box of 20",
+     "quantity": "10",
+     "amount": "240",
+     "delivery_day": "Wednesday",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "PawMed examination gloves",
+    "fields": {
+     "supplier": "PawMed Supplies",
+     "item": "examination gloves case",
+     "quantity": "3",
+     "amount": "126",
+     "delivery_day": "Wednesday",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Ana Almeida and Maple",
+    "fields": {
+     "client": "Ana Almeida",
+     "pet": "Maple",
+     "species": "dog Labrador",
+     "phone": "555-0142",
+     "email": "ana.almeida@example.net",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Ana Almeida",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please book Maple Almeida's routine post-dental recheck with Dr. Okafor, two weeks after her dental, and put it on the schedule.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-10-29",
+    "stale": [
+     "2026-10-27"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "date",
+    "value": "2026-10-29",
+    "stale": [
+     "2026-10-27"
+    ]
+   },
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-11-12",
+     "vet": "Dr. Nia Okafor",
+     "pet": "Maple",
+     "client": "Ana Almeida",
+     "type": "post-dental recheck",
+     "status": "booked"
+    },
+    "stale": {
+     "date": [
+      "2026-11-10"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "Dr. Okafor's surgery day moved from Tuesday to Thursday, revoking the fact the dental block (EV-1) and Lena's surgery support rota (EV-3) rest on, so both move to Thursday 29 October 2026 (REVISE, no consent needed). Maple's dental (EV-2) rests on the block, but moving a confirmed client appointment needs Ana Almeida's agreement under the standing rule, so it is ASK and its date stays until she consents. The suture order is KEEP: it relied on Okafor doing the clinic's surgery, which the change explicitly leaves standing; the gloves order and puppy-class booking are untouched. The recheck falls two weeks after the dental; with the dental now on a Thursday footing, the recheck is Thursday 12 November 2026, not Tuesday 10 November.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "PawMed consumables restock",
+    "counterpart": "Petra Lind",
+    "org": "PawMed Supplies",
+    "item": "examination gloves case",
+    "unit": "cases",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Cedar Hills reception store"
+   },
+   {
+    "kind": "order",
+    "topic": "PawMed bandage restock",
+    "counterpart": "Petra Lind",
+    "org": "PawMed Supplies",
+    "item": "cohesive bandage rolls",
+    "unit": "boxes",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Cedar Hills reception store"
+   },
+   {
+    "kind": "order",
+    "topic": "PawMed syringe restock",
+    "counterpart": "Petra Lind",
+    "org": "PawMed Supplies",
+    "item": "5ml syringes",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Cedar Hills reception store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Surgery 2 dental overflow",
+    "counterpart": "Dr. Nia Okafor",
+    "org": "Cedar Hills Veterinary Clinic",
+    "item": "Surgery 2 for dental procedures",
+    "unit": "room",
+    "values": [
+     "Surgery 2",
+     "Surgery 1",
+     "Consult 3"
+    ],
+    "place": "Surgery wing"
+   },
+   {
+    "kind": "booking",
+    "topic": "Consult room weekly bookings",
+    "counterpart": "Dr. Sofia Reyes",
+    "org": "Cedar Hills Veterinary Clinic",
+    "item": "consult room for routine appointments",
+    "unit": "room",
+    "values": [
+     "Consult 1",
+     "Consult 2",
+     "Consult 3"
+    ],
+    "place": "Consult wing"
+   },
+   {
+    "kind": "booking",
+    "topic": "Staff rota coverage swaps",
+    "counterpart": "Lena Brooks",
+    "org": "Cedar Hills Veterinary Clinic",
+    "item": "technician cover shift",
+    "unit": "shift",
+    "values": [
+     "morning",
+     "afternoon",
+     "evening",
+     "Saturday morning"
+    ],
+    "place": "Treatment area"
+   },
+   {
+    "kind": "order",
+    "topic": "VetPet Foods clinic diet restock",
+    "counterpart": "Owen Hartley",
+    "org": "VetPet Foods",
+    "item": "prescription renal diet tins",
+    "unit": "cases",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Cedar Hills reception store"
+   },
+   {
+    "kind": "order",
+    "topic": "CleanCage kennel supplies",
+    "counterpart": "Rosa Delgado",
+    "org": "CleanCage Ltd",
+    "item": "kennel disinfectant",
+    "unit": "containers",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Kennel block"
+   },
+   {
+    "kind": "booking",
+    "topic": "Grooming van visits",
+    "counterpart": "Tessa Bloom",
+    "org": "Bloom Mobile Grooming",
+    "item": "grooming van parking slot",
+    "unit": "slot",
+    "values": [
+     "Monday",
+     "Wednesday",
+     "Friday"
+    ],
+    "place": "Cedar Hills car park"
+   },
+   {
+    "kind": "order",
+    "topic": "Lab courier sample pickups",
+    "counterpart": "Dev Anand",
+    "org": "NorthPath Labs",
+    "item": "blood sample courier pickup",
+    "unit": "pickups",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Cedar Hills reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "Puppy class room hire",
+    "counterpart": "Gill Farrow",
+    "org": "Farrow Dog Training",
+    "item": "evening training room",
+    "unit": "room",
+    "values": [
+     "Reception hall",
+     "Consult 3",
+     "Boarding lounge"
+    ],
+    "place": "Reception hall"
+   },
+   {
+    "kind": "order",
+    "topic": "Stationery restock",
+    "counterpart": "Henry Iles",
+    "org": "Iles Office Supplies",
+    "item": "appointment reminder cards",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Cedar Hills reception"
+   }
+  ],
+  "id": "K500-3-06",
+  "tier": 500,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

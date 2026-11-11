@@ -582,5 +582,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core supports a control reading: the 12 August rule restates the 400-pound sign-off line, and the 350-pound canapé order at the July 1.75 price is correctly confirmed without Tomas. However, the routine sample event E0058 says classic-range canapé orders now go through Fairway's online order form, not by email, and the expected state ignores that channel instruction. Core counts, change distance, and hiding all meet the spec.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core supports a control reading: the 12 August rule restates the 400-pound sign-off line, and the 350-pound canapé order at the July 1.75 price is correctly confirmed without Tomas. However, the routine sample event E0058 says classic-range canapé orders now go through Fairway's online order form, not by email, and the expected state ignores that channel instruction. Core counts, change distance, and hiding all meet the spec."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5312,
+    "completion_tokens": 2075,
+    "reasoning_tokens": 1880,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015687,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c445edc74ba15396f182dedda6f1e1a5430192cdb7abfc014ed90a65e174132a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 12 August instruction merely restates the 400-pound sign-off rule, so nothing is touched and the 350-pound canapé order is confirmed directly at the quoted 1.75/piece. Tier counts hold (22 core events, 5 decisions, change ~54 days before the task day with many core events after), and the change sits mid-history as an ordinary instruction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 12 August instruction merely restates the 400-pound sign-off rule, so nothing is touched and the 350-pound canapé order is confirmed directly at the quoted 1.75/piece. Tier counts hold (22 core events, 5 decisions, change ~54 days before the task day with many core events after), and the change sits mid-history as an ordinary instruction."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3729,
+    "completion_tokens": 321,
+    "reasoning_tokens": 187,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0077076,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c445edc74ba15396f182dedda6f1e1a5430192cdb7abfc014ed90a65e174132a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The consent map covers only CL-1's menu and covers, although e4 also requires Marta's agreement before changing confirmed Wrenfield bookings or their covers. E0058 additionally requires ordering through Fairway's online form; the expected order record and message alone do not establish compliance with that instruction. The core change itself is a control, and the core meets the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The consent map covers only CL-1's menu and covers, although e4 also requires Marta's agreement before changing confirmed Wrenfield bookings or their covers. E0058 additionally requires ordering through Fairway's online form; the expected order record and message alone do not establish compliance with that instruction. The core change itself is a control, and the core meets the tier requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3605,
+    "completion_tokens": 433,
+    "reasoning_tokens": 320,
+    "cached_tokens": 0
+   },
+   "cost": 0.066705,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c445edc74ba15396f182dedda6f1e1a5430192cdb7abfc014ed90a65e174132a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

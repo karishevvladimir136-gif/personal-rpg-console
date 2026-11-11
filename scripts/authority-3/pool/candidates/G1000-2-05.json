@@ -685,5 +685,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The $250→$450 threshold amendment cleanly voids the $310 order's sign-off dependency (REVISE ORD-1, then EV-1) while the $620 order still stands under the amended rule (ASK Priya), matching class 2; the consent map cites the rule in the history, and the KEEP decisions (ORD-3 below both thresholds, EV-2 resting on author availability/delivery) are untouched. Core counts (32 events, 7 decisions), the 19-day gap with 141 later events, and echoes e13/e18 restating the $250 threshold all meet tier 1,000.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The $250→$450 threshold amendment cleanly voids the $310 order's sign-off dependency (REVISE ORD-1, then EV-1) while the $620 order still stands under the amended rule (ASK Priya), matching class 2; the consent map cites the rule in the history, and the KEEP decisions (ORD-3 below both thresholds, EV-2 resting on author availability/delivery) are untouched. Core counts (32 events, 7 decisions), the 19-day gap with 141 later events, and echoes e13/e18 restating the $250 threshold all meet tier 1,000."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4398,
+    "completion_tokens": 351,
+    "reasoning_tokens": 165,
+    "cached_tokens": 256
+   },
+   "cost": 0.0177678,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2542539d40eaede2c81ab34b1dbaebe6f2db0d0e10e3227206ef5a41614a481b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The class is right: e25 amends the e2 threshold, voiding the ORD-1 and ORD-2 sign-off decisions while ORD-3 stands. However, EV-1's draft condition ('until the Halloway order is confirmed and the stock is in') is not clearly met by the expected confirmation, and the consent map cites e2, which the change revokes, so the expected state is not fully unambiguous. Tier counts, the change's distance from the task day, and the hidden placement all check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The class is right: e25 amends the e2 threshold, voiding the ORD-1 and ORD-2 sign-off decisions while ORD-3 stands. However, EV-1's draft condition ('until the Halloway order is confirmed and the stock is in') is not clearly met by the expected confirmation, and the consent map cites e2, which the change revokes, so the expected state is not fully unambiguous. Tier counts, the change's distance from the task day, and the hidden placement all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6188,
+    "completion_tokens": 2139,
+    "reasoning_tokens": 1923,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016883,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2542539d40eaede2c81ab34b1dbaebe6f2db0d0e10e3227206ef5a41614a481b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Event e19 keeps EV-1 in draft until both the Halloway order is confirmed and the stock is in; the expected state and writer's reasoning omit the second condition. Delivery is still three weeks from confirmation, so confirming EV-1 now requires interpreting the task as overriding that condition, which is not unambiguous. The core otherwise meets the class, tier and concealment requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Event e19 keeps EV-1 in draft until both the Halloway order is confirmed and the stock is in; the expected state and writer's reasoning omit the second condition. Delivery is still three weeks from confirmation, so confirming EV-1 now requires interpreting the task as overriding that condition, which is not unambiguous. The core otherwise meets the class, tier and concealment requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4259,
+    "completion_tokens": 384,
+    "reasoning_tokens": 268,
+    "cached_tokens": 0
+   },
+   "cost": 0.07243,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2542539d40eaede2c81ab34b1dbaebe6f2db0d0e10e3227206ef5a41614a481b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

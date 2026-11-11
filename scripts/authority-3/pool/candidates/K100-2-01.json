@@ -1,0 +1,613 @@
+{
+ "id": "K100-2-01",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 2,
+ "idx": 0,
+ "setting": "Booking coordinator at Clearview Optometry, a family eye-care practice",
+ "prompt_sha256": "a055a56a540ecbafdb4123677a80822b01674bcec83f8e63899b258984a402f6",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"New follow-up slot length at Clearview Optometry\",\n \"setting\": \"Booking coordinator at Clearview Optometry, a family eye-care practice\",\n \"owner\": \"Dana\",\n \"org\": \"Clearview Optometry\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Dr. Priya Shah (Clearview Optometry)\", \"text\": \"For the booking diary: the practice is open Monday to Friday 08:30 to 17:30, and the Saturday clinic runs 09:00 to 16:00. We have Exam Room 1 and Exam Room 2 plus the small fitting room.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Martin Reeve (practice manager)\", \"text\": \"Standing instruction for the front desk: once a patient appointment is confirmed, changing its date, start time or length requires that patient's own agreement first. Ask the patient before you move or shorten anything confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Martin Reeve (practice manager)\", \"text\": \"Booking policy from today: contact-lens follow-up appointments are booked as 30-minute slots, new-patient full exams as 45-minute slots, and every booking on a Saturday must have my approval before it is confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Nora Lindt (OptiSupply)\", \"text\": \"Confirming our current pricing for Clearview Optometry: trial contact lenses are 2.10 per pair, minimum order 40 pairs, delivery to your practice in three working days.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Dana\", \"text\": \"Asha Moller is due her annual contact-lens follow-up in mid-October. She asked for a morning slot on a Friday if possible.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked Asha Moller's contact-lens follow-up for Friday 16 October 2026 at 10:00 in Exam Room 1 as a 30-minute slot, the standard follow-up length under our booking policy, and confirmed it to her.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Reserved the trial-lens kit and the fitting room for the full length of Asha Moller's follow-up on 16 October 2026, 10:00 to 10:30, matching her 30-minute appointment.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked the staff frame-display training for Saturday 24 October 2026 at 10:00 in Exam Room 2. Martin Reeve approved the Saturday booking as required before I confirmed it.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Ordered 60 pairs of trial contact lenses from OptiSupply at 2.10 per pair for delivery to the practice, restocking the fitting room stock.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked Leo Grant's contact-lens follow-up for 8 October 2026 at 14:00 in Exam Room 1 as a standard 30-minute slot and confirmed it to him.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Nora Lindt (OptiSupply)\", \"text\": \"Thought you might like our new fitting guide for your wall — it suggests allowing a comfortable 30 minutes per contact-lens follow-up so patients never feel rushed.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e12\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked Tom Bradley's contact-lens follow-up for Saturday 7 November 2026 at 15:30 in Exam Room 2 as a 30-minute slot. Martin Reeve approved the Saturday booking and I confirmed the appointment to Tom.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-5\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Dana\", \"text\": \"Minutes of the September staff meeting: Dr. Shah reminded everyone to keep the fitting room tidy; Martin Reeve said the November diary opens for recalls at the end of October.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Nora Lindt (OptiSupply)\", \"text\": \"Your order of 60 pairs of trial lenses has been delivered to Clearview Optometry. Invoice follows at the end of the month.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-10\", \"type\": \"policy\", \"from\": \"Martin Reeve (practice manager)\", \"text\": \"Booking policy update, effective Monday 12 October 2026. Because the new imaging routine is faster, contact-lens follow-ups are now booked as 20-minute slots. Also, Saturday bookings now only need my approval if they start after 14:00; morning Saturday slots can be confirmed straight away. Please adjust anything in the diary this affects. The old 30-minute standard caused too much dead time between patients.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e16\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Asha Moller\", \"text\": \"Just confirming I will be in this Friday 16 October at 10:00 for my contact-lens follow-up. See you then.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-17\", \"type\": \"task\", \"from\": \"Dana\", \"text\": \"By 30 October 2026, print the updated diary sheets for November and check the recall list is ready to send.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Dr. Priya Shah (Clearview Optometry)\", \"text\": \"Reminding the front desk that Exam Room 1 is free all day on Friday 13 November while the new chair is fitted in Exam Room 2.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Asha Moller contact-lens follow-up\", \"fields\": {\"patient\": \"Asha Moller\", \"date\": \"2026-10-16\", \"time\": \"10:00\", \"duration\": \"30\", \"place\": \"Exam Room 1\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Trial-lens kit and fitting room reservation for Asha Moller\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"10:00\", \"duration\": \"30\", \"place\": \"Fitting room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Staff frame-display training\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"10:00\", \"duration\": \"60\", \"place\": \"Exam Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Tom Bradley contact-lens follow-up\", \"fields\": {\"patient\": \"Tom Bradley\", \"date\": \"2026-11-07\", \"time\": \"15:30\", \"duration\": \"30\", \"place\": \"Exam Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Leo Grant contact-lens follow-up\", \"fields\": {\"patient\": \"Leo Grant\", \"date\": \"2026-10-08\", \"time\": \"14:00\", \"duration\": \"30\", \"place\": \"Exam Room 1\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trial contact lens restock\", \"fields\": {\"supplier\": \"OptiSupply\", \"item\": \"Trial contact lenses\", \"quantity\": \"60\", \"unit_price\": \"2.10\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Nadia Cole patient record\", \"fields\": {\"name\": \"Nadia Cole\", \"email\": \"nadia.cole@examplemail.co.uk\", \"phone\": \"07700 900461\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-5\", \"fields\": [\"duration\"], \"from\": \"Tom Bradley\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please book a contact-lens follow-up for Nadia Cole on Friday 13 November at 11:00 in Exam Room 1 and email her a confirmation.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"duration\", \"value\": \"20\", \"stale\": [\"30\"]},\n  {\"record\": \"EV-4\", \"field\": \"duration\", \"value\": \"20\", \"stale\": [\"30\"]},\n  {\"create\": \"schedule\", \"fields\": {\"patient\": \"Nadia Cole\", \"date\": \"2026-11-13\", \"time\": \"11:00\", \"duration\": \"20\", \"place\": \"Exam Room 1\", \"status\": \"confirmed\"}, \"stale\": {\"duration\": [\"30\"]}, \"task\": true},\n  {\"message_to\": \"Nadia Cole\", \"regarding\": null, \"says\": [\"2026-11-13\", \"11:00\", \"20\"], \"stale\": [\"30\"], \"task\": true}\n ],\n \"why\": \"Martin Reeve's policy update of 10 October replaces the 30-minute follow-up standard with 20 minutes from 12 October, so Asha Moller's 16 October appointment (EV-1) and its dependent kit reservation (EV-4, two hops from the rule) must be shortened by the coordinator directly — REVISE. Tom Bradley's Saturday follow-up (EV-5) also falls under the new length, but his appointment is confirmed and changing its length needs his own agreement under the standing consent instruction, so it is ASK. The 24 October training is a morning Saturday slot that stays valid, and Leo Grant's appointment predates the effective date — both KEEP. Nadia Cole's new booking must use the current 20-minute length.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Trial lens restock\", \"counterpart\": \"Nora Lindt\", \"org\": \"OptiSupply\", \"item\": \"Trial contact lenses\", \"unit\": \"pairs\", \"values\": [\"40\", \"60\", \"80\", \"100\", \"120\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Contact lens solution restock\", \"counterpart\": \"Nora Lindt\", \"org\": \"OptiSupply\", \"item\": \"Lens solution bottles\", \"unit\": \"bottles\", \"values\": [\"24\", \"36\", \"48\", \"60\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Spectacle frame restock\", \"counterpart\": \"Theo Marsh\", \"org\": \"FrameWorks Ltd\", \"item\": \"Assorted spectacle frames\", \"unit\": \"frames\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning wipes restock\", \"counterpart\": \"Theo Marsh\", \"org\": \"FrameWorks Ltd\", \"item\": \"Lens cleaning wipes\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Weekly staff catch-up\", \"counterpart\": \"Martin Reeve\", \"org\": \"Clearview Optometry\", \"item\": \"Staff meeting\", \"unit\": \"\", \"values\": [\"Exam Room 1\", \"Exam Room 2\", \"Fitting room\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Equipment servicing\", \"counterpart\": \"Dr. Priya Shah\", \"org\": \"Clearview Optometry\", \"item\": \"Phoropter servicing visit\", \"unit\": \"\", \"values\": [\"Exam Room 1\", \"Exam Room 2\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Fitting room block\", \"counterpart\": \"Dr. Priya Shah\", \"org\": \"Clearview Optometry\", \"item\": \"Teaching session block\", \"unit\": \"\", \"values\": [\"Fitting room\", \"Exam Room 1\", \"Exam Room 2\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Eye drops restock\", \"counterpart\": \"Paula Reyes\", \"org\": \"MediLens Supplies\", \"item\": \"Lubricating eye drops\", \"unit\": \"bottles\", \"values\": [\"30\", \"45\", \"60\", \"90\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Trial frame lenses\", \"counterpart\": \"Paula Reyes\", \"org\": \"MediLens Supplies\", \"item\": \"Trial frame lens set refills\", \"unit\": \"sets\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Fitting room\"},\n  {\"kind\": \"order\", \"topic\": \"Spectacle cases restock\", \"counterpart\": \"Theo Marsh\", \"org\": \"FrameWorks Ltd\", \"item\": \"Hard spectacle cases\", \"unit\": \"cases\", \"values\": [\"50\", \"75\", \"100\", \"150\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Courier pickup slot\", \"counterpart\": \"Sam Whitfield\", \"org\": \"SwiftParcel\", \"item\": \"Returns pickup window\", \"unit\": \"\", \"values\": [\"Front desk\", \"Back door\", \"Reception\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Appointment card restock\", \"counterpart\": \"Iris Bell\", \"org\": \"PrintLocal\", \"item\": \"Appointment reminder cards\", \"unit\": \"packs\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Clearview Optometry\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3178,
+    "completion_tokens": 7393,
+    "reasoning_tokens": 3790,
+    "cached_tokens": 0
+   },
+   "cost": 0.120429,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"New follow-up slot length at Clearview Optometry\",\n \"setting\": \"Booking coordinator at Clearview Optometry, a family eye-care practice\",\n \"owner\": \"Dana\",\n \"org\": \"Clearview Optometry\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Dr. Priya Shah (Clearview Optometry)\", \"text\": \"For the booking diary: the practice is open Monday to Friday 08:30 to 17:30, and the Saturday clinic runs 09:00 to 16:00. We have Exam Room 1 and Exam Room 2 plus the small fitting room.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Martin Reeve (practice manager)\", \"text\": \"Standing instruction for the front desk: once a patient appointment is confirmed, changing its date, start time or length requires that patient's own agreement first. Ask the patient before you move or shorten anything confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Martin Reeve (practice manager)\", \"text\": \"Booking policy from today: contact-lens follow-up appointments are booked as 30-minute slots, new-patient full exams as 45-minute slots, and every booking on a Saturday must have my approval before it is confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Nora Lindt (OptiSupply)\", \"text\": \"Confirming our current pricing for Clearview Optometry: trial contact lenses are 2.10 per pair, minimum order 40 pairs, delivery to your practice in three working days.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Dana\", \"text\": \"Asha Moller is due her annual contact-lens follow-up in mid-October. She asked for a morning slot on a Friday if possible.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-06-13\", \"type\": \"email\", \"from\": \"Iris Bell (PrintLocal)\", \"text\": \"Your appointment reminder card design is approved and on file. Reprints take five working days from order.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked Asha Moller's contact-lens follow-up for Friday 16 October 2026 at 10:00 in Exam Room 1 as a 30-minute slot, the standard follow-up length under our booking policy, and confirmed it to her.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Reserved the trial-lens kit and the fitting room for the full length of Asha Moller's follow-up on 16 October 2026, 10:00 to 10:30, matching her 30-minute appointment.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e20\", \"date\": \"2026-06-25\", \"type\": \"message\", \"from\": \"Dr. Priya Shah (Clearview Optometry)\", \"text\": \"Reminder that I am at the optometry conference on 9 and 10 July, so no exams those two days.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked the staff frame-display training for Saturday 24 October 2026 at 10:00 in Exam Room 2. Martin Reeve approved the Saturday booking as required before I confirmed it.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Ordered 60 pairs of trial contact lenses from OptiSupply at 2.10 per pair for delivery to the practice, restocking the fitting room stock.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked Leo Grant's contact-lens follow-up for 8 October 2026 at 14:00 in Exam Room 1 as a standard 30-minute slot and confirmed it to him.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-14\", \"type\": \"notice\", \"from\": \"Sam Whitfield (SwiftParcel)\", \"text\": \"From September our returns pickup window at Clearview Optometry moves to 13:00 on Tuesdays and Thursdays.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Nora Lindt (OptiSupply)\", \"text\": \"Thought you might like our new fitting guide for your wall — it suggests allowing a comfortable 30 minutes per contact-lens follow-up so patients never feel rushed.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e12\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked Tom Bradley's contact-lens follow-up for Saturday 7 November 2026 at 15:30 in Exam Room 2 as a 30-minute slot. Martin Reeve approved the Saturday booking and I confirmed the appointment to Tom.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-5\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Dana\", \"text\": \"Minutes of the September staff meeting: Dr. Shah reminded everyone to keep the fitting room tidy; Martin Reeve said the November diary opens for recalls at the end of October.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Nora Lindt (OptiSupply)\", \"text\": \"Your order of 60 pairs of trial lenses has been delivered to Clearview Optometry. Invoice follows at the end of the month.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Theo Marsh (FrameWorks Ltd)\", \"text\": \"Your autumn frame delivery is scheduled for 28 October, two boxes to the front desk as usual.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-10\", \"type\": \"policy\", \"from\": \"Martin Reeve (practice manager)\", \"text\": \"Booking policy update, effective Monday 12 October 2026. Because the new imaging routine is faster, contact-lens follow-ups are now booked as 20-minute slots. Also, Saturday bookings now only need my approval if they start after 14:00; morning Saturday slots can be confirmed straight away. Please adjust anything in the diary this affects. The old 30-minute standard caused too much dead time between patients.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e16\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Asha Moller\", \"text\": \"Just confirming I will be in this Friday 16 October at 10:00 for my contact-lens follow-up. See you then.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-17\", \"type\": \"task\", \"from\": \"Dana\", \"text\": \"By 30 October 2026, print the updated diary sheets for November and check the recall list is ready to send.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Dr. Priya Shah (Clearview Optometry)\", \"text\": \"Reminding the front desk that Exam Room 1 is free all day on Friday 13 November while the new chair is fitted in Exam Room 2.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Asha Moller contact-lens follow-up\", \"fields\": {\"patient\": \"Asha Moller\", \"date\": \"2026-10-16\", \"time\": \"10:00\", \"duration\": \"30\", \"place\": \"Exam Room 1\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Trial-lens kit and fitting room reservation for Asha Moller\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"10:00\", \"duration\": \"30\", \"place\": \"Fitting room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Staff frame-display training\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"10:00\", \"duration\": \"60\", \"place\": \"Exam Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Tom Bradley contact-lens follow-up\", \"fields\": {\"patient\": \"Tom Bradley\", \"date\": \"2026-11-07\", \"time\": \"15:30\", \"duration\": \"30\", \"place\": \"Exam Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Leo Grant contact-lens follow-up\", \"fields\": {\"patient\": \"Leo Grant\", \"date\": \"2026-10-08\", \"time\": \"14:00\", \"duration\": \"30\", \"place\": \"Exam Room 1\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trial contact lens restock\", \"fields\": {\"supplier\": \"OptiSupply\", \"item\": \"Trial contact lenses\", \"quantity\": \"60\", \"unit_price\": \"2.10\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Nadia Cole patient record\", \"fields\": {\"name\": \"Nadia Cole\", \"email\": \"nadia.cole@examplemail.co.uk\", \"phone\": \"07700 900461\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-5\", \"fields\": [\"duration\"], \"from\": \"Tom Bradley\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please book a contact-lens follow-up for Nadia Cole on Friday 13 November at 11:00 in Exam Room 1 and email her a confirmation.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"duration\", \"value\": \"20\", \"stale\": [\"30\"]},\n  {\"record\": \"EV-4\", \"field\": \"duration\", \"value\": \"20\", \"stale\": [\"30\"]},\n  {\"create\": \"schedule\", \"fields\": {\"patient\": \"Nadia Cole\", \"date\": \"2026-11-13\", \"time\": \"11:00\", \"duration\": \"20\", \"place\": \"Exam Room 1\", \"status\": \"confirmed\"}, \"stale\": {\"duration\": [\"30\"]}, \"task\": true},\n  {\"message_to\": \"Nadia Cole\", \"regarding\": null, \"says\": [\"2026-11-13\", \"11:00\", \"20\"], \"stale\": [\"30\"], \"task\": true}\n ],\n \"why\": \"Martin Reeve's policy update of 10 October replaces the 30-minute follow-up standard with 20 minutes from 12 October, so Asha Moller's 16 October appointment (EV-1) and its dependent kit reservation (EV-4, two hops from the rule) must be shortened by the coordinator directly — REVISE. Tom Bradley's Saturday follow-up (EV-5) also falls under the new length, but his appointment is confirmed and changing its length needs his own agreement under the standing consent instruction, so it is ASK. The 24 October training is a morning Saturday slot that stays valid, and Leo Grant's appointment predates the effective date — both KEEP. Nadia Cole's new booking must use the current 20-minute length.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Trial lens restock\", \"counterpart\": \"Nora Lindt\", \"org\": \"OptiSupply\", \"item\": \"Trial contact lenses\", \"unit\": \"pairs\", \"values\": [\"40\", \"60\", \"80\", \"100\", \"120\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Contact lens solution restock\", \"counterpart\": \"Nora Lindt\", \"org\": \"OptiSupply\", \"item\": \"Lens solution bottles\", \"unit\": \"bottles\", \"values\": [\"24\", \"36\", \"48\", \"60\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Spectacle frame restock\", \"counterpart\": \"Theo Marsh\", \"org\": \"FrameWorks Ltd\", \"item\": \"Assorted spectacle frames\", \"unit\": \"frames\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning wipes restock\", \"counterpart\": \"Theo Marsh\", \"org\": \"FrameWorks Ltd\", \"item\": \"Lens cleaning wipes\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Weekly staff catch-up\", \"counterpart\": \"Martin Reeve\", \"org\": \"Clearview Optometry\", \"item\": \"Staff meeting\", \"unit\": \"\", \"values\": [\"Exam Room 1\", \"Exam Room 2\", \"Fitting room\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Equipment servicing\", \"counterpart\": \"Dr. Priya Shah\", \"org\": \"Clearview Optometry\", \"item\": \"Phoropter servicing visit\", \"unit\": \"\", \"values\": [\"Exam Room 1\", \"Exam Room 2\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Fitting room block\", \"counterpart\": \"Dr. Priya Shah\", \"org\": \"Clearview Optometry\", \"item\": \"Teaching session block\", \"unit\": \"\", \"values\": [\"Fitting room\", \"Exam Room 1\", \"Exam Room 2\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Eye drops restock\", \"counterpart\": \"Paula Reyes\", \"org\": \"MediLens Supplies\", \"item\": \"Lubricating eye drops\", \"unit\": \"bottles\", \"values\": [\"30\", \"45\", \"60\", \"90\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Trial frame lenses\", \"counterpart\": \"Paula Reyes\", \"org\": \"MediLens Supplies\", \"item\": \"Trial frame lens set refills\", \"unit\": \"sets\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Fitting room\"},\n  {\"kind\": \"order\", \"topic\": \"Spectacle cases restock\", \"counterpart\": \"Theo Marsh\", \"org\": \"FrameWorks Ltd\", \"item\": \"Hard spectacle cases\", \"unit\": \"cases\", \"values\": [\"50\", \"75\", \"100\", \"150\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Courier pickup slot\", \"counterpart\": \"Sam Whitfield\", \"org\": \"SwiftParcel\", \"item\": \"Returns pickup window\", \"unit\": \"\", \"values\": [\"Front desk\", \"Back door\", \"Reception\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Appointment card restock\", \"counterpart\": \"Iris Bell\", \"org\": \"PrintLocal\", \"item\": \"Appointment reminder cards\", \"unit\": \"packs\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Clearview Optometry\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6844,
+    "completion_tokens": 3896,
+    "reasoning_tokens": 17,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0706776,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 18 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"New follow-up slot length at Clearview Optometry\",\n \"setting\": \"Booking coordinator at Clearview Optometry, a family eye-care practice\",\n \"owner\": \"Dana\",\n \"org\": \"Clearview Optometry\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Dr. Priya Shah (Clearview Optometry)\", \"text\": \"For the booking diary: the practice is open Monday to Friday 08:30 to 17:30, and the Saturday clinic runs 09:00 to 16:00. We have Exam Room 1 and Exam Room 2 plus the small fitting room.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Martin Reeve (practice manager)\", \"text\": \"Standing instruction for the front desk: once a patient appointment is confirmed, changing its date, start time or length requires that patient's own agreement first. Ask the patient before you move or shorten anything confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Martin Reeve (practice manager)\", \"text\": \"Booking policy from today: contact-lens follow-up appointments are booked as 30-minute slots, new-patient full exams as 45-minute slots, and every booking on a Saturday must have my approval before it is confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Nora Lindt (OptiSupply)\", \"text\": \"Confirming our current pricing for Clearview Optometry: trial contact lenses are 2.10 per pair, minimum order 40 pairs, delivery to your practice in three working days.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Dana\", \"text\": \"Asha Moller is due her annual contact-lens follow-up in mid-October. She asked for a morning slot on a Friday if possible.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-06-13\", \"type\": \"email\", \"from\": \"Iris Bell (PrintLocal)\", \"text\": \"Your appointment reminder card design is approved and on file. Reprints take five working days from order.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked Asha Moller's contact-lens follow-up for Friday 16 October 2026 at 10:00 in Exam Room 1 as a 30-minute slot, the standard follow-up length under our booking policy, and confirmed it to her.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Reserved the trial-lens kit and the fitting room for the full length of Asha Moller's follow-up on 16 October 2026, 10:00 to 10:30, matching her 30-minute appointment.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e20\", \"date\": \"2026-06-25\", \"type\": \"message\", \"from\": \"Dr. Priya Shah (Clearview Optometry)\", \"text\": \"Reminder that I am at the optometry conference on 9 and 10 July, so no exams those two days.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked the staff frame-display training for Saturday 24 October 2026 at 10:00 in Exam Room 2. Martin Reeve approved the Saturday booking as required before I confirmed it.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Ordered 60 pairs of trial contact lenses from OptiSupply at 2.10 per pair for delivery to the practice, restocking the fitting room stock.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked Leo Grant's contact-lens follow-up for 8 October 2026 at 14:00 in Exam Room 1 as a standard 30-minute slot and confirmed it to him.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-14\", \"type\": \"notice\", \"from\": \"Sam Whitfield (SwiftParcel)\", \"text\": \"From September our returns pickup window at Clearview Optometry moves to 13:00 on Tuesdays and Thursdays.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Nora Lindt (OptiSupply)\", \"text\": \"Thought you might like our new fitting guide for your wall — it suggests allowing a comfortable 30 minutes per contact-lens follow-up so patients never feel rushed.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e12\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Dana\", \"text\": \"Booked Tom Bradley's contact-lens follow-up for Saturday 7 November 2026 at 15:30 in Exam Room 2 as a 30-minute slot. Martin Reeve approved the Saturday booking and I confirmed the appointment to Tom.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-5\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Dana\", \"text\": \"Minutes of the September staff meeting: Dr. Shah reminded everyone to keep the fitting room tidy; Martin Reeve said the November diary opens for recalls at the end of October.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Nora Lindt (OptiSupply)\", \"text\": \"Your order of 60 pairs of trial lenses has been delivered to Clearview Optometry. Invoice follows at the end of the month.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Theo Marsh (FrameWorks Ltd)\", \"text\": \"Your autumn frame delivery is scheduled for 28 October, two boxes to the front desk as usual.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-10\", \"type\": \"policy\", \"from\": \"Martin Reeve (practice manager)\", \"text\": \"Booking policy update, effective Monday 12 October 2026. Because the new imaging routine is faster, contact-lens follow-ups are now booked as 20-minute slots. Also, Saturday bookings now only need my approval if they start after 14:00; morning Saturday slots can be confirmed straight away. Please adjust anything in the diary this affects. The old 30-minute standard caused too much dead time between patients.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e16\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Asha Moller\", \"text\": \"Just confirming I will be in this Friday 16 October at 10:00 for my contact-lens follow-up. See you then.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-17\", \"type\": \"task\", \"from\": \"Dana\", \"text\": \"By 30 October 2026, print the updated diary sheets for November and check the recall list is ready to send.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Dr. Priya Shah (Clearview Optometry)\", \"text\": \"Reminding the front desk that Exam Room 1 is free all day on Friday 13 November while the new chair is fitted in Exam Room 2.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Asha Moller contact-lens follow-up\", \"fields\": {\"patient\": \"Asha Moller\", \"date\": \"2026-10-16\", \"time\": \"10:00\", \"duration\": \"30\", \"place\": \"Exam Room 1\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Trial-lens kit and fitting room reservation for Asha Moller\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"10:00\", \"duration\": \"30\", \"place\": \"Fitting room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Staff frame-display training\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"10:00\", \"duration\": \"60\", \"place\": \"Exam Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Tom Bradley contact-lens follow-up\", \"fields\": {\"patient\": \"Tom Bradley\", \"date\": \"2026-11-07\", \"time\": \"15:30\", \"duration\": \"30\", \"place\": \"Exam Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Leo Grant contact-lens follow-up\", \"fields\": {\"patient\": \"Leo Grant\", \"date\": \"2026-10-08\", \"time\": \"14:00\", \"duration\": \"30\", \"place\": \"Exam Room 1\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trial contact lens restock\", \"fields\": {\"supplier\": \"OptiSupply\", \"item\": \"Trial contact lenses\", \"quantity\": \"60\", \"unit_price\": \"2.10\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Nadia Cole patient record\", \"fields\": {\"name\": \"Nadia Cole\", \"email\": \"nadia.cole@examplemail.co.uk\", \"phone\": \"07700 900461\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-5\", \"fields\": [\"duration\"], \"from\": \"Tom Bradley\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please book a contact-lens follow-up for Nadia Cole on Friday 13 November at 11:00 in Exam Room 1 and email her a confirmation.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"duration\", \"value\": \"20\", \"stale\": [\"30\"]},\n  {\"record\": \"EV-4\", \"field\": \"duration\", \"value\": \"20\", \"stale\": [\"30\"]},\n  {\"create\": \"schedule\", \"fields\": {\"patient\": \"Nadia Cole\", \"date\": \"2026-11-13\", \"time\": \"11:00\", \"duration\": \"20\", \"place\": \"Exam Room 1\", \"status\": \"confirmed\"}, \"stale\": {\"duration\": [\"30\"]}, \"task\": true},\n  {\"message_to\": \"Nadia Cole\", \"regarding\": null, \"says\": [\"2026-11-13\", \"11:00\", \"20\"], \"stale\": [\"30\"], \"task\": true}\n ],\n \"why\": \"Martin Reeve's policy update of 10 October replaces the 30-minute follow-up standard with 20 minutes from 12 October, so Asha Moller's 16 October appointment (EV-1) and its dependent kit reservation (EV-4, two hops from the rule) must be shortened by the coordinator directly — REVISE. Tom Bradley's Saturday follow-up (EV-5) also falls under the new length, but his appointment is confirmed and changing its length needs his own agreement under the standing consent instruction, so it is ASK. The 24 October training is a morning Saturday slot that stays valid, and Leo Grant's appointment predates the effective date — both KEEP. Nadia Cole's new booking must use the current 20-minute length.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Trial lens restock\", \"counterpart\": \"Nora Lindt\", \"org\": \"OptiSupply\", \"item\": \"Trial contact lenses\", \"unit\": \"pairs\", \"values\": [\"40\", \"60\", \"80\", \"100\", \"120\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Contact lens solution restock\", \"counterpart\": \"Nora Lindt\", \"org\": \"OptiSupply\", \"item\": \"Lens solution bottles\", \"unit\": \"bottles\", \"values\": [\"24\", \"36\", \"48\", \"60\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Spectacle frame restock\", \"counterpart\": \"Theo Marsh\", \"org\": \"FrameWorks Ltd\", \"item\": \"Assorted spectacle frames\", \"unit\": \"frames\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning wipes restock\", \"counterpart\": \"Theo Marsh\", \"org\": \"FrameWorks Ltd\", \"item\": \"Lens cleaning wipes\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Weekly staff catch-up\", \"counterpart\": \"Martin Reeve\", \"org\": \"Clearview Optometry\", \"item\": \"Staff meeting\", \"unit\": \"\", \"values\": [\"Exam Room 1\", \"Exam Room 2\", \"Fitting room\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Equipment servicing\", \"counterpart\": \"Dr. Priya Shah\", \"org\": \"Clearview Optometry\", \"item\": \"Phoropter servicing visit\", \"unit\": \"\", \"values\": [\"Exam Room 1\", \"Exam Room 2\", \"Fitting room\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Fitting room block\", \"counterpart\": \"Dr. Priya Shah\", \"org\": \"Clearview Optometry\", \"item\": \"Teaching session block\", \"unit\": \"\", \"values\": [\"Fitting room\", \"Exam Room 1\", \"Exam Room 2\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Eye drops restock\", \"counterpart\": \"Paula Reyes\", \"org\": \"MediLens Supplies\", \"item\": \"Lubricating eye drops\", \"unit\": \"bottles\", \"values\": [\"30\", \"45\", \"60\", \"90\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Trial frame lenses\", \"counterpart\": \"Paula Reyes\", \"org\": \"MediLens Supplies\", \"item\": \"Trial frame lens set refills\", \"unit\": \"sets\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Fitting room\"},\n  {\"kind\": \"order\", \"topic\": \"Spectacle cases restock\", \"counterpart\": \"Theo Marsh\", \"org\": \"FrameWorks Ltd\", \"item\": \"Hard spectacle cases\", \"unit\": \"cases\", \"values\": [\"50\", \"75\", \"100\", \"150\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"booking\", \"topic\": \"Courier pickup slot\", \"counterpart\": \"Sam Whitfield\", \"org\": \"SwiftParcel\", \"item\": \"Returns pickup window\", \"unit\": \"\", \"values\": [\"Front desk\", \"Back door\", \"Reception\"], \"place\": \"Clearview Optometry\"},\n  {\"kind\": \"order\", \"topic\": \"Appointment card restock\", \"counterpart\": \"Iris Bell\", \"org\": \"PrintLocal\", \"item\": \"Appointment reminder cards\", \"unit\": \"packs\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Clearview Optometry\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 10782,
+    "completion_tokens": 3892,
+    "reasoning_tokens": 8,
+    "cached_tokens": 6656
+   },
+   "cost": 0.0727548,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Equipment servicing': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "New follow-up slot length at Clearview Optometry",
+  "setting": "Booking coordinator at Clearview Optometry, a family eye-care practice",
+  "owner": "Dana",
+  "org": "Clearview Optometry",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "email",
+    "from": "Dr. Priya Shah (Clearview Optometry)",
+    "text": "For the booking diary: the practice is open Monday to Friday 08:30 to 17:30, and the Saturday clinic runs 09:00 to 16:00. We have Exam Room 1 and Exam Room 2 plus the small fitting room.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Martin Reeve (practice manager)",
+    "text": "Standing instruction for the front desk: once a patient appointment is confirmed, changing its date, start time or length requires that patient's own agreement first. Ask the patient before you move or shorten anything confirmed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "policy",
+    "from": "Martin Reeve (practice manager)",
+    "text": "Booking policy from today: contact-lens follow-up appointments are booked as 30-minute slots, new-patient full exams as 45-minute slots, and every booking on a Saturday must have my approval before it is confirmed.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Nora Lindt (OptiSupply)",
+    "text": "Confirming our current pricing for Clearview Optometry: trial contact lenses are 2.10 per pair, minimum order 40 pairs, delivery to your practice in three working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Dana",
+    "text": "Asha Moller is due her annual contact-lens follow-up in mid-October. She asked for a morning slot on a Friday if possible.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-06-13",
+    "type": "email",
+    "from": "Iris Bell (PrintLocal)",
+    "text": "Your appointment reminder card design is approved and on file. Reprints take five working days from order.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Dana",
+    "text": "Booked Asha Moller's contact-lens follow-up for Friday 16 October 2026 at 10:00 in Exam Room 1 as a 30-minute slot, the standard follow-up length under our booking policy, and confirmed it to her.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e3"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Dana",
+    "text": "Reserved the trial-lens kit and the fitting room for the full length of Asha Moller's follow-up on 16 October 2026, 10:00 to 10:30, matching her 30-minute appointment.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e20",
+    "date": "2026-06-25",
+    "type": "message",
+    "from": "Dr. Priya Shah (Clearview Optometry)",
+    "text": "Reminder that I am at the optometry conference on 9 and 10 July, so no exams those two days.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Dana",
+    "text": "Booked the staff frame-display training for Saturday 24 October 2026 at 10:00 in Exam Room 2. Martin Reeve approved the Saturday booking as required before I confirmed it.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Dana",
+    "text": "Ordered 60 pairs of trial contact lenses from OptiSupply at 2.10 per pair for delivery to the practice, restocking the fitting room stock.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Dana",
+    "text": "Booked Leo Grant's contact-lens follow-up for 8 October 2026 at 14:00 in Exam Room 1 as a standard 30-minute slot and confirmed it to him.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-6",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-14",
+    "type": "notice",
+    "from": "Sam Whitfield (SwiftParcel)",
+    "text": "From September our returns pickup window at Clearview Optometry moves to 13:00 on Tuesdays and Thursdays.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Nora Lindt (OptiSupply)",
+    "text": "Thought you might like our new fitting guide for your wall — it suggests allowing a comfortable 30 minutes per contact-lens follow-up so patients never feel rushed.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-01",
+    "type": "decision",
+    "from": "Dana",
+    "text": "Booked Tom Bradley's contact-lens follow-up for Saturday 7 November 2026 at 15:30 in Exam Room 2 as a 30-minute slot. Martin Reeve approved the Saturday booking and I confirmed the appointment to Tom.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-5",
+    "mark": "ASK"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-12",
+    "type": "minutes",
+    "from": "Dana",
+    "text": "Minutes of the September staff meeting: Dr. Shah reminded everyone to keep the fitting room tidy; Martin Reeve said the November diary opens for recalls at the end of October.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Nora Lindt (OptiSupply)",
+    "text": "Your order of 60 pairs of trial lenses has been delivered to Clearview Optometry. Invoice follows at the end of the month.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Theo Marsh (FrameWorks Ltd)",
+    "text": "Your autumn frame delivery is scheduled for 28 October, two boxes to the front desk as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-10",
+    "type": "policy",
+    "from": "Martin Reeve (practice manager)",
+    "text": "Booking policy update, effective Monday 12 October 2026. Because the new imaging routine is faster, contact-lens follow-ups are now booked as 20-minute slots. Also, Saturday bookings now only need my approval if they start after 14:00; morning Saturday slots can be confirmed straight away. Please adjust anything in the diary this affects. The old 30-minute standard caused too much dead time between patients.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Asha Moller",
+    "text": "Just confirming I will be in this Friday 16 October at 10:00 for my contact-lens follow-up. See you then.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-17",
+    "type": "task",
+    "from": "Dana",
+    "text": "By 30 October 2026, print the updated diary sheets for November and check the recall list is ready to send.",
+    "role": "obligation"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-19",
+    "type": "message",
+    "from": "Dr. Priya Shah (Clearview Optometry)",
+    "text": "Reminding the front desk that Exam Room 1 is free all day on Friday 13 November while the new chair is fitted in Exam Room 2.",
+    "role": "fact"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Asha Moller contact-lens follow-up",
+    "fields": {
+     "patient": "Asha Moller",
+     "date": "2026-10-16",
+     "time": "10:00",
+     "duration": "30",
+     "place": "Exam Room 1",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Trial-lens kit and fitting room reservation for Asha Moller",
+    "fields": {
+     "date": "2026-10-16",
+     "time": "10:00",
+     "duration": "30",
+     "place": "Fitting room",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Staff frame-display training",
+    "fields": {
+     "date": "2026-10-24",
+     "time": "10:00",
+     "duration": "60",
+     "place": "Exam Room 2",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Tom Bradley contact-lens follow-up",
+    "fields": {
+     "patient": "Tom Bradley",
+     "date": "2026-11-07",
+     "time": "15:30",
+     "duration": "30",
+     "place": "Exam Room 2",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Leo Grant contact-lens follow-up",
+    "fields": {
+     "patient": "Leo Grant",
+     "date": "2026-10-08",
+     "time": "14:00",
+     "duration": "30",
+     "place": "Exam Room 1",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Trial contact lens restock",
+    "fields": {
+     "supplier": "OptiSupply",
+     "item": "Trial contact lenses",
+     "quantity": "60",
+     "unit_price": "2.10",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Nadia Cole patient record",
+    "fields": {
+     "name": "Nadia Cole",
+     "email": "nadia.cole@examplemail.co.uk",
+     "phone": "07700 900461",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-5",
+    "fields": [
+     "duration"
+    ],
+    "from": "Tom Bradley",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please book a contact-lens follow-up for Nadia Cole on Friday 13 November at 11:00 in Exam Room 1 and email her a confirmation.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "duration",
+    "value": "20",
+    "stale": [
+     "30"
+    ]
+   },
+   {
+    "record": "EV-4",
+    "field": "duration",
+    "value": "20",
+    "stale": [
+     "30"
+    ]
+   },
+   {
+    "create": "schedule",
+    "fields": {
+     "patient": "Nadia Cole",
+     "date": "2026-11-13",
+     "time": "11:00",
+     "duration": "20",
+     "place": "Exam Room 1",
+     "status": "confirmed"
+    },
+    "stale": {
+     "duration": [
+      "30"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Nadia Cole",
+    "regarding": null,
+    "says": [
+     "2026-11-13",
+     "11:00",
+     "20"
+    ],
+    "stale": [
+     "30"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Martin Reeve's policy update of 10 October replaces the 30-minute follow-up standard with 20 minutes from 12 October, so Asha Moller's 16 October appointment (EV-1) and its dependent kit reservation (EV-4, two hops from the rule) must be shortened by the coordinator directly — REVISE. Tom Bradley's Saturday follow-up (EV-5) also falls under the new length, but his appointment is confirmed and changing its length needs his own agreement under the standing consent instruction, so it is ASK. The 24 October training is a morning Saturday slot that stays valid, and Leo Grant's appointment predates the effective date — both KEEP. Nadia Cole's new booking must use the current 20-minute length.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Trial lens restock",
+    "counterpart": "Nora Lindt",
+    "org": "OptiSupply",
+    "item": "Trial contact lenses",
+    "unit": "pairs",
+    "values": [
+     "40",
+     "60",
+     "80",
+     "100",
+     "120"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "order",
+    "topic": "Contact lens solution restock",
+    "counterpart": "Nora Lindt",
+    "org": "OptiSupply",
+    "item": "Lens solution bottles",
+    "unit": "bottles",
+    "values": [
+     "24",
+     "36",
+     "48",
+     "60"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "order",
+    "topic": "Spectacle frame restock",
+    "counterpart": "Theo Marsh",
+    "org": "FrameWorks Ltd",
+    "item": "Assorted spectacle frames",
+    "unit": "frames",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning wipes restock",
+    "counterpart": "Theo Marsh",
+    "org": "FrameWorks Ltd",
+    "item": "Lens cleaning wipes",
+    "unit": "boxes",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "booking",
+    "topic": "Weekly staff catch-up",
+    "counterpart": "Martin Reeve",
+    "org": "Clearview Optometry",
+    "item": "Staff meeting",
+    "unit": "",
+    "values": [
+     "Exam Room 1",
+     "Exam Room 2",
+     "Fitting room"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "booking",
+    "topic": "Equipment servicing",
+    "counterpart": "Dr. Priya Shah",
+    "org": "Clearview Optometry",
+    "item": "Phoropter servicing visit",
+    "unit": "",
+    "values": [
+     "Exam Room 1",
+     "Exam Room 2",
+     "Fitting room"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "booking",
+    "topic": "Fitting room block",
+    "counterpart": "Dr. Priya Shah",
+    "org": "Clearview Optometry",
+    "item": "Teaching session block",
+    "unit": "",
+    "values": [
+     "Fitting room",
+     "Exam Room 1",
+     "Exam Room 2"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "order",
+    "topic": "Eye drops restock",
+    "counterpart": "Paula Reyes",
+    "org": "MediLens Supplies",
+    "item": "Lubricating eye drops",
+    "unit": "bottles",
+    "values": [
+     "30",
+     "45",
+     "60",
+     "90"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "order",
+    "topic": "Trial frame lenses",
+    "counterpart": "Paula Reyes",
+    "org": "MediLens Supplies",
+    "item": "Trial frame lens set refills",
+    "unit": "sets",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Fitting room"
+   },
+   {
+    "kind": "order",
+    "topic": "Spectacle cases restock",
+    "counterpart": "Theo Marsh",
+    "org": "FrameWorks Ltd",
+    "item": "Hard spectacle cases",
+    "unit": "cases",
+    "values": [
+     "50",
+     "75",
+     "100",
+     "150"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "booking",
+    "topic": "Courier pickup slot",
+    "counterpart": "Sam Whitfield",
+    "org": "SwiftParcel",
+    "item": "Returns pickup window",
+    "unit": "",
+    "values": [
+     "Front desk",
+     "Back door",
+     "Reception"
+    ],
+    "place": "Clearview Optometry"
+   },
+   {
+    "kind": "order",
+    "topic": "Appointment card restock",
+    "counterpart": "Iris Bell",
+    "org": "PrintLocal",
+    "item": "Appointment reminder cards",
+    "unit": "packs",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Clearview Optometry"
+   }
+  ],
+  "id": "K100-2-01",
+  "tier": 100,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [
+  "the change is too close to now: only 3 of 100 events would come after it; move the change earlier"
+ ],
+ "valid": false
+}

@@ -1,0 +1,662 @@
+{
+ "id": "K500-2-03",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 2,
+ "idx": 2,
+ "setting": "Fishmonger proprietor at The Salty Net, a harbour-side seafood counter",
+ "prompt_sha256": "87c63f4b4c3c39d2a767efeeb6780efedd560f5f0059ff28627c1df051a915d6",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"New landing days at Northquay\",\n \"setting\": \"Fishmonger proprietor at The Salty Net, a harbour-side seafood counter\",\n \"owner\": \"Marta\",\n \"org\": \"The Salty Net\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta Venn\", \"text\": \"Shop rule: the cold counter at The Salty Net must stay below 4 degrees and Tomas logs the temperature twice a day, at opening and at 14:00.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Priya Hall\", \"text\": \"Happy to keep doing the books for The Salty Net. I come in Tuesdays and Thursdays and handle all supplier payments and sign-offs.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Marta Venn\", \"text\": \"Standing rule for Northquay Fisheries orders: deliveries must be booked for Tuesday or Friday mornings, and any order over 400 needs Priya Hall's sign-off before I confirm it.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"quote\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Our current prices for The Salty Net: hake 8.40 per kg, mussels 6.20 per kg with a 40 kg minimum, crab 14.50 per kg. Delivery to the harbour counter is free.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Lena Marsh (The Copper Quay)\", \"text\": \"Lena here. The Copper Quay will keep collecting its standing 10 kg of mussels from your counter every Friday at 11:00.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Marta Venn\", \"text\": \"Rule for the shop: any change to a confirmed supplier order worth 500 or more must be agreed with Priya Hall before the order is changed.\", \"role\": \"rule\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Ordered 30 kg of crab at 14.50 per kg from Northquay Fisheries, delivery Friday 26 June in the morning as our Tuesday-Friday arrangement allows, total 435.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"notice\", \"from\": \"Harbour Office\", \"text\": \"The Harbour Festival takes place on Saturday 4 July; all quay-side businesses should expect high footfall from 10:00.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Icy Point Refrigeration\", \"text\": \"Service visits for your counter ice machine are 90 per visit, including filter change.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"July landing calendar is out, boats in every weekday morning as usual. Looking forward to supplying The Salty Net through the summer.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-03\", \"type\": \"invoice\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Invoice for June deliveries to The Salty Net, total 612, payable by 31 July.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Tomas Reyes\", \"text\": \"The small freezer is rattling again, might need a look before the weekend rush.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-21\", \"type\": \"minutes\", \"from\": \"Harbour Traders Association\", \"text\": \"Minutes of the July meeting: winter opening hours discussed, no changes agreed until November.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Ordered 40 kg of mussels at 6.20 per kg from Northquay Fisheries, delivered Friday 14 August under our Tuesday-Friday delivery arrangement, total 248.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-17\", \"type\": \"email\", \"from\": \"Lena Marsh (The Copper Quay)\", \"text\": \"Heads up: the restaurant is closed for refit 24 to 29 August, so we will skip that Friday's mussel collection.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-24\", \"type\": \"call\", \"from\": \"Marta Venn\", \"text\": \"Spoke to a pot maker in the next harbour about crab supply for autumn; no prices agreed yet.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Confirmed with Northquay Fisheries an order of 50 kg of mussels at 6.20 per kg, total 310, delivery Friday 16 October at 06:30, one of our usual Tuesday-Friday slots. Under 400 so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Confirmed with Northquay Fisheries an order of 120 kg of hake at 8.40 per kg, total 1008, delivery Tuesday 13 October at 06:30. Priya Hall signed it off as it is over 400.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\", \"e6\"], \"record\": \"ORD-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Rostered Tomas Reyes for an early shift on Friday 16 October starting 06:00 so he is at the counter to receive the 06:30 mussel delivery.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Booked a stall at the Harbourside Market for Saturday 17 October; I will run it myself and take smoked fish.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"EV-2\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Harbour Office\", \"text\": \"The pitch fee for the Harbourside Market this season is 35 per Saturday, payable on the day.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"task\", \"from\": \"Marta Venn\", \"text\": \"To-do: pay the Northquay Fisheries September invoice by 15 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"letter\", \"from\": \"District Council\", \"text\": \"Food waste collection for harbour businesses moves to Mondays and Thursdays from November.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Just confirming your 50 kg of mussels for Friday 16 October, delivery at 06:30 to the harbour counter as arranged.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-24\", \"type\": \"message\", \"from\": \"Tomas Reyes\", \"text\": \"Bike puncture, I will be about twenty minutes late on Thursday morning.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Hi Marta, a change from our side: from Monday 5 October our boats land on Wednesdays and Saturdays instead of Tuesdays and Fridays, so all deliveries to your shop need to be booked for Wednesday or Saturday mornings from that date. Prices are unchanged and your usual sign-off arrangement with Priya stays exactly as it is.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Northquay Fisheries Promotions\", \"text\": \"October deal for our trade customers: collect your order at the quay yourself on a Tuesday and get 10 percent off the list price.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-08\", \"type\": \"note\", \"from\": \"Marta Venn\", \"text\": \"Stocktake: crab shells for stock running low, oyster knives fine, need more wax paper by next week.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Tomas Reyes\", \"text\": \"Could you let me know my rota for next week when you have a moment?\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-11\", \"type\": \"invoice\", \"from\": \"Icy Point Refrigeration\", \"text\": \"Invoice for the September ice machine service visit, 90, payable by 25 October.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Crab order, June\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"crab\", \"quantity\": \"30\", \"date\": \"2026-06-26\", \"amount\": \"435\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Mussel order, October\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"mussels\", \"quantity\": \"50\", \"date\": \"2026-10-16\", \"time\": \"06:30\", \"amount\": \"310\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Hake order, October\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"hake\", \"quantity\": \"120\", \"date\": \"2026-10-13\", \"time\": \"06:30\", \"amount\": \"1008\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Mussel order, August\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"mussels\", \"quantity\": \"40\", \"date\": \"2026-08-14\", \"amount\": \"248\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tomas early receiving shift\", \"fields\": {\"person\": \"Tomas Reyes\", \"date\": \"2026-10-16\", \"time\": \"06:00\", \"reason\": \"receive mussel delivery\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harbourside Market stall\", \"fields\": {\"person\": \"Marta Venn\", \"date\": \"2026-10-17\", \"place\": \"Harbourside Market\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-3\", \"fields\": [\"date\"], \"from\": \"Priya Hall\", \"rule\": \"e6\"}\n ],\n \"task\": \"Could you confirm this week's deliveries with Danny at Northquay Fisheries — the mussels and the hake — and sort Tomas's rota so someone is at the counter when the mussels arrive? Let Danny know the delivery days we are working to.\",\n \"expect\": [\n  {\"record\": \"ORD-2\", \"field\": \"date\", \"value\": \"2026-10-17\", \"stale\": [\"2026-10-16\"]},\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-17\", \"stale\": [\"2026-10-16\"]},\n  {\"message_to\": \"Danny Pearce (Northquay Fisheries)\", \"regarding\": \"ORD-2\", \"says\": [\"2026-10-17\"], \"stale\": [\"2026-10-16\"], \"task\": true},\n  {\"message_to\": \"Priya Hall\", \"regarding\": \"ORD-3\", \"says\": [\"2026-10-14\"], \"stale\": [\"2026-10-13\"], \"task\": true}\n ],\n \"why\": \"Northquay's rule on delivery days was amended from 5 October to Wednesday/Saturday only. The small mussel order (under 400) can simply be moved to Saturday 17 October, and Tomas's receiving shift follows it; both are REVISE. The hake order is over 500, so moving it to Wednesday 14 October needs Priya Hall's agreement first — ASK, with no record change. The June and August orders predate the amendment's terms and are KEEP, and the Tuesday collection discount is a distractor that does not change any delivery plan.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"weekly white fish restock\", \"counterpart\": \"Danny Pearce\", \"org\": \"Northquay Fisheries\", \"item\": \"haddock\", \"unit\": \"kg\", \"values\": [\"20\", \"35\", \"50\", \"15\", \"40\"], \"place\": \"harbour counter\"},\n  {\"kind\": \"order\", \"topic\": \"shellfish restock\", \"counterpart\": \"Danny Pearce\", \"org\": \"Northquay Fisheries\", \"item\": \"mussels\", \"unit\": \"kg\", \"values\": [\"40\", \"45\", \"60\", \"50\"], \"place\": \"harbour counter\"},\n  {\"kind\": \"order\", \"topic\": \"ice machine servicing\", \"counterpart\": \"Icy Point Refrigeration\", \"org\": \"Icy Point Refrigeration\", \"item\": \"service visit\", \"unit\": \"visit\", \"values\": [\"1\", \"2\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"counter supplies\", \"counterpart\": \"Bea Norton\", \"org\": \"Harbour Packaging Co\", \"item\": \"wax paper rolls\", \"unit\": \"roll\", \"values\": [\"10\", \"20\", \"15\", \"25\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Bea Norton\", \"org\": \"Harbour Packaging Co\", \"item\": \"sanitiser bottles\", \"unit\": \"bottle\", \"values\": [\"6\", \"12\", \"8\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"booking\", \"topic\": \"restaurant collection slot\", \"counterpart\": \"Lena Marsh\", \"org\": \"The Copper Quay\", \"item\": \"collection slot\", \"unit\": \"slot\", \"values\": [\"counter front\", \"side door\", \"cold room hatch\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"booking\", \"topic\": \"market stall Saturdays\", \"counterpart\": \"Harbour Office\", \"org\": \"Harbourside Market\", \"item\": \"market pitch\", \"unit\": \"pitch\", \"values\": [\"pitch 4\", \"pitch 7\", \"pitch 2\", \"pitch 9\"], \"place\": \"Harbourside Market\"},\n  {\"kind\": \"booking\", \"topic\": \"freezer engineer visits\", \"counterpart\": \"Icy Point Refrigeration\", \"org\": \"Icy Point Refrigeration\", \"item\": \"engineer visit\", \"unit\": \"visit\", \"values\": [\"cold room\", \"counter freezer\", \"back freezer\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"crab restock\", \"counterpart\": \"Danny Pearce\", \"org\": \"Northquay Fisheries\", \"item\": \"crab\", \"unit\": \"kg\", \"values\": [\"10\", \"15\", \"25\", \"20\"], \"place\": \"harbour counter\"},\n  {\"kind\": \"booking\", \"topic\": \"traders association meetings\", \"counterpart\": \"Harbour Office\", \"org\": \"Harbour Traders Association\", \"item\": \"meeting room\", \"unit\": \"room\", \"values\": [\"quay room\", \"loft room\", \"office annexe\"], \"place\": \"Harbour Office\"},\n  {\"kind\": \"order\", \"topic\": \"smoked fish restock\", \"counterpart\": \"Sam Alder\", \"org\": \"Alder Smokehouse\", \"item\": \"smoked mackerel\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"12\", \"10\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"oyster restock\", \"counterpart\": \"Sam Alder\", \"org\": \"Alder Smokehouse\", \"item\": \"oysters\", \"unit\": \"dozen\", \"values\": [\"6\", \"10\", \"14\", \"8\"], \"place\": \"harbour counter\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3235,
+    "completion_tokens": 9747,
+    "reasoning_tokens": 5525,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1476156,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"New landing days at Northquay\",\n \"setting\": \"Fishmonger proprietor at The Salty Net, a harbour-side seafood counter\",\n \"owner\": \"Marta\",\n \"org\": \"The Salty Net\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta Venn\", \"text\": \"Shop rule: the cold counter at The Salty Net must stay below 4 degrees and Tomas logs the temperature twice a day, at opening and at 14:00.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Priya Hall\", \"text\": \"Happy to keep doing the books for The Salty Net. I come in Tuesdays and Thursdays and handle all supplier payments and sign-offs.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Marta Venn\", \"text\": \"Standing rule for Northquay Fisheries orders: deliveries must be booked for Tuesday or Friday mornings, and any order over 400 needs Priya Hall's sign-off before I confirm it.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"quote\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Our current prices for The Salty Net: hake 8.40 per kg, mussels 6.20 per kg with a 40 kg minimum, crab 14.50 per kg. Delivery to the harbour counter is free.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Lena Marsh (The Copper Quay)\", \"text\": \"Lena here. The Copper Quay will keep collecting its standing 10 kg of mussels from your counter every Friday at 11:00.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Marta Venn\", \"text\": \"Rule for the shop: any change to a confirmed supplier order worth 500 or more must be agreed with Priya Hall before the order is changed.\", \"role\": \"rule\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Ordered 30 kg of crab at 14.50 per kg from Northquay Fisheries, delivery Friday 26 June in the morning as our Tuesday-Friday arrangement allows, total 435.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"notice\", \"from\": \"Harbour Office\", \"text\": \"The Harbour Festival takes place on Saturday 4 July; all quay-side businesses should expect high footfall from 10:00.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Icy Point Refrigeration\", \"text\": \"Service visits for your counter ice machine are 90 per visit, including filter change.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"July landing calendar is out, boats in every weekday morning as usual. Looking forward to supplying The Salty Net through the summer.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-03\", \"type\": \"invoice\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Invoice for June deliveries to The Salty Net, total 612, payable by 31 July.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Tomas Reyes\", \"text\": \"The small freezer is rattling again, might need a look before the weekend rush.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-21\", \"type\": \"minutes\", \"from\": \"Harbour Traders Association\", \"text\": \"Minutes of the July meeting: winter opening hours discussed, no changes agreed until November.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Ordered 40 kg of mussels at 6.20 per kg from Northquay Fisheries, delivered Friday 14 August under our Tuesday-Friday delivery arrangement, total 248.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-17\", \"type\": \"email\", \"from\": \"Lena Marsh (The Copper Quay)\", \"text\": \"Heads up: the restaurant is closed for refit 24 to 29 August, so we will skip that Friday's mussel collection.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-24\", \"type\": \"call\", \"from\": \"Marta Venn\", \"text\": \"Spoke to a pot maker in the next harbour about crab supply for autumn; no prices agreed yet.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Confirmed with Northquay Fisheries an order of 50 kg of mussels at 6.20 per kg, total 310, delivery Friday 16 October at 06:30, one of our usual Tuesday-Friday slots. Under 400 so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Confirmed with Northquay Fisheries an order of 120 kg of hake at 8.40 per kg, total 1008, delivery Tuesday 13 October at 06:30. Priya Hall signed it off as it is over 400.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\", \"e6\"], \"record\": \"ORD-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Rostered Tomas Reyes for an early shift on Friday 16 October starting 06:00 so he is at the counter to receive the 06:30 mussel delivery.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Booked a stall at the Harbourside Market for Saturday 17 October at the 35 pitch fee; I will run it myself and take smoked fish.\", \"role\": \"decision\", \"rests_on\": [\"e21\"], \"record\": \"EV-2\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Harbour Office\", \"text\": \"The pitch fee for the Harbourside Market this season is 35 per Saturday, payable on the day.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"task\", \"from\": \"Marta Venn\", \"text\": \"To-do: pay the Northquay Fisheries September invoice by 15 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"letter\", \"from\": \"District Council\", \"text\": \"Food waste collection for harbour businesses moves to Mondays and Thursdays from November.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Just confirming your 50 kg of mussels for Friday 16 October, delivery at 06:30 to the harbour counter as arranged.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-24\", \"type\": \"message\", \"from\": \"Tomas Reyes\", \"text\": \"Bike puncture, I will be about twenty minutes late on Thursday morning.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Hi Marta, a change from our side: from Monday 5 October our boats land on Wednesdays and Saturdays instead of Tuesdays and Fridays, so all deliveries to your shop need to be booked for Wednesday or Saturday mornings from that date. Prices are unchanged and your usual sign-off arrangement with Priya stays exactly as it is.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Northquay Fisheries Promotions\", \"text\": \"October deal for our trade customers: collect your order at the quay yourself on a Tuesday and get 10 percent off the list price.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-08\", \"type\": \"note\", \"from\": \"Marta Venn\", \"text\": \"Stocktake: crab shells for stock running low, oyster knives fine, need more wax paper by next week.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Tomas Reyes\", \"text\": \"Could you let me know my rota for next week when you have a moment?\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-11\", \"type\": \"invoice\", \"from\": \"Icy Point Refrigeration\", \"text\": \"Invoice for the September ice machine service visit, 90, payable by 25 October.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Crab order, June\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"crab\", \"quantity\": \"30\", \"date\": \"2026-06-26\", \"amount\": \"435\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Mussel order, October\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"mussels\", \"quantity\": \"50\", \"date\": \"2026-10-16\", \"time\": \"06:30\", \"amount\": \"310\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Hake order, October\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"hake\", \"quantity\": \"120\", \"date\": \"2026-10-13\", \"time\": \"06:30\", \"amount\": \"1008\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Mussel order, August\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"mussels\", \"quantity\": \"40\", \"date\": \"2026-08-14\", \"amount\": \"248\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tomas early receiving shift\", \"fields\": {\"person\": \"Tomas Reyes\", \"date\": \"2026-10-16\", \"time\": \"06:00\", \"reason\": \"receive mussel delivery\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harbourside Market stall\", \"fields\": {\"person\": \"Marta Venn\", \"date\": \"2026-10-17\", \"place\": \"Harbourside Market\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-3\", \"fields\": [\"date\"], \"from\": \"Priya Hall\", \"rule\": \"e6\"}\n ],\n \"task\": \"Could you confirm this week's deliveries with Danny at Northquay Fisheries — the mussels and the hake — and sort Tomas's rota so someone is at the counter when the mussels arrive? Let Danny know the delivery days we are working to.\",\n \"expect\": [\n  {\"record\": \"ORD-2\", \"field\": \"date\", \"value\": \"2026-10-17\", \"stale\": [\"2026-10-16\"]},\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-17\", \"stale\": [\"2026-10-16\"]},\n  {\"message_to\": \"Danny Pearce (Northquay Fisheries)\", \"regarding\": \"ORD-2\", \"says\": [\"2026-10-17\"], \"stale\": [\"2026-10-16\"], \"task\": true},\n  {\"message_to\": \"Priya Hall\", \"regarding\": \"ORD-3\", \"says\": [\"2026-10-14\"], \"stale\": [\"2026-10-13\"], \"task\": true}\n ],\n \"why\": \"Northquay's rule on delivery days was amended from 5 October to Wednesday/Saturday only. The small mussel order (under 400) can simply be moved to Saturday 17 October, and Tomas's receiving shift follows it; both are REVISE. The hake order is over 500, so moving it to Wednesday 14 October needs Priya Hall's agreement first — ASK, with no record change. The June and August orders predate the amendment's terms and are KEEP, and the Tuesday collection discount is a distractor that does not change any delivery plan.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"weekly white fish restock\", \"counterpart\": \"Danny Pearce\", \"org\": \"Northquay Fisheries\", \"item\": \"haddock\", \"unit\": \"kg\", \"values\": [\"20\", \"35\", \"50\", \"15\", \"40\"], \"place\": \"harbour counter\"},\n  {\"kind\": \"order\", \"topic\": \"shellfish restock\", \"counterpart\": \"Danny Pearce\", \"org\": \"Northquay Fisheries\", \"item\": \"mussels\", \"unit\": \"kg\", \"values\": [\"40\", \"45\", \"60\", \"50\"], \"place\": \"harbour counter\"},\n  {\"kind\": \"order\", \"topic\": \"ice machine servicing\", \"counterpart\": \"Icy Point Refrigeration\", \"org\": \"Icy Point Refrigeration\", \"item\": \"service visit\", \"unit\": \"visit\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"counter supplies\", \"counterpart\": \"Bea Norton\", \"org\": \"Harbour Packaging Co\", \"item\": \"wax paper rolls\", \"unit\": \"roll\", \"values\": [\"10\", \"20\", \"15\", \"25\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Bea Norton\", \"org\": \"Harbour Packaging Co\", \"item\": \"sanitiser bottles\", \"unit\": \"bottle\", \"values\": [\"6\", \"12\", \"8\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"booking\", \"topic\": \"restaurant collection slot\", \"counterpart\": \"Lena Marsh\", \"org\": \"The Copper Quay\", \"item\": \"collection slot\", \"unit\": \"slot\", \"values\": [\"counter front\", \"side door\", \"cold room hatch\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"booking\", \"topic\": \"market stall Saturdays\", \"counterpart\": \"Harbour Office\", \"org\": \"Harbourside Market\", \"item\": \"market pitch\", \"unit\": \"pitch\", \"values\": [\"pitch 4\", \"pitch 7\", \"pitch 2\", \"pitch 9\"], \"place\": \"Harbourside Market\"},\n  {\"kind\": \"booking\", \"topic\": \"freezer engineer visits\", \"counterpart\": \"Icy Point Refrigeration\", \"org\": \"Icy Point Refrigeration\", \"item\": \"engineer visit\", \"unit\": \"visit\", \"values\": [\"cold room\", \"counter freezer\", \"back freezer\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"crab restock\", \"counterpart\": \"Danny Pearce\", \"org\": \"Northquay Fisheries\", \"item\": \"crab\", \"unit\": \"kg\", \"values\": [\"10\", \"15\", \"25\", \"20\"], \"place\": \"harbour counter\"},\n  {\"kind\": \"booking\", \"topic\": \"traders association meetings\", \"counterpart\": \"Harbour Office\", \"org\": \"Harbour Traders Association\", \"item\": \"meeting room\", \"unit\": \"room\", \"values\": [\"quay room\", \"loft room\", \"office annexe\"], \"place\": \"Harbour Office\"},\n  {\"kind\": \"order\", \"topic\": \"smoked fish restock\", \"counterpart\": \"Sam Alder\", \"org\": \"Alder Smokehouse\", \"item\": \"smoked mackerel\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"12\", \"10\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"oyster restock\", \"counterpart\": \"Sam Alder\", \"org\": \"Alder Smokehouse\", \"item\": \"oysters\", \"unit\": \"dozen\", \"values\": [\"6\", \"10\", \"14\", \"8\"], \"place\": \"harbour counter\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7534,
+    "completion_tokens": 4234,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0778176,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e20: a decision must rest on at least one earlier event\n- noise topic 'ice machine servicing': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"New landing days at Northquay\",\n \"setting\": \"Fishmonger proprietor at The Salty Net, a harbour-side seafood counter\",\n \"owner\": \"Marta\",\n \"org\": \"The Salty Net\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta Venn\", \"text\": \"Shop rule: the cold counter at The Salty Net must stay below 4 degrees and Tomas logs the temperature twice a day, at opening and at 14:00.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Priya Hall\", \"text\": \"Happy to keep doing the books for The Salty Net. I come in Tuesdays and Thursdays and handle all supplier payments and sign-offs.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Marta Venn\", \"text\": \"Standing rule for Northquay Fisheries orders: deliveries must be booked for Tuesday or Friday mornings, and any order over 400 needs Priya Hall's sign-off before I confirm it.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"quote\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Our current prices for The Salty Net: hake 8.40 per kg, mussels 6.20 per kg with a 40 kg minimum, crab 14.50 per kg. Delivery to the harbour counter is free.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Lena Marsh (The Copper Quay)\", \"text\": \"Lena here. The Copper Quay will keep collecting its standing 10 kg of mussels from your counter every Friday at 11:00.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Marta Venn\", \"text\": \"Rule for the shop: any change to a confirmed supplier order worth 500 or more must be agreed with Priya Hall before the order is changed.\", \"role\": \"rule\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Ordered 30 kg of crab at 14.50 per kg from Northquay Fisheries, delivery Friday 26 June in the morning as our Tuesday-Friday arrangement allows, total 435.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"notice\", \"from\": \"Harbour Office\", \"text\": \"The Harbour Festival takes place on Saturday 4 July; all quay-side businesses should expect high footfall from 10:00.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Icy Point Refrigeration\", \"text\": \"Service visits for your counter ice machine are 90 per visit, including filter change.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"July landing calendar is out, boats in every weekday morning as usual. Looking forward to supplying The Salty Net through the summer.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-03\", \"type\": \"invoice\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Invoice for June deliveries to The Salty Net, total 612, payable by 31 July.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Tomas Reyes\", \"text\": \"The small freezer is rattling again, might need a look before the weekend rush.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-21\", \"type\": \"minutes\", \"from\": \"Harbour Traders Association\", \"text\": \"Minutes of the July meeting: winter opening hours discussed, no changes agreed until November.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Ordered 40 kg of mussels at 6.20 per kg from Northquay Fisheries, delivered Friday 14 August under our Tuesday-Friday delivery arrangement, total 248.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-17\", \"type\": \"email\", \"from\": \"Lena Marsh (The Copper Quay)\", \"text\": \"Heads up: the restaurant is closed for refit 24 to 29 August, so we will skip that Friday's mussel collection.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-24\", \"type\": \"call\", \"from\": \"Marta Venn\", \"text\": \"Spoke to a pot maker in the next harbour about crab supply for autumn; no prices agreed yet.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Confirmed with Northquay Fisheries an order of 50 kg of mussels at 6.20 per kg, total 310, delivery Friday 16 October at 06:30, one of our usual Tuesday-Friday slots. Under 400 so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Confirmed with Northquay Fisheries an order of 120 kg of hake at 8.40 per kg, total 1008, delivery Tuesday 13 October at 06:30. Priya Hall signed it off as it is over 400.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\", \"e6\"], \"record\": \"ORD-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Rostered Tomas Reyes for an early shift on Friday 16 October starting 06:00 so he is at the counter to receive the 06:30 mussel delivery.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Harbour Office\", \"text\": \"The pitch fee for the Harbourside Market this season is 35 per Saturday, payable on the day.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Marta Venn\", \"text\": \"Booked a stall at the Harbourside Market for Saturday 17 October at the 35 pitch fee; I will run it myself and take smoked fish.\", \"role\": \"decision\", \"rests_on\": [\"e21\"], \"record\": \"EV-2\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"task\", \"from\": \"Marta Venn\", \"text\": \"To-do: pay the Northquay Fisheries September invoice by 15 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"letter\", \"from\": \"District Council\", \"text\": \"Food waste collection for harbour businesses moves to Mondays and Thursdays from November.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Just confirming your 50 kg of mussels for Friday 16 October, delivery at 06:30 to the harbour counter as arranged.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-24\", \"type\": \"message\", \"from\": \"Tomas Reyes\", \"text\": \"Bike puncture, I will be about twenty minutes late on Thursday morning.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Danny Pearce (Northquay Fisheries)\", \"text\": \"Hi Marta, a change from our side: from Monday 5 October our boats land on Wednesdays and Saturdays instead of Tuesdays and Fridays, so all deliveries to your shop need to be booked for Wednesday or Saturday mornings from that date. Prices are unchanged and your usual sign-off arrangement with Priya stays exactly as it is.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Northquay Fisheries Promotions\", \"text\": \"October deal for our trade customers: collect your order at the quay yourself on a Tuesday and get 10 percent off the list price.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-08\", \"type\": \"note\", \"from\": \"Marta Venn\", \"text\": \"Stocktake: crab shells for stock running low, oyster knives fine, need more wax paper by next week.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Tomas Reyes\", \"text\": \"Could you let me know my rota for next week when you have a moment?\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-11\", \"type\": \"invoice\", \"from\": \"Icy Point Refrigeration\", \"text\": \"Invoice for the September ice machine service visit, 90, payable by 25 October.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Crab order, June\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"crab\", \"quantity\": \"30\", \"date\": \"2026-06-26\", \"amount\": \"435\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Mussel order, October\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"mussels\", \"quantity\": \"50\", \"date\": \"2026-10-16\", \"time\": \"06:30\", \"amount\": \"310\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Hake order, October\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"hake\", \"quantity\": \"120\", \"date\": \"2026-10-13\", \"time\": \"06:30\", \"amount\": \"1008\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Mussel order, August\", \"fields\": {\"supplier\": \"Northquay Fisheries\", \"item\": \"mussels\", \"quantity\": \"40\", \"date\": \"2026-08-14\", \"amount\": \"248\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tomas early receiving shift\", \"fields\": {\"person\": \"Tomas Reyes\", \"date\": \"2026-10-16\", \"time\": \"06:00\", \"reason\": \"receive mussel delivery\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harbourside Market stall\", \"fields\": {\"person\": \"Marta Venn\", \"date\": \"2026-10-17\", \"place\": \"Harbourside Market\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-3\", \"fields\": [\"date\"], \"from\": \"Priya Hall\", \"rule\": \"e6\"}\n ],\n \"task\": \"Could you confirm this week's deliveries with Danny at Northquay Fisheries — the mussels and the hake — and sort Tomas's rota so someone is at the counter when the mussels arrive? Let Danny know the delivery days we are working to.\",\n \"expect\": [\n  {\"record\": \"ORD-2\", \"field\": \"date\", \"value\": \"2026-10-17\", \"stale\": [\"2026-10-16\"]},\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-17\", \"stale\": [\"2026-10-16\"]},\n  {\"message_to\": \"Danny Pearce (Northquay Fisheries)\", \"regarding\": \"ORD-2\", \"says\": [\"2026-10-17\"], \"stale\": [\"2026-10-16\"], \"task\": true},\n  {\"message_to\": \"Priya Hall\", \"regarding\": \"ORD-3\", \"says\": [\"2026-10-14\"], \"stale\": [\"2026-10-13\"], \"task\": true}\n ],\n \"why\": \"Northquay's rule on delivery days was amended from 5 October to Wednesday/Saturday only. The small mussel order (under 400) can simply be moved to Saturday 17 October, and Tomas's receiving shift follows it; both are REVISE. The hake order is over 500, so moving it to Wednesday 14 October needs Priya Hall's agreement first — ASK, with no record change. The June and August orders predate the amendment's terms and are KEEP, and the Tuesday collection discount is a distractor that does not change any delivery plan.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"weekly white fish restock\", \"counterpart\": \"Danny Pearce\", \"org\": \"Northquay Fisheries\", \"item\": \"haddock\", \"unit\": \"kg\", \"values\": [\"20\", \"35\", \"50\", \"15\", \"40\"], \"place\": \"harbour counter\"},\n  {\"kind\": \"order\", \"topic\": \"shellfish restock\", \"counterpart\": \"Danny Pearce\", \"org\": \"Northquay Fisheries\", \"item\": \"mussels\", \"unit\": \"kg\", \"values\": [\"40\", \"45\", \"60\", \"50\"], \"place\": \"harbour counter\"},\n  {\"kind\": \"order\", \"topic\": \"ice machine servicing\", \"counterpart\": \"Icy Point Refrigeration\", \"org\": \"Icy Point Refrigeration\", \"item\": \"service visit\", \"unit\": \"visit\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"counter supplies\", \"counterpart\": \"Bea Norton\", \"org\": \"Harbour Packaging Co\", \"item\": \"wax paper rolls\", \"unit\": \"roll\", \"values\": [\"10\", \"20\", \"15\", \"25\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Bea Norton\", \"org\": \"Harbour Packaging Co\", \"item\": \"sanitiser bottles\", \"unit\": \"bottle\", \"values\": [\"6\", \"12\", \"8\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"booking\", \"topic\": \"restaurant collection slot\", \"counterpart\": \"Lena Marsh\", \"org\": \"The Copper Quay\", \"item\": \"collection slot\", \"unit\": \"slot\", \"values\": [\"counter front\", \"side door\", \"cold room hatch\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"booking\", \"topic\": \"market stall Saturdays\", \"counterpart\": \"Harbour Office\", \"org\": \"Harbourside Market\", \"item\": \"market pitch\", \"unit\": \"pitch\", \"values\": [\"pitch 4\", \"pitch 7\", \"pitch 2\", \"pitch 9\"], \"place\": \"Harbourside Market\"},\n  {\"kind\": \"booking\", \"topic\": \"freezer engineer visits\", \"counterpart\": \"Icy Point Refrigeration\", \"org\": \"Icy Point Refrigeration\", \"item\": \"engineer visit\", \"unit\": \"visit\", \"values\": [\"cold room\", \"counter freezer\", \"back freezer\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"crab restock\", \"counterpart\": \"Danny Pearce\", \"org\": \"Northquay Fisheries\", \"item\": \"crab\", \"unit\": \"kg\", \"values\": [\"10\", \"15\", \"25\", \"20\"], \"place\": \"harbour counter\"},\n  {\"kind\": \"booking\", \"topic\": \"traders association meetings\", \"counterpart\": \"Harbour Office\", \"org\": \"Harbour Traders Association\", \"item\": \"meeting room\", \"unit\": \"room\", \"values\": [\"quay room\", \"loft room\", \"office annexe\"], \"place\": \"Harbour Office\"},\n  {\"kind\": \"order\", \"topic\": \"smoked fish restock\", \"counterpart\": \"Sam Alder\", \"org\": \"Alder Smokehouse\", \"item\": \"smoked mackerel\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"12\", \"10\"], \"place\": \"The Salty Net\"},\n  {\"kind\": \"order\", \"topic\": \"oyster restock\", \"counterpart\": \"Sam Alder\", \"org\": \"Alder Smokehouse\", \"item\": \"oysters\", \"unit\": \"dozen\", \"values\": [\"6\", \"10\", \"14\", \"8\"], \"place\": \"harbour counter\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 11832,
+    "completion_tokens": 4242,
+    "reasoning_tokens": 8,
+    "cached_tokens": 7424
+   },
+   "cost": 0.0790812,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e21 is dated before e20)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "New landing days at Northquay",
+  "setting": "Fishmonger proprietor at The Salty Net, a harbour-side seafood counter",
+  "owner": "Marta",
+  "org": "The Salty Net",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta Venn",
+    "text": "Shop rule: the cold counter at The Salty Net must stay below 4 degrees and Tomas logs the temperature twice a day, at opening and at 14:00.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Priya Hall",
+    "text": "Happy to keep doing the books for The Salty Net. I come in Tuesdays and Thursdays and handle all supplier payments and sign-offs.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "instruction",
+    "from": "Marta Venn",
+    "text": "Standing rule for Northquay Fisheries orders: deliveries must be booked for Tuesday or Friday mornings, and any order over 400 needs Priya Hall's sign-off before I confirm it.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-09",
+    "type": "quote",
+    "from": "Danny Pearce (Northquay Fisheries)",
+    "text": "Our current prices for The Salty Net: hake 8.40 per kg, mussels 6.20 per kg with a 40 kg minimum, crab 14.50 per kg. Delivery to the harbour counter is free.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Lena Marsh (The Copper Quay)",
+    "text": "Lena here. The Copper Quay will keep collecting its standing 10 kg of mussels from your counter every Friday at 11:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "instruction",
+    "from": "Marta Venn",
+    "text": "Rule for the shop: any change to a confirmed supplier order worth 500 or more must be agreed with Priya Hall before the order is changed.",
+    "role": "rule"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Marta Venn",
+    "text": "Ordered 30 kg of crab at 14.50 per kg from Northquay Fisheries, delivery Friday 26 June in the morning as our Tuesday-Friday arrangement allows, total 435.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e3"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "notice",
+    "from": "Harbour Office",
+    "text": "The Harbour Festival takes place on Saturday 4 July; all quay-side businesses should expect high footfall from 10:00.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "quote",
+    "from": "Icy Point Refrigeration",
+    "text": "Service visits for your counter ice machine are 90 per visit, including filter change.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-26",
+    "type": "email",
+    "from": "Danny Pearce (Northquay Fisheries)",
+    "text": "July landing calendar is out, boats in every weekday morning as usual. Looking forward to supplying The Salty Net through the summer.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-03",
+    "type": "invoice",
+    "from": "Danny Pearce (Northquay Fisheries)",
+    "text": "Invoice for June deliveries to The Salty Net, total 612, payable by 31 July.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-14",
+    "type": "message",
+    "from": "Tomas Reyes",
+    "text": "The small freezer is rattling again, might need a look before the weekend rush.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-21",
+    "type": "minutes",
+    "from": "Harbour Traders Association",
+    "text": "Minutes of the July meeting: winter opening hours discussed, no changes agreed until November.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Marta Venn",
+    "text": "Ordered 40 kg of mussels at 6.20 per kg from Northquay Fisheries, delivered Friday 14 August under our Tuesday-Friday delivery arrangement, total 248.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e3"
+    ],
+    "record": "ORD-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-17",
+    "type": "email",
+    "from": "Lena Marsh (The Copper Quay)",
+    "text": "Heads up: the restaurant is closed for refit 24 to 29 August, so we will skip that Friday's mussel collection.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-24",
+    "type": "call",
+    "from": "Marta Venn",
+    "text": "Spoke to a pot maker in the next harbour about crab supply for autumn; no prices agreed yet.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Marta Venn",
+    "text": "Confirmed with Northquay Fisheries an order of 50 kg of mussels at 6.20 per kg, total 310, delivery Friday 16 October at 06:30, one of our usual Tuesday-Friday slots. Under 400 so no sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e3"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-04",
+    "type": "decision",
+    "from": "Marta Venn",
+    "text": "Confirmed with Northquay Fisheries an order of 120 kg of hake at 8.40 per kg, total 1008, delivery Tuesday 13 October at 06:30. Priya Hall signed it off as it is over 400.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e3",
+     "e6"
+    ],
+    "record": "ORD-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-08",
+    "type": "decision",
+    "from": "Marta Venn",
+    "text": "Rostered Tomas Reyes for an early shift on Friday 16 October starting 06:00 so he is at the counter to receive the 06:30 mussel delivery.",
+    "role": "decision",
+    "rests_on": [
+     "e17"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-09",
+    "type": "email",
+    "from": "Harbour Office",
+    "text": "The pitch fee for the Harbourside Market this season is 35 per Saturday, payable on the day.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Marta Venn",
+    "text": "Booked a stall at the Harbourside Market for Saturday 17 October at the 35 pitch fee; I will run it myself and take smoked fish.",
+    "role": "decision",
+    "rests_on": [
+     "e21"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-15",
+    "type": "task",
+    "from": "Marta Venn",
+    "text": "To-do: pay the Northquay Fisheries September invoice by 15 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-18",
+    "type": "letter",
+    "from": "District Council",
+    "text": "Food waste collection for harbour businesses moves to Mondays and Thursdays from November.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Danny Pearce (Northquay Fisheries)",
+    "text": "Just confirming your 50 kg of mussels for Friday 16 October, delivery at 06:30 to the harbour counter as arranged.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-24",
+    "type": "message",
+    "from": "Tomas Reyes",
+    "text": "Bike puncture, I will be about twenty minutes late on Thursday morning.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Danny Pearce (Northquay Fisheries)",
+    "text": "Hi Marta, a change from our side: from Monday 5 October our boats land on Wednesdays and Saturdays instead of Tuesdays and Fridays, so all deliveries to your shop need to be booked for Wednesday or Saturday mornings from that date. Prices are unchanged and your usual sign-off arrangement with Priya stays exactly as it is.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Northquay Fisheries Promotions",
+    "text": "October deal for our trade customers: collect your order at the quay yourself on a Tuesday and get 10 percent off the list price.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-08",
+    "type": "note",
+    "from": "Marta Venn",
+    "text": "Stocktake: crab shells for stock running low, oyster knives fine, need more wax paper by next week.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-10",
+    "type": "message",
+    "from": "Tomas Reyes",
+    "text": "Could you let me know my rota for next week when you have a moment?",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-11",
+    "type": "invoice",
+    "from": "Icy Point Refrigeration",
+    "text": "Invoice for the September ice machine service visit, 90, payable by 25 October.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Crab order, June",
+    "fields": {
+     "supplier": "Northquay Fisheries",
+     "item": "crab",
+     "quantity": "30",
+     "date": "2026-06-26",
+     "amount": "435",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Mussel order, October",
+    "fields": {
+     "supplier": "Northquay Fisheries",
+     "item": "mussels",
+     "quantity": "50",
+     "date": "2026-10-16",
+     "time": "06:30",
+     "amount": "310",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Hake order, October",
+    "fields": {
+     "supplier": "Northquay Fisheries",
+     "item": "hake",
+     "quantity": "120",
+     "date": "2026-10-13",
+     "time": "06:30",
+     "amount": "1008",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Mussel order, August",
+    "fields": {
+     "supplier": "Northquay Fisheries",
+     "item": "mussels",
+     "quantity": "40",
+     "date": "2026-08-14",
+     "amount": "248",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Tomas early receiving shift",
+    "fields": {
+     "person": "Tomas Reyes",
+     "date": "2026-10-16",
+     "time": "06:00",
+     "reason": "receive mussel delivery",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Harbourside Market stall",
+    "fields": {
+     "person": "Marta Venn",
+     "date": "2026-10-17",
+     "place": "Harbourside Market",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-3",
+    "fields": [
+     "date"
+    ],
+    "from": "Priya Hall",
+    "rule": "e6"
+   }
+  ],
+  "task": "Could you confirm this week's deliveries with Danny at Northquay Fisheries — the mussels and the hake — and sort Tomas's rota so someone is at the counter when the mussels arrive? Let Danny know the delivery days we are working to.",
+  "expect": [
+   {
+    "record": "ORD-2",
+    "field": "date",
+    "value": "2026-10-17",
+    "stale": [
+     "2026-10-16"
+    ]
+   },
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-10-17",
+    "stale": [
+     "2026-10-16"
+    ]
+   },
+   {
+    "message_to": "Danny Pearce (Northquay Fisheries)",
+    "regarding": "ORD-2",
+    "says": [
+     "2026-10-17"
+    ],
+    "stale": [
+     "2026-10-16"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Priya Hall",
+    "regarding": "ORD-3",
+    "says": [
+     "2026-10-14"
+    ],
+    "stale": [
+     "2026-10-13"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Northquay's rule on delivery days was amended from 5 October to Wednesday/Saturday only. The small mussel order (under 400) can simply be moved to Saturday 17 October, and Tomas's receiving shift follows it; both are REVISE. The hake order is over 500, so moving it to Wednesday 14 October needs Priya Hall's agreement first — ASK, with no record change. The June and August orders predate the amendment's terms and are KEEP, and the Tuesday collection discount is a distractor that does not change any delivery plan.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "weekly white fish restock",
+    "counterpart": "Danny Pearce",
+    "org": "Northquay Fisheries",
+    "item": "haddock",
+    "unit": "kg",
+    "values": [
+     "20",
+     "35",
+     "50",
+     "15",
+     "40"
+    ],
+    "place": "harbour counter"
+   },
+   {
+    "kind": "order",
+    "topic": "shellfish restock",
+    "counterpart": "Danny Pearce",
+    "org": "Northquay Fisheries",
+    "item": "mussels",
+    "unit": "kg",
+    "values": [
+     "40",
+     "45",
+     "60",
+     "50"
+    ],
+    "place": "harbour counter"
+   },
+   {
+    "kind": "order",
+    "topic": "ice machine servicing",
+    "counterpart": "Icy Point Refrigeration",
+    "org": "Icy Point Refrigeration",
+    "item": "service visit",
+    "unit": "visit",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "The Salty Net"
+   },
+   {
+    "kind": "order",
+    "topic": "counter supplies",
+    "counterpart": "Bea Norton",
+    "org": "Harbour Packaging Co",
+    "item": "wax paper rolls",
+    "unit": "roll",
+    "values": [
+     "10",
+     "20",
+     "15",
+     "25"
+    ],
+    "place": "The Salty Net"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Bea Norton",
+    "org": "Harbour Packaging Co",
+    "item": "sanitiser bottles",
+    "unit": "bottle",
+    "values": [
+     "6",
+     "12",
+     "8"
+    ],
+    "place": "The Salty Net"
+   },
+   {
+    "kind": "booking",
+    "topic": "restaurant collection slot",
+    "counterpart": "Lena Marsh",
+    "org": "The Copper Quay",
+    "item": "collection slot",
+    "unit": "slot",
+    "values": [
+     "counter front",
+     "side door",
+     "cold room hatch"
+    ],
+    "place": "The Salty Net"
+   },
+   {
+    "kind": "booking",
+    "topic": "market stall Saturdays",
+    "counterpart": "Harbour Office",
+    "org": "Harbourside Market",
+    "item": "market pitch",
+    "unit": "pitch",
+    "values": [
+     "pitch 4",
+     "pitch 7",
+     "pitch 2",
+     "pitch 9"
+    ],
+    "place": "Harbourside Market"
+   },
+   {
+    "kind": "booking",
+    "topic": "freezer engineer visits",
+    "counterpart": "Icy Point Refrigeration",
+    "org": "Icy Point Refrigeration",
+    "item": "engineer visit",
+    "unit": "visit",
+    "values": [
+     "cold room",
+     "counter freezer",
+     "back freezer"
+    ],
+    "place": "The Salty Net"
+   },
+   {
+    "kind": "order",
+    "topic": "crab restock",
+    "counterpart": "Danny Pearce",
+    "org": "Northquay Fisheries",
+    "item": "crab",
+    "unit": "kg",
+    "values": [
+     "10",
+     "15",
+     "25",
+     "20"
+    ],
+    "place": "harbour counter"
+   },
+   {
+    "kind": "booking",
+    "topic": "traders association meetings",
+    "counterpart": "Harbour Office",
+    "org": "Harbour Traders Association",
+    "item": "meeting room",
+    "unit": "room",
+    "values": [
+     "quay room",
+     "loft room",
+     "office annexe"
+    ],
+    "place": "Harbour Office"
+   },
+   {
+    "kind": "order",
+    "topic": "smoked fish restock",
+    "counterpart": "Sam Alder",
+    "org": "Alder Smokehouse",
+    "item": "smoked mackerel",
+    "unit": "kg",
+    "values": [
+     "5",
+     "8",
+     "12",
+     "10"
+    ],
+    "place": "The Salty Net"
+   },
+   {
+    "kind": "order",
+    "topic": "oyster restock",
+    "counterpart": "Sam Alder",
+    "org": "Alder Smokehouse",
+    "item": "oysters",
+    "unit": "dozen",
+    "values": [
+     "6",
+     "10",
+     "14",
+     "8"
+    ],
+    "place": "harbour counter"
+   }
+  ],
+  "id": "K500-2-03",
+  "tier": 500,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

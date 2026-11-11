@@ -616,5 +616,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The corrected deadline requires an earlier plan, but the history does not uniquely fix 12 October for the review, 13 October for pickup, or 8 October for the call. Those exact dates are unsupported scheduling choices, so the expected final state is not unambiguous.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The corrected deadline requires an earlier plan, but the history does not uniquely fix 12 October for the review, 13 October for pickup, or 8 October for the call. Those exact dates are unsupported scheduling choices, so the expected final state is not unambiguous."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4075,
+    "completion_tokens": 354,
+    "reasoning_tokens": 262,
+    "cached_tokens": 0
+   },
+   "cost": 0.06863,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5b87cf417340660d8242b8c326b9fd4a2f165e885169f92f868a02b6d0f09dcc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected message to Gavin requires the proposed call date 2026-10-08, which the history never fixes, so the final state is not unambiguous. The change (e24, a 'corrected notice' revoking e5) is mid-history with six core events after it and an echo in e21, so the structure fits class 1 and the tier. The 'corrected' label is a mild signal but does not announce the change as 'the correction'.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected message to Gavin requires the proposed call date 2026-10-08, which the history never fixes, so the final state is not unambiguous. The change (e24, a 'corrected notice' revoking e5) is mid-history with six core events after it and an echo in e21, so the structure fits class 1 and the tier. The 'corrected' label is a mild signal but does not announce the change as 'the correction'."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5919,
+    "completion_tokens": 2242,
+    "reasoning_tokens": 2055,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017129,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5b87cf417340660d8242b8c326b9fd4a2f165e885169f92f868a02b6d0f09dcc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The corrected notice revokes the 30 October deadline; the review meeting (12 Oct, four days ahead as originally) and courier (day after, 13 Oct) are fixed by the history's own pattern, the pre-filing call is a confirmed client meeting so rule e1 forces ASK not action, and the preparer record rests only on the unchanged return type (KEEP). Consent map matches e1, with EV-1 only 'booked' while EV-2 is 'confirmed', and the PAYE 30 October mention is clearly scoped out. Tier counts (30 core events, 6 decisions, change 13 days before task day with 6 later core events and an echo) and hiding (event 429 of 500, 71 later events) all check out.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The corrected notice revokes the 30 October deadline; the review meeting (12 Oct, four days ahead as originally) and courier (day after, 13 Oct) are fixed by the history's own pattern, the pre-filing call is a confirmed client meeting so rule e1 forces ASK not action, and the preparer record rests only on the unchanged return type (KEEP). Consent map matches e1, with EV-1 only 'booked' while EV-2 is 'confirmed', and the PAYE 30 October mention is clearly scoped out. Tier counts (30 core events, 6 decisions, change 13 days before task day with 6 later core events and an echo) and hiding (event 429 of 500, 71 later events) all check out."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4168,
+    "completion_tokens": 1199,
+    "reasoning_tokens": 980,
+    "cached_tokens": 256
+   },
+   "cost": 0.0297978,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5b87cf417340660d8242b8c326b9fd4a2f165e885169f92f868a02b6d0f09dcc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

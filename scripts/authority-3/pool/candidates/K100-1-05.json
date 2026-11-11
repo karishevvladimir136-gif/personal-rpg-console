@@ -1,0 +1,608 @@
+{
+ "id": "K100-1-05",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 1,
+ "idx": 4,
+ "setting": "School secretary at Aldergrove Elementary School, a 400-pupil public school",
+ "prompt_sha256": "757ab21c64a113a7855d1c74bc9973814613e0e79ddf577229f9b0bbd943439f",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Coach price rise at Aldergrove Elementary\",\n \"setting\": \"School secretary at Aldergrove Elementary School, a 400-pupil public school\",\n \"owner\": \"Nora\",\n \"org\": \"Aldergrove Elementary School\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya Anand (finance lead)\", \"text\": \"Finance rule reminder: any supplier order totalling 350 pounds or more needs my written sign-off before it is confirmed with the supplier.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Nora\", \"text\": \"Office practice: once a booking with an outside hirer of the school hall is confirmed, the date or time may only be moved with that hirer's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Dana Whitfield (Fernhill Coaches)\", \"text\": \"Confirming our standard rate for Aldergrove Elementary: 320 pounds per 56-seat coach per day trip, booked through me as your dispatcher.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Tessa Rowe (Riverway Science Centre)\", \"text\": \"We can host Aldergrove's Year 5 group of 56 pupils plus staff on 2026-10-20; admission is 6 pounds per pupil.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Colin Marsh (Millbrook Music Festival)\", \"text\": \"The school choir festival is set for 2026-11-24 in Millbrook; Aldergrove's choir of 38 pupils is registered.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Jasmin Cole (district sports office)\", \"text\": \"The netball finals take place at Hartfield Leisure Centre on 2026-09-30; Aldergrove's squad of 12 pupils has qualified.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked two 56-seat coaches with Fernhill Coaches for the Year 5 trip to the Riverway Science Centre on 2026-10-20: two coaches at 320 pounds each, total 640 pounds, confirmed with Dana Whitfield.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked one 56-seat coach with Fernhill Coaches for the choir festival in Millbrook on 2026-11-24 at the standard 320 pounds, so no finance sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\", \"e1\"], \"record\": \"ORD-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked one coach with Fernhill Coaches for the netball finals at Hartfield Leisure Centre on 2026-09-30 at 320 pounds; Fernhill invoiced it straight away and the invoice was paid in August.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e6\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Set up the Year 5 Riverway Science Centre trip plan for 2026-10-20 with the coach cost at 640 pounds for the two Fernhill coaches already booked.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Confirmed the autumn hall hire to the Aldergrove Chess Club, every Tuesday 18:00 to 20:00 in the main hall from September.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-2\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Priya Anand (finance lead)\", \"text\": \"Please code all autumn coach invoices to cost centre TRIP-3 and send me the purchase order numbers for the term file.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-01\", \"type\": \"note\", \"from\": \"Nora\", \"text\": \"Term starts 2026-09-07; send the Year 5 Riverway trip letter home in the first week back.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"invoice\", \"from\": \"Dana Whitfield (Fernhill Coaches)\", \"text\": \"Invoice paid: one coach for the Aldergrove netball finals trip on 2026-09-30, 320 pounds, purchase order settled.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Tessa Rowe (Riverway Science Centre)\", \"text\": \"All set for Aldergrove's Year 5 visit on 2026-10-20; final numbers due one week before.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-21\", \"type\": \"task\", \"from\": \"Nora\", \"text\": \"Order the packed lunches for the Year 5 trip by 2026-10-13 from Fairway Catering.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-05\", \"type\": \"quote\", \"from\": \"Miles Ferris (Meridian Travel)\", \"text\": \"Following your enquiry: Meridian can supply a 56-seat coach for school day trips at 345 pounds per day, subject to availability.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Colin Marsh (Millbrook Music Festival)\", \"text\": \"Rehearsal schedule for the 2026-11-24 choir festival attached; Aldergrove's slot is 10:30.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Dana Whitfield (Fernhill Coaches)\", \"text\": \"A quick note on pricing: with fuel costs up, our rate went to 355 pounds per 56-seat coach for all bookings from 12 October onward. Anything already invoiced stays at the old rate, so your settled bookings are unaffected.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e20\", \"date\": \"2026-10-27\", \"type\": \"message\", \"from\": \"Priya Anand (finance lead)\", \"text\": \"Half-term reconciliation is done; flag any autumn orders that now sit over the sign-off line and I'll clear them.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-29\", \"type\": \"email\", \"from\": \"Tessa Rowe (Riverway Science Centre)\", \"text\": \"Thank you for a lovely Year 5 visit last week; your invoice for admission will follow shortly.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-30\", \"type\": \"note\", \"from\": \"Nora\", \"text\": \"Choir festival on 2026-11-24: confirm coach pickup time with the choir leader this week.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Year 5 Riverway trip coaches\", \"fields\": {\"supplier\": \"Fernhill Coaches\", \"date\": \"2026-10-20\", \"coaches\": \"2\", \"amount\": \"640\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Choir festival coach to Millbrook\", \"fields\": {\"supplier\": \"Fernhill Coaches\", \"date\": \"2026-11-24\", \"coaches\": \"1\", \"amount\": \"320\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Netball finals coach\", \"fields\": {\"supplier\": \"Fernhill Coaches\", \"date\": \"2026-09-30\", \"coaches\": \"1\", \"amount\": \"320\", \"status\": \"paid\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Year 5 Riverway Science Centre trip\", \"fields\": {\"date\": \"2026-10-20\", \"place\": \"Riverway Science Centre\", \"pupils\": \"56\", \"coach_cost\": \"640\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Aldergrove Chess Club hall hire\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"18:00\", \"place\": \"main hall\", \"hirer\": \"Aldergrove Chess Club\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-2\", \"fields\": [\"amount\"], \"from\": \"Priya Anand (finance lead)\", \"rule\": \"e1\"},\n  {\"record\": \"EV-2\", \"fields\": [\"day\", \"time\"], \"from\": \"Aldergrove Chess Club\", \"rule\": \"e2\"}\n ],\n \"task\": \"The Year 5 Riverway trip is just behind us and I want the books straight before half-term ends: make sure the Fernhill coach order and the trip plan show the correct coach cost, and email Priya Anand the final coach cost figure for the trip file.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"amount\", \"value\": \"710\", \"stale\": [\"640\"]},\n  {\"record\": \"EV-1\", \"field\": \"coach_cost\", \"value\": \"710\", \"stale\": [\"640\"]},\n  {\"message_to\": \"Priya Anand (finance lead)\", \"regarding\": \"EV-1\", \"says\": [\"710\"], \"stale\": [\"640\"], \"task\": true}\n ],\n \"why\": \"Fernhill's change raises the coach rate to 355 pounds for bookings from 12 October, so the Year 5 order and the trip plan built on it (two hops from the price fact) must be revised to 710. The choir coach order was booked under the 350-pound sign-off threshold, so at 355 pounds it now needs Priya's consent — ask, don't change it. The netball coach was already invoiced and paid, and the change's own terms leave invoiced bookings at the old rate, so it stays at 320; the Meridian quote of 345 is a distractor, not the contracted rate.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"minibus for swimming lessons\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Fernhill Coaches\", \"item\": \"16-seat minibus\", \"values\": [\"Riverside Pool\", \"Lakeside Leisure\", \"Northgate Pool\"], \"place\": \"school front gate\"},\n  {\"kind\": \"order\", \"topic\": \"classroom stationery restock\", \"counterpart\": \"Hannah Ives\", \"org\": \"Papertrail Supplies\", \"item\": \"boxes of whiteboard markers\", \"unit\": \"box\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"school office\"},\n  {\"kind\": \"order\", \"topic\": \"printer paper delivery\", \"counterpart\": \"Hannah Ives\", \"org\": \"Papertrail Supplies\", \"item\": \"reams of A4 paper\", \"unit\": \"ream\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"school office\"},\n  {\"kind\": \"order\", \"topic\": \"packed lunches\", \"counterpart\": \"Owen Fairway\", \"org\": \"Fairway Catering\", \"item\": \"packed lunch\", \"unit\": \"lunch\", \"values\": [\"30\", \"45\", \"56\", \"60\"], \"place\": \"school kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"hall for evening clubs\", \"counterpart\": \"Lena Brooks\", \"org\": \"Aldergrove Community Groups\", \"item\": \"main hall evening slot\", \"values\": [\"main hall\", \"small hall\", \"gym\"], \"place\": \"main hall\"},\n  {\"kind\": \"booking\", \"topic\": \"gym for after-school sport\", \"counterpart\": \"Jasmin Cole\", \"org\": \"district sports office\", \"item\": \"gym practice slot\", \"values\": [\"gym\", \"playground\", \"field\"], \"place\": \"school gym\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning consumables\", \"counterpart\": \"Rob Ferro\", \"org\": \"Brightline Cleaning\", \"item\": \"cases of paper towels\", \"unit\": \"case\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"caretaker's store\"},\n  {\"kind\": \"order\", \"topic\": \"milk delivery\", \"counterpart\": \"Sue Alden\", \"org\": \"Dairyfresh\", \"item\": \"crates of milk\", \"unit\": \"crate\", \"values\": [\"10\", \"12\", \"14\"], \"place\": \"school kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"library van visit\", \"counterpart\": \"Marta Voss\", \"org\": \"County Library Service\", \"item\": \"mobile library visit\", \"values\": [\"front car park\", \"playground\", \"field gate\"], \"place\": \"front car park\"},\n  {\"kind\": \"order\", \"topic\": \"first aid supplies\", \"counterpart\": \"Hannah Ives\", \"org\": \"Papertrail Supplies\", \"item\": \"first aid refill kits\", \"unit\": \"kit\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"medical room\"},\n  {\"kind\": \"booking\", \"topic\": \"music room for peripatetic lessons\", \"counterpart\": \"Colin Marsh\", \"org\": \"Millbrook Music Festival\", \"item\": \"practice room\", \"values\": [\"music room\", \"small hall\", \"classroom 4\"], \"place\": \"music block\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3183,
+    "completion_tokens": 5310,
+    "reasoning_tokens": 1882,
+    "cached_tokens": 0
+   },
+   "cost": 0.089199,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Coach price rise at Aldergrove Elementary",
+  "setting": "School secretary at Aldergrove Elementary School, a 400-pupil public school",
+  "owner": "Nora",
+  "org": "Aldergrove Elementary School",
+  "now": "2026-11-02",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Priya Anand (finance lead)",
+    "text": "Finance rule reminder: any supplier order totalling 350 pounds or more needs my written sign-off before it is confirmed with the supplier.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Nora",
+    "text": "Office practice: once a booking with an outside hirer of the school hall is confirmed, the date or time may only be moved with that hirer's written agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Dana Whitfield (Fernhill Coaches)",
+    "text": "Confirming our standard rate for Aldergrove Elementary: 320 pounds per 56-seat coach per day trip, booked through me as your dispatcher.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Tessa Rowe (Riverway Science Centre)",
+    "text": "We can host Aldergrove's Year 5 group of 56 pupils plus staff on 2026-10-20; admission is 6 pounds per pupil.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Colin Marsh (Millbrook Music Festival)",
+    "text": "The school choir festival is set for 2026-11-24 in Millbrook; Aldergrove's choir of 38 pupils is registered.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Jasmin Cole (district sports office)",
+    "text": "The netball finals take place at Hartfield Leisure Centre on 2026-09-30; Aldergrove's squad of 12 pupils has qualified.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Booked two 56-seat coaches with Fernhill Coaches for the Year 5 trip to the Riverway Science Centre on 2026-10-20: two coaches at 320 pounds each, total 640 pounds, confirmed with Dana Whitfield.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Booked one 56-seat coach with Fernhill Coaches for the choir festival in Millbrook on 2026-11-24 at the standard 320 pounds, so no finance sign-off was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5",
+     "e1"
+    ],
+    "record": "ORD-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-26",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Booked one coach with Fernhill Coaches for the netball finals at Hartfield Leisure Centre on 2026-09-30 at 320 pounds; Fernhill invoiced it straight away and the invoice was paid in August.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e6"
+    ],
+    "record": "ORD-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-29",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Set up the Year 5 Riverway Science Centre trip plan for 2026-10-20 with the coach cost at 640 pounds for the two Fernhill coaches already booked.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Confirmed the autumn hall hire to the Aldergrove Chess Club, every Tuesday 18:00 to 20:00 in the main hall from September.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Priya Anand (finance lead)",
+    "text": "Please code all autumn coach invoices to cost centre TRIP-3 and send me the purchase order numbers for the term file.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-01",
+    "type": "note",
+    "from": "Nora",
+    "text": "Term starts 2026-09-07; send the Year 5 Riverway trip letter home in the first week back.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-10",
+    "type": "invoice",
+    "from": "Dana Whitfield (Fernhill Coaches)",
+    "text": "Invoice paid: one coach for the Aldergrove netball finals trip on 2026-09-30, 320 pounds, purchase order settled.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Tessa Rowe (Riverway Science Centre)",
+    "text": "All set for Aldergrove's Year 5 visit on 2026-10-20; final numbers due one week before.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-21",
+    "type": "task",
+    "from": "Nora",
+    "text": "Order the packed lunches for the Year 5 trip by 2026-10-13 from Fairway Catering.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-05",
+    "type": "quote",
+    "from": "Miles Ferris (Meridian Travel)",
+    "text": "Following your enquiry: Meridian can supply a 56-seat coach for school day trips at 345 pounds per day, subject to availability.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Colin Marsh (Millbrook Music Festival)",
+    "text": "Rehearsal schedule for the 2026-11-24 choir festival attached; Aldergrove's slot is 10:30.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-26",
+    "type": "email",
+    "from": "Dana Whitfield (Fernhill Coaches)",
+    "text": "A quick note on pricing: with fuel costs up, our rate went to 355 pounds per 56-seat coach for all bookings from 12 October onward. Anything already invoiced stays at the old rate, so your settled bookings are unaffected.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-27",
+    "type": "message",
+    "from": "Priya Anand (finance lead)",
+    "text": "Half-term reconciliation is done; flag any autumn orders that now sit over the sign-off line and I'll clear them.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-29",
+    "type": "email",
+    "from": "Tessa Rowe (Riverway Science Centre)",
+    "text": "Thank you for a lovely Year 5 visit last week; your invoice for admission will follow shortly.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-30",
+    "type": "note",
+    "from": "Nora",
+    "text": "Choir festival on 2026-11-24: confirm coach pickup time with the choir leader this week.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Year 5 Riverway trip coaches",
+    "fields": {
+     "supplier": "Fernhill Coaches",
+     "date": "2026-10-20",
+     "coaches": "2",
+     "amount": "640",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Choir festival coach to Millbrook",
+    "fields": {
+     "supplier": "Fernhill Coaches",
+     "date": "2026-11-24",
+     "coaches": "1",
+     "amount": "320",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Netball finals coach",
+    "fields": {
+     "supplier": "Fernhill Coaches",
+     "date": "2026-09-30",
+     "coaches": "1",
+     "amount": "320",
+     "status": "paid"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Year 5 Riverway Science Centre trip",
+    "fields": {
+     "date": "2026-10-20",
+     "place": "Riverway Science Centre",
+     "pupils": "56",
+     "coach_cost": "640",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Aldergrove Chess Club hall hire",
+    "fields": {
+     "day": "Tuesday",
+     "time": "18:00",
+     "place": "main hall",
+     "hirer": "Aldergrove Chess Club",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-2",
+    "fields": [
+     "amount"
+    ],
+    "from": "Priya Anand (finance lead)",
+    "rule": "e1"
+   },
+   {
+    "record": "EV-2",
+    "fields": [
+     "day",
+     "time"
+    ],
+    "from": "Aldergrove Chess Club",
+    "rule": "e2"
+   }
+  ],
+  "task": "The Year 5 Riverway trip is just behind us and I want the books straight before half-term ends: make sure the Fernhill coach order and the trip plan show the correct coach cost, and email Priya Anand the final coach cost figure for the trip file.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "amount",
+    "value": "710",
+    "stale": [
+     "640"
+    ]
+   },
+   {
+    "record": "EV-1",
+    "field": "coach_cost",
+    "value": "710",
+    "stale": [
+     "640"
+    ]
+   },
+   {
+    "message_to": "Priya Anand (finance lead)",
+    "regarding": "EV-1",
+    "says": [
+     "710"
+    ],
+    "stale": [
+     "640"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Fernhill's change raises the coach rate to 355 pounds for bookings from 12 October, so the Year 5 order and the trip plan built on it (two hops from the price fact) must be revised to 710. The choir coach order was booked under the 350-pound sign-off threshold, so at 355 pounds it now needs Priya's consent — ask, don't change it. The netball coach was already invoiced and paid, and the change's own terms leave invoiced bookings at the old rate, so it stays at 320; the Meridian quote of 345 is a distractor, not the contracted rate.",
+  "noise_kit": [
+   {
+    "kind": "booking",
+    "topic": "minibus for swimming lessons",
+    "counterpart": "Dana Whitfield",
+    "org": "Fernhill Coaches",
+    "item": "16-seat minibus",
+    "values": [
+     "Riverside Pool",
+     "Lakeside Leisure",
+     "Northgate Pool"
+    ],
+    "place": "school front gate"
+   },
+   {
+    "kind": "order",
+    "topic": "classroom stationery restock",
+    "counterpart": "Hannah Ives",
+    "org": "Papertrail Supplies",
+    "item": "boxes of whiteboard markers",
+    "unit": "box",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "school office"
+   },
+   {
+    "kind": "order",
+    "topic": "printer paper delivery",
+    "counterpart": "Hannah Ives",
+    "org": "Papertrail Supplies",
+    "item": "reams of A4 paper",
+    "unit": "ream",
+    "values": [
+     "40",
+     "60",
+     "80",
+     "100"
+    ],
+    "place": "school office"
+   },
+   {
+    "kind": "order",
+    "topic": "packed lunches",
+    "counterpart": "Owen Fairway",
+    "org": "Fairway Catering",
+    "item": "packed lunch",
+    "unit": "lunch",
+    "values": [
+     "30",
+     "45",
+     "56",
+     "60"
+    ],
+    "place": "school kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "hall for evening clubs",
+    "counterpart": "Lena Brooks",
+    "org": "Aldergrove Community Groups",
+    "item": "main hall evening slot",
+    "values": [
+     "main hall",
+     "small hall",
+     "gym"
+    ],
+    "place": "main hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "gym for after-school sport",
+    "counterpart": "Jasmin Cole",
+    "org": "district sports office",
+    "item": "gym practice slot",
+    "values": [
+     "gym",
+     "playground",
+     "field"
+    ],
+    "place": "school gym"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning consumables",
+    "counterpart": "Rob Ferro",
+    "org": "Brightline Cleaning",
+    "item": "cases of paper towels",
+    "unit": "case",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "caretaker's store"
+   },
+   {
+    "kind": "order",
+    "topic": "milk delivery",
+    "counterpart": "Sue Alden",
+    "org": "Dairyfresh",
+    "item": "crates of milk",
+    "unit": "crate",
+    "values": [
+     "10",
+     "12",
+     "14"
+    ],
+    "place": "school kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "library van visit",
+    "counterpart": "Marta Voss",
+    "org": "County Library Service",
+    "item": "mobile library visit",
+    "values": [
+     "front car park",
+     "playground",
+     "field gate"
+    ],
+    "place": "front car park"
+   },
+   {
+    "kind": "order",
+    "topic": "first aid supplies",
+    "counterpart": "Hannah Ives",
+    "org": "Papertrail Supplies",
+    "item": "first aid refill kits",
+    "unit": "kit",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "medical room"
+   },
+   {
+    "kind": "booking",
+    "topic": "music room for peripatetic lessons",
+    "counterpart": "Colin Marsh",
+    "org": "Millbrook Music Festival",
+    "item": "practice room",
+    "values": [
+     "music room",
+     "small hall",
+     "classroom 4"
+    ],
+    "place": "music block"
+   }
+  ],
+  "id": "K100-1-05",
+  "tier": 100,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The rate change applies to bookings from 12 October onward, but all three coach orders were booked in June; it does not clearly apply to earlier bookings with later travel dates. As written, no existing decision is invalidated, so the revisions to 710 and the choir-order consent request do not follow.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The rate change applies to bookings from 12 October onward, but all three coach orders were booked in June; it does not clearly apply to earlier bookings with later travel dates. As written, no existing decision is invalidated, so the revisions to 710 and the choir-order consent request do not follow."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3457,
+    "completion_tokens": 248,
+    "reasoning_tokens": 150,
+    "cached_tokens": 0
+   },
+   "cost": 0.055605,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c802d918fc94a69ad0f1deee804c3f2d86f00d0cbdc8491e3eaad764f9c43215",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The rate change to 355 pounds per coach from 12 October onward correctly drives ORD-1 and EV-1 to 710 (REVISE, EV-1 two hops from e3 via e7), ORD-2 to ASK under the 350-pound sign-off rule (e1), and ORD-3 to KEEP since it was invoiced and paid under the change's carve-out; the task requires acting (editing records, emailing Priya) without naming the change. Counts and distances meet tier 100, and the change sits mid-history at event 93 with later events. Only minor quibble: 'bookings from 12 October onward' could be read as booking date rather than trip date, but the surrounding events (e20, paid-invoice carve-out) fix the intended reading.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The rate change to 355 pounds per coach from 12 October onward correctly drives ORD-1 and EV-1 to 710 (REVISE, EV-1 two hops from e3 via e7), ORD-2 to ASK under the 350-pound sign-off rule (e1), and ORD-3 to KEEP since it was invoiced and paid under the change's carve-out; the task requires acting (editing records, emailing Priya) without naming the change. Counts and distances meet tier 100, and the change sits mid-history at event 93 with later events. Only minor quibble: 'bookings from 12 October onward' could be read as booking date rather than trip date, but the surrounding events (e20, paid-invoice carve-out) fix the intended reading."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3536,
+    "completion_tokens": 558,
+    "reasoning_tokens": 349,
+    "cached_tokens": 384
+   },
+   "cost": 0.00696784,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c802d918fc94a69ad0f1deee804c3f2d86f00d0cbdc8491e3eaad764f9c43215",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The ORD-1 revision to 710 is marked REVISE with no consent needed, but Priya's rule e1 requires sign-off for any supplier order totalling 350 or more, and the 710 total is well over that line (the 640 total already was). The consent map omits ORD-1, so the expected state conflicts with the history's own rule. The rest of the structure (class 1 with a two-hop REVISE on EV-1, the ASK on ORD-2, the KEEP on ORD-3, tier counts, and a hidden change at event 93) is sound.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The ORD-1 revision to 710 is marked REVISE with no consent needed, but Priya's rule e1 requires sign-off for any supplier order totalling 350 or more, and the 710 total is well over that line (the 640 total already was). The consent map omits ORD-1, so the expected state conflicts with the history's own rule. The rest of the structure (class 1 with a two-hop REVISE on EV-1, the ASK on ORD-2, the KEEP on ORD-3, tier counts, and a hidden change at event 93) is sound."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4987,
+    "completion_tokens": 1676,
+    "reasoning_tokens": 1440,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013367,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c802d918fc94a69ad0f1deee804c3f2d86f00d0cbdc8491e3eaad764f9c43215",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

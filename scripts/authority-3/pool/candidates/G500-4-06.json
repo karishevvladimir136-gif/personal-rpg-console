@@ -610,5 +610,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The consent map requires Theo's consent to change EV-2's place, but e1 restricts only changes to a confirmed fitting's date or time. Otherwise, the expected booking and confirmation follow the task, and the unrelated flannel price change makes this a control. The core meets the tier requirements, and the change is embedded among ordinary events with later events after it.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The consent map requires Theo's consent to change EV-2's place, but e1 restricts only changes to a confirmed fitting's date or time. Otherwise, the expected booking and confirmation follow the task, and the unrelated flannel price change makes this a control. The core meets the tier requirements, and the change is embedded among ordinary events with later events after it."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3885,
+    "completion_tokens": 268,
+    "reasoning_tokens": 156,
+    "cached_tokens": 0
+   },
+   "cost": 0.061955,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5bfba9373cfd3865ae8d3609bfe8e5dee234d86826d9804e048d045054f2216b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The expected state lists a 26 October 'stale' date and a '26 October' stale message reference, but nothing in the history revokes or corrects Theo's 26 October availability, so those fields are unexplained. The change (E0419) opens with 'Small correction to our price list', which partly announces it as a correction rather than leaving it as an ordinary event. The counts, distance from the task day, and the control structure otherwise check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The expected state lists a 26 October 'stale' date and a '26 October' stale message reference, but nothing in the history revokes or corrects Theo's 26 October availability, so those fields are unexplained. The change (E0419) opens with 'Small correction to our price list', which partly announces it as a correction rather than leaving it as an ordinary event. The counts, distance from the task day, and the control structure otherwise check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5633,
+    "completion_tokens": 1508,
+    "reasoning_tokens": 1317,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013173,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5bfba9373cfd3865ae8d3609bfe8e5dee234d86826d9804e048d045054f2216b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Halden price correction genuinely touches nothing: no decision ever cites the Cavalier grey flannel price, so all records stand, and the task's booking (20 Oct, within Theo's stated availability, before the wedding) plus confirmation message follow cleanly. Core counts (28 events, 6 decisions), the 18-day gap, and 81 post-change events meet tier 500. The change sits mid-history among routine noise with no flag.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Halden price correction genuinely touches nothing: no decision ever cites the Cavalier grey flannel price, so all records stand, and the task's booking (20 Oct, within Theo's stated availability, before the wedding) plus confirmation message follow cleanly. Core counts (28 events, 6 decisions), the 18-day gap, and 81 post-change events meet tier 500. The change sits mid-history among routine noise with no flag."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4010,
+    "completion_tokens": 373,
+    "reasoning_tokens": 227,
+    "cached_tokens": 256
+   },
+   "cost": 0.0169338,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5bfba9373cfd3865ae8d3609bfe8e5dee234d86826d9804e048d045054f2216b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

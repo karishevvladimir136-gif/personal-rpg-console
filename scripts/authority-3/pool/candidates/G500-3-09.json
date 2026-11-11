@@ -663,5 +663,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The supplier increase fixes ORD-1 at 31 per guest and 372 total, but no rule requires passing that increase through to Claire’s confirmed package price. The consent rule requires agreement before changing that price; it does not require proposing a change, so the mandatory ASK and treating 310 as stale in Claire’s final note are unjustified. The core otherwise meets the chain structure, tier requirements, and change-hiding conditions.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The supplier increase fixes ORD-1 at 31 per guest and 372 total, but no rule requires passing that increase through to Claire’s confirmed package price. The consent rule requires agreement before changing that price; it does not require proposing a change, so the mandatory ASK and treating 310 as stale in Claire’s final note are unjustified. The core otherwise meets the chain structure, tier requirements, and change-hiding conditions."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4234,
+    "completion_tokens": 254,
+    "reasoning_tokens": 131,
+    "cached_tokens": 0
+   },
+   "cost": 0.0656175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0199f4c8f886963472e9cb639cc3010170a814c99a1c1bbe54ab12b23a0ab6cc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected ORD-1 revision depends on reading \\\"bookings from 1 November onward\\\" as the brunch date, but ORD-1 was booked on 24 September, and Dana's \\\"everything already quoted for October stands\\\" clause suggests booking-date timing, which would leave ORD-1 at 26 and void the expected changes. The same ambiguity affects ORD-3 (booked 2 October for 14 November), whose price effect the expected state never addresses. The structure, counts, distances, echo (e22) and hidden placement otherwise meet the class-3 and tier-500 requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected ORD-1 revision depends on reading \"bookings from 1 November onward\" as the brunch date, but ORD-1 was booked on 24 September, and Dana's \"everything already quoted for October stands\" clause suggests booking-date timing, which would leave ORD-1 at 26 and void the expected changes. The same ambiguity affects ORD-3 (booked 2 October for 14 November), whose price effect the expected state never addresses. The structure, counts, distances, echo (e22) and hidden placement otherwise meet the class-3 and tier-500 requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6104,
+    "completion_tokens": 1997,
+    "reasoning_tokens": 1748,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016089,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0199f4c8f886963472e9cb639cc3010170a814c99a1c1bbe54ab12b23a0ab6cc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change corrects fact e10 (26→31 from 1 November), touching ORD-1 directly (REVISE, well under the 1500 sign-off line) and CL-2 two hops away via e12 (ASK, since e1 requires Claire's written agreement for confirmed package prices), while e17 keeps standing on the unchanged minimum and serving hours. The task (confirm the brunch with Dana, send Claire her note) forces workplace acts without hinting at the change. Tier met: 29 core events, 9 decisions, change 17 days before the task day with later core events and an echo (e22) restating 26; the change sits at event 459/500 with 41 routine events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change corrects fact e10 (26→31 from 1 November), touching ORD-1 directly (REVISE, well under the 1500 sign-off line) and CL-2 two hops away via e12 (ASK, since e1 requires Claire's written agreement for confirmed package prices), while e17 keeps standing on the unchanged minimum and serving hours. The task (confirm the brunch with Dana, send Claire her note) forces workplace acts without hinting at the change. Tier met: 29 core events, 9 decisions, change 17 days before the task day with later core events and an echo (e22) restating 26; the change sits at event 459/500 with 41 routine events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4367,
+    "completion_tokens": 726,
+    "reasoning_tokens": 519,
+    "cached_tokens": 256
+   },
+   "cost": 0.0232998,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0199f4c8f886963472e9cb639cc3010170a814c99a1c1bbe54ab12b23a0ab6cc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

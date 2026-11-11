@@ -1,0 +1,550 @@
+{
+ "id": "K100-4-02",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 4,
+ "idx": 1,
+ "setting": "Bookstore manager at Lantern Books, an independent shop with a café",
+ "prompt_sha256": "18427e447bdbc7eebd6778fb893d8d09753e12b259332d406c1c4e2a4e363486",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Lantern Books restock beside a restated rule\",\n  \"setting\": \"Bookstore manager at Lantern Books, an independent shop with a café\",\n  \"owner\": \"Mara\",\n  \"org\": \"Lantern Books\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Lantern Books house policy: any supplier order totalling more than 800 must be signed off by Priya Nair, our finance lead, before it is placed. Orders of 800 or less may be placed directly by the manager.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for author events: once an author event at Lantern Books is confirmed, the date or start time may only be moved with the agreement of Theo Brandt, our events coordinator, who manages the authors' schedules.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Hollis Byrne (Binder & Hale Distribution)\", \"text\": \"Our trade paperback price for 'The Glass Orchard' is 9.60 per copy, with free delivery to your shop for orders of 20 copies or more. Lead time is about five working days.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Sofia Lindqvist (Sagebrush Café Supplies)\", \"text\": \"Your standing café order: oat milk is 2.10 per litre and our espresso blend beans are 14.00 per kilo. Deliveries to Lantern Books run every Friday morning.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 60 litres of oat milk and 10 kilos of espresso blend beans from Sagebrush Café Supplies, totalling 266, delivered Friday 19 June to the café counter. Well under the 800 sign-off limit.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Theo Brandt (Lantern Books events)\", \"text\": \"Good news: the poet June Okafor can do a reading at the shop on 2026-11-06 at 19:00, in the events corner by the café. She expects about 40 attendees.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked June Okafor's poetry reading for 2026-11-06 at 19:00 in the events corner by the café, capacity 40. Theo has pencilled it into the authors' calendar.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"EV-1\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Hollis Byrne (Binder & Hale Distribution)\", \"text\": \"Stock check for you: we currently hold 240 copies of 'The Glass Orchard' paperback at our warehouse, so your usual restock sizes are no problem this quarter.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 50 copies of 'The Glass Orchard' paperback from Binder & Hale Distribution at 9.60 per copy, totalling 480 with free delivery to the shop, for the fiction shelves. Under the 800 limit, so placed directly.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e8\", \"e1\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Renata Vasquez (regular customer)\", \"text\": \"Please keep my loyalty account up to date: I collect pre-orders on Saturdays and my contact number is 555-0147. Looking forward to the autumn events programme.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Updated Renata Vasquez's customer record: Saturday pre-order collection, contact number 555-0147, loyalty status active.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"CL-1\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Priya Nair (Lantern Books finance)\", \"text\": \"Quarterly note: café supply spend is healthy. Reminder that I review any supplier order above 800 before it goes out — please flag those to me early in the week.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-21\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Staff meeting notes: the Tuesday evening book club will keep meeting in the reading nook at 18:30, hosted by Caleb; attendance runs about 14 people.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled the Tuesday evening book club in the reading nook at 18:30 as a standing weekly booking, hosted by Caleb, capacity 14.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-2\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Theo Brandt (Lantern Books events)\", \"text\": \"June Okafor's publicist confirms the 2026-11-06 reading at 19:00 is locked in on their side. They will send 20 signed bookplates ahead of the evening.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 30 kilos of espresso blend beans and 40 litres of oat milk from Sagebrush Café Supplies, totalling 504, delivered Friday 14 August. Below the 800 threshold, so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Hollis Byrne (Binder & Hale Distribution)\", \"text\": \"Autumn catalogue note: 'The Glass Orchard' remains 9.60 per copy through the season. A display dump-bin is available free with orders of 25 copies or more.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-02\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: by 2026-10-30, confirm the November window display theme with Caleb and Theo.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"notice\", \"from\": \"Priya Nair (Lantern Books finance)\", \"text\": \"For clarity after the summer audit: supplier orders must come to me for sign-off only when the total exceeds 800; anything at or under that figure the manager can send straight to the supplier. This is the same rule as always, just restated.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"quote\", \"from\": \"Sagebrush Café Supplies (Dario Pell)\", \"text\": \"Quote for your consideration: a one-off bulk deal of 120 kilos of espresso blend beans at 7.50 per kilo, totalling 900, if ordered before the end of October. Delivery to the café counter.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e21\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Theo Brandt (Lantern Books events)\", \"text\": \"Heads-up: a local history group asked about hiring the events corner on 2026-11-06, but I told them the evening is taken by June Okafor's reading at 19:00. No conflict.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Priya Nair (Lantern Books finance)\", \"text\": \"October cash-flow is fine. Proceed with normal restocks; just remember the standing sign-off arrangement for the larger supplier orders.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-08\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Front table check: 'The Glass Orchard' is down to 12 copies and selling steadily ahead of the autumn push. Time to restock for the display.\", \"role\": \"fact\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Renata Vasquez (regular customer)\", \"text\": \"Could you reserve one copy of 'The Glass Orchard' for me to collect on Saturday with my pre-orders? My number is still 555-0147.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Café supplies restock June\", \"fields\": {\"supplier\": \"Sagebrush Café Supplies\", \"item\": \"oat milk and espresso beans\", \"quantity\": \"70\", \"total\": \"266\", \"delivery_date\": \"2026-06-19\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"The Glass Orchard restock\", \"fields\": {\"supplier\": \"Binder & Hale Distribution\", \"item\": \"The Glass Orchard paperback\", \"quantity\": \"50\", \"unit_price\": \"9.60\", \"total\": \"480\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Café supplies restock August\", \"fields\": {\"supplier\": \"Sagebrush Café Supplies\", \"item\": \"espresso beans and oat milk\", \"quantity\": \"70\", \"total\": \"504\", \"delivery_date\": \"2026-08-14\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"June Okafor poetry reading\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"19:00\", \"place\": \"events corner\", \"capacity\": \"40\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Tuesday book club\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"18:30\", \"place\": \"reading nook\", \"capacity\": \"14\", \"status\": \"booked\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Renata Vasquez loyalty account\", \"fields\": {\"name\": \"Renata Vasquez\", \"phone\": \"555-0147\", \"collection_day\": \"Saturday\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Theo Brandt\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please order 30 copies of 'The Glass Orchard' paperback from Binder & Hale Distribution at 9.60 a copy for the front table, delivery to the shop.\",\n  \"expect\": [\n    {\"create\": \"orders\", \"fields\": {\"supplier\": \"Binder & Hale Distribution\", \"item\": \"The Glass Orchard paperback\", \"quantity\": \"30\", \"unit_price\": \"9.60\", \"total\": \"288\", \"status\": \"confirmed\"}, \"stale\": {\"quantity\": [\"50\"], \"total\": [\"480\", \"900\"]}, \"task\": true}\n  ],\n  \"why\": \"The change merely restates the 800 sign-off rule in other words and revokes nothing, so every existing record stands exactly as decided and no decision is touched. The task's order totals 288, well under the 800 threshold, so Mara can place it directly without Priya's sign-off. The 900 bulk-bean quote is a distractor: it would need sign-off and is not what was asked.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"oat milk restock\", \"counterpart\": \"Sofia Lindqvist\", \"org\": \"Sagebrush Café Supplies\", \"item\": \"oat milk\", \"unit\": \"litres\", \"values\": [\"40\", \"50\", \"60\", \"80\"], \"place\": \"café counter\"},\n    {\"kind\": \"order\", \"topic\": \"espresso beans restock\", \"counterpart\": \"Sofia Lindqvist\", \"org\": \"Sagebrush Café Supplies\", \"item\": \"espresso blend beans\", \"unit\": \"kilos\", \"values\": [\"10\", \"15\", \"20\", \"30\"], \"place\": \"café counter\"},\n    {\"kind\": \"order\", \"topic\": \"bestseller paperback restock\", \"counterpart\": \"Hollis Byrne\", \"org\": \"Binder & Hale Distribution\", \"item\": \"bestseller paperback bundle\", \"unit\": \"copies\", \"values\": [\"25\", \"30\", \"40\", \"50\"], \"place\": \"shop stockroom\"},\n    {\"kind\": \"order\", \"topic\": \"greeting card restock\", \"counterpart\": \"Hollis Byrne\", \"org\": \"Binder & Hale Distribution\", \"item\": \"greeting card box\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"shop stockroom\"},\n    {\"kind\": \"order\", \"topic\": \"paper bag restock\", \"counterpart\": \"Dario Pell\", \"org\": \"Sagebrush Café Supplies\", \"item\": \"branded paper bags\", \"unit\": \"packs\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"café counter\"},\n    {\"kind\": \"booking\", \"topic\": \"book club nook\", \"counterpart\": \"Caleb Wright\", \"org\": \"Lantern Books\", \"item\": \"weekly book club\", \"unit\": \"session\", \"values\": [\"reading nook\", \"window seats\", \"events corner\"], \"place\": \"reading nook\"},\n    {\"kind\": \"booking\", \"topic\": \"author signing slot\", \"counterpart\": \"Theo Brandt\", \"org\": \"Lantern Books\", \"item\": \"evening signing slot\", \"unit\": \"session\", \"values\": [\"events corner\", \"reading nook\", \"front table\"], \"place\": \"events corner\"},\n    {\"kind\": \"booking\", \"topic\": \"story time\", \"counterpart\": \"Theo Brandt\", \"org\": \"Lantern Books\", \"item\": \"children's story time\", \"unit\": \"session\", \"values\": [\"reading nook\", \"events corner\", \"window seats\"], \"place\": \"reading nook\"},\n    {\"kind\": \"order\", \"topic\": \"tea tin restock\", \"counterpart\": \"Mina Adeyemi\", \"org\": \"Kettle & Leaf\", \"item\": \"loose tea tins\", \"unit\": \"tins\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"café counter\"},\n    {\"kind\": \"order\", \"topic\": \"notebook restock\", \"counterpart\": \"Piotr Wozniak\", \"org\": \"Marlowe Stationery\", \"item\": \"kraft notebooks\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"shop stockroom\"},\n    {\"kind\": \"booking\", \"topic\": \"delivery van bay\", \"counterpart\": \"Sofia Lindqvist\", \"org\": \"Sagebrush Café Supplies\", \"item\": \"Friday delivery bay slot\", \"unit\": \"slot\", \"values\": [\"08:00\", \"09:30\", \"11:00\"], \"place\": \"rear alley\"},\n    {\"kind\": \"order\", \"topic\": \"bookmark restock\", \"counterpart\": \"Piotr Wozniak\", \"org\": \"Marlowe Stationery\", \"item\": \"printed bookmarks\", \"unit\": \"packs\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"shop stockroom\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3193,
+    "completion_tokens": 4261,
+    "reasoning_tokens": 420,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0651996,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Lantern Books restock beside a restated rule",
+  "setting": "Bookstore manager at Lantern Books, an independent shop with a café",
+  "owner": "Mara",
+  "org": "Lantern Books",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Lantern Books house policy: any supplier order totalling more than 800 must be signed off by Priya Nair, our finance lead, before it is placed. Orders of 800 or less may be placed directly by the manager.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing instruction for author events: once an author event at Lantern Books is confirmed, the date or start time may only be moved with the agreement of Theo Brandt, our events coordinator, who manages the authors' schedules.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Hollis Byrne (Binder & Hale Distribution)",
+    "text": "Our trade paperback price for 'The Glass Orchard' is 9.60 per copy, with free delivery to your shop for orders of 20 copies or more. Lead time is about five working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Sofia Lindqvist (Sagebrush Café Supplies)",
+    "text": "Your standing café order: oat milk is 2.10 per litre and our espresso blend beans are 14.00 per kilo. Deliveries to Lantern Books run every Friday morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 60 litres of oat milk and 10 kilos of espresso blend beans from Sagebrush Café Supplies, totalling 266, delivered Friday 19 June to the café counter. Well under the 800 sign-off limit.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Theo Brandt (Lantern Books events)",
+    "text": "Good news: the poet June Okafor can do a reading at the shop on 2026-11-06 at 19:00, in the events corner by the café. She expects about 40 attendees.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked June Okafor's poetry reading for 2026-11-06 at 19:00 in the events corner by the café, capacity 40. Theo has pencilled it into the authors' calendar.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e2"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Hollis Byrne (Binder & Hale Distribution)",
+    "text": "Stock check for you: we currently hold 240 copies of 'The Glass Orchard' paperback at our warehouse, so your usual restock sizes are no problem this quarter.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-30",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 50 copies of 'The Glass Orchard' paperback from Binder & Hale Distribution at 9.60 per copy, totalling 480 with free delivery to the shop, for the fiction shelves. Under the 800 limit, so placed directly.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e8",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-03",
+    "type": "email",
+    "from": "Renata Vasquez (regular customer)",
+    "text": "Please keep my loyalty account up to date: I collect pre-orders on Saturdays and my contact number is 555-0147. Looking forward to the autumn events programme.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Updated Renata Vasquez's customer record: Saturday pre-order collection, contact number 555-0147, loyalty status active.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Priya Nair (Lantern Books finance)",
+    "text": "Quarterly note: café supply spend is healthy. Reminder that I review any supplier order above 800 before it goes out — please flag those to me early in the week.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-21",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Staff meeting notes: the Tuesday evening book club will keep meeting in the reading nook at 18:30, hosted by Caleb; attendance runs about 14 people.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-23",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Scheduled the Tuesday evening book club in the reading nook at 18:30 as a standing weekly booking, hosted by Caleb, capacity 14.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Theo Brandt (Lantern Books events)",
+    "text": "June Okafor's publicist confirms the 2026-11-06 reading at 19:00 is locked in on their side. They will send 20 signed bookplates ahead of the evening.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 30 kilos of espresso blend beans and 40 litres of oat milk from Sagebrush Café Supplies, totalling 504, delivered Friday 14 August. Below the 800 threshold, so no sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Hollis Byrne (Binder & Hale Distribution)",
+    "text": "Autumn catalogue note: 'The Glass Orchard' remains 9.60 per copy through the season. A display dump-bin is available free with orders of 25 copies or more.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-02",
+    "type": "task",
+    "from": "Mara",
+    "text": "To-do: by 2026-10-30, confirm the November window display theme with Caleb and Theo.",
+    "role": "obligation"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-10",
+    "type": "notice",
+    "from": "Priya Nair (Lantern Books finance)",
+    "text": "For clarity after the summer audit: supplier orders must come to me for sign-off only when the total exceeds 800; anything at or under that figure the manager can send straight to the supplier. This is the same rule as always, just restated.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-18",
+    "type": "quote",
+    "from": "Sagebrush Café Supplies (Dario Pell)",
+    "text": "Quote for your consideration: a one-off bulk deal of 120 kilos of espresso blend beans at 7.50 per kilo, totalling 900, if ordered before the end of October. Delivery to the café counter.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Theo Brandt (Lantern Books events)",
+    "text": "Heads-up: a local history group asked about hiring the events corner on 2026-11-06, but I told them the evening is taken by June Okafor's reading at 19:00. No conflict.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Priya Nair (Lantern Books finance)",
+    "text": "October cash-flow is fine. Proceed with normal restocks; just remember the standing sign-off arrangement for the larger supplier orders.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-08",
+    "type": "note",
+    "from": "Mara",
+    "text": "Front table check: 'The Glass Orchard' is down to 12 copies and selling steadily ahead of the autumn push. Time to restock for the display.",
+    "role": "fact"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Renata Vasquez (regular customer)",
+    "text": "Could you reserve one copy of 'The Glass Orchard' for me to collect on Saturday with my pre-orders? My number is still 555-0147.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Café supplies restock June",
+    "fields": {
+     "supplier": "Sagebrush Café Supplies",
+     "item": "oat milk and espresso beans",
+     "quantity": "70",
+     "total": "266",
+     "delivery_date": "2026-06-19",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "The Glass Orchard restock",
+    "fields": {
+     "supplier": "Binder & Hale Distribution",
+     "item": "The Glass Orchard paperback",
+     "quantity": "50",
+     "unit_price": "9.60",
+     "total": "480",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Café supplies restock August",
+    "fields": {
+     "supplier": "Sagebrush Café Supplies",
+     "item": "espresso beans and oat milk",
+     "quantity": "70",
+     "total": "504",
+     "delivery_date": "2026-08-14",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "June Okafor poetry reading",
+    "fields": {
+     "date": "2026-11-06",
+     "time": "19:00",
+     "place": "events corner",
+     "capacity": "40",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Tuesday book club",
+    "fields": {
+     "day": "Tuesday",
+     "time": "18:30",
+     "place": "reading nook",
+     "capacity": "14",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Renata Vasquez loyalty account",
+    "fields": {
+     "name": "Renata Vasquez",
+     "phone": "555-0147",
+     "collection_day": "Saturday",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Theo Brandt",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please order 30 copies of 'The Glass Orchard' paperback from Binder & Hale Distribution at 9.60 a copy for the front table, delivery to the shop.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Binder & Hale Distribution",
+     "item": "The Glass Orchard paperback",
+     "quantity": "30",
+     "unit_price": "9.60",
+     "total": "288",
+     "status": "confirmed"
+    },
+    "stale": {
+     "quantity": [
+      "50"
+     ],
+     "total": [
+      "480",
+      "900"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "The change merely restates the 800 sign-off rule in other words and revokes nothing, so every existing record stands exactly as decided and no decision is touched. The task's order totals 288, well under the 800 threshold, so Mara can place it directly without Priya's sign-off. The 900 bulk-bean quote is a distractor: it would need sign-off and is not what was asked.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "oat milk restock",
+    "counterpart": "Sofia Lindqvist",
+    "org": "Sagebrush Café Supplies",
+    "item": "oat milk",
+    "unit": "litres",
+    "values": [
+     "40",
+     "50",
+     "60",
+     "80"
+    ],
+    "place": "café counter"
+   },
+   {
+    "kind": "order",
+    "topic": "espresso beans restock",
+    "counterpart": "Sofia Lindqvist",
+    "org": "Sagebrush Café Supplies",
+    "item": "espresso blend beans",
+    "unit": "kilos",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "30"
+    ],
+    "place": "café counter"
+   },
+   {
+    "kind": "order",
+    "topic": "bestseller paperback restock",
+    "counterpart": "Hollis Byrne",
+    "org": "Binder & Hale Distribution",
+    "item": "bestseller paperback bundle",
+    "unit": "copies",
+    "values": [
+     "25",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "shop stockroom"
+   },
+   {
+    "kind": "order",
+    "topic": "greeting card restock",
+    "counterpart": "Hollis Byrne",
+    "org": "Binder & Hale Distribution",
+    "item": "greeting card box",
+    "unit": "boxes",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "shop stockroom"
+   },
+   {
+    "kind": "order",
+    "topic": "paper bag restock",
+    "counterpart": "Dario Pell",
+    "org": "Sagebrush Café Supplies",
+    "item": "branded paper bags",
+    "unit": "packs",
+    "values": [
+     "4",
+     "6",
+     "10"
+    ],
+    "place": "café counter"
+   },
+   {
+    "kind": "booking",
+    "topic": "book club nook",
+    "counterpart": "Caleb Wright",
+    "org": "Lantern Books",
+    "item": "weekly book club",
+    "unit": "session",
+    "values": [
+     "reading nook",
+     "window seats",
+     "events corner"
+    ],
+    "place": "reading nook"
+   },
+   {
+    "kind": "booking",
+    "topic": "author signing slot",
+    "counterpart": "Theo Brandt",
+    "org": "Lantern Books",
+    "item": "evening signing slot",
+    "unit": "session",
+    "values": [
+     "events corner",
+     "reading nook",
+     "front table"
+    ],
+    "place": "events corner"
+   },
+   {
+    "kind": "booking",
+    "topic": "story time",
+    "counterpart": "Theo Brandt",
+    "org": "Lantern Books",
+    "item": "children's story time",
+    "unit": "session",
+    "values": [
+     "reading nook",
+     "events corner",
+     "window seats"
+    ],
+    "place": "reading nook"
+   },
+   {
+    "kind": "order",
+    "topic": "tea tin restock",
+    "counterpart": "Mina Adeyemi",
+    "org": "Kettle & Leaf",
+    "item": "loose tea tins",
+    "unit": "tins",
+    "values": [
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "café counter"
+   },
+   {
+    "kind": "order",
+    "topic": "notebook restock",
+    "counterpart": "Piotr Wozniak",
+    "org": "Marlowe Stationery",
+    "item": "kraft notebooks",
+    "unit": "packs",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "shop stockroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "delivery van bay",
+    "counterpart": "Sofia Lindqvist",
+    "org": "Sagebrush Café Supplies",
+    "item": "Friday delivery bay slot",
+    "unit": "slot",
+    "values": [
+     "08:00",
+     "09:30",
+     "11:00"
+    ],
+    "place": "rear alley"
+   },
+   {
+    "kind": "order",
+    "topic": "bookmark restock",
+    "counterpart": "Piotr Wozniak",
+    "org": "Marlowe Stationery",
+    "item": "printed bookmarks",
+    "unit": "packs",
+    "values": [
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "shop stockroom"
+   }
+  ],
+  "id": "K100-4-02",
+  "tier": 100,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

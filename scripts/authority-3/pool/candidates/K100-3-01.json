@@ -1,0 +1,660 @@
+{
+ "id": "K100-3-01",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 3,
+ "idx": 0,
+ "setting": "Museum operations officer at Greyport Maritime Museum, a local history museum",
+ "prompt_sha256": "67e717bd5b769ab68d3398519e9b6bf1c23f8eced75ad749d719aa2dbc05e3e0",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"The Skua's new licence\",\n  \"setting\": \"Museum operations officer at Greyport Maritime Museum, a local history museum\",\n  \"owner\": \"Mara\",\n  \"org\": \"Greyport Maritime Museum\",\n  \"now\": \"2026-11-09\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for the front desk team: once a school group visit is confirmed, any change to the agreed arrival or departure times for that group must be agreed with the school's party leader before we alter anything on the booking.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Catering policy: once Harbourside Catering has confirmed an order, we do not change the delivery time or the numbers without Nils Berg's confirmation. If we need to change either, we ask Nils first and wait for his answer before treating the order as settled.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Pete Aldous (Greyport Rowing Club)\", \"text\": \"Thanks for hosting our regatta display in the Boat Shed gallery this summer; the club will collect the oars and trophies during the first week of September.\", \"role\": \"other\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Nils Berg (Harbourside Catering)\", \"text\": \"Our packed lunches for group visits are 9 per head this season, including a sandwich, fruit, a traybake and a bottle of water; we can deliver to North Quay or to the museum kitchen.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"Confirming our boats for your autumn bookings: the Skua is licensed for 40 passengers and runs from North Quay; the Osprey is in refit until further notice.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Rhian Doyle (St Brigid's Primary School)\", \"text\": \"Our class visit is confirmed for Friday 20 November 2026: 34 pupils with 3 adults, 37 people in total, and we would like to cross the harbour by boat from North Quay in the morning as discussed.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-25\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Minutes of the summer fête debrief: the rope-making demonstration and the cafe stall both ran well; agreed to repeat the format next July.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Tidecall Charters boat Skua for one harbour crossing for the St Brigid's Primary group on Friday 20 November 2026, departing North Quay at 09:15; all 37 passengers fit in one trip on the Skua's 40-passenger licence.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Skua with Tidecall Charters for the trustees' harbour tour on 5 December 2026; 14 passengers, well within the boat's licensed capacity.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 37 packed lunches at 9 per head from Harbourside Catering for the St Brigid's visit on Friday 20 November 2026, to be delivered to North Quay at 08:45, ahead of the group's single 09:15 boat departure.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e4\"], \"record\": \"ORD-7\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-02\", \"type\": \"invoice\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"Deposit invoice for the November and December Skua charters: 240, payable by 13 November 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-21\", \"type\": \"email\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"Good news from the yard: the Osprey is back in service after its refit, licensed for 24 passengers, if you ever need a second boat for smaller groups.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e13\", \"date\": \"2026-10-05\", \"type\": \"notice\", \"from\": \"Greyport Harbour Office\", \"text\": \"Winter pontoon works at North Quay start on 30 November 2026; all charter operators should use the eastern steps for embarkation from that date.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"A correction on the Skua: its renewed passenger licence has come back at 30 passengers, not the 40 I quoted in July. For your 37-person school group on 20 November we would run two crossings from North Quay at 09:15 and 10:30, splitting the party 18 and 19.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e15\", \"date\": \"2026-11-02\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Operations meeting notes: winter opening hours begin this week, the St Brigid's visit preparations are on track, and the cafe will trial a soup menu through November.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-11-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Gift shop stocktake done: postcards and harbour guidebooks need reordering before the Christmas market weekend.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tidecall Skua charter for St Brigid's Primary visit\", \"fields\": {\"date\": \"2026-11-20\", \"boat\": \"Skua\", \"trips\": \"1\", \"depart_time\": \"09:15\", \"passengers\": \"37\", \"place\": \"North Quay\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-7\", \"collection\": \"orders\", \"title\": \"Packed lunches for St Brigid's Primary visit\", \"fields\": {\"date\": \"2026-11-20\", \"supplier\": \"Harbourside Catering\", \"quantity\": \"37\", \"delivery_time\": \"08:45\", \"delivery_place\": \"North Quay\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Trustees' harbour tour on the Skua\", \"fields\": {\"date\": \"2026-12-05\", \"boat\": \"Skua\", \"passengers\": \"14\", \"place\": \"North Quay\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Cafe biscuit and traybake restock\", \"fields\": {\"supplier\": \"Harbourside Catering\", \"quantity\": \"60\", \"delivery_place\": \"Museum kitchen\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Volunteer welcome desk rota, November\", \"fields\": {\"month\": \"2026-11\", \"lead\": \"Sylvia Marsh\", \"place\": \"Front desk\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-7\", \"fields\": [\"delivery_time\", \"quantity\"], \"from\": \"Nils Berg (Harbourside Catering)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please send Nils Berg at Harbourside Catering the delivery plan for the St Brigid's lunches on 20 November so he can get everything locked in.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"trips\", \"value\": \"2\", \"stale\": [\"1\"]},\n    {\"record\": \"EV-1\", \"field\": \"depart_time\", \"value\": \"09:15 and 10:30\", \"stale\": [\"09:15\"]},\n    {\"message_to\": \"Nils Berg (Harbourside Catering)\", \"regarding\": \"ORD-7\", \"says\": [\"08:30\", \"10:00\", \"18\", \"19\"], \"stale\": [\"08:45\"], \"task\": true}\n  ],\n  \"why\": \"The change cuts the Skua's licence from 40 to 30 passengers, so the St Brigid's crossing (37 people) becomes two trips at 09:15 and 10:30, split 18 and 19: EV-1 is REVISE. The lunch order ORD-7 rests on that crossing, so its delivery plan is touched, but changing a confirmed catering delivery time or numbers needs Nils Berg's confirmation under the catering policy, so it is ASK: no field changes, just a request to Nils carrying the split delivery (18 at 08:30, 19 at 10:00) rather than the single 08:45 drop. The trustees' tour uses only the capacity fact and 14 people still fit, so EV-3 is KEEP; the Osprey's 24 seats are a distractor.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"cafe traybake restock\", \"counterpart\": \"Nils Berg\", \"org\": \"Harbourside Catering\", \"item\": \"traybakes\", \"unit\": \"trays\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Museum kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"cafe sandwich platters\", \"counterpart\": \"Nils Berg\", \"org\": \"Harbourside Catering\", \"item\": \"sandwich platters\", \"unit\": \"platters\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Museum kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"harbour patrol support boat\", \"counterpart\": \"Joren Paas\", \"org\": \"Tidecall Charters\", \"item\": \"Osprey support boat\", \"unit\": \"charter\", \"values\": [\"North Quay\", \"Eastern steps\", \"Harbour mouth\"], \"place\": \"North Quay\"},\n    {\"kind\": \"booking\", \"topic\": \"learning room school workshop\", \"counterpart\": \"Rhian Doyle\", \"org\": \"St Brigid's Primary School\", \"item\": \"Learning Room\", \"unit\": \"session\", \"values\": [\"Learning Room\", \"Boat Shed gallery\", \"Chart Room\"], \"place\": \"Museum first floor\"},\n    {\"kind\": \"order\", \"topic\": \"gift shop postcards\", \"counterpart\": \"Lena Voss\", \"org\": \"Saltline Printworks\", \"item\": \"postcards\", \"unit\": \"packs\", \"values\": [\"50\", \"100\", \"150\", \"200\"], \"place\": \"Museum gift shop\"},\n    {\"kind\": \"order\", \"topic\": \"guidebook reprint\", \"counterpart\": \"Lena Voss\", \"org\": \"Saltline Printworks\", \"item\": \"harbour guidebooks\", \"unit\": \"copies\", \"values\": [\"100\", \"200\", \"300\"], \"place\": \"Museum gift shop\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Owen Teal\", \"org\": \"Greyport Janitorial Supplies\", \"item\": \"cleaning consumables box\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Museum stores\"},\n    {\"kind\": \"booking\", \"topic\": \"volunteer training evening\", \"counterpart\": \"Sylvia Marsh\", \"org\": \"Greyport Maritime Museum volunteers\", \"item\": \"Chart Room\", \"unit\": \"evening\", \"values\": [\"Chart Room\", \"Learning Room\", \"Cafe mezzanine\"], \"place\": \"Museum first floor\"},\n    {\"kind\": \"order\", \"topic\": \"rope and rigging display materials\", \"counterpart\": \"Pete Aldous\", \"org\": \"Greyport Rowing Club\", \"item\": \"manila rope coils\", \"unit\": \"coils\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Boat Shed gallery\"},\n    {\"kind\": \"booking\", \"topic\": \"quayside minibus shuttle\", \"counterpart\": \"Anya Frost\", \"org\": \"Quayside Travel\", \"item\": \"16-seat minibus\", \"unit\": \"run\", \"values\": [\"North Quay\", \"Station forecourt\", \"Museum gates\"], \"place\": \"North Quay\"},\n    {\"kind\": \"order\", \"topic\": \"cafe coffee beans\", \"counterpart\": \"Bruno Selkirk\", \"org\": \"Harbour Roast Co\", \"item\": \"coffee beans\", \"unit\": \"kilos\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Museum kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"trustees meeting room\", \"counterpart\": \"Hugh Carvell\", \"org\": \"Greyport Maritime Museum trustees\", \"item\": \"Chart Room\", \"unit\": \"morning\", \"values\": [\"Chart Room\", \"Learning Room\"], \"place\": \"Museum first floor\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3177,
+    "completion_tokens": 7229,
+    "reasoning_tokens": 3974,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1096716,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"The Skua's new licence\",\n  \"setting\": \"Museum operations officer at Greyport Maritime Museum, a local history museum\",\n  \"owner\": \"Mara\",\n  \"org\": \"Greyport Maritime Museum\",\n  \"now\": \"2026-11-09\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for the front desk team: once a school group visit is confirmed, any change to the agreed arrival or departure times for that group must be agreed with the school's party leader before we alter anything on the booking.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Catering policy: once Harbourside Catering has confirmed an order, we do not change the delivery time or the numbers without Nils Berg's confirmation. If we need to change either, we ask Nils first and wait for his answer before treating the order as settled.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Pete Aldous (Greyport Rowing Club)\", \"text\": \"Thanks for hosting our regatta display in the Boat Shed gallery this summer; the club will collect the oars and trophies during the first week of September.\", \"role\": \"other\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Nils Berg (Harbourside Catering)\", \"text\": \"Our packed lunches for group visits are 9 per head this season, including a sandwich, fruit, a traybake and a bottle of water; we can deliver to North Quay or to the museum kitchen.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"Confirming our boats for your autumn bookings: the Skua is licensed for 40 passengers and runs from North Quay; the Osprey is in refit until further notice.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Rhian Doyle (St Brigid's Primary School)\", \"text\": \"Our class visit is confirmed for Friday 20 November 2026: 34 pupils with 3 adults, 37 people in total, and we would like to cross the harbour by boat from North Quay in the morning as discussed.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-25\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Minutes of the summer fête debrief: the rope-making demonstration and the cafe stall both ran well; agreed to repeat the format next July.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Tidecall Charters boat Skua for one harbour crossing for the St Brigid's Primary group on Friday 20 November 2026, departing North Quay at 09:15; all 37 passengers fit in one trip on the Skua's 40-passenger licence.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Skua with Tidecall Charters for the trustees' harbour tour on 5 December 2026; 14 passengers, well within the boat's licensed capacity.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 37 packed lunches at 9 per head from Harbourside Catering for the St Brigid's visit on Friday 20 November 2026, to be delivered to North Quay at 08:45, ahead of the group's single 09:15 boat departure.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e4\"], \"record\": \"ORD-7\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Lena Voss (Saltline Printworks)\", \"text\": \"Your autumn reprint of the harbour guidebooks is scheduled for the week of 26 October; we will deliver 300 copies to the museum gift shop.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Sylvia Marsh as lead volunteer for the November welcome desk rota at the front desk, covering our winter opening hours.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"EV-5\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-02\", \"type\": \"invoice\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"Deposit invoice for the November and December Skua charters: 240, payable by 13 November 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Bruno Selkirk (Harbour Roast Co)\", \"text\": \"We are switching our cafe deliveries to Tuesday mornings from October; your usual coffee bean order will now arrive before 10:00 on Tuesdays.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-21\", \"type\": \"email\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"Good news from the yard: the Osprey is back in service after its refit, licensed for 24 passengers, if you ever need a second boat for smaller groups.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e16\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 60 trays of biscuits and traybakes from Harbourside Catering for the cafe, delivered to the museum kitchen; a routine restock for the autumn.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-05\", \"type\": \"notice\", \"from\": \"Greyport Harbour Office\", \"text\": \"Winter pontoon works at North Quay start on 30 November 2026; all charter operators should use the eastern steps for embarkation from that date.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Anya Frost (Quayside Travel)\", \"text\": \"Confirming our minibus shuttle is available for your November school visits; the 16-seat bus can meet groups at the station forecourt or at North Quay.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"A correction on the Skua: its renewed passenger licence has come back at 30 passengers, not the 40 I quoted in July. For your 37-person school group on 20 November we would run two crossings from North Quay at 09:15 and 10:30, splitting the party 18 and 19.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e20\", \"date\": \"2026-11-02\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Operations meeting notes: winter opening hours begin this week, the St Brigid's visit preparations are on track, and the cafe will trial a soup menu through November.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-11-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Gift shop stocktake done: postcards and harbour guidebooks need reordering before the Christmas market weekend.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-11-07\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To do: send the final headcount for the Christmas market cafe cover to Harbourside Catering by Friday 13 November 2026.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tidecall Skua charter for St Brigid's Primary visit\", \"fields\": {\"date\": \"2026-11-20\", \"boat\": \"Skua\", \"trips\": \"1\", \"depart_time\": \"09:15\", \"passengers\": \"37\", \"place\": \"North Quay\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-7\", \"collection\": \"orders\", \"title\": \"Packed lunches for St Brigid's Primary visit\", \"fields\": {\"date\": \"2026-11-20\", \"supplier\": \"Harbourside Catering\", \"quantity\": \"37\", \"delivery_time\": \"08:45\", \"delivery_place\": \"North Quay\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Trustees' harbour tour on the Skua\", \"fields\": {\"date\": \"2026-12-05\", \"boat\": \"Skua\", \"passengers\": \"14\", \"place\": \"North Quay\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Cafe biscuit and traybake restock\", \"fields\": {\"supplier\": \"Harbourside Catering\", \"quantity\": \"60\", \"delivery_place\": \"Museum kitchen\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Volunteer welcome desk rota, November\", \"fields\": {\"month\": \"2026-11\", \"lead\": \"Sylvia Marsh\", \"place\": \"Front desk\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-7\", \"fields\": [\"delivery_time\", \"quantity\"], \"from\": \"Nils Berg (Harbourside Catering)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please send Nils Berg at Harbourside Catering the delivery plan for the St Brigid's lunches on 20 November so he can get everything locked in.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"trips\", \"value\": \"2\", \"stale\": [\"1\"]},\n    {\"record\": \"EV-1\", \"field\": \"depart_time\", \"value\": \"09:15 and 10:30\", \"stale\": [\"09:15\"]},\n    {\"message_to\": \"Nils Berg (Harbourside Catering)\", \"regarding\": \"ORD-7\", \"says\": [\"08:30\", \"10:00\", \"18\", \"19\"], \"stale\": [\"08:45\"], \"task\": true}\n  ],\n  \"why\": \"The change cuts the Skua's licence from 40 to 30 passengers, so the St Brigid's crossing (37 people) becomes two trips at 09:15 and 10:30, split 18 and 19: EV-1 is REVISE. The lunch order ORD-7 rests on that crossing, so its delivery plan is touched, but changing a confirmed catering delivery time or numbers needs Nils Berg's confirmation under the catering policy, so it is ASK: no field changes, just a request to Nils carrying the split delivery (18 at 08:30, 19 at 10:00) rather than the single 08:45 drop. The trustees' tour uses only the capacity fact and 14 people still fit, so EV-3 is KEEP; the Osprey's 24 seats are a distractor.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"cafe traybake restock\", \"counterpart\": \"Nils Berg\", \"org\": \"Harbourside Catering\", \"item\": \"traybakes\", \"unit\": \"trays\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Museum kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"cafe sandwich platters\", \"counterpart\": \"Nils Berg\", \"org\": \"Harbourside Catering\", \"item\": \"sandwich platters\", \"unit\": \"platters\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Museum kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"harbour patrol support boat\", \"counterpart\": \"Joren Paas\", \"org\": \"Tidecall Charters\", \"item\": \"Osprey support boat\", \"unit\": \"charter\", \"values\": [\"North Quay\", \"Eastern steps\", \"Harbour mouth\"], \"place\": \"North Quay\"},\n    {\"kind\": \"booking\", \"topic\": \"learning room school workshop\", \"counterpart\": \"Rhian Doyle\", \"org\": \"St Brigid's Primary School\", \"item\": \"Learning Room\", \"unit\": \"session\", \"values\": [\"Learning Room\", \"Boat Shed gallery\", \"Chart Room\"], \"place\": \"Museum first floor\"},\n    {\"kind\": \"order\", \"topic\": \"gift shop postcards\", \"counterpart\": \"Lena Voss\", \"org\": \"Saltline Printworks\", \"item\": \"postcards\", \"unit\": \"packs\", \"values\": [\"50\", \"100\", \"150\", \"200\"], \"place\": \"Museum gift shop\"},\n    {\"kind\": \"order\", \"topic\": \"guidebook reprint\", \"counterpart\": \"Lena Voss\", \"org\": \"Saltline Printworks\", \"item\": \"harbour guidebooks\", \"unit\": \"copies\", \"values\": [\"100\", \"200\", \"300\"], \"place\": \"Museum gift shop\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Owen Teal\", \"org\": \"Greyport Janitorial Supplies\", \"item\": \"cleaning consumables box\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Museum stores\"},\n    {\"kind\": \"booking\", \"topic\": \"volunteer training evening\", \"counterpart\": \"Sylvia Marsh\", \"org\": \"Greyport Maritime Museum volunteers\", \"item\": \"Chart Room\", \"unit\": \"evening\", \"values\": [\"Chart Room\", \"Learning Room\", \"Cafe mezzanine\"], \"place\": \"Museum first floor\"},\n    {\"kind\": \"order\", \"topic\": \"rope and rigging display materials\", \"counterpart\": \"Pete Aldous\", \"org\": \"Greyport Rowing Club\", \"item\": \"manila rope coils\", \"unit\": \"coils\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Boat Shed gallery\"},\n    {\"kind\": \"booking\", \"topic\": \"quayside minibus shuttle\", \"counterpart\": \"Anya Frost\", \"org\": \"Quayside Travel\", \"item\": \"16-seat minibus\", \"unit\": \"run\", \"values\": [\"North Quay\", \"Station forecourt\", \"Museum gates\"], \"place\": \"North Quay\"},\n    {\"kind\": \"order\", \"topic\": \"cafe coffee beans\", \"counterpart\": \"Bruno Selkirk\", \"org\": \"Harbour Roast Co\", \"item\": \"coffee beans\", \"unit\": \"kilos\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Museum kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"trustees meeting room\", \"counterpart\": \"Hugh Carvell\", \"org\": \"Greyport Maritime Museum trustees\", \"item\": \"Chart Room\", \"unit\": \"morning\", \"values\": [\"Chart Room\", \"Learning Room\"], \"place\": \"Museum first floor\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6497,
+    "completion_tokens": 3808,
+    "reasoning_tokens": 65,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0683166,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 16 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"The Skua's new licence\",\n  \"setting\": \"Museum operations officer at Greyport Maritime Museum, a local history museum\",\n  \"owner\": \"Mara\",\n  \"org\": \"Greyport Maritime Museum\",\n  \"now\": \"2026-11-09\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for the front desk team: once a school group visit is confirmed, any change to the agreed arrival or departure times for that group must be agreed with the school's party leader before we alter anything on the booking.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Catering policy: once Harbourside Catering has confirmed an order, we do not change the delivery time or the numbers without Nils Berg's confirmation. If we need to change either, we ask Nils first and wait for his answer before treating the order as settled.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Pete Aldous (Greyport Rowing Club)\", \"text\": \"Thanks for hosting our regatta display in the Boat Shed gallery this summer; the club will collect the oars and trophies during the first week of September.\", \"role\": \"other\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Nils Berg (Harbourside Catering)\", \"text\": \"Our packed lunches for group visits are 9 per head this season, including a sandwich, fruit, a traybake and a bottle of water; we can deliver to North Quay or to the museum kitchen.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"Confirming our boats for your autumn bookings: the Skua is licensed for 40 passengers and runs from North Quay; the Osprey is in refit until further notice.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Rhian Doyle (St Brigid's Primary School)\", \"text\": \"Our class visit is confirmed for Friday 20 November 2026: 34 pupils with 3 adults, 37 people in total, and we would like to cross the harbour by boat from North Quay in the morning as discussed.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-25\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Minutes of the summer fête debrief: the rope-making demonstration and the cafe stall both ran well; agreed to repeat the format next July.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-29\", \"type\": \"message\", \"from\": \"Sylvia Marsh\", \"text\": \"Happy to lead the November welcome desk rota at the front desk again this year; I can cover weekday mornings and organise the other volunteers around them.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Tidecall Charters boat Skua for one harbour crossing for the St Brigid's Primary group on Friday 20 November 2026, departing North Quay at 09:15; all 37 passengers fit in one trip on the Skua's 40-passenger licence.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Skua with Tidecall Charters for the trustees' harbour tour on 5 December 2026; 14 passengers, well within the boat's licensed capacity.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 37 packed lunches at 9 per head from Harbourside Catering for the St Brigid's visit on Friday 20 November 2026, to be delivered to North Quay at 08:45, ahead of the group's single 09:15 boat departure.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e4\"], \"record\": \"ORD-7\", \"mark\": \"ASK\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Lena Voss (Saltline Printworks)\", \"text\": \"Your autumn reprint of the harbour guidebooks is scheduled for the week of 26 October; we will deliver 300 copies to the museum gift shop.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Sylvia Marsh as lead volunteer for the November welcome desk rota at the front desk, as she offered, covering our winter opening hours.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-5\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-02\", \"type\": \"invoice\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"Deposit invoice for the November and December Skua charters: 240, payable by 13 November 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Bruno Selkirk (Harbour Roast Co)\", \"text\": \"We are switching our cafe deliveries to Tuesday mornings from October; your usual coffee bean order will now arrive before 10:00 on Tuesdays.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-21\", \"type\": \"email\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"Good news from the yard: the Osprey is back in service after its refit, licensed for 24 passengers, if you ever need a second boat for smaller groups.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e17\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 60 trays of biscuits and traybakes from Harbourside Catering for the cafe, delivered to the museum kitchen; a routine restock for the autumn.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-05\", \"type\": \"notice\", \"from\": \"Greyport Harbour Office\", \"text\": \"Winter pontoon works at North Quay start on 30 November 2026; all charter operators should use the eastern steps for embarkation from that date.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Anya Frost (Quayside Travel)\", \"text\": \"Confirming our minibus shuttle is available for your November school visits; the 16-seat bus can meet groups at the station forecourt or at North Quay.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Joren Paas (Tidecall Charters)\", \"text\": \"A correction on the Skua: its renewed passenger licence has come back at 30 passengers, not the 40 I quoted in July. For your 37-person school group on 20 November we would run two crossings from North Quay at 09:15 and 10:30, splitting the party 18 and 19.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e21\", \"date\": \"2026-11-02\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Operations meeting notes: winter opening hours begin this week, the St Brigid's visit preparations are on track, and the cafe will trial a soup menu through November.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-11-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Gift shop stocktake done: postcards and harbour guidebooks need reordering before the Christmas market weekend.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-11-07\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To do: send the final headcount for the Christmas market cafe cover to Harbourside Catering by Friday 13 November 2026.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tidecall Skua charter for St Brigid's Primary visit\", \"fields\": {\"date\": \"2026-11-20\", \"boat\": \"Skua\", \"trips\": \"1\", \"depart_time\": \"09:15\", \"passengers\": \"37\", \"place\": \"North Quay\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-7\", \"collection\": \"orders\", \"title\": \"Packed lunches for St Brigid's Primary visit\", \"fields\": {\"date\": \"2026-11-20\", \"supplier\": \"Harbourside Catering\", \"quantity\": \"37\", \"delivery_time\": \"08:45\", \"delivery_place\": \"North Quay\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Trustees' harbour tour on the Skua\", \"fields\": {\"date\": \"2026-12-05\", \"boat\": \"Skua\", \"passengers\": \"14\", \"place\": \"North Quay\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Cafe biscuit and traybake restock\", \"fields\": {\"supplier\": \"Harbourside Catering\", \"quantity\": \"60\", \"delivery_place\": \"Museum kitchen\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Volunteer welcome desk rota, November\", \"fields\": {\"month\": \"2026-11\", \"lead\": \"Sylvia Marsh\", \"place\": \"Front desk\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-7\", \"fields\": [\"delivery_time\", \"quantity\"], \"from\": \"Nils Berg (Harbourside Catering)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please send Nils Berg at Harbourside Catering the delivery plan for the St Brigid's lunches on 20 November so he can get everything locked in.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"trips\", \"value\": \"2\", \"stale\": [\"1\"]},\n    {\"record\": \"EV-1\", \"field\": \"depart_time\", \"value\": \"09:15 and 10:30\", \"stale\": [\"09:15\"]},\n    {\"message_to\": \"Nils Berg (Harbourside Catering)\", \"regarding\": \"ORD-7\", \"says\": [\"08:30\", \"10:00\", \"18\", \"19\"], \"stale\": [\"08:45\"], \"task\": true}\n  ],\n  \"why\": \"The change cuts the Skua's licence from 40 to 30 passengers, so the St Brigid's crossing (37 people) becomes two trips at 09:15 and 10:30, split 18 and 19: EV-1 is REVISE. The lunch order ORD-7 rests on that crossing, so its delivery plan is touched, but changing a confirmed catering delivery time or numbers needs Nils Berg's confirmation under the catering policy, so it is ASK: no field changes, just a request to Nils carrying the split delivery (18 at 08:30, 19 at 10:00) rather than the single 08:45 drop. The trustees' tour uses only the capacity fact and 14 people still fit, so EV-3 is KEEP; the Osprey's 24 seats are a distractor.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"cafe traybake restock\", \"counterpart\": \"Nils Berg\", \"org\": \"Harbourside Catering\", \"item\": \"traybakes\", \"unit\": \"trays\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Museum kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"cafe sandwich platters\", \"counterpart\": \"Nils Berg\", \"org\": \"Harbourside Catering\", \"item\": \"sandwich platters\", \"unit\": \"platters\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Museum kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"harbour patrol support boat\", \"counterpart\": \"Joren Paas\", \"org\": \"Tidecall Charters\", \"item\": \"Osprey support boat\", \"unit\": \"charter\", \"values\": [\"North Quay\", \"Eastern steps\", \"Harbour mouth\"], \"place\": \"North Quay\"},\n    {\"kind\": \"booking\", \"topic\": \"learning room school workshop\", \"counterpart\": \"Rhian Doyle\", \"org\": \"St Brigid's Primary School\", \"item\": \"Learning Room\", \"unit\": \"session\", \"values\": [\"Learning Room\", \"Boat Shed gallery\", \"Chart Room\"], \"place\": \"Museum first floor\"},\n    {\"kind\": \"order\", \"topic\": \"gift shop postcards\", \"counterpart\": \"Lena Voss\", \"org\": \"Saltline Printworks\", \"item\": \"postcards\", \"unit\": \"packs\", \"values\": [\"50\", \"100\", \"150\", \"200\"], \"place\": \"Museum gift shop\"},\n    {\"kind\": \"order\", \"topic\": \"guidebook reprint\", \"counterpart\": \"Lena Voss\", \"org\": \"Saltline Printworks\", \"item\": \"harbour guidebooks\", \"unit\": \"copies\", \"values\": [\"100\", \"200\", \"300\"], \"place\": \"Museum gift shop\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Owen Teal\", \"org\": \"Greyport Janitorial Supplies\", \"item\": \"cleaning consumables box\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Museum stores\"},\n    {\"kind\": \"booking\", \"topic\": \"volunteer training evening\", \"counterpart\": \"Sylvia Marsh\", \"org\": \"Greyport Maritime Museum volunteers\", \"item\": \"Chart Room\", \"unit\": \"evening\", \"values\": [\"Chart Room\", \"Learning Room\", \"Cafe mezzanine\"], \"place\": \"Museum first floor\"},\n    {\"kind\": \"order\", \"topic\": \"rope and rigging display materials\", \"counterpart\": \"Pete Aldous\", \"org\": \"Greyport Rowing Club\", \"item\": \"manila rope coils\", \"unit\": \"coils\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Boat Shed gallery\"},\n    {\"kind\": \"booking\", \"topic\": \"quayside minibus shuttle\", \"counterpart\": \"Anya Frost\", \"org\": \"Quayside Travel\", \"item\": \"16-seat minibus\", \"unit\": \"run\", \"values\": [\"North Quay\", \"Station forecourt\", \"Museum gates\"], \"place\": \"North Quay\"},\n    {\"kind\": \"order\", \"topic\": \"cafe coffee beans\", \"counterpart\": \"Bruno Selkirk\", \"org\": \"Harbour Roast Co\", \"item\": \"coffee beans\", \"unit\": \"kilos\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Museum kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"trustees meeting room\", \"counterpart\": \"Hugh Carvell\", \"org\": \"Greyport Maritime Museum trustees\", \"item\": \"Chart Room\", \"unit\": \"morning\", \"values\": [\"Chart Room\", \"Learning Room\", \"Cafe mezzanine\"], \"place\": \"Museum first floor\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 10318,
+    "completion_tokens": 4247,
+    "reasoning_tokens": 416,
+    "cached_tokens": 6400
+   },
+   "cost": 0.077379,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e12: a decision must rest on at least one earlier event\n- noise topic 'trustees meeting room': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "The Skua's new licence",
+  "setting": "Museum operations officer at Greyport Maritime Museum, a local history museum",
+  "owner": "Mara",
+  "org": "Greyport Maritime Museum",
+  "now": "2026-11-09",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing instruction for the front desk team: once a school group visit is confirmed, any change to the agreed arrival or departure times for that group must be agreed with the school's party leader before we alter anything on the booking.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-04",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Catering policy: once Harbourside Catering has confirmed an order, we do not change the delivery time or the numbers without Nils Berg's confirmation. If we need to change either, we ask Nils first and wait for his answer before treating the order as settled.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Pete Aldous (Greyport Rowing Club)",
+    "text": "Thanks for hosting our regatta display in the Boat Shed gallery this summer; the club will collect the oars and trophies during the first week of September.",
+    "role": "other"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Nils Berg (Harbourside Catering)",
+    "text": "Our packed lunches for group visits are 9 per head this season, including a sandwich, fruit, a traybake and a bottle of water; we can deliver to North Quay or to the museum kitchen.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Joren Paas (Tidecall Charters)",
+    "text": "Confirming our boats for your autumn bookings: the Skua is licensed for 40 passengers and runs from North Quay; the Osprey is in refit until further notice.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Rhian Doyle (St Brigid's Primary School)",
+    "text": "Our class visit is confirmed for Friday 20 November 2026: 34 pupils with 3 adults, 37 people in total, and we would like to cross the harbour by boat from North Quay in the morning as discussed.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-25",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Minutes of the summer fête debrief: the rope-making demonstration and the cafe stall both ran well; agreed to repeat the format next July.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-29",
+    "type": "message",
+    "from": "Sylvia Marsh",
+    "text": "Happy to lead the November welcome desk rota at the front desk again this year; I can cover weekday mornings and organise the other volunteers around them.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the Tidecall Charters boat Skua for one harbour crossing for the St Brigid's Primary group on Friday 20 November 2026, departing North Quay at 09:15; all 37 passengers fit in one trip on the Skua's 40-passenger licence.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e6"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the Skua with Tidecall Charters for the trustees' harbour tour on 5 December 2026; 14 passengers, well within the boat's licensed capacity.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 37 packed lunches at 9 per head from Harbourside Catering for the St Brigid's visit on Friday 20 November 2026, to be delivered to North Quay at 08:45, ahead of the group's single 09:15 boat departure.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e4"
+    ],
+    "record": "ORD-7",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Lena Voss (Saltline Printworks)",
+    "text": "Your autumn reprint of the harbour guidebooks is scheduled for the week of 26 October; we will deliver 300 copies to the museum gift shop.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-26",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Assigned Sylvia Marsh as lead volunteer for the November welcome desk rota at the front desk, as she offered, covering our winter opening hours.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-02",
+    "type": "invoice",
+    "from": "Joren Paas (Tidecall Charters)",
+    "text": "Deposit invoice for the November and December Skua charters: 240, payable by 13 November 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-09",
+    "type": "email",
+    "from": "Bruno Selkirk (Harbour Roast Co)",
+    "text": "We are switching our cafe deliveries to Tuesday mornings from October; your usual coffee bean order will now arrive before 10:00 on Tuesdays.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-21",
+    "type": "email",
+    "from": "Joren Paas (Tidecall Charters)",
+    "text": "Good news from the yard: the Osprey is back in service after its refit, licensed for 24 passengers, if you ever need a second boat for smaller groups.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-30",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 60 trays of biscuits and traybakes from Harbourside Catering for the cafe, delivered to the museum kitchen; a routine restock for the autumn.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-05",
+    "type": "notice",
+    "from": "Greyport Harbour Office",
+    "text": "Winter pontoon works at North Quay start on 30 November 2026; all charter operators should use the eastern steps for embarkation from that date.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Anya Frost (Quayside Travel)",
+    "text": "Confirming our minibus shuttle is available for your November school visits; the 16-seat bus can meet groups at the station forecourt or at North Quay.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-28",
+    "type": "email",
+    "from": "Joren Paas (Tidecall Charters)",
+    "text": "A correction on the Skua: its renewed passenger licence has come back at 30 passengers, not the 40 I quoted in July. For your 37-person school group on 20 November we would run two crossings from North Quay at 09:15 and 10:30, splitting the party 18 and 19.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e21",
+    "date": "2026-11-02",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Operations meeting notes: winter opening hours begin this week, the St Brigid's visit preparations are on track, and the cafe will trial a soup menu through November.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-11-05",
+    "type": "note",
+    "from": "Mara",
+    "text": "Gift shop stocktake done: postcards and harbour guidebooks need reordering before the Christmas market weekend.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-11-07",
+    "type": "task",
+    "from": "Mara",
+    "text": "To do: send the final headcount for the Christmas market cafe cover to Harbourside Catering by Friday 13 November 2026.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Tidecall Skua charter for St Brigid's Primary visit",
+    "fields": {
+     "date": "2026-11-20",
+     "boat": "Skua",
+     "trips": "1",
+     "depart_time": "09:15",
+     "passengers": "37",
+     "place": "North Quay",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-7",
+    "collection": "orders",
+    "title": "Packed lunches for St Brigid's Primary visit",
+    "fields": {
+     "date": "2026-11-20",
+     "supplier": "Harbourside Catering",
+     "quantity": "37",
+     "delivery_time": "08:45",
+     "delivery_place": "North Quay",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Trustees' harbour tour on the Skua",
+    "fields": {
+     "date": "2026-12-05",
+     "boat": "Skua",
+     "passengers": "14",
+     "place": "North Quay",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Cafe biscuit and traybake restock",
+    "fields": {
+     "supplier": "Harbourside Catering",
+     "quantity": "60",
+     "delivery_place": "Museum kitchen",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Volunteer welcome desk rota, November",
+    "fields": {
+     "month": "2026-11",
+     "lead": "Sylvia Marsh",
+     "place": "Front desk",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-7",
+    "fields": [
+     "delivery_time",
+     "quantity"
+    ],
+    "from": "Nils Berg (Harbourside Catering)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please send Nils Berg at Harbourside Catering the delivery plan for the St Brigid's lunches on 20 November so he can get everything locked in.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "trips",
+    "value": "2",
+    "stale": [
+     "1"
+    ]
+   },
+   {
+    "record": "EV-1",
+    "field": "depart_time",
+    "value": "09:15 and 10:30",
+    "stale": [
+     "09:15"
+    ]
+   },
+   {
+    "message_to": "Nils Berg (Harbourside Catering)",
+    "regarding": "ORD-7",
+    "says": [
+     "08:30",
+     "10:00",
+     "18",
+     "19"
+    ],
+    "stale": [
+     "08:45"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change cuts the Skua's licence from 40 to 30 passengers, so the St Brigid's crossing (37 people) becomes two trips at 09:15 and 10:30, split 18 and 19: EV-1 is REVISE. The lunch order ORD-7 rests on that crossing, so its delivery plan is touched, but changing a confirmed catering delivery time or numbers needs Nils Berg's confirmation under the catering policy, so it is ASK: no field changes, just a request to Nils carrying the split delivery (18 at 08:30, 19 at 10:00) rather than the single 08:45 drop. The trustees' tour uses only the capacity fact and 14 people still fit, so EV-3 is KEEP; the Osprey's 24 seats are a distractor.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "cafe traybake restock",
+    "counterpart": "Nils Berg",
+    "org": "Harbourside Catering",
+    "item": "traybakes",
+    "unit": "trays",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Museum kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "cafe sandwich platters",
+    "counterpart": "Nils Berg",
+    "org": "Harbourside Catering",
+    "item": "sandwich platters",
+    "unit": "platters",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Museum kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "harbour patrol support boat",
+    "counterpart": "Joren Paas",
+    "org": "Tidecall Charters",
+    "item": "Osprey support boat",
+    "unit": "charter",
+    "values": [
+     "North Quay",
+     "Eastern steps",
+     "Harbour mouth"
+    ],
+    "place": "North Quay"
+   },
+   {
+    "kind": "booking",
+    "topic": "learning room school workshop",
+    "counterpart": "Rhian Doyle",
+    "org": "St Brigid's Primary School",
+    "item": "Learning Room",
+    "unit": "session",
+    "values": [
+     "Learning Room",
+     "Boat Shed gallery",
+     "Chart Room"
+    ],
+    "place": "Museum first floor"
+   },
+   {
+    "kind": "order",
+    "topic": "gift shop postcards",
+    "counterpart": "Lena Voss",
+    "org": "Saltline Printworks",
+    "item": "postcards",
+    "unit": "packs",
+    "values": [
+     "50",
+     "100",
+     "150",
+     "200"
+    ],
+    "place": "Museum gift shop"
+   },
+   {
+    "kind": "order",
+    "topic": "guidebook reprint",
+    "counterpart": "Lena Voss",
+    "org": "Saltline Printworks",
+    "item": "harbour guidebooks",
+    "unit": "copies",
+    "values": [
+     "100",
+     "200",
+     "300"
+    ],
+    "place": "Museum gift shop"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Owen Teal",
+    "org": "Greyport Janitorial Supplies",
+    "item": "cleaning consumables box",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Museum stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "volunteer training evening",
+    "counterpart": "Sylvia Marsh",
+    "org": "Greyport Maritime Museum volunteers",
+    "item": "Chart Room",
+    "unit": "evening",
+    "values": [
+     "Chart Room",
+     "Learning Room",
+     "Cafe mezzanine"
+    ],
+    "place": "Museum first floor"
+   },
+   {
+    "kind": "order",
+    "topic": "rope and rigging display materials",
+    "counterpart": "Pete Aldous",
+    "org": "Greyport Rowing Club",
+    "item": "manila rope coils",
+    "unit": "coils",
+    "values": [
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "Boat Shed gallery"
+   },
+   {
+    "kind": "booking",
+    "topic": "quayside minibus shuttle",
+    "counterpart": "Anya Frost",
+    "org": "Quayside Travel",
+    "item": "16-seat minibus",
+    "unit": "run",
+    "values": [
+     "North Quay",
+     "Station forecourt",
+     "Museum gates"
+    ],
+    "place": "North Quay"
+   },
+   {
+    "kind": "order",
+    "topic": "cafe coffee beans",
+    "counterpart": "Bruno Selkirk",
+    "org": "Harbour Roast Co",
+    "item": "coffee beans",
+    "unit": "kilos",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Museum kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "trustees meeting room",
+    "counterpart": "Hugh Carvell",
+    "org": "Greyport Maritime Museum trustees",
+    "item": "Chart Room",
+    "unit": "morning",
+    "values": [
+     "Chart Room",
+     "Learning Room",
+     "Cafe mezzanine"
+    ],
+    "place": "Museum first floor"
+   }
+  ],
+  "id": "K100-3-01",
+  "tier": 100,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history does not require split lunch deliveries or establish 08:30 and 10:00; delivering all 37 lunches at 08:45 remains compatible with both crossings. Changing the confirmed school group's departure arrangements requires the party leader's agreement under e1, so directly revising EV-1 without that consent is unjustified and the consent map is incomplete.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history does not require split lunch deliveries or establish 08:30 and 10:00; delivering all 37 lunches at 08:45 remains compatible with both crossings. Changing the confirmed school group's departure arrangements requires the party leader's agreement under e1, so directly revising EV-1 without that consent is unjustified and the consent map is incomplete."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3731,
+    "completion_tokens": 201,
+    "reasoning_tokens": 91,
+    "cached_tokens": 0
+   },
+   "cost": 0.05668,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2fdac0dc4236504f218c9d15578ec28887fafd8c31e24829419dd9ab59e2a01f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The class-3 chain holds: e5 is corrected, EV-1 and ORD-7 are touched, EV-3 stays KEEP, and the counts and timing meet tier 100. The expected message to Nils specifies delivery times of 08:30 and 10:00, which the history never fixes, so the required values are not derivable from it. The correction is also announced in plain words ('A correction on the Skua'), so it is not hidden.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The class-3 chain holds: e5 is corrected, EV-1 and ORD-7 are touched, EV-3 stays KEEP, and the counts and timing meet tier 100. The expected message to Nils specifies delivery times of 08:30 and 10:00, which the history never fixes, so the required values are not derivable from it. The correction is also announced in plain words ('A correction on the Skua'), so it is not hidden."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5295,
+    "completion_tokens": 1403,
+    "reasoning_tokens": 1208,
+    "cached_tokens": 0
+   },
+   "cost": 0.001231,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2fdac0dc4236504f218c9d15578ec28887fafd8c31e24829419dd9ab59e2a01f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: the licence correction (e20) fixes two crossings with an 18/19 split, making EV-1 REVISE with values the change itself supplies; ORD-7 is the two-hop ASK under the catering rule e2 (consent map matches); EV-3 is KEEP since 14 passengers still fit; the inferred delivery times 08:30/10:00 follow the established 30-minute lead from the 08:45/09:15 pairing. The task forces a message to Nils now without hinting at any change, and the change sits mid-history as an ordinary charter email with later events. Tier 100 counts and distances are met (23 core events, 5 decisions, change 12 days before the task day, 3 core events after it).\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: the licence correction (e20) fixes two crossings with an 18/19 split, making EV-1 REVISE with values the change itself supplies; ORD-7 is the two-hop ASK under the catering rule e2 (consent map matches); EV-3 is KEEP since 14 passengers still fit; the inferred delivery times 08:30/10:00 follow the established 30-minute lead from the 08:45/09:15 pairing. The task forces a message to Nils now without hinting at any change, and the change sits mid-history as an ordinary charter email with later events. Tier 100 counts and distances are met (23 core events, 5 decisions, change 12 days before the task day, 3 core events after it)."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3785,
+    "completion_tokens": 674,
+    "reasoning_tokens": 466,
+    "cached_tokens": 384
+   },
+   "cost": 0.00782684,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2fdac0dc4236504f218c9d15578ec28887fafd8c31e24829419dd9ab59e2a01f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

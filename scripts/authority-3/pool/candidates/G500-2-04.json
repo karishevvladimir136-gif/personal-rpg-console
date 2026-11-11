@@ -738,5 +738,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e28 amends rule e5, leaving EV-1 and EV-4 as REVISE, EV-2 as ASK, and EV-3 and EV-6 as KEEP, and the consent map matches e5's Ruth Keller consent. The core meets the tier: 32 events, 10 decisions, the change 31 days before the task day, and four core events after it. The change is announced as a routine board notice with later events following, so it is not flagged as a correction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e28 amends rule e5, leaving EV-1 and EV-4 as REVISE, EV-2 as ASK, and EV-3 and EV-6 as KEEP, and the consent map matches e5's Ruth Keller consent. The core meets the tier: 32 events, 10 decisions, the change 31 days before the task day, and four core events after it. The change is announced as a routine board notice with later events following, so it is not flagged as a correction."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6676,
+    "completion_tokens": 2135,
+    "reasoning_tokens": 1929,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017351,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f9bcf2c01a54e682768a211e1e7c08b8dfd9485d0c4dc20fcb7b965b0341388a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"no\",\"change_hidden\":\"yes\",\"reasons\":\"The designated echo, e27, reiterates the consent requirement for a 16-person shift, which remains valid under the amendment; it does not restate the stale more-than-8 threshold. The core otherwise meets the tier's counts and timing requirements, and the expected actions follow the amended consent rule.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "no",
+    "change_hidden": "yes",
+    "reasons": "The designated echo, e27, reiterates the consent requirement for a 16-person shift, which remains valid under the amendment; it does not restate the stale more-than-8 threshold. The core otherwise meets the tier's counts and timing requirements, and the expected actions follow the amended consent rule."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4562,
+    "completion_tokens": 473,
+    "reasoning_tokens": 375,
+    "cached_tokens": 0
+   },
+   "cost": 0.0806675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f9bcf2c01a54e682768a211e1e7c08b8dfd9485d0c4dc20fcb7b965b0341388a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment's own terms cleanly split the decisions: Hartwell (≤12 under the new threshold) is REVISE with the task-supplied values, Lakeside (16→12, still >12) stays ASK per the consent map matching e5, and the depot-exempt Orton shift plus the pre-amendment completed September shift are KEEP. Counts (32 core events, 10 decisions), the 31-day change-to-task gap, later core events, and the e27 echo all meet tier 500. The change sits at event 398 of 500 as an ordinary notice with 102 events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment's own terms cleanly split the decisions: Hartwell (≤12 under the new threshold) is REVISE with the task-supplied values, Lakeside (16→12, still >12) stays ASK per the consent map matching e5, and the depot-exempt Orton shift plus the pre-amendment completed September shift are KEEP. Counts (32 core events, 10 decisions), the 31-day change-to-task gap, later core events, and the e27 echo all meet tier 500. The change sits at event 398 of 500 as an ordinary notice with 102 events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4676,
+    "completion_tokens": 592,
+    "reasoning_tokens": 409,
+    "cached_tokens": 256
+   },
+   "cost": 0.0222168,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f9bcf2c01a54e682768a211e1e7c08b8dfd9485d0c4dc20fcb7b965b0341388a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -1,0 +1,516 @@
+{
+ "id": "K100-3-08",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 3,
+ "idx": 7,
+ "setting": "Music school director at Crescendo Academy, a 30-teacher music school",
+ "prompt_sha256": "f3e73e24363b8400c88d960a5accdf21b618fe5ab0303d3411b6102f00f4d816",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Recital seating capacity correction\",\n  \"setting\": \"Music school director at Crescendo Academy, a 30-teacher music school\",\n  \"owner\": \"Marta\",\n  \"org\": \"Crescendo Academy\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Any change to the seating plan for a confirmed event at St. Aldhelm's Hall must be agreed with the hall manager, Ruth Venn, before it is made.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Supplier orders above 250 need sign-off from our finance lead, Priya Hall, before they are placed or amended.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ruth Venn (St. Aldhelm's Hall)\", \"text\": \"Confirming the details for Crescendo Academy: St. Aldhelm's Hall seats 120 guests, and the hire charge is 220 per day.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Theo Brandt (Harmony Print)\", \"text\": \"Quote for Crescendo Academy: printed event programs at 2.50 per copy, with a turnaround of five working days from order confirmation.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"The autumn recital is confirmed for Saturday 14 November 2026 at St. Aldhelm's Hall, starting at 15:00.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Plan the autumn recital audience at St. Aldhelm's Hall for the full 120 seats on Saturday 14 November 2026.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Book St. Aldhelm's Hall for the autumn recital on Saturday 14 November 2026 at the hire charge of 220 per day.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Order 120 recital programs from Harmony Print at 2.50 per copy, total 300, one for each of the 120 seats at the autumn recital.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e4\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Assign teachers Ines, Pavel and Ruthven to the setup crew for the autumn recital at St. Aldhelm's Hall on Saturday 14 November 2026.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-3\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Theo Brandt (Harmony Print)\", \"text\": \"Thank you for the program order for the November recital; we have it in our production schedule.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-03\", \"type\": \"task\", \"from\": \"Priya Hall\", \"text\": \"Pay the St. Aldhelm's Hall deposit for the November recital by Tuesday 1 September 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Staff meeting notes: autumn term timetable is settled; recital repertoire proposals are due from teachers at the end of September.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-28\", \"type\": \"invoice\", \"from\": \"Ruth Venn (St. Aldhelm's Hall)\", \"text\": \"Invoice for the hall deposit for the 14 November 2026 booking, payable under our usual terms.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-07\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Autumn term begins today; all 30 teachers are timetabled and room allocations are published.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Hana Kowal (parent)\", \"text\": \"Will tickets for the November recital be limited per family? We would love to bring grandparents.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-22\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Collect final recital repertoire from all teachers by Friday 9 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Ruth Venn (St. Aldhelm's Hall)\", \"text\": \"Following our fire-safety recheck this week, St. Aldhelm's Hall now seats a maximum of 100 guests. The hire charge stays at 220 per day and your 14 November 2026 booking is unaffected.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e18\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Theo Brandt (Harmony Print)\", \"text\": \"Just a heads-up that we can now rush-print runs of up to 140 event programs if you ever need extra copies at short notice.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-10-16\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Recital prep meeting: ushers confirmed, interval refreshments arranged, program proof approved for printing.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Priya Hall\", \"text\": \"Reminder that November supplier invoices should be coded to the events budget by the end of this month.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn Recital audience plan\", \"fields\": {\"date\": \"2026-11-14\", \"venue\": \"St. Aldhelm's Hall\", \"seats\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Hall booking for Autumn Recital\", \"fields\": {\"date\": \"2026-11-14\", \"venue\": \"St. Aldhelm's Hall\", \"hire\": \"220\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Autumn Recital printed programs\", \"fields\": {\"supplier\": \"Harmony Print\", \"quantity\": \"120\", \"unit_price\": \"2.50\", \"total\": \"300\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Autumn Recital setup crew rota\", \"fields\": {\"date\": \"2026-11-14\", \"venue\": \"St. Aldhelm's Hall\", \"teachers\": \"Ines, Pavel, Ruthven\", \"status\": \"scheduled\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Ruth Venn contact\", \"fields\": {\"name\": \"Ruth Venn\", \"organisation\": \"St. Aldhelm's Hall\", \"role\": \"hall manager\", \"phone\": \"01482 555 013\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"seats\"], \"from\": \"Ruth Venn (St. Aldhelm's Hall)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please confirm the final program count with Harmony Print for the autumn recital and make sure the order matches our audience plan.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"quantity\", \"value\": \"100\", \"stale\": [\"120\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"total\", \"value\": \"250\", \"stale\": [\"300\"], \"task\": true},\n    {\"message_to\": \"Theo Brandt (Harmony Print)\", \"regarding\": \"ORD-2\", \"says\": [\"100\"], \"stale\": [\"120\", \"140\"], \"task\": true}\n  ],\n  \"why\": \"Ruth Venn's October email cuts the hall capacity from 120 to 100 while leaving the hire charge and the booking standing. The program order (two hops away, via the audience plan) is revised to 100 copies at 2.50, total 250, and the confirmation to Harmony Print must say 100 — not 120, and not the 140 from the rush-printing offer. The audience plan itself is only touched by asking Ruth Venn's consent under the seating-plan rule, and the hall booking and setup rota stay exactly as they are.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"manuscript paper restock\", \"counterpart\": \"Theo Brandt\", \"org\": \"Harmony Print\", \"item\": \"manuscript paper pads\", \"unit\": \"pads\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Crescendo Academy front office\"},\n    {\"kind\": \"order\", \"topic\": \"recital invitation printing\", \"counterpart\": \"Theo Brandt\", \"org\": \"Harmony Print\", \"item\": \"printed invitation cards\", \"unit\": \"cards\", \"values\": [\"50\", \"80\", \"100\", \"120\"], \"place\": \"Crescendo Academy front office\"},\n    {\"kind\": \"booking\", \"topic\": \"hall rehearsal slots\", \"counterpart\": \"Ruth Venn\", \"org\": \"St. Aldhelm's Hall\", \"item\": \"evening rehearsal slot\", \"values\": [\"Main Hall\", \"Side Chapel\", \"Upper Room\"], \"place\": \"St. Aldhelm's Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"weekly violin studio\", \"counterpart\": \"Ines Duarte\", \"org\": \"Crescendo Academy\", \"item\": \"teaching room for violin lessons\", \"values\": [\"Room 1\", \"Room 3\", \"Room 5\", \"Room 7\"], \"place\": \"Crescendo Academy west wing\"},\n    {\"kind\": \"booking\", \"topic\": \"piano practice rooms\", \"counterpart\": \"Pavel Novak\", \"org\": \"Crescendo Academy\", \"item\": \"practice room for piano students\", \"values\": [\"Room 2\", \"Room 4\", \"Room 6\"], \"place\": \"Crescendo Academy east wing\"},\n    {\"kind\": \"order\", \"topic\": \"guitar strings restock\", \"counterpart\": \"Alba Reyes\", \"org\": \"Stringline Supplies\", \"item\": \"classical guitar string sets\", \"unit\": \"sets\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Crescendo Academy store cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"drumstick restock\", \"counterpart\": \"Alba Reyes\", \"org\": \"Stringline Supplies\", \"item\": \"pairs of drumsticks\", \"unit\": \"pairs\", \"values\": [\"10\", \"14\", \"20\"], \"place\": \"Crescendo Academy store cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"minibus for outreach concerts\", \"counterpart\": \"Colin Bright\", \"org\": \"Brightline Travel\", \"item\": \"minibus for school outreach run\", \"values\": [\"12-seat minibus\", \"16-seat minibus\", \"20-seat minibus\"], \"place\": \"Crescendo Academy car park\"},\n    {\"kind\": \"order\", \"topic\": \"music stand replacements\", \"counterpart\": \"Freya Lind\", \"org\": \"Nordwind Music Supply\", \"item\": \"folding music stands\", \"unit\": \"stands\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Crescendo Academy store cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"parent evening rooms\", \"counterpart\": \"Hana Kowal\", \"org\": \"Crescendo Academy\", \"item\": \"room for parent consultation evening\", \"values\": [\"Room 1\", \"Room 2\", \"Room 8\"], \"place\": \"Crescendo Academy west wing\"},\n    {\"kind\": \"order\", \"topic\": \"tuner and metronome restock\", \"counterpart\": \"Freya Lind\", \"org\": \"Nordwind Music Supply\", \"item\": \"clip-on tuners\", \"unit\": \"tuners\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"Crescendo Academy front office\"},\n    {\"kind\": \"booking\", \"topic\": \"choir rehearsal space\", \"counterpart\": \"Ruthven Hale\", \"org\": \"Crescendo Academy\", \"item\": \"rehearsal space for senior choir\", \"values\": [\"Main Studio\", \"Room 5\", \"Room 9\"], \"place\": \"Crescendo Academy south wing\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3180,
+    "completion_tokens": 6554,
+    "reasoning_tokens": 3350,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0995556,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Recital seating capacity correction\",\n  \"setting\": \"Music school director at Crescendo Academy, a 30-teacher music school\",\n  \"owner\": \"Marta\",\n  \"org\": \"Crescendo Academy\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Any change to the seating plan for a confirmed event at St. Aldhelm's Hall must be agreed with the hall manager, Ruth Venn, before it is made.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Supplier orders above 250 need sign-off from our finance lead, Priya Hall, before they are placed or amended.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ruth Venn (St. Aldhelm's Hall)\", \"text\": \"Confirming the details for Crescendo Academy: St. Aldhelm's Hall seats 120 guests, and the hire charge is 220 per day.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Theo Brandt (Harmony Print)\", \"text\": \"Quote for Crescendo Academy: printed event programs at 2.50 per copy, with a turnaround of five working days from order confirmation.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"The autumn recital is confirmed for Saturday 14 November 2026 at St. Aldhelm's Hall, starting at 15:00.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Plan the autumn recital audience at St. Aldhelm's Hall for the full 120 seats on Saturday 14 November 2026.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Book St. Aldhelm's Hall for the autumn recital on Saturday 14 November 2026 at the hire charge of 220 per day.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Order 120 recital programs from Harmony Print at 2.50 per copy, total 300, one for each of the 120 seats at the autumn recital.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e4\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Assign teachers Ines, Pavel and Ruthven to the setup crew for the autumn recital at St. Aldhelm's Hall on Saturday 14 November 2026.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Theo Brandt (Harmony Print)\", \"text\": \"Thank you for the program order for the November recital; we have it in our production schedule.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-03\", \"type\": \"task\", \"from\": \"Priya Hall\", \"text\": \"Pay the St. Aldhelm's Hall deposit for the November recital by Tuesday 1 September 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Staff meeting notes: autumn term timetable is settled; recital repertoire proposals are due from teachers at the end of September.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-28\", \"type\": \"invoice\", \"from\": \"Ruth Venn (St. Aldhelm's Hall)\", \"text\": \"Invoice for the hall deposit for the 14 November 2026 booking, payable under our usual terms.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-07\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Autumn term begins today; all 30 teachers are timetabled and room allocations are published.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Hana Kowal (parent)\", \"text\": \"Will tickets for the November recital be limited per family? We would love to bring grandparents.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-22\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Collect final recital repertoire from all teachers by Friday 9 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Ruth Venn (St. Aldhelm's Hall)\", \"text\": \"Following our fire-safety recheck this week, St. Aldhelm's Hall now seats a maximum of 100 guests. The hire charge stays at 220 per day and your 14 November 2026 booking is unaffected.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e18\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Theo Brandt (Harmony Print)\", \"text\": \"Just a heads-up that we can now rush-print runs of up to 140 event programs if you ever need extra copies at short notice.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-10-16\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Recital prep meeting: ushers confirmed, interval refreshments arranged, program proof approved for printing.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Priya Hall\", \"text\": \"Reminder that November supplier invoices should be coded to the events budget by the end of this month.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn Recital audience plan\", \"fields\": {\"date\": \"2026-11-14\", \"venue\": \"St. Aldhelm's Hall\", \"seats\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Hall booking for Autumn Recital\", \"fields\": {\"date\": \"2026-11-14\", \"venue\": \"St. Aldhelm's Hall\", \"hire\": \"220\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Autumn Recital printed programs\", \"fields\": {\"supplier\": \"Harmony Print\", \"quantity\": \"120\", \"unit_price\": \"2.50\", \"total\": \"300\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Autumn Recital setup crew rota\", \"fields\": {\"date\": \"2026-11-14\", \"venue\": \"St. Aldhelm's Hall\", \"teachers\": \"Ines, Pavel, Ruthven\", \"status\": \"scheduled\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Ruth Venn contact\", \"fields\": {\"name\": \"Ruth Venn\", \"organisation\": \"St. Aldhelm's Hall\", \"role\": \"hall manager\", \"phone\": \"01482 555 013\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"seats\"], \"from\": \"Ruth Venn (St. Aldhelm's Hall)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please confirm the final program count with Harmony Print for the autumn recital and make sure the order matches our audience plan.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"quantity\", \"value\": \"100\", \"stale\": [\"120\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"total\", \"value\": \"250\", \"stale\": [\"300\"], \"task\": true},\n    {\"message_to\": \"Theo Brandt (Harmony Print)\", \"regarding\": \"ORD-2\", \"says\": [\"100\"], \"stale\": [\"120\", \"140\"], \"task\": true}\n  ],\n  \"why\": \"Ruth Venn's October email cuts the hall capacity from 120 to 100 while leaving the hire charge and the booking standing. The program order (two hops away, via the audience plan) is revised to 100 copies at 2.50, total 250, and the confirmation to Harmony Print must say 100 — not 120, and not the 140 from the rush-printing offer. The audience plan itself is only touched by asking Ruth Venn's consent under the seating-plan rule; the hall booking, the setup rota and every other record stay exactly as they are.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"manuscript paper restock\", \"counterpart\": \"Theo Brandt\", \"org\": \"Harmony Print\", \"item\": \"manuscript paper pads\", \"unit\": \"pads\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Crescendo Academy front office\"},\n    {\"kind\": \"order\", \"topic\": \"recital invitation printing\", \"counterpart\": \"Theo Brandt\", \"org\": \"Harmony Print\", \"item\": \"printed invitation cards\", \"unit\": \"cards\", \"values\": [\"50\", \"80\", \"100\", \"120\"], \"place\": \"Crescendo Academy front office\"},\n    {\"kind\": \"booking\", \"topic\": \"hall rehearsal slots\", \"counterpart\": \"Ruth Venn\", \"org\": \"St. Aldhelm's Hall\", \"item\": \"evening rehearsal slot\", \"values\": [\"Main Hall\", \"Side Chapel\", \"Upper Room\"], \"place\": \"St. Aldhelm's Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"weekly violin studio\", \"counterpart\": \"Ines Duarte\", \"org\": \"Crescendo Academy\", \"item\": \"teaching room for violin lessons\", \"values\": [\"Room 1\", \"Room 3\", \"Room 5\", \"Room 7\"], \"place\": \"Crescendo Academy west wing\"},\n    {\"kind\": \"booking\", \"topic\": \"piano practice rooms\", \"counterpart\": \"Pavel Novak\", \"org\": \"Crescendo Academy\", \"item\": \"practice room for piano students\", \"values\": [\"Room 2\", \"Room 4\", \"Room 6\"], \"place\": \"Crescendo Academy east wing\"},\n    {\"kind\": \"order\", \"topic\": \"guitar strings restock\", \"counterpart\": \"Alba Reyes\", \"org\": \"Stringline Supplies\", \"item\": \"classical guitar string sets\", \"unit\": \"sets\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Crescendo Academy store cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"drumstick restock\", \"counterpart\": \"Alba Reyes\", \"org\": \"Stringline Supplies\", \"item\": \"pairs of drumsticks\", \"unit\": \"pairs\", \"values\": [\"10\", \"14\", \"20\"], \"place\": \"Crescendo Academy store cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"minibus for outreach concerts\", \"counterpart\": \"Colin Bright\", \"org\": \"Brightline Travel\", \"item\": \"minibus for school outreach run\", \"values\": [\"12-seat minibus\", \"16-seat minibus\", \"20-seat minibus\"], \"place\": \"Crescendo Academy car park\"},\n    {\"kind\": \"order\", \"topic\": \"music stand replacements\", \"counterpart\": \"Freya Lind\", \"org\": \"Nordwind Music Supply\", \"item\": \"folding music stands\", \"unit\": \"stands\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Crescendo Academy store cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"parent evening rooms\", \"counterpart\": \"Hana Kowal\", \"org\": \"Crescendo Academy\", \"item\": \"room for parent consultation evening\", \"values\": [\"Room 1\", \"Room 2\", \"Room 8\"], \"place\": \"Crescendo Academy west wing\"},\n    {\"kind\": \"order\", \"topic\": \"tuner and metronome restock\", \"counterpart\": \"Freya Lind\", \"org\": \"Nordwind Music Supply\", \"item\": \"clip-on tuners\", \"unit\": \"tuners\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"Crescendo Academy front office\"},\n    {\"kind\": \"booking\", \"topic\": \"choir rehearsal space\", \"counterpart\": \"Ruthven Hale\", \"org\": \"Crescendo Academy\", \"item\": \"rehearsal space for senior choir\", \"values\": [\"Main Studio\", \"Room 5\", \"Room 9\"], \"place\": \"Crescendo Academy south wing\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6456,
+    "completion_tokens": 3254,
+    "reasoning_tokens": 40,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0598836,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- decisions resting (directly or through other decisions) on what the change revokes need a mark: ['e9']\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Recital seating capacity correction",
+  "setting": "Music school director at Crescendo Academy, a 30-teacher music school",
+  "owner": "Marta",
+  "org": "Crescendo Academy",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Any change to the seating plan for a confirmed event at St. Aldhelm's Hall must be agreed with the hall manager, Ruth Venn, before it is made.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-04",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Supplier orders above 250 need sign-off from our finance lead, Priya Hall, before they are placed or amended.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Ruth Venn (St. Aldhelm's Hall)",
+    "text": "Confirming the details for Crescendo Academy: St. Aldhelm's Hall seats 120 guests, and the hire charge is 220 per day.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-18",
+    "type": "quote",
+    "from": "Theo Brandt (Harmony Print)",
+    "text": "Quote for Crescendo Academy: printed event programs at 2.50 per copy, with a turnaround of five working days from order confirmation.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Marta",
+    "text": "The autumn recital is confirmed for Saturday 14 November 2026 at St. Aldhelm's Hall, starting at 15:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Plan the autumn recital audience at St. Aldhelm's Hall for the full 120 seats on Saturday 14 November 2026.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Book St. Aldhelm's Hall for the autumn recital on Saturday 14 November 2026 at the hire charge of 220 per day.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Order 120 recital programs from Harmony Print at 2.50 per copy, total 300, one for each of the 120 seats at the autumn recital.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e4"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Assign teachers Ines, Pavel and Ruthven to the setup crew for the autumn recital at St. Aldhelm's Hall on Saturday 14 November 2026.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Theo Brandt (Harmony Print)",
+    "text": "Thank you for the program order for the November recital; we have it in our production schedule.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-03",
+    "type": "task",
+    "from": "Priya Hall",
+    "text": "Pay the St. Aldhelm's Hall deposit for the November recital by Tuesday 1 September 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-14",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Staff meeting notes: autumn term timetable is settled; recital repertoire proposals are due from teachers at the end of September.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-28",
+    "type": "invoice",
+    "from": "Ruth Venn (St. Aldhelm's Hall)",
+    "text": "Invoice for the hall deposit for the 14 November 2026 booking, payable under our usual terms.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-07",
+    "type": "note",
+    "from": "Marta",
+    "text": "Autumn term begins today; all 30 teachers are timetabled and room allocations are published.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Hana Kowal (parent)",
+    "text": "Will tickets for the November recital be limited per family? We would love to bring grandparents.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-22",
+    "type": "task",
+    "from": "Marta",
+    "text": "Collect final recital repertoire from all teachers by Friday 9 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-10",
+    "type": "email",
+    "from": "Ruth Venn (St. Aldhelm's Hall)",
+    "text": "Following our fire-safety recheck this week, St. Aldhelm's Hall now seats a maximum of 100 guests. The hire charge stays at 220 per day and your 14 November 2026 booking is unaffected.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Theo Brandt (Harmony Print)",
+    "text": "Just a heads-up that we can now rush-print runs of up to 140 event programs if you ever need extra copies at short notice.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-16",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Recital prep meeting: ushers confirmed, interval refreshments arranged, program proof approved for printing.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-19",
+    "type": "message",
+    "from": "Priya Hall",
+    "text": "Reminder that November supplier invoices should be coded to the events budget by the end of this month.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Autumn Recital audience plan",
+    "fields": {
+     "date": "2026-11-14",
+     "venue": "St. Aldhelm's Hall",
+     "seats": "120",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Hall booking for Autumn Recital",
+    "fields": {
+     "date": "2026-11-14",
+     "venue": "St. Aldhelm's Hall",
+     "hire": "220",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Autumn Recital printed programs",
+    "fields": {
+     "supplier": "Harmony Print",
+     "quantity": "120",
+     "unit_price": "2.50",
+     "total": "300",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Autumn Recital setup crew rota",
+    "fields": {
+     "date": "2026-11-14",
+     "venue": "St. Aldhelm's Hall",
+     "teachers": "Ines, Pavel, Ruthven",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Ruth Venn contact",
+    "fields": {
+     "name": "Ruth Venn",
+     "organisation": "St. Aldhelm's Hall",
+     "role": "hall manager",
+     "phone": "01482 555 013"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "seats"
+    ],
+    "from": "Ruth Venn (St. Aldhelm's Hall)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please confirm the final program count with Harmony Print for the autumn recital and make sure the order matches our audience plan.",
+  "expect": [
+   {
+    "record": "ORD-2",
+    "field": "quantity",
+    "value": "100",
+    "stale": [
+     "120"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-2",
+    "field": "total",
+    "value": "250",
+    "stale": [
+     "300"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Theo Brandt (Harmony Print)",
+    "regarding": "ORD-2",
+    "says": [
+     "100"
+    ],
+    "stale": [
+     "120",
+     "140"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Ruth Venn's October email cuts the hall capacity from 120 to 100 while leaving the hire charge and the booking standing. The program order (two hops away, via the audience plan) is revised to 100 copies at 2.50, total 250, and the confirmation to Harmony Print must say 100 — not 120, and not the 140 from the rush-printing offer. The audience plan itself is only touched by asking Ruth Venn's consent under the seating-plan rule; the hall booking, the setup rota and every other record stay exactly as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "manuscript paper restock",
+    "counterpart": "Theo Brandt",
+    "org": "Harmony Print",
+    "item": "manuscript paper pads",
+    "unit": "pads",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Crescendo Academy front office"
+   },
+   {
+    "kind": "order",
+    "topic": "recital invitation printing",
+    "counterpart": "Theo Brandt",
+    "org": "Harmony Print",
+    "item": "printed invitation cards",
+    "unit": "cards",
+    "values": [
+     "50",
+     "80",
+     "100",
+     "120"
+    ],
+    "place": "Crescendo Academy front office"
+   },
+   {
+    "kind": "booking",
+    "topic": "hall rehearsal slots",
+    "counterpart": "Ruth Venn",
+    "org": "St. Aldhelm's Hall",
+    "item": "evening rehearsal slot",
+    "values": [
+     "Main Hall",
+     "Side Chapel",
+     "Upper Room"
+    ],
+    "place": "St. Aldhelm's Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekly violin studio",
+    "counterpart": "Ines Duarte",
+    "org": "Crescendo Academy",
+    "item": "teaching room for violin lessons",
+    "values": [
+     "Room 1",
+     "Room 3",
+     "Room 5",
+     "Room 7"
+    ],
+    "place": "Crescendo Academy west wing"
+   },
+   {
+    "kind": "booking",
+    "topic": "piano practice rooms",
+    "counterpart": "Pavel Novak",
+    "org": "Crescendo Academy",
+    "item": "practice room for piano students",
+    "values": [
+     "Room 2",
+     "Room 4",
+     "Room 6"
+    ],
+    "place": "Crescendo Academy east wing"
+   },
+   {
+    "kind": "order",
+    "topic": "guitar strings restock",
+    "counterpart": "Alba Reyes",
+    "org": "Stringline Supplies",
+    "item": "classical guitar string sets",
+    "unit": "sets",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "Crescendo Academy store cupboard"
+   },
+   {
+    "kind": "order",
+    "topic": "drumstick restock",
+    "counterpart": "Alba Reyes",
+    "org": "Stringline Supplies",
+    "item": "pairs of drumsticks",
+    "unit": "pairs",
+    "values": [
+     "10",
+     "14",
+     "20"
+    ],
+    "place": "Crescendo Academy store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "minibus for outreach concerts",
+    "counterpart": "Colin Bright",
+    "org": "Brightline Travel",
+    "item": "minibus for school outreach run",
+    "values": [
+     "12-seat minibus",
+     "16-seat minibus",
+     "20-seat minibus"
+    ],
+    "place": "Crescendo Academy car park"
+   },
+   {
+    "kind": "order",
+    "topic": "music stand replacements",
+    "counterpart": "Freya Lind",
+    "org": "Nordwind Music Supply",
+    "item": "folding music stands",
+    "unit": "stands",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Crescendo Academy store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "parent evening rooms",
+    "counterpart": "Hana Kowal",
+    "org": "Crescendo Academy",
+    "item": "room for parent consultation evening",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Room 8"
+    ],
+    "place": "Crescendo Academy west wing"
+   },
+   {
+    "kind": "order",
+    "topic": "tuner and metronome restock",
+    "counterpart": "Freya Lind",
+    "org": "Nordwind Music Supply",
+    "item": "clip-on tuners",
+    "unit": "tuners",
+    "values": [
+     "8",
+     "12",
+     "16"
+    ],
+    "place": "Crescendo Academy front office"
+   },
+   {
+    "kind": "booking",
+    "topic": "choir rehearsal space",
+    "counterpart": "Ruthven Hale",
+    "org": "Crescendo Academy",
+    "item": "rehearsal space for senior choir",
+    "values": [
+     "Main Studio",
+     "Room 5",
+     "Room 9"
+    ],
+    "place": "Crescendo Academy south wing"
+   }
+  ],
+  "id": "K100-3-08",
+  "tier": 100,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

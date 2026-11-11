@@ -1,0 +1,630 @@
+{
+ "id": "K500-4-07",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 4,
+ "idx": 6,
+ "setting": "Salon owner at Velvet & Vine Hair Studio, a five-chair salon",
+ "prompt_sha256": "786dd2793f1f14ed4b88caf582ff8ceb1d7fe696b394279337a4488a743ff981",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"October restock at Velvet & Vine\",\n \"setting\": \"Salon owner at Velvet & Vine Hair Studio, a five-chair salon\",\n \"owner\": \"Mara\",\n \"org\": \"Velvet & Vine Hair Studio\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for Velvet & Vine: any supplier order with a total above 400 must be signed off by our salon manager Priya Shah before it is sent.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Salon policy: once a client appointment is confirmed in the book, it may only be moved or rescheduled with that client's own agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Tomas Reyes (Lumière Pro)\", \"text\": \"Trade prices for Velvet & Vine from Lumière Pro: colour tubes at 12 each and developer at 8 per bottle; these are your standing prices with us.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Tomas Reyes (Lumière Pro)\", \"text\": \"Our delivery run to your area is every Thursday; please have orders in by Wednesday 18:00 to make that week's van.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up the monthly colour restock with Lumière Pro: 20 colour tubes at 12 each and 10 bottles of developer at 8 each, total 320, which is under the 400 sign-off limit so it can go straight out for the Thursday delivery run.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"message\", \"from\": \"Dana Brooks (stylist)\", \"text\": \"Just confirming my rota: I work every Saturday at the salon, full day.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked a standing Saturday blow-dry block with Dana Brooks, 10:00 to 12:00, chair two, since she is in every Saturday.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Nina Alvarez (client)\", \"text\": \"I would like to book my bridal hair trial for Saturday 14 November 2026 at 09:30 if that works for the salon.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Confirmed Nina Alvarez's bridal hair trial for 14 November 2026 at 09:30, chair one, as she requested.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Priya Shah (salon manager)\", \"text\": \"FreshFold Linen has quoted 3 per towel for salon towels, minimum order 40.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-29\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 60 salon towels from FreshFold Linen at 3 each, total 180, well under the 400 sign-off limit.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-02\", \"type\": \"minutes\", \"from\": \"Priya Shah (salon manager)\", \"text\": \"Team meeting notes: summer opening hours stay 09:00 to 18:00, and the back wash bay gets a deep clean every Friday evening.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"call\", \"from\": \"Nina Alvarez (client)\", \"text\": \"Nina phoned to say her wedding is confirmed for 28 November 2026 and she is happy with her trial slot on 14 November.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-15\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: renew the salon's music licence before 31 August 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Tomas Reyes (Lumière Pro)\", \"text\": \"Your July restock of 20 colour tubes and 10 developer, total 320, went out on this week's Thursday van as usual.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-03\", \"type\": \"notice\", \"from\": \"Landlord (Harbour Row Properties)\", \"text\": \"Reminder that the annual fire alarm inspection for the unit at Velvet & Vine Hair Studio is booked for 10 September 2026.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-12\", \"type\": \"message\", \"from\": \"Dana Brooks (stylist)\", \"text\": \"Can I take the Saturday of 19 September off for a family wedding? Happy to swap.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Agreed Dana can have 19 September off; her Saturday blow-dry block that day will be covered by Jools Pereira at chair two, same 10:00 to 12:00 hours.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-26\", \"type\": \"cancellation\", \"from\": \"Brightway Training (academy)\", \"text\": \"We have cancelled the balayage evening class scheduled for 15 September; a new date will follow in the autumn.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-04\", \"type\": \"invoice\", \"from\": \"FreshFold Linen\", \"text\": \"Invoice 4418: 60 salon towels at 3 each, total 180, payable by 4 October 2026.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-10\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Fire alarm inspection done today, certificate filed in the office drawer.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"September colour restock placed with Lumière Pro: the usual 20 colour tubes at 12 and 10 developer at 8, total 320, sent before the Wednesday 18:00 cutoff.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\", \"e4\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Tomas Reyes (Lumière Pro)\", \"text\": \"Confirming your September order arrived complete: 20 colour tubes at 12 and 10 developer at 8, total 320, all on your standing trade prices.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-10-02\", \"type\": \"quote\", \"from\": \"Tomas Reyes (Lumière Pro)\", \"text\": \"Clearance offer: our discontinued copper shade colour tubes are 10 each while stock lasts if you want any for the autumn.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e25\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Tomas Reyes (Lumière Pro)\", \"text\": \"News from Lumière Pro: our new ammonia-free PureTone colour line launches on 2 November 2026 at 14 per tube; your current colour range and prices are unchanged.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e26\", \"date\": \"2026-10-07\", \"type\": \"message\", \"from\": \"Nina Alvarez (client)\", \"text\": \"Looking forward to my trial on 14 November at 09:30 — should I bring photos of the dress neckline?\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Colour stock check: running low on tubes after a busy fortnight; October restock should go to Lumière Pro next week in time for the Thursday van.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-13\", \"type\": \"message\", \"from\": \"Priya Shah (salon manager)\", \"text\": \"Towels from the FreshFold order are holding up well; nothing else needed from them this month.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-15\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: send the October colour restock order to Lumière Pro before Wednesday 21 October 18:00 so it makes the Thursday 22 October delivery.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Dana Brooks (stylist)\", \"text\": \"Saturdays in November are fully workable for me, including 14 November for Nina's bridal trial morning.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Monthly colour restock template — Lumière Pro\", \"fields\": {\"supplier\": \"Lumière Pro\", \"contact\": \"Tomas Reyes\", \"item\": \"colour tubes and developer\", \"tubes\": \"20\", \"developer\": \"10\", \"total\": \"320\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Towel order — FreshFold Linen\", \"fields\": {\"supplier\": \"FreshFold Linen\", \"item\": \"salon towels\", \"quantity\": \"60\", \"total\": \"180\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"September colour restock — Lumière Pro\", \"fields\": {\"supplier\": \"Lumière Pro\", \"contact\": \"Tomas Reyes\", \"tubes\": \"20\", \"developer\": \"10\", \"total\": \"320\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Saturday blow-dry block\", \"fields\": {\"day\": \"Saturday\", \"start\": \"10:00\", \"end\": \"12:00\", \"stylist\": \"Dana Brooks\", \"chair\": \"two\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Bridal hair trial — Nina Alvarez\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"09:30\", \"client\": \"Nina Alvarez\", \"chair\": \"one\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Saturday blow-dry cover — 19 September\", \"fields\": {\"date\": \"2026-09-19\", \"start\": \"10:00\", \"end\": \"12:00\", \"stylist\": \"Jools Pereira\", \"chair\": \"two\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Client — Nina Alvarez\", \"fields\": {\"name\": \"Nina Alvarez\", \"phone\": \"07700 900214\", \"wedding_date\": \"2026-11-28\", \"trial\": \"2026-11-14\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Nina Alvarez\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please get this week's colour restock sent off to Tomas at Lumière Pro — the usual 20 colour tubes and 10 bottles of developer at our standing prices — so it makes Thursday's van.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Lumière Pro\", \"contact\": \"Tomas Reyes\", \"tubes\": \"20\", \"developer\": \"10\", \"total\": \"320\", \"status\": \"placed\"}, \"stale\": {\"tubes\": [\"30\"], \"total\": [\"340\", \"300\"]}, \"task\": true},\n  {\"message_to\": \"Tomas Reyes (Lumière Pro)\", \"regarding\": null, \"says\": [\"20\", \"10\", \"320\"], \"stale\": [\"14\", \"340\", \"PureTone\"], \"task\": true}\n ],\n \"why\": \"Control scenario: the Lumière Pro launch email about the new PureTone line on 2 November is a new fact beside the topic — it revokes nothing and touches no decision, and it explicitly says current prices are unchanged. The October restock therefore goes out exactly per the standing plan: 20 tubes at 12 and 10 developer at 8, total 320, under the 400 sign-off limit, with no record altered and no consent needed; the clearance copper quote and the PureTone price of 14 are tempting distractors but must not be acted on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"shampoo and conditioner restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Lumière Pro\", \"item\": \"backwash shampoo litres\", \"unit\": \"litre\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Velvet & Vine Hair Studio\"},\n  {\"kind\": \"order\", \"topic\": \"styling spray restock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Lumière Pro\", \"item\": \"hairspray cans\", \"unit\": \"can\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Velvet & Vine Hair Studio\"},\n  {\"kind\": \"order\", \"topic\": \"towel top-up\", \"counterpart\": \"Bea Long\", \"org\": \"FreshFold Linen\", \"item\": \"salon towels\", \"unit\": \"towel\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Velvet & Vine Hair Studio\"},\n  {\"kind\": \"booking\", \"topic\": \"bridal party fitting room\", \"counterpart\": \"Nina Alvarez\", \"org\": \"private client\", \"item\": \"chair one bridal slot\", \"unit\": \"session\", \"values\": [\"chair one\", \"chair two\", \"wash bay\"], \"place\": \"Velvet & Vine Hair Studio\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly staff rota huddle\", \"counterpart\": \"Priya Shah\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"staff room\", \"unit\": \"booking\", \"values\": [\"staff room\", \"chair five\", \"back room\"], \"place\": \"Velvet & Vine Hair Studio\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and tea for clients\", \"counterpart\": \"Hassan Idris\", \"org\": \"Bean & Barrel\", \"item\": \"coffee bags\", \"unit\": \"bag\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Velvet & Vine Hair Studio\"},\n  {\"kind\": \"order\", \"topic\": \"gloves and foils restock\", \"counterpart\": \"Sandra Voss\", \"org\": \"ProKit Supplies\", \"item\": \"colouring foil rolls\", \"unit\": \"roll\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Velvet & Vine Hair Studio\"},\n  {\"kind\": \"booking\", \"topic\": \"evening training class\", \"counterpart\": \"Leah Bloom\", \"org\": \"Brightway Training\", \"item\": \"training space\", \"unit\": \"session\", \"values\": [\"staff room\", \"main floor\", \"back room\"], \"place\": \"Velvet & Vine Hair Studio\"},\n  {\"kind\": \"order\", \"topic\": \"magazine subscription bundles\", \"counterpart\": \"Kip Anders\", \"org\": \"Readwell Direct\", \"item\": \"magazine bundle\", \"unit\": \"bundle\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Velvet & Vine Hair Studio\"},\n  {\"kind\": \"booking\", \"topic\": \"window display cleaning\", \"counterpart\": \"Omar Whitfield\", \"org\": \"ClearPane Services\", \"item\": \"window clean visit\", \"unit\": \"visit\", \"values\": [\"front windows\", \"door glass\", \"mirror wall\"], \"place\": \"Harbour Row\"},\n  {\"kind\": \"order\", \"topic\": \"retail shelf conditioner stock\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Lumière Pro\", \"item\": \"retail conditioner bottles\", \"unit\": \"bottle\", \"values\": [\"12\", \"16\", \"20\"], \"place\": \"Velvet & Vine Hair Studio\"},\n  {\"kind\": \"booking\", \"topic\": \"photoshoot prep slot\", \"counterpart\": \"Dana Brooks\", \"org\": \"Velvet & Vine Hair Studio\", \"item\": \"chair and mirror setup\", \"unit\": \"session\", \"values\": [\"chair two\", \"chair three\", \"wash bay\"], \"place\": \"Velvet & Vine Hair Studio\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3243,
+    "completion_tokens": 6196,
+    "reasoning_tokens": 1974,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0943746,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "October restock at Velvet & Vine",
+  "setting": "Salon owner at Velvet & Vine Hair Studio, a five-chair salon",
+  "owner": "Mara",
+  "org": "Velvet & Vine Hair Studio",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing instruction for Velvet & Vine: any supplier order with a total above 400 must be signed off by our salon manager Priya Shah before it is sent.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Salon policy: once a client appointment is confirmed in the book, it may only be moved or rescheduled with that client's own agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Tomas Reyes (Lumière Pro)",
+    "text": "Trade prices for Velvet & Vine from Lumière Pro: colour tubes at 12 each and developer at 8 per bottle; these are your standing prices with us.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Tomas Reyes (Lumière Pro)",
+    "text": "Our delivery run to your area is every Thursday; please have orders in by Wednesday 18:00 to make that week's van.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Set up the monthly colour restock with Lumière Pro: 20 colour tubes at 12 each and 10 bottles of developer at 8 each, total 320, which is under the 400 sign-off limit so it can go straight out for the Thursday delivery run.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "message",
+    "from": "Dana Brooks (stylist)",
+    "text": "Just confirming my rota: I work every Saturday at the salon, full day.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked a standing Saturday blow-dry block with Dana Brooks, 10:00 to 12:00, chair two, since she is in every Saturday.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Nina Alvarez (client)",
+    "text": "I would like to book my bridal hair trial for Saturday 14 November 2026 at 09:30 if that works for the salon.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Confirmed Nina Alvarez's bridal hair trial for 14 November 2026 at 09:30, chair one, as she requested.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e2"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Priya Shah (salon manager)",
+    "text": "FreshFold Linen has quoted 3 per towel for salon towels, minimum order 40.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-29",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 60 salon towels from FreshFold Linen at 3 each, total 180, well under the 400 sign-off limit.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-02",
+    "type": "minutes",
+    "from": "Priya Shah (salon manager)",
+    "text": "Team meeting notes: summer opening hours stay 09:00 to 18:00, and the back wash bay gets a deep clean every Friday evening.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-08",
+    "type": "call",
+    "from": "Nina Alvarez (client)",
+    "text": "Nina phoned to say her wedding is confirmed for 28 November 2026 and she is happy with her trial slot on 14 November.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-15",
+    "type": "task",
+    "from": "Mara",
+    "text": "To-do: renew the salon's music licence before 31 August 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-22",
+    "type": "email",
+    "from": "Tomas Reyes (Lumière Pro)",
+    "text": "Your July restock of 20 colour tubes and 10 developer, total 320, went out on this week's Thursday van as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-03",
+    "type": "notice",
+    "from": "Landlord (Harbour Row Properties)",
+    "text": "Reminder that the annual fire alarm inspection for the unit at Velvet & Vine Hair Studio is booked for 10 September 2026.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-12",
+    "type": "message",
+    "from": "Dana Brooks (stylist)",
+    "text": "Can I take the Saturday of 19 September off for a family wedding? Happy to swap.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Agreed Dana can have 19 September off; her Saturday blow-dry block that day will be covered by Jools Pereira at chair two, same 10:00 to 12:00 hours.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-26",
+    "type": "cancellation",
+    "from": "Brightway Training (academy)",
+    "text": "We have cancelled the balayage evening class scheduled for 15 September; a new date will follow in the autumn.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-04",
+    "type": "invoice",
+    "from": "FreshFold Linen",
+    "text": "Invoice 4418: 60 salon towels at 3 each, total 180, payable by 4 October 2026.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-10",
+    "type": "note",
+    "from": "Mara",
+    "text": "Fire alarm inspection done today, certificate filed in the office drawer.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-16",
+    "type": "decision",
+    "from": "Mara",
+    "text": "September colour restock placed with Lumière Pro: the usual 20 colour tubes at 12 and 10 developer at 8, total 320, sent before the Wednesday 18:00 cutoff.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e3",
+     "e4"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Tomas Reyes (Lumière Pro)",
+    "text": "Confirming your September order arrived complete: 20 colour tubes at 12 and 10 developer at 8, total 320, all on your standing trade prices.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-02",
+    "type": "quote",
+    "from": "Tomas Reyes (Lumière Pro)",
+    "text": "Clearance offer: our discontinued copper shade colour tubes are 10 each while stock lasts if you want any for the autumn.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Tomas Reyes (Lumière Pro)",
+    "text": "News from Lumière Pro: our new ammonia-free PureTone colour line launches on 2 November 2026 at 14 per tube; your current colour range and prices are unchanged.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-07",
+    "type": "message",
+    "from": "Nina Alvarez (client)",
+    "text": "Looking forward to my trial on 14 November at 09:30 — should I bring photos of the dress neckline?",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-09",
+    "type": "note",
+    "from": "Mara",
+    "text": "Colour stock check: running low on tubes after a busy fortnight; October restock should go to Lumière Pro next week in time for the Thursday van.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-13",
+    "type": "message",
+    "from": "Priya Shah (salon manager)",
+    "text": "Towels from the FreshFold order are holding up well; nothing else needed from them this month.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-15",
+    "type": "task",
+    "from": "Mara",
+    "text": "To-do: send the October colour restock order to Lumière Pro before Wednesday 21 October 18:00 so it makes the Thursday 22 October delivery.",
+    "role": "obligation"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-17",
+    "type": "message",
+    "from": "Dana Brooks (stylist)",
+    "text": "Saturdays in November are fully workable for me, including 14 November for Nina's bridal trial morning.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Monthly colour restock template — Lumière Pro",
+    "fields": {
+     "supplier": "Lumière Pro",
+     "contact": "Tomas Reyes",
+     "item": "colour tubes and developer",
+     "tubes": "20",
+     "developer": "10",
+     "total": "320",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Towel order — FreshFold Linen",
+    "fields": {
+     "supplier": "FreshFold Linen",
+     "item": "salon towels",
+     "quantity": "60",
+     "total": "180",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "September colour restock — Lumière Pro",
+    "fields": {
+     "supplier": "Lumière Pro",
+     "contact": "Tomas Reyes",
+     "tubes": "20",
+     "developer": "10",
+     "total": "320",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Saturday blow-dry block",
+    "fields": {
+     "day": "Saturday",
+     "start": "10:00",
+     "end": "12:00",
+     "stylist": "Dana Brooks",
+     "chair": "two",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Bridal hair trial — Nina Alvarez",
+    "fields": {
+     "date": "2026-11-14",
+     "time": "09:30",
+     "client": "Nina Alvarez",
+     "chair": "one",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Saturday blow-dry cover — 19 September",
+    "fields": {
+     "date": "2026-09-19",
+     "start": "10:00",
+     "end": "12:00",
+     "stylist": "Jools Pereira",
+     "chair": "two",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Client — Nina Alvarez",
+    "fields": {
+     "name": "Nina Alvarez",
+     "phone": "07700 900214",
+     "wedding_date": "2026-11-28",
+     "trial": "2026-11-14",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Nina Alvarez",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please get this week's colour restock sent off to Tomas at Lumière Pro — the usual 20 colour tubes and 10 bottles of developer at our standing prices — so it makes Thursday's van.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Lumière Pro",
+     "contact": "Tomas Reyes",
+     "tubes": "20",
+     "developer": "10",
+     "total": "320",
+     "status": "placed"
+    },
+    "stale": {
+     "tubes": [
+      "30"
+     ],
+     "total": [
+      "340",
+      "300"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Tomas Reyes (Lumière Pro)",
+    "regarding": null,
+    "says": [
+     "20",
+     "10",
+     "320"
+    ],
+    "stale": [
+     "14",
+     "340",
+     "PureTone"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Control scenario: the Lumière Pro launch email about the new PureTone line on 2 November is a new fact beside the topic — it revokes nothing and touches no decision, and it explicitly says current prices are unchanged. The October restock therefore goes out exactly per the standing plan: 20 tubes at 12 and 10 developer at 8, total 320, under the 400 sign-off limit, with no record altered and no consent needed; the clearance copper quote and the PureTone price of 14 are tempting distractors but must not be acted on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "shampoo and conditioner restock",
+    "counterpart": "Tomas Reyes",
+    "org": "Lumière Pro",
+    "item": "backwash shampoo litres",
+    "unit": "litre",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   },
+   {
+    "kind": "order",
+    "topic": "styling spray restock",
+    "counterpart": "Tomas Reyes",
+    "org": "Lumière Pro",
+    "item": "hairspray cans",
+    "unit": "can",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   },
+   {
+    "kind": "order",
+    "topic": "towel top-up",
+    "counterpart": "Bea Long",
+    "org": "FreshFold Linen",
+    "item": "salon towels",
+    "unit": "towel",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "bridal party fitting room",
+    "counterpart": "Nina Alvarez",
+    "org": "private client",
+    "item": "chair one bridal slot",
+    "unit": "session",
+    "values": [
+     "chair one",
+     "chair two",
+     "wash bay"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekly staff rota huddle",
+    "counterpart": "Priya Shah",
+    "org": "Velvet & Vine Hair Studio",
+    "item": "staff room",
+    "unit": "booking",
+    "values": [
+     "staff room",
+     "chair five",
+     "back room"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee and tea for clients",
+    "counterpart": "Hassan Idris",
+    "org": "Bean & Barrel",
+    "item": "coffee bags",
+    "unit": "bag",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   },
+   {
+    "kind": "order",
+    "topic": "gloves and foils restock",
+    "counterpart": "Sandra Voss",
+    "org": "ProKit Supplies",
+    "item": "colouring foil rolls",
+    "unit": "roll",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "evening training class",
+    "counterpart": "Leah Bloom",
+    "org": "Brightway Training",
+    "item": "training space",
+    "unit": "session",
+    "values": [
+     "staff room",
+     "main floor",
+     "back room"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   },
+   {
+    "kind": "order",
+    "topic": "magazine subscription bundles",
+    "counterpart": "Kip Anders",
+    "org": "Readwell Direct",
+    "item": "magazine bundle",
+    "unit": "bundle",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "window display cleaning",
+    "counterpart": "Omar Whitfield",
+    "org": "ClearPane Services",
+    "item": "window clean visit",
+    "unit": "visit",
+    "values": [
+     "front windows",
+     "door glass",
+     "mirror wall"
+    ],
+    "place": "Harbour Row"
+   },
+   {
+    "kind": "order",
+    "topic": "retail shelf conditioner stock",
+    "counterpart": "Tomas Reyes",
+    "org": "Lumière Pro",
+    "item": "retail conditioner bottles",
+    "unit": "bottle",
+    "values": [
+     "12",
+     "16",
+     "20"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "photoshoot prep slot",
+    "counterpart": "Dana Brooks",
+    "org": "Velvet & Vine Hair Studio",
+    "item": "chair and mirror setup",
+    "unit": "session",
+    "values": [
+     "chair two",
+     "chair three",
+     "wash bay"
+    ],
+    "place": "Velvet & Vine Hair Studio"
+   }
+  ],
+  "id": "K500-4-07",
+  "tier": 500,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

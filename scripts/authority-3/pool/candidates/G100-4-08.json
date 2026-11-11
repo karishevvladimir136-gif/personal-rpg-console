@@ -567,5 +567,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The requested booking and confirmation are supported, but the consent map does not match the history: e1 requires agreement for date changes, not time changes. It also names Diane Okoye for the Year 5 meeting, although the history identifies her only as the Year 6 teacher. Otherwise, this is a valid control with 22 core events, five decisions, and sufficient events and time after the restatement.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The requested booking and confirmation are supported, but the consent map does not match the history: e1 requires agreement for date changes, not time changes. It also names Diane Okoye for the Year 5 meeting, although the history identifies her only as the Year 6 teacher. Otherwise, this is a valid control with 22 core events, five decisions, and sufficient events and time after the restatement."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3334,
+    "completion_tokens": 184,
+    "reasoning_tokens": 65,
+    "cached_tokens": 0
+   },
+   "cost": 0.0508675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e927b889d13393fbf5987cf554f2052b668f330dc9b12ecb2fc638a4cee90130",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core meets its counts: 22 events, 5 decisions, the change 16 days before the task day, and 4 events after it. The consent map is inconsistent with the history, because e14 identifies Diane Okoye as the Year 6 class teacher, yet the map makes her the consenting party for the Year 5 record EV-1. The expected state itself is correct and does not depend on that mapping, since EV-1 stays untouched.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core meets its counts: 22 events, 5 decisions, the change 16 days before the task day, and 4 events after it. The consent map is inconsistent with the history, because e14 identifies Diane Okoye as the Year 6 class teacher, yet the map makes her the consenting party for the Year 5 record EV-1. The expected state itself is correct and does not depend on that mapping, since EV-1 stays untouched."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4769,
+    "completion_tokens": 1540,
+    "reasoning_tokens": 1346,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012469,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e927b889d13393fbf5987cf554f2052b668f330dc9b12ecb2fc638a4cee90130",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The control logic is sound: the 8 September notice merely restates the rule, the task is a fresh booking needing no consent, and the Main Hall is free per e22. However, the consent map is wrong: it names Diane Okoye as the consent-giver for EV-1 (the Year 5 parents' evening), but the history identifies Diane only as the Year 6 class teacher, so the map does not match rule e1 as stated. It is never exercised here, but as written it contradicts the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The control logic is sound: the 8 September notice merely restates the rule, the task is a fresh booking needing no consent, and the Main Hall is free per e22. However, the consent map is wrong: it names Diane Okoye as the consent-giver for EV-1 (the Year 5 parents' evening), but the history identifies Diane only as the Year 6 class teacher, so the map does not match rule e1 as stated. It is never exercised here, but as written it contradicts the history."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3425,
+    "completion_tokens": 698,
+    "reasoning_tokens": 534,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0131418,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e927b889d13393fbf5987cf554f2052b668f330dc9b12ecb2fc638a4cee90130",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

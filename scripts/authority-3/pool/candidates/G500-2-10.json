@@ -638,5 +638,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected message requires 2026-11-12, but three weeks after placement on 2026-10-20 is 2026-11-10, and nothing in the history fixes 12 November as the session date. Asking Ruth for consent without changing EV-3 is supported, but the exact proposed date is not unambiguous.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected message requires 2026-11-12, but three weeks after placement on 2026-10-20 is 2026-11-10, and nothing in the history fixes 12 November as the session date. Asking Ruth for consent without changing EV-3 is supported, but the exact proposed date is not unambiguous."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4156,
+    "completion_tokens": 166,
+    "reasoning_tokens": 58,
+    "cached_tokens": 0
+   },
+   "cost": 0.0602425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "7d17eb724e961b7bd1b3ad97a1e6e72d5e5203ad6fcdce13008a55b17552cff6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The class, marks, tier counts, distance from the task day and hiding all check out: the threshold change e24 voids the REVISE orders ORD-2 and ORD-4 and leaves the KEEP orders standing. The expected new session date 2026-11-12 is not fixed by the history: 'delivery three weeks from placement' on 20 October gives about 10 November, so the value is ambiguous.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The class, marks, tier counts, distance from the task day and hiding all check out: the threshold change e24 voids the REVISE orders ORD-2 and ORD-4 and leaves the KEEP orders standing. The expected new session date 2026-11-12 is not fixed by the history: 'delivery three weeks from placement' on 20 October gives about 10 November, so the value is ambiguous."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6040,
+    "completion_tokens": 1482,
+    "reasoning_tokens": 1296,
+    "cached_tokens": 0
+   },
+   "cost": 0.001345,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "7d17eb724e961b7bd1b3ad97a1e6e72d5e5203ad6fcdce13008a55b17552cff6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core logic is sound (threshold rise voids the two pending orders' sign-off, KEEPs stand, EV-3 needs Ruth's consent per e3), but the expected consent message must say \\\"2026-11-12\\\", a date the history never fixes — the quote only gives delivery three weeks after placement (~10 Nov), so the proposed session date is not unambiguously determined. Marks, consent map, tier counts (28 events, 7 decisions, 14-day gap, echo e20) and hiding (event 445/500 with 55 later events) are all fine.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core logic is sound (threshold rise voids the two pending orders' sign-off, KEEPs stand, EV-3 needs Ruth's consent per e3), but the expected consent message must say \"2026-11-12\", a date the history never fixes — the quote only gives delivery three weeks after placement (~10 Nov), so the proposed session date is not unambiguously determined. Marks, consent map, tier counts (28 events, 7 decisions, 14-day gap, echo e20) and hiding (event 445/500 with 55 later events) are all fine."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4268,
+    "completion_tokens": 540,
+    "reasoning_tokens": 363,
+    "cached_tokens": 256
+   },
+   "cost": 0.0202128,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "7d17eb724e961b7bd1b3ad97a1e6e72d5e5203ad6fcdce13008a55b17552cff6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

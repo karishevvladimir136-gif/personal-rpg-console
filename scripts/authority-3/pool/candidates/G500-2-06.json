@@ -715,5 +715,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The coach-consent rule applies to every club's confirmed booking, including Otters' EV-2, and the amendment explicitly preserves it. Marta's request to send the invoice does not establish agreement to the new rate, so EV-2 requires ASK rather than REVISE; the consent map incorrectly omits it, and sending the increased invoice is not justified without consent.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The coach-consent rule applies to every club's confirmed booking, including Otters' EV-2, and the amendment explicitly preserves it. Marta's request to send the invoice does not establish agreement to the new rate, so EV-2 requires ASK rather than REVISE; the consent map incorrectly omits it, and sending the increased invoice is not justified without consent."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4428,
+    "completion_tokens": 110,
+    "reasoning_tokens": 0,
+    "cached_tokens": 0
+   },
+   "cost": 0.0608425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5996ddb626c4602fa406a479e32c18a186e49f9cee704c3318710bd5578f21f2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Rule e3 covers every club's confirmed booking, and EV-2 (Otters Masters, status confirmed) is one, so changing its rate to 22 needs Marta Kovač's consent. The consent map lists only EV-3, so EV-2 is wrongly marked REVISE and the expected state is inconsistent with the history's own rule. The rest (class 2, tier counts, distance from the task day, hidden change, forced act) holds.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Rule e3 covers every club's confirmed booking, and EV-2 (Otters Masters, status confirmed) is one, so changing its rate to 22 needs Marta Kovač's consent. The consent map lists only EV-3, so EV-2 is wrongly marked REVISE and the expected state is inconsistent with the history's own rule. The rest (class 2, tier counts, distance from the task day, hidden change, forced act) holds."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6242,
+    "completion_tokens": 1550,
+    "reasoning_tokens": 1348,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013992,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5996ddb626c4602fa406a479e32c18a186e49f9cee704c3318710bd5578f21f2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The coach-consent rule (e3) applies to \\\"every club,\\\" and the change (e28) explicitly says it \\\"still stands,\\\" so repricing the confirmed Otters booking EV-2 to 22 pounds should also require Marta's consent — yet the expected state marks EV-2/ORD-1 REVISE with no consent while only Seahorses (EV-3) is ASK, resting solely on whether the original decision happened to cite e3. That makes the REVISE/ASK split ambiguous and arguably wrong. Tier, hiding, and the forced act (send the invoice) are all sound.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The coach-consent rule (e3) applies to \"every club,\" and the change (e28) explicitly says it \"still stands,\" so repricing the confirmed Otters booking EV-2 to 22 pounds should also require Marta's consent — yet the expected state marks EV-2/ORD-1 REVISE with no consent while only Seahorses (EV-3) is ASK, resting solely on whether the original decision happened to cite e3. That makes the REVISE/ASK split ambiguous and arguably wrong. Tier, hiding, and the forced act (send the invoice) are all sound."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4493,
+    "completion_tokens": 794,
+    "reasoning_tokens": 615,
+    "cached_tokens": 256
+   },
+   "cost": 0.0246978,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5996ddb626c4602fa406a479e32c18a186e49f9cee704c3318710bd5578f21f2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

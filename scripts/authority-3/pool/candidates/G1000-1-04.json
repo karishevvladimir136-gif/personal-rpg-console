@@ -637,5 +637,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The £1,400 monthly rate takes effect on 1 November, so it does not justify repricing the deep clean completed on 20 October from £930 to £1,050. Thus ORD-2's REVISE mark is unsupported, and the intended stale-fact scenario lacks a valid two-hop touched decision. Any confirmation of November's £1,400 payment should also be conditional on Priya's required approval.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The £1,400 monthly rate takes effect on 1 November, so it does not justify repricing the deep clean completed on 20 October from £930 to £1,050. Thus ORD-2's REVISE mark is unsupported, and the intended stale-fact scenario lacks a valid two-hop touched decision. Any confirmation of November's £1,400 payment should also be conditional on Priya's required approval."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4125,
+    "completion_tokens": 298,
+    "reasoning_tokens": 175,
+    "cached_tokens": 0
+   },
+   "cost": 0.066455,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d8b541091d946aa403eaf781da806c555a01fb9f27cb6ece2c058a022f3e4e7c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes the £1,240 monthly rate (e5), touching e12 (ASK), e13 (KEEP) and e22 (REVISE, two hops away), with e19 and e21 as echoes, so this is a stale-fact case. The counts meet tier 1,000: 33 core events, 8 decisions, the change 18 days before the task day, and 7 core events after it. The change arrives as an ordinary-looking email (e26) among routine events, and the task requires sending and recording, not just reading. Minor doubt: ORD-2's deep clean was already performed (e30), so revising its booked amount is slightly awkward, but the expected state follows from the history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes the £1,240 monthly rate (e5), touching e12 (ASK), e13 (KEEP) and e22 (REVISE, two hops away), with e19 and e21 as echoes, so this is a stale-fact case. The counts meet tier 1,000: 33 core events, 8 decisions, the change 18 days before the task day, and 7 core events after it. The change arrives as an ordinary-looking email (e26) among routine events, and the task requires sending and recording, not just reading. Minor doubt: ORD-2's deep clean was already performed (e30), so revising its booked amount is slightly awkward, but the expected state follows from the history."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5891,
+    "completion_tokens": 1848,
+    "reasoning_tokens": 1574,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015131,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d8b541091d946aa403eaf781da806c555a01fb9f27cb6ece2c058a022f3e4e7c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change takes effect 'from 1 November', but the deep clean happened on 20 October, so revising ORD-2 from £930 to £1,050 is not unambiguously fixed by the history — under the old rate the booked £930 was already exactly three-quarters of £1,240, and the task's 'deep-clean invoice' most naturally bills the October work at the old terms; KEEP would be at least as defensible as REVISE. There is also mild tension in telling Sam November's payment 'will be' £1,400 while ORD-1 must stay at £1,240 pending Priya's consent. Tier mechanics, structure (two-hop REVISE via e12), and hiding are otherwise sound.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change takes effect 'from 1 November', but the deep clean happened on 20 October, so revising ORD-2 from £930 to £1,050 is not unambiguously fixed by the history — under the old rate the booked £930 was already exactly three-quarters of £1,240, and the task's 'deep-clean invoice' most naturally bills the October work at the old terms; KEEP would be at least as defensible as REVISE. There is also mild tension in telling Sam November's payment 'will be' £1,400 while ORD-1 must stay at £1,240 pending Priya's consent. Tier mechanics, structure (two-hop REVISE via e12), and hiding are otherwise sound."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4246,
+    "completion_tokens": 759,
+    "reasoning_tokens": 549,
+    "cached_tokens": 256
+   },
+   "cost": 0.0234318,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d8b541091d946aa403eaf781da806c555a01fb9f27cb6ece2c058a022f3e4e7c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

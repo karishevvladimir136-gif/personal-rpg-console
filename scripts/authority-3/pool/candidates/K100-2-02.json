@@ -1,0 +1,633 @@
+{
+ "id": "K100-2-02",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 2,
+ "idx": 1,
+ "setting": "Practice manager at Rosewater Physiotherapy, a sports injury clinic",
+ "prompt_sha256": "4763f36ba9d94837f298dfafb00114161708dd772dd069a3bd022ff6eba6bfbe",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Room block sign-off threshold raised at Rosewater Physiotherapy\",\n \"setting\": \"Practice manager at Rosewater Physiotherapy, a sports injury clinic\",\n \"owner\": \"Mara\",\n \"org\": \"Rosewater Physiotherapy\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Staff list for the summer: Tomás Reeve is lead physiotherapist, Priya Nair is clinic director, Lena Okafor is junior physiotherapist, and I run the front desk and diary.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Priya Nair\", \"text\": \"Standing instruction: any treatment room block booked for an external club client that runs longer than 60 minutes needs Tomás Reeve's sign-off before we confirm it with the club.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Priya Nair\", \"text\": \"House rule: supplier orders over 300 pounds need my sign-off before Mara places them; anything at or under that Mara can order directly.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Niall Crowe (Westvale Harriers)\", \"text\": \"Could Westvale Harriers take a weekly 90-minute treatment block on Tuesday evenings, 18:00 to 19:30, for our players through the autumn? Happy to start in September.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-16\", \"type\": \"message\", \"from\": \"Mara\", \"text\": \"Diary check: Room 2 is free every Tuesday from 17:00 to 20:00 for the rest of the year.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Westvale Harriers weekly Tuesday block, 18:00 to 19:30 in Room 2, starting in September. At 90 minutes it runs longer than 60, so I have marked it pending while we wait for Tomás Reeve's sign-off before confirming it to Niall Crowe.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Gareth Balek (Northgate FC)\", \"text\": \"Northgate FC would like a 150-minute treatment block on the first Saturday of each month, 09:00 to 11:30, for first-team recovery. Tomás Reeve has already told us he is content with the arrangement.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Northgate FC monthly Saturday block, 09:00 to 11:30 in Room 1. It is 150 minutes so it needed Tomás Reeve's sign-off under the 60-minute rule, which Gareth Balek confirmed we have, so I confirmed the booking.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Sofia Lindt (Harborview Rowing Club)\", \"text\": \"Harborview Rowing Club would like a 180-minute block on the first Sunday of each month, 10:00 to 13:00, during the regatta season. Tomás Reeve has signed off on the clinical side.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-07\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Harborview Rowing Club monthly Sunday block, 10:00 to 13:00 in Room 3. At 180 minutes it needed Tomás Reeve's sign-off under the 60-minute rule and we have it, so I confirmed it to Sofia Lindt.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e9\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Lena Okafor to cover the Westvale Harriers Tuesday evening block in Room 2 once it is confirmed; her rota is marked provisional until the booking itself is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"invoice\", \"from\": \"MedSupplies Direct\", \"text\": \"Invoice 4412 for 96 pounds of kinesiology tape and grip spray delivered to the clinic reception on 18 August.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Priya Nair\", \"text\": \"Diary pressure is getting heavy this autumn, so from Thursday 1 October 2026 the sign-off rule for club room blocks changes: Tomás Reeve's sign-off is only needed when a block runs longer than 120 minutes, and anything longer than 150 minutes also needs my approval before it stands. Bookings at 120 minutes or under can just be confirmed.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e14\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Tomás Reeve\", \"text\": \"On the Northgate FC Wednesday top-up session: it is only 60 minutes, so no sign-off is needed at that length and Gareth can book it whenever suits.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e15\", \"date\": \"2026-10-12\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Remember to reconcile the October supplier invoices with the order book by Friday 30 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Niall Crowe (Westvale Harriers)\", \"text\": \"Just checking everything is on track for our Tuesday evening slot at the clinic; the lads are asking.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Westvale Harriers weekly Tuesday block\", \"fields\": {\"client\": \"Westvale Harriers\", \"day\": \"Tuesday\", \"start\": \"18:00\", \"end\": \"19:30\", \"place\": \"Room 2\", \"status\": \"pending\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Northgate FC monthly Saturday block\", \"fields\": {\"client\": \"Northgate FC\", \"day\": \"first Saturday\", \"start\": \"09:00\", \"end\": \"11:30\", \"place\": \"Room 1\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Harborview Rowing Club monthly Sunday block\", \"fields\": {\"client\": \"Harborview Rowing Club\", \"day\": \"first Sunday\", \"start\": \"10:00\", \"end\": \"13:00\", \"place\": \"Room 3\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Lena Okafor rota - Westvale Tuesday cover\", \"fields\": {\"staff\": \"Lena Okafor\", \"day\": \"Tuesday\", \"start\": \"18:00\", \"end\": \"19:30\", \"place\": \"Room 2\", \"status\": \"provisional\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Westvale Harriers client record\", \"fields\": {\"contact\": \"Niall Crowe\", \"email\": \"niall.crowe@westvaleharriers.example\", \"type\": \"club client\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Kinesiology tape restock\", \"fields\": {\"supplier\": \"MedSupplies Direct\", \"item\": \"kinesiology tape\", \"quantity\": \"96\", \"amount\": \"96\", \"status\": \"received\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"status\"], \"from\": \"Priya Nair\", \"rule\": \"e13\"}\n ],\n \"task\": \"Please get the Westvale Harriers Tuesday evening block in Room 2 properly confirmed in the diary and email Niall Crowe to let him know the 18:00 to 19:30 slot is confirmed.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n  {\"record\": \"EV-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"provisional\"]},\n  {\"message_to\": \"Niall Crowe\", \"regarding\": \"EV-1\", \"says\": [\"18:00\", \"19:30\", \"confirmed\"], \"stale\": [\"pending\"], \"task\": true}\n ],\n \"why\": \"The amended rule (from 1 October 2026) only requires Tomás's sign-off for club blocks over 120 minutes and adds Priya's approval for blocks over 150. The 90-minute Westvale block no longer needs sign-off, so EV-1 (and Lena's provisional rota EV-4, two hops from the rule) are REVISE to confirmed; the 150-minute Northgate block still stands on Tomás's existing sign-off (KEEP); the 180-minute Harborview block now also needs Priya's approval, so EV-3 is ASK and must stay untouched pending her consent.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"tape restock\", \"counterpart\": \"Denise Ward\", \"org\": \"MedSupplies Direct\", \"item\": \"kinesiology tape\", \"unit\": \"rolls\", \"values\": [\"48\", \"96\", \"120\", \"72\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"order\", \"topic\": \"grip spray order\", \"counterpart\": \"Denise Ward\", \"org\": \"MedSupplies Direct\", \"item\": \"grip spray\", \"unit\": \"cans\", \"values\": [\"24\", \"36\", \"60\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"order\", \"topic\": \"Westvale kit supplies\", \"counterpart\": \"Niall Crowe\", \"org\": \"Westvale Harriers\", \"item\": \"instant ice packs\", \"unit\": \"packs\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"booking\", \"topic\": \"Northgate top-up sessions\", \"counterpart\": \"Gareth Balek\", \"org\": \"Northgate FC\", \"item\": \"midweek recovery session\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Harborview ergo assessments\", \"counterpart\": \"Sofia Lindt\", \"org\": \"Harborview Rowing Club\", \"item\": \"rower assessment slot\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\"], \"place\": \"clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"staff supervision slot\", \"counterpart\": \"Tomás Reeve\", \"org\": \"Rosewater Physiotherapy\", \"item\": \"clinical supervision meeting\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"staff room\"], \"place\": \"clinic\"},\n  {\"kind\": \"order\", \"topic\": \"towel laundry service\", \"counterpart\": \"Pete Almas\", \"org\": \"FreshFold Laundry\", \"item\": \"towel bales\", \"unit\": \"bales\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"booking\", \"topic\": \"junior training room\", \"counterpart\": \"Lena Okafor\", \"org\": \"Rosewater Physiotherapy\", \"item\": \"training session room\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"staff room\"], \"place\": \"clinic\"},\n  {\"kind\": \"order\", \"topic\": \"massage oil restock\", \"counterpart\": \"Denise Ward\", \"org\": \"MedSupplies Direct\", \"item\": \"massage oil\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"booking\", \"topic\": \"Westvale pitch-side cover\", \"counterpart\": \"Niall Crowe\", \"org\": \"Westvale Harriers\", \"item\": \"physio pitch cover shift\", \"unit\": \"venue\", \"values\": [\"Westvale ground\", \"training pitch\"], \"place\": \"Westvale ground\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and kitchen supplies\", \"counterpart\": \"Pete Almas\", \"org\": \"FreshFold Laundry\", \"item\": \"kitchen consumables\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"staff room\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3178,
+    "completion_tokens": 6483,
+    "reasoning_tokens": 3295,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0984846,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Room block sign-off threshold raised at Rosewater Physiotherapy\",\n \"setting\": \"Practice manager at Rosewater Physiotherapy, a sports injury clinic\",\n \"owner\": \"Mara\",\n \"org\": \"Rosewater Physiotherapy\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Staff list for the summer: Tomás Reeve is lead physiotherapist, Priya Nair is clinic director, Lena Okafor is junior physiotherapist, and I run the front desk and diary.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Priya Nair\", \"text\": \"Standing instruction: any treatment room block booked for an external club client that runs longer than 60 minutes needs Tomás Reeve's sign-off before we confirm it with the club.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Priya Nair\", \"text\": \"House rule: supplier orders over 300 pounds need my sign-off before Mara places them; anything at or under that Mara can order directly.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Niall Crowe (Westvale Harriers)\", \"text\": \"Could Westvale Harriers take a weekly 90-minute treatment block on Tuesday evenings, 18:00 to 19:30, for our players through the autumn? Happy to start in September.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-16\", \"type\": \"message\", \"from\": \"Mara\", \"text\": \"Diary check: Room 2 is free every Tuesday from 17:00 to 20:00 for the rest of the year.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Westvale Harriers weekly Tuesday block, 18:00 to 19:30 in Room 2, starting in September. At 90 minutes it runs longer than 60, so I have marked it pending while we wait for Tomás Reeve's sign-off before confirming it to Niall Crowe.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Gareth Balek (Northgate FC)\", \"text\": \"Northgate FC would like a 150-minute treatment block on the first Saturday of each month, 09:00 to 11:30, for first-team recovery. Tomás Reeve has already told us he is content with the arrangement.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Northgate FC monthly Saturday block, 09:00 to 11:30 in Room 1. It is 150 minutes so it needed Tomás Reeve's sign-off under the 60-minute rule, which Gareth Balek confirmed we have, so I confirmed the booking.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Sofia Lindt (Harborview Rowing Club)\", \"text\": \"Harborview Rowing Club would like a 180-minute block on the first Sunday of each month, 10:00 to 13:00, during the regatta season. Tomás Reeve has signed off on the clinical side.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-07\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Harborview Rowing Club monthly Sunday block, 10:00 to 13:00 in Room 3. At 180 minutes it needed Tomás Reeve's sign-off under the 60-minute rule and we have it, so I confirmed it to Sofia Lindt.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e9\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Lena Okafor to cover the Westvale Harriers Tuesday evening block in Room 2 once it is confirmed; her rota is marked provisional until the booking itself is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"invoice\", \"from\": \"MedSupplies Direct\", \"text\": \"Invoice 4412 for 96 pounds of kinesiology tape and grip spray delivered to the clinic reception on 18 August.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-27\", \"type\": \"call\", \"from\": \"Pete Almas (FreshFold Laundry)\", \"text\": \"Pete called to say towel bale deliveries move from Wednesdays to Thursdays starting 3 September, same time, 08:30 at the clinic reception.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-02\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Autumn planning meeting with Priya Nair and Tomás Reeve: evening diary pressure discussed, Tuesday and Wednesday slots are the busiest, and we agreed to review club block lengths before October.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-11\", \"type\": \"email\", \"from\": \"Tomás Reeve\", \"text\": \"Reminder that I am away at the sports medicine conference from Monday 21 September to Friday 25 September, so nothing needing my sign-off should be confirmed that week.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Priya Nair\", \"text\": \"Diary pressure is getting heavy this autumn, so from Thursday 1 October 2026 the sign-off rule for club room blocks changes: Tomás Reeve's sign-off is only needed when a block runs longer than 120 minutes, and anything longer than 150 minutes also needs my approval before it stands. Bookings at 120 minutes or under can just be confirmed.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e17\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Tomás Reeve\", \"text\": \"On the Northgate FC Wednesday top-up session: it is only 60 minutes, so no sign-off is needed at that length and Gareth can book it whenever suits.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Priya Nair\", \"text\": \"The clinic will close early at 16:00 on Friday 13 November for the staff training afternoon; please keep that afternoon clear in the diary.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-12\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Remember to reconcile the October supplier invoices with the order book by Friday 30 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Niall Crowe (Westvale Harriers)\", \"text\": \"Just checking everything is on track for our Tuesday evening slot at the clinic; the lads are asking.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Westvale Harriers weekly Tuesday block\", \"fields\": {\"client\": \"Westvale Harriers\", \"day\": \"Tuesday\", \"start\": \"18:00\", \"end\": \"19:30\", \"place\": \"Room 2\", \"status\": \"pending\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Northgate FC monthly Saturday block\", \"fields\": {\"client\": \"Northgate FC\", \"day\": \"first Saturday\", \"start\": \"09:00\", \"end\": \"11:30\", \"place\": \"Room 1\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Harborview Rowing Club monthly Sunday block\", \"fields\": {\"client\": \"Harborview Rowing Club\", \"day\": \"first Sunday\", \"start\": \"10:00\", \"end\": \"13:00\", \"place\": \"Room 3\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Lena Okafor rota - Westvale Tuesday cover\", \"fields\": {\"staff\": \"Lena Okafor\", \"day\": \"Tuesday\", \"start\": \"18:00\", \"end\": \"19:30\", \"place\": \"Room 2\", \"status\": \"provisional\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Westvale Harriers client record\", \"fields\": {\"contact\": \"Niall Crowe\", \"email\": \"niall.crowe@westvaleharriers.example\", \"type\": \"club client\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Kinesiology tape restock\", \"fields\": {\"supplier\": \"MedSupplies Direct\", \"item\": \"kinesiology tape\", \"quantity\": \"96\", \"amount\": \"96\", \"status\": \"received\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"status\"], \"from\": \"Priya Nair\", \"rule\": \"e16\"}\n ],\n \"task\": \"Please get the Westvale Harriers Tuesday evening block in Room 2 properly confirmed in the diary and email Niall Crowe to let him know the 18:00 to 19:30 slot is confirmed.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n  {\"record\": \"EV-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"provisional\"]},\n  {\"message_to\": \"Niall Crowe\", \"regarding\": \"EV-1\", \"says\": [\"18:00\", \"19:30\", \"confirmed\"], \"stale\": [\"pending\"], \"task\": true}\n ],\n \"why\": \"The amended rule (from 1 October 2026) only requires Tomás's sign-off for club blocks over 120 minutes and adds Priya's approval for blocks over 150. The 90-minute Westvale block no longer needs sign-off, so EV-1 (and Lena's provisional rota EV-4, two hops from the rule) are REVISE to confirmed; the 150-minute Northgate block still stands on Tomás's existing sign-off (KEEP); the 180-minute Harborview block now also needs Priya's approval, so EV-3 is ASK and must stay untouched pending her consent.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"tape restock\", \"counterpart\": \"Denise Ward\", \"org\": \"MedSupplies Direct\", \"item\": \"kinesiology tape\", \"unit\": \"rolls\", \"values\": [\"48\", \"96\", \"120\", \"72\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"order\", \"topic\": \"grip spray order\", \"counterpart\": \"Denise Ward\", \"org\": \"MedSupplies Direct\", \"item\": \"grip spray\", \"unit\": \"cans\", \"values\": [\"24\", \"36\", \"60\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"order\", \"topic\": \"Westvale kit supplies\", \"counterpart\": \"Niall Crowe\", \"org\": \"Westvale Harriers\", \"item\": \"instant ice packs\", \"unit\": \"packs\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"booking\", \"topic\": \"Northgate top-up sessions\", \"counterpart\": \"Gareth Balek\", \"org\": \"Northgate FC\", \"item\": \"midweek recovery session\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Harborview ergo assessments\", \"counterpart\": \"Sofia Lindt\", \"org\": \"Harborview Rowing Club\", \"item\": \"rower assessment slot\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\"], \"place\": \"clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"staff supervision slot\", \"counterpart\": \"Tomás Reeve\", \"org\": \"Rosewater Physiotherapy\", \"item\": \"clinical supervision meeting\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"staff room\"], \"place\": \"clinic\"},\n  {\"kind\": \"order\", \"topic\": \"towel laundry service\", \"counterpart\": \"Pete Almas\", \"org\": \"FreshFold Laundry\", \"item\": \"towel bales\", \"unit\": \"bales\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"booking\", \"topic\": \"junior training room\", \"counterpart\": \"Lena Okafor\", \"org\": \"Rosewater Physiotherapy\", \"item\": \"training session room\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"staff room\"], \"place\": \"clinic\"},\n  {\"kind\": \"order\", \"topic\": \"massage oil restock\", \"counterpart\": \"Denise Ward\", \"org\": \"MedSupplies Direct\", \"item\": \"massage oil\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"booking\", \"topic\": \"Westvale pitch-side cover\", \"counterpart\": \"Niall Crowe\", \"org\": \"Westvale Harriers\", \"item\": \"physio pitch cover shift\", \"unit\": \"venue\", \"values\": [\"Westvale ground\", \"training pitch\"], \"place\": \"Westvale ground\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and kitchen supplies\", \"counterpart\": \"Pete Almas\", \"org\": \"FreshFold Laundry\", \"item\": \"kitchen consumables\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"staff room\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6429,
+    "completion_tokens": 3515,
+    "reasoning_tokens": 15,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0637176,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 16 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Room block sign-off threshold raised at Rosewater Physiotherapy\",\n \"setting\": \"Practice manager at Rosewater Physiotherapy, a sports injury clinic\",\n \"owner\": \"Mara\",\n \"org\": \"Rosewater Physiotherapy\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Staff list for the summer: Tomás Reeve is lead physiotherapist, Priya Nair is clinic director, Lena Okafor is junior physiotherapist, and I run the front desk and diary.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Priya Nair\", \"text\": \"Standing instruction: any treatment room block booked for an external club client that runs longer than 60 minutes needs Tomás Reeve's sign-off before we confirm it with the club.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Priya Nair\", \"text\": \"House rule: supplier orders over 300 pounds need my sign-off before Mara places them; anything at or under that Mara can order directly.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Niall Crowe (Westvale Harriers)\", \"text\": \"Could Westvale Harriers take a weekly 90-minute treatment block on Tuesday evenings, 18:00 to 19:30, for our players through the autumn? Happy to start in September.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-16\", \"type\": \"message\", \"from\": \"Mara\", \"text\": \"Diary check: Room 2 is free every Tuesday from 17:00 to 20:00 for the rest of the year.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Westvale Harriers weekly Tuesday block, 18:00 to 19:30 in Room 2, starting in September. At 90 minutes it runs longer than 60, so I have marked it pending while we wait for Tomás Reeve's sign-off before confirming it to Niall Crowe.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Gareth Balek (Northgate FC)\", \"text\": \"Northgate FC would like a 150-minute treatment block on the first Saturday of each month, 09:00 to 11:30, for first-team recovery. Tomás Reeve has already told us he is content with the arrangement.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Northgate FC monthly Saturday block, 09:00 to 11:30 in Room 1. It is 150 minutes so it needed Tomás Reeve's sign-off under the 60-minute rule, which Gareth Balek confirmed we have, so I confirmed the booking.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Sofia Lindt (Harborview Rowing Club)\", \"text\": \"Harborview Rowing Club would like a 180-minute block on the first Sunday of each month, 10:00 to 13:00, during the regatta season. Tomás Reeve has signed off on the clinical side.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-07\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Harborview Rowing Club monthly Sunday block, 10:00 to 13:00 in Room 3. At 180 minutes it needed Tomás Reeve's sign-off under the 60-minute rule and we have it, so I confirmed it to Sofia Lindt.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e9\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Lena Okafor to cover the Westvale Harriers Tuesday evening block in Room 2 once it is confirmed; her rota is marked provisional until the booking itself is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"invoice\", \"from\": \"MedSupplies Direct\", \"text\": \"Invoice 4412 for 96 pounds of kinesiology tape and grip spray delivered to the clinic reception on 18 August.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-27\", \"type\": \"call\", \"from\": \"Pete Almas (FreshFold Laundry)\", \"text\": \"Pete called to say towel bale deliveries move from Wednesdays to Thursdays starting 3 September, same time, 08:30 at the clinic reception.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-02\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Autumn planning meeting with Priya Nair and Tomás Reeve: evening diary pressure discussed, Tuesday and Wednesday slots are the busiest, and we agreed to review club block lengths before October.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-11\", \"type\": \"email\", \"from\": \"Tomás Reeve\", \"text\": \"Reminder that I am away at the sports medicine conference from Monday 21 September to Friday 25 September, so nothing needing my sign-off should be confirmed that week.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Priya Nair\", \"text\": \"Diary pressure is getting heavy this autumn, so from Thursday 1 October 2026 the sign-off rule for club room blocks changes: Tomás Reeve's sign-off is only needed when a block runs longer than 120 minutes, and anything longer than 150 minutes also needs my approval before it stands. Bookings at 120 minutes or under can just be confirmed.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e17\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Tomás Reeve\", \"text\": \"On the Northgate FC Wednesday top-up session: it is only 60 minutes, so no sign-off is needed at that length and Gareth can book it whenever suits.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Priya Nair\", \"text\": \"The clinic will close early at 16:00 on Friday 13 November for the staff training afternoon; please keep that afternoon clear in the diary.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-12\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Remember to reconcile the October supplier invoices with the order book by Friday 30 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Niall Crowe (Westvale Harriers)\", \"text\": \"Just checking everything is on track for our Tuesday evening slot at the clinic; the lads are asking.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Westvale Harriers weekly Tuesday block\", \"fields\": {\"client\": \"Westvale Harriers\", \"day\": \"Tuesday\", \"start\": \"18:00\", \"end\": \"19:30\", \"place\": \"Room 2\", \"status\": \"pending\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Northgate FC monthly Saturday block\", \"fields\": {\"client\": \"Northgate FC\", \"day\": \"first Saturday\", \"start\": \"09:00\", \"end\": \"11:30\", \"place\": \"Room 1\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Harborview Rowing Club monthly Sunday block\", \"fields\": {\"client\": \"Harborview Rowing Club\", \"day\": \"first Sunday\", \"start\": \"10:00\", \"end\": \"13:00\", \"place\": \"Room 3\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Lena Okafor rota - Westvale Tuesday cover\", \"fields\": {\"staff\": \"Lena Okafor\", \"day\": \"Tuesday\", \"start\": \"18:00\", \"end\": \"19:30\", \"place\": \"Room 2\", \"status\": \"provisional\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Westvale Harriers client record\", \"fields\": {\"contact\": \"Niall Crowe\", \"email\": \"niall.crowe@westvaleharriers.example\", \"type\": \"club client\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Kinesiology tape restock\", \"fields\": {\"supplier\": \"MedSupplies Direct\", \"item\": \"kinesiology tape\", \"quantity\": \"96\", \"amount\": \"96\", \"status\": \"received\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"status\"], \"from\": \"Priya Nair\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please get the Westvale Harriers Tuesday evening block in Room 2 properly confirmed in the diary and email Niall Crowe to let him know the 18:00 to 19:30 slot is confirmed.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n  {\"record\": \"EV-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"provisional\"]},\n  {\"message_to\": \"Niall Crowe\", \"regarding\": \"EV-1\", \"says\": [\"18:00\", \"19:30\", \"confirmed\"], \"stale\": [\"pending\"], \"task\": true}\n ],\n \"why\": \"The amended rule (from 1 October 2026) only requires Tomás's sign-off for club blocks over 120 minutes and adds Priya's approval for blocks over 150. The 90-minute Westvale block no longer needs sign-off, so EV-1 (and Lena's provisional rota EV-4, two hops from the rule) are REVISE to confirmed; the 150-minute Northgate block still stands on Tomás's existing sign-off (KEEP); the 180-minute Harborview block now also needs Priya's approval, so EV-3 is ASK and must stay untouched pending her consent.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"tape restock\", \"counterpart\": \"Denise Ward\", \"org\": \"MedSupplies Direct\", \"item\": \"kinesiology tape\", \"unit\": \"rolls\", \"values\": [\"48\", \"96\", \"120\", \"72\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"order\", \"topic\": \"grip spray order\", \"counterpart\": \"Denise Ward\", \"org\": \"MedSupplies Direct\", \"item\": \"grip spray\", \"unit\": \"cans\", \"values\": [\"24\", \"36\", \"60\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"order\", \"topic\": \"Westvale kit supplies\", \"counterpart\": \"Niall Crowe\", \"org\": \"Westvale Harriers\", \"item\": \"instant ice packs\", \"unit\": \"packs\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"booking\", \"topic\": \"Northgate top-up sessions\", \"counterpart\": \"Gareth Balek\", \"org\": \"Northgate FC\", \"item\": \"midweek recovery session\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Harborview ergo assessments\", \"counterpart\": \"Sofia Lindt\", \"org\": \"Harborview Rowing Club\", \"item\": \"rower assessment slot\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"staff supervision slot\", \"counterpart\": \"Tomás Reeve\", \"org\": \"Rosewater Physiotherapy\", \"item\": \"clinical supervision meeting\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"staff room\"], \"place\": \"clinic\"},\n  {\"kind\": \"order\", \"topic\": \"towel laundry service\", \"counterpart\": \"Pete Almas\", \"org\": \"FreshFold Laundry\", \"item\": \"towel bales\", \"unit\": \"bales\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"booking\", \"topic\": \"junior training room\", \"counterpart\": \"Lena Okafor\", \"org\": \"Rosewater Physiotherapy\", \"item\": \"training session room\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"staff room\"], \"place\": \"clinic\"},\n  {\"kind\": \"order\", \"topic\": \"massage oil restock\", \"counterpart\": \"Denise Ward\", \"org\": \"MedSupplies Direct\", \"item\": \"massage oil\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"clinic reception\"},\n  {\"kind\": \"booking\", \"topic\": \"Westvale pitch-side cover\", \"counterpart\": \"Niall Crowe\", \"org\": \"Westvale Harriers\", \"item\": \"physio pitch cover shift\", \"unit\": \"venue\", \"values\": [\"Westvale ground\", \"training pitch\", \"clubhouse\"], \"place\": \"Westvale ground\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and kitchen supplies\", \"counterpart\": \"Pete Almas\", \"org\": \"FreshFold Laundry\", \"item\": \"kitchen consumables\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"staff room\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 10028,
+    "completion_tokens": 3963,
+    "reasoning_tokens": 455,
+    "cached_tokens": 6400
+   },
+   "cost": 0.072249,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- consent on EV-3: «rule» must name the rule event that requires the consent\n- noise topic 'Harborview ergo assessments': values needs at least three entries\n- noise topic 'Westvale pitch-side cover': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Room block sign-off threshold raised at Rosewater Physiotherapy",
+  "setting": "Practice manager at Rosewater Physiotherapy, a sports injury clinic",
+  "owner": "Mara",
+  "org": "Rosewater Physiotherapy",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "note",
+    "from": "Mara",
+    "text": "Staff list for the summer: Tomás Reeve is lead physiotherapist, Priya Nair is clinic director, Lena Okafor is junior physiotherapist, and I run the front desk and diary.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-08",
+    "type": "instruction",
+    "from": "Priya Nair",
+    "text": "Standing instruction: any treatment room block booked for an external club client that runs longer than 60 minutes needs Tomás Reeve's sign-off before we confirm it with the club.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "policy",
+    "from": "Priya Nair",
+    "text": "House rule: supplier orders over 300 pounds need my sign-off before Mara places them; anything at or under that Mara can order directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Niall Crowe (Westvale Harriers)",
+    "text": "Could Westvale Harriers take a weekly 90-minute treatment block on Tuesday evenings, 18:00 to 19:30, for our players through the autumn? Happy to start in September.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-16",
+    "type": "message",
+    "from": "Mara",
+    "text": "Diary check: Room 2 is free every Tuesday from 17:00 to 20:00 for the rest of the year.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the Westvale Harriers weekly Tuesday block, 18:00 to 19:30 in Room 2, starting in September. At 90 minutes it runs longer than 60, so I have marked it pending while we wait for Tomás Reeve's sign-off before confirming it to Niall Crowe.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e4",
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-24",
+    "type": "email",
+    "from": "Gareth Balek (Northgate FC)",
+    "text": "Northgate FC would like a 150-minute treatment block on the first Saturday of each month, 09:00 to 11:30, for first-team recovery. Tomás Reeve has already told us he is content with the arrangement.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-26",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the Northgate FC monthly Saturday block, 09:00 to 11:30 in Room 1. It is 150 minutes so it needed Tomás Reeve's sign-off under the 60-minute rule, which Gareth Balek confirmed we have, so I confirmed the booking.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e7"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-03",
+    "type": "email",
+    "from": "Sofia Lindt (Harborview Rowing Club)",
+    "text": "Harborview Rowing Club would like a 180-minute block on the first Sunday of each month, 10:00 to 13:00, during the regatta season. Tomás Reeve has signed off on the clinical side.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-07",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the Harborview Rowing Club monthly Sunday block, 10:00 to 13:00 in Room 3. At 180 minutes it needed Tomás Reeve's sign-off under the 60-minute rule and we have it, so I confirmed it to Sofia Lindt.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e9"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Assigned Lena Okafor to cover the Westvale Harriers Tuesday evening block in Room 2 once it is confirmed; her rota is marked provisional until the booking itself is confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-20",
+    "type": "invoice",
+    "from": "MedSupplies Direct",
+    "text": "Invoice 4412 for 96 pounds of kinesiology tape and grip spray delivered to the clinic reception on 18 August.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-27",
+    "type": "call",
+    "from": "Pete Almas (FreshFold Laundry)",
+    "text": "Pete called to say towel bale deliveries move from Wednesdays to Thursdays starting 3 September, same time, 08:30 at the clinic reception.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-02",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Autumn planning meeting with Priya Nair and Tomás Reeve: evening diary pressure discussed, Tuesday and Wednesday slots are the busiest, and we agreed to review club block lengths before October.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-11",
+    "type": "email",
+    "from": "Tomás Reeve",
+    "text": "Reminder that I am away at the sports medicine conference from Monday 21 September to Friday 25 September, so nothing needing my sign-off should be confirmed that week.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-28",
+    "type": "message",
+    "from": "Priya Nair",
+    "text": "Diary pressure is getting heavy this autumn, so from Thursday 1 October 2026 the sign-off rule for club room blocks changes: Tomás Reeve's sign-off is only needed when a block runs longer than 120 minutes, and anything longer than 150 minutes also needs my approval before it stands. Bookings at 120 minutes or under can just be confirmed.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Tomás Reeve",
+    "text": "On the Northgate FC Wednesday top-up session: it is only 60 minutes, so no sign-off is needed at that length and Gareth can book it whenever suits.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-08",
+    "type": "notice",
+    "from": "Priya Nair",
+    "text": "The clinic will close early at 16:00 on Friday 13 November for the staff training afternoon; please keep that afternoon clear in the diary.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-12",
+    "type": "task",
+    "from": "Mara",
+    "text": "Remember to reconcile the October supplier invoices with the order book by Friday 30 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Niall Crowe (Westvale Harriers)",
+    "text": "Just checking everything is on track for our Tuesday evening slot at the clinic; the lads are asking.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Westvale Harriers weekly Tuesday block",
+    "fields": {
+     "client": "Westvale Harriers",
+     "day": "Tuesday",
+     "start": "18:00",
+     "end": "19:30",
+     "place": "Room 2",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Northgate FC monthly Saturday block",
+    "fields": {
+     "client": "Northgate FC",
+     "day": "first Saturday",
+     "start": "09:00",
+     "end": "11:30",
+     "place": "Room 1",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Harborview Rowing Club monthly Sunday block",
+    "fields": {
+     "client": "Harborview Rowing Club",
+     "day": "first Sunday",
+     "start": "10:00",
+     "end": "13:00",
+     "place": "Room 3",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Lena Okafor rota - Westvale Tuesday cover",
+    "fields": {
+     "staff": "Lena Okafor",
+     "day": "Tuesday",
+     "start": "18:00",
+     "end": "19:30",
+     "place": "Room 2",
+     "status": "provisional"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Westvale Harriers client record",
+    "fields": {
+     "contact": "Niall Crowe",
+     "email": "niall.crowe@westvaleharriers.example",
+     "type": "club client",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Kinesiology tape restock",
+    "fields": {
+     "supplier": "MedSupplies Direct",
+     "item": "kinesiology tape",
+     "quantity": "96",
+     "amount": "96",
+     "status": "received"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "status"
+    ],
+    "from": "Priya Nair",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please get the Westvale Harriers Tuesday evening block in Room 2 properly confirmed in the diary and email Niall Crowe to let him know the 18:00 to 19:30 slot is confirmed.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-4",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "provisional"
+    ]
+   },
+   {
+    "message_to": "Niall Crowe",
+    "regarding": "EV-1",
+    "says": [
+     "18:00",
+     "19:30",
+     "confirmed"
+    ],
+    "stale": [
+     "pending"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The amended rule (from 1 October 2026) only requires Tomás's sign-off for club blocks over 120 minutes and adds Priya's approval for blocks over 150. The 90-minute Westvale block no longer needs sign-off, so EV-1 (and Lena's provisional rota EV-4, two hops from the rule) are REVISE to confirmed; the 150-minute Northgate block still stands on Tomás's existing sign-off (KEEP); the 180-minute Harborview block now also needs Priya's approval, so EV-3 is ASK and must stay untouched pending her consent.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "tape restock",
+    "counterpart": "Denise Ward",
+    "org": "MedSupplies Direct",
+    "item": "kinesiology tape",
+    "unit": "rolls",
+    "values": [
+     "48",
+     "96",
+     "120",
+     "72"
+    ],
+    "place": "clinic reception"
+   },
+   {
+    "kind": "order",
+    "topic": "grip spray order",
+    "counterpart": "Denise Ward",
+    "org": "MedSupplies Direct",
+    "item": "grip spray",
+    "unit": "cans",
+    "values": [
+     "24",
+     "36",
+     "60"
+    ],
+    "place": "clinic reception"
+   },
+   {
+    "kind": "order",
+    "topic": "Westvale kit supplies",
+    "counterpart": "Niall Crowe",
+    "org": "Westvale Harriers",
+    "item": "instant ice packs",
+    "unit": "packs",
+    "values": [
+     "20",
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "clinic reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "Northgate top-up sessions",
+    "counterpart": "Gareth Balek",
+    "org": "Northgate FC",
+    "item": "midweek recovery session",
+    "unit": "room",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Room 3"
+    ],
+    "place": "clinic"
+   },
+   {
+    "kind": "booking",
+    "topic": "Harborview ergo assessments",
+    "counterpart": "Sofia Lindt",
+    "org": "Harborview Rowing Club",
+    "item": "rower assessment slot",
+    "unit": "room",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Room 3"
+    ],
+    "place": "clinic"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff supervision slot",
+    "counterpart": "Tomás Reeve",
+    "org": "Rosewater Physiotherapy",
+    "item": "clinical supervision meeting",
+    "unit": "room",
+    "values": [
+     "Room 2",
+     "Room 3",
+     "staff room"
+    ],
+    "place": "clinic"
+   },
+   {
+    "kind": "order",
+    "topic": "towel laundry service",
+    "counterpart": "Pete Almas",
+    "org": "FreshFold Laundry",
+    "item": "towel bales",
+    "unit": "bales",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "clinic reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "junior training room",
+    "counterpart": "Lena Okafor",
+    "org": "Rosewater Physiotherapy",
+    "item": "training session room",
+    "unit": "room",
+    "values": [
+     "Room 2",
+     "Room 3",
+     "staff room"
+    ],
+    "place": "clinic"
+   },
+   {
+    "kind": "order",
+    "topic": "massage oil restock",
+    "counterpart": "Denise Ward",
+    "org": "MedSupplies Direct",
+    "item": "massage oil",
+    "unit": "bottles",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "clinic reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "Westvale pitch-side cover",
+    "counterpart": "Niall Crowe",
+    "org": "Westvale Harriers",
+    "item": "physio pitch cover shift",
+    "unit": "venue",
+    "values": [
+     "Westvale ground",
+     "training pitch",
+     "clubhouse"
+    ],
+    "place": "Westvale ground"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee and kitchen supplies",
+    "counterpart": "Pete Almas",
+    "org": "FreshFold Laundry",
+    "item": "kitchen consumables",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "staff room"
+   }
+  ],
+  "id": "K100-2-02",
+  "tier": 100,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The consent map cites rule e2 for Priya's consent on EV-3, but e2 requires Tomás's sign-off, not Priya's; her approval comes only from the amendment e16, so the map should cite e16. The REVISE/KEEP/ASK marks and the expected state otherwise follow from the history, and the tier counts (20 core events, 4 decisions, change 28 days before the task, 4 core events after) and the hidden change placement are fine.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The consent map cites rule e2 for Priya's consent on EV-3, but e2 requires Tomás's sign-off, not Priya's; her approval comes only from the amendment e16, so the map should cite e16. The REVISE/KEEP/ASK marks and the expected state otherwise follow from the history, and the tier counts (20 core events, 4 decisions, change 28 days before the task, 4 core events after) and the hidden change placement are fine."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5076,
+    "completion_tokens": 1616,
+    "reasoning_tokens": 1411,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013156,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0f545ee7206ddc8784358df7179e0f03ec95a32f4d3a6b7305b8e60a115262e2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amended rule cleanly separates the three decisions: 90 minutes needs no sign-off (REVISE EV-1 and EV-4, and the task's confirmation to Niall Crowe), 150-minute Northgate still stands on existing sign-off (KEEP, since it does not exceed 150 minutes so Priya is not needed), and 180-minute Harborview now needs Priya's approval (ASK, matching the consent map). The task is an ordinary workplace act with no hint of the change, and the change sits mid-history as a plain message with later core and noise events after it. Core has 20 events, 4 decisions, and the change is 28 days before the task day, satisfying tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended rule cleanly separates the three decisions: 90 minutes needs no sign-off (REVISE EV-1 and EV-4, and the task's confirmation to Niall Crowe), 150-minute Northgate still stands on existing sign-off (KEEP, since it does not exceed 150 minutes so Priya is not needed), and 180-minute Harborview now needs Priya's approval (ASK, matching the consent map). The task is an ordinary workplace act with no hint of the change, and the change sits mid-history as a plain message with later core and noise events after it. Core has 20 events, 4 decisions, and the change is 28 days before the task day, satisfying tier 100."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3573,
+    "completion_tokens": 324,
+    "reasoning_tokens": 132,
+    "cached_tokens": 384
+   },
+   "cost": 0.00599004,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0f545ee7206ddc8784358df7179e0f03ec95a32f4d3a6b7305b8e60a115262e2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The consent map cites e2 for Priya’s approval, but e2 requires only Tomás’s sign-off; Priya’s requirement comes from e16. Also, the Westvale-only task does not unambiguously require initiating a consent request for the unrelated Harborview booking.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The consent map cites e2 for Priya’s approval, but e2 requires only Tomás’s sign-off; Priya’s requirement comes from e16. Also, the Westvale-only task does not unambiguously require initiating a consent request for the unrelated Harborview booking."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3526,
+    "completion_tokens": 316,
+    "reasoning_tokens": 223,
+    "cached_tokens": 0
+   },
+   "cost": 0.0598675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0f545ee7206ddc8784358df7179e0f03ec95a32f4d3a6b7305b8e60a115262e2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

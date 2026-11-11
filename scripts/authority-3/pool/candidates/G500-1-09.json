@@ -616,5 +616,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The window extension leaves the existing 28 October booking and hire valid, so it does not itself trigger the claimed stale-fact cascade; the task independently requests their rescheduling. The task reports Marta's emailed request for 17 November, which already supplies her written agreement, so requiring another consent request while leaving EV-1 unchanged is unsupported.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The window extension leaves the existing 28 October booking and hire valid, so it does not itself trigger the claimed stale-fact cascade; the task independently requests their rescheduling. The task reports Marta's emailed request for 17 November, which already supplies her written agreement, so requiring another consent request while leaving EV-1 unchanged is unsupported."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4133,
+    "completion_tokens": 250,
+    "reasoning_tokens": 145,
+    "cached_tokens": 0
+   },
+   "cost": 0.064155,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1fd74da8bad511a5c01b887c8af33c9cee2660877016bb1939be1879997fcd5e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e26 revokes the window fact e2, touching e10 (ASK, direct) and e12 (REVISE, two hops away), with e13 as a KEEP. Tier counts, the 18-day gap, the three later core events and the echo e22 all meet the 500-tier requirements. One weak point: Marta's own email names the 17 November date, so whether it already counts as the written agreement that e1 requires is open to argument, though the expected ASK outcome is defensible.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e26 revokes the window fact e2, touching e10 (ASK, direct) and e12 (REVISE, two hops away), with e13 as a KEEP. Tier counts, the 18-day gap, the three later core events and the echo e22 all meet the 500-tier requirements. One weak point: Marta's own email names the 17 November date, so whether it already counts as the written agreement that e1 requires is open to argument, though the expected ASK outcome is defensible."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5867,
+    "completion_tokens": 2401,
+    "reasoning_tokens": 2190,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017872,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1fd74da8bad511a5c01b887c8af33c9cee2660877016bb1939be1879997fcd5e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes the e2 window fact, touching EV-1 (ASK per the e1 client-consent rule, matching the consent map) and, two hops away, ORD-1 (REVISE to 2026-11-17, no consent needed), while ORD-2 (KEEP) rests only on the TPO reference; Marta's own email requesting 17 November is handled by the outbox message/consent request and EV-1 staying put, which is the history's own conservative reading. Tier 500 is met: 29 core events, 7 decisions, change 18 days before the task day, 53 later events, and e22 echoes the stale 31-October deadline. The change is an ordinary mid-history council email with no special marking.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes the e2 window fact, touching EV-1 (ASK per the e1 client-consent rule, matching the consent map) and, two hops away, ORD-1 (REVISE to 2026-11-17, no consent needed), while ORD-2 (KEEP) rests only on the TPO reference; Marta's own email requesting 17 November is handled by the outbox message/consent request and EV-1 staying put, which is the history's own conservative reading. Tier 500 is met: 29 core events, 7 decisions, change 18 days before the task day, 53 later events, and e22 echoes the stale 31-October deadline. The change is an ordinary mid-history council email with no special marking."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4253,
+    "completion_tokens": 816,
+    "reasoning_tokens": 598,
+    "cached_tokens": 256
+   },
+   "cost": 0.0243078,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1fd74da8bad511a5c01b887c8af33c9cee2660877016bb1939be1879997fcd5e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

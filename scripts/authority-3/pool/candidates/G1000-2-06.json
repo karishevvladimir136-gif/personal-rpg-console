@@ -1,0 +1,748 @@
+{
+ "id": "G1000-2-06",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 2,
+ "idx": 5,
+ "setting": "The practice nurse coordinator at Ashgrove Health Centre whose assistant runs immunisation clinics and home-visit rotas",
+ "prompt_sha256": "39cba5bf2d071dd99fed555eb3b8b0fa451542f2ae77a0e70187351f77ab51a0",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Venue approval threshold lowered at Ashgrove\",\n  \"setting\": \"The practice nurse coordinator at Ashgrove Health Centre whose assistant runs immunisation clinics and home-visit rotas\",\n  \"owner\": \"Nora\",\n  \"org\": \"Ashgrove Health Centre\",\n  \"now\": \"2026-10-08\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"email\", \"from\": \"Marta Okafor (practice manager)\", \"text\": \"Welcome to the autumn planning cycle, Nora. You'll be coordinating the immunisation clinics and the home-visit rotas from June onwards. Marta.\", \"role\": \"other\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Marta Okafor (practice manager)\", \"text\": \"Standing finance rule for the centre: any hall, room or van booking for a clinic session costing more than 150 pounds per session needs the finance lead Martin's written approval before it is confirmed in the schedule. Below that amount, the nurse coordinator confirms the booking herself.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"message\", \"from\": \"Priya Nandi (practice nurse)\", \"text\": \"Just so you know, I'm free every Wednesday afternoon and every Tuesday morning from October for outreach work and home visits.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Rev. Peter Sole (Wellfield Church)\", \"text\": \"The church hall is free on Tuesday mornings if you want it for baby clinics; the hire fee is 45 pounds per session and that includes the small side room.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"instruction\", \"from\": \"Marta Okafor (practice manager)\", \"text\": \"One more standing instruction: nothing that is already confirmed in the schedule or in the orders may be moved back to pending or cancelled without checking with me first. Our partners plan around our confirmations.\", \"role\": \"rule\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Mrs Durani (Fairholme School office)\", \"text\": \"Our Main Hall is free on Wednesdays from 13:30 to 16:30 throughout October. The session hire fee is 120 pounds, which includes tables and chairs.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"message\", \"from\": \"Nora\", \"text\": \"Priya, can you check the cold-chain thermometer logs before the autumn clinics start? Thanks.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-28\", \"type\": \"quote\", \"from\": \"Sam Whitlock (DriveVan Hire)\", \"text\": \"Mobile vaccination van with driver, 95 pounds per afternoon (up to four hours), available on Wednesdays in October.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Martin Bright (finance lead)\", \"text\": \"Quick reminder of how we've set this up: I only sign off hall or van bookings over 150 pounds per session before they're confirmed. Anything under that, you confirm it yourself.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Annette Roy (Larchwood Institute booking clerk)\", \"text\": \"The Main Hall is free on Friday mornings from 9:00 to 12:30. Our hire charge is 75 pounds per session.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-16\", \"type\": \"minutes\", \"from\": \"Nora\", \"text\": \"Practice huddle notes: autumn flu campaign starts the first week of October; home-visit rounds to be allocated by the end of August.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"quote\", \"from\": \"Beacon Medical Supplies\", \"text\": \"Quadrivalent flu vaccine at 6.40 pounds per dose, 400 doses available, delivery mid-September.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Assigned Priya to the Netherfield home-visit round every Tuesday from 2026-10-06, in 30-minute slots, since she confirmed her Tuesday mornings are free.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-4\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Gareth Pike (centre admin)\", \"text\": \"Our own training room is free all day on Thursday 2026-11-05 if you want it for the annual update.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-31\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Ordered 400 doses of quadrivalent flu vaccine from Beacon Medical Supplies at 6.40 pounds a dose for the autumn clinics, delivery booked for 2026-09-18.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked Wellfield Church hall for a monthly baby immunisation drop-in, first session Tuesday 2026-09-22, at 45 pounds per session. That's under the 150-pound approval limit, so I confirmed it myself without finance sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-08\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked the Main Hall at Fairholme School for the pupils' flu vaccination sessions every Wednesday 13:30-16:30 from 2026-10-07, at 120 pounds per session, with Priya available to staff it. The fee is under the 150-pound approval limit, so I confirmed it in the schedule without finance sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Set the staffing rota for the confirmed Fairholme School Wednesday sessions: Priya and Tomas together, 13:30-16:30, starting 2026-10-07.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e3\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-15\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Following the confirmed Fairholme School sessions, hired the mobile vaccination van from DriveVan Hire for the Wednesday afternoons from 2026-10-07 at 95 pounds per afternoon, and confirmed the hire without finance sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e8\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-19\", \"type\": \"note\", \"from\": \"Martin Bright (finance lead)\", \"text\": \"Finance check for the autumn clinic plan: the venue approval limit is 150 pounds per session. Larchwood at 75 pounds, Fairholme at 120 pounds and Wellfield at 45 pounds all sit below it, so none of them need my sign-off.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e21\", \"date\": \"2026-08-22\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked the Main Hall at Larchwood Institute for an adult flu clinic on Friday morning 2026-10-16 at 75 pounds per session, and marked the schedule entry 'finance approval not needed' since the fee is under the 150-pound limit.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e2\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked our own training room for the annual immunisation update on Thursday 2026-11-05; no hire charge applies to internal rooms.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-5\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Mrs Durani (Fairholme School office)\", \"text\": \"Looking forward to the October Wednesday sessions. We expect around 180 pupils across the afternoons, and the caretaker will have the Main Hall set up from 13:00.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"message\", \"from\": \"Tomas Reyes (practice nurse)\", \"text\": \"Happy to join Priya on the Wednesday school sessions from the 7th. I'll bring the anaphylaxis kit each time.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Marta Okafor (practice manager)\", \"text\": \"Following the September budget review, I'm changing the venue rule from today: any hall, room or van booking for a clinic session over 60 pounds per session now needs Martin's written approval before it is confirmed in the schedule. That replaces the old 150-pound limit, and it applies to every session taking place from 1 October onwards. Rooms in our own building stay exempt.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e26\", \"date\": \"2026-09-16\", \"type\": \"email\", \"from\": \"Annette Roy (Larchwood Institute booking clerk)\", \"text\": \"Confirming the Main Hall for Friday 16 October, 9:00-12:30. The invoice will follow at the usual 75 pounds per session.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-20\", \"type\": \"invoice\", \"from\": \"Beacon Medical Supplies\", \"text\": \"Invoice for 400 doses of quadrivalent flu vaccine at 6.40 pounds per dose, total 2,560 pounds, delivered 2026-09-18 as agreed.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Rev. Peter Sole (Wellfield Church)\", \"text\": \"The drop-in on the 22nd went well. We'll see you on 20 October as usual.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Martin Bright (finance lead)\", \"text\": \"For anyone booking halls this autumn: the finance rule of thumb is still 150 pounds a session before you need my sign-off. As far as I can see, nothing in the current clinic plan comes anywhere near that.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e30\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Priya Nandi (practice nurse)\", \"text\": \"Could we get some extra sharps bins stocked in the school-session bag before Wednesday?\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Mrs Durani (Fairholme School office)\", \"text\": \"Final numbers for the 7th: 184 consent forms are in. See you Wednesday.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Marta Okafor (practice manager)\", \"text\": \"Reminder that the home-visit rotas should be published to the nurses by the end of the week.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Fairholme School flu vaccination sessions\", \"fields\": {\"partner\": \"Fairholme School\", \"venue\": \"Main Hall\", \"day_time\": \"Wednesday 13:30-16:30\", \"first_session\": \"2026-10-07\", \"fee\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Larchwood Institute adult flu clinic\", \"fields\": {\"venue\": \"Larchwood Institute Main Hall\", \"date\": \"2026-10-16\", \"time\": \"09:00-12:30\", \"fee\": \"75\", \"finance_approval\": \"not needed\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Wellfield Church baby immunisation drop-in\", \"fields\": {\"partner\": \"Wellfield Church\", \"venue\": \"Church hall and side room\", \"frequency\": \"Monthly Tuesday morning\", \"next_session\": \"2026-10-20\", \"fee\": \"45\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Netherfield home-visit round\", \"fields\": {\"nurse\": \"Priya\", \"area\": \"Netherfield\", \"day\": \"Tuesday\", \"start\": \"2026-10-06\", \"slot_minutes\": \"30\", \"status\": \"active\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Annual immunisation update\", \"fields\": {\"venue\": \"Ashgrove training room\", \"date\": \"2026-11-05\", \"status\": \"booked\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Fairholme Wednesday sessions rota\", \"fields\": {\"clinic\": \"Fairholme School flu sessions\", \"nurses\": \"Priya and Tomas\", \"when\": \"Wednesday 13:30-16:30\", \"start\": \"2026-10-07\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"DriveVan mobile vaccination van\", \"fields\": {\"supplier\": \"DriveVan Hire\", \"item\": \"Mobile vaccination van with driver\", \"schedule\": \"Wednesday afternoons from 2026-10-07\", \"fee\": \"95\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Autumn flu vaccine order\", \"fields\": {\"supplier\": \"Beacon Medical Supplies\", \"item\": \"Quadrivalent flu vaccine\", \"quantity\": \"400\", \"delivery\": \"2026-09-18\", \"status\": \"delivered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"status\"], \"from\": \"Marta Okafor\", \"rule\": \"e5\"},\n    {\"record\": \"ORD-1\", \"fields\": [\"status\"], \"from\": \"Marta Okafor\", \"rule\": \"e5\"}\n  ],\n  \"task\": \"I'd like to get the Larchwood adult flu clinic on Friday the 16th finalised. Can you update its schedule entry and send Larchwood a confirmation with the final details?\",\n  \"expect\": [\n    {\"record\": \"EV-2\", \"field\": \"finance_approval\", \"value\": \"required\", \"stale\": [\"not needed\"], \"task\": true},\n    {\"message_to\": \"Martin Bright (finance lead)\", \"regarding\": \"EV-2\", \"says\": [\"75 pounds per session\", \"written approval\"], \"stale\": [\"150 pounds\"], \"task\": true},\n    {\"message_to\": \"Annette Roy (Larchwood Institute)\", \"regarding\": \"EV-2\", \"says\": [\"Friday 16 October\", \"Main Hall\", \"75 pounds per session\"], \"stale\": [\"finance approval not needed\"], \"task\": true}\n  ],\n  \"why\": \"The change lowers the approval threshold from 150 to 60 pounds for sessions from 1 October, so the Larchwood clinic at 75 pounds now needs Martin's written approval: its record's finance_approval flag must be corrected to required (REVISE, no consent needed) and approval requested from Martin before confirming with Larchwood. The Fairholme booking and the van hire are also over the new threshold, but moving their confirmed status back to pending needs Marta's consent under the standing rule, so they stay as they are with a consent request (ASK). Wellfield at 45 pounds and the internal training room fall below the new threshold or outside its terms, so they are KEEP, and all untouched records stay exactly as they are.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"gloves restock\", \"counterpart\": \"Beacon Medical Supplies\", \"org\": \"Beacon Medical Supplies\", \"item\": \"nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Ashgrove Health Centre treatment room\"},\n    {\"kind\": \"order\", \"topic\": \"sharps bins\", \"counterpart\": \"Beacon Medical Supplies\", \"org\": \"Beacon Medical Supplies\", \"item\": \"sharps bins\", \"unit\": \"bins\", \"values\": [\"30\", \"45\", \"60\"], \"place\": \"Ashgrove Health Centre treatment room\"},\n    {\"kind\": \"order\", \"topic\": \"cool boxes\", \"counterpart\": \"Beacon Medical Supplies\", \"org\": \"Beacon Medical Supplies\", \"item\": \"cold-chain cool boxes\", \"unit\": \"boxes\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Ashgrove Health Centre vaccine fridge area\"},\n    {\"kind\": \"booking\", \"topic\": \"school nurse room\", \"counterpart\": \"Mrs Durani\", \"org\": \"Fairholme School\", \"item\": \"small meeting room for pupil health checks\", \"values\": [\"Library annex\", \"Small meeting room\", \"Art room\"], \"place\": \"Fairholme School\"},\n    {\"kind\": \"booking\", \"topic\": \"blood-pressure checks\", \"counterpart\": \"Annette Roy\", \"org\": \"Larchwood Institute\", \"item\": \"side room for blood-pressure checks\", \"values\": [\"Side room A\", \"Side room B\", \"Library corner\"], \"place\": \"Larchwood Institute\"},\n    {\"kind\": \"booking\", \"topic\": \"coffee morning\", \"counterpart\": \"Rev. Peter Sole\", \"org\": \"Wellfield Church\", \"item\": \"hall for parent coffee mornings\", \"values\": [\"Main hall\", \"Small hall\", \"Side room\"], \"place\": \"Wellfield Church\"},\n    {\"kind\": \"booking\", \"topic\": \"home-visit van\", \"counterpart\": \"Sam Whitlock\", \"org\": \"DriveVan Hire\", \"item\": \"van for home-visit rounds\", \"values\": [\"Netherfield round\", \"Riverside round\", \"Town centre round\"], \"place\": \"Ashgrove Health Centre car park\"},\n    {\"kind\": \"order\", \"topic\": \"hand sanitiser\", \"counterpart\": \"Gareth Pike\", \"org\": \"Medisave Wholesale\", \"item\": \"hand sanitiser\", \"unit\": \"bottles\", \"values\": [\"50\", \"80\", \"120\"], \"place\": \"Ashgrove Health Centre reception\"},\n    {\"kind\": \"order\", \"topic\": \"appointment cards\", \"counterpart\": \"Helen Frost\", \"org\": \"PrintWorks Local\", \"item\": \"appointment cards\", \"unit\": \"packs\", \"values\": [\"10\", \"25\", \"40\"], \"place\": \"Ashgrove Health Centre reception\"},\n    {\"kind\": \"booking\", \"topic\": \"physio sessions\", \"counterpart\": \"Dr Hale\", \"org\": \"Ashgrove Health Centre\", \"item\": \"room for weekly physio sessions\", \"values\": [\"Training room\", \"Seminar room\"], \"place\": \"Ashgrove Health Centre\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3201,
+    "completion_tokens": 17778,
+    "reasoning_tokens": 13090,
+    "cached_tokens": 3136
+   },
+   "cost": 0.07912956,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Venue approval threshold lowered at Ashgrove\",\n  \"setting\": \"The practice nurse coordinator at Ashgrove Health Centre whose assistant runs immunisation clinics and home-visit rotas\",\n  \"owner\": \"Nora\",\n  \"org\": \"Ashgrove Health Centre\",\n  \"now\": \"2026-10-08\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"email\", \"from\": \"Marta Okafor (practice manager)\", \"text\": \"Welcome to the autumn planning cycle, Nora. You'll be coordinating the immunisation clinics and the home-visit rotas from June onwards. Marta.\", \"role\": \"other\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Marta Okafor (practice manager)\", \"text\": \"Standing finance rule for the centre: any hall, room or van booking for a clinic session costing more than 150 pounds per session needs the finance lead Martin's written approval before it is confirmed in the schedule. Below that amount, the nurse coordinator confirms the booking herself.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"message\", \"from\": \"Priya Nandi (practice nurse)\", \"text\": \"Just so you know, I'm free every Wednesday afternoon and every Tuesday morning from October for outreach work and home visits.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Rev. Peter Sole (Wellfield Church)\", \"text\": \"The church hall is free on Tuesday mornings if you want it for baby clinics; the hire fee is 45 pounds per session and that includes the small side room.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"instruction\", \"from\": \"Marta Okafor (practice manager)\", \"text\": \"One more standing instruction: nothing that is already confirmed in the schedule or in the orders may be moved back to pending or cancelled without checking with me first. Our partners plan around our confirmations.\", \"role\": \"rule\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Mrs Durani (Fairholme School office)\", \"text\": \"Our Main Hall is free on Wednesdays from 13:30 to 16:30 throughout October. The session hire fee is 120 pounds, which includes tables and chairs.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"message\", \"from\": \"Nora\", \"text\": \"Priya, can you check the cold-chain thermometer logs before the autumn clinics start? Thanks.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-28\", \"type\": \"quote\", \"from\": \"Sam Whitlock (DriveVan Hire)\", \"text\": \"Mobile vaccination van with driver, 95 pounds per afternoon (up to four hours), available on Wednesdays in October.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Martin Bright (finance lead)\", \"text\": \"Quick reminder of how we've set this up: I only sign off hall or van bookings over 150 pounds per session before they're confirmed. Anything under that, you confirm it yourself.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Annette Roy (Larchwood Institute booking clerk)\", \"text\": \"The Main Hall is free on Friday mornings from 9:00 to 12:30. Our hire charge is 75 pounds per session.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-16\", \"type\": \"minutes\", \"from\": \"Nora\", \"text\": \"Practice huddle notes: autumn flu campaign starts the first week of October; home-visit rounds to be allocated by the end of August.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"quote\", \"from\": \"Beacon Medical Supplies\", \"text\": \"Quadrivalent flu vaccine at 6.40 pounds per dose, 400 doses available, delivery mid-September.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Assigned Priya to the Netherfield home-visit round every Tuesday from 2026-10-06, in 30-minute slots, since she confirmed her Tuesday mornings are free.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-4\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Gareth Pike (centre admin)\", \"text\": \"Our own training room is free all day on Thursday 2026-11-05 if you want it for the annual update.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-31\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Ordered 400 doses of quadrivalent flu vaccine from Beacon Medical Supplies at 6.40 pounds a dose for the autumn clinics, delivery booked for 2026-09-18.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked Wellfield Church hall for a monthly baby immunisation drop-in, first session Tuesday 2026-09-22, at 45 pounds per session. That's under the 150-pound approval limit, so I confirmed it myself without finance sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-08\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked the Main Hall at Fairholme School for the pupils' flu vaccination sessions every Wednesday 13:30-16:30 from 2026-10-07, at 120 pounds per session, with Priya available to staff it. The fee is under the 150-pound approval limit, so I confirmed it in the schedule without finance sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Set the staffing rota for the confirmed Fairholme School Wednesday sessions: Priya and Tomas together, 13:30-16:30, starting 2026-10-07.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e3\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-15\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Following the confirmed Fairholme School sessions, hired the mobile vaccination van from DriveVan Hire for the Wednesday afternoons from 2026-10-07 at 95 pounds per afternoon, and confirmed the hire without finance sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e8\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-19\", \"type\": \"note\", \"from\": \"Martin Bright (finance lead)\", \"text\": \"Finance check for the autumn clinic plan: the venue approval limit is 150 pounds per session. Larchwood at 75 pounds, Fairholme at 120 pounds and Wellfield at 45 pounds all sit below it, so none of them need my sign-off.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e21\", \"date\": \"2026-08-22\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked the Main Hall at Larchwood Institute for an adult flu clinic on Friday morning 2026-10-16 at 75 pounds per session, and marked the schedule entry 'finance approval not needed' since the fee is under the 150-pound limit.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e2\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Booked our own training room for the annual immunisation update on Thursday 2026-11-05; no hire charge applies to internal rooms.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-5\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Mrs Durani (Fairholme School office)\", \"text\": \"Looking forward to the October Wednesday sessions. We expect around 180 pupils across the afternoons, and the caretaker will have the Main Hall set up from 13:00.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"message\", \"from\": \"Tomas Reyes (practice nurse)\", \"text\": \"Happy to join Priya on the Wednesday school sessions from the 7th. I'll bring the anaphylaxis kit each time.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Marta Okafor (practice manager)\", \"text\": \"Following the September budget review, I'm changing the venue rule from today: any hall, room or van booking for a clinic session over 60 pounds per session now needs Martin's written approval before it is confirmed in the schedule. That replaces the old 150-pound limit, and it applies to every session taking place from 1 October onwards. Rooms in our own building stay exempt.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e26\", \"date\": \"2026-09-16\", \"type\": \"email\", \"from\": \"Annette Roy (Larchwood Institute booking clerk)\", \"text\": \"Confirming the Main Hall for Friday 16 October, 9:00-12:30. The invoice will follow at the usual 75 pounds per session.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-20\", \"type\": \"invoice\", \"from\": \"Beacon Medical Supplies\", \"text\": \"Invoice for 400 doses of quadrivalent flu vaccine at 6.40 pounds per dose, total 2,560 pounds, delivered 2026-09-18 as agreed.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Rev. Peter Sole (Wellfield Church)\", \"text\": \"The drop-in on the 22nd went well. We'll see you on 20 October as usual.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Martin Bright (finance lead)\", \"text\": \"For anyone booking halls this autumn: the finance rule of thumb is still 150 pounds a session before you need my sign-off. As far as I can see, nothing in the current clinic plan comes anywhere near that.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e30\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Priya Nandi (practice nurse)\", \"text\": \"Could we get some extra sharps bins stocked in the school-session bag before Wednesday?\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Mrs Durani (Fairholme School office)\", \"text\": \"Final numbers for the 7th: 184 consent forms are in. See you Wednesday.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Marta Okafor (practice manager)\", \"text\": \"Reminder that the home-visit rotas should be published to the nurses by the end of the week.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Fairholme School flu vaccination sessions\", \"fields\": {\"partner\": \"Fairholme School\", \"venue\": \"Main Hall\", \"day_time\": \"Wednesday 13:30-16:30\", \"first_session\": \"2026-10-07\", \"fee\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Larchwood Institute adult flu clinic\", \"fields\": {\"venue\": \"Larchwood Institute Main Hall\", \"date\": \"2026-10-16\", \"time\": \"09:00-12:30\", \"fee\": \"75\", \"finance_approval\": \"not needed\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Wellfield Church baby immunisation drop-in\", \"fields\": {\"partner\": \"Wellfield Church\", \"venue\": \"Church hall and side room\", \"frequency\": \"Monthly Tuesday morning\", \"next_session\": \"2026-10-20\", \"fee\": \"45\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Netherfield home-visit round\", \"fields\": {\"nurse\": \"Priya\", \"area\": \"Netherfield\", \"day\": \"Tuesday\", \"start\": \"2026-10-06\", \"slot_minutes\": \"30\", \"status\": \"active\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Annual immunisation update\", \"fields\": {\"venue\": \"Ashgrove training room\", \"date\": \"2026-11-05\", \"status\": \"booked\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Fairholme Wednesday sessions rota\", \"fields\": {\"clinic\": \"Fairholme School flu sessions\", \"nurses\": \"Priya and Tomas\", \"when\": \"Wednesday 13:30-16:30\", \"start\": \"2026-10-07\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"DriveVan mobile vaccination van\", \"fields\": {\"supplier\": \"DriveVan Hire\", \"item\": \"Mobile vaccination van with driver\", \"schedule\": \"Wednesday afternoons from 2026-10-07\", \"fee\": \"95\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Autumn flu vaccine order\", \"fields\": {\"supplier\": \"Beacon Medical Supplies\", \"item\": \"Quadrivalent flu vaccine\", \"quantity\": \"400\", \"delivery\": \"2026-09-18\", \"status\": \"delivered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"status\"], \"from\": \"Marta Okafor\", \"rule\": \"e5\"},\n    {\"record\": \"ORD-1\", \"fields\": [\"status\"], \"from\": \"Marta Okafor\", \"rule\": \"e5\"}\n  ],\n  \"task\": \"I'd like to get the Larchwood adult flu clinic on Friday the 16th finalised. Can you update its schedule entry and send Larchwood a confirmation with the final details?\",\n  \"expect\": [\n    {\"record\": \"EV-2\", \"field\": \"finance_approval\", \"value\": \"required\", \"stale\": [\"not needed\"], \"task\": true},\n    {\"message_to\": \"Martin Bright (finance lead)\", \"regarding\": \"EV-2\", \"says\": [\"75 pounds per session\", \"written approval\"], \"stale\": [\"150 pounds\"], \"task\": true},\n    {\"message_to\": \"Annette Roy (Larchwood Institute)\", \"regarding\": \"EV-2\", \"says\": [\"Friday 16 October\", \"Main Hall\", \"75 pounds per session\"], \"stale\": [\"finance approval not needed\"], \"task\": true}\n  ],\n  \"why\": \"The change lowers the approval threshold from 150 to 60 pounds for sessions from 1 October, so the Larchwood clinic at 75 pounds now needs Martin's written approval: its record's finance_approval flag must be corrected to required (REVISE, no consent needed) and approval requested from Martin before confirming with Larchwood. The Fairholme booking and the van hire are also over the new threshold, but moving their confirmed status back to pending needs Marta's consent under the standing rule, so they stay as they are with a consent request (ASK). Wellfield at 45 pounds and the internal training room fall below the new threshold or outside its terms, so they are KEEP, and all untouched records stay exactly as they are.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"gloves restock\", \"counterpart\": \"Beacon Medical Supplies\", \"org\": \"Beacon Medical Supplies\", \"item\": \"nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Ashgrove Health Centre treatment room\"},\n    {\"kind\": \"order\", \"topic\": \"sharps bins\", \"counterpart\": \"Beacon Medical Supplies\", \"org\": \"Beacon Medical Supplies\", \"item\": \"sharps bins\", \"unit\": \"bins\", \"values\": [\"30\", \"45\", \"60\"], \"place\": \"Ashgrove Health Centre treatment room\"},\n    {\"kind\": \"order\", \"topic\": \"cool boxes\", \"counterpart\": \"Beacon Medical Supplies\", \"org\": \"Beacon Medical Supplies\", \"item\": \"cold-chain cool boxes\", \"unit\": \"boxes\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Ashgrove Health Centre vaccine fridge area\"},\n    {\"kind\": \"booking\", \"topic\": \"school nurse room\", \"counterpart\": \"Mrs Durani\", \"org\": \"Fairholme School\", \"item\": \"small meeting room for pupil health checks\", \"values\": [\"Library annex\", \"Small meeting room\", \"Art room\"], \"place\": \"Fairholme School\"},\n    {\"kind\": \"booking\", \"topic\": \"blood-pressure checks\", \"counterpart\": \"Annette Roy\", \"org\": \"Larchwood Institute\", \"item\": \"side room for blood-pressure checks\", \"values\": [\"Side room A\", \"Side room B\", \"Library corner\"], \"place\": \"Larchwood Institute\"},\n    {\"kind\": \"booking\", \"topic\": \"coffee morning\", \"counterpart\": \"Rev. Peter Sole\", \"org\": \"Wellfield Church\", \"item\": \"hall for parent coffee mornings\", \"values\": [\"Main hall\", \"Small hall\", \"Side room\"], \"place\": \"Wellfield Church\"},\n    {\"kind\": \"booking\", \"topic\": \"home-visit van\", \"counterpart\": \"Sam Whitlock\", \"org\": \"DriveVan Hire\", \"item\": \"van for home-visit rounds\", \"values\": [\"Netherfield round\", \"Riverside round\", \"Town centre round\"], \"place\": \"Ashgrove Health Centre car park\"},\n    {\"kind\": \"order\", \"topic\": \"hand sanitiser\", \"counterpart\": \"Gareth Pike\", \"org\": \"Medisave Wholesale\", \"item\": \"hand sanitiser\", \"unit\": \"bottles\", \"values\": [\"50\", \"80\", \"120\"], \"place\": \"Ashgrove Health Centre reception\"},\n    {\"kind\": \"order\", \"topic\": \"appointment cards\", \"counterpart\": \"Helen Frost\", \"org\": \"PrintWorks Local\", \"item\": \"appointment cards\", \"unit\": \"packs\", \"values\": [\"10\", \"25\", \"40\"], \"place\": \"Ashgrove Health Centre reception\"},\n    {\"kind\": \"booking\", \"topic\": \"physio sessions\", \"counterpart\": \"Dr Hale\", \"org\": \"Ashgrove Health Centre\", \"item\": \"room for weekly physio sessions\", \"values\": [\"Training room\", \"Seminar room\", \"Consulting room 2\"], \"place\": \"Ashgrove Health Centre\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7932,
+    "completion_tokens": 4695,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0281148,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'physio sessions': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Venue approval threshold lowered at Ashgrove",
+  "setting": "The practice nurse coordinator at Ashgrove Health Centre whose assistant runs immunisation clinics and home-visit rotas",
+  "owner": "Nora",
+  "org": "Ashgrove Health Centre",
+  "now": "2026-10-08",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-01",
+    "type": "email",
+    "from": "Marta Okafor (practice manager)",
+    "text": "Welcome to the autumn planning cycle, Nora. You'll be coordinating the immunisation clinics and the home-visit rotas from June onwards. Marta.",
+    "role": "other"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-04",
+    "type": "policy",
+    "from": "Marta Okafor (practice manager)",
+    "text": "Standing finance rule for the centre: any hall, room or van booking for a clinic session costing more than 150 pounds per session needs the finance lead Martin's written approval before it is confirmed in the schedule. Below that amount, the nurse coordinator confirms the booking herself.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "message",
+    "from": "Priya Nandi (practice nurse)",
+    "text": "Just so you know, I'm free every Wednesday afternoon and every Tuesday morning from October for outreach work and home visits.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Rev. Peter Sole (Wellfield Church)",
+    "text": "The church hall is free on Tuesday mornings if you want it for baby clinics; the hire fee is 45 pounds per session and that includes the small side room.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "instruction",
+    "from": "Marta Okafor (practice manager)",
+    "text": "One more standing instruction: nothing that is already confirmed in the schedule or in the orders may be moved back to pending or cancelled without checking with me first. Our partners plan around our confirmations.",
+    "role": "rule"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Mrs Durani (Fairholme School office)",
+    "text": "Our Main Hall is free on Wednesdays from 13:30 to 16:30 throughout October. The session hire fee is 120 pounds, which includes tables and chairs.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "message",
+    "from": "Nora",
+    "text": "Priya, can you check the cold-chain thermometer logs before the autumn clinics start? Thanks.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-28",
+    "type": "quote",
+    "from": "Sam Whitlock (DriveVan Hire)",
+    "text": "Mobile vaccination van with driver, 95 pounds per afternoon (up to four hours), available on Wednesdays in October.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Martin Bright (finance lead)",
+    "text": "Quick reminder of how we've set this up: I only sign off hall or van bookings over 150 pounds per session before they're confirmed. Anything under that, you confirm it yourself.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Annette Roy (Larchwood Institute booking clerk)",
+    "text": "The Main Hall is free on Friday mornings from 9:00 to 12:30. Our hire charge is 75 pounds per session.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-16",
+    "type": "minutes",
+    "from": "Nora",
+    "text": "Practice huddle notes: autumn flu campaign starts the first week of October; home-visit rounds to be allocated by the end of August.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-20",
+    "type": "quote",
+    "from": "Beacon Medical Supplies",
+    "text": "Quadrivalent flu vaccine at 6.40 pounds per dose, 400 doses available, delivery mid-September.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-24",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Assigned Priya to the Netherfield home-visit round every Tuesday from 2026-10-06, in 30-minute slots, since she confirmed her Tuesday mornings are free.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-28",
+    "type": "email",
+    "from": "Gareth Pike (centre admin)",
+    "text": "Our own training room is free all day on Thursday 2026-11-05 if you want it for the annual update.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-31",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Ordered 400 doses of quadrivalent flu vaccine from Beacon Medical Supplies at 6.40 pounds a dose for the autumn clinics, delivery booked for 2026-09-18.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Booked Wellfield Church hall for a monthly baby immunisation drop-in, first session Tuesday 2026-09-22, at 45 pounds per session. That's under the 150-pound approval limit, so I confirmed it myself without finance sign-off.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-08",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Booked the Main Hall at Fairholme School for the pupils' flu vaccination sessions every Wednesday 13:30-16:30 from 2026-10-07, at 120 pounds per session, with Priya available to staff it. The fee is under the 150-pound approval limit, so I confirmed it in the schedule without finance sign-off.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e2",
+     "e3"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Set the staffing rota for the confirmed Fairholme School Wednesday sessions: Priya and Tomas together, 13:30-16:30, starting 2026-10-07.",
+    "role": "decision",
+    "rests_on": [
+     "e17",
+     "e3"
+    ],
+    "record": "EV-6",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-15",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Following the confirmed Fairholme School sessions, hired the mobile vaccination van from DriveVan Hire for the Wednesday afternoons from 2026-10-07 at 95 pounds per afternoon, and confirmed the hire without finance sign-off.",
+    "role": "decision",
+    "rests_on": [
+     "e17",
+     "e8"
+    ],
+    "record": "ORD-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-19",
+    "type": "note",
+    "from": "Martin Bright (finance lead)",
+    "text": "Finance check for the autumn clinic plan: the venue approval limit is 150 pounds per session. Larchwood at 75 pounds, Fairholme at 120 pounds and Wellfield at 45 pounds all sit below it, so none of them need my sign-off.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-22",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Booked the Main Hall at Larchwood Institute for an adult flu clinic on Friday morning 2026-10-16 at 75 pounds per session, and marked the schedule entry 'finance approval not needed' since the fee is under the 150-pound limit.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e2"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-26",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Booked our own training room for the annual immunisation update on Thursday 2026-11-05; no hire charge applies to internal rooms.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Mrs Durani (Fairholme School office)",
+    "text": "Looking forward to the October Wednesday sessions. We expect around 180 pupils across the afternoons, and the caretaker will have the Main Hall set up from 13:00.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-08",
+    "type": "message",
+    "from": "Tomas Reyes (practice nurse)",
+    "text": "Happy to join Priya on the Wednesday school sessions from the 7th. I'll bring the anaphylaxis kit each time.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Marta Okafor (practice manager)",
+    "text": "Following the September budget review, I'm changing the venue rule from today: any hall, room or van booking for a clinic session over 60 pounds per session now needs Martin's written approval before it is confirmed in the schedule. That replaces the old 150-pound limit, and it applies to every session taking place from 1 October onwards. Rooms in our own building stay exempt.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-16",
+    "type": "email",
+    "from": "Annette Roy (Larchwood Institute booking clerk)",
+    "text": "Confirming the Main Hall for Friday 16 October, 9:00-12:30. The invoice will follow at the usual 75 pounds per session.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-20",
+    "type": "invoice",
+    "from": "Beacon Medical Supplies",
+    "text": "Invoice for 400 doses of quadrivalent flu vaccine at 6.40 pounds per dose, total 2,560 pounds, delivered 2026-09-18 as agreed.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Rev. Peter Sole (Wellfield Church)",
+    "text": "The drop-in on the 22nd went well. We'll see you on 20 October as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Martin Bright (finance lead)",
+    "text": "For anyone booking halls this autumn: the finance rule of thumb is still 150 pounds a session before you need my sign-off. As far as I can see, nothing in the current clinic plan comes anywhere near that.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-02",
+    "type": "message",
+    "from": "Priya Nandi (practice nurse)",
+    "text": "Could we get some extra sharps bins stocked in the school-session bag before Wednesday?",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Mrs Durani (Fairholme School office)",
+    "text": "Final numbers for the 7th: 184 consent forms are in. See you Wednesday.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Marta Okafor (practice manager)",
+    "text": "Reminder that the home-visit rotas should be published to the nurses by the end of the week.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Fairholme School flu vaccination sessions",
+    "fields": {
+     "partner": "Fairholme School",
+     "venue": "Main Hall",
+     "day_time": "Wednesday 13:30-16:30",
+     "first_session": "2026-10-07",
+     "fee": "120",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Larchwood Institute adult flu clinic",
+    "fields": {
+     "venue": "Larchwood Institute Main Hall",
+     "date": "2026-10-16",
+     "time": "09:00-12:30",
+     "fee": "75",
+     "finance_approval": "not needed",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Wellfield Church baby immunisation drop-in",
+    "fields": {
+     "partner": "Wellfield Church",
+     "venue": "Church hall and side room",
+     "frequency": "Monthly Tuesday morning",
+     "next_session": "2026-10-20",
+     "fee": "45",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Netherfield home-visit round",
+    "fields": {
+     "nurse": "Priya",
+     "area": "Netherfield",
+     "day": "Tuesday",
+     "start": "2026-10-06",
+     "slot_minutes": "30",
+     "status": "active"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Annual immunisation update",
+    "fields": {
+     "venue": "Ashgrove training room",
+     "date": "2026-11-05",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Fairholme Wednesday sessions rota",
+    "fields": {
+     "clinic": "Fairholme School flu sessions",
+     "nurses": "Priya and Tomas",
+     "when": "Wednesday 13:30-16:30",
+     "start": "2026-10-07",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "DriveVan mobile vaccination van",
+    "fields": {
+     "supplier": "DriveVan Hire",
+     "item": "Mobile vaccination van with driver",
+     "schedule": "Wednesday afternoons from 2026-10-07",
+     "fee": "95",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Autumn flu vaccine order",
+    "fields": {
+     "supplier": "Beacon Medical Supplies",
+     "item": "Quadrivalent flu vaccine",
+     "quantity": "400",
+     "delivery": "2026-09-18",
+     "status": "delivered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "status"
+    ],
+    "from": "Marta Okafor",
+    "rule": "e5"
+   },
+   {
+    "record": "ORD-1",
+    "fields": [
+     "status"
+    ],
+    "from": "Marta Okafor",
+    "rule": "e5"
+   }
+  ],
+  "task": "I'd like to get the Larchwood adult flu clinic on Friday the 16th finalised. Can you update its schedule entry and send Larchwood a confirmation with the final details?",
+  "expect": [
+   {
+    "record": "EV-2",
+    "field": "finance_approval",
+    "value": "required",
+    "stale": [
+     "not needed"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Martin Bright (finance lead)",
+    "regarding": "EV-2",
+    "says": [
+     "75 pounds per session",
+     "written approval"
+    ],
+    "stale": [
+     "150 pounds"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Annette Roy (Larchwood Institute)",
+    "regarding": "EV-2",
+    "says": [
+     "Friday 16 October",
+     "Main Hall",
+     "75 pounds per session"
+    ],
+    "stale": [
+     "finance approval not needed"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change lowers the approval threshold from 150 to 60 pounds for sessions from 1 October, so the Larchwood clinic at 75 pounds now needs Martin's written approval: its record's finance_approval flag must be corrected to required (REVISE, no consent needed) and approval requested from Martin before confirming with Larchwood. The Fairholme booking and the van hire are also over the new threshold, but moving their confirmed status back to pending needs Marta's consent under the standing rule, so they stay as they are with a consent request (ASK). Wellfield at 45 pounds and the internal training room fall below the new threshold or outside its terms, so they are KEEP, and all untouched records stay exactly as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "gloves restock",
+    "counterpart": "Beacon Medical Supplies",
+    "org": "Beacon Medical Supplies",
+    "item": "nitrile gloves",
+    "unit": "boxes",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "Ashgrove Health Centre treatment room"
+   },
+   {
+    "kind": "order",
+    "topic": "sharps bins",
+    "counterpart": "Beacon Medical Supplies",
+    "org": "Beacon Medical Supplies",
+    "item": "sharps bins",
+    "unit": "bins",
+    "values": [
+     "30",
+     "45",
+     "60"
+    ],
+    "place": "Ashgrove Health Centre treatment room"
+   },
+   {
+    "kind": "order",
+    "topic": "cool boxes",
+    "counterpart": "Beacon Medical Supplies",
+    "org": "Beacon Medical Supplies",
+    "item": "cold-chain cool boxes",
+    "unit": "boxes",
+    "values": [
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "Ashgrove Health Centre vaccine fridge area"
+   },
+   {
+    "kind": "booking",
+    "topic": "school nurse room",
+    "counterpart": "Mrs Durani",
+    "org": "Fairholme School",
+    "item": "small meeting room for pupil health checks",
+    "values": [
+     "Library annex",
+     "Small meeting room",
+     "Art room"
+    ],
+    "place": "Fairholme School"
+   },
+   {
+    "kind": "booking",
+    "topic": "blood-pressure checks",
+    "counterpart": "Annette Roy",
+    "org": "Larchwood Institute",
+    "item": "side room for blood-pressure checks",
+    "values": [
+     "Side room A",
+     "Side room B",
+     "Library corner"
+    ],
+    "place": "Larchwood Institute"
+   },
+   {
+    "kind": "booking",
+    "topic": "coffee morning",
+    "counterpart": "Rev. Peter Sole",
+    "org": "Wellfield Church",
+    "item": "hall for parent coffee mornings",
+    "values": [
+     "Main hall",
+     "Small hall",
+     "Side room"
+    ],
+    "place": "Wellfield Church"
+   },
+   {
+    "kind": "booking",
+    "topic": "home-visit van",
+    "counterpart": "Sam Whitlock",
+    "org": "DriveVan Hire",
+    "item": "van for home-visit rounds",
+    "values": [
+     "Netherfield round",
+     "Riverside round",
+     "Town centre round"
+    ],
+    "place": "Ashgrove Health Centre car park"
+   },
+   {
+    "kind": "order",
+    "topic": "hand sanitiser",
+    "counterpart": "Gareth Pike",
+    "org": "Medisave Wholesale",
+    "item": "hand sanitiser",
+    "unit": "bottles",
+    "values": [
+     "50",
+     "80",
+     "120"
+    ],
+    "place": "Ashgrove Health Centre reception"
+   },
+   {
+    "kind": "order",
+    "topic": "appointment cards",
+    "counterpart": "Helen Frost",
+    "org": "PrintWorks Local",
+    "item": "appointment cards",
+    "unit": "packs",
+    "values": [
+     "10",
+     "25",
+     "40"
+    ],
+    "place": "Ashgrove Health Centre reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "physio sessions",
+    "counterpart": "Dr Hale",
+    "org": "Ashgrove Health Centre",
+    "item": "room for weekly physio sessions",
+    "values": [
+     "Training room",
+     "Seminar room",
+     "Consulting room 2"
+    ],
+    "place": "Ashgrove Health Centre"
+   }
+  ],
+  "id": "G1000-2-06",
+  "tier": 1000,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected state includes a Larchwood confirmation without establishing that Martin's required written approval has been obtained. Rule e5 requires Marta's consent before downgrading confirmed bookings, but does not require such downgrades; the mandatory consent requests for Fairholme and the van therefore do not follow unambiguously instead of seeking Martin's approval. The core otherwise meets the changed-rule class and tier requirements, and the change is embedded among ordinary events.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state includes a Larchwood confirmation without establishing that Martin's required written approval has been obtained. Rule e5 requires Marta's consent before downgrading confirmed bookings, but does not require such downgrades; the mandatory consent requests for Fairholme and the van therefore do not follow unambiguously instead of seeking Martin's approval. The core otherwise meets the changed-rule class and tier requirements, and the change is embedded among ordinary events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4663,
+    "completion_tokens": 290,
+    "reasoning_tokens": 163,
+    "cached_tokens": 0
+   },
+   "cost": 0.07278,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "150cc17335c3b55a03e6939c84548eeea550f314d706fa7c69b518417bccb9cd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change at e25 amends rule e2, and the marks follow from its terms: e21 (75 pounds) becomes REVISE, e17 (120 pounds) becomes ASK, and e16 (45 pounds) stays KEEP. The core has 32 events, 8 decisions, and the change sits 24 days before the task day with 7 core events after it, and it is buried among routine same-day events. One weak point is that the Larchwood booking's status stays 'confirmed' even though the amended rule says approval must come before confirmation, and the expected state does not reconcile that tension.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change at e25 amends rule e2, and the marks follow from its terms: e21 (75 pounds) becomes REVISE, e17 (120 pounds) becomes ASK, and e16 (45 pounds) stays KEEP. The core has 32 events, 8 decisions, and the change sits 24 days before the task day with 7 core events after it, and it is buried among routine same-day events. One weak point is that the Larchwood booking's status stays 'confirmed' even though the amended rule says approval must come before confirmation, and the expected state does not reconcile that tension."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6776,
+    "completion_tokens": 2167,
+    "reasoning_tokens": 1923,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017611,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "150cc17335c3b55a03e6939c84548eeea550f314d706fa7c69b518417bccb9cd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The rule amendment (150→60, sessions from 1 Oct) cleanly partitions decisions: Larchwood 75 REVISE, Fairholme 120 and van 95 ASK under the stated e5 consent rule, Wellfield 45 KEEP, internal room exempt; echoes (e9, e20) and a post-change 150-pound distractor are present. Counts (32 core, 8 decisions), the 24-day gap with 176 later events, and hiding of the change all meet the tier; the task forces action without naming the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The rule amendment (150→60, sessions from 1 Oct) cleanly partitions decisions: Larchwood 75 REVISE, Fairholme 120 and van 95 ASK under the stated e5 consent rule, Wellfield 45 KEEP, internal room exempt; echoes (e9, e20) and a post-change 150-pound distractor are present. Counts (32 core, 8 decisions), the 24-day gap with 176 later events, and hiding of the change all meet the tier; the task forces action without naming the change."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4762,
+    "completion_tokens": 691,
+    "reasoning_tokens": 518,
+    "cached_tokens": 0
+   },
+   "cost": 0.024651,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "150cc17335c3b55a03e6939c84548eeea550f314d706fa7c69b518417bccb9cd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

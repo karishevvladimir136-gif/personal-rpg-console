@@ -629,5 +629,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 8 September instruction restates the existing group rule in the same substance, so no decision is touched and the control class holds. The core has 21 events, 6 decisions, a change 12 days before the task day, and 4 core events after it, all within tier 100. The expected state's Dana message is tagged \\\"regarding\\\": \\\"EV-2\\\" although the supper is a new schedule record, a minor labelling inconsistency that does not change the act or values.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 8 September instruction restates the existing group rule in the same substance, so no decision is touched and the control class holds. The core has 21 events, 6 decisions, a change 12 days before the task day, and 4 core events after it, all within tier 100. The expected state's Dana message is tagged \"regarding\": \"EV-2\" although the supper is a new schedule record, a minor labelling inconsistency that does not change the act or values."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4944,
+    "completion_tokens": 1434,
+    "reasoning_tokens": 1237,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012114,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "02918cda7595af2c3c003e1a04bfcd83ba319f6e758eca2af832d52724408dcd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The supper booking and £9-per-head confirmation follow from the history, and the change merely restates the existing rule. However, the consent map imposes approval requirements on date and guest-count edits that the stated rule does not establish: it requires sign-off before confirming groups of twenty or more, not consent for those field changes generally.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The supper booking and £9-per-head confirmation follow from the history, and the change merely restates the existing rule. However, the consent map imposes approval requirements on date and guest-count edits that the stated rule does not establish: it requires sign-off before confirming groups of twenty or more, not consent for those field changes generally."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3446,
+    "completion_tokens": 278,
+    "reasoning_tokens": 174,
+    "cached_tokens": 0
+   },
+   "cost": 0.0569675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "02918cda7595af2c3c003e1a04bfcd83ba319f6e758eca2af832d52724408dcd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 8 September instruction merely restates the existing group booking rule verbatim in substance, so nothing is touched — a clean control. The task correctly forces a new schedule entry and a confirmation to Fairway at £9/head, with the £11 distractor clearly inapplicable to an 18-person group per e18's own terms. Tier 100 counts (21 core events, 6 decisions), the 12-day gap, the 14 post-change events, and the consent map all check out.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 8 September instruction merely restates the existing group booking rule verbatim in substance, so nothing is touched — a clean control. The task correctly forces a new schedule entry and a confirmation to Fairway at £9/head, with the £11 distractor clearly inapplicable to an 18-person group per e18's own terms. Tier 100 counts (21 core events, 6 decisions), the 12-day gap, the 14 post-change events, and the consent map all check out."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3527,
+    "completion_tokens": 369,
+    "reasoning_tokens": 211,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0085128,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "02918cda7595af2c3c003e1a04bfcd83ba319f6e758eca2af832d52724408dcd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

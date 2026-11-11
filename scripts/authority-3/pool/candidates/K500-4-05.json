@@ -1,0 +1,610 @@
+{
+ "id": "K500-4-05",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 4,
+ "idx": 4,
+ "setting": "Practice manager at Rosewater Physiotherapy, a sports injury clinic",
+ "prompt_sha256": "a8e10c8372cddd42f9b1b238a360e727d889c7f1a90e8d3a2798bfadb2cbf49f",
+ "rounds": [
+  {
+   "text": "{\n \"title\": \"Control at Rosewater: a restated consent rule beside the November workshop\",\n \"setting\": \"Practice manager at Rosewater Physiotherapy, a sports injury clinic\",\n \"owner\": \"Mara\",\n \"org\": \"Rosewater Physiotherapy\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for the clinic: once a client has confirmed a booking with us, we never change its date or room unless the client's contact person has agreed to the change in writing first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for purchasing: any supplier order over 300 must be signed off by our finance lead Priya Nair before it is placed; orders of 300 or less can go ahead without her sign-off.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Jonas Beck (Rosewater Facilities)\", \"text\": \"Studio 2 at Rosewater Physiotherapy is free all day on Saturday 14 November 2026 and holds up to 30 people with mats down.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tom Alder (Riverton Runners)\", \"text\": \"Riverton Runners would like a Saturday morning injury-prevention workshop at Rosewater Physiotherapy in November for 24 of our runners; I am the contact for it.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Dana Ruiz (Fairway Catering)\", \"text\": \"Fairway Catering quote for Rosewater Physiotherapy: sandwich and salad platters at 9.50 per head, delivered before 09:00 on the day.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-22\", \"type\": \"message\", \"from\": \"Dana Okoye (Rosewater Physiotherapy)\", \"text\": \"I am free on Saturday 14 November 2026 and happy to lead a client workshop that day if you need a physio.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"MedSupply North\", \"text\": \"MedSupply North quote: exercise resistance band rolls at 7 per roll, any quantity, delivery within a week.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Jonas Beck (Rosewater Facilities)\", \"text\": \"Studio 1 at Rosewater Physiotherapy is free on Friday 13 November 2026 from 14:00 onwards.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-01\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Studio 2 for the Riverton Runners injury-prevention workshop on Saturday 14 November 2026, 09:30 start, for their 24 runners; the room holds 30 so it fits.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Confirmed the booking to Tom Alder at Riverton Runners: their workshop for 24 runners is set for Saturday 14 November 2026 in Studio 2 at 09:30.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e4\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered catering from Fairway Catering for the Riverton Runners workshop on 14 November: platters for 24 heads at 9.50 each, total 228, which is under the 300 sign-off threshold so it can go straight ahead.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\", \"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Dana Okoye as physio lead for the Riverton Runners workshop on Saturday 14 November 2026, since she confirmed she is free that day.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e9\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 40 rolls of exercise resistance bands from MedSupply North at 7 per roll, total 280, under the 300 threshold so no sign-off from Priya Nair was needed.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-13\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Studio 1 for the staff team training on Friday 13 November 2026 at 15:00, as the room is free from 14:00.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"invoice\", \"from\": \"MedSupply North\", \"text\": \"Invoice from MedSupply North: 40 resistance band rolls, total 280, payable within 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Paid the MedSupply North invoice of 280 for the resistance band rolls.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Tom Alder (Riverton Runners)\", \"text\": \"Quick note from Riverton Runners: our group for the November workshop is still 24 runners, all confirmed.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-03\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"September staff meeting: rota gaps discussed for early November; Dana Okoye reminded everyone she is leading the Riverton Runners workshop on Saturday 14 November.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Housekeeping policy: treatment rooms and studios must be wiped down and mats stacked after every evening class.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Dana Ruiz (Fairway Catering)\", \"text\": \"Fairway Catering confirms your order for Saturday 14 November 2026: platters for 24 heads, delivery to Rosewater Physiotherapy at 08:45.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-24\", \"type\": \"cancellation\", \"from\": \"Mara\", \"text\": \"Cancelled the Wednesday 7 October evening Pilates class because the instructor is on leave; clients notified.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-02\", \"type\": \"note\", \"from\": \"Dana Okoye (Rosewater Physiotherapy)\", \"text\": \"Preparing materials for the Riverton Runners workshop on 14 November; will need a flip chart and the mats from Studio 2.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-10\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"Staff bulletin reminder: the Riverton Runners injury-prevention workshop runs Saturday 14 November 2026 in Studio 2, 09:30 start, 24 attendees, catering arriving 08:45.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Mara\", \"text\": \"Just to restate the house rule in plain terms for the new starters: after a client has confirmed a booking with Rosewater Physiotherapy, we do not shift its date or its room unless their contact person has said yes in writing first.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e25\", \"date\": \"2026-10-20\", \"type\": \"notice\", \"from\": \"Jonas Beck (Rosewater Facilities)\", \"text\": \"Fire alarm test at Rosewater Physiotherapy on Tuesday 20 October at 11:00; no need to evacuate.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-22\", \"type\": \"email\", \"from\": \"Dana Ruiz (Fairway Catering)\", \"text\": \"Fairway Catering price update: from 1 December 2026 our sandwich and salad platters will be 10.20 per head; orders already placed keep their quoted price.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Tom Alder (Riverton Runners)\", \"text\": \"Tom Alder asking whether there is parking near Rosewater Physiotherapy for the runners coming to the workshop on Saturday 14 November.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-27\", \"type\": \"message\", \"from\": \"Mara\", \"text\": \"Replied to Tom Alder: there is a free car park behind the clinic with about 20 spaces, plus street parking on Alder Lane.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-28\", \"type\": \"letter\", \"from\": \"Hartwell Property Management\", \"text\": \"Lease renewal papers for the Rosewater Physiotherapy premises will be sent for signature in January 2027.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-29\", \"type\": \"call\", \"from\": \"Priya Nair (Rosewater Finance)\", \"text\": \"Priya called to confirm November payroll is on track and asked that any large December supplier orders reach her by mid-November.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Riverton Runners injury-prevention workshop\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"Studio 2\", \"time\": \"09:30\", \"attendees\": \"24\", \"client\": \"Riverton Runners\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Physio lead assignment for Riverton Runners workshop\", \"fields\": {\"date\": \"2026-11-14\", \"staff\": \"Dana Okoye\", \"role\": \"workshop lead\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Staff team training\", \"fields\": {\"date\": \"2026-11-13\", \"place\": \"Studio 1\", \"time\": \"15:00\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fairway Catering platters for Riverton Runners workshop\", \"fields\": {\"supplier\": \"Fairway Catering\", \"item\": \"sandwich and salad platters\", \"quantity\": \"24\", \"total\": \"228\", \"delivery\": \"2026-11-14\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"MedSupply North resistance band restock\", \"fields\": {\"supplier\": \"MedSupply North\", \"item\": \"resistance band rolls\", \"quantity\": \"40\", \"total\": \"280\", \"status\": \"delivered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Riverton Runners client record\", \"fields\": {\"contact\": \"Tom Alder\", \"booking\": \"workshop 2026-11-14 Studio 2\", \"attendees\": \"24\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"place\"], \"from\": \"Tom Alder (Riverton Runners)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please send Tom Alder at Riverton Runners the final confirmation for their workshop: Saturday 14 November in Studio 2, 09:30 start, 24 attendees, catering arriving at 08:45.\",\n \"expect\": [\n  {\"message_to\": \"Tom Alder (Riverton Runners)\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-14\", \"Studio 2\", \"09:30\", \"24\"], \"stale\": [\"Studio 1\", \"2026-11-15\", \"10.20\"], \"task\": true}\n ],\n \"why\": \"This is a control: the 15 October email merely restates the standing consent rule in plainer words and revokes nothing, so no decision is touched and every record stays exactly as decided. The Fairway price update only applies to orders from December and explicitly spares orders already placed, so ORD-1 stands. The task is carried out on the plan as it stands: a confirmation message to Tom Alder carrying the current workshop values (14 November 2026, Studio 2, 09:30, 24 attendees), with no record changes.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"coffee and tea restock\", \"counterpart\": \"Dana Ruiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee and tea boxes for the staff kitchen\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Rosewater Physiotherapy reception\"},\n  {\"kind\": \"order\", \"topic\": \"bandage restock\", \"counterpart\": \"MedSupply North sales desk\", \"org\": \"MedSupply North\", \"item\": \"cohesive bandages\", \"unit\": \"pack\", \"values\": [\"12\", \"20\", \"30\", \"48\"], \"place\": \"Rosewater Physiotherapy store room\"},\n  {\"kind\": \"booking\", \"topic\": \"Tuesday running club screening\", \"counterpart\": \"Tom Alder\", \"org\": \"Riverton Runners\", \"item\": \"monthly physio screening slot for club members\", \"unit\": \"slot\", \"values\": [\"Studio 2\", \"Studio 1\", \"Treatment Room 3\"], \"place\": \"Rosewater Physiotherapy\"},\n  {\"kind\": \"booking\", \"topic\": \"Friday staff Pilates room\", \"counterpart\": \"Jonas Beck\", \"org\": \"Rosewater Facilities\", \"item\": \"weekly staff Pilates session\", \"unit\": \"session\", \"values\": [\"Studio 1\", \"Studio 2\", \"Rehab Gym\"], \"place\": \"Rosewater Physiotherapy\"},\n  {\"kind\": \"order\", \"topic\": \"towel laundry service\", \"counterpart\": \"CleanLine Laundry\", \"org\": \"CleanLine Laundry\", \"item\": \"towel laundry bags\", \"unit\": \"bag\", \"values\": [\"5\", \"8\", \"10\", \"14\"], \"place\": \"Rosewater Physiotherapy back door\"},\n  {\"kind\": \"order\", \"topic\": \"massage oil restock\", \"counterpart\": \"MedSupply North sales desk\", \"org\": \"MedSupply North\", \"item\": \"massage oil bottles\", \"unit\": \"bottle\", \"values\": [\"6\", \"10\", \"15\", \"24\"], \"place\": \"Rosewater Physiotherapy store room\"},\n  {\"kind\": \"booking\", \"topic\": \"Saturday mat class\", \"counterpart\": \"Lena Marsh\", \"org\": \"Northside Pilates\", \"item\": \"Saturday morning mat class hire\", \"unit\": \"class\", \"values\": [\"Studio 1\", \"Studio 2\"], \"place\": \"Rosewater Physiotherapy\"},\n  {\"kind\": \"order\", \"topic\": \"printer paper and toner\", \"counterpart\": \"OfficeMart\", \"org\": \"OfficeMart\", \"item\": \"A4 paper and toner cartridges\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Rosewater Physiotherapy reception\"},\n  {\"kind\": \"booking\", \"topic\": \"GP liaison meeting room\", \"counterpart\": \"Dr Priya Anand\", \"org\": \"Elm Street Surgery\", \"item\": \"monthly GP liaison meeting\", \"unit\": \"meeting\", \"values\": [\"Meeting Room\", \"Treatment Room 1\", \"Studio 1\"], \"place\": \"Rosewater Physiotherapy\"},\n  {\"kind\": \"order\", \"topic\": \"kinesiology tape restock\", \"counterpart\": \"MedSupply North sales desk\", \"org\": \"MedSupply North\", \"item\": \"kinesiology tape rolls\", \"unit\": \"roll\", \"values\": [\"20\", \"36\", \"50\", \"60\"], \"place\": \"Rosewater Physiotherapy store room\"},\n  {\"kind\": \"booking\", \"topic\": \"Wednesday over-60s strength class\", \"counterpart\": \"Ruth Kelly\", \"org\": \"Rosewater Physiotherapy\", \"item\": \"weekly strength and balance class\", \"unit\": \"class\", \"values\": [\"Rehab Gym\", \"Studio 2\"], \"place\": \"Rosewater Physiotherapy\"},\n  {\"kind\": \"order\", \"topic\": \"water cooler bottles\", \"counterpart\": \"ClearSpring Water\", \"org\": \"ClearSpring Water\", \"item\": \"water cooler refills\", \"unit\": \"bottle\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Rosewater Physiotherapy reception\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3248,
+    "completion_tokens": 6389,
+    "reasoning_tokens": 2216,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0972846,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "{\n \"title\": \"Control at Rosewater: a restated consent rule beside the November workshop\",\n \"setting\": \"Practice manager at Rosewater Physiotherapy, a sports injury clinic\",\n \"owner\": \"Mara\",\n \"org\": \"Rosewater Physiotherapy\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for the clinic: once a client has confirmed a booking with us, we never change its date or room unless the client's contact person has agreed to the change in writing first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for purchasing: any supplier order over 300 must be signed off by our finance lead Priya Nair before it is placed; orders of 300 or less can go ahead without her sign-off.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Jonas Beck (Rosewater Facilities)\", \"text\": \"Studio 2 at Rosewater Physiotherapy is free all day on Saturday 14 November 2026 and holds up to 30 people with mats down.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tom Alder (Riverton Runners)\", \"text\": \"Riverton Runners would like a Saturday morning injury-prevention workshop at Rosewater Physiotherapy in November for 24 of our runners; I am the contact for it.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Dana Ruiz (Fairway Catering)\", \"text\": \"Fairway Catering quote for Rosewater Physiotherapy: sandwich and salad platters at 9.50 per head, delivered before 09:00 on the day.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-22\", \"type\": \"message\", \"from\": \"Dana Okoye (Rosewater Physiotherapy)\", \"text\": \"I am free on Saturday 14 November 2026 and happy to lead a client workshop that day if you need a physio.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"MedSupply North\", \"text\": \"MedSupply North quote: exercise resistance band rolls at 7 per roll, any quantity, delivery within a week.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Jonas Beck (Rosewater Facilities)\", \"text\": \"Studio 1 at Rosewater Physiotherapy is free on Friday 13 November 2026 from 14:00 onwards.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-01\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Studio 2 for the Riverton Runners injury-prevention workshop on Saturday 14 November 2026, 09:30 start, for their 24 runners; the room holds 30 so it fits.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Confirmed the booking to Tom Alder at Riverton Runners: their workshop for 24 runners is set for Saturday 14 November 2026 in Studio 2 at 09:30.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e4\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered catering from Fairway Catering for the Riverton Runners workshop on 14 November: platters for 24 heads at 9.50 each, total 228, which is under the 300 sign-off threshold so it can go straight ahead.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\", \"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Dana Okoye as physio lead for the Riverton Runners workshop on Saturday 14 November 2026, since she confirmed she is free that day.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e9\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 40 rolls of exercise resistance bands from MedSupply North at 7 per roll, total 280, under the 300 threshold so no sign-off from Priya Nair was needed.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-13\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Studio 1 for the staff team training on Friday 13 November 2026 at 15:00, as the room is free from 14:00.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"invoice\", \"from\": \"MedSupply North\", \"text\": \"Invoice from MedSupply North: 40 resistance band rolls, total 280, payable within 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Paid the MedSupply North invoice of 280 for the resistance band rolls.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Tom Alder (Riverton Runners)\", \"text\": \"Quick note from Riverton Runners: our group for the November workshop is still 24 runners, all confirmed.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-03\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"September staff meeting: rota gaps discussed for early November; Dana Okoye reminded everyone she is leading the Riverton Runners workshop on Saturday 14 November.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Housekeeping policy: treatment rooms and studios must be wiped down and mats stacked after every evening class.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Dana Ruiz (Fairway Catering)\", \"text\": \"Fairway Catering confirms your order for Saturday 14 November 2026: platters for 24 heads, delivery to Rosewater Physiotherapy at 08:45.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-24\", \"type\": \"cancellation\", \"from\": \"Mara\", \"text\": \"Cancelled the Wednesday 7 October evening Pilates class because the instructor is on leave; clients notified.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-02\", \"type\": \"note\", \"from\": \"Dana Okoye (Rosewater Physiotherapy)\", \"text\": \"Preparing materials for the Riverton Runners workshop on 14 November; will need a flip chart and the mats from Studio 2.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-10\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"Staff bulletin reminder: the Riverton Runners injury-prevention workshop runs Saturday 14 November 2026 in Studio 2, 09:30 start, 24 attendees, catering arriving 08:45.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Mara\", \"text\": \"Just to restate the house rule in plain terms for the new starters: after a client has confirmed a booking with Rosewater Physiotherapy, we do not shift its date or its room unless their contact person has said yes in writing first.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e25\", \"date\": \"2026-10-20\", \"type\": \"notice\", \"from\": \"Jonas Beck (Rosewater Facilities)\", \"text\": \"Fire alarm test at Rosewater Physiotherapy on Tuesday 20 October at 11:00; no need to evacuate.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-22\", \"type\": \"email\", \"from\": \"Dana Ruiz (Fairway Catering)\", \"text\": \"Fairway Catering price update: from 1 December 2026 our sandwich and salad platters will be 10.20 per head; orders already placed keep their quoted price.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Tom Alder (Riverton Runners)\", \"text\": \"Tom Alder asking whether there is parking near Rosewater Physiotherapy for the runners coming to the workshop on Saturday 14 November.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-27\", \"type\": \"message\", \"from\": \"Mara\", \"text\": \"Replied to Tom Alder: there is a free car park behind the clinic with about 20 spaces, plus street parking on Alder Lane.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-28\", \"type\": \"letter\", \"from\": \"Hartwell Property Management\", \"text\": \"Lease renewal papers for the Rosewater Physiotherapy premises will be sent for signature in January 2027.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-29\", \"type\": \"call\", \"from\": \"Priya Nair (Rosewater Finance)\", \"text\": \"Priya called to confirm November payroll is on track and asked that any large December supplier orders reach her by mid-November.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Riverton Runners injury-prevention workshop\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"Studio 2\", \"time\": \"09:30\", \"attendees\": \"24\", \"client\": \"Riverton Runners\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Physio lead assignment for Riverton Runners workshop\", \"fields\": {\"date\": \"2026-11-14\", \"staff\": \"Dana Okoye\", \"role\": \"workshop lead\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Staff team training\", \"fields\": {\"date\": \"2026-11-13\", \"place\": \"Studio 1\", \"time\": \"15:00\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fairway Catering platters for Riverton Runners workshop\", \"fields\": {\"supplier\": \"Fairway Catering\", \"item\": \"sandwich and salad platters\", \"quantity\": \"24\", \"total\": \"228\", \"delivery\": \"2026-11-14\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"MedSupply North resistance band restock\", \"fields\": {\"supplier\": \"MedSupply North\", \"item\": \"resistance band rolls\", \"quantity\": \"40\", \"total\": \"280\", \"status\": \"delivered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Riverton Runners client record\", \"fields\": {\"contact\": \"Tom Alder\", \"booking\": \"workshop 2026-11-14 Studio 2\", \"attendees\": \"24\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"place\"], \"from\": \"Tom Alder (Riverton Runners)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please send Tom Alder at Riverton Runners the final confirmation for their workshop: Saturday 14 November in Studio 2, 09:30 start, 24 attendees, catering arriving at 08:45.\",\n \"expect\": [\n  {\"message_to\": \"Tom Alder (Riverton Runners)\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-14\", \"Studio 2\", \"09:30\", \"24\"], \"stale\": [\"Studio 1\", \"2026-11-15\", \"10.20\"], \"task\": true}\n ],\n \"why\": \"This is a control: the 15 October email merely restates the standing consent rule in plainer words and revokes nothing, so no decision is touched and every record stays exactly as decided. The Fairway price update only applies to orders from December and explicitly spares orders already placed, so ORD-1 stands. The task is carried out on the plan as it stands: a confirmation message to Tom Alder carrying the current workshop values (14 November 2026, Studio 2, 09:30, 24 attendees), with no record changes.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"coffee and tea restock\", \"counterpart\": \"Dana Ruiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee and tea boxes for the staff kitchen\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Rosewater Physiotherapy reception\"},\n  {\"kind\": \"order\", \"topic\": \"bandage restock\", \"counterpart\": \"MedSupply North sales desk\", \"org\": \"MedSupply North\", \"item\": \"cohesive bandages\", \"unit\": \"pack\", \"values\": [\"12\", \"20\", \"30\", \"48\"], \"place\": \"Rosewater Physiotherapy store room\"},\n  {\"kind\": \"booking\", \"topic\": \"Tuesday running club screening\", \"counterpart\": \"Tom Alder\", \"org\": \"Riverton Runners\", \"item\": \"monthly physio screening slot for club members\", \"unit\": \"slot\", \"values\": [\"Studio 2\", \"Studio 1\", \"Treatment Room 3\"], \"place\": \"Rosewater Physiotherapy\"},\n  {\"kind\": \"booking\", \"topic\": \"Friday staff Pilates room\", \"counterpart\": \"Jonas Beck\", \"org\": \"Rosewater Facilities\", \"item\": \"weekly staff Pilates session\", \"unit\": \"session\", \"values\": [\"Studio 1\", \"Studio 2\", \"Rehab Gym\"], \"place\": \"Rosewater Physiotherapy\"},\n  {\"kind\": \"order\", \"topic\": \"towel laundry service\", \"counterpart\": \"CleanLine Laundry\", \"org\": \"CleanLine Laundry\", \"item\": \"towel laundry bags\", \"unit\": \"bag\", \"values\": [\"5\", \"8\", \"10\", \"14\"], \"place\": \"Rosewater Physiotherapy back door\"},\n  {\"kind\": \"order\", \"topic\": \"massage oil restock\", \"counterpart\": \"MedSupply North sales desk\", \"org\": \"MedSupply North\", \"item\": \"massage oil bottles\", \"unit\": \"bottle\", \"values\": [\"6\", \"10\", \"15\", \"24\"], \"place\": \"Rosewater Physiotherapy store room\"},\n  {\"kind\": \"booking\", \"topic\": \"Saturday mat class\", \"counterpart\": \"Lena Marsh\", \"org\": \"Northside Pilates\", \"item\": \"Saturday morning mat class hire\", \"unit\": \"class\", \"values\": [\"Studio 1\", \"Studio 2\", \"Rehab Gym\"], \"place\": \"Rosewater Physiotherapy\"},\n  {\"kind\": \"order\", \"topic\": \"printer paper and toner\", \"counterpart\": \"OfficeMart\", \"org\": \"OfficeMart\", \"item\": \"A4 paper and toner cartridges\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Rosewater Physiotherapy reception\"},\n  {\"kind\": \"booking\", \"topic\": \"GP liaison meeting room\", \"counterpart\": \"Dr Priya Anand\", \"org\": \"Elm Street Surgery\", \"item\": \"monthly GP liaison meeting\", \"unit\": \"meeting\", \"values\": [\"Meeting Room\", \"Treatment Room 1\", \"Studio 1\"], \"place\": \"Rosewater Physiotherapy\"},\n  {\"kind\": \"order\", \"topic\": \"kinesiology tape restock\", \"counterpart\": \"MedSupply North sales desk\", \"org\": \"MedSupply North\", \"item\": \"kinesiology tape rolls\", \"unit\": \"roll\", \"values\": [\"20\", \"36\", \"50\", \"60\"], \"place\": \"Rosewater Physiotherapy store room\"},\n  {\"kind\": \"booking\", \"topic\": \"Wednesday over-60s strength class\", \"counterpart\": \"Ruth Kelly\", \"org\": \"Rosewater Physiotherapy\", \"item\": \"weekly strength and balance class\", \"unit\": \"class\", \"values\": [\"Rehab Gym\", \"Studio 2\", \"Studio 1\"], \"place\": \"Rosewater Physiotherapy\"},\n  {\"kind\": \"order\", \"topic\": \"water cooler bottles\", \"counterpart\": \"ClearSpring Water\", \"org\": \"ClearSpring Water\", \"item\": \"water cooler refills\", \"unit\": \"bottle\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Rosewater Physiotherapy reception\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7502,
+    "completion_tokens": 4191,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0770766,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Saturday mat class': values needs at least three entries\n- noise topic 'Wednesday over-60s strength class': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Control at Rosewater: a restated consent rule beside the November workshop",
+  "setting": "Practice manager at Rosewater Physiotherapy, a sports injury clinic",
+  "owner": "Mara",
+  "org": "Rosewater Physiotherapy",
+  "now": "2026-10-30",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing rule for the clinic: once a client has confirmed a booking with us, we never change its date or room unless the client's contact person has agreed to the change in writing first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing rule for purchasing: any supplier order over 300 must be signed off by our finance lead Priya Nair before it is placed; orders of 300 or less can go ahead without her sign-off.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Jonas Beck (Rosewater Facilities)",
+    "text": "Studio 2 at Rosewater Physiotherapy is free all day on Saturday 14 November 2026 and holds up to 30 people with mats down.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Tom Alder (Riverton Runners)",
+    "text": "Riverton Runners would like a Saturday morning injury-prevention workshop at Rosewater Physiotherapy in November for 24 of our runners; I am the contact for it.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "quote",
+    "from": "Dana Ruiz (Fairway Catering)",
+    "text": "Fairway Catering quote for Rosewater Physiotherapy: sandwich and salad platters at 9.50 per head, delivered before 09:00 on the day.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-22",
+    "type": "message",
+    "from": "Dana Okoye (Rosewater Physiotherapy)",
+    "text": "I am free on Saturday 14 November 2026 and happy to lead a client workshop that day if you need a physio.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-25",
+    "type": "quote",
+    "from": "MedSupply North",
+    "text": "MedSupply North quote: exercise resistance band rolls at 7 per roll, any quantity, delivery within a week.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-29",
+    "type": "email",
+    "from": "Jonas Beck (Rosewater Facilities)",
+    "text": "Studio 1 at Rosewater Physiotherapy is free on Friday 13 November 2026 from 14:00 onwards.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-01",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Studio 2 for the Riverton Runners injury-prevention workshop on Saturday 14 November 2026, 09:30 start, for their 24 runners; the room holds 30 so it fits.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Confirmed the booking to Tom Alder at Riverton Runners: their workshop for 24 runners is set for Saturday 14 November 2026 in Studio 2 at 09:30.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e4"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered catering from Fairway Catering for the Riverton Runners workshop on 14 November: platters for 24 heads at 9.50 each, total 228, which is under the 300 sign-off threshold so it can go straight ahead.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e2",
+     "e4"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Assigned Dana Okoye as physio lead for the Riverton Runners workshop on Saturday 14 November 2026, since she confirmed she is free that day.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e9"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 40 rolls of exercise resistance bands from MedSupply North at 7 per roll, total 280, under the 300 threshold so no sign-off from Priya Nair was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-13",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Studio 1 for the staff team training on Friday 13 November 2026 at 15:00, as the room is free from 14:00.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-22",
+    "type": "invoice",
+    "from": "MedSupply North",
+    "text": "Invoice from MedSupply North: 40 resistance band rolls, total 280, payable within 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-05",
+    "type": "note",
+    "from": "Mara",
+    "text": "Paid the MedSupply North invoice of 280 for the resistance band rolls.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Tom Alder (Riverton Runners)",
+    "text": "Quick note from Riverton Runners: our group for the November workshop is still 24 runners, all confirmed.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-03",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "September staff meeting: rota gaps discussed for early November; Dana Okoye reminded everyone she is leading the Riverton Runners workshop on Saturday 14 November.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-10",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Housekeeping policy: treatment rooms and studios must be wiped down and mats stacked after every evening class.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-12",
+    "type": "email",
+    "from": "Dana Ruiz (Fairway Catering)",
+    "text": "Fairway Catering confirms your order for Saturday 14 November 2026: platters for 24 heads, delivery to Rosewater Physiotherapy at 08:45.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-24",
+    "type": "cancellation",
+    "from": "Mara",
+    "text": "Cancelled the Wednesday 7 October evening Pilates class because the instructor is on leave; clients notified.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-02",
+    "type": "note",
+    "from": "Dana Okoye (Rosewater Physiotherapy)",
+    "text": "Preparing materials for the Riverton Runners workshop on 14 November; will need a flip chart and the mats from Studio 2.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-10",
+    "type": "notice",
+    "from": "Mara",
+    "text": "Staff bulletin reminder: the Riverton Runners injury-prevention workshop runs Saturday 14 November 2026 in Studio 2, 09:30 start, 24 attendees, catering arriving 08:45.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Mara",
+    "text": "Just to restate the house rule in plain terms for the new starters: after a client has confirmed a booking with Rosewater Physiotherapy, we do not shift its date or its room unless their contact person has said yes in writing first.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-20",
+    "type": "notice",
+    "from": "Jonas Beck (Rosewater Facilities)",
+    "text": "Fire alarm test at Rosewater Physiotherapy on Tuesday 20 October at 11:00; no need to evacuate.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-22",
+    "type": "email",
+    "from": "Dana Ruiz (Fairway Catering)",
+    "text": "Fairway Catering price update: from 1 December 2026 our sandwich and salad platters will be 10.20 per head; orders already placed keep their quoted price.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-26",
+    "type": "email",
+    "from": "Tom Alder (Riverton Runners)",
+    "text": "Tom Alder asking whether there is parking near Rosewater Physiotherapy for the runners coming to the workshop on Saturday 14 November.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-27",
+    "type": "message",
+    "from": "Mara",
+    "text": "Replied to Tom Alder: there is a free car park behind the clinic with about 20 spaces, plus street parking on Alder Lane.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-28",
+    "type": "letter",
+    "from": "Hartwell Property Management",
+    "text": "Lease renewal papers for the Rosewater Physiotherapy premises will be sent for signature in January 2027.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-29",
+    "type": "call",
+    "from": "Priya Nair (Rosewater Finance)",
+    "text": "Priya called to confirm November payroll is on track and asked that any large December supplier orders reach her by mid-November.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Riverton Runners injury-prevention workshop",
+    "fields": {
+     "date": "2026-11-14",
+     "place": "Studio 2",
+     "time": "09:30",
+     "attendees": "24",
+     "client": "Riverton Runners",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Physio lead assignment for Riverton Runners workshop",
+    "fields": {
+     "date": "2026-11-14",
+     "staff": "Dana Okoye",
+     "role": "workshop lead",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Staff team training",
+    "fields": {
+     "date": "2026-11-13",
+     "place": "Studio 1",
+     "time": "15:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Fairway Catering platters for Riverton Runners workshop",
+    "fields": {
+     "supplier": "Fairway Catering",
+     "item": "sandwich and salad platters",
+     "quantity": "24",
+     "total": "228",
+     "delivery": "2026-11-14",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "MedSupply North resistance band restock",
+    "fields": {
+     "supplier": "MedSupply North",
+     "item": "resistance band rolls",
+     "quantity": "40",
+     "total": "280",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Riverton Runners client record",
+    "fields": {
+     "contact": "Tom Alder",
+     "booking": "workshop 2026-11-14 Studio 2",
+     "attendees": "24",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "place"
+    ],
+    "from": "Tom Alder (Riverton Runners)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please send Tom Alder at Riverton Runners the final confirmation for their workshop: Saturday 14 November in Studio 2, 09:30 start, 24 attendees, catering arriving at 08:45.",
+  "expect": [
+   {
+    "message_to": "Tom Alder (Riverton Runners)",
+    "regarding": "EV-1",
+    "says": [
+     "2026-11-14",
+     "Studio 2",
+     "09:30",
+     "24"
+    ],
+    "stale": [
+     "Studio 1",
+     "2026-11-15",
+     "10.20"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the 15 October email merely restates the standing consent rule in plainer words and revokes nothing, so no decision is touched and every record stays exactly as decided. The Fairway price update only applies to orders from December and explicitly spares orders already placed, so ORD-1 stands. The task is carried out on the plan as it stands: a confirmation message to Tom Alder carrying the current workshop values (14 November 2026, Studio 2, 09:30, 24 attendees), with no record changes.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "coffee and tea restock",
+    "counterpart": "Dana Ruiz",
+    "org": "Fairway Catering",
+    "item": "coffee and tea boxes for the staff kitchen",
+    "unit": "box",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Rosewater Physiotherapy reception"
+   },
+   {
+    "kind": "order",
+    "topic": "bandage restock",
+    "counterpart": "MedSupply North sales desk",
+    "org": "MedSupply North",
+    "item": "cohesive bandages",
+    "unit": "pack",
+    "values": [
+     "12",
+     "20",
+     "30",
+     "48"
+    ],
+    "place": "Rosewater Physiotherapy store room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Tuesday running club screening",
+    "counterpart": "Tom Alder",
+    "org": "Riverton Runners",
+    "item": "monthly physio screening slot for club members",
+    "unit": "slot",
+    "values": [
+     "Studio 2",
+     "Studio 1",
+     "Treatment Room 3"
+    ],
+    "place": "Rosewater Physiotherapy"
+   },
+   {
+    "kind": "booking",
+    "topic": "Friday staff Pilates room",
+    "counterpart": "Jonas Beck",
+    "org": "Rosewater Facilities",
+    "item": "weekly staff Pilates session",
+    "unit": "session",
+    "values": [
+     "Studio 1",
+     "Studio 2",
+     "Rehab Gym"
+    ],
+    "place": "Rosewater Physiotherapy"
+   },
+   {
+    "kind": "order",
+    "topic": "towel laundry service",
+    "counterpart": "CleanLine Laundry",
+    "org": "CleanLine Laundry",
+    "item": "towel laundry bags",
+    "unit": "bag",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "14"
+    ],
+    "place": "Rosewater Physiotherapy back door"
+   },
+   {
+    "kind": "order",
+    "topic": "massage oil restock",
+    "counterpart": "MedSupply North sales desk",
+    "org": "MedSupply North",
+    "item": "massage oil bottles",
+    "unit": "bottle",
+    "values": [
+     "6",
+     "10",
+     "15",
+     "24"
+    ],
+    "place": "Rosewater Physiotherapy store room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Saturday mat class",
+    "counterpart": "Lena Marsh",
+    "org": "Northside Pilates",
+    "item": "Saturday morning mat class hire",
+    "unit": "class",
+    "values": [
+     "Studio 1",
+     "Studio 2",
+     "Rehab Gym"
+    ],
+    "place": "Rosewater Physiotherapy"
+   },
+   {
+    "kind": "order",
+    "topic": "printer paper and toner",
+    "counterpart": "OfficeMart",
+    "org": "OfficeMart",
+    "item": "A4 paper and toner cartridges",
+    "unit": "box",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Rosewater Physiotherapy reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "GP liaison meeting room",
+    "counterpart": "Dr Priya Anand",
+    "org": "Elm Street Surgery",
+    "item": "monthly GP liaison meeting",
+    "unit": "meeting",
+    "values": [
+     "Meeting Room",
+     "Treatment Room 1",
+     "Studio 1"
+    ],
+    "place": "Rosewater Physiotherapy"
+   },
+   {
+    "kind": "order",
+    "topic": "kinesiology tape restock",
+    "counterpart": "MedSupply North sales desk",
+    "org": "MedSupply North",
+    "item": "kinesiology tape rolls",
+    "unit": "roll",
+    "values": [
+     "20",
+     "36",
+     "50",
+     "60"
+    ],
+    "place": "Rosewater Physiotherapy store room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Wednesday over-60s strength class",
+    "counterpart": "Ruth Kelly",
+    "org": "Rosewater Physiotherapy",
+    "item": "weekly strength and balance class",
+    "unit": "class",
+    "values": [
+     "Rehab Gym",
+     "Studio 2",
+     "Studio 1"
+    ],
+    "place": "Rosewater Physiotherapy"
+   },
+   {
+    "kind": "order",
+    "topic": "water cooler bottles",
+    "counterpart": "ClearSpring Water",
+    "org": "ClearSpring Water",
+    "item": "water cooler refills",
+    "unit": "bottle",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Rosewater Physiotherapy reception"
+   }
+  ],
+  "id": "K500-4-05",
+  "tier": 500,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

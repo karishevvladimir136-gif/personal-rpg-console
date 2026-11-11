@@ -596,5 +596,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state revises ORD-1's dates without consent, but e1 bars changing a confirmed patient series' session dates without the patient's written agreement, and ORD-1 is a confirmed series of Peter's imaging sessions, so the REVISE mark on the dates is contestable and the consent map omits it. The rest of the structure (chain fitting class 3, event and decision counts, change distance, and a hidden change) meets the requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state revises ORD-1's dates without consent, but e1 bars changing a confirmed patient series' session dates without the patient's written agreement, and ORD-1 is a confirmed series of Peter's imaging sessions, so the REVISE mark on the dates is contestable and the consent map omits it. The rest of the structure (chain fitting class 3, event and decision counts, change distance, and a hidden change) meets the requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5381,
+    "completion_tokens": 1641,
+    "reasoning_tokens": 1442,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013586,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bd80afd05d433e897124789bbb3daa405e6b2f5bc3c446c3f00441d2987d0c2e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The patient-consent policy covers any confirmed patient appointment series, including the confirmed imaging sessions in ORD-1; the supplier sign-off threshold does not exempt their dates from that policy. Thus ORD-1's date changes require Peter's agreement, and the consent map is incomplete. The update also does not establish Wednesday imaging times that would support adjustments immediately afterward at 15:30.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The patient-consent policy covers any confirmed patient appointment series, including the confirmed imaging sessions in ORD-1; the supplier sign-off threshold does not exempt their dates from that policy. Thus ORD-1's date changes require Peter's agreement, and the consent map is incomplete. The update also does not establish Wednesday imaging times that would support adjustments immediately afterward at 15:30."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3633,
+    "completion_tokens": 205,
+    "reasoning_tokens": 92,
+    "cached_tokens": 0
+   },
+   "cost": 0.055655,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bd80afd05d433e897124789bbb3daa405e6b2f5bc3c446c3f00441d2987d0c2e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain fact(e3)→e13→e14 is sound: the imaging order is revised by the supplier update (Wednesdays, 185/session, total still under the 900 sign-off threshold), the adjustment series needs Hollis's consent under e1 (matching the consent map), and ORD-2's portal arrangement is explicitly left standing (KEEP). Core counts (23 events, 4 decisions), change distance (13 days, 18 later events), and hidden placement all meet tier 100; the Lakeside 150-pound quote is correctly excluded as a distractor.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain fact(e3)→e13→e14 is sound: the imaging order is revised by the supplier update (Wednesdays, 185/session, total still under the 900 sign-off threshold), the adjustment series needs Hollis's consent under e1 (matching the consent map), and ORD-2's portal arrangement is explicitly left standing (KEEP). Core counts (23 events, 4 decisions), change distance (13 days, 18 later events), and hidden placement all meet tier 100; the Lakeside 150-pound quote is correctly excluded as a distractor."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3755,
+    "completion_tokens": 479,
+    "reasoning_tokens": 306,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0101556,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bd80afd05d433e897124789bbb3daa405e6b2f5bc3c446c3f00441d2987d0c2e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

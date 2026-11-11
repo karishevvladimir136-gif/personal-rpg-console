@@ -623,5 +623,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amended sign-off rule applies 'from today' and 'before' confirmation; it does not unambiguously require retrospective approval of Bruno's already-confirmed, partly completed motorway package. Thus ORD-1's ASK mark and mandatory consent request do not follow clearly, although approval for the draft assessment hire and direct confirmation of Dan's series do.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended sign-off rule applies 'from today' and 'before' confirmation; it does not unambiguously require retrospective approval of Bruno's already-confirmed, partly completed motorway package. Thus ORD-1's ASK mark and mandatory consent request do not follow clearly, although approval for the draft assessment hire and direct confirmation of Dan's series do."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3536,
+    "completion_tokens": 220,
+    "reasoning_tokens": 114,
+    "cached_tokens": 0
+   },
+   "cost": 0.0551925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fdb16d4271a64c5d46a5ce3e11bf2a0922b0d25e2f6b662778669be10b2fa312",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment to rule e3 (sign-off threshold 300→180, lesson-series consent dropped) produces the intended split: e8 and e9 become ASK, e11 becomes REVISE, and e6 stays KEEP because 340 still exceeds 180. The core has 21 events and 4 decisions, and the change sits 21 days before the task day with four core events after it. The change is an ordinary-looking office-rules email with no correction label, and the task asks for action without hinting at it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment to rule e3 (sign-off threshold 300→180, lesson-series consent dropped) produces the intended split: e8 and e9 become ASK, e11 becomes REVISE, and e6 stays KEEP because 340 still exceeds 180. The core has 21 events and 4 decisions, and the change sits 21 days before the task day with four core events after it. The change is an ordinary-looking office-rules email with no correction label, and the task asks for action without hinting at it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5138,
+    "completion_tokens": 1854,
+    "reasoning_tokens": 1638,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014408,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fdb16d4271a64c5d46a5ce3e11bf2a0922b0d25e2f6b662778669be10b2fa312",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment (threshold 300→180, pupil consent limited to test bookings) cleanly yields ASK on ORD-1/ORD-2, REVISE on EV-4, and KEEP on EV-1; the consent map matches the sign-off rule (minor: it cites revoked e3 rather than e17, but the obligation is identical under the amendment). The task requires confirming Dan's series and sending sign-off requests without naming the change. Tier counts (21 core events, 4 decisions), the 21-day gap, and 8 post-change events all meet tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment (threshold 300→180, pupil consent limited to test bookings) cleanly yields ASK on ORD-1/ORD-2, REVISE on EV-4, and KEEP on EV-1; the consent map matches the sign-off rule (minor: it cites revoked e3 rather than e17, but the obligation is identical under the amendment). The task requires confirming Dan's series and sending sign-off requests without naming the change. Tier counts (21 core events, 4 decisions), the 21-day gap, and 8 post-change events all meet tier 100."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3631,
+    "completion_tokens": 446,
+    "reasoning_tokens": 271,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0099798,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fdb16d4271a64c5d46a5ce3e11bf2a0922b0d25e2f6b662778669be10b2fa312",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

@@ -1,0 +1,634 @@
+{
+ "id": "K500-4-08",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 4,
+ "idx": 7,
+ "setting": "Head brewer at Foxglove Brewing Co., a microbrewery with taproom",
+ "prompt_sha256": "424f329afa729c2f3c8a72cb364d7ca5548862b619088a39ff3d76619b750f75",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Foxglove malt restock and the restated sign-off rule\",\n  \"setting\": \"Head brewer at Foxglove Brewing Co., a microbrewery with taproom\",\n  \"owner\": \"Mara\",\n  \"org\": \"Foxglove Brewing Co.\",\n  \"now\": \"2026-10-15\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Tomas Reyes (Foxglove finance lead)\", \"text\": \"House rule for the brewery: any single supplier order over 800 pounds needs my sign-off before Mara places it. Anything at or under 800 she can place directly.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara Whitfield\", \"text\": \"Taproom rule: once a client booking is confirmed, we do not move the date without the client's own agreement. If a move is needed, we ask the client first.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Ellen Braithwaite (Heathfield Maltings)\", \"text\": \"Our Maris Otter pale malt is 1.55 pounds per kilo this season, minimum order 200 kilos, and we deliver to breweries on Wednesdays. That price holds through the year.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Sam Kelleher (Foxglove brewer)\", \"text\": \"Fermenter 2 is free from 2026-10-05 through 2026-11-20. Fermenter 1 is tied up with the lager until mid November.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Priya Anand (Foxglove taproom manager)\", \"text\": \"Taproom capacity is 90 guests. Friday evenings are open for private bookings from 18:00; we need two weeks' notice to staff them.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Set up our standing monthly restock with Heathfield Maltings: 400 kilos of Maris Otter pale malt at their 1.55 per kilo price, 620 pounds a month, which is under Tomas's 800 threshold so I can place it directly. Delivery to the brewery on a Wednesday.\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\", \"role\": \"decision\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Booked Fermenter 2 for the Cascade pale ale brew starting Monday 19 October 2026, using the free window Sam flagged from 5 October to 20 November.\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\", \"role\": \"decision\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Confirmed the Harrow & Finch quiz night booking in the taproom for Friday 6 November 2026 from 18:00, 70 guests, within our 90 capacity and with enough notice to staff it. Date fixed unless the client agrees otherwise.\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"EV-2\", \"role\": \"decision\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Joss Merriweather (Harrow & Finch)\", \"text\": \"Delighted the quiz night is confirmed for Friday 6 November at 18:00. We'll have about 70 people and will settle the bar tab on the night.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Assigned Sam Kelleher as lead brewer for all October brews, including the Cascade pale ale in Fermenter 2.\", \"rests_on\": [\"e7\"], \"record\": \"CL-1\", \"role\": \"decision\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-01\", \"type\": \"quote\", \"from\": \"Dana Okafor (Copperline Kegs)\", \"text\": \"Quote for Foxglove: 20 stainless 30-litre kegs at 47 pounds each, 940 pounds total, delivered. Quote valid 60 days.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Ordered 12 replacement 30-litre kegs from Copperline Kegs at 47 pounds each, 564 pounds total — under the 800 sign-off threshold, so placed directly. Delivery to the brewery.\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-2\", \"role\": \"decision\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Ellen Braithwaite (Heathfield Maltings)\", \"text\": \"Confirming September's restock went out: 400 kilos Maris Otter pale malt, 620 pounds, delivered to the brewery last Wednesday as per your standing monthly order.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Scheduled our regular Wednesday delivery slot with Heathfield Maltings for the monthly malt restocks, so each 400 kilo pale malt order lands at the brewery on a Wednesday morning.\", \"rests_on\": [\"e6\", \"e3\"], \"record\": \"EV-3\", \"role\": \"decision\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Ellen Braithwaite (Heathfield Maltings)\", \"text\": \"Just confirming the plan stands for October: your standing monthly restock of 400 kilos of Maris Otter pale malt at 620 pounds, on the usual Wednesday delivery to the brewery.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e16\", \"date\": \"2026-09-30\", \"type\": \"message\", \"from\": \"Tomas Reyes (Foxglove finance lead)\", \"text\": \"Quick note for the team chat: the spending setup hasn't moved — supplier spends above 800 pounds still come through me before they're placed, and anything at 800 or under Mara can just go ahead with. Same as it's always been.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e17\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Dana Okafor (Copperline Kegs)\", \"text\": \"Following up on our quote: 20 kegs at 940 pounds total is still on the table if you want the full batch this autumn. The 12-keg order you placed in September shipped fine.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e18\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Ellen Braithwaite (Heathfield Maltings)\", \"text\": \"We have Wednesday 21 October 2026 open for your delivery slot if you'd like October's restock to land that morning.\", \"role\": \"fact\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-09\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Scheduled a cellar deep-clean for the brewery on Thursday 22 October 2026, after the malt delivery week, with Sam's team.\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\", \"role\": \"decision\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Priya Anand (Foxglove taproom manager)\", \"text\": \"Staffing is sorted for the Harrow & Finch quiz night on Friday 6 November — two bar staff plus me, doors at 18:00.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-13\", \"type\": \"note\", \"from\": \"Sam Kelleher (Foxglove brewer)\", \"text\": \"Grain stock check: pale malt will run low after the Cascade mash-in on 19 October. October's restock needs to land before the end of the month.\", \"role\": \"fact\"},\n    {\"id\": \"e22\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Priya Anand (Foxglove taproom manager)\", \"text\": \"The taproom fridge took a delivery of 40 cases of glassware from Hartwell Supplies; all checked in.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-07-20\", \"type\": \"invoice\", \"from\": \"Hartwell Supplies\", \"text\": \"Invoice 4471 for June glassware and bar consumables, 312 pounds, due end of July.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-08-28\", \"type\": \"minutes\", \"from\": \"Mara Whitfield\", \"text\": \"Brew team meeting: autumn schedule confirmed, Cascade pale ale leads October, lager holds Fermenter 1, quiz night prep noted for 6 November.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-05\", \"type\": \"cancellation\", \"from\": \"Rowan Phelps (Otterley Rowing Club)\", \"text\": \"Sorry — we need to cancel our small taproom social planned for mid September. We'll rebook in the new year.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-17\", \"type\": \"call\", \"from\": \"Mara Whitfield\", \"text\": \"Called Ellen at Heathfield about harvest quality; she says this year's Maris Otter is excellent and the price holds.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"task\", \"from\": \"Mara Whitfield\", \"text\": \"To-do: pay Hartwell Supplies' September invoice 4523 for 288 pounds by 30 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-05\", \"type\": \"notice\", \"from\": \"Foxglove Brewing Co.\", \"text\": \"Reminder to staff: brewery deliveries come to the roller door on Maltings Lane; taproom deliveries to the front bar.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Sam Kelleher (Foxglove brewer)\", \"text\": \"Fermenter 2 is cleaned and ready ahead of the Cascade brew on 19 October.\", \"role\": \"fact\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Ellen Braithwaite (Heathfield Maltings)\", \"text\": \"Looking forward to sorting October's restock with you — just say the word and we'll load for Wednesday.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing monthly malt restock — Heathfield Maltings\", \"fields\": {\"supplier\": \"Heathfield Maltings\", \"item\": \"Maris Otter pale malt\", \"quantity_kg\": \"400\", \"unit_price\": \"1.55\", \"total\": \"620\", \"delivery_day\": \"Wednesday\", \"status\": \"standing\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Replacement kegs — Copperline Kegs\", \"fields\": {\"supplier\": \"Copperline Kegs\", \"item\": \"30-litre stainless kegs\", \"quantity\": \"12\", \"total\": \"564\", \"status\": \"delivered\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Cascade pale ale brew\", \"fields\": {\"date\": \"2026-10-19\", \"vessel\": \"Fermenter 2\", \"lead\": \"Sam Kelleher\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harrow & Finch quiz night\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"18:00\", \"place\": \"taproom\", \"guests\": \"70\", \"client\": \"Harrow & Finch\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Heathfield Wednesday delivery slot\", \"fields\": {\"day\": \"Wednesday\", \"time\": \"09:00\", \"place\": \"brewery\", \"supplier\": \"Heathfield Maltings\", \"status\": \"recurring\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Cellar deep-clean\", \"fields\": {\"date\": \"2026-10-22\", \"place\": \"brewery cellar\", \"lead\": \"Sam Kelleher\", \"status\": \"scheduled\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Lead brewer assignment — October\", \"fields\": {\"person\": \"Sam Kelleher\", \"role\": \"lead brewer\", \"month\": \"2026-10\", \"status\": \"assigned\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Joss Merriweather (Harrow & Finch)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please place October's pale malt restock with Heathfield Maltings — the usual 400 kilos of Maris Otter for delivery to the brewery on Wednesday 21 October — and send Ellen a confirmation of the order.\",\n  \"expect\": [\n    {\"create\": \"orders\", \"fields\": {\"supplier\": \"Heathfield Maltings\", \"item\": \"Maris Otter pale malt\", \"quantity_kg\": \"400\", \"total\": \"620\", \"delivery_date\": \"2026-10-21\", \"status\": \"confirmed\"}, \"stale\": {\"total\": [\"940\"], \"quantity_kg\": [\"20\"]}, \"task\": true},\n    {\"message_to\": \"Ellen Braithwaite (Heathfield Maltings)\", \"regarding\": \"ORD-1\", \"says\": [\"400\", \"2026-10-21\", \"620\"], \"stale\": [\"940\", \"20 kegs\"], \"task\": true}\n  ],\n  \"why\": \"The change is only Tomas restating the 800-pound sign-off rule in other words, so nothing is revoked and no decision is touched; the plan stands exactly as recorded. The task is October's standing restock: 400 kg of Maris Otter at 1.55/kg is 620 pounds, under the threshold, so Mara can place it directly for the Wednesday 21 October slot and confirm to Ellen. The 940-pound Copperline quote is the distractor — above the threshold, unrelated to the malt order, and not to be acted on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"hop restock\", \"counterpart\": \"Ellen Braithwaite\", \"org\": \"Heathfield Maltings\", \"item\": \"Cascade hop pellets\", \"unit\": \"kg\", \"values\": [\"15\", \"25\", \"40\", \"10\"], \"place\": \"brewery\"},\n    {\"kind\": \"order\", \"topic\": \"yeast restock\", \"counterpart\": \"Ellen Braithwaite\", \"org\": \"Heathfield Maltings\", \"item\": \"dry ale yeast packs\", \"unit\": \"packs\", \"values\": [\"6\", \"12\", \"20\"], \"place\": \"brewery\"},\n    {\"kind\": \"order\", \"topic\": \"keg top-up\", \"counterpart\": \"Dana Okafor\", \"org\": \"Copperline Kegs\", \"item\": \"30-litre stainless kegs\", \"unit\": \"kegs\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"brewery\"},\n    {\"kind\": \"order\", \"topic\": \"glassware restock\", \"counterpart\": \"Nina Hartwell\", \"org\": \"Hartwell Supplies\", \"item\": \"pint glasses\", \"unit\": \"cases\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"taproom\"},\n    {\"kind\": \"order\", \"topic\": \"bar consumables\", \"counterpart\": \"Nina Hartwell\", \"org\": \"Hartwell Supplies\", \"item\": \"bar snack cartons\", \"unit\": \"cartons\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"taproom\"},\n    {\"kind\": \"booking\", \"topic\": \"brew team standup\", \"counterpart\": \"Sam Kelleher\", \"org\": \"Foxglove Brewing Co.\", \"item\": \"weekly brew team meeting\", \"values\": [\"brewhouse\", \"office nook\", \"cellar door\"], \"place\": \"brewery\"},\n    {\"kind\": \"booking\", \"topic\": \"taproom staff briefing\", \"counterpart\": \"Priya Anand\", \"org\": \"Foxglove Brewing Co.\", \"item\": \"weekly taproom briefing\", \"values\": [\"taproom\", \"back bar\"], \"place\": \"taproom\"},\n    {\"kind\": \"booking\", \"topic\": \"delivery van run\", \"counterpart\": \"Sam Kelleher\", \"org\": \"Foxglove Brewing Co.\", \"item\": \"local keg delivery run\", \"values\": [\"van 1\", \"van 2\"], \"place\": \"brewery yard\"},\n    {\"kind\": \"booking\", \"topic\": \"quiz night slot\", \"counterpart\": \"Joss Merriweather\", \"org\": \"Harrow & Finch\", \"item\": \"monthly quiz practice social\", \"values\": [\"taproom snug\", \"main bar\"], \"place\": \"taproom\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning chemicals\", \"counterpart\": \"Nina Hartwell\", \"org\": \"Hartwell Supplies\", \"item\": \"brewery line cleaner\", \"unit\": \"litres\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"brewery\"},\n    {\"kind\": \"order\", \"topic\": \"cask restock\", \"counterpart\": \"Dana Okafor\", \"org\": \"Copperline Kegs\", \"item\": \"firkin casks\", \"unit\": \"casks\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"brewery\"},\n    {\"kind\": \"booking\", \"topic\": \"tank inspection\", \"counterpart\": \"Mara Whitfield\", \"org\": \"Foxglove Brewing Co.\", \"item\": \"monthly tank inspection\", \"values\": [\"Fermenter 1\", \"Fermenter 2\", \"bright tank\"], \"place\": \"brewery\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3252,
+    "completion_tokens": 5855,
+    "reasoning_tokens": 1427,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0892866,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Foxglove malt restock and the restated sign-off rule\",\n  \"setting\": \"Head brewer at Foxglove Brewing Co., a microbrewery with taproom\",\n  \"owner\": \"Mara\",\n  \"org\": \"Foxglove Brewing Co.\",\n  \"now\": \"2026-10-15\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Tomas Reyes (Foxglove finance lead)\", \"text\": \"House rule for the brewery: any single supplier order over 800 pounds needs my sign-off before Mara places it. Anything at or under 800 she can place directly.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara Whitfield\", \"text\": \"Taproom rule: once a client booking is confirmed, we do not move the date without the client's own agreement. If a move is needed, we ask the client first.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Ellen Braithwaite (Heathfield Maltings)\", \"text\": \"Our Maris Otter pale malt is 1.55 pounds per kilo this season, minimum order 200 kilos, and we deliver to breweries on Wednesdays. That price holds through the year.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Sam Kelleher (Foxglove brewer)\", \"text\": \"Fermenter 2 is free from 2026-10-05 through 2026-11-20. Fermenter 1 is tied up with the lager until mid November.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Priya Anand (Foxglove taproom manager)\", \"text\": \"Taproom capacity is 90 guests. Friday evenings are open for private bookings from 18:00; we need two weeks' notice to staff them.\", \"role\": \"fact\"},\n    {\"id\": \"e22\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Priya Anand (Foxglove taproom manager)\", \"text\": \"The taproom fridge took a delivery of 40 cases of glassware from Hartwell Supplies; all checked in.\", \"role\": \"other\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Set up our standing monthly restock with Heathfield Maltings: 400 kilos of Maris Otter pale malt at their 1.55 per kilo price, 620 pounds a month, which is under Tomas's 800 threshold so I can place it directly. Delivery to the brewery on a Wednesday.\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\", \"role\": \"decision\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Booked Fermenter 2 for the Cascade pale ale brew starting Monday 19 October 2026, using the free window Sam flagged from 5 October to 20 November.\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\", \"role\": \"decision\"},\n    {\"id\": \"e23\", \"date\": \"2026-07-20\", \"type\": \"invoice\", \"from\": \"Hartwell Supplies\", \"text\": \"Invoice 4471 for June glassware and bar consumables, 312 pounds, due end of July.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Confirmed the Harrow & Finch quiz night booking in the taproom for Friday 6 November 2026 from 18:00, 70 guests, within our 90 capacity and with enough notice to staff it. Date fixed unless the client agrees otherwise.\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"EV-2\", \"role\": \"decision\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Joss Merriweather (Harrow & Finch)\", \"text\": \"Delighted the quiz night is confirmed for Friday 6 November at 18:00. We'll have about 70 people and will settle the bar tab on the night.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Assigned Sam Kelleher as lead brewer for all October brews, including the Cascade pale ale in Fermenter 2.\", \"rests_on\": [\"e7\"], \"record\": \"CL-1\", \"role\": \"decision\"},\n    {\"id\": \"e24\", \"date\": \"2026-08-28\", \"type\": \"minutes\", \"from\": \"Mara Whitfield\", \"text\": \"Brew team meeting: autumn schedule confirmed, Cascade pale ale leads October, lager holds Fermenter 1, quiz night prep noted for 6 November.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-01\", \"type\": \"quote\", \"from\": \"Dana Okafor (Copperline Kegs)\", \"text\": \"Quote for Foxglove: 20 stainless 30-litre kegs at 47 pounds each, 940 pounds total, delivered. Quote valid 60 days.\", \"role\": \"fact\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-05\", \"type\": \"cancellation\", \"from\": \"Rowan Phelps (Otterley Rowing Club)\", \"text\": \"Sorry — we need to cancel our small taproom social planned for mid September. We'll rebook in the new year.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Ordered 12 replacement 30-litre kegs from Copperline Kegs at 47 pounds each, 564 pounds total — under the 800 sign-off threshold, so placed directly. Delivery to the brewery.\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-2\", \"role\": \"decision\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Ellen Braithwaite (Heathfield Maltings)\", \"text\": \"Confirming September's restock went out: 400 kilos Maris Otter pale malt, 620 pounds, delivered to the brewery last Wednesday as per your standing monthly order.\", \"role\": \"fact\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-17\", \"type\": \"call\", \"from\": \"Mara Whitfield\", \"text\": \"Called Ellen at Heathfield about harvest quality; she says this year's Maris Otter is excellent and the price holds.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Scheduled our regular Wednesday delivery slot with Heathfield Maltings for the monthly malt restocks, so each 400 kilo pale malt order lands at the brewery on a Wednesday morning.\", \"rests_on\": [\"e6\", \"e3\"], \"record\": \"EV-3\", \"role\": \"decision\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Ellen Braithwaite (Heathfield Maltings)\", \"text\": \"Just confirming the plan stands for October: your standing monthly restock of 400 kilos of Maris Otter pale malt at 620 pounds, on the usual Wednesday delivery to the brewery.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e16\", \"date\": \"2026-09-30\", \"type\": \"message\", \"from\": \"Tomas Reyes (Foxglove finance lead)\", \"text\": \"Quick note for the team chat: the spending setup hasn't moved — supplier spends above 800 pounds still come through me before they're placed, and anything at 800 or under Mara can just go ahead with. Same as it's always been.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"task\", \"from\": \"Mara Whitfield\", \"text\": \"To-do: pay Hartwell Supplies' September invoice 4523 for 288 pounds by 30 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-05\", \"type\": \"notice\", \"from\": \"Foxglove Brewing Co.\", \"text\": \"Reminder to staff: brewery deliveries come to the roller door on Maltings Lane; taproom deliveries to the front bar.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Dana Okafor (Copperline Kegs)\", \"text\": \"Following up on our quote: 20 kegs at 940 pounds total is still on the table if you want the full batch this autumn. The 12-keg order you placed in September shipped fine.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e18\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Ellen Braithwaite (Heathfield Maltings)\", \"text\": \"We have Wednesday 21 October 2026 open for your delivery slot if you'd like October's restock to land that morning.\", \"role\": \"fact\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-09\", \"type\": \"decision\", \"from\": \"Mara Whitfield\", \"text\": \"Scheduled a cellar deep-clean for the brewery on Thursday 22 October 2026, after the malt delivery week, with Sam's team.\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\", \"role\": \"decision\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Sam Kelleher (Foxglove brewer)\", \"text\": \"Fermenter 2 is cleaned and ready ahead of the Cascade brew on 19 October.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Priya Anand (Foxglove taproom manager)\", \"text\": \"Staffing is sorted for the Harrow & Finch quiz night on Friday 6 November — two bar staff plus me, doors at 18:00.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-13\", \"type\": \"note\", \"from\": \"Sam Kelleher (Foxglove brewer)\", \"text\": \"Grain stock check: pale malt will run low after the Cascade mash-in on 19 October. October's restock needs to land before the end of the month.\", \"role\": \"fact\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Ellen Braithwaite (Heathfield Maltings)\", \"text\": \"Looking forward to sorting October's restock with you — just say the word and we'll load for Wednesday.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing monthly malt restock — Heathfield Maltings\", \"fields\": {\"supplier\": \"Heathfield Maltings\", \"item\": \"Maris Otter pale malt\", \"quantity_kg\": \"400\", \"unit_price\": \"1.55\", \"total\": \"620\", \"delivery_day\": \"Wednesday\", \"status\": \"standing\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Replacement kegs — Copperline Kegs\", \"fields\": {\"supplier\": \"Copperline Kegs\", \"item\": \"30-litre stainless kegs\", \"quantity\": \"12\", \"total\": \"564\", \"status\": \"delivered\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Cascade pale ale brew\", \"fields\": {\"date\": \"2026-10-19\", \"vessel\": \"Fermenter 2\", \"lead\": \"Sam Kelleher\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harrow & Finch quiz night\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"18:00\", \"place\": \"taproom\", \"guests\": \"70\", \"client\": \"Harrow & Finch\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Heathfield Wednesday delivery slot\", \"fields\": {\"day\": \"Wednesday\", \"time\": \"09:00\", \"place\": \"brewery\", \"supplier\": \"Heathfield Maltings\", \"status\": \"recurring\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Cellar deep-clean\", \"fields\": {\"date\": \"2026-10-22\", \"place\": \"brewery cellar\", \"lead\": \"Sam Kelleher\", \"status\": \"scheduled\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Lead brewer assignment — October\", \"fields\": {\"person\": \"Sam Kelleher\", \"role\": \"lead brewer\", \"month\": \"2026-10\", \"status\": \"assigned\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Joss Merriweather (Harrow & Finch)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please place October's pale malt restock with Heathfield Maltings — the usual 400 kilos of Maris Otter for delivery to the brewery on Wednesday 21 October — and send Ellen a confirmation of the order.\",\n  \"expect\": [\n    {\"create\": \"orders\", \"fields\": {\"supplier\": \"Heathfield Maltings\", \"item\": \"Maris Otter pale malt\", \"quantity_kg\": \"400\", \"total\": \"620\", \"delivery_date\": \"2026-10-21\", \"status\": \"confirmed\"}, \"stale\": {\"total\": [\"940\"], \"quantity_kg\": [\"20\"]}, \"task\": true},\n    {\"message_to\": \"Ellen Braithwaite (Heathfield Maltings)\", \"regarding\": \"ORD-1\", \"says\": [\"400\", \"2026-10-21\", \"620\"], \"stale\": [\"940\", \"20 kegs\"], \"task\": true}\n  ],\n  \"why\": \"The change is only Tomas restating the 800-pound sign-off rule in other words, so nothing is revoked and no decision is touched; the plan stands exactly as recorded. The task is October's standing restock: 400 kg of Maris Otter at 1.55/kg is 620 pounds, under the threshold, so Mara can place it directly for the Wednesday 21 October slot and confirm to Ellen. The 940-pound Copperline quote is the distractor — above the threshold, unrelated to the malt order, and not to be acted on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"hop restock\", \"counterpart\": \"Ellen Braithwaite\", \"org\": \"Heathfield Maltings\", \"item\": \"Cascade hop pellets\", \"unit\": \"kg\", \"values\": [\"15\", \"25\", \"40\", \"10\"], \"place\": \"brewery\"},\n    {\"kind\": \"order\", \"topic\": \"yeast restock\", \"counterpart\": \"Ellen Braithwaite\", \"org\": \"Heathfield Maltings\", \"item\": \"dry ale yeast packs\", \"unit\": \"packs\", \"values\": [\"6\", \"12\", \"20\"], \"place\": \"brewery\"},\n    {\"kind\": \"order\", \"topic\": \"keg top-up\", \"counterpart\": \"Dana Okafor\", \"org\": \"Copperline Kegs\", \"item\": \"30-litre stainless kegs\", \"unit\": \"kegs\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"brewery\"},\n    {\"kind\": \"order\", \"topic\": \"glassware restock\", \"counterpart\": \"Nina Hartwell\", \"org\": \"Hartwell Supplies\", \"item\": \"pint glasses\", \"unit\": \"cases\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"taproom\"},\n    {\"kind\": \"order\", \"topic\": \"bar consumables\", \"counterpart\": \"Nina Hartwell\", \"org\": \"Hartwell Supplies\", \"item\": \"bar snack cartons\", \"unit\": \"cartons\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"taproom\"},\n    {\"kind\": \"booking\", \"topic\": \"brew team standup\", \"counterpart\": \"Sam Kelleher\", \"org\": \"Foxglove Brewing Co.\", \"item\": \"weekly brew team meeting\", \"values\": [\"brewhouse\", \"office nook\", \"cellar door\"], \"place\": \"brewery\"},\n    {\"kind\": \"booking\", \"topic\": \"taproom staff briefing\", \"counterpart\": \"Priya Anand\", \"org\": \"Foxglove Brewing Co.\", \"item\": \"weekly taproom briefing\", \"values\": [\"taproom\", \"back bar\", \"office nook\"], \"place\": \"taproom\"},\n    {\"kind\": \"booking\", \"topic\": \"delivery van run\", \"counterpart\": \"Sam Kelleher\", \"org\": \"Foxglove Brewing Co.\", \"item\": \"local keg delivery run\", \"values\": [\"van 1\", \"van 2\", \"brewery pickup\"], \"place\": \"brewery yard\"},\n    {\"kind\": \"booking\", \"topic\": \"quiz night slot\", \"counterpart\": \"Joss Merriweather\", \"org\": \"Harrow & Finch\", \"item\": \"monthly quiz practice social\", \"values\": [\"taproom snug\", \"main bar\", \"back bar\"], \"place\": \"taproom\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning chemicals\", \"counterpart\": \"Nina Hartwell\", \"org\": \"Hartwell Supplies\", \"item\": \"brewery line cleaner\", \"unit\": \"litres\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"brewery\"},\n    {\"kind\": \"order\", \"topic\": \"cask restock\", \"counterpart\": \"Dana Okafor\", \"org\": \"Copperline Kegs\", \"item\": \"firkin casks\", \"unit\": \"casks\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"brewery\"},\n    {\"kind\": \"booking\", \"topic\": \"tank inspection\", \"counterpart\": \"Mara Whitfield\", \"org\": \"Foxglove Brewing Co.\", \"item\": \"monthly tank inspection\", \"values\": [\"Fermenter 1\", \"Fermenter 2\", \"bright tank\"], \"place\": \"brewery\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7790,
+    "completion_tokens": 4455,
+    "reasoning_tokens": 14,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0819006,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e22 is dated before e21)\n- noise topic 'taproom staff briefing': values needs at least three entries\n- noise topic 'delivery van run': values needs at least three entries\n- noise topic 'quiz night slot': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Foxglove malt restock and the restated sign-off rule",
+  "setting": "Head brewer at Foxglove Brewing Co., a microbrewery with taproom",
+  "owner": "Mara",
+  "org": "Foxglove Brewing Co.",
+  "now": "2026-10-15",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Tomas Reyes (Foxglove finance lead)",
+    "text": "House rule for the brewery: any single supplier order over 800 pounds needs my sign-off before Mara places it. Anything at or under 800 she can place directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Mara Whitfield",
+    "text": "Taproom rule: once a client booking is confirmed, we do not move the date without the client's own agreement. If a move is needed, we ask the client first.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Ellen Braithwaite (Heathfield Maltings)",
+    "text": "Our Maris Otter pale malt is 1.55 pounds per kilo this season, minimum order 200 kilos, and we deliver to breweries on Wednesdays. That price holds through the year.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-15",
+    "type": "note",
+    "from": "Sam Kelleher (Foxglove brewer)",
+    "text": "Fermenter 2 is free from 2026-10-05 through 2026-11-20. Fermenter 1 is tied up with the lager until mid November.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Priya Anand (Foxglove taproom manager)",
+    "text": "Taproom capacity is 90 guests. Friday evenings are open for private bookings from 18:00; we need two weeks' notice to staff them.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Priya Anand (Foxglove taproom manager)",
+    "text": "The taproom fridge took a delivery of 40 cases of glassware from Hartwell Supplies; all checked in.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Mara Whitfield",
+    "text": "Set up our standing monthly restock with Heathfield Maltings: 400 kilos of Maris Otter pale malt at their 1.55 per kilo price, 620 pounds a month, which is under Tomas's 800 threshold so I can place it directly. Delivery to the brewery on a Wednesday.",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-1",
+    "role": "decision"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Mara Whitfield",
+    "text": "Booked Fermenter 2 for the Cascade pale ale brew starting Monday 19 October 2026, using the free window Sam flagged from 5 October to 20 November.",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-1",
+    "role": "decision"
+   },
+   {
+    "id": "e23",
+    "date": "2026-07-20",
+    "type": "invoice",
+    "from": "Hartwell Supplies",
+    "text": "Invoice 4471 for June glassware and bar consumables, 312 pounds, due end of July.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Mara Whitfield",
+    "text": "Confirmed the Harrow & Finch quiz night booking in the taproom for Friday 6 November 2026 from 18:00, 70 guests, within our 90 capacity and with enough notice to staff it. Date fixed unless the client agrees otherwise.",
+    "rests_on": [
+     "e5",
+     "e2"
+    ],
+    "record": "EV-2",
+    "role": "decision"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Joss Merriweather (Harrow & Finch)",
+    "text": "Delighted the quiz night is confirmed for Friday 6 November at 18:00. We'll have about 70 people and will settle the bar tab on the night.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Mara Whitfield",
+    "text": "Assigned Sam Kelleher as lead brewer for all October brews, including the Cascade pale ale in Fermenter 2.",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "CL-1",
+    "role": "decision"
+   },
+   {
+    "id": "e24",
+    "date": "2026-08-28",
+    "type": "minutes",
+    "from": "Mara Whitfield",
+    "text": "Brew team meeting: autumn schedule confirmed, Cascade pale ale leads October, lager holds Fermenter 1, quiz night prep noted for 6 November.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-01",
+    "type": "quote",
+    "from": "Dana Okafor (Copperline Kegs)",
+    "text": "Quote for Foxglove: 20 stainless 30-litre kegs at 47 pounds each, 940 pounds total, delivered. Quote valid 60 days.",
+    "role": "fact"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-05",
+    "type": "cancellation",
+    "from": "Rowan Phelps (Otterley Rowing Club)",
+    "text": "Sorry — we need to cancel our small taproom social planned for mid September. We'll rebook in the new year.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-08",
+    "type": "decision",
+    "from": "Mara Whitfield",
+    "text": "Ordered 12 replacement 30-litre kegs from Copperline Kegs at 47 pounds each, 564 pounds total — under the 800 sign-off threshold, so placed directly. Delivery to the brewery.",
+    "rests_on": [
+     "e11",
+     "e1"
+    ],
+    "record": "ORD-2",
+    "role": "decision"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Ellen Braithwaite (Heathfield Maltings)",
+    "text": "Confirming September's restock went out: 400 kilos Maris Otter pale malt, 620 pounds, delivered to the brewery last Wednesday as per your standing monthly order.",
+    "role": "fact"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-17",
+    "type": "call",
+    "from": "Mara Whitfield",
+    "text": "Called Ellen at Heathfield about harvest quality; she says this year's Maris Otter is excellent and the price holds.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Mara Whitfield",
+    "text": "Scheduled our regular Wednesday delivery slot with Heathfield Maltings for the monthly malt restocks, so each 400 kilo pale malt order lands at the brewery on a Wednesday morning.",
+    "rests_on": [
+     "e6",
+     "e3"
+    ],
+    "record": "EV-3",
+    "role": "decision"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Ellen Braithwaite (Heathfield Maltings)",
+    "text": "Just confirming the plan stands for October: your standing monthly restock of 400 kilos of Maris Otter pale malt at 620 pounds, on the usual Wednesday delivery to the brewery.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-30",
+    "type": "message",
+    "from": "Tomas Reyes (Foxglove finance lead)",
+    "text": "Quick note for the team chat: the spending setup hasn't moved — supplier spends above 800 pounds still come through me before they're placed, and anything at 800 or under Mara can just go ahead with. Same as it's always been.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-02",
+    "type": "task",
+    "from": "Mara Whitfield",
+    "text": "To-do: pay Hartwell Supplies' September invoice 4523 for 288 pounds by 30 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-05",
+    "type": "notice",
+    "from": "Foxglove Brewing Co.",
+    "text": "Reminder to staff: brewery deliveries come to the roller door on Maltings Lane; taproom deliveries to the front bar.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Dana Okafor (Copperline Kegs)",
+    "text": "Following up on our quote: 20 kegs at 940 pounds total is still on the table if you want the full batch this autumn. The 12-keg order you placed in September shipped fine.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Ellen Braithwaite (Heathfield Maltings)",
+    "text": "We have Wednesday 21 October 2026 open for your delivery slot if you'd like October's restock to land that morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-09",
+    "type": "decision",
+    "from": "Mara Whitfield",
+    "text": "Scheduled a cellar deep-clean for the brewery on Thursday 22 October 2026, after the malt delivery week, with Sam's team.",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-4",
+    "role": "decision"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-10",
+    "type": "message",
+    "from": "Sam Kelleher (Foxglove brewer)",
+    "text": "Fermenter 2 is cleaned and ready ahead of the Cascade brew on 19 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-12",
+    "type": "message",
+    "from": "Priya Anand (Foxglove taproom manager)",
+    "text": "Staffing is sorted for the Harrow & Finch quiz night on Friday 6 November — two bar staff plus me, doors at 18:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-13",
+    "type": "note",
+    "from": "Sam Kelleher (Foxglove brewer)",
+    "text": "Grain stock check: pale malt will run low after the Cascade mash-in on 19 October. October's restock needs to land before the end of the month.",
+    "role": "fact"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Ellen Braithwaite (Heathfield Maltings)",
+    "text": "Looking forward to sorting October's restock with you — just say the word and we'll load for Wednesday.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Standing monthly malt restock — Heathfield Maltings",
+    "fields": {
+     "supplier": "Heathfield Maltings",
+     "item": "Maris Otter pale malt",
+     "quantity_kg": "400",
+     "unit_price": "1.55",
+     "total": "620",
+     "delivery_day": "Wednesday",
+     "status": "standing"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Replacement kegs — Copperline Kegs",
+    "fields": {
+     "supplier": "Copperline Kegs",
+     "item": "30-litre stainless kegs",
+     "quantity": "12",
+     "total": "564",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Cascade pale ale brew",
+    "fields": {
+     "date": "2026-10-19",
+     "vessel": "Fermenter 2",
+     "lead": "Sam Kelleher",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Harrow & Finch quiz night",
+    "fields": {
+     "date": "2026-11-06",
+     "time": "18:00",
+     "place": "taproom",
+     "guests": "70",
+     "client": "Harrow & Finch",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Heathfield Wednesday delivery slot",
+    "fields": {
+     "day": "Wednesday",
+     "time": "09:00",
+     "place": "brewery",
+     "supplier": "Heathfield Maltings",
+     "status": "recurring"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Cellar deep-clean",
+    "fields": {
+     "date": "2026-10-22",
+     "place": "brewery cellar",
+     "lead": "Sam Kelleher",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Lead brewer assignment — October",
+    "fields": {
+     "person": "Sam Kelleher",
+     "role": "lead brewer",
+     "month": "2026-10",
+     "status": "assigned"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date"
+    ],
+    "from": "Joss Merriweather (Harrow & Finch)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please place October's pale malt restock with Heathfield Maltings — the usual 400 kilos of Maris Otter for delivery to the brewery on Wednesday 21 October — and send Ellen a confirmation of the order.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Heathfield Maltings",
+     "item": "Maris Otter pale malt",
+     "quantity_kg": "400",
+     "total": "620",
+     "delivery_date": "2026-10-21",
+     "status": "confirmed"
+    },
+    "stale": {
+     "total": [
+      "940"
+     ],
+     "quantity_kg": [
+      "20"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Ellen Braithwaite (Heathfield Maltings)",
+    "regarding": "ORD-1",
+    "says": [
+     "400",
+     "2026-10-21",
+     "620"
+    ],
+    "stale": [
+     "940",
+     "20 kegs"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change is only Tomas restating the 800-pound sign-off rule in other words, so nothing is revoked and no decision is touched; the plan stands exactly as recorded. The task is October's standing restock: 400 kg of Maris Otter at 1.55/kg is 620 pounds, under the threshold, so Mara can place it directly for the Wednesday 21 October slot and confirm to Ellen. The 940-pound Copperline quote is the distractor — above the threshold, unrelated to the malt order, and not to be acted on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "hop restock",
+    "counterpart": "Ellen Braithwaite",
+    "org": "Heathfield Maltings",
+    "item": "Cascade hop pellets",
+    "unit": "kg",
+    "values": [
+     "15",
+     "25",
+     "40",
+     "10"
+    ],
+    "place": "brewery"
+   },
+   {
+    "kind": "order",
+    "topic": "yeast restock",
+    "counterpart": "Ellen Braithwaite",
+    "org": "Heathfield Maltings",
+    "item": "dry ale yeast packs",
+    "unit": "packs",
+    "values": [
+     "6",
+     "12",
+     "20"
+    ],
+    "place": "brewery"
+   },
+   {
+    "kind": "order",
+    "topic": "keg top-up",
+    "counterpart": "Dana Okafor",
+    "org": "Copperline Kegs",
+    "item": "30-litre stainless kegs",
+    "unit": "kegs",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "brewery"
+   },
+   {
+    "kind": "order",
+    "topic": "glassware restock",
+    "counterpart": "Nina Hartwell",
+    "org": "Hartwell Supplies",
+    "item": "pint glasses",
+    "unit": "cases",
+    "values": [
+     "5",
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "taproom"
+   },
+   {
+    "kind": "order",
+    "topic": "bar consumables",
+    "counterpart": "Nina Hartwell",
+    "org": "Hartwell Supplies",
+    "item": "bar snack cartons",
+    "unit": "cartons",
+    "values": [
+     "8",
+     "12",
+     "16"
+    ],
+    "place": "taproom"
+   },
+   {
+    "kind": "booking",
+    "topic": "brew team standup",
+    "counterpart": "Sam Kelleher",
+    "org": "Foxglove Brewing Co.",
+    "item": "weekly brew team meeting",
+    "values": [
+     "brewhouse",
+     "office nook",
+     "cellar door"
+    ],
+    "place": "brewery"
+   },
+   {
+    "kind": "booking",
+    "topic": "taproom staff briefing",
+    "counterpart": "Priya Anand",
+    "org": "Foxglove Brewing Co.",
+    "item": "weekly taproom briefing",
+    "values": [
+     "taproom",
+     "back bar",
+     "office nook"
+    ],
+    "place": "taproom"
+   },
+   {
+    "kind": "booking",
+    "topic": "delivery van run",
+    "counterpart": "Sam Kelleher",
+    "org": "Foxglove Brewing Co.",
+    "item": "local keg delivery run",
+    "values": [
+     "van 1",
+     "van 2",
+     "brewery pickup"
+    ],
+    "place": "brewery yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "quiz night slot",
+    "counterpart": "Joss Merriweather",
+    "org": "Harrow & Finch",
+    "item": "monthly quiz practice social",
+    "values": [
+     "taproom snug",
+     "main bar",
+     "back bar"
+    ],
+    "place": "taproom"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning chemicals",
+    "counterpart": "Nina Hartwell",
+    "org": "Hartwell Supplies",
+    "item": "brewery line cleaner",
+    "unit": "litres",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "brewery"
+   },
+   {
+    "kind": "order",
+    "topic": "cask restock",
+    "counterpart": "Dana Okafor",
+    "org": "Copperline Kegs",
+    "item": "firkin casks",
+    "unit": "casks",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "brewery"
+   },
+   {
+    "kind": "booking",
+    "topic": "tank inspection",
+    "counterpart": "Mara Whitfield",
+    "org": "Foxglove Brewing Co.",
+    "item": "monthly tank inspection",
+    "values": [
+     "Fermenter 1",
+     "Fermenter 2",
+     "bright tank"
+    ],
+    "place": "brewery"
+   }
+  ],
+  "id": "K500-4-08",
+  "tier": 500,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

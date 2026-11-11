@@ -707,5 +707,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Priya explicitly permits either reducing an order below $150 or obtaining her sign-off, so the history does not uniquely require downgrading ORD-2 and ORD-4 or reducing Marta's session count. Neither order's uninvoiced status is clearly established, and the Marta-specific task does not clearly authorize changing ORD-4. The core otherwise meets the changed-rule class, tier requirements, and change-placement requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Priya explicitly permits either reducing an order below $150 or obtaining her sign-off, so the history does not uniquely require downgrading ORD-2 and ORD-4 or reducing Marta's session count. Neither order's uninvoiced status is clearly established, and the Marta-specific task does not clearly authorize changing ORD-4. The core otherwise meets the changed-rule class, tier requirements, and change-placement requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4424,
+    "completion_tokens": 214,
+    "reasoning_tokens": 94,
+    "cached_tokens": 0
+   },
+   "cost": 0.0659925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c944a3ec05537656b44fee566cf5c6e071058388b239880b86c06d0d3650de7f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change amends the sign-off threshold rule, which voids ORD-2 and ORD-4 (REVISE) while ORD-1 (already signed off, and invoiced) and ORD-3 (120 dollars) still stand (KEEP), so the class fits. The tier counts check out: 32 core events, 8 decisions, the change 20 days before the task day, 5 core events after it, and two echoes (e19, e26) restating 250. The main weakness is that the expected message tells Marta the package covers 14 sessions while EV-2 still says 19, which the writer resolves only by implication through the ASK.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change amends the sign-off threshold rule, which voids ORD-2 and ORD-4 (REVISE) while ORD-1 (already signed off, and invoiced) and ORD-3 (120 dollars) still stand (KEEP), so the class fits. The tier counts check out: 32 core events, 8 decisions, the change 20 days before the task day, 5 core events after it, and two echoes (e19, e26) restating 250. The main weakness is that the expected message tells Marta the package covers 14 sessions while EV-2 still says 19, which the writer resolves only by implication through the ASK."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6459,
+    "completion_tokens": 1907,
+    "reasoning_tokens": 1652,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015994,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c944a3ec05537656b44fee566cf5c6e071058388b239880b86c06d0d3650de7f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Priya's amendment offers two compliant options for pending orders above 150 dollars — 'either bring it under 150 or get my sign-off' — so downgrading ORD-2 and ORD-4 to the smaller packages is not the uniquely fixed REVISE value the marks claim; asking Priya for sign-off is equally valid, making the expected state ambiguous. It is also unstated whether ORD-4's quarterly batch was already invoiced, which affects whether the amendment reaches it at all. Counts, echoes, change placement and hiding all meet the tier.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Priya's amendment offers two compliant options for pending orders above 150 dollars — 'either bring it under 150 or get my sign-off' — so downgrading ORD-2 and ORD-4 to the smaller packages is not the uniquely fixed REVISE value the marks claim; asking Priya for sign-off is equally valid, making the expected state ambiguous. It is also unstated whether ORD-4's quarterly batch was already invoiced, which affects whether the amendment reaches it at all. Counts, echoes, change placement and hiding all meet the tier."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4565,
+    "completion_tokens": 603,
+    "reasoning_tokens": 430,
+    "cached_tokens": 256
+   },
+   "cost": 0.0220488,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c944a3ec05537656b44fee566cf5c6e071058388b239880b86c06d0d3650de7f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

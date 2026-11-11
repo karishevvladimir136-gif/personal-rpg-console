@@ -1,0 +1,634 @@
+{
+ "id": "K500-3-05",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 3,
+ "idx": 4,
+ "setting": "Logistics dispatcher at Northline Freight, a regional trucking firm with 12 drivers",
+ "prompt_sha256": "fd56fc9d6e61979cff962183469de03f2cb8ce8ddb75a25f4aedfc996f52fd57",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Riverside receiving hours chain\",\n \"setting\": \"Logistics dispatcher at Northline Freight, a regional trucking firm with 12 drivers\",\n \"owner\": \"Mara\",\n \"org\": \"Northline Freight\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: a confirmed delivery appointment with Aldermont Stores may only be moved after June Park, their logistics lead, has agreed to the new time in writing.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule: any change to a driver's start time or a truck's departure time must be entered in the schedule at least 24 hours before the old departure time.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"Confirming the details for our Riverside depot: we accept refrigerated pallets at Bay 3, and receiving opens at 06:00 every weekday.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Truck 7 is our refrigerated unit and stays assigned to the Halberstadt Produce route.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled Truck 7 to leave the yard at 04:30 on Thursdays so it reaches Halberstadt's Riverside depot right when receiving opens at 06:00.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"June Park (Aldermont Stores)\", \"text\": \"Our warehouse is about 90 minutes from Halberstadt's Riverside depot, and I handle all delivery scheduling for Aldermont Stores.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set a confirmed delivery appointment with Aldermont Stores for 10:30 on Thursdays, using Truck 7 straight after the Halberstadt run that arrives at Riverside at 06:00; any later move of this appointment needs June Park's agreement.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Reefer 2 trailer for Truck 7's Thursday Halberstadt runs, since Riverside takes refrigerated pallets.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"message\", \"from\": \"Rosa Ibarra (driver)\", \"text\": \"Happy to keep the early Thursday starts, just let me know the night before if anything shifts.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"For your ambient runs: our Northgate depot opens its gates at 05:30 on weekdays, separate from Riverside.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Monthly safety meeting: reviewed load-strap checks and winter tyre schedule with all 12 drivers.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-09\", \"type\": \"invoice\", \"from\": \"Roadline Supplies\", \"text\": \"Invoice for 12 ratchet load straps delivered to the Northline yard.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"Looking forward to the weekly Thursday drops — as always, our Riverside receiving team is ready for you from 06:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e14\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 12 ratchet load straps from Roadline Supplies for the yard stock.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Truck 4 in for its annual service at the depot workshop.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-4\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-11\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned driver Tom Wells to the Northgate ambient goods route on weekdays.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-5\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-28\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"The yard gate code changes on the first of each month; the new code is posted in the drivers' room.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-04\", \"type\": \"invoice\", \"from\": \"Halberstadt Produce\", \"text\": \"Monthly statement for dock fees at Riverside and Northgate depots.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-11\", \"type\": \"call\", \"from\": \"Rosa Ibarra (driver)\", \"text\": \"Rosa called to confirm she is covering the Thursday Truck 7 run through the autumn.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"fact\", \"from\": \"Mara\", \"text\": \"Reefer 2 passed its refrigeration inspection and is cleared through next spring.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-25\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: renew the fleet insurance policy before 2026-11-15.\", \"role\": \"obligation\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-30\", \"type\": \"cancellation\", \"from\": \"June Park (Aldermont Stores)\", \"text\": \"Please cancel the one-off extra pallet collection we pencilled in for early October; the regular Thursday delivery is unaffected.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"Heads up for your planning: from 12 October our Riverside depot is moving receiving to an 08:00 start on weekdays. Bay 3 and the refrigerated pallet setup stay exactly as they are.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e24\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Tom Wells (driver)\", \"text\": \"Northgate run went fine today, gates were open early as usual.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-13\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Dispatch meeting: reviewed winter route cover and confirmed all Thursday runs are staffed through November.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Roadline Supplies\", \"text\": \"Quote for bulk diesel delivery to the Northline yard, valid 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Rosa Ibarra (driver)\", \"text\": \"What time am I rolling out with Truck 7 this Thursday?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Truck 7 Thursday Halberstadt Riverside run\", \"fields\": {\"date\": \"2026-10-22\", \"truck\": \"Truck 7\", \"driver\": \"Rosa Ibarra\", \"depart\": \"04:30\", \"arrive\": \"06:00\", \"destination\": \"Riverside depot\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Aldermont Stores Thursday delivery appointment\", \"fields\": {\"client\": \"Aldermont Stores\", \"date\": \"2026-10-22\", \"time\": \"10:30\", \"contact\": \"June Park\", \"truck\": \"Truck 7\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Reefer 2 trailer booking for Truck 7\", \"fields\": {\"date\": \"2026-10-22\", \"trailer\": \"Reefer 2\", \"truck\": \"Truck 7\", \"route\": \"Halberstadt Riverside\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Load straps restock\", \"fields\": {\"item\": \"ratchet load straps\", \"quantity\": \"12\", \"supplier\": \"Roadline Supplies\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Truck 4 annual service\", \"fields\": {\"truck\": \"Truck 4\", \"date\": \"2026-08-20\", \"place\": \"depot workshop\", \"status\": \"booked\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Northgate ambient route assignment\", \"fields\": {\"driver\": \"Tom Wells\", \"route\": \"Northgate ambient\", \"days\": \"weekdays\", \"status\": \"assigned\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"date\", \"time\"], \"from\": \"June Park (Aldermont Stores)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please get Thursday's Truck 7 run to Halberstadt's Riverside depot sorted: update the schedule so Rosa leaves at the right time to arrive when their receiving opens, and send Peter Voss a note confirming what time we'll pull in.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"depart\", \"value\": \"06:30\", \"stale\": [\"04:30\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"arrive\", \"value\": \"08:00\", \"stale\": [\"06:00\"], \"task\": true},\n  {\"message_to\": \"Peter Voss (Halberstadt Produce)\", \"regarding\": \"EV-1\", \"says\": [\"08:00\"], \"stale\": [\"06:00\"], \"task\": true},\n  {\"message_to\": \"June Park (Aldermont Stores)\", \"regarding\": \"CL-1\", \"says\": [\"12:30\"], \"stale\": []}\n ],\n \"why\": \"The Riverside receiving opening moved from 06:00 to 08:00, so the Truck 7 departure (04:30, one hop from the corrected fact) must be revised to 06:30 for an 08:00 arrival; Mara owns schedule changes so that is a REVISE. The Aldermont appointment at 10:30 was built on the old arrival via the Truck 7 schedule (two hops), and moving a confirmed Aldermont appointment needs June Park's written agreement, so it is ASK: propose 12:30 but leave CL-1 untouched. The Reefer 2 booking rests only on the refrigerated-pallet aspect, which the correction explicitly leaves standing, so it is KEEP; the Northgate 05:30 opening is a different depot and untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"diesel restock\", \"counterpart\": \"Roadline Supplies\", \"org\": \"Roadline Supplies\", \"item\": \"bulk diesel\", \"unit\": \"litres\", \"values\": [\"800\", \"1200\", \"1500\", \"2000\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"order\", \"topic\": \"load strap restock\", \"counterpart\": \"Roadline Supplies\", \"org\": \"Roadline Supplies\", \"item\": \"ratchet load straps\", \"unit\": \"straps\", \"values\": [\"6\", \"12\", \"20\", \"24\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"order\", \"topic\": \"pallet restock\", \"counterpart\": \"Timberline Packaging\", \"org\": \"Timberline Packaging\", \"item\": \"wooden pallets\", \"unit\": \"pallets\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"booking\", \"topic\": \"Northgate ambient run\", \"counterpart\": \"Peter Voss\", \"org\": \"Halberstadt Produce\", \"item\": \"ambient goods dock slot\", \"unit\": \"\", \"values\": [\"Northgate dock 1\", \"Northgate dock 2\", \"Northgate yard bay\"], \"place\": \"Northgate depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Aldermont restock delivery\", \"counterpart\": \"June Park\", \"org\": \"Aldermont Stores\", \"item\": \"weekly restock delivery slot\", \"unit\": \"\", \"values\": [\"Aldermont bay 1\", \"Aldermont bay 2\", \"Aldermont rear dock\"], \"place\": \"Aldermont warehouse\"},\n  {\"kind\": \"booking\", \"topic\": \"depot workshop slot\", \"counterpart\": \"Sam Oduya\", \"org\": \"Northline Freight\", \"item\": \"truck service bay\", \"unit\": \"\", \"values\": [\"workshop bay 1\", \"workshop bay 2\"], \"place\": \"depot workshop\"},\n  {\"kind\": \"order\", \"topic\": \"tyre restock\", \"counterpart\": \"Blackstone Tyres\", \"org\": \"Blackstone Tyres\", \"item\": \"truck tyres\", \"unit\": \"tyres\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"booking\", \"topic\": \"drivers room booking\", \"counterpart\": \"Rosa Ibarra\", \"org\": \"Northline Freight\", \"item\": \"drivers briefing room\", \"unit\": \"\", \"values\": [\"briefing room A\", \"briefing room B\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"order\", \"topic\": \"washer fluid restock\", \"counterpart\": \"Roadline Supplies\", \"org\": \"Roadline Supplies\", \"item\": \"screen wash\", \"unit\": \"cases\", \"values\": [\"4\", \"8\", \"10\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"booking\", \"topic\": \"trailer wash slot\", \"counterpart\": \"CleanFleet Services\", \"org\": \"CleanFleet Services\", \"item\": \"trailer wash\", \"unit\": \"\", \"values\": [\"wash lane 1\", \"wash lane 2\"], \"place\": \"CleanFleet depot\"},\n  {\"kind\": \"order\", \"topic\": \"office coffee restock\", \"counterpart\": \"BrewBasket\", \"org\": \"BrewBasket\", \"item\": \"coffee beans\", \"unit\": \"bags\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"dispatch office\"},\n  {\"kind\": \"booking\", \"topic\": \"Riverside dock visit\", \"counterpart\": \"Peter Voss\", \"org\": \"Halberstadt Produce\", \"item\": \"courtesy dock visit\", \"unit\": \"\", \"values\": [\"Riverside Bay 1\", \"Riverside Bay 2\", \"Riverside Bay 3\"], \"place\": \"Riverside depot\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3234,
+    "completion_tokens": 7328,
+    "reasoning_tokens": 3509,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1113276,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Riverside receiving hours chain\",\n \"setting\": \"Logistics dispatcher at Northline Freight, a regional trucking firm with 12 drivers\",\n \"owner\": \"Mara\",\n \"org\": \"Northline Freight\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: a confirmed delivery appointment with Aldermont Stores may only be moved after June Park, their logistics lead, has agreed to the new time in writing.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule: any change to a driver's start time or a truck's departure time must be entered in the schedule at least 24 hours before the old departure time.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"Confirming the details for our Riverside depot: we accept refrigerated pallets at Bay 3, and receiving opens at 06:00 every weekday.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Truck 7 is our refrigerated unit and stays assigned to the Halberstadt Produce route.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled Truck 7 to leave the yard at 04:30 on Thursdays so it reaches Halberstadt's Riverside depot right when receiving opens at 06:00.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"June Park (Aldermont Stores)\", \"text\": \"Our warehouse is about 90 minutes from Halberstadt's Riverside depot, and I handle all delivery scheduling for Aldermont Stores.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set a confirmed delivery appointment with Aldermont Stores for 10:30 on Thursdays, using Truck 7 straight after the Halberstadt run that arrives at Riverside at 06:00; any later move of this appointment needs June Park's agreement.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Reefer 2 trailer for Truck 7's Thursday Halberstadt runs, since Riverside takes refrigerated pallets.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"message\", \"from\": \"Rosa Ibarra (driver)\", \"text\": \"Happy to keep the early Thursday starts, just let me know the night before if anything shifts.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"For your ambient runs: our Northgate depot opens its gates at 05:30 on weekdays, separate from Riverside.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Monthly safety meeting: reviewed load-strap checks and winter tyre schedule with all 12 drivers.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-09\", \"type\": \"invoice\", \"from\": \"Roadline Supplies\", \"text\": \"Invoice for 12 ratchet load straps delivered to the Northline yard.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"Looking forward to the weekly Thursday drops — as always, our Riverside receiving team is ready for you from 06:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e14\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 12 ratchet load straps from Roadline Supplies for the yard stock.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Truck 4 in for its annual service at the depot workshop.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-4\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-11\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned driver Tom Wells to the Northgate ambient goods route on weekdays.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-5\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-28\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"The yard gate code changes on the first of each month; the new code is posted in the drivers' room.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-04\", \"type\": \"invoice\", \"from\": \"Halberstadt Produce\", \"text\": \"Monthly statement for dock fees at Riverside and Northgate depots.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-11\", \"type\": \"call\", \"from\": \"Rosa Ibarra (driver)\", \"text\": \"Rosa called to confirm she is covering the Thursday Truck 7 run through the autumn.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Reefer 2 passed its refrigeration inspection and is cleared through next spring.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-25\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: renew the fleet insurance policy before 2026-11-15.\", \"role\": \"obligation\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-30\", \"type\": \"cancellation\", \"from\": \"June Park (Aldermont Stores)\", \"text\": \"Please cancel the one-off extra pallet collection we pencilled in for early October; the regular Thursday delivery is unaffected.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"Heads up for your planning: from 12 October our Riverside depot is moving receiving to an 08:00 start on weekdays. Bay 3 and the refrigerated pallet setup stay exactly as they are.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e24\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Tom Wells (driver)\", \"text\": \"Northgate run went fine today, gates were open early as usual.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-13\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Dispatch meeting: reviewed winter route cover and confirmed all Thursday runs are staffed through November.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Roadline Supplies\", \"text\": \"Quote for bulk diesel delivery to the Northline yard, valid 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Rosa Ibarra (driver)\", \"text\": \"What time am I rolling out with Truck 7 this Thursday?\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Sam Oduya (workshop)\", \"text\": \"Workshop bays are fully booked this week; earliest free slot for routine servicing is next Tuesday.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Truck 7 Thursday Halberstadt Riverside run\", \"fields\": {\"date\": \"2026-10-22\", \"truck\": \"Truck 7\", \"driver\": \"Rosa Ibarra\", \"depart\": \"04:30\", \"arrive\": \"06:00\", \"destination\": \"Riverside depot\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Aldermont Stores Thursday delivery appointment\", \"fields\": {\"client\": \"Aldermont Stores\", \"date\": \"2026-10-22\", \"time\": \"10:30\", \"contact\": \"June Park\", \"truck\": \"Truck 7\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Reefer 2 trailer booking for Truck 7\", \"fields\": {\"date\": \"2026-10-22\", \"trailer\": \"Reefer 2\", \"truck\": \"Truck 7\", \"route\": \"Halberstadt Riverside\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Load straps restock\", \"fields\": {\"item\": \"ratchet load straps\", \"quantity\": \"12\", \"supplier\": \"Roadline Supplies\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Truck 4 annual service\", \"fields\": {\"truck\": \"Truck 4\", \"date\": \"2026-08-20\", \"place\": \"depot workshop\", \"status\": \"booked\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Northgate ambient route assignment\", \"fields\": {\"driver\": \"Tom Wells\", \"route\": \"Northgate ambient\", \"days\": \"weekdays\", \"status\": \"assigned\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"date\", \"time\"], \"from\": \"June Park (Aldermont Stores)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please get Thursday's Truck 7 run to Halberstadt's Riverside depot sorted: update the schedule so Rosa leaves at the right time to arrive when their receiving opens, and send Peter Voss a note confirming what time we'll pull in.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"depart\", \"value\": \"06:30\", \"stale\": [\"04:30\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"arrive\", \"value\": \"08:00\", \"stale\": [\"06:00\"], \"task\": true},\n  {\"message_to\": \"Peter Voss (Halberstadt Produce)\", \"regarding\": \"EV-1\", \"says\": [\"08:00\"], \"stale\": [\"06:00\"], \"task\": true},\n  {\"message_to\": \"June Park (Aldermont Stores)\", \"regarding\": \"CL-1\", \"says\": [\"12:30\"], \"stale\": []}\n ],\n \"why\": \"The Riverside receiving opening moved from 06:00 to 08:00, so the Truck 7 departure (04:30, one hop from the corrected fact) must be revised to 06:30 for an 08:00 arrival; Mara owns schedule changes so that is a REVISE. The Aldermont appointment at 10:30 was built on the old arrival via the Truck 7 schedule (two hops), and moving a confirmed Aldermont appointment needs June Park's written agreement, so it is ASK: propose 12:30 but leave CL-1 untouched. The Reefer 2 booking rests only on the refrigerated-pallet aspect, which the correction explicitly leaves standing, so it is KEEP; the Northgate 05:30 opening is a different depot and untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"diesel restock\", \"counterpart\": \"Roadline Supplies\", \"org\": \"Roadline Supplies\", \"item\": \"bulk diesel\", \"unit\": \"litres\", \"values\": [\"800\", \"1200\", \"1500\", \"2000\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"order\", \"topic\": \"load strap restock\", \"counterpart\": \"Roadline Supplies\", \"org\": \"Roadline Supplies\", \"item\": \"ratchet load straps\", \"unit\": \"straps\", \"values\": [\"6\", \"12\", \"20\", \"24\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"order\", \"topic\": \"pallet restock\", \"counterpart\": \"Timberline Packaging\", \"org\": \"Timberline Packaging\", \"item\": \"wooden pallets\", \"unit\": \"pallets\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"booking\", \"topic\": \"Northgate ambient run\", \"counterpart\": \"Peter Voss\", \"org\": \"Halberstadt Produce\", \"item\": \"ambient goods dock slot\", \"unit\": \"\", \"values\": [\"Northgate dock 1\", \"Northgate dock 2\", \"Northgate yard bay\"], \"place\": \"Northgate depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Aldermont restock delivery\", \"counterpart\": \"June Park\", \"org\": \"Aldermont Stores\", \"item\": \"weekly restock delivery slot\", \"unit\": \"\", \"values\": [\"Aldermont bay 1\", \"Aldermont bay 2\", \"Aldermont rear dock\"], \"place\": \"Aldermont warehouse\"},\n  {\"kind\": \"booking\", \"topic\": \"depot workshop slot\", \"counterpart\": \"Sam Oduya\", \"org\": \"Northline Freight\", \"item\": \"truck service bay\", \"unit\": \"\", \"values\": [\"workshop bay 1\", \"workshop bay 2\"], \"place\": \"depot workshop\"},\n  {\"kind\": \"order\", \"topic\": \"tyre restock\", \"counterpart\": \"Blackstone Tyres\", \"org\": \"Blackstone Tyres\", \"item\": \"truck tyres\", \"unit\": \"tyres\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"booking\", \"topic\": \"drivers room booking\", \"counterpart\": \"Rosa Ibarra\", \"org\": \"Northline Freight\", \"item\": \"drivers briefing room\", \"unit\": \"\", \"values\": [\"briefing room A\", \"briefing room B\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"order\", \"topic\": \"washer fluid restock\", \"counterpart\": \"Roadline Supplies\", \"org\": \"Roadline Supplies\", \"item\": \"screen wash\", \"unit\": \"cases\", \"values\": [\"4\", \"8\", \"10\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"booking\", \"topic\": \"trailer wash slot\", \"counterpart\": \"CleanFleet Services\", \"org\": \"CleanFleet Services\", \"item\": \"trailer wash\", \"unit\": \"\", \"values\": [\"wash lane 1\", \"wash lane 2\"], \"place\": \"CleanFleet depot\"},\n  {\"kind\": \"order\", \"topic\": \"office coffee restock\", \"counterpart\": \"BrewBasket\", \"org\": \"BrewBasket\", \"item\": \"coffee beans\", \"unit\": \"bags\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"dispatch office\"},\n  {\"kind\": \"booking\", \"topic\": \"Riverside dock visit\", \"counterpart\": \"Peter Voss\", \"org\": \"Halberstadt Produce\", \"item\": \"courtesy dock visit\", \"unit\": \"\", \"values\": [\"Riverside Bay 1\", \"Riverside Bay 2\", \"Riverside Bay 3\"], \"place\": \"Riverside depot\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7174,
+    "completion_tokens": 3911,
+    "reasoning_tokens": 26,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0718926,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: the core has 27 events; need 28–55\n- e20: type «fact» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Riverside receiving hours chain\",\n \"setting\": \"Logistics dispatcher at Northline Freight, a regional trucking firm with 12 drivers\",\n \"owner\": \"Mara\",\n \"org\": \"Northline Freight\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: a confirmed delivery appointment with Aldermont Stores may only be moved after June Park, their logistics lead, has agreed to the new time in writing.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule: any change to a driver's start time or a truck's departure time must be entered in the schedule at least 24 hours before the old departure time.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"Confirming the details for our Riverside depot: we accept refrigerated pallets at Bay 3, and receiving opens at 06:00 every weekday.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Truck 7 is our refrigerated unit and stays assigned to the Halberstadt Produce route.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled Truck 7 to leave the yard at 04:30 on Thursdays so it reaches Halberstadt's Riverside depot right when receiving opens at 06:00.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"June Park (Aldermont Stores)\", \"text\": \"Our warehouse is about 90 minutes from Halberstadt's Riverside depot, and I handle all delivery scheduling for Aldermont Stores.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set a confirmed delivery appointment with Aldermont Stores for 10:30 on Thursdays, using Truck 7 straight after the Halberstadt run that arrives at Riverside at 06:00; any later move of this appointment needs June Park's agreement.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Reefer 2 trailer for Truck 7's Thursday Halberstadt runs, since Riverside takes refrigerated pallets.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"message\", \"from\": \"Rosa Ibarra (driver)\", \"text\": \"Happy to keep the early Thursday starts, just let me know the night before if anything shifts.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"For your ambient runs: our Northgate depot opens its gates at 05:30 on weekdays, separate from Riverside.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Monthly safety meeting: reviewed load-strap checks and winter tyre schedule with all 12 drivers.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-09\", \"type\": \"invoice\", \"from\": \"Roadline Supplies\", \"text\": \"Invoice for 12 ratchet load straps delivered to the Northline yard.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"Looking forward to the weekly Thursday drops — as always, our Riverside receiving team is ready for you from 06:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e14\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 12 ratchet load straps from Roadline Supplies for the yard stock.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Truck 4 in for its annual service at the depot workshop.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-4\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-11\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned driver Tom Wells to the Northgate ambient goods route on weekdays.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-5\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-28\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"The yard gate code changes on the first of each month; the new code is posted in the drivers' room.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-04\", \"type\": \"invoice\", \"from\": \"Halberstadt Produce\", \"text\": \"Monthly statement for dock fees at Riverside and Northgate depots.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-11\", \"type\": \"call\", \"from\": \"Rosa Ibarra (driver)\", \"text\": \"Rosa called to confirm she is covering the Thursday Truck 7 run through the autumn.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Reefer 2 passed its refrigeration inspection and is cleared through next spring.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-25\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: renew the fleet insurance policy before 2026-11-15.\", \"role\": \"obligation\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-30\", \"type\": \"cancellation\", \"from\": \"June Park (Aldermont Stores)\", \"text\": \"Please cancel the one-off extra pallet collection we pencilled in for early October; the regular Thursday delivery is unaffected.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Peter Voss (Halberstadt Produce)\", \"text\": \"Heads up for your planning: from 12 October our Riverside depot is moving receiving to an 08:00 start on weekdays. Bay 3 and the refrigerated pallet setup stay exactly as they are.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e24\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Tom Wells (driver)\", \"text\": \"Northgate run went fine today, gates were open early as usual.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-13\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Dispatch meeting: reviewed winter route cover and confirmed all Thursday runs are staffed through November.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Roadline Supplies\", \"text\": \"Quote for bulk diesel delivery to the Northline yard, valid 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Rosa Ibarra (driver)\", \"text\": \"What time am I rolling out with Truck 7 this Thursday?\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Sam Oduya (workshop)\", \"text\": \"Workshop bays are fully booked this week; earliest free slot for routine servicing is next Tuesday.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Truck 7 Thursday Halberstadt Riverside run\", \"fields\": {\"date\": \"2026-10-22\", \"truck\": \"Truck 7\", \"driver\": \"Rosa Ibarra\", \"depart\": \"04:30\", \"arrive\": \"06:00\", \"destination\": \"Riverside depot\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Aldermont Stores Thursday delivery appointment\", \"fields\": {\"client\": \"Aldermont Stores\", \"date\": \"2026-10-22\", \"time\": \"10:30\", \"contact\": \"June Park\", \"truck\": \"Truck 7\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Reefer 2 trailer booking for Truck 7\", \"fields\": {\"date\": \"2026-10-22\", \"trailer\": \"Reefer 2\", \"truck\": \"Truck 7\", \"route\": \"Halberstadt Riverside\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Load straps restock\", \"fields\": {\"item\": \"ratchet load straps\", \"quantity\": \"12\", \"supplier\": \"Roadline Supplies\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Truck 4 annual service\", \"fields\": {\"truck\": \"Truck 4\", \"date\": \"2026-08-20\", \"place\": \"depot workshop\", \"status\": \"booked\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Northgate ambient route assignment\", \"fields\": {\"driver\": \"Tom Wells\", \"route\": \"Northgate ambient\", \"days\": \"weekdays\", \"status\": \"assigned\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"date\", \"time\"], \"from\": \"June Park (Aldermont Stores)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please get Thursday's Truck 7 run to Halberstadt's Riverside depot sorted: update the schedule so Rosa leaves at the right time to arrive when their receiving opens, and send Peter Voss a note confirming what time we'll pull in.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"depart\", \"value\": \"06:30\", \"stale\": [\"04:30\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"arrive\", \"value\": \"08:00\", \"stale\": [\"06:00\"], \"task\": true},\n  {\"message_to\": \"Peter Voss (Halberstadt Produce)\", \"regarding\": \"EV-1\", \"says\": [\"08:00\"], \"stale\": [\"06:00\"], \"task\": true},\n  {\"message_to\": \"June Park (Aldermont Stores)\", \"regarding\": \"CL-1\", \"says\": [\"12:30\"], \"stale\": []}\n ],\n \"why\": \"The Riverside receiving opening moved from 06:00 to 08:00, so the Truck 7 departure (04:30, one hop from the corrected fact) must be revised to 06:30 for an 08:00 arrival; Mara owns schedule changes so that is a REVISE. The Aldermont appointment at 10:30 was built on the old arrival via the Truck 7 schedule (two hops), and moving a confirmed Aldermont appointment needs June Park's written agreement, so it is ASK: propose 12:30 but leave CL-1 untouched. The Reefer 2 booking rests only on the refrigerated-pallet aspect, which the correction explicitly leaves standing, so it is KEEP; the Northgate 05:30 opening is a different depot and untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"diesel restock\", \"counterpart\": \"Roadline Supplies\", \"org\": \"Roadline Supplies\", \"item\": \"bulk diesel\", \"unit\": \"litres\", \"values\": [\"800\", \"1200\", \"1500\", \"2000\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"order\", \"topic\": \"load strap restock\", \"counterpart\": \"Roadline Supplies\", \"org\": \"Roadline Supplies\", \"item\": \"ratchet load straps\", \"unit\": \"straps\", \"values\": [\"6\", \"12\", \"20\", \"24\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"order\", \"topic\": \"pallet restock\", \"counterpart\": \"Timberline Packaging\", \"org\": \"Timberline Packaging\", \"item\": \"wooden pallets\", \"unit\": \"pallets\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"booking\", \"topic\": \"Northgate ambient run\", \"counterpart\": \"Peter Voss\", \"org\": \"Halberstadt Produce\", \"item\": \"ambient goods dock slot\", \"unit\": \"\", \"values\": [\"Northgate dock 1\", \"Northgate dock 2\", \"Northgate yard bay\"], \"place\": \"Northgate depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Aldermont restock delivery\", \"counterpart\": \"June Park\", \"org\": \"Aldermont Stores\", \"item\": \"weekly restock delivery slot\", \"unit\": \"\", \"values\": [\"Aldermont bay 1\", \"Aldermont bay 2\", \"Aldermont rear dock\"], \"place\": \"Aldermont warehouse\"},\n  {\"kind\": \"booking\", \"topic\": \"depot workshop slot\", \"counterpart\": \"Sam Oduya\", \"org\": \"Northline Freight\", \"item\": \"truck service bay\", \"unit\": \"\", \"values\": [\"workshop bay 1\", \"workshop bay 2\", \"workshop bay 3\"], \"place\": \"depot workshop\"},\n  {\"kind\": \"order\", \"topic\": \"tyre restock\", \"counterpart\": \"Blackstone Tyres\", \"org\": \"Blackstone Tyres\", \"item\": \"truck tyres\", \"unit\": \"tyres\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"booking\", \"topic\": \"drivers room booking\", \"counterpart\": \"Rosa Ibarra\", \"org\": \"Northline Freight\", \"item\": \"drivers briefing room\", \"unit\": \"\", \"values\": [\"briefing room A\", \"briefing room B\", \"briefing room C\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"order\", \"topic\": \"washer fluid restock\", \"counterpart\": \"Roadline Supplies\", \"org\": \"Roadline Supplies\", \"item\": \"screen wash\", \"unit\": \"cases\", \"values\": [\"4\", \"8\", \"10\"], \"place\": \"Northline yard\"},\n  {\"kind\": \"booking\", \"topic\": \"trailer wash slot\", \"counterpart\": \"CleanFleet Services\", \"org\": \"CleanFleet Services\", \"item\": \"trailer wash\", \"unit\": \"\", \"values\": [\"wash lane 1\", \"wash lane 2\", \"wash lane 3\"], \"place\": \"CleanFleet depot\"},\n  {\"kind\": \"order\", \"topic\": \"office coffee restock\", \"counterpart\": \"BrewBasket\", \"org\": \"BrewBasket\", \"item\": \"coffee beans\", \"unit\": \"bags\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"dispatch office\"},\n  {\"kind\": \"booking\", \"topic\": \"Riverside dock visit\", \"counterpart\": \"Peter Voss\", \"org\": \"Halberstadt Produce\", \"item\": \"courtesy dock visit\", \"unit\": \"\", \"values\": [\"Riverside Bay 1\", \"Riverside Bay 2\", \"Riverside Bay 3\"], \"place\": \"Riverside depot\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 11153,
+    "completion_tokens": 3904,
+    "reasoning_tokens": 0,
+    "cached_tokens": 7168
+   },
+   "cost": 0.0726654,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'depot workshop slot': values needs at least three entries\n- noise topic 'drivers room booking': values needs at least three entries\n- noise topic 'trailer wash slot': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Riverside receiving hours chain",
+  "setting": "Logistics dispatcher at Northline Freight, a regional trucking firm with 12 drivers",
+  "owner": "Mara",
+  "org": "Northline Freight",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Standing rule: a confirmed delivery appointment with Aldermont Stores may only be moved after June Park, their logistics lead, has agreed to the new time in writing.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing rule: any change to a driver's start time or a truck's departure time must be entered in the schedule at least 24 hours before the old departure time.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Peter Voss (Halberstadt Produce)",
+    "text": "Confirming the details for our Riverside depot: we accept refrigerated pallets at Bay 3, and receiving opens at 06:00 every weekday.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "note",
+    "from": "Mara",
+    "text": "Truck 7 is our refrigerated unit and stays assigned to the Halberstadt Produce route.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Scheduled Truck 7 to leave the yard at 04:30 on Thursdays so it reaches Halberstadt's Riverside depot right when receiving opens at 06:00.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "June Park (Aldermont Stores)",
+    "text": "Our warehouse is about 90 minutes from Halberstadt's Riverside depot, and I handle all delivery scheduling for Aldermont Stores.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-17",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Set a confirmed delivery appointment with Aldermont Stores for 10:30 on Thursdays, using Truck 7 straight after the Halberstadt run that arrives at Riverside at 06:00; any later move of this appointment needs June Park's agreement.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e6",
+     "e1"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-19",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the Reefer 2 trailer for Truck 7's Thursday Halberstadt runs, since Riverside takes refrigerated pallets.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-22",
+    "type": "message",
+    "from": "Rosa Ibarra (driver)",
+    "text": "Happy to keep the early Thursday starts, just let me know the night before if anything shifts.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Peter Voss (Halberstadt Produce)",
+    "text": "For your ambient runs: our Northgate depot opens its gates at 05:30 on weekdays, separate from Riverside.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Monthly safety meeting: reviewed load-strap checks and winter tyre schedule with all 12 drivers.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-09",
+    "type": "invoice",
+    "from": "Roadline Supplies",
+    "text": "Invoice for 12 ratchet load straps delivered to the Northline yard.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Peter Voss (Halberstadt Produce)",
+    "text": "Looking forward to the weekly Thursday drops — as always, our Riverside receiving team is ready for you from 06:00.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 12 ratchet load straps from Roadline Supplies for the yard stock.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Truck 4 in for its annual service at the depot workshop.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-11",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Assigned driver Tom Wells to the Northgate ambient goods route on weekdays.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-28",
+    "type": "notice",
+    "from": "Mara",
+    "text": "The yard gate code changes on the first of each month; the new code is posted in the drivers' room.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-04",
+    "type": "invoice",
+    "from": "Halberstadt Produce",
+    "text": "Monthly statement for dock fees at Riverside and Northgate depots.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-11",
+    "type": "call",
+    "from": "Rosa Ibarra (driver)",
+    "text": "Rosa called to confirm she is covering the Thursday Truck 7 run through the autumn.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-18",
+    "type": "note",
+    "from": "Mara",
+    "text": "Reefer 2 passed its refrigeration inspection and is cleared through next spring.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-25",
+    "type": "task",
+    "from": "Mara",
+    "text": "To-do: renew the fleet insurance policy before 2026-11-15.",
+    "role": "obligation"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-30",
+    "type": "cancellation",
+    "from": "June Park (Aldermont Stores)",
+    "text": "Please cancel the one-off extra pallet collection we pencilled in for early October; the regular Thursday delivery is unaffected.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Peter Voss (Halberstadt Produce)",
+    "text": "Heads up for your planning: from 12 October our Riverside depot is moving receiving to an 08:00 start on weekdays. Bay 3 and the refrigerated pallet setup stay exactly as they are.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-09",
+    "type": "message",
+    "from": "Tom Wells (driver)",
+    "text": "Northgate run went fine today, gates were open early as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-13",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Dispatch meeting: reviewed winter route cover and confirmed all Thursday runs are staffed through November.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Roadline Supplies",
+    "text": "Quote for bulk diesel delivery to the Northline yard, valid 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-19",
+    "type": "message",
+    "from": "Rosa Ibarra (driver)",
+    "text": "What time am I rolling out with Truck 7 this Thursday?",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Sam Oduya (workshop)",
+    "text": "Workshop bays are fully booked this week; earliest free slot for routine servicing is next Tuesday.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Truck 7 Thursday Halberstadt Riverside run",
+    "fields": {
+     "date": "2026-10-22",
+     "truck": "Truck 7",
+     "driver": "Rosa Ibarra",
+     "depart": "04:30",
+     "arrive": "06:00",
+     "destination": "Riverside depot",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Aldermont Stores Thursday delivery appointment",
+    "fields": {
+     "client": "Aldermont Stores",
+     "date": "2026-10-22",
+     "time": "10:30",
+     "contact": "June Park",
+     "truck": "Truck 7",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Reefer 2 trailer booking for Truck 7",
+    "fields": {
+     "date": "2026-10-22",
+     "trailer": "Reefer 2",
+     "truck": "Truck 7",
+     "route": "Halberstadt Riverside",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Load straps restock",
+    "fields": {
+     "item": "ratchet load straps",
+     "quantity": "12",
+     "supplier": "Roadline Supplies",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Truck 4 annual service",
+    "fields": {
+     "truck": "Truck 4",
+     "date": "2026-08-20",
+     "place": "depot workshop",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Northgate ambient route assignment",
+    "fields": {
+     "driver": "Tom Wells",
+     "route": "Northgate ambient",
+     "days": "weekdays",
+     "status": "assigned"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "June Park (Aldermont Stores)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please get Thursday's Truck 7 run to Halberstadt's Riverside depot sorted: update the schedule so Rosa leaves at the right time to arrive when their receiving opens, and send Peter Voss a note confirming what time we'll pull in.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "depart",
+    "value": "06:30",
+    "stale": [
+     "04:30"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-1",
+    "field": "arrive",
+    "value": "08:00",
+    "stale": [
+     "06:00"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Peter Voss (Halberstadt Produce)",
+    "regarding": "EV-1",
+    "says": [
+     "08:00"
+    ],
+    "stale": [
+     "06:00"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "June Park (Aldermont Stores)",
+    "regarding": "CL-1",
+    "says": [
+     "12:30"
+    ],
+    "stale": []
+   }
+  ],
+  "why": "The Riverside receiving opening moved from 06:00 to 08:00, so the Truck 7 departure (04:30, one hop from the corrected fact) must be revised to 06:30 for an 08:00 arrival; Mara owns schedule changes so that is a REVISE. The Aldermont appointment at 10:30 was built on the old arrival via the Truck 7 schedule (two hops), and moving a confirmed Aldermont appointment needs June Park's written agreement, so it is ASK: propose 12:30 but leave CL-1 untouched. The Reefer 2 booking rests only on the refrigerated-pallet aspect, which the correction explicitly leaves standing, so it is KEEP; the Northgate 05:30 opening is a different depot and untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "diesel restock",
+    "counterpart": "Roadline Supplies",
+    "org": "Roadline Supplies",
+    "item": "bulk diesel",
+    "unit": "litres",
+    "values": [
+     "800",
+     "1200",
+     "1500",
+     "2000"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "order",
+    "topic": "load strap restock",
+    "counterpart": "Roadline Supplies",
+    "org": "Roadline Supplies",
+    "item": "ratchet load straps",
+    "unit": "straps",
+    "values": [
+     "6",
+     "12",
+     "20",
+     "24"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "order",
+    "topic": "pallet restock",
+    "counterpart": "Timberline Packaging",
+    "org": "Timberline Packaging",
+    "item": "wooden pallets",
+    "unit": "pallets",
+    "values": [
+     "20",
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "Northgate ambient run",
+    "counterpart": "Peter Voss",
+    "org": "Halberstadt Produce",
+    "item": "ambient goods dock slot",
+    "unit": "",
+    "values": [
+     "Northgate dock 1",
+     "Northgate dock 2",
+     "Northgate yard bay"
+    ],
+    "place": "Northgate depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "Aldermont restock delivery",
+    "counterpart": "June Park",
+    "org": "Aldermont Stores",
+    "item": "weekly restock delivery slot",
+    "unit": "",
+    "values": [
+     "Aldermont bay 1",
+     "Aldermont bay 2",
+     "Aldermont rear dock"
+    ],
+    "place": "Aldermont warehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "depot workshop slot",
+    "counterpart": "Sam Oduya",
+    "org": "Northline Freight",
+    "item": "truck service bay",
+    "unit": "",
+    "values": [
+     "workshop bay 1",
+     "workshop bay 2",
+     "workshop bay 3"
+    ],
+    "place": "depot workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "tyre restock",
+    "counterpart": "Blackstone Tyres",
+    "org": "Blackstone Tyres",
+    "item": "truck tyres",
+    "unit": "tyres",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "drivers room booking",
+    "counterpart": "Rosa Ibarra",
+    "org": "Northline Freight",
+    "item": "drivers briefing room",
+    "unit": "",
+    "values": [
+     "briefing room A",
+     "briefing room B",
+     "briefing room C"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "order",
+    "topic": "washer fluid restock",
+    "counterpart": "Roadline Supplies",
+    "org": "Roadline Supplies",
+    "item": "screen wash",
+    "unit": "cases",
+    "values": [
+     "4",
+     "8",
+     "10"
+    ],
+    "place": "Northline yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "trailer wash slot",
+    "counterpart": "CleanFleet Services",
+    "org": "CleanFleet Services",
+    "item": "trailer wash",
+    "unit": "",
+    "values": [
+     "wash lane 1",
+     "wash lane 2",
+     "wash lane 3"
+    ],
+    "place": "CleanFleet depot"
+   },
+   {
+    "kind": "order",
+    "topic": "office coffee restock",
+    "counterpart": "BrewBasket",
+    "org": "BrewBasket",
+    "item": "coffee beans",
+    "unit": "bags",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "dispatch office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Riverside dock visit",
+    "counterpart": "Peter Voss",
+    "org": "Halberstadt Produce",
+    "item": "courtesy dock visit",
+    "unit": "",
+    "values": [
+     "Riverside Bay 1",
+     "Riverside Bay 2",
+     "Riverside Bay 3"
+    ],
+    "place": "Riverside depot"
+   }
+  ],
+  "id": "K500-3-05",
+  "tier": 500,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

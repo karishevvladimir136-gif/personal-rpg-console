@@ -1,0 +1,615 @@
+{
+ "id": "K100-3-02",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 3,
+ "idx": 1,
+ "setting": "Dispatch coordinator at SwiftCycle Couriers, a same-day bike courier service",
+ "prompt_sha256": "22a694d9bd8b0352f615fa66544828c8b04e7cd71c164dd8be7c115d569c365f",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"GreenFork pickup moved to Foundry Row\",\n  \"setting\": \"Dispatch coordinator at SwiftCycle Couriers, a same-day bike courier service\",\n  \"owner\": \"Mara\",\n  \"org\": \"SwiftCycle Couriers\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule at SwiftCycle: any change to a confirmed client pickup job, whether the time or the pickup address, must be agreed with the client's dispatch contact before we alter the job in the system.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: any supplier purchase over 500 must be signed off by our finance lead Tomas Vela before the order is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Anand (GreenFork Kitchens)\", \"text\": \"Hi Mara, confirming the setup for GreenFork Kitchens: our pickup point is 14 Canal Street, use the loading door at the back of the building. I am the dispatch contact for anything about our jobs — Priya Anand, on the usual number.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"message\", \"from\": \"Dani Okafor\", \"text\": \"Mara, for the roster: I can cover weekday shifts 12:00 to 18:00 all through the autumn, weekends off.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Nina Park (CyclePro Supplies)\", \"text\": \"Hello Mara, the cargo trailers we supply take a maximum load of 40 kg each. Rain ponchos remain in stock at 16 each.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up standing route R2, the afternoon loop: rider Dani Okafor on the 12:00 to 18:00 shift, first stop the GreenFork Kitchens pickup at 14 Canal Street at 14:30 every weekday.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Confirmed the daily pickup job for GreenFork Kitchens off the route R2 afternoon loop: pickup at 14 Canal Street at 14:30 each weekday, job confirmed with the client.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled a monthly account review call with Priya Anand, the GreenFork Kitchens dispatch contact, at 10:00 on the first Monday of each month.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-20\", \"type\": \"invoice\", \"from\": \"Priya Anand (GreenFork Kitchens)\", \"text\": \"Sending over GreenFork's purchase order reference for June pickups; please quote GF-PO-2210 on your invoices.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"notice\", \"from\": \"North Depot Management\", \"text\": \"Reminder to all tenants: North Depot is open 07:00 to 19:00 daily; the loading bay can be booked in half-day slots.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 20 rain ponchos from CyclePro Supplies at 16 each, total 320, which is under the 500 threshold so no finance sign-off needed. Delivery to North Depot.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"message\", \"from\": \"Dani Okafor\", \"text\": \"Route R2 ran fine all week, the GreenFork stop is usually quick if I get there before 14:30.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Jonah Reyes (GreenFork Kitchens events team)\", \"text\": \"Hi Mara, for our weekend market catering we may need ad-hoc courier runs to our stall at 3 Canal Mews on Saturdays. Nothing booked yet, just gauging your rates.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"message\", \"from\": \"Dani Okafor\", \"text\": \"Taking the last week of August off, back on route Tuesday 1 September.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the North Depot loading bay for the morning of Wednesday 30 September for trailer servicing, within the depot's 07:00 to 19:00 opening hours.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-28\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: renew the cargo trailer insurance before 2026-10-15.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-07\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Weekly dispatch check-in: route R2 volumes steady, GreenFork remains the heaviest regular stop; no changes to rider shifts.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Priya Anand (GreenFork Kitchens)\", \"text\": \"Hi Mara, quick heads-up from GreenFork: our kitchen has moved premises. From now on all our pickups are at 88 Foundry Row — same loading-door arrangement as before, and I'm still your dispatch contact for everything.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e19\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Dani Okafor\", \"text\": \"R2 was quiet today, done by 17:15. Two flats near the depot handled on the way back.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Nina Park (CyclePro Supplies)\", \"text\": \"Your September statement is attached; the poncho order from July is fully paid, thank you.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-02\", \"type\": \"call\", \"from\": \"Mara\", \"text\": \"Call with North Depot: they confirmed the bay booking for Wednesday 30 September went ahead fine and trailers are back in service.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Standing route R2 afternoon loop\", \"fields\": {\"client\": \"GreenFork Kitchens\", \"pickup_address\": \"14 Canal Street\", \"time\": \"14:30\", \"rider\": \"Dani Okafor\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"GreenFork Kitchens daily pickup job\", \"fields\": {\"client\": \"GreenFork Kitchens\", \"pickup\": \"14 Canal Street\", \"time\": \"14:30\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"GreenFork monthly account review call\", \"fields\": {\"contact\": \"Priya Anand\", \"day\": \"first Monday\", \"time\": \"10:00\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Rain ponchos restock\", \"fields\": {\"supplier\": \"CyclePro Supplies\", \"item\": \"rain ponchos\", \"qty\": \"20\", \"total\": \"320\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"North Depot bay for trailer servicing\", \"fields\": {\"date\": \"2026-09-30\", \"place\": \"North Depot loading bay\", \"slot\": \"morning\", \"status\": \"booked\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"pickup\"], \"from\": \"Priya Anand (GreenFork Kitchens)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send GreenFork the confirmation for tomorrow's daily pickup job — double-check we've got the right details on it first, and tidy up anything of ours that's out of date.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"pickup_address\", \"value\": \"88 Foundry Row\", \"stale\": [\"14 Canal Street\", \"3 Canal Mews\"]},\n    {\"message_to\": \"Priya Anand (GreenFork Kitchens)\", \"regarding\": \"EV-2\", \"says\": [\"88 Foundry Row\"], \"stale\": [\"14 Canal Street\", \"3 Canal Mews\"], \"task\": true}\n  ],\n  \"why\": \"Priya's 25 September email replaces GreenFork's pickup address (14 Canal Street with 88 Foundry Row). Route R2 (EV-1) is Mara's own standing route, so the assistant revises it directly; the confirmed client pickup job (EV-2) rests on R2 and its pickup field is consent-protected under the client-job rule, so the assistant must ask Priya rather than change it — the task's confirmation message should carry 88 Foundry Row and seek her agreement. The monthly review call (EV-3) used only Priya's contact details, which the move leaves standing, so it stays; the 3 Canal Mews market stall is a different site and a distractor.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"inner tube restock\", \"counterpart\": \"Nina Park\", \"org\": \"CyclePro Supplies\", \"item\": \"inner tubes\", \"unit\": \"tubes\", \"values\": [\"12\", \"20\", \"30\", \"40\"], \"place\": \"North Depot\"},\n    {\"kind\": \"order\", \"topic\": \"brake pads restock\", \"counterpart\": \"Nina Park\", \"org\": \"CyclePro Supplies\", \"item\": \"brake pads\", \"unit\": \"pairs\", \"values\": [\"10\", \"16\", \"24\"], \"place\": \"North Depot\"},\n    {\"kind\": \"order\", \"topic\": \"chain lube order\", \"counterpart\": \"Nina Park\", \"org\": \"CyclePro Supplies\", \"item\": \"chain lubricant\", \"unit\": \"bottles\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"North Depot\"},\n    {\"kind\": \"booking\", \"topic\": \"depot bay booking\", \"counterpart\": \"North Depot Management\", \"org\": \"North Depot\", \"item\": \"loading bay half-day\", \"unit\": \"slot\", \"values\": [\"morning bay 1\", \"afternoon bay 1\", \"morning bay 2\", \"afternoon bay 2\"], \"place\": \"North Depot loading bay\"},\n    {\"kind\": \"booking\", \"topic\": \"rider briefing room\", \"counterpart\": \"North Depot Management\", \"org\": \"North Depot\", \"item\": \"briefing room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"Room C\"], \"place\": \"North Depot\"},\n    {\"kind\": \"order\", \"topic\": \"rider uniforms\", \"counterpart\": \"Lena Vogt\", \"org\": \"BrightStitch Workwear\", \"item\": \"hi-vis jackets\", \"unit\": \"jackets\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"North Depot\"},\n    {\"kind\": \"order\", \"topic\": \"packaging restock\", \"counterpart\": \"Sam Ellis\", \"org\": \"PackRight\", \"item\": \"padded envelopes\", \"unit\": \"boxes\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"North Depot\"},\n    {\"kind\": \"order\", \"topic\": \"bike locks\", \"counterpart\": \"Lena Vogt\", \"org\": \"BrightStitch Workwear\", \"item\": \"D-locks\", \"unit\": \"locks\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"North Depot\"},\n    {\"kind\": \"booking\", \"topic\": \"maintenance stand booking\", \"counterpart\": \"Tomas Vela\", \"org\": \"SwiftCycle Couriers\", \"item\": \"repair stand\", \"unit\": \"stand\", \"values\": [\"stand 1\", \"stand 2\"], \"place\": \"North Depot workshop\"},\n    {\"kind\": \"order\", \"topic\": \"coffee for depot\", \"counterpart\": \"Ana Ruiz\", \"org\": \"DailyGrind Roasters\", \"item\": \"coffee beans\", \"unit\": \"bags\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"North Depot kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"van hire for overflow\", \"counterpart\": \"Pete Lang\", \"org\": \"CityVan Rentals\", \"item\": \"small van\", \"unit\": \"van\", \"values\": [\"van 3\", \"van 5\", \"van 7\"], \"place\": \"CityVan depot, East Road\"},\n    {\"kind\": \"order\", \"topic\": \"phone mounts\", \"counterpart\": \"Nina Park\", \"org\": \"CyclePro Supplies\", \"item\": \"handlebar phone mounts\", \"unit\": \"mounts\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"North Depot\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3178,
+    "completion_tokens": 5746,
+    "reasoning_tokens": 2404,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0874296,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"GreenFork pickup moved to Foundry Row\",\n  \"setting\": \"Dispatch coordinator at SwiftCycle Couriers, a same-day bike courier service\",\n  \"owner\": \"Mara\",\n  \"org\": \"SwiftCycle Couriers\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule at SwiftCycle: any change to a confirmed client pickup job, whether the time or the pickup address, must be agreed with the client's dispatch contact before we alter the job in the system.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: any supplier purchase over 500 must be signed off by our finance lead Tomas Vela before the order is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Anand (GreenFork Kitchens)\", \"text\": \"Hi Mara, confirming the setup for GreenFork Kitchens: our pickup point is 14 Canal Street, use the loading door at the back of the building. I am the dispatch contact for anything about our jobs — Priya Anand, on the usual number.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"message\", \"from\": \"Dani Okafor\", \"text\": \"Mara, for the roster: I can cover weekday shifts 12:00 to 18:00 all through the autumn, weekends off.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Nina Park (CyclePro Supplies)\", \"text\": \"Hello Mara, the cargo trailers we supply take a maximum load of 40 kg each. Rain ponchos remain in stock at 16 each.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up standing route R2, the afternoon loop: rider Dani Okafor on the 12:00 to 18:00 shift, first stop the GreenFork Kitchens pickup at 14 Canal Street at 14:30 every weekday.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Confirmed the daily pickup job for GreenFork Kitchens off the route R2 afternoon loop: pickup at 14 Canal Street at 14:30 each weekday, job confirmed with the client.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled a monthly account review call with Priya Anand, the GreenFork Kitchens dispatch contact, at 10:00 on the first Monday of each month.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-20\", \"type\": \"invoice\", \"from\": \"Priya Anand (GreenFork Kitchens)\", \"text\": \"Sending over GreenFork's purchase order reference for June pickups; please quote GF-PO-2210 on your invoices.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"notice\", \"from\": \"North Depot Management\", \"text\": \"Reminder to all tenants: North Depot is open 07:00 to 19:00 daily; the loading bay can be booked in half-day slots.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 20 rain ponchos from CyclePro Supplies at 16 each, total 320, which is under the 500 threshold so no finance sign-off needed. Delivery to North Depot.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"message\", \"from\": \"Dani Okafor\", \"text\": \"Route R2 ran fine all week, the GreenFork stop is usually quick if I get there before 14:30.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Jonah Reyes (GreenFork Kitchens events team)\", \"text\": \"Hi Mara, for our weekend market catering we may need ad-hoc courier runs to our stall at 3 Canal Mews on Saturdays. Nothing booked yet, just gauging your rates.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"message\", \"from\": \"Dani Okafor\", \"text\": \"Taking the last week of August off, back on route Tuesday 1 September.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the North Depot loading bay for the morning of Wednesday 30 September for trailer servicing, within the depot's 07:00 to 19:00 opening hours.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-28\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: renew the cargo trailer insurance before 2026-10-15.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-07\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Weekly dispatch check-in: route R2 volumes steady, GreenFork remains the heaviest regular stop; no changes to rider shifts.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Priya Anand (GreenFork Kitchens)\", \"text\": \"Hi Mara, quick heads-up from GreenFork: our kitchen has moved premises. From now on all our pickups are at 88 Foundry Row — same loading-door arrangement as before, and I'm still your dispatch contact for everything.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e19\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Dani Okafor\", \"text\": \"R2 was quiet today, done by 17:15. Two flats near the depot handled on the way back.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Nina Park (CyclePro Supplies)\", \"text\": \"Your September statement is attached; the poncho order from July is fully paid, thank you.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-02\", \"type\": \"call\", \"from\": \"Mara\", \"text\": \"Call with North Depot: they confirmed the bay booking for Wednesday 30 September went ahead fine and trailers are back in service.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Standing route R2 afternoon loop\", \"fields\": {\"client\": \"GreenFork Kitchens\", \"pickup_address\": \"14 Canal Street\", \"time\": \"14:30\", \"rider\": \"Dani Okafor\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"GreenFork Kitchens daily pickup job\", \"fields\": {\"client\": \"GreenFork Kitchens\", \"pickup\": \"14 Canal Street\", \"time\": \"14:30\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"GreenFork monthly account review call\", \"fields\": {\"contact\": \"Priya Anand\", \"day\": \"first Monday\", \"time\": \"10:00\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Rain ponchos restock\", \"fields\": {\"supplier\": \"CyclePro Supplies\", \"item\": \"rain ponchos\", \"qty\": \"20\", \"total\": \"320\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"North Depot bay for trailer servicing\", \"fields\": {\"date\": \"2026-09-30\", \"place\": \"North Depot loading bay\", \"slot\": \"morning\", \"status\": \"booked\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"pickup\"], \"from\": \"Priya Anand (GreenFork Kitchens)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send GreenFork the confirmation for tomorrow's daily pickup job — double-check we've got the right details on it first, and tidy up anything of ours that's out of date.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"pickup_address\", \"value\": \"88 Foundry Row\", \"stale\": [\"14 Canal Street\", \"3 Canal Mews\"]},\n    {\"message_to\": \"Priya Anand (GreenFork Kitchens)\", \"regarding\": \"EV-2\", \"says\": [\"88 Foundry Row\"], \"stale\": [\"14 Canal Street\", \"3 Canal Mews\"], \"task\": true}\n  ],\n  \"why\": \"Priya's 25 September email replaces GreenFork's pickup address (14 Canal Street with 88 Foundry Row). Route R2 (EV-1) is Mara's own standing route, so the assistant revises it directly; the confirmed client pickup job (EV-2) rests on R2 and its pickup field is consent-protected under the client-job rule, so the assistant must ask Priya rather than change it — the task's confirmation message should carry 88 Foundry Row and seek her agreement. The monthly review call (EV-3) used only Priya's contact details, which the move leaves standing, so it stays; the 3 Canal Mews market stall is a different site and a distractor.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"inner tube restock\", \"counterpart\": \"Nina Park\", \"org\": \"CyclePro Supplies\", \"item\": \"inner tubes\", \"unit\": \"tubes\", \"values\": [\"12\", \"20\", \"30\", \"40\"], \"place\": \"North Depot\"},\n    {\"kind\": \"order\", \"topic\": \"brake pads restock\", \"counterpart\": \"Nina Park\", \"org\": \"CyclePro Supplies\", \"item\": \"brake pads\", \"unit\": \"pairs\", \"values\": [\"10\", \"16\", \"24\"], \"place\": \"North Depot\"},\n    {\"kind\": \"order\", \"topic\": \"chain lube order\", \"counterpart\": \"Nina Park\", \"org\": \"CyclePro Supplies\", \"item\": \"chain lubricant\", \"unit\": \"bottles\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"North Depot\"},\n    {\"kind\": \"booking\", \"topic\": \"depot bay booking\", \"counterpart\": \"North Depot Management\", \"org\": \"North Depot\", \"item\": \"loading bay half-day\", \"unit\": \"slot\", \"values\": [\"morning bay 1\", \"afternoon bay 1\", \"morning bay 2\", \"afternoon bay 2\"], \"place\": \"North Depot loading bay\"},\n    {\"kind\": \"booking\", \"topic\": \"rider briefing room\", \"counterpart\": \"North Depot Management\", \"org\": \"North Depot\", \"item\": \"briefing room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"Room C\"], \"place\": \"North Depot\"},\n    {\"kind\": \"order\", \"topic\": \"rider uniforms\", \"counterpart\": \"Lena Vogt\", \"org\": \"BrightStitch Workwear\", \"item\": \"hi-vis jackets\", \"unit\": \"jackets\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"North Depot\"},\n    {\"kind\": \"order\", \"topic\": \"packaging restock\", \"counterpart\": \"Sam Ellis\", \"org\": \"PackRight\", \"item\": \"padded envelopes\", \"unit\": \"boxes\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"North Depot\"},\n    {\"kind\": \"order\", \"topic\": \"bike locks\", \"counterpart\": \"Lena Vogt\", \"org\": \"BrightStitch Workwear\", \"item\": \"D-locks\", \"unit\": \"locks\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"North Depot\"},\n    {\"kind\": \"booking\", \"topic\": \"maintenance stand booking\", \"counterpart\": \"Tomas Vela\", \"org\": \"SwiftCycle Couriers\", \"item\": \"repair stand\", \"unit\": \"stand\", \"values\": [\"stand 1\", \"stand 2\", \"stand 3\"], \"place\": \"North Depot workshop\"},\n    {\"kind\": \"order\", \"topic\": \"coffee for depot\", \"counterpart\": \"Ana Ruiz\", \"org\": \"DailyGrind Roasters\", \"item\": \"coffee beans\", \"unit\": \"bags\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"North Depot kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"van hire for overflow\", \"counterpart\": \"Pete Lang\", \"org\": \"CityVan Rentals\", \"item\": \"small van\", \"unit\": \"van\", \"values\": [\"van 3\", \"van 5\", \"van 7\"], \"place\": \"CityVan depot, East Road\"},\n    {\"kind\": \"order\", \"topic\": \"phone mounts\", \"counterpart\": \"Nina Park\", \"org\": \"CyclePro Supplies\", \"item\": \"handlebar phone mounts\", \"unit\": \"mounts\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"North Depot\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6581,
+    "completion_tokens": 3353,
+    "reasoning_tokens": 6,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0617436,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'maintenance stand booking': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "GreenFork pickup moved to Foundry Row",
+  "setting": "Dispatch coordinator at SwiftCycle Couriers, a same-day bike courier service",
+  "owner": "Mara",
+  "org": "SwiftCycle Couriers",
+  "now": "2026-10-05",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Standing rule at SwiftCycle: any change to a confirmed client pickup job, whether the time or the pickup address, must be agreed with the client's dispatch contact before we alter the job in the system.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Standing rule: any supplier purchase over 500 must be signed off by our finance lead Tomas Vela before the order is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Priya Anand (GreenFork Kitchens)",
+    "text": "Hi Mara, confirming the setup for GreenFork Kitchens: our pickup point is 14 Canal Street, use the loading door at the back of the building. I am the dispatch contact for anything about our jobs — Priya Anand, on the usual number.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "message",
+    "from": "Dani Okafor",
+    "text": "Mara, for the roster: I can cover weekday shifts 12:00 to 18:00 all through the autumn, weekends off.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Nina Park (CyclePro Supplies)",
+    "text": "Hello Mara, the cargo trailers we supply take a maximum load of 40 kg each. Rain ponchos remain in stock at 16 each.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Set up standing route R2, the afternoon loop: rider Dani Okafor on the 12:00 to 18:00 shift, first stop the GreenFork Kitchens pickup at 14 Canal Street at 14:30 every weekday.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Confirmed the daily pickup job for GreenFork Kitchens off the route R2 afternoon loop: pickup at 14 Canal Street at 14:30 each weekday, job confirmed with the client.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e1"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-17",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Scheduled a monthly account review call with Priya Anand, the GreenFork Kitchens dispatch contact, at 10:00 on the first Monday of each month.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-20",
+    "type": "invoice",
+    "from": "Priya Anand (GreenFork Kitchens)",
+    "text": "Sending over GreenFork's purchase order reference for June pickups; please quote GF-PO-2210 on your invoices.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-25",
+    "type": "notice",
+    "from": "North Depot Management",
+    "text": "Reminder to all tenants: North Depot is open 07:00 to 19:00 daily; the loading bay can be booked in half-day slots.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 20 rain ponchos from CyclePro Supplies at 16 each, total 320, which is under the 500 threshold so no finance sign-off needed. Delivery to North Depot.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-10",
+    "type": "message",
+    "from": "Dani Okafor",
+    "text": "Route R2 ran fine all week, the GreenFork stop is usually quick if I get there before 14:30.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Jonah Reyes (GreenFork Kitchens events team)",
+    "text": "Hi Mara, for our weekend market catering we may need ad-hoc courier runs to our stall at 3 Canal Mews on Saturdays. Nothing booked yet, just gauging your rates.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-03",
+    "type": "message",
+    "from": "Dani Okafor",
+    "text": "Taking the last week of August off, back on route Tuesday 1 September.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the North Depot loading bay for the morning of Wednesday 30 September for trailer servicing, within the depot's 07:00 to 19:00 opening hours.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-28",
+    "type": "task",
+    "from": "Mara",
+    "text": "To-do: renew the cargo trailer insurance before 2026-10-15.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-07",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Weekly dispatch check-in: route R2 volumes steady, GreenFork remains the heaviest regular stop; no changes to rider shifts.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Priya Anand (GreenFork Kitchens)",
+    "text": "Hi Mara, quick heads-up from GreenFork: our kitchen has moved premises. From now on all our pickups are at 88 Foundry Row — same loading-door arrangement as before, and I'm still your dispatch contact for everything.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-28",
+    "type": "message",
+    "from": "Dani Okafor",
+    "text": "R2 was quiet today, done by 17:15. Two flats near the depot handled on the way back.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Nina Park (CyclePro Supplies)",
+    "text": "Your September statement is attached; the poncho order from July is fully paid, thank you.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-02",
+    "type": "call",
+    "from": "Mara",
+    "text": "Call with North Depot: they confirmed the bay booking for Wednesday 30 September went ahead fine and trailers are back in service.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Standing route R2 afternoon loop",
+    "fields": {
+     "client": "GreenFork Kitchens",
+     "pickup_address": "14 Canal Street",
+     "time": "14:30",
+     "rider": "Dani Okafor",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "GreenFork Kitchens daily pickup job",
+    "fields": {
+     "client": "GreenFork Kitchens",
+     "pickup": "14 Canal Street",
+     "time": "14:30",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "GreenFork monthly account review call",
+    "fields": {
+     "contact": "Priya Anand",
+     "day": "first Monday",
+     "time": "10:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Rain ponchos restock",
+    "fields": {
+     "supplier": "CyclePro Supplies",
+     "item": "rain ponchos",
+     "qty": "20",
+     "total": "320",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "North Depot bay for trailer servicing",
+    "fields": {
+     "date": "2026-09-30",
+     "place": "North Depot loading bay",
+     "slot": "morning",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "pickup"
+    ],
+    "from": "Priya Anand (GreenFork Kitchens)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please send GreenFork the confirmation for tomorrow's daily pickup job — double-check we've got the right details on it first, and tidy up anything of ours that's out of date.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "pickup_address",
+    "value": "88 Foundry Row",
+    "stale": [
+     "14 Canal Street",
+     "3 Canal Mews"
+    ]
+   },
+   {
+    "message_to": "Priya Anand (GreenFork Kitchens)",
+    "regarding": "EV-2",
+    "says": [
+     "88 Foundry Row"
+    ],
+    "stale": [
+     "14 Canal Street",
+     "3 Canal Mews"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Priya's 25 September email replaces GreenFork's pickup address (14 Canal Street with 88 Foundry Row). Route R2 (EV-1) is Mara's own standing route, so the assistant revises it directly; the confirmed client pickup job (EV-2) rests on R2 and its pickup field is consent-protected under the client-job rule, so the assistant must ask Priya rather than change it — the task's confirmation message should carry 88 Foundry Row and seek her agreement. The monthly review call (EV-3) used only Priya's contact details, which the move leaves standing, so it stays; the 3 Canal Mews market stall is a different site and a distractor.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "inner tube restock",
+    "counterpart": "Nina Park",
+    "org": "CyclePro Supplies",
+    "item": "inner tubes",
+    "unit": "tubes",
+    "values": [
+     "12",
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "North Depot"
+   },
+   {
+    "kind": "order",
+    "topic": "brake pads restock",
+    "counterpart": "Nina Park",
+    "org": "CyclePro Supplies",
+    "item": "brake pads",
+    "unit": "pairs",
+    "values": [
+     "10",
+     "16",
+     "24"
+    ],
+    "place": "North Depot"
+   },
+   {
+    "kind": "order",
+    "topic": "chain lube order",
+    "counterpart": "Nina Park",
+    "org": "CyclePro Supplies",
+    "item": "chain lubricant",
+    "unit": "bottles",
+    "values": [
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "North Depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "depot bay booking",
+    "counterpart": "North Depot Management",
+    "org": "North Depot",
+    "item": "loading bay half-day",
+    "unit": "slot",
+    "values": [
+     "morning bay 1",
+     "afternoon bay 1",
+     "morning bay 2",
+     "afternoon bay 2"
+    ],
+    "place": "North Depot loading bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "rider briefing room",
+    "counterpart": "North Depot Management",
+    "org": "North Depot",
+    "item": "briefing room",
+    "unit": "room",
+    "values": [
+     "Room A",
+     "Room B",
+     "Room C"
+    ],
+    "place": "North Depot"
+   },
+   {
+    "kind": "order",
+    "topic": "rider uniforms",
+    "counterpart": "Lena Vogt",
+    "org": "BrightStitch Workwear",
+    "item": "hi-vis jackets",
+    "unit": "jackets",
+    "values": [
+     "4",
+     "6",
+     "10"
+    ],
+    "place": "North Depot"
+   },
+   {
+    "kind": "order",
+    "topic": "packaging restock",
+    "counterpart": "Sam Ellis",
+    "org": "PackRight",
+    "item": "padded envelopes",
+    "unit": "boxes",
+    "values": [
+     "5",
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "North Depot"
+   },
+   {
+    "kind": "order",
+    "topic": "bike locks",
+    "counterpart": "Lena Vogt",
+    "org": "BrightStitch Workwear",
+    "item": "D-locks",
+    "unit": "locks",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "North Depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "maintenance stand booking",
+    "counterpart": "Tomas Vela",
+    "org": "SwiftCycle Couriers",
+    "item": "repair stand",
+    "unit": "stand",
+    "values": [
+     "stand 1",
+     "stand 2",
+     "stand 3"
+    ],
+    "place": "North Depot workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee for depot",
+    "counterpart": "Ana Ruiz",
+    "org": "DailyGrind Roasters",
+    "item": "coffee beans",
+    "unit": "bags",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "North Depot kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "van hire for overflow",
+    "counterpart": "Pete Lang",
+    "org": "CityVan Rentals",
+    "item": "small van",
+    "unit": "van",
+    "values": [
+     "van 3",
+     "van 5",
+     "van 7"
+    ],
+    "place": "CityVan depot, East Road"
+   },
+   {
+    "kind": "order",
+    "topic": "phone mounts",
+    "counterpart": "Nina Park",
+    "org": "CyclePro Supplies",
+    "item": "handlebar phone mounts",
+    "unit": "mounts",
+    "values": [
+     "4",
+     "6",
+     "10"
+    ],
+    "place": "North Depot"
+   }
+  ],
+  "id": "K100-3-02",
+  "tier": 100,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: the change revokes e3 (the pickup address, leaving the dispatch contact standing); e6/EV-1 rests on e3 (REVISE to 88 Foundry Row), e7/EV-2 rests on e6 (ASK two hops away, consent-protected by rule e1), and e8/EV-3 keeps the contact-only aspect; the consent map matches rule e1 and the expected state fixes the right values. The task requires sending a confirmation now without naming the change, and the change sits mid-history with later events. Tier 100 requirements are met: 21 core events, 5 decisions, change 10 days before the task day with core events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: the change revokes e3 (the pickup address, leaving the dispatch contact standing); e6/EV-1 rests on e3 (REVISE to 88 Foundry Row), e7/EV-2 rests on e6 (ASK two hops away, consent-protected by rule e1), and e8/EV-3 keeps the contact-only aspect; the consent map matches rule e1 and the expected state fixes the right values. The task requires sending a confirmation now without naming the change, and the change sits mid-history with later events. Tier 100 requirements are met: 21 core events, 5 decisions, change 10 days before the task day with core events after it."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3424,
+    "completion_tokens": 327,
+    "reasoning_tokens": 136,
+    "cached_tokens": 384
+   },
+   "cost": 0.00579464,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ddb23e7f41ceae3f32d5513bdbab1389367ddf6a41b6a8756b026081113a4f8b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Priya, the authorized dispatch contact, explicitly directs that all pickups now use 88 Foundry Row; this can reasonably constitute the client agreement required by e1. The history does not require separate, job-specific consent after such an instruction, so mandatory ASK and leaving EV-2 unchanged are not unambiguously justified.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Priya, the authorized dispatch contact, explicitly directs that all pickups now use 88 Foundry Row; this can reasonably constitute the client agreement required by e1. The history does not require separate, job-specific consent after such an instruction, so mandatory ASK and leaving EV-2 unchanged are not unambiguously justified."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3345,
+    "completion_tokens": 228,
+    "reasoning_tokens": 127,
+    "cached_tokens": 0
+   },
+   "cost": 0.053205,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ddb23e7f41ceae3f32d5513bdbab1389367ddf6a41b6a8756b026081113a4f8b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure holds: e3 is revoked, e6 (REVISE) and e7 (ASK) are touched with e7 two hops out, and e8 (KEEP) cites e3 for contact details. The expected state is wrong, however, in listing '3 Canal Mews' as a stale value for EV-1's pickup address and the message, since no history fact revokes it and e13 is a separate market-stall enquiry. Core counts, the change's distance from the task day, and the hidden placement of the change all meet the tier and concealment requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure holds: e3 is revoked, e6 (REVISE) and e7 (ASK) are touched with e7 two hops out, and e8 (KEEP) cites e3 for contact details. The expected state is wrong, however, in listing '3 Canal Mews' as a stale value for EV-1's pickup address and the message, since no history fact revokes it and e13 is a separate market-stall enquiry. Core counts, the change's distance from the task day, and the hidden placement of the change all meet the tier and concealment requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4891,
+    "completion_tokens": 2116,
+    "reasoning_tokens": 1884,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015471,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ddb23e7f41ceae3f32d5513bdbab1389367ddf6a41b6a8756b026081113a4f8b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

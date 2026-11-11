@@ -1,0 +1,766 @@
+{
+ "id": "G1000-4-04",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 4,
+ "idx": 3,
+ "setting": "The headmistress's PA at Elmshurst Prep whose assistant manages parent meetings, school-trip consents, and staff cover",
+ "prompt_sha256": "9a7953141824d1a72da592a0069c0448b8dbc0f30a4c427473d01d6bc000aa49",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Cedar Lodge closure beside the Year 6 trip\",\n \"setting\": \"The headmistress's PA at Elmshurst Prep whose assistant manages parent meetings, school-trip consents, and staff cover\",\n \"owner\": \"Priya\",\n \"org\": \"Elmshurst Prep School\",\n \"now\": \"2026-10-16\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Priya, standing rule: once a parents' evening is confirmed on the calendar, its date or venue may not be moved without Mr Grant, the Deputy Head, agreeing first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Quote for the Year 6 residential: Birch Lodge is available Wednesday 28 October to Friday 30 October 2026, sleeps up to 46, at £38 per pupil per stay, dinner and breakfast included.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"policy\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"School policy reminder: any order or booking above £500 needs the bursar, Mrs Pritchard, to sign off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the Year 6 residential at Fern Hollow Field Centre: Birch Lodge, Wednesday 28 October to Friday 30 October 2026, at the quoted £38 per pupil.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-16\", \"type\": \"quote\", \"from\": \"Hartley Coaches\", \"text\": \"Hartley Coaches can provide a 48-seater coach for the trip, departing school at 08:30 on 28 October and returning from Fern Hollow by 16:00 on 30 October, for £520 return.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Mrs Pritchard approved the coach spend as it is above £500, so I booked the 48-seater with Hartley Coaches, departing 08:30 on 28 October, £520 return.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-23\", \"type\": \"email\", \"from\": \"Mrs Doyle (School Office)\", \"text\": \"Admissions update: two pupils have left Year 6, so the year group is now 42 children, and four staff are down to accompany the residential.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I updated the Fern Hollow booking to the final party size: 42 pupils and 4 staff in Birch Lodge, 28 to 30 October.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Site Team\", \"text\": \"The Main Hall is free on Tuesday evenings in October, including Tuesday 20 October, if you want it for the trip information evening.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I scheduled the Year 6 trip information evening for Tuesday 20 October at 18:00 in the Main Hall, and put it on the calendar.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Medisafe Supplies\", \"text\": \"Medisafe Supplies can restock the trip first-aid kits: a group travel kit with 42 pupil-sized supplies for £120, delivered to the school office.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"The £120 first-aid restock is well under the £500 limit, so I ordered the group travel kit from Medisafe Supplies for the school office.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e3\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"message\", \"from\": \"Miss Lane (Year 6)\", \"text\": \"I can do the pre-visit to Fern Hollow to check the site and sleeping arrangements; the school minibus is free on Wednesday 14 October.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the school minibus for Miss Lane's pre-visit to Fern Hollow Field Centre on Wednesday 14 October, leaving at 09:00.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Bramley Supply Agency\", \"text\": \"We can supply one teacher to cover Mr Okafor's and Miss Lane's classes while they are on the residential, 28 to 30 October, at £360 per day.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"The three days of supply cover come to £1080, so Mrs Pritchard signed it off, and I booked the Bramley Supply Agency teacher for 28 to 30 October.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e3\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I asked Mrs Doyle to collect all trip consent forms from parents by Friday 9 October and flag any that are missing.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"CL-1\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Confirming your booking: Birch Lodge, 42 pupils and 4 staff, Wednesday 28 October to Friday 30 October 2026, £38 per pupil, dinner and breakfast included. We look forward to welcoming Elmshurst Prep.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Note to self, restated at senior team: Year 6 residential is Birch Lodge, 28 to 30 October, 42 pupils and 4 staff, coach at 08:30; parents' information evening Tuesday 20 October at 6pm in the Main Hall.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Notice to all visiting schools: Cedar Lodge will be closed for refurbishment from Tuesday 6 October until the end of December. Groups who had Cedar Lodge reserved are being moved to Rowan Lodge. Birch Lodge is unaffected and all other bookings stand as confirmed.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e21\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Spring 2027 offer: Cedar Lodge reopens in January after its refurbishment, capacity 46, at a special rate of £32 per pupil for January and February bookings. Let us know if your school would like to reserve it.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-10-06\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I sent Fern Hollow the meal choices for the stay: 7 of the 42 pupils are vegetarian, and the 4 staff have the standard menu.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-1\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-10\", \"type\": \"minutes\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Staff briefing minutes: residential to Fern Hollow goes ahead Wednesday 28 to Friday 30 October, 42 pupils and 4 staff in Birch Lodge; coach departs 08:30; information evening Tuesday 20 October in the Main Hall.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Miss Lane (Year 6)\", \"text\": \"Pre-visit done: Birch Lodge is in good order, sleeping plan for 42 pupils and 4 staff works fine, fire exits checked. All 42 consent forms are in.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Mrs Doyle (School Office)\", \"text\": \"Reminder that Fern Hollow like final confirmation of numbers the week before arrival, and Hartley will want the pickup time confirmed.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Year 6 residential at Fern Hollow\", \"fields\": {\"start_date\": \"2026-10-28\", \"end_date\": \"2026-10-30\", \"lodge\": \"Birch Lodge\", \"pupils\": \"42\", \"staff\": \"4\", \"price_per_pupil\": \"38\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Year 6 trip information evening\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"18:00\", \"place\": \"Main Hall\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Fern Hollow pre-visit\", \"fields\": {\"date\": \"2026-10-14\", \"time\": \"09:00\", \"place\": \"Fern Hollow Field Centre\", \"staff\": \"Miss Lane\", \"vehicle\": \"school minibus\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trip coach\", \"fields\": {\"supplier\": \"Hartley Coaches\", \"item\": \"48-seater coach\", \"date\": \"2026-10-28\", \"depart\": \"08:30\", \"amount\": \"520\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"First-aid restock\", \"fields\": {\"supplier\": \"Medisafe Supplies\", \"item\": \"group travel first-aid kit\", \"amount\": \"120\", \"place\": \"school office\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Trip cover teacher\", \"fields\": {\"supplier\": \"Bramley Supply Agency\", \"item\": \"supply teacher, 3 days\", \"date\": \"2026-10-28\", \"amount\": \"1080\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Trip consent collection\", \"fields\": {\"owner\": \"Mrs Doyle\", \"deadline\": \"2026-10-09\", \"forms_due\": \"42\", \"status\": \"done\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"place\"], \"from\": \"Mr Grant (Deputy Head)\", \"rule\": \"e1\"}\n ],\n \"task\": \"We're in the final week before the residential — please confirm our booking with Fern Hollow Field Centre now: send them the final numbers, dates and lodge so everything is locked in, and mark the booking confirmed on our side.\",\n \"expect\": [\n  {\"message_to\": \"Fern Hollow Field Centre\", \"regarding\": \"EV-1\", \"says\": [\"42 pupils\", \"4 staff\", \"Birch Lodge\", \"2026-10-28\", \"2026-10-30\", \"£38 per pupil\"], \"stale\": [\"46 pupils\", \"Cedar Lodge\", \"Rowan Lodge\", \"£32 per pupil\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n ],\n \"why\": \"This is a control: the change (Cedar Lodge's closure) sits beside the topic but touches nothing the school booked — Elmshurst Prep is in Birch Lodge, which the notice says is unaffected, so no record or decision carries a mark and every record stays exactly as it is. The task is only to confirm the standing plan with Fern Hollow (42 pupils, 4 staff, Birch Lodge, 28–30 October, £38 per pupil) and set EV-1 to confirmed; the distractor's Cedar Lodge spring rate of £32 and capacity 46 must not be passed off as current.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"staff training day at Fern Hollow\", \"counterpart\": \"Nadia Brooks\", \"org\": \"Fern Hollow Field Centre\", \"item\": \"Rowan Lodge for staff training days\", \"unit\": \"day\", \"values\": [\"Rowan Lodge\", \"seminar room\", \"picnic pavilion\"], \"place\": \"Fern Hollow Field Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"minibus for away fixtures\", \"counterpart\": \"Tom Hartley\", \"org\": \"Hartley Coaches\", \"item\": \"16-seater minibus for away fixtures\", \"unit\": \"run\", \"values\": [\"16-seater minibus\", \"32-seater midi coach\", \"48-seater coach\"], \"place\": \"Elmshurst Prep sports field\"},\n  {\"kind\": \"order\", \"topic\": \"first-aid restock\", \"counterpart\": \"Kavya Nair\", \"org\": \"Medisafe Supplies\", \"item\": \"plasters and wipes boxes\", \"unit\": \"box\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"school office\"},\n  {\"kind\": \"order\", \"topic\": \"paper and printing\", \"counterpart\": \"Alan Reece\", \"org\": \"Copse Paper Co\", \"item\": \"A4 reams\", \"unit\": \"ream\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"reprographics room\"},\n  {\"kind\": \"booking\", \"topic\": \"hall for governors meetings\", \"counterpart\": \"Gerald Mwangi\", \"org\": \"Elmshurst Governors\", \"item\": \"Main Hall for governors meetings\", \"unit\": \"evening\", \"values\": [\"Main Hall\", \"library annexe\", \"staff common room\"], \"place\": \"Elmshurst Prep Main Hall\"},\n  {\"kind\": \"order\", \"topic\": \"lunch milk and fruit\", \"counterpart\": \"Bea Coll\", \"org\": \"Orchard Dell Dairy\", \"item\": \"milk crates\", \"unit\": \"crate\", \"values\": [\"6\", \"9\", \"12\", \"15\"], \"place\": \"school kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"music room for peripatetic lessons\", \"counterpart\": \"Ines Duarte\", \"org\": \"Elmshurst Music Service\", \"item\": \"music room slots\", \"unit\": \"slot\", \"values\": [\"music room 1\", \"music room 2\", \"drama studio\"], \"place\": \"Elmshurst Prep music corridor\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Piotr Nowak\", \"org\": \"Brightline Hygiene\", \"item\": \"floor cleaner drums\", \"unit\": \"drum\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"site stores\"},\n  {\"kind\": \"booking\", \"topic\": \"swimming pool lanes\", \"counterpart\": \"Rosa Feeney\", \"org\": \"Marlow Leisure Centre\", \"item\": \"pool lanes for Year 4 lessons\", \"unit\": \"lane\", \"values\": [\"2 lanes\", \"3 lanes\", \"4 lanes\"], \"place\": \"Marlow Leisure Centre\"},\n  {\"kind\": \"order\", \"topic\": \"library book refresh\", \"counterpart\": \"June Park\", \"org\": \"Hollowfield Books\", \"item\": \"reading scheme book sets\", \"unit\": \"set\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"school library\"},\n  {\"kind\": \"booking\", \"topic\": \"minibus for university liaison visits\", \"counterpart\": \"Tom Hartley\", \"org\": \"Hartley Coaches\", \"item\": \"16-seater minibus for liaison visits\", \"unit\": \"run\", \"values\": [\"16-seater minibus\", \"32-seater midi coach\"], \"place\": \"Elmshurst Prep front gate\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3215,
+    "completion_tokens": 7775,
+    "reasoning_tokens": 3728,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03513596,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Cedar Lodge closure beside the Year 6 trip\",\n \"setting\": \"The headmistress's PA at Elmshurst Prep whose assistant manages parent meetings, school-trip consents, and staff cover\",\n \"owner\": \"Priya\",\n \"org\": \"Elmshurst Prep School\",\n \"now\": \"2026-10-16\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Priya, standing rule: once a parents' evening is confirmed on the calendar, its date or venue may not be moved without Mr Grant, the Deputy Head, agreeing first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Quote for the Year 6 residential: Birch Lodge is available Wednesday 28 October to Friday 30 October 2026, sleeps up to 46, at £38 per pupil per stay, dinner and breakfast included.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"policy\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"School policy reminder: any order or booking above £500 needs the bursar, Mrs Pritchard, to sign off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the Year 6 residential at Fern Hollow Field Centre: Birch Lodge, Wednesday 28 October to Friday 30 October 2026, at the quoted £38 per pupil.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-16\", \"type\": \"quote\", \"from\": \"Hartley Coaches\", \"text\": \"Hartley Coaches can provide a 48-seater coach for the trip, departing school at 08:30 on 28 October and returning from Fern Hollow by 16:00 on 30 October, for £520 return.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Mrs Pritchard approved the coach spend as it is above £500, so I booked the 48-seater with Hartley Coaches, departing 08:30 on 28 October, £520 return.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-23\", \"type\": \"email\", \"from\": \"Mrs Doyle (School Office)\", \"text\": \"Admissions update: two pupils have left Year 6, so the year group is now 42 children, and four staff are down to accompany the residential.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I updated the Fern Hollow booking to the final party size: 42 pupils and 4 staff in Birch Lodge, 28 to 30 October.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Site Team\", \"text\": \"The Main Hall is free on Tuesday evenings in October, including Tuesday 20 October, if you want it for the trip information evening.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I scheduled the Year 6 trip information evening for Tuesday 20 October at 18:00 in the Main Hall, and put it on the calendar.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Medisafe Supplies\", \"text\": \"Medisafe Supplies can restock the trip first-aid kits: a group travel kit with 42 pupil-sized supplies for £120, delivered to the school office.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"The £120 first-aid restock is well under the £500 limit, so I ordered the group travel kit from Medisafe Supplies for the school office.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e3\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"message\", \"from\": \"Miss Lane (Year 6)\", \"text\": \"I can do the pre-visit to Fern Hollow to check the site and sleeping arrangements; the school minibus is free on Wednesday 14 October.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the school minibus for Miss Lane's pre-visit to Fern Hollow Field Centre on Wednesday 14 October, leaving at 09:00.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Just to note for your planning: our site has Birch Lodge, Cedar Lodge and Rowan Lodge; Rowan Lodge is the smaller one and Cedar Lodge seats 46 in its dining room. All lodges share the main field.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Mr Okafor (Year 6)\", \"text\": \"Reminder that the pupils will need a packed lunch for the outward journey on the Wednesday; the centre provides dinner that first night.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Mrs Pritchard (Bursar)\", \"text\": \"The Fern Hollow invoice for the residential has been raised in the ledger: £1596, being 42 pupils at £38, payable two weeks after the stay.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Bramley Supply Agency\", \"text\": \"We can supply one teacher to cover Mr Okafor's and Miss Lane's classes while they are on the residential, 28 to 30 October, at £360 per day.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"The three days of supply cover come to £1080, so Mrs Pritchard signed it off, and I booked the Bramley Supply Agency teacher for 28 to 30 October.\", \"role\": \"decision\", \"rests_on\": [\"e18\", \"e3\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I asked Mrs Doyle to collect all trip consent forms from parents by Friday 9 October and flag any that are missing.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"CL-1\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-08\", \"type\": \"message\", \"from\": \"Mr Grant (Deputy Head)\", \"text\": \"Following up on the information evening: I'll lead the safeguarding section, so please make sure I have ten minutes on the agenda in the Main Hall.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-11\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Agenda for the trip information evening set: welcome from Miss Lane, kit list, safeguarding section led by Mr Grant, then questions from parents.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Confirming your booking: Birch Lodge, 42 pupils and 4 staff, Wednesday 28 October to Friday 30 October 2026, £38 per pupil, dinner and breakfast included. We look forward to welcoming Elmshurst Prep.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-17\", \"type\": \"task\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Priya, please make sure the coach driver has the school's emergency contact card before departure day on 28 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Note to self, restated at senior team: Year 6 residential is Birch Lodge, 28 to 30 October, 42 pupils and 4 staff, coach at 08:30; parents' information evening Tuesday 20 October at 6pm in the Main Hall.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e26\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Notice to all visiting schools: Cedar Lodge will be closed for refurbishment from Tuesday 6 October until the end of December. Groups who had Cedar Lodge reserved are being moved to Rowan Lodge. Birch Lodge is unaffected and all other bookings stand as confirmed.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Spring 2027 offer: Cedar Lodge reopens in January after its refurbishment, capacity 46, at a special rate of £32 per pupil for January and February bookings. Let us know if your school would like to reserve it.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I sent Fern Hollow the meal choices for the stay: 7 of the 42 pupils are vegetarian, and the 4 staff have the standard menu.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-1\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Hartley Coaches\", \"text\": \"Reconfirming your coach booking for 28 October: 48-seater, pickup at Elmshurst Prep at 08:30, returning from Fern Hollow by 16:00 on the Friday, £520 paid in full.\", \"role\": \"fact\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-10\", \"type\": \"minutes\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Staff briefing minutes: residential to Fern Hollow goes ahead Wednesday 28 to Friday 30 October, 42 pupils and 4 staff in Birch Lodge; coach departs 08:30; information evening Tuesday 20 October in the Main Hall.\", \"role\": \"fact\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-13\", \"type\": \"call\", \"from\": \"Mrs Doyle (School Office)\", \"text\": \"Called Hartley to pass on the emergency contact card details for the driver, as Mrs Bell asked; all noted on their side for 28 October.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Miss Lane (Year 6)\", \"text\": \"Pre-visit done: Birch Lodge is in good order, sleeping plan for 42 pupils and 4 staff works fine, fire exits checked. All 42 consent forms are in.\", \"role\": \"fact\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Mrs Doyle (School Office)\", \"text\": \"Reminder that Fern Hollow like final confirmation of numbers the week before arrival, and Hartley will want the pickup time confirmed.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Year 6 residential at Fern Hollow\", \"fields\": {\"start_date\": \"2026-10-28\", \"end_date\": \"2026-10-30\", \"lodge\": \"Birch Lodge\", \"pupils\": \"42\", \"staff\": \"4\", \"price_per_pupil\": \"38\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Year 6 trip information evening\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"18:00\", \"place\": \"Main Hall\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Fern Hollow pre-visit\", \"fields\": {\"date\": \"2026-10-14\", \"time\": \"09:00\", \"place\": \"Fern Hollow Field Centre\", \"staff\": \"Miss Lane\", \"vehicle\": \"school minibus\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trip coach\", \"fields\": {\"supplier\": \"Hartley Coaches\", \"item\": \"48-seater coach\", \"date\": \"2026-10-28\", \"depart\": \"08:30\", \"amount\": \"520\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"First-aid restock\", \"fields\": {\"supplier\": \"Medisafe Supplies\", \"item\": \"group travel first-aid kit\", \"amount\": \"120\", \"place\": \"school office\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Trip cover teacher\", \"fields\": {\"supplier\": \"Bramley Supply Agency\", \"item\": \"supply teacher, 3 days\", \"date\": \"2026-10-28\", \"amount\": \"1080\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Trip consent collection\", \"fields\": {\"owner\": \"Mrs Doyle\", \"deadline\": \"2026-10-09\", \"forms_due\": \"42\", \"status\": \"done\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"place\"], \"from\": \"Mr Grant (Deputy Head)\", \"rule\": \"e1\"}\n ],\n \"task\": \"We're in the final week before the residential — please confirm our booking with Fern Hollow Field Centre now: send them the final numbers, dates and lodge so everything is locked in, and mark the booking confirmed on our side.\",\n \"expect\": [\n  {\"message_to\": \"Fern Hollow Field Centre\", \"regarding\": \"EV-1\", \"says\": [\"42 pupils\", \"4 staff\", \"Birch Lodge\", \"2026-10-28\", \"2026-10-30\", \"£38 per pupil\"], \"stale\": [\"46 pupils\", \"Cedar Lodge\", \"Rowan Lodge\", \"£32 per pupil\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n ],\n \"why\": \"This is a control: the change (Cedar Lodge's closure) sits beside the topic but touches nothing the school booked — Elmshurst Prep is in Birch Lodge, which the notice says is unaffected, so no record or decision carries a mark and every record stays exactly as it is. The task is only to confirm the standing plan with Fern Hollow (42 pupils, 4 staff, Birch Lodge, 28–30 October, £38 per pupil) and set EV-1 to confirmed; the distractor's Cedar Lodge spring rate of £32 and capacity 46 must not be passed off as current.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"staff training day at Fern Hollow\", \"counterpart\": \"Nadia Brooks\", \"org\": \"Fern Hollow Field Centre\", \"item\": \"Rowan Lodge for staff training days\", \"unit\": \"day\", \"values\": [\"Rowan Lodge\", \"seminar room\", \"picnic pavilion\"], \"place\": \"Fern Hollow Field Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"minibus for away fixtures\", \"counterpart\": \"Tom Hartley\", \"org\": \"Hartley Coaches\", \"item\": \"16-seater minibus for away fixtures\", \"unit\": \"run\", \"values\": [\"16-seater minibus\", \"32-seater midi coach\", \"48-seater coach\"], \"place\": \"Elmshurst Prep sports field\"},\n  {\"kind\": \"order\", \"topic\": \"first-aid restock\", \"counterpart\": \"Kavya Nair\", \"org\": \"Medisafe Supplies\", \"item\": \"plasters and wipes boxes\", \"unit\": \"box\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"school office\"},\n  {\"kind\": \"order\", \"topic\": \"paper and printing\", \"counterpart\": \"Alan Reece\", \"org\": \"Copse Paper Co\", \"item\": \"A4 reams\", \"unit\": \"ream\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"reprographics room\"},\n  {\"kind\": \"booking\", \"topic\": \"hall for governors meetings\", \"counterpart\": \"Gerald Mwangi\", \"org\": \"Elmshurst Governors\", \"item\": \"Main Hall for governors meetings\", \"unit\": \"evening\", \"values\": [\"Main Hall\", \"library annexe\", \"staff common room\"], \"place\": \"Elmshurst Prep Main Hall\"},\n  {\"kind\": \"order\", \"topic\": \"lunch milk and fruit\", \"counterpart\": \"Bea Coll\", \"org\": \"Orchard Dell Dairy\", \"item\": \"milk crates\", \"unit\": \"crate\", \"values\": [\"6\", \"9\", \"12\", \"15\"], \"place\": \"school kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"music room for peripatetic lessons\", \"counterpart\": \"Ines Duarte\", \"org\": \"Elmshurst Music Service\", \"item\": \"music room slots\", \"unit\": \"slot\", \"values\": [\"music room 1\", \"music room 2\", \"drama studio\"], \"place\": \"Elmshurst Prep music corridor\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Piotr Nowak\", \"org\": \"Brightline Hygiene\", \"item\": \"floor cleaner drums\", \"unit\": \"drum\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"site stores\"},\n  {\"kind\": \"booking\", \"topic\": \"swimming pool lanes\", \"counterpart\": \"Rosa Feeney\", \"org\": \"Marlow Leisure Centre\", \"item\": \"pool lanes for Year 4 lessons\", \"unit\": \"lane\", \"values\": [\"2 lanes\", \"3 lanes\", \"4 lanes\"], \"place\": \"Marlow Leisure Centre\"},\n  {\"kind\": \"order\", \"topic\": \"library book refresh\", \"counterpart\": \"June Park\", \"org\": \"Hollowfield Books\", \"item\": \"reading scheme book sets\", \"unit\": \"set\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"school library\"},\n  {\"kind\": \"booking\", \"topic\": \"minibus for university liaison visits\", \"counterpart\": \"Tom Hartley\", \"org\": \"Hartley Coaches\", \"item\": \"16-seater minibus for liaison visits\", \"unit\": \"run\", \"values\": [\"16-seater minibus\", \"32-seater midi coach\"], \"place\": \"Elmshurst Prep front gate\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7309,
+    "completion_tokens": 4756,
+    "reasoning_tokens": 75,
+    "cached_tokens": 3200
+   },
+   "cost": 0.027511,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 1000: the core has 25 events; need 32–65\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Cedar Lodge closure beside the Year 6 trip\",\n \"setting\": \"The headmistress's PA at Elmshurst Prep whose assistant manages parent meetings, school-trip consents, and staff cover\",\n \"owner\": \"Priya\",\n \"org\": \"Elmshurst Prep School\",\n \"now\": \"2026-10-16\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Priya, standing rule: once a parents' evening is confirmed on the calendar, its date or venue may not be moved without Mr Grant, the Deputy Head, agreeing first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Quote for the Year 6 residential: Birch Lodge is available Wednesday 28 October to Friday 30 October 2026, sleeps up to 46, at £38 per pupil per stay, dinner and breakfast included.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"policy\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"School policy reminder: any order or booking above £500 needs the bursar, Mrs Pritchard, to sign off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the Year 6 residential at Fern Hollow Field Centre: Birch Lodge, Wednesday 28 October to Friday 30 October 2026, at the quoted £38 per pupil.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-16\", \"type\": \"quote\", \"from\": \"Hartley Coaches\", \"text\": \"Hartley Coaches can provide a 48-seater coach for the trip, departing school at 08:30 on 28 October and returning from Fern Hollow by 16:00 on 30 October, for £520 return.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Mrs Pritchard approved the coach spend as it is above £500, so I booked the 48-seater with Hartley Coaches, departing 08:30 on 28 October, £520 return.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-23\", \"type\": \"email\", \"from\": \"Mrs Doyle (School Office)\", \"text\": \"Admissions update: two pupils have left Year 6, so the year group is now 42 children, and four staff are down to accompany the residential.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I updated the Fern Hollow booking to the final party size: 42 pupils and 4 staff in Birch Lodge, 28 to 30 October.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Site Team\", \"text\": \"The Main Hall is free on Tuesday evenings in October, including Tuesday 20 October, if you want it for the trip information evening.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I scheduled the Year 6 trip information evening for Tuesday 20 October at 18:00 in the Main Hall, and put it on the calendar.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Medisafe Supplies\", \"text\": \"Medisafe Supplies can restock the trip first-aid kits: a group travel kit with 42 pupil-sized supplies for £120, delivered to the school office.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"The £120 first-aid restock is well under the £500 limit, so I ordered the group travel kit from Medisafe Supplies for the school office.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e3\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"message\", \"from\": \"Miss Lane (Year 6)\", \"text\": \"I can do the pre-visit to Fern Hollow to check the site and sleeping arrangements; the school minibus is free on Wednesday 14 October.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked the school minibus for Miss Lane's pre-visit to Fern Hollow Field Centre on Wednesday 14 October, leaving at 09:00.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Just to note for your planning: our site has Birch Lodge, Cedar Lodge and Rowan Lodge; Rowan Lodge is the smaller one and Cedar Lodge seats 46 in its dining room. All lodges share the main field.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Mr Okafor (Year 6)\", \"text\": \"Reminder that the pupils will need a packed lunch for the outward journey on the Wednesday; the centre provides dinner that first night.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Mrs Pritchard (Bursar)\", \"text\": \"The Fern Hollow invoice for the residential has been raised in the ledger: £1596, being 42 pupils at £38, payable two weeks after the stay.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Bramley Supply Agency\", \"text\": \"We can supply one teacher to cover Mr Okafor's and Miss Lane's classes while they are on the residential, 28 to 30 October, at £360 per day.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"The three days of supply cover come to £1080, so Mrs Pritchard signed it off, and I booked the Bramley Supply Agency teacher for 28 to 30 October.\", \"role\": \"decision\", \"rests_on\": [\"e18\", \"e3\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I asked Mrs Doyle to collect all trip consent forms from parents by Friday 9 October and flag any that are missing.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"CL-1\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-08\", \"type\": \"message\", \"from\": \"Mr Grant (Deputy Head)\", \"text\": \"Following up on the information evening: I'll lead the safeguarding section, so please make sure I have ten minutes on the agenda in the Main Hall.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-11\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Agenda for the trip information evening set: welcome from Miss Lane, kit list, safeguarding section led by Mr Grant, then questions from parents.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Confirming your booking: Birch Lodge, 42 pupils and 4 staff, Wednesday 28 October to Friday 30 October 2026, £38 per pupil, dinner and breakfast included. We look forward to welcoming Elmshurst Prep.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-17\", \"type\": \"task\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Priya, please make sure the coach driver has the school's emergency contact card before departure day on 28 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Note to self, restated at senior team: Year 6 residential is Birch Lodge, 28 to 30 October, 42 pupils and 4 staff, coach at 08:30; parents' information evening Tuesday 20 October at 6pm in the Main Hall.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e26\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Notice to all visiting schools: Cedar Lodge will be closed for refurbishment from Tuesday 6 October until the end of December. Groups who had Cedar Lodge reserved are being moved to Rowan Lodge. Birch Lodge is unaffected and all other bookings stand as confirmed.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Fern Hollow Field Centre\", \"text\": \"Spring 2027 offer: Cedar Lodge reopens in January after its refurbishment, capacity 46, at a special rate of £32 per pupil for January and February bookings. Let us know if your school would like to reserve it.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I sent Fern Hollow the meal choices for the stay: 7 of the 42 pupils are vegetarian, and the 4 staff have the standard menu.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-1\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Hartley Coaches\", \"text\": \"Reconfirming your coach booking for 28 October: 48-seater, pickup at Elmshurst Prep at 08:30, returning from Fern Hollow by 16:00 on the Friday, £520 paid in full.\", \"role\": \"fact\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-10\", \"type\": \"minutes\", \"from\": \"Marcia Bell (Headmistress)\", \"text\": \"Staff briefing minutes: residential to Fern Hollow goes ahead Wednesday 28 to Friday 30 October, 42 pupils and 4 staff in Birch Lodge; coach departs 08:30; information evening Tuesday 20 October in the Main Hall.\", \"role\": \"fact\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-13\", \"type\": \"call\", \"from\": \"Mrs Doyle (School Office)\", \"text\": \"Called Hartley to pass on the emergency contact card details for the driver, as Mrs Bell asked; all noted on their side for 28 October.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Miss Lane (Year 6)\", \"text\": \"Pre-visit done: Birch Lodge is in good order, sleeping plan for 42 pupils and 4 staff works fine, fire exits checked. All 42 consent forms are in.\", \"role\": \"fact\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Mrs Doyle (School Office)\", \"text\": \"Reminder that Fern Hollow like final confirmation of numbers the week before arrival, and Hartley will want the pickup time confirmed.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Year 6 residential at Fern Hollow\", \"fields\": {\"start_date\": \"2026-10-28\", \"end_date\": \"2026-10-30\", \"lodge\": \"Birch Lodge\", \"pupils\": \"42\", \"staff\": \"4\", \"price_per_pupil\": \"38\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Year 6 trip information evening\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"18:00\", \"place\": \"Main Hall\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Fern Hollow pre-visit\", \"fields\": {\"date\": \"2026-10-14\", \"time\": \"09:00\", \"place\": \"Fern Hollow Field Centre\", \"staff\": \"Miss Lane\", \"vehicle\": \"school minibus\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trip coach\", \"fields\": {\"supplier\": \"Hartley Coaches\", \"item\": \"48-seater coach\", \"date\": \"2026-10-28\", \"depart\": \"08:30\", \"amount\": \"520\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"First-aid restock\", \"fields\": {\"supplier\": \"Medisafe Supplies\", \"item\": \"group travel first-aid kit\", \"amount\": \"120\", \"place\": \"school office\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Trip cover teacher\", \"fields\": {\"supplier\": \"Bramley Supply Agency\", \"item\": \"supply teacher, 3 days\", \"date\": \"2026-10-28\", \"amount\": \"1080\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Trip consent collection\", \"fields\": {\"owner\": \"Mrs Doyle\", \"deadline\": \"2026-10-09\", \"forms_due\": \"42\", \"status\": \"done\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"place\"], \"from\": \"Mr Grant (Deputy Head)\", \"rule\": \"e1\"}\n ],\n \"task\": \"We're in the final week before the residential — please confirm our booking with Fern Hollow Field Centre now: send them the final numbers, dates and lodge so everything is locked in, and mark the booking confirmed on our side.\",\n \"expect\": [\n  {\"message_to\": \"Fern Hollow Field Centre\", \"regarding\": \"EV-1\", \"says\": [\"42 pupils\", \"4 staff\", \"Birch Lodge\", \"2026-10-28\", \"2026-10-30\", \"£38 per pupil\"], \"stale\": [\"46 pupils\", \"Cedar Lodge\", \"Rowan Lodge\", \"£32 per pupil\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n ],\n \"why\": \"This is a control: the change (Cedar Lodge's closure) sits beside the topic but touches nothing the school booked — Elmshurst Prep is in Birch Lodge, which the notice says is unaffected, so no record or decision carries a mark and every record stays exactly as it is. The task is only to confirm the standing plan with Fern Hollow (42 pupils, 4 staff, Birch Lodge, 28–30 October, £38 per pupil) and set EV-1 to confirmed; the distractor's Cedar Lodge spring rate of £32 and capacity 46 must not be passed off as current.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"staff training day at Fern Hollow\", \"counterpart\": \"Nadia Brooks\", \"org\": \"Fern Hollow Field Centre\", \"item\": \"Rowan Lodge for staff training days\", \"unit\": \"day\", \"values\": [\"Rowan Lodge\", \"seminar room\", \"picnic pavilion\"], \"place\": \"Fern Hollow Field Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"minibus for away fixtures\", \"counterpart\": \"Tom Hartley\", \"org\": \"Hartley Coaches\", \"item\": \"16-seater minibus for away fixtures\", \"unit\": \"run\", \"values\": [\"16-seater minibus\", \"32-seater midi coach\", \"48-seater coach\"], \"place\": \"Elmshurst Prep sports field\"},\n  {\"kind\": \"order\", \"topic\": \"first-aid restock\", \"counterpart\": \"Kavya Nair\", \"org\": \"Medisafe Supplies\", \"item\": \"plasters and wipes boxes\", \"unit\": \"box\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"school office\"},\n  {\"kind\": \"order\", \"topic\": \"paper and printing\", \"counterpart\": \"Alan Reece\", \"org\": \"Copse Paper Co\", \"item\": \"A4 reams\", \"unit\": \"ream\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"reprographics room\"},\n  {\"kind\": \"booking\", \"topic\": \"hall for governors meetings\", \"counterpart\": \"Gerald Mwangi\", \"org\": \"Elmshurst Governors\", \"item\": \"Main Hall for governors meetings\", \"unit\": \"evening\", \"values\": [\"Main Hall\", \"library annexe\", \"staff common room\"], \"place\": \"Elmshurst Prep Main Hall\"},\n  {\"kind\": \"order\", \"topic\": \"lunch milk and fruit\", \"counterpart\": \"Bea Coll\", \"org\": \"Orchard Dell Dairy\", \"item\": \"milk crates\", \"unit\": \"crate\", \"values\": [\"6\", \"9\", \"12\", \"15\"], \"place\": \"school kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"music room for peripatetic lessons\", \"counterpart\": \"Ines Duarte\", \"org\": \"Elmshurst Music Service\", \"item\": \"music room slots\", \"unit\": \"slot\", \"values\": [\"music room 1\", \"music room 2\", \"drama studio\"], \"place\": \"Elmshurst Prep music corridor\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Piotr Nowak\", \"org\": \"Brightline Hygiene\", \"item\": \"floor cleaner drums\", \"unit\": \"drum\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"site stores\"},\n  {\"kind\": \"booking\", \"topic\": \"swimming pool lanes\", \"counterpart\": \"Rosa Feeney\", \"org\": \"Marlow Leisure Centre\", \"item\": \"pool lanes for Year 4 lessons\", \"unit\": \"lane\", \"values\": [\"2 lanes\", \"3 lanes\", \"4 lanes\"], \"place\": \"Marlow Leisure Centre\"},\n  {\"kind\": \"order\", \"topic\": \"library book refresh\", \"counterpart\": \"June Park\", \"org\": \"Hollowfield Books\", \"item\": \"reading scheme book sets\", \"unit\": \"set\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"school library\"},\n  {\"kind\": \"booking\", \"topic\": \"minibus for university liaison visits\", \"counterpart\": \"Tom Hartley\", \"org\": \"Hartley Coaches\", \"item\": \"16-seater minibus for liaison visits\", \"unit\": \"run\", \"values\": [\"16-seater minibus\", \"32-seater midi coach\", \"48-seater coach\"], \"place\": \"Elmshurst Prep front gate\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 12036,
+    "completion_tokens": 4687,
+    "reasoning_tokens": 0,
+    "cached_tokens": 7296
+   },
+   "cost": 0.02915576,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'minibus for university liaison visits': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Cedar Lodge closure beside the Year 6 trip",
+  "setting": "The headmistress's PA at Elmshurst Prep whose assistant manages parent meetings, school-trip consents, and staff cover",
+  "owner": "Priya",
+  "org": "Elmshurst Prep School",
+  "now": "2026-10-16",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Marcia Bell (Headmistress)",
+    "text": "Priya, standing rule: once a parents' evening is confirmed on the calendar, its date or venue may not be moved without Mr Grant, the Deputy Head, agreeing first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "quote",
+    "from": "Fern Hollow Field Centre",
+    "text": "Quote for the Year 6 residential: Birch Lodge is available Wednesday 28 October to Friday 30 October 2026, sleeps up to 46, at £38 per pupil per stay, dinner and breakfast included.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "policy",
+    "from": "Marcia Bell (Headmistress)",
+    "text": "School policy reminder: any order or booking above £500 needs the bursar, Mrs Pritchard, to sign off before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I booked the Year 6 residential at Fern Hollow Field Centre: Birch Lodge, Wednesday 28 October to Friday 30 October 2026, at the quoted £38 per pupil.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-16",
+    "type": "quote",
+    "from": "Hartley Coaches",
+    "text": "Hartley Coaches can provide a 48-seater coach for the trip, departing school at 08:30 on 28 October and returning from Fern Hollow by 16:00 on 30 October, for £520 return.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-19",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Mrs Pritchard approved the coach spend as it is above £500, so I booked the 48-seater with Hartley Coaches, departing 08:30 on 28 October, £520 return.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-23",
+    "type": "email",
+    "from": "Mrs Doyle (School Office)",
+    "text": "Admissions update: two pupils have left Year 6, so the year group is now 42 children, and four staff are down to accompany the residential.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-26",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I updated the Fern Hollow booking to the final party size: 42 pupils and 4 staff in Birch Lodge, 28 to 30 October.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-01",
+    "type": "email",
+    "from": "Site Team",
+    "text": "The Main Hall is free on Tuesday evenings in October, including Tuesday 20 October, if you want it for the trip information evening.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I scheduled the Year 6 trip information evening for Tuesday 20 October at 18:00 in the Main Hall, and put it on the calendar.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e7"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "quote",
+    "from": "Medisafe Supplies",
+    "text": "Medisafe Supplies can restock the trip first-aid kits: a group travel kit with 42 pupil-sized supplies for £120, delivered to the school office.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Priya",
+    "text": "The £120 first-aid restock is well under the £500 limit, so I ordered the group travel kit from Medisafe Supplies for the school office.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e3"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-15",
+    "type": "message",
+    "from": "Miss Lane (Year 6)",
+    "text": "I can do the pre-visit to Fern Hollow to check the site and sleeping arrangements; the school minibus is free on Wednesday 14 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-18",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I booked the school minibus for Miss Lane's pre-visit to Fern Hollow Field Centre on Wednesday 14 October, leaving at 09:00.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-22",
+    "type": "email",
+    "from": "Fern Hollow Field Centre",
+    "text": "Just to note for your planning: our site has Birch Lodge, Cedar Lodge and Rowan Lodge; Rowan Lodge is the smaller one and Cedar Lodge seats 46 in its dining room. All lodges share the main field.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Mr Okafor (Year 6)",
+    "text": "Reminder that the pupils will need a packed lunch for the outward journey on the Wednesday; the centre provides dinner that first night.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-11",
+    "type": "email",
+    "from": "Mrs Pritchard (Bursar)",
+    "text": "The Fern Hollow invoice for the residential has been raised in the ledger: £1596, being 42 pupils at £38, payable two weeks after the stay.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Bramley Supply Agency",
+    "text": "We can supply one teacher to cover Mr Okafor's and Miss Lane's classes while they are on the residential, 28 to 30 October, at £360 per day.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Priya",
+    "text": "The three days of supply cover come to £1080, so Mrs Pritchard signed it off, and I booked the Bramley Supply Agency teacher for 28 to 30 October.",
+    "role": "decision",
+    "rests_on": [
+     "e18",
+     "e3"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I asked Mrs Doyle to collect all trip consent forms from parents by Friday 9 October and flag any that are missing.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-08",
+    "type": "message",
+    "from": "Mr Grant (Deputy Head)",
+    "text": "Following up on the information evening: I'll lead the safeguarding section, so please make sure I have ten minutes on the agenda in the Main Hall.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-11",
+    "type": "note",
+    "from": "Priya",
+    "text": "Agenda for the trip information evening set: welcome from Miss Lane, kit list, safeguarding section led by Mr Grant, then questions from parents.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Fern Hollow Field Centre",
+    "text": "Confirming your booking: Birch Lodge, 42 pupils and 4 staff, Wednesday 28 October to Friday 30 October 2026, £38 per pupil, dinner and breakfast included. We look forward to welcoming Elmshurst Prep.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-17",
+    "type": "task",
+    "from": "Marcia Bell (Headmistress)",
+    "text": "Priya, please make sure the coach driver has the school's emergency contact card before departure day on 28 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-22",
+    "type": "note",
+    "from": "Marcia Bell (Headmistress)",
+    "text": "Note to self, restated at senior team: Year 6 residential is Birch Lodge, 28 to 30 October, 42 pupils and 4 staff, coach at 08:30; parents' information evening Tuesday 20 October at 6pm in the Main Hall.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Fern Hollow Field Centre",
+    "text": "Notice to all visiting schools: Cedar Lodge will be closed for refurbishment from Tuesday 6 October until the end of December. Groups who had Cedar Lodge reserved are being moved to Rowan Lodge. Birch Lodge is unaffected and all other bookings stand as confirmed.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Fern Hollow Field Centre",
+    "text": "Spring 2027 offer: Cedar Lodge reopens in January after its refurbishment, capacity 46, at a special rate of £32 per pupil for January and February bookings. Let us know if your school would like to reserve it.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-06",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I sent Fern Hollow the meal choices for the stay: 7 of the 42 pupils are vegetarian, and the 4 staff have the standard menu.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Hartley Coaches",
+    "text": "Reconfirming your coach booking for 28 October: 48-seater, pickup at Elmshurst Prep at 08:30, returning from Fern Hollow by 16:00 on the Friday, £520 paid in full.",
+    "role": "fact"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-10",
+    "type": "minutes",
+    "from": "Marcia Bell (Headmistress)",
+    "text": "Staff briefing minutes: residential to Fern Hollow goes ahead Wednesday 28 to Friday 30 October, 42 pupils and 4 staff in Birch Lodge; coach departs 08:30; information evening Tuesday 20 October in the Main Hall.",
+    "role": "fact"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-13",
+    "type": "call",
+    "from": "Mrs Doyle (School Office)",
+    "text": "Called Hartley to pass on the emergency contact card details for the driver, as Mrs Bell asked; all noted on their side for 28 October.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-14",
+    "type": "note",
+    "from": "Miss Lane (Year 6)",
+    "text": "Pre-visit done: Birch Lodge is in good order, sleeping plan for 42 pupils and 4 staff works fine, fire exits checked. All 42 consent forms are in.",
+    "role": "fact"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Mrs Doyle (School Office)",
+    "text": "Reminder that Fern Hollow like final confirmation of numbers the week before arrival, and Hartley will want the pickup time confirmed.",
+    "role": "fact"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Year 6 residential at Fern Hollow",
+    "fields": {
+     "start_date": "2026-10-28",
+     "end_date": "2026-10-30",
+     "lodge": "Birch Lodge",
+     "pupils": "42",
+     "staff": "4",
+     "price_per_pupil": "38",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Year 6 trip information evening",
+    "fields": {
+     "date": "2026-10-20",
+     "time": "18:00",
+     "place": "Main Hall",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Fern Hollow pre-visit",
+    "fields": {
+     "date": "2026-10-14",
+     "time": "09:00",
+     "place": "Fern Hollow Field Centre",
+     "staff": "Miss Lane",
+     "vehicle": "school minibus",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Trip coach",
+    "fields": {
+     "supplier": "Hartley Coaches",
+     "item": "48-seater coach",
+     "date": "2026-10-28",
+     "depart": "08:30",
+     "amount": "520",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "First-aid restock",
+    "fields": {
+     "supplier": "Medisafe Supplies",
+     "item": "group travel first-aid kit",
+     "amount": "120",
+     "place": "school office",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Trip cover teacher",
+    "fields": {
+     "supplier": "Bramley Supply Agency",
+     "item": "supply teacher, 3 days",
+     "date": "2026-10-28",
+     "amount": "1080",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Trip consent collection",
+    "fields": {
+     "owner": "Mrs Doyle",
+     "deadline": "2026-10-09",
+     "forms_due": "42",
+     "status": "done"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "place"
+    ],
+    "from": "Mr Grant (Deputy Head)",
+    "rule": "e1"
+   }
+  ],
+  "task": "We're in the final week before the residential — please confirm our booking with Fern Hollow Field Centre now: send them the final numbers, dates and lodge so everything is locked in, and mark the booking confirmed on our side.",
+  "expect": [
+   {
+    "message_to": "Fern Hollow Field Centre",
+    "regarding": "EV-1",
+    "says": [
+     "42 pupils",
+     "4 staff",
+     "Birch Lodge",
+     "2026-10-28",
+     "2026-10-30",
+     "£38 per pupil"
+    ],
+    "stale": [
+     "46 pupils",
+     "Cedar Lodge",
+     "Rowan Lodge",
+     "£32 per pupil"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "booked"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the change (Cedar Lodge's closure) sits beside the topic but touches nothing the school booked — Elmshurst Prep is in Birch Lodge, which the notice says is unaffected, so no record or decision carries a mark and every record stays exactly as it is. The task is only to confirm the standing plan with Fern Hollow (42 pupils, 4 staff, Birch Lodge, 28–30 October, £38 per pupil) and set EV-1 to confirmed; the distractor's Cedar Lodge spring rate of £32 and capacity 46 must not be passed off as current.",
+  "noise_kit": [
+   {
+    "kind": "booking",
+    "topic": "staff training day at Fern Hollow",
+    "counterpart": "Nadia Brooks",
+    "org": "Fern Hollow Field Centre",
+    "item": "Rowan Lodge for staff training days",
+    "unit": "day",
+    "values": [
+     "Rowan Lodge",
+     "seminar room",
+     "picnic pavilion"
+    ],
+    "place": "Fern Hollow Field Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "minibus for away fixtures",
+    "counterpart": "Tom Hartley",
+    "org": "Hartley Coaches",
+    "item": "16-seater minibus for away fixtures",
+    "unit": "run",
+    "values": [
+     "16-seater minibus",
+     "32-seater midi coach",
+     "48-seater coach"
+    ],
+    "place": "Elmshurst Prep sports field"
+   },
+   {
+    "kind": "order",
+    "topic": "first-aid restock",
+    "counterpart": "Kavya Nair",
+    "org": "Medisafe Supplies",
+    "item": "plasters and wipes boxes",
+    "unit": "box",
+    "values": [
+     "12",
+     "24",
+     "36",
+     "48"
+    ],
+    "place": "school office"
+   },
+   {
+    "kind": "order",
+    "topic": "paper and printing",
+    "counterpart": "Alan Reece",
+    "org": "Copse Paper Co",
+    "item": "A4 reams",
+    "unit": "ream",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "reprographics room"
+   },
+   {
+    "kind": "booking",
+    "topic": "hall for governors meetings",
+    "counterpart": "Gerald Mwangi",
+    "org": "Elmshurst Governors",
+    "item": "Main Hall for governors meetings",
+    "unit": "evening",
+    "values": [
+     "Main Hall",
+     "library annexe",
+     "staff common room"
+    ],
+    "place": "Elmshurst Prep Main Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "lunch milk and fruit",
+    "counterpart": "Bea Coll",
+    "org": "Orchard Dell Dairy",
+    "item": "milk crates",
+    "unit": "crate",
+    "values": [
+     "6",
+     "9",
+     "12",
+     "15"
+    ],
+    "place": "school kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "music room for peripatetic lessons",
+    "counterpart": "Ines Duarte",
+    "org": "Elmshurst Music Service",
+    "item": "music room slots",
+    "unit": "slot",
+    "values": [
+     "music room 1",
+     "music room 2",
+     "drama studio"
+    ],
+    "place": "Elmshurst Prep music corridor"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Piotr Nowak",
+    "org": "Brightline Hygiene",
+    "item": "floor cleaner drums",
+    "unit": "drum",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "site stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "swimming pool lanes",
+    "counterpart": "Rosa Feeney",
+    "org": "Marlow Leisure Centre",
+    "item": "pool lanes for Year 4 lessons",
+    "unit": "lane",
+    "values": [
+     "2 lanes",
+     "3 lanes",
+     "4 lanes"
+    ],
+    "place": "Marlow Leisure Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "library book refresh",
+    "counterpart": "June Park",
+    "org": "Hollowfield Books",
+    "item": "reading scheme book sets",
+    "unit": "set",
+    "values": [
+     "5",
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "school library"
+   },
+   {
+    "kind": "booking",
+    "topic": "minibus for university liaison visits",
+    "counterpart": "Tom Hartley",
+    "org": "Hartley Coaches",
+    "item": "16-seater minibus for liaison visits",
+    "unit": "run",
+    "values": [
+     "16-seater minibus",
+     "32-seater midi coach",
+     "48-seater coach"
+    ],
+    "place": "Elmshurst Prep front gate"
+   }
+  ],
+  "id": "G1000-4-04",
+  "tier": 1000,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Cedar Lodge's closure explicitly leaves Birch Lodge unaffected, so confirming the standing booking and changing only EV-1's status is correct. The core has 33 events and 9 decisions, with the change 18 days before the task and seven core events afterward; stale-value echoes are not required for class 4. The task requires an immediate message and record update without mentioning the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Cedar Lodge's closure explicitly leaves Birch Lodge unaffected, so confirming the standing booking and changing only EV-1's status is correct. The core has 33 events and 9 decisions, with the change 18 days before the task and seven core events afterward; stale-value echoes are not required for class 4. The task requires an immediate message and record update without mentioning the change."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4453,
+    "completion_tokens": 220,
+    "reasoning_tokens": 105,
+    "cached_tokens": 0
+   },
+   "cost": 0.066655,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3fa5e1542b5d9edd8fc8d3223b4b3211e602457c6c69dedb4b22a4777b90d6d7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e26, Cedar Lodge closure) expressly leaves Birch Lodge and all other bookings unaffected, so no decision is touched and the expected state is just the message to Fern Hollow plus EV-1 set to confirmed. The core has 33 events, 9 decisions, and the change falls 18 days before the task day with many core events after it, meeting the 1,000 tier. The change is an ordinary dated email among routine events, not labelled as a correction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e26, Cedar Lodge closure) expressly leaves Birch Lodge and all other bookings unaffected, so no decision is touched and the expected state is just the message to Fern Hollow plus EV-1 set to confirmed. The core has 33 events, 9 decisions, and the change falls 18 days before the task day with many core events after it, meeting the 1,000 tier. The change is an ordinary dated email among routine events, not labelled as a correction."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6472,
+    "completion_tokens": 1309,
+    "reasoning_tokens": 1099,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013017,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3fa5e1542b5d9edd8fc8d3223b4b3211e602457c6c69dedb4b22a4777b90d6d7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Cedar Lodge closure explicitly leaves Birch Lodge unaffected, so nothing the school booked is touched and the confirm-and-set-status task follows unambiguously. Counts fit the tier (33 core events, 9 decisions, change 18 days before the task day with many events after), and echoes are not required for class 4. The consent map matches the standing rule in e1.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Cedar Lodge closure explicitly leaves Birch Lodge unaffected, so nothing the school booked is touched and the confirm-and-set-status task follows unambiguously. Counts fit the tier (33 core events, 9 decisions, change 18 days before the task day with many events after), and echoes are not required for class 4. The consent map matches the standing rule in e1."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4537,
+    "completion_tokens": 284,
+    "reasoning_tokens": 150,
+    "cached_tokens": 256
+   },
+   "cost": 0.0171798,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3fa5e1542b5d9edd8fc8d3223b4b3211e602457c6c69dedb4b22a4777b90d6d7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

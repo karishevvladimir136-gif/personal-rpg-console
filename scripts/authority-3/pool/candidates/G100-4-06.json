@@ -580,5 +580,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The task specifies the last week of September but does not fix September 29; other dates could satisfy it, so the expected booking date is not unambiguous. The consent map also omits fields such as issued, although the stated rule requires Tomas Witt's consent for any access-card record change.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The task specifies the last week of September but does not fix September 29; other dates could satisfy it, so the expected booking date is not unambiguous. The consent map also omits fields such as issued, although the stated rule requires Tomas Witt's consent for any access-card record change."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3379,
+    "completion_tokens": 169,
+    "reasoning_tokens": 72,
+    "cached_tokens": 0
+   },
+   "cost": 0.05068,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "93de2a5c66f40c871d62b33416334f0deb1e681d0fd8f1e7eca7019d03f4e8ba",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The expected state fixes the booking date at 2026-09-29, but the task only asks for 'the last week of September', so other dates in that week are equally valid and the grader would wrongly reject them. The message's 'week of 2026-09-28' also doesn't match the fixed record date, and the 'stale' key is an unexplained construct. The change (E0091) opens with 'Small correction', which partly announces it, although later events follow it.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The expected state fixes the booking date at 2026-09-29, but the task only asks for 'the last week of September', so other dates in that week are equally valid and the grader would wrongly reject them. The message's 'week of 2026-09-28' also doesn't match the fixed record date, and the 'stale' key is an unexplained construct. The change (E0091) opens with 'Small correction', which partly announces it, although later events follow it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4958,
+    "completion_tokens": 1305,
+    "reasoning_tokens": 1112,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011483,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "93de2a5c66f40c871d62b33416334f0deb1e681d0fd8f1e7eca7019d03f4e8ba",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e17) corrects the west barrier intercom extension, a fact no decision rests on, so all five records stay untouched; the 540 quote is below the 750 sign-off rule so the booking needs no consent. Core has 21 events and 5 decisions, the change is 13 days before the task day with 4 core events after it, and it sits as event 91 of 100 as an ordinary gatehouse email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e17) corrects the west barrier intercom extension, a fact no decision rests on, so all five records stay untouched; the 540 quote is below the 750 sign-off rule so the booking needs no consent. Core has 21 events and 5 decisions, the change is 13 days before the task day with 4 core events after it, and it sits as event 91 of 100 as an ordinary gatehouse email."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3502,
+    "completion_tokens": 466,
+    "reasoning_tokens": 318,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0098928,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "93de2a5c66f40c871d62b33416334f0deb1e681d0fd8f1e7eca7019d03f4e8ba",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

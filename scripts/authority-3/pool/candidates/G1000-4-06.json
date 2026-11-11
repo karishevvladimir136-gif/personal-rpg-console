@@ -1,0 +1,784 @@
+{
+ "id": "G1000-4-06",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 4,
+ "idx": 5,
+ "setting": "The treasurer at Ashfield Allotment Society whose assistant tracks plot rents, waiting lists, and seed-order invoices",
+ "prompt_sha256": "37707e70f8a6ddf07a1044cea2f53c3986f74524a81c8f4191540409cad5ae16",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Ashfield Allotment Society autumn green manure order\",\n \"setting\": \"The treasurer at Ashfield Allotment Society whose assistant tracks plot rents, waiting lists, and seed-order invoices\",\n \"owner\": \"Ruth\",\n \"org\": \"Ashfield Allotment Society\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marion Pike (Chair)\", \"text\": \"Standing rule from the committee: any seed, equipment or supplies order above £120 in total needs my written sign-off as chair before it is confirmed with the supplier.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Our current trade price list for societies: green manure soil-improver mix £4.20 per kilo in 5 kilo bags, pea and bean seed packets from £2.10.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Rent roll confirmed at the June meeting: 42 plots let, full plots at £32 a year and half plots at £16.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Standing rule: offers of plots to waiting-list households go strictly in list order, and each household has 14 days to reply before the offer passes to the next name.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-20\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"The waiting list stands at 14 households; first on the list is Harriet Vale.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Offered the vacant half plot 17B to Harriet Vale, first on the waiting list, at the half-plot rent of £16, with 14 days to reply.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\", \"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-28\", \"type\": \"email\", \"from\": \"Harriet Vale\", \"text\": \"Happy to take plot 17B — please put me down for the autumn rent.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"letter\", \"from\": \"Mark Selby (Marshfield Tubers)\", \"text\": \"Quotation: Casablanca seed potatoes at £0.42 per kilo, minimum 200 kilos, delivered free to one address.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-05\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 200 kilos of Casablanca seed potatoes from Marshfield Tubers at £0.42 a kilo, £84 in total, well under the £120 sign-off limit, for delivery to the Trading Hut.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Catalogue note: pea 'Meteor' packets are £2.40 each and broad bean 'Aquadulce' £2.10 each this season.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-12\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked the Marshfield seed potato delivery for Saturday 10 October 2026 at 09:00 at the Trading Hut.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-16\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"The Trading Hut opens to members on Sunday mornings, 10:00 to 12:00, through the autumn.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Decided at committee: rent invoices go out on 1 October and are due by 31 October, at the confirmed rates of £32 for full plots and £16 for half plots.\", \"role\": \"decision\", \"rests_on\": [\"e3\"]},\n  {\"id\": \"e14\", \"date\": \"2026-07-24\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Bamboo canes, six foot, £1.10 each for orders of 50 or more.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 90 six-foot bamboo canes from Greenhaven Seeds at £1.10 each, £99 all in, under the £120 chair sign-off limit, delivered to the Trading Hut.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-02\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Quick reminder from the summer catalogue: pea 'Meteor' packets still £2.40 and broad bean 'Aquadulce' £2.10 for autumn orders.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e17\", \"date\": \"2026-08-06\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Confirmed the autumn Trading Hut rota: Sunday openings 10:00 to 12:00 with Dev Raman as volunteer lead.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"EV-2\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-08\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Standing rule: changes to the confirmed Trading Hut opening times need the volunteer lead's agreement first.\", \"role\": \"rule\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-15\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Order confirmation: 12 packets of pea 'Meteor' at £2.40 each, posted to Ashfield Allotment Society, total £28.80.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"The waiting list is now 11 households; next in line is Owen Pratt.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Offered the half plot 22B to Owen Pratt, top of the waiting list, at the half-plot rent of £16, with 14 days to reply.\", \"role\": \"decision\", \"rests_on\": [\"e20\", \"e4\", \"e3\"], \"record\": \"CL-2\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-02\", \"type\": \"invoice\", \"from\": \"Mark Selby (Marshfield Tubers)\", \"text\": \"Invoice for the seed potato order: 200 kilos of Casablanca at £0.42, £84 in total, due end of October.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Apologies — a misprint crept into our catalogue: pea 'Meteor' packets are £2.60 this season, not £2.40. The broad bean price of £2.10 is correct as printed.\", \"role\": \"change\", \"revokes\": [\"e10\"]},\n  {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Priya Nair (Fernwood Supplies)\", \"text\": \"Introductory offer for allotment societies: green manure soil-improver mix at £3.60 per kilo this autumn, while stocks last.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"The compost supplier wants our spring order numbers by November — I'll deal with that later.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Scheduled the seed potato sale day for members on Saturday 17 October 2026 at the Trading Hut, the weekend after the Marshfield delivery.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e12\"], \"record\": \"EV-3\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-19\", \"type\": \"message\", \"from\": \"Dev Raman\", \"text\": \"Rota is going well — three of us on most Sundays, and the Sunday morning opening hours suit everyone.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Our October delivery round to the Trading Hut is Sunday the 11th, second Sunday of the month as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"Reminder to members: rent invoices are due by 31 October.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"To do: pay the Marshfield invoice of £84 by 31 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Harriet Vale\", \"text\": \"Plot 17B is coming along nicely, thanks for sorting the offer so quickly.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Owen Pratt\", \"text\": \"I've accepted plot 22B and I'm starting this weekend.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-18\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"The green manure soil-improver mix from Greenhaven worked well on my plot last year, by the way.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Plot offer — Harriet Vale\", \"fields\": {\"household\": \"Harriet Vale\", \"plot\": \"17B\", \"plot_type\": \"half\", \"rent\": \"16\", \"status\": \"accepted\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Plot offer — Owen Pratt\", \"fields\": {\"household\": \"Owen Pratt\", \"plot\": \"22B\", \"plot_type\": \"half\", \"rent\": \"16\", \"status\": \"offered\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Seed potato order — Marshfield Tubers\", \"fields\": {\"supplier\": \"Marshfield Tubers\", \"item\": \"Casablanca seed potatoes\", \"quantity\": \"200\", \"unit\": \"kg\", \"amount\": \"84\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bamboo cane order — Greenhaven Seeds\", \"fields\": {\"supplier\": \"Greenhaven Seeds\", \"item\": \"Six-foot bamboo canes\", \"quantity\": \"90\", \"unit\": \"canes\", \"amount\": \"99\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Seed potato delivery\", \"fields\": {\"date\": \"2026-10-10\", \"time\": \"09:00\", \"place\": \"Trading Hut\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Trading Hut autumn rota\", \"fields\": {\"day\": \"Sunday\", \"time\": \"10:00\", \"team_lead\": \"Dev Raman\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Seed potato sale day\", \"fields\": {\"date\": \"2026-10-17\", \"place\": \"Trading Hut\", \"status\": \"scheduled\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"time\", \"day\"], \"from\": \"Dev Raman\", \"rule\": \"e18\"}\n ],\n \"task\": \"Please place our autumn green manure order now — 25 kilos of Greenhaven Seeds' soil-improver mix at their trade price on the October delivery round to the Trading Hut, and confirm it with Tara.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Greenhaven Seeds\", \"item\": \"Green manure soil-improver mix\", \"quantity\": \"25\", \"unit\": \"kg\", \"unit_price\": \"4.20\", \"amount\": \"105\", \"delivery_place\": \"Trading Hut\", \"status\": \"ordered\"}, \"stale\": {\"unit_price\": [\"3.60\", \"5.00\"], \"amount\": [\"90\"]}, \"task\": true},\n  {\"message_to\": \"Tara Boyle (Greenhaven Seeds)\", \"regarding\": null, \"says\": [\"25 kilos of green manure soil-improver mix\", \"£4.20 per kilo\", \"£105 total\", \"Trading Hut\"], \"stale\": [\"£3.60 per kilo\", \"£2.40\"], \"task\": true}\n ],\n \"why\": \"This is a control: the change (e23) corrects only the pea 'Meteor' packet price, a fact no decision rests on, so no record may be revised — every existing record must stay exactly as it is. The task is a fresh 25 kg green manure order at Greenhaven's standing trade price of £4.20/kg (£105, under the £120 chair sign-off limit), on the October delivery round; the distractor's £3.60/kg from Fernwood Supplies and the £2.40 pea price must not be used.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Seed packet restock\", \"counterpart\": \"Tara Boyle\", \"org\": \"Greenhaven Seeds\", \"item\": \"vegetable seed packets\", \"unit\": \"packets\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"order\", \"topic\": \"Compost top-up\", \"counterpart\": \"Priya Nair\", \"org\": \"Fernwood Supplies\", \"item\": \"bagged compost\", \"unit\": \"bags\", \"values\": [\"15\", \"30\", \"45\", \"60\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"booking\", \"topic\": \"Committee room hire\", \"counterpart\": \"Alan Best\", \"org\": \"Ashfield Village Hall\", \"item\": \"village hall committee room\", \"unit\": \"rooms\", \"values\": [\"Small room\", \"Main hall\"], \"place\": \"Ashfield Village Hall\"},\n  {\"kind\": \"order\", \"topic\": \"Seed potato top-up\", \"counterpart\": \"Mark Selby\", \"org\": \"Marshfield Tubers\", \"item\": \"Casablanca seed potatoes\", \"unit\": \"kg\", \"values\": [\"25\", \"50\", \"75\", \"100\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"booking\", \"topic\": \"Trading hut key handover\", \"counterpart\": \"Dev Raman\", \"org\": \"Ashfield Allotment Society\", \"item\": \"Trading Hut key handover slot\", \"unit\": \"slots\", \"values\": [\"Sunday morning\", \"Wednesday evening\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"order\", \"topic\": \"Water pipe fittings\", \"counterpart\": \"Glen Foster\", \"org\": \"Brookside Plumbing\", \"item\": \"hose fittings\", \"unit\": \"packs\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"booking\", \"topic\": \"Site inspection walk\", \"counterpart\": \"Marion Pike\", \"org\": \"Ashfield Allotment Society\", \"item\": \"site inspection walk\", \"unit\": \"visits\", \"values\": [\"North field\", \"South field\", \"Orchard edge\"], \"place\": \"Ashfield Allotments\"},\n  {\"kind\": \"order\", \"topic\": \"Plot marker stakes\", \"counterpart\": \"Tara Boyle\", \"org\": \"Greenhaven Seeds\", \"item\": \"plot marker stakes\", \"unit\": \"stakes\", \"values\": [\"30\", \"60\", \"90\", \"120\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"order\", \"topic\": \"Bulb order for entrance\", \"counterpart\": \"Nadia Cole\", \"org\": \"Hillcrest Nurseries\", \"item\": \"spring bulbs\", \"unit\": \"packs\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"Main gate\"},\n  {\"kind\": \"booking\", \"topic\": \"Tool sharpening van\", \"counterpart\": \"Sam Whitlock\", \"org\": \"Edge Grinding Co\", \"item\": \"sharpening van visit\", \"unit\": \"visits\", \"values\": [\"Trading Hut yard\", \"Car park\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"order\", \"topic\": \"Bird netting\", \"counterpart\": \"Priya Nair\", \"org\": \"Fernwood Supplies\", \"item\": \"bird netting rolls\", \"unit\": \"rolls\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"booking\", \"topic\": \"AGM room booking\", \"counterpart\": \"Alan Best\", \"org\": \"Ashfield Village Hall\", \"item\": \"village hall room for the AGM\", \"unit\": \"rooms\", \"values\": [\"Main hall\", \"Small room\"], \"place\": \"Ashfield Village Hall\"},\n  {\"kind\": \"order\", \"topic\": \"Gloves for work party\", \"counterpart\": \"Nadia Cole\", \"org\": \"Hillcrest Nurseries\", \"item\": \"gardening gloves\", \"unit\": \"pairs\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Trading Hut\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3214,
+    "completion_tokens": 9707,
+    "reasoning_tokens": 5304,
+    "cached_tokens": 3136
+   },
+   "cost": 0.04363536,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Ashfield Allotment Society autumn green manure order\",\n \"setting\": \"The treasurer at Ashfield Allotment Society whose assistant tracks plot rents, waiting lists, and seed-order invoices\",\n \"owner\": \"Ruth\",\n \"org\": \"Ashfield Allotment Society\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marion Pike (Chair)\", \"text\": \"Standing rule from the committee: any seed, equipment or supplies order above £120 in total needs my written sign-off as chair before it is confirmed with the supplier.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Our current trade price list for societies: green manure soil-improver mix £4.20 per kilo in 5 kilo bags, pea and bean seed packets from £2.10.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Rent roll confirmed at the June meeting: 42 plots let, full plots at £32 a year and half plots at £16.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Standing rule: offers of plots to waiting-list households go strictly in list order, and each household has 14 days to reply before the offer passes to the next name.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-20\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"The waiting list stands at 14 households; first on the list is Harriet Vale.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Offered the vacant half plot 17B to Harriet Vale, first on the waiting list, at the half-plot rent of £16, with 14 days to reply.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\", \"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-28\", \"type\": \"email\", \"from\": \"Harriet Vale\", \"text\": \"Happy to take plot 17B — please put me down for the autumn rent.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"letter\", \"from\": \"Mark Selby (Marshfield Tubers)\", \"text\": \"Quotation: Casablanca seed potatoes at £0.42 per kilo, minimum 200 kilos, delivered free to one address.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-05\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 200 kilos of Casablanca seed potatoes from Marshfield Tubers at £0.42 a kilo, £84 in total, well under the £120 sign-off limit, for delivery to the Trading Hut.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Catalogue note: pea 'Meteor' packets are £2.40 each and broad bean 'Aquadulce' £2.10 each this season.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-12\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked the Marshfield seed potato delivery for Saturday 10 October 2026 at 09:00 at the Trading Hut.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-16\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"The Trading Hut opens to members on Sunday mornings, 10:00 to 12:00, through the autumn.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Decided at committee: rent invoices go out on 1 October and are due by 31 October, at the confirmed rates of £32 for full plots and £16 for half plots.\", \"role\": \"decision\", \"rests_on\": [\"e3\"]},\n  {\"id\": \"e14\", \"date\": \"2026-07-24\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Bamboo canes, six foot, £1.10 each for orders of 50 or more.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 90 six-foot bamboo canes from Greenhaven Seeds at £1.10 each, £99 all in, under the £120 chair sign-off limit, delivered to the Trading Hut.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-02\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Quick reminder from the summer catalogue: pea 'Meteor' packets still £2.40 and broad bean 'Aquadulce' £2.10 for autumn orders.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e17\", \"date\": \"2026-08-06\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Confirmed the autumn Trading Hut rota: Sunday openings 10:00 to 12:00 with Dev Raman as volunteer lead.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"EV-2\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-08\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Standing rule: changes to the confirmed Trading Hut opening times need the volunteer lead's agreement first.\", \"role\": \"rule\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-15\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Order confirmation: 12 packets of pea 'Meteor' at £2.40 each, posted to Ashfield Allotment Society, total £28.80.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"The waiting list is now 11 households; next in line is Owen Pratt.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Offered the half plot 22B to Owen Pratt, top of the waiting list, at the half-plot rent of £16, with 14 days to reply.\", \"role\": \"decision\", \"rests_on\": [\"e20\", \"e4\", \"e3\"], \"record\": \"CL-2\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-02\", \"type\": \"invoice\", \"from\": \"Mark Selby (Marshfield Tubers)\", \"text\": \"Invoice for the seed potato order: 200 kilos of Casablanca at £0.42, £84 in total, due end of October.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Apologies — a misprint crept into our catalogue: pea 'Meteor' packets are £2.60 this season, not £2.40. The broad bean price of £2.10 is correct as printed.\", \"role\": \"change\", \"revokes\": [\"e10\"]},\n  {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Priya Nair (Fernwood Supplies)\", \"text\": \"Introductory offer for allotment societies: green manure soil-improver mix at £3.60 per kilo this autumn, while stocks last.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"The compost supplier wants our spring order numbers by November — I'll deal with that later.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Scheduled the seed potato sale day for members on Saturday 17 October 2026 at the Trading Hut, the weekend after the Marshfield delivery.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e12\"], \"record\": \"EV-3\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-19\", \"type\": \"message\", \"from\": \"Dev Raman\", \"text\": \"Rota is going well — three of us on most Sundays, and the Sunday morning opening hours suit everyone.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Tara Boyle (Greenhaven Seeds)\", \"text\": \"Our October delivery round to the Trading Hut is Sunday the 11th, second Sunday of the month as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"Reminder to members: rent invoices are due by 31 October.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"To do: pay the Marshfield invoice of £84 by 31 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Harriet Vale\", \"text\": \"Plot 17B is coming along nicely, thanks for sorting the offer so quickly.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Owen Pratt\", \"text\": \"I've accepted plot 22B and I'm starting this weekend.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-18\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"The green manure soil-improver mix from Greenhaven worked well on my plot last year, by the way.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Plot offer — Harriet Vale\", \"fields\": {\"household\": \"Harriet Vale\", \"plot\": \"17B\", \"plot_type\": \"half\", \"rent\": \"16\", \"status\": \"accepted\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Plot offer — Owen Pratt\", \"fields\": {\"household\": \"Owen Pratt\", \"plot\": \"22B\", \"plot_type\": \"half\", \"rent\": \"16\", \"status\": \"offered\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Seed potato order — Marshfield Tubers\", \"fields\": {\"supplier\": \"Marshfield Tubers\", \"item\": \"Casablanca seed potatoes\", \"quantity\": \"200\", \"unit\": \"kg\", \"amount\": \"84\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bamboo cane order — Greenhaven Seeds\", \"fields\": {\"supplier\": \"Greenhaven Seeds\", \"item\": \"Six-foot bamboo canes\", \"quantity\": \"90\", \"unit\": \"canes\", \"amount\": \"99\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Seed potato delivery\", \"fields\": {\"date\": \"2026-10-10\", \"time\": \"09:00\", \"place\": \"Trading Hut\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Trading Hut autumn rota\", \"fields\": {\"day\": \"Sunday\", \"time\": \"10:00\", \"team_lead\": \"Dev Raman\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Seed potato sale day\", \"fields\": {\"date\": \"2026-10-17\", \"place\": \"Trading Hut\", \"status\": \"scheduled\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"time\", \"day\"], \"from\": \"Dev Raman\", \"rule\": \"e18\"}\n ],\n \"task\": \"Please place our autumn green manure order now — 25 kilos of Greenhaven Seeds' soil-improver mix at their trade price on the October delivery round to the Trading Hut, and confirm it with Tara.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Greenhaven Seeds\", \"item\": \"Green manure soil-improver mix\", \"quantity\": \"25\", \"unit\": \"kg\", \"unit_price\": \"4.20\", \"amount\": \"105\", \"delivery_place\": \"Trading Hut\", \"status\": \"ordered\"}, \"stale\": {\"unit_price\": [\"3.60\", \"5.00\"], \"amount\": [\"90\"]}, \"task\": true},\n  {\"message_to\": \"Tara Boyle (Greenhaven Seeds)\", \"regarding\": null, \"says\": [\"25 kilos of green manure soil-improver mix\", \"£4.20 per kilo\", \"£105 total\", \"Trading Hut\"], \"stale\": [\"£3.60 per kilo\", \"£2.40\"], \"task\": true}\n ],\n \"why\": \"This is a control: the change (e23) corrects only the pea 'Meteor' packet price, a fact no decision rests on, so no record may be revised — every existing record must stay exactly as it is. The task is a fresh 25 kg green manure order at Greenhaven's standing trade price of £4.20/kg (£105, under the £120 chair sign-off limit), on the October delivery round; the distractor's £3.60/kg from Fernwood Supplies and the £2.40 pea price must not be used.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Seed packet restock\", \"counterpart\": \"Tara Boyle\", \"org\": \"Greenhaven Seeds\", \"item\": \"vegetable seed packets\", \"unit\": \"packets\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"order\", \"topic\": \"Compost top-up\", \"counterpart\": \"Priya Nair\", \"org\": \"Fernwood Supplies\", \"item\": \"bagged compost\", \"unit\": \"bags\", \"values\": [\"15\", \"30\", \"45\", \"60\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"booking\", \"topic\": \"Committee room hire\", \"counterpart\": \"Alan Best\", \"org\": \"Ashfield Village Hall\", \"item\": \"village hall committee room\", \"unit\": \"rooms\", \"values\": [\"Small room\", \"Main hall\", \"Annex room\"], \"place\": \"Ashfield Village Hall\"},\n  {\"kind\": \"order\", \"topic\": \"Seed potato top-up\", \"counterpart\": \"Mark Selby\", \"org\": \"Marshfield Tubers\", \"item\": \"Casablanca seed potatoes\", \"unit\": \"kg\", \"values\": [\"25\", \"50\", \"75\", \"100\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"booking\", \"topic\": \"Trading hut key handover\", \"counterpart\": \"Dev Raman\", \"org\": \"Ashfield Allotment Society\", \"item\": \"Trading Hut key handover slot\", \"unit\": \"slots\", \"values\": [\"Sunday morning\", \"Wednesday evening\", \"Saturday afternoon\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"order\", \"topic\": \"Water pipe fittings\", \"counterpart\": \"Glen Foster\", \"org\": \"Brookside Plumbing\", \"item\": \"hose fittings\", \"unit\": \"packs\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"booking\", \"topic\": \"Site inspection walk\", \"counterpart\": \"Marion Pike\", \"org\": \"Ashfield Allotment Society\", \"item\": \"site inspection walk\", \"unit\": \"visits\", \"values\": [\"North field\", \"South field\", \"Orchard edge\"], \"place\": \"Ashfield Allotments\"},\n  {\"kind\": \"order\", \"topic\": \"Plot marker stakes\", \"counterpart\": \"Tara Boyle\", \"org\": \"Greenhaven Seeds\", \"item\": \"plot marker stakes\", \"unit\": \"stakes\", \"values\": [\"30\", \"60\", \"90\", \"120\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"order\", \"topic\": \"Bulb order for entrance\", \"counterpart\": \"Nadia Cole\", \"org\": \"Hillcrest Nurseries\", \"item\": \"spring bulbs\", \"unit\": \"packs\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"Main gate\"},\n  {\"kind\": \"booking\", \"topic\": \"Tool sharpening van\", \"counterpart\": \"Sam Whitlock\", \"org\": \"Edge Grinding Co\", \"item\": \"sharpening van visit\", \"unit\": \"visits\", \"values\": [\"Trading Hut yard\", \"Car park\", \"Main gate forecourt\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"order\", \"topic\": \"Bird netting\", \"counterpart\": \"Priya Nair\", \"org\": \"Fernwood Supplies\", \"item\": \"bird netting rolls\", \"unit\": \"rolls\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Trading Hut\"},\n  {\"kind\": \"booking\", \"topic\": \"AGM room booking\", \"counterpart\": \"Alan Best\", \"org\": \"Ashfield Village Hall\", \"item\": \"village hall room for the AGM\", \"unit\": \"rooms\", \"values\": [\"Main hall\", \"Small room\", \"Annex room\"], \"place\": \"Ashfield Village Hall\"},\n  {\"kind\": \"order\", \"topic\": \"Gloves for work party\", \"counterpart\": \"Nadia Cole\", \"org\": \"Hillcrest Nurseries\", \"item\": \"gardening gloves\", \"unit\": \"pairs\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Trading Hut\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7710,
+    "completion_tokens": 4436,
+    "reasoning_tokens": 13,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0266644,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Committee room hire': values needs at least three entries\n- noise topic 'Trading hut key handover': values needs at least three entries\n- noise topic 'Tool sharpening van': values needs at least three entries\n- noise topic 'AGM room booking': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Ashfield Allotment Society autumn green manure order",
+  "setting": "The treasurer at Ashfield Allotment Society whose assistant tracks plot rents, waiting lists, and seed-order invoices",
+  "owner": "Ruth",
+  "org": "Ashfield Allotment Society",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marion Pike (Chair)",
+    "text": "Standing rule from the committee: any seed, equipment or supplies order above £120 in total needs my written sign-off as chair before it is confirmed with the supplier.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Tara Boyle (Greenhaven Seeds)",
+    "text": "Our current trade price list for societies: green manure soil-improver mix £4.20 per kilo in 5 kilo bags, pea and bean seed packets from £2.10.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-12",
+    "type": "minutes",
+    "from": "Ruth",
+    "text": "Rent roll confirmed at the June meeting: 42 plots let, full plots at £32 a year and half plots at £16.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-15",
+    "type": "instruction",
+    "from": "Ruth",
+    "text": "Standing rule: offers of plots to waiting-list households go strictly in list order, and each household has 14 days to reply before the offer passes to the next name.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-20",
+    "type": "note",
+    "from": "Ruth",
+    "text": "The waiting list stands at 14 households; first on the list is Harriet Vale.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Offered the vacant half plot 17B to Harriet Vale, first on the waiting list, at the half-plot rent of £16, with 14 days to reply.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e4",
+     "e3"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-28",
+    "type": "email",
+    "from": "Harriet Vale",
+    "text": "Happy to take plot 17B — please put me down for the autumn rent.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-02",
+    "type": "letter",
+    "from": "Mark Selby (Marshfield Tubers)",
+    "text": "Quotation: Casablanca seed potatoes at £0.42 per kilo, minimum 200 kilos, delivered free to one address.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-05",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Ordered 200 kilos of Casablanca seed potatoes from Marshfield Tubers at £0.42 a kilo, £84 in total, well under the £120 sign-off limit, for delivery to the Trading Hut.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Tara Boyle (Greenhaven Seeds)",
+    "text": "Catalogue note: pea 'Meteor' packets are £2.40 each and broad bean 'Aquadulce' £2.10 each this season.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-12",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Booked the Marshfield seed potato delivery for Saturday 10 October 2026 at 09:00 at the Trading Hut.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-16",
+    "type": "note",
+    "from": "Ruth",
+    "text": "The Trading Hut opens to members on Sunday mornings, 10:00 to 12:00, through the autumn.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-20",
+    "type": "instruction",
+    "from": "Ruth",
+    "text": "Decided at committee: rent invoices go out on 1 October and are due by 31 October, at the confirmed rates of £32 for full plots and £16 for half plots.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-24",
+    "type": "email",
+    "from": "Tara Boyle (Greenhaven Seeds)",
+    "text": "Bamboo canes, six foot, £1.10 each for orders of 50 or more.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-28",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Ordered 90 six-foot bamboo canes from Greenhaven Seeds at £1.10 each, £99 all in, under the £120 chair sign-off limit, delivered to the Trading Hut.",
+    "role": "decision",
+    "rests_on": [
+     "e14",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-02",
+    "type": "email",
+    "from": "Tara Boyle (Greenhaven Seeds)",
+    "text": "Quick reminder from the summer catalogue: pea 'Meteor' packets still £2.40 and broad bean 'Aquadulce' £2.10 for autumn orders.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-06",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Confirmed the autumn Trading Hut rota: Sunday openings 10:00 to 12:00 with Dev Raman as volunteer lead.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-08",
+    "type": "instruction",
+    "from": "Ruth",
+    "text": "Standing rule: changes to the confirmed Trading Hut opening times need the volunteer lead's agreement first.",
+    "role": "rule"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-15",
+    "type": "email",
+    "from": "Tara Boyle (Greenhaven Seeds)",
+    "text": "Order confirmation: 12 packets of pea 'Meteor' at £2.40 each, posted to Ashfield Allotment Society, total £28.80.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-20",
+    "type": "note",
+    "from": "Ruth",
+    "text": "The waiting list is now 11 households; next in line is Owen Pratt.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Offered the half plot 22B to Owen Pratt, top of the waiting list, at the half-plot rent of £16, with 14 days to reply.",
+    "role": "decision",
+    "rests_on": [
+     "e20",
+     "e4",
+     "e3"
+    ],
+    "record": "CL-2"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-02",
+    "type": "invoice",
+    "from": "Mark Selby (Marshfield Tubers)",
+    "text": "Invoice for the seed potato order: 200 kilos of Casablanca at £0.42, £84 in total, due end of October.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-05",
+    "type": "email",
+    "from": "Tara Boyle (Greenhaven Seeds)",
+    "text": "Apologies — a misprint crept into our catalogue: pea 'Meteor' packets are £2.60 this season, not £2.40. The broad bean price of £2.10 is correct as printed.",
+    "role": "change",
+    "revokes": [
+     "e10"
+    ]
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Priya Nair (Fernwood Supplies)",
+    "text": "Introductory offer for allotment societies: green manure soil-improver mix at £3.60 per kilo this autumn, while stocks last.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-12",
+    "type": "email",
+    "from": "Ruth",
+    "text": "The compost supplier wants our spring order numbers by November — I'll deal with that later.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-15",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Scheduled the seed potato sale day for members on Saturday 17 October 2026 at the Trading Hut, the weekend after the Marshfield delivery.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e12"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-19",
+    "type": "message",
+    "from": "Dev Raman",
+    "text": "Rota is going well — three of us on most Sundays, and the Sunday morning opening hours suit everyone.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Tara Boyle (Greenhaven Seeds)",
+    "text": "Our October delivery round to the Trading Hut is Sunday the 11th, second Sunday of the month as usual.",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Ruth",
+    "text": "Reminder to members: rent invoices are due by 31 October.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-08",
+    "type": "task",
+    "from": "Ruth",
+    "text": "To do: pay the Marshfield invoice of £84 by 31 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Harriet Vale",
+    "text": "Plot 17B is coming along nicely, thanks for sorting the offer so quickly.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Owen Pratt",
+    "text": "I've accepted plot 22B and I'm starting this weekend.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-18",
+    "type": "email",
+    "from": "Ruth",
+    "text": "The green manure soil-improver mix from Greenhaven worked well on my plot last year, by the way.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Plot offer — Harriet Vale",
+    "fields": {
+     "household": "Harriet Vale",
+     "plot": "17B",
+     "plot_type": "half",
+     "rent": "16",
+     "status": "accepted"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Plot offer — Owen Pratt",
+    "fields": {
+     "household": "Owen Pratt",
+     "plot": "22B",
+     "plot_type": "half",
+     "rent": "16",
+     "status": "offered"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Seed potato order — Marshfield Tubers",
+    "fields": {
+     "supplier": "Marshfield Tubers",
+     "item": "Casablanca seed potatoes",
+     "quantity": "200",
+     "unit": "kg",
+     "amount": "84",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Bamboo cane order — Greenhaven Seeds",
+    "fields": {
+     "supplier": "Greenhaven Seeds",
+     "item": "Six-foot bamboo canes",
+     "quantity": "90",
+     "unit": "canes",
+     "amount": "99",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Seed potato delivery",
+    "fields": {
+     "date": "2026-10-10",
+     "time": "09:00",
+     "place": "Trading Hut",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Trading Hut autumn rota",
+    "fields": {
+     "day": "Sunday",
+     "time": "10:00",
+     "team_lead": "Dev Raman",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Seed potato sale day",
+    "fields": {
+     "date": "2026-10-17",
+     "place": "Trading Hut",
+     "status": "scheduled"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "time",
+     "day"
+    ],
+    "from": "Dev Raman",
+    "rule": "e18"
+   }
+  ],
+  "task": "Please place our autumn green manure order now — 25 kilos of Greenhaven Seeds' soil-improver mix at their trade price on the October delivery round to the Trading Hut, and confirm it with Tara.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Greenhaven Seeds",
+     "item": "Green manure soil-improver mix",
+     "quantity": "25",
+     "unit": "kg",
+     "unit_price": "4.20",
+     "amount": "105",
+     "delivery_place": "Trading Hut",
+     "status": "ordered"
+    },
+    "stale": {
+     "unit_price": [
+      "3.60",
+      "5.00"
+     ],
+     "amount": [
+      "90"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Tara Boyle (Greenhaven Seeds)",
+    "regarding": null,
+    "says": [
+     "25 kilos of green manure soil-improver mix",
+     "£4.20 per kilo",
+     "£105 total",
+     "Trading Hut"
+    ],
+    "stale": [
+     "£3.60 per kilo",
+     "£2.40"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the change (e23) corrects only the pea 'Meteor' packet price, a fact no decision rests on, so no record may be revised — every existing record must stay exactly as it is. The task is a fresh 25 kg green manure order at Greenhaven's standing trade price of £4.20/kg (£105, under the £120 chair sign-off limit), on the October delivery round; the distractor's £3.60/kg from Fernwood Supplies and the £2.40 pea price must not be used.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Seed packet restock",
+    "counterpart": "Tara Boyle",
+    "org": "Greenhaven Seeds",
+    "item": "vegetable seed packets",
+    "unit": "packets",
+    "values": [
+     "20",
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "Trading Hut"
+   },
+   {
+    "kind": "order",
+    "topic": "Compost top-up",
+    "counterpart": "Priya Nair",
+    "org": "Fernwood Supplies",
+    "item": "bagged compost",
+    "unit": "bags",
+    "values": [
+     "15",
+     "30",
+     "45",
+     "60"
+    ],
+    "place": "Trading Hut"
+   },
+   {
+    "kind": "booking",
+    "topic": "Committee room hire",
+    "counterpart": "Alan Best",
+    "org": "Ashfield Village Hall",
+    "item": "village hall committee room",
+    "unit": "rooms",
+    "values": [
+     "Small room",
+     "Main hall",
+     "Annex room"
+    ],
+    "place": "Ashfield Village Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "Seed potato top-up",
+    "counterpart": "Mark Selby",
+    "org": "Marshfield Tubers",
+    "item": "Casablanca seed potatoes",
+    "unit": "kg",
+    "values": [
+     "25",
+     "50",
+     "75",
+     "100"
+    ],
+    "place": "Trading Hut"
+   },
+   {
+    "kind": "booking",
+    "topic": "Trading hut key handover",
+    "counterpart": "Dev Raman",
+    "org": "Ashfield Allotment Society",
+    "item": "Trading Hut key handover slot",
+    "unit": "slots",
+    "values": [
+     "Sunday morning",
+     "Wednesday evening",
+     "Saturday afternoon"
+    ],
+    "place": "Trading Hut"
+   },
+   {
+    "kind": "order",
+    "topic": "Water pipe fittings",
+    "counterpart": "Glen Foster",
+    "org": "Brookside Plumbing",
+    "item": "hose fittings",
+    "unit": "packs",
+    "values": [
+     "6",
+     "12",
+     "18"
+    ],
+    "place": "Trading Hut"
+   },
+   {
+    "kind": "booking",
+    "topic": "Site inspection walk",
+    "counterpart": "Marion Pike",
+    "org": "Ashfield Allotment Society",
+    "item": "site inspection walk",
+    "unit": "visits",
+    "values": [
+     "North field",
+     "South field",
+     "Orchard edge"
+    ],
+    "place": "Ashfield Allotments"
+   },
+   {
+    "kind": "order",
+    "topic": "Plot marker stakes",
+    "counterpart": "Tara Boyle",
+    "org": "Greenhaven Seeds",
+    "item": "plot marker stakes",
+    "unit": "stakes",
+    "values": [
+     "30",
+     "60",
+     "90",
+     "120"
+    ],
+    "place": "Trading Hut"
+   },
+   {
+    "kind": "order",
+    "topic": "Bulb order for entrance",
+    "counterpart": "Nadia Cole",
+    "org": "Hillcrest Nurseries",
+    "item": "spring bulbs",
+    "unit": "packs",
+    "values": [
+     "10",
+     "25",
+     "50"
+    ],
+    "place": "Main gate"
+   },
+   {
+    "kind": "booking",
+    "topic": "Tool sharpening van",
+    "counterpart": "Sam Whitlock",
+    "org": "Edge Grinding Co",
+    "item": "sharpening van visit",
+    "unit": "visits",
+    "values": [
+     "Trading Hut yard",
+     "Car park",
+     "Main gate forecourt"
+    ],
+    "place": "Trading Hut"
+   },
+   {
+    "kind": "order",
+    "topic": "Bird netting",
+    "counterpart": "Priya Nair",
+    "org": "Fernwood Supplies",
+    "item": "bird netting rolls",
+    "unit": "rolls",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Trading Hut"
+   },
+   {
+    "kind": "booking",
+    "topic": "AGM room booking",
+    "counterpart": "Alan Best",
+    "org": "Ashfield Village Hall",
+    "item": "village hall room for the AGM",
+    "unit": "rooms",
+    "values": [
+     "Main hall",
+     "Small room",
+     "Annex room"
+    ],
+    "place": "Ashfield Village Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "Gloves for work party",
+    "counterpart": "Nadia Cole",
+    "org": "Hillcrest Nurseries",
+    "item": "gardening gloves",
+    "unit": "pairs",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "Trading Hut"
+   }
+  ],
+  "id": "G1000-4-06",
+  "tier": 1000,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The task is dated 20 October, but Greenhaven's October delivery round was 11 October, so placing a new order for that round now requires clarification rather than unconditional confirmation. The expected state omits this unresolved delivery requirement, although the £4.20/kg price and £105 total are correct. The pea-price correction leaves the existing workplace decisions unaffected, and the core meets the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The task is dated 20 October, but Greenhaven's October delivery round was 11 October, so placing a new order for that round now requires clarification rather than unconditional confirmation. The expected state omits this unresolved delivery requirement, although the £4.20/kg price and £105 total are correct. The pea-price correction leaves the existing workplace decisions unaffected, and the core meets the tier requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4042,
+    "completion_tokens": 242,
+    "reasoning_tokens": 125,
+    "cached_tokens": 0
+   },
+   "cost": 0.0626175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c2395224042cd38ad5c95eb69eaaea1330a7d9d2698e4c1f57b3a4fcd0385f01",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e23) revokes only the pea 'Meteor' price, which no decision rests on, so the control class holds and the expected state (a new £105 Greenhaven order, all existing records untouched) follows from the history. The task forces an ordering and a message to Tara, and the core meets the tier counts (33 events, 8 decisions, change 45 days before the task day). The change is phrased as an apology for a misprint rather than labelled a correction, and it sits among routine emails with later events after it, though the 'misprint' wording is a mild signal.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e23) revokes only the pea 'Meteor' price, which no decision rests on, so the control class holds and the expected state (a new £105 Greenhaven order, all existing records untouched) follows from the history. The task forces an ordering and a message to Tara, and the core meets the tier counts (33 events, 8 decisions, change 45 days before the task day). The change is phrased as an apology for a misprint rather than labelled a correction, and it sits among routine emails with later events after it, though the 'misprint' wording is a mild signal."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5892,
+    "completion_tokens": 1756,
+    "reasoning_tokens": 1523,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014672,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c2395224042cd38ad5c95eb69eaaea1330a7d9d2698e4c1f57b3a4fcd0385f01",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change corrects only the pea 'Meteor' price, which no decision or record rests on, so the control class is correct and all records stay unchanged. The task (£4.20/kg × 25 kg = £105, under the £120 sign-off limit) is forced and unambiguous, with the £3.60 Fernwood and £2.40 pea prices properly excluded as stale. Tier counts (33 core events, 8 decisions, change 45 days before the task day, mid-history placement with echoes present) all meet the 1,000-tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change corrects only the pea 'Meteor' price, which no decision or record rests on, so the control class is correct and all records stay unchanged. The task (£4.20/kg × 25 kg = £105, under the £120 sign-off limit) is forced and unambiguous, with the £3.60 Fernwood and £2.40 pea prices properly excluded as stale. Tier counts (33 core events, 8 decisions, change 45 days before the task day, mid-history placement with echoes present) all meet the 1,000-tier requirements."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4147,
+    "completion_tokens": 518,
+    "reasoning_tokens": 342,
+    "cached_tokens": 256
+   },
+   "cost": 0.0195198,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c2395224042cd38ad5c95eb69eaaea1330a7d9d2698e4c1f57b3a4fcd0385f01",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

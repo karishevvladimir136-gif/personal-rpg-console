@@ -659,5 +659,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The cup order is internally inconsistent: eight boxes at $35 with the stated 5% discount cost $266, not $280, so keeping its amount unchanged is not unambiguously justified. Dana has not approved the final menu and price, so the outgoing message must request approval rather than represent the booking as confirmed; the expected message requirements do not clearly enforce that distinction.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The cup order is internally inconsistent: eight boxes at $35 with the stated 5% discount cost $266, not $280, so keeping its amount unchanged is not unambiguously justified. Dana has not approved the final menu and price, so the outgoing message must request approval rather than represent the booking as confirmed; the expected message requirements do not clearly enforce that distinction."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3631,
+    "completion_tokens": 365,
+    "reasoning_tokens": 253,
+    "cached_tokens": 0
+   },
+   "cost": 0.06363,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fa00369ffedc48dee5944a7c54409fe5bd9681ae719cd6ef18240357af16a1ef",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change amends rule e2 (threshold 200 to 500 from 10 October), which voids the sign-off for ORD-2 and ORD-4 (REVISE), leaves ORD-3 (560) and ORD-1 (July) standing (KEEP), and sends EV-2 to a consent ask (ASK) through the e3 catering rule. The core has 22 events, 6 decisions, the change at event 74 of 100 and 20 days before the task day, with later core events after it. The main ambiguity is that the task asks for a 'confirmation' message to Dana, which the expected state handles by sending the details without changing EV-2's consent fields.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change amends rule e2 (threshold 200 to 500 from 10 October), which voids the sign-off for ORD-2 and ORD-4 (REVISE), leaves ORD-3 (560) and ORD-1 (July) standing (KEEP), and sends EV-2 to a consent ask (ASK) through the e3 catering rule. The core has 22 events, 6 decisions, the change at event 74 of 100 and 20 days before the task day, with later core events after it. The main ambiguity is that the task asks for a 'confirmation' message to Dana, which the expected state handles by sending the details without changing EV-2's consent fields."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5260,
+    "completion_tokens": 2053,
+    "reasoning_tokens": 1785,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015525,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fa00369ffedc48dee5944a7c54409fe5bd9681ae719cd6ef18240357af16a1ef",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment's own terms cleanly split the decisions: ORD-2 (310) and ORD-4 (280) fall under the new 500 threshold and are confirmed, ORD-3 (560) still needs sign-off, ORD-1 is grandfathered, and EV-2 correctly requires asking Dana under the catering rule rather than editing the record. Counts meet tier 100 (22 core events, 6 decisions, change 20 days before the task day with 26 later events), and the change is an unremarkable mid-history email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment's own terms cleanly split the decisions: ORD-2 (310) and ORD-4 (280) fall under the new 500 threshold and are confirmed, ORD-3 (560) still needs sign-off, ORD-1 is grandfathered, and EV-2 correctly requires asking Dana under the catering rule rather than editing the record. Counts meet tier 100 (22 core events, 6 decisions, change 20 days before the task day with 26 later events), and the change is an unremarkable mid-history email."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3750,
+    "completion_tokens": 480,
+    "reasoning_tokens": 310,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0101556,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fa00369ffedc48dee5944a7c54409fe5bd9681ae719cd6ef18240357af16a1ef",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

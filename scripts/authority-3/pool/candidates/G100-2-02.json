@@ -672,5 +672,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Three weeks after 22 July is 12 August; nothing in the history uniquely requires proposing 14 August, so the expected consent message is over-specified. The expected state also removes ORD-3's sign-off requirement while requiring its status to remain 'pending sign-off', leaving contradictory records.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Three weeks after 22 July is 12 August; nothing in the history uniquely requires proposing 14 August, so the expected consent message is over-specified. The expected state also removes ORD-3's sign-off requirement while requiring its status to remain 'pending sign-off', leaving contradictory records."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3881,
+    "completion_tokens": 235,
+    "reasoning_tokens": 139,
+    "cached_tokens": 0
+   },
+   "cost": 0.060255,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "86681d99fe7f9016cad7199678c803665d745759d1466f55a74d6b33eefe345f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state leaves ORD-3 status as 'pending sign-off' even though e15 says pending orders under 1500 'can go out straight away' and ORD-3 is marked REVISE, so the expected state is inconsistent with the amendment's terms. Otherwise the class-2 structure holds: e15 amends the e2 threshold, ORD-1 and ORD-3 are voided while ORD-2 and ORD-4 stand, and the tier counts are met. The change is an ordinary instruction with 26 events after it and is not labelled as a correction.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state leaves ORD-3 status as 'pending sign-off' even though e15 says pending orders under 1500 'can go out straight away' and ORD-3 is marked REVISE, so the expected state is inconsistent with the amendment's terms. Otherwise the class-2 structure holds: e15 amends the e2 threshold, ORD-1 and ORD-3 are voided while ORD-2 and ORD-4 stand, and the tier counts are met. The change is an ordinary instruction with 26 events after it and is not labelled as a correction."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5602,
+    "completion_tokens": 1948,
+    "reasoning_tokens": 1709,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015342,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "86681d99fe7f9016cad7199678c803665d745759d1466f55a74d6b33eefe345f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment (e15) raises the sign-off threshold to 1500, voiding the pending 930 and 1148 orders (REVISE to 'not required', ORD-1 placed per task) while the 1900 and 492 orders stand under both thresholds (KEEP), and EV-1's move needs Adaeze's consent under e1 (ASK). The exact 14 August fitting date is a mild inference (three weeks from 22 July) but the consent-first structure and stale values are clear. Counts (20 core, 6 decisions), 12-day gap, 26 later events, and an unannounced mid-history change all meet spec.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment (e15) raises the sign-off threshold to 1500, voiding the pending 930 and 1148 orders (REVISE to 'not required', ORD-1 placed per task) while the 1900 and 492 orders stand under both thresholds (KEEP), and EV-1's move needs Adaeze's consent under e1 (ASK). The exact 14 August fitting date is a mild inference (three weeks from 22 July) but the consent-first structure and stale values are clear. Counts (20 core, 6 decisions), 12-day gap, 26 later events, and an unannounced mid-history change all meet spec."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4000,
+    "completion_tokens": 971,
+    "reasoning_tokens": 777,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0182706,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "86681d99fe7f9016cad7199678c803665d745759d1466f55a74d6b33eefe345f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

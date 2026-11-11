@@ -1,0 +1,636 @@
+{
+ "id": "K500-1-06",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 1,
+ "idx": 5,
+ "setting": "Language school registrar at Lingua Nova Institute, an evening language school",
+ "prompt_sha256": "7fad6b7f5bf84ee71e13a2e24c06b7b6b200b8bf3b7d9641df65174fe1e1c3d7",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Room 4 no longer seats 24\",\n \"setting\": \"Language school registrar at Lingua Nova Institute, an evening language school\",\n \"owner\": \"Marta\",\n \"org\": \"Lingua Nova Institute\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the registry: once a class session has been confirmed to its enrolled students, it may not be moved to another room or another time without the agreement of the course teacher. Ask the teacher first, always.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"House rule on spending: any supplier order over 300 must be signed off by our finance lead, Tomás Vidal, before it is placed. Orders of 300 or under I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Autumn term 2026 planning started; evening classes run 18:30 to 20:00 at both sites.\", \"role\": \"other\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Sofia Marchetti (Lingua Nova Institute)\", \"text\": \"Happy to take the Italian B1 group again on Friday evenings this autumn, same as last year.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"Confirming for your autumn planning: Room 4 at the Willow Street annex seats 24 after the summer refit, and it is free on Monday and Thursday evenings from 18:00.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-08-22\", \"type\": \"email\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"One more for your room list: Room 6 at Willow Street seats 26 and is free on Mondays between 18:00 and 21:00 all term.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"Room 2 at Willow Street seats 18 and is free on Friday evenings; the smaller groups usually prefer it.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Ana Reyes (Lingua Nova Institute)\", \"text\": \"I can teach the Spanish B2 evening class on Mondays at 18:30 this autumn. We have 20 students enrolled so far.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"Heads-up on capacity across the building: Room 2 at Willow Street will seat 24 once the new desks arrive in November, so it may suit bigger groups later in the term.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e10\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Spanish B2 evening class with Ana Reyes for Mondays at 18:30 in Room 4 at the Willow Street annex; 20 students enrolled and the room seats 24, so everyone fits.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e8\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-07\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the German C1 exam-prep class with Klaus Brandt for Thursdays at 18:30 in Room 4 at Willow Street; 22 students enrolled and the room's 24 seats cover them. Confirmation has gone out to the students.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Italian B1 evening class with Sofia Marchetti for Fridays at 18:30 in Room 2 at Willow Street; 14 students, the room seats 18.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"EV-5\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the Spanish conversation practice for Mondays at 20:05, straight after the B2 class and in the same room, so the students just stay put.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-11\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the French A2 conversation club with 12 students for Fridays at 18:30 in Room 4 at Willow Street; a small group, plenty of space in a 24-seat room.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 24 stackable chairs for Room 4 at Willow Street from Bramley Office Supplies at 12 each, total 288; that is under the 300 line, so no sign-off from Tomás Vidal needed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Tomás Vidal (Lingua Nova Institute)\", \"text\": \"September budget note: classroom supplies spend is on track, nothing over the sign-off threshold so far.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Klaus Brandt (Lingua Nova Institute)\", \"text\": \"Thanks for the Thursday slot. My C1 group is looking forward to starting; 22 students is our biggest exam-prep cohort yet.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-21\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Autumn rooming reminder to all teachers: Spanish B2 meets Mondays in Room 4 at Willow Street, and its 24 seats comfortably cover the full cohort of 20.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-23\", \"type\": \"letter\", \"from\": \"Bright Print Services\", \"text\": \"Your quote for autumn course flyers: 500 copies, 65, valid for 60 days.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-28\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Staff meeting notes: enrolment up 8 percent on last autumn; Portuguese A1 may open in January if demand holds.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-01\", \"type\": \"invoice\", \"from\": \"Bramley Office Supplies\", \"text\": \"Invoice for 24 stackable chairs for Room 4, total 288, payable within 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Renew the institute's premises insurance by 15 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Ana Reyes (Lingua Nova Institute)\", \"text\": \"The Monday group is settling in well. Could we get two more whiteboard markers in the room?\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"Following last week's safety inspection, Room 4 at Willow Street now seats 16. The new layout is fixed for the rest of the year, so please plan all your groups on 16 seats in that room.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Sofia Marchetti (Lingua Nova Institute)\", \"text\": \"Italian B1 homework results attached; the Friday group in Room 2 is doing nicely.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-16\", \"type\": \"message\", \"from\": \"Tomás Vidal (Lingua Nova Institute)\", \"text\": \"Reminder that November supplier invoices go out for payment on the 28th; send me anything unusual beforehand.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Two new enquiries for Spanish B2 this morning; waiting list started.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-21\", \"type\": \"email\", \"from\": \"Bright Print Services\", \"text\": \"Your autumn flyers are ready for collection from our Northgate workshop.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-23\", \"type\": \"call\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"Priya called: the radiator in Room 3 is being replaced on Wednesday morning, no evening classes affected.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Spanish B2 evening class\", \"fields\": {\"day\": \"Monday\", \"time\": \"18:30\", \"room\": \"Room 4\", \"teacher\": \"Ana Reyes\", \"students\": \"20\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"German C1 exam-prep class\", \"fields\": {\"day\": \"Thursday\", \"time\": \"18:30\", \"room\": \"Room 4\", \"teacher\": \"Klaus Brandt\", \"students\": \"22\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Spanish conversation practice\", \"fields\": {\"day\": \"Monday\", \"time\": \"20:05\", \"room\": \"Room 4\", \"teacher\": \"Ana Reyes\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"French A2 conversation club\", \"fields\": {\"day\": \"Friday\", \"time\": \"18:30\", \"room\": \"Room 4\", \"students\": \"12\", \"status\": \"booked\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Italian B1 evening class\", \"fields\": {\"day\": \"Friday\", \"time\": \"18:30\", \"room\": \"Room 2\", \"teacher\": \"Sofia Marchetti\", \"students\": \"14\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Stackable chairs for Room 4\", \"fields\": {\"supplier\": \"Bramley Office Supplies\", \"item\": \"stackable chairs\", \"quantity\": \"24\", \"total\": \"288\", \"status\": \"placed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"room\", \"time\"], \"from\": \"Klaus Brandt\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please sort out my Monday Spanish B2 evening class so the room fits everyone enrolled, adjust anything of mine that follows from that, and email Ana Reyes confirming her Monday room and start time.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"room\", \"value\": \"Room 6\", \"stale\": [\"Room 4\"]},\n  {\"record\": \"EV-3\", \"field\": \"room\", \"value\": \"Room 6\", \"stale\": [\"Room 4\"]},\n  {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"16\", \"stale\": [\"24\"]},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"192\", \"stale\": [\"288\"]},\n  {\"message_to\": \"Ana Reyes\", \"regarding\": \"EV-1\", \"says\": [\"Room 6\", \"18:30\"], \"stale\": [\"Room 4\"], \"task\": true}\n ],\n \"why\": \"Priya Shah's 12 October email fixed Room 4 at 16 seats, replacing the 24-seat figure the autumn bookings relied on. The Spanish B2 class (20 students) no longer fits, so Marta moves it — and the conversation practice that follows it — to Room 6, which seats 26 and is free on Mondays; the chair order drops to 16 chairs (192), still under the 300 sign-off line, and Ana's confirmation must name Room 6 at 18:30. The German C1 class was confirmed to its students, so moving it needs Klaus Brandt's consent and it stays untouched while consent is requested; the 12-student French club still fits in 16 seats and is unchanged.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"photocopy paper restock\", \"counterpart\": \"Della Byrne\", \"org\": \"Bramley Office Supplies\", \"item\": \"A4 photocopy paper\", \"unit\": \"boxes\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Willow Street annex office\"},\n  {\"kind\": \"order\", \"topic\": \"whiteboard markers\", \"counterpart\": \"Della Byrne\", \"org\": \"Bramley Office Supplies\", \"item\": \"whiteboard marker packs\", \"unit\": \"packs\", \"values\": [\"3\", \"4\", \"6\", \"8\"], \"place\": \"Willow Street annex office\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and tea for staff room\", \"counterpart\": \"Rui Costa\", \"org\": \"Cuppability Wholesale\", \"item\": \"coffee and tea bundles\", \"unit\": \"bundles\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Northgate centre staff room\"},\n  {\"kind\": \"order\", \"topic\": \"notebook restock for shop\", \"counterpart\": \"Hana Iqbal\", \"org\": \"Papertrail Ltd\", \"item\": \"student notebooks\", \"unit\": \"cartons\", \"values\": [\"4\", \"6\", \"9\"], \"place\": \"Northgate centre reception\"},\n  {\"kind\": \"booking\", \"topic\": \"German department planning meeting\", \"counterpart\": \"Klaus Brandt\", \"org\": \"Lingua Nova Institute\", \"item\": \"meeting room for German teachers\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"Room 5\"], \"place\": \"Willow Street annex\"},\n  {\"kind\": \"booking\", \"topic\": \"teacher training workshop\", \"counterpart\": \"Marta\", \"org\": \"Lingua Nova Institute\", \"item\": \"workshop room for teacher training\", \"unit\": \"room\", \"values\": [\"Room 6\", \"Room 5\", \"Room 1\"], \"place\": \"Willow Street annex\"},\n  {\"kind\": \"booking\", \"topic\": \"Spanish film club\", \"counterpart\": \"Ana Reyes\", \"org\": \"Lingua Nova Institute\", \"item\": \"room for Spanish film club\", \"unit\": \"room\", \"values\": [\"Room 3\", \"Room 5\"], \"place\": \"Northgate centre\"},\n  {\"kind\": \"booking\", \"topic\": \"Italian conversation circle\", \"counterpart\": \"Sofia Marchetti\", \"org\": \"Lingua Nova Institute\", \"item\": \"room for Italian conversation circle\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 3\"], \"place\": \"Northgate centre\"},\n  {\"kind\": \"booking\", \"topic\": \"mock exam sitting\", \"counterpart\": \"Klaus Brandt\", \"org\": \"Lingua Nova Institute\", \"item\": \"exam room for practice tests\", \"unit\": \"room\", \"values\": [\"Room 5\", \"Room 6\"], \"place\": \"Willow Street annex\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Priya Shah\", \"org\": \"Willow Street Annex Facilities\", \"item\": \"cleaning supply kits\", \"unit\": \"kits\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Willow Street annex\"},\n  {\"kind\": \"order\", \"topic\": \"course flyer reprints\", \"counterpart\": \"Colm Duffy\", \"org\": \"Bright Print Services\", \"item\": \"course flyer batches\", \"unit\": \"batches\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Northgate centre reception\"},\n  {\"kind\": \"booking\", \"topic\": \"open evening taster sessions\", \"counterpart\": \"Marta\", \"org\": \"Lingua Nova Institute\", \"item\": \"room for taster sessions\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"Northgate centre\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3234,
+    "completion_tokens": 8425,
+    "reasoning_tokens": 4251,
+    "cached_tokens": 0
+   },
+   "cost": 0.136077,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Room 4 no longer seats 24\",\n \"setting\": \"Language school registrar at Lingua Nova Institute, an evening language school\",\n \"owner\": \"Marta\",\n \"org\": \"Lingua Nova Institute\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the registry: once a class session has been confirmed to its enrolled students, it may not be moved to another room or another time without the agreement of the course teacher. Ask the teacher first, always.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"House rule on spending: any supplier order over 300 must be signed off by our finance lead, Tomás Vidal, before it is placed. Orders of 300 or under I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Autumn term 2026 planning started; evening classes run 18:30 to 20:00 at both sites.\", \"role\": \"other\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Sofia Marchetti (Lingua Nova Institute)\", \"text\": \"Happy to take the Italian B1 group again on Friday evenings this autumn, same as last year.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"Confirming for your autumn planning: Room 4 at the Willow Street annex seats 24 after the summer refit, and it is free on Monday and Thursday evenings from 18:00.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-08-22\", \"type\": \"email\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"One more for your room list: Room 6 at Willow Street seats 26 and is free on Mondays between 18:00 and 21:00 all term.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"Room 2 at Willow Street seats 18 and is free on Friday evenings; the smaller groups usually prefer it.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Ana Reyes (Lingua Nova Institute)\", \"text\": \"I can teach the Spanish B2 evening class on Mondays at 18:30 this autumn. We have 20 students enrolled so far.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"Heads-up on capacity across the building: Room 2 at Willow Street will seat 24 once the new desks arrive in November, so it may suit bigger groups later in the term.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e10\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Spanish B2 evening class with Ana Reyes for Mondays at 18:30 in Room 4 at the Willow Street annex; 20 students enrolled and the room seats 24, so everyone fits.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e8\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-07\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the German C1 exam-prep class with Klaus Brandt for Thursdays at 18:30 in Room 4 at Willow Street; 22 students enrolled and the room's 24 seats cover them. Confirmation has gone out to the students.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Italian B1 evening class with Sofia Marchetti for Fridays at 18:30 in Room 2 at Willow Street; 14 students, the room seats 18.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"EV-5\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the Spanish conversation practice for Mondays at 20:05, straight after the B2 class and in the same room, so the students just stay put.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-11\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the French A2 conversation club with 12 students for Fridays at 18:30 in Room 4 at Willow Street; a small group, plenty of space in a 24-seat room.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 24 stackable chairs for Room 4 at Willow Street from Bramley Office Supplies at 12 each, total 288; that is under the 300 line, so no sign-off from Tomás Vidal needed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Tomás Vidal (Lingua Nova Institute)\", \"text\": \"September budget note: classroom supplies spend is on track, nothing over the sign-off threshold so far.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Klaus Brandt (Lingua Nova Institute)\", \"text\": \"Thanks for the Thursday slot. My C1 group is looking forward to starting; 22 students is our biggest exam-prep cohort yet.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-21\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Autumn rooming reminder to all teachers: Spanish B2 meets Mondays in Room 4 at Willow Street, and its 24 seats comfortably cover the full cohort of 20.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-23\", \"type\": \"letter\", \"from\": \"Bright Print Services\", \"text\": \"Your quote for autumn course flyers: 500 copies, 65, valid for 60 days.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-28\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Staff meeting notes: enrolment up 8 percent on last autumn; Portuguese A1 may open in January if demand holds.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-01\", \"type\": \"invoice\", \"from\": \"Bramley Office Supplies\", \"text\": \"Invoice for 24 stackable chairs for Room 4, total 288, payable within 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Renew the institute's premises insurance by 15 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Ana Reyes (Lingua Nova Institute)\", \"text\": \"The Monday group is settling in well. Could we get two more whiteboard markers in the room?\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"Following last week's safety inspection, Room 4 at Willow Street now seats 16. The new layout is fixed for the rest of the year, so please plan all your groups on 16 seats in that room.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Sofia Marchetti (Lingua Nova Institute)\", \"text\": \"Italian B1 homework results attached; the Friday group in Room 2 is doing nicely.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-16\", \"type\": \"message\", \"from\": \"Tomás Vidal (Lingua Nova Institute)\", \"text\": \"Reminder that November supplier invoices go out for payment on the 28th; send me anything unusual beforehand.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Two new enquiries for Spanish B2 this morning; waiting list started.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-21\", \"type\": \"email\", \"from\": \"Bright Print Services\", \"text\": \"Your autumn flyers are ready for collection from our Northgate workshop.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-23\", \"type\": \"call\", \"from\": \"Priya Shah (Willow Street Annex Facilities)\", \"text\": \"Priya called: the radiator in Room 3 is being replaced on Wednesday morning, no evening classes affected.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Spanish B2 evening class\", \"fields\": {\"day\": \"Monday\", \"time\": \"18:30\", \"room\": \"Room 4\", \"teacher\": \"Ana Reyes\", \"students\": \"20\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"German C1 exam-prep class\", \"fields\": {\"day\": \"Thursday\", \"time\": \"18:30\", \"room\": \"Room 4\", \"teacher\": \"Klaus Brandt\", \"students\": \"22\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Spanish conversation practice\", \"fields\": {\"day\": \"Monday\", \"time\": \"20:05\", \"room\": \"Room 4\", \"teacher\": \"Ana Reyes\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"French A2 conversation club\", \"fields\": {\"day\": \"Friday\", \"time\": \"18:30\", \"room\": \"Room 4\", \"students\": \"12\", \"status\": \"booked\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Italian B1 evening class\", \"fields\": {\"day\": \"Friday\", \"time\": \"18:30\", \"room\": \"Room 2\", \"teacher\": \"Sofia Marchetti\", \"students\": \"14\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Stackable chairs for Room 4\", \"fields\": {\"supplier\": \"Bramley Office Supplies\", \"item\": \"stackable chairs\", \"quantity\": \"24\", \"total\": \"288\", \"status\": \"placed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"room\", \"time\"], \"from\": \"Klaus Brandt\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please sort out my Monday Spanish B2 evening class so the room fits everyone enrolled, adjust anything of mine that follows from that, and email Ana Reyes confirming her Monday room and start time.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"room\", \"value\": \"Room 6\", \"stale\": [\"Room 4\"]},\n  {\"record\": \"EV-3\", \"field\": \"room\", \"value\": \"Room 6\", \"stale\": [\"Room 4\"]},\n  {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"16\", \"stale\": [\"24\"]},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"192\", \"stale\": [\"288\"]},\n  {\"message_to\": \"Ana Reyes\", \"regarding\": \"EV-1\", \"says\": [\"Room 6\", \"18:30\"], \"stale\": [\"Room 4\"], \"task\": true}\n ],\n \"why\": \"Priya Shah's 12 October email fixed Room 4 at 16 seats, replacing the 24-seat figure the autumn bookings relied on. The Spanish B2 class (20 students) no longer fits, so Marta moves it — and the conversation practice that follows it — to Room 6, which seats 26 and is free on Mondays; the chair order drops to 16 chairs (192), still under the 300 sign-off line, and Ana's confirmation must name Room 6 at 18:30. The German C1 class was confirmed to its students, so moving it needs Klaus Brandt's consent and it stays untouched while consent is requested; the 12-student French club still fits in 16 seats and is unchanged.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"photocopy paper restock\", \"counterpart\": \"Della Byrne\", \"org\": \"Bramley Office Supplies\", \"item\": \"A4 photocopy paper\", \"unit\": \"boxes\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Willow Street annex office\"},\n  {\"kind\": \"order\", \"topic\": \"whiteboard markers\", \"counterpart\": \"Della Byrne\", \"org\": \"Bramley Office Supplies\", \"item\": \"whiteboard marker packs\", \"unit\": \"packs\", \"values\": [\"3\", \"4\", \"6\", \"8\"], \"place\": \"Willow Street annex office\"},\n  {\"kind\": \"order\", \"topic\": \"coffee and tea for staff room\", \"counterpart\": \"Rui Costa\", \"org\": \"Cuppability Wholesale\", \"item\": \"coffee and tea bundles\", \"unit\": \"bundles\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Northgate centre staff room\"},\n  {\"kind\": \"order\", \"topic\": \"notebook restock for shop\", \"counterpart\": \"Hana Iqbal\", \"org\": \"Papertrail Ltd\", \"item\": \"student notebooks\", \"unit\": \"cartons\", \"values\": [\"4\", \"6\", \"9\"], \"place\": \"Northgate centre reception\"},\n  {\"kind\": \"booking\", \"topic\": \"German department planning meeting\", \"counterpart\": \"Klaus Brandt\", \"org\": \"Lingua Nova Institute\", \"item\": \"meeting room for German teachers\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"Room 5\"], \"place\": \"Willow Street annex\"},\n  {\"kind\": \"booking\", \"topic\": \"teacher training workshop\", \"counterpart\": \"Marta\", \"org\": \"Lingua Nova Institute\", \"item\": \"workshop room for teacher training\", \"unit\": \"room\", \"values\": [\"Room 6\", \"Room 5\", \"Room 1\"], \"place\": \"Willow Street annex\"},\n  {\"kind\": \"booking\", \"topic\": \"Spanish film club\", \"counterpart\": \"Ana Reyes\", \"org\": \"Lingua Nova Institute\", \"item\": \"room for Spanish film club\", \"unit\": \"room\", \"values\": [\"Room 3\", \"Room 5\", \"Room 1\"], \"place\": \"Northgate centre\"},\n  {\"kind\": \"booking\", \"topic\": \"Italian conversation circle\", \"counterpart\": \"Sofia Marchetti\", \"org\": \"Lingua Nova Institute\", \"item\": \"room for Italian conversation circle\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 3\", \"Room 5\"], \"place\": \"Northgate centre\"},\n  {\"kind\": \"booking\", \"topic\": \"mock exam sitting\", \"counterpart\": \"Klaus Brandt\", \"org\": \"Lingua Nova Institute\", \"item\": \"exam room for practice tests\", \"unit\": \"room\", \"values\": [\"Room 5\", \"Room 6\", \"Room 1\"], \"place\": \"Willow Street annex\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Priya Shah\", \"org\": \"Willow Street Annex Facilities\", \"item\": \"cleaning supply kits\", \"unit\": \"kits\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Willow Street annex\"},\n  {\"kind\": \"order\", \"topic\": \"course flyer reprints\", \"counterpart\": \"Colm Duffy\", \"org\": \"Bright Print Services\", \"item\": \"course flyer batches\", \"unit\": \"batches\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Northgate centre reception\"},\n  {\"kind\": \"booking\", \"topic\": \"open evening taster sessions\", \"counterpart\": \"Marta\", \"org\": \"Lingua Nova Institute\", \"item\": \"room for taster sessions\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"Northgate centre\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7500,
+    "completion_tokens": 4195,
+    "reasoning_tokens": 6,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0771306,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Spanish film club': values needs at least three entries\n- noise topic 'Italian conversation circle': values needs at least three entries\n- noise topic 'mock exam sitting': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Room 4 no longer seats 24",
+  "setting": "Language school registrar at Lingua Nova Institute, an evening language school",
+  "owner": "Marta",
+  "org": "Lingua Nova Institute",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule for the registry: once a class session has been confirmed to its enrolled students, it may not be moved to another room or another time without the agreement of the course teacher. Ask the teacher first, always.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "policy",
+    "from": "Marta",
+    "text": "House rule on spending: any supplier order over 300 must be signed off by our finance lead, Tomás Vidal, before it is placed. Orders of 300 or under I can place directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-15",
+    "type": "note",
+    "from": "Marta",
+    "text": "Autumn term 2026 planning started; evening classes run 18:30 to 20:00 at both sites.",
+    "role": "other"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Sofia Marchetti (Lingua Nova Institute)",
+    "text": "Happy to take the Italian B1 group again on Friday evenings this autumn, same as last year.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Priya Shah (Willow Street Annex Facilities)",
+    "text": "Confirming for your autumn planning: Room 4 at the Willow Street annex seats 24 after the summer refit, and it is free on Monday and Thursday evenings from 18:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-08-22",
+    "type": "email",
+    "from": "Priya Shah (Willow Street Annex Facilities)",
+    "text": "One more for your room list: Room 6 at Willow Street seats 26 and is free on Mondays between 18:00 and 21:00 all term.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-08-25",
+    "type": "email",
+    "from": "Priya Shah (Willow Street Annex Facilities)",
+    "text": "Room 2 at Willow Street seats 18 and is free on Friday evenings; the smaller groups usually prefer it.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Ana Reyes (Lingua Nova Institute)",
+    "text": "I can teach the Spanish B2 evening class on Mondays at 18:30 this autumn. We have 20 students enrolled so far.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Priya Shah (Willow Street Annex Facilities)",
+    "text": "Heads-up on capacity across the building: Room 2 at Willow Street will seat 24 once the new desks arrive in November, so it may suit bigger groups later in the term.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-04",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Spanish B2 evening class with Ana Reyes for Mondays at 18:30 in Room 4 at the Willow Street annex; 20 students enrolled and the room seats 24, so everyone fits.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e8"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-07",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the German C1 exam-prep class with Klaus Brandt for Thursdays at 18:30 in Room 4 at Willow Street; 22 students enrolled and the room's 24 seats cover them. Confirmation has gone out to the students.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e1"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-08",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Italian B1 evening class with Sofia Marchetti for Fridays at 18:30 in Room 2 at Willow Street; 14 students, the room seats 18.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e4"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled the Spanish conversation practice for Mondays at 20:05, straight after the B2 class and in the same room, so the students just stay put.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-11",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the French A2 conversation club with 12 students for Fridays at 18:30 in Room 4 at Willow Street; a small group, plenty of space in a 24-seat room.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 24 stackable chairs for Room 4 at Willow Street from Bramley Office Supplies at 12 each, total 288; that is under the 300 line, so no sign-off from Tomás Vidal needed.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Tomás Vidal (Lingua Nova Institute)",
+    "text": "September budget note: classroom supplies spend is on track, nothing over the sign-off threshold so far.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Klaus Brandt (Lingua Nova Institute)",
+    "text": "Thanks for the Thursday slot. My C1 group is looking forward to starting; 22 students is our biggest exam-prep cohort yet.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-21",
+    "type": "email",
+    "from": "Marta",
+    "text": "Autumn rooming reminder to all teachers: Spanish B2 meets Mondays in Room 4 at Willow Street, and its 24 seats comfortably cover the full cohort of 20.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-23",
+    "type": "letter",
+    "from": "Bright Print Services",
+    "text": "Your quote for autumn course flyers: 500 copies, 65, valid for 60 days.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-28",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Staff meeting notes: enrolment up 8 percent on last autumn; Portuguese A1 may open in January if demand holds.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-01",
+    "type": "invoice",
+    "from": "Bramley Office Supplies",
+    "text": "Invoice for 24 stackable chairs for Room 4, total 288, payable within 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-05",
+    "type": "task",
+    "from": "Marta",
+    "text": "Renew the institute's premises insurance by 15 November 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Ana Reyes (Lingua Nova Institute)",
+    "text": "The Monday group is settling in well. Could we get two more whiteboard markers in the room?",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Priya Shah (Willow Street Annex Facilities)",
+    "text": "Following last week's safety inspection, Room 4 at Willow Street now seats 16. The new layout is fixed for the rest of the year, so please plan all your groups on 16 seats in that room.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Sofia Marchetti (Lingua Nova Institute)",
+    "text": "Italian B1 homework results attached; the Friday group in Room 2 is doing nicely.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-16",
+    "type": "message",
+    "from": "Tomás Vidal (Lingua Nova Institute)",
+    "text": "Reminder that November supplier invoices go out for payment on the 28th; send me anything unusual beforehand.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-19",
+    "type": "note",
+    "from": "Marta",
+    "text": "Two new enquiries for Spanish B2 this morning; waiting list started.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-21",
+    "type": "email",
+    "from": "Bright Print Services",
+    "text": "Your autumn flyers are ready for collection from our Northgate workshop.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-23",
+    "type": "call",
+    "from": "Priya Shah (Willow Street Annex Facilities)",
+    "text": "Priya called: the radiator in Room 3 is being replaced on Wednesday morning, no evening classes affected.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Spanish B2 evening class",
+    "fields": {
+     "day": "Monday",
+     "time": "18:30",
+     "room": "Room 4",
+     "teacher": "Ana Reyes",
+     "students": "20",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "German C1 exam-prep class",
+    "fields": {
+     "day": "Thursday",
+     "time": "18:30",
+     "room": "Room 4",
+     "teacher": "Klaus Brandt",
+     "students": "22",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Spanish conversation practice",
+    "fields": {
+     "day": "Monday",
+     "time": "20:05",
+     "room": "Room 4",
+     "teacher": "Ana Reyes",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "French A2 conversation club",
+    "fields": {
+     "day": "Friday",
+     "time": "18:30",
+     "room": "Room 4",
+     "students": "12",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Italian B1 evening class",
+    "fields": {
+     "day": "Friday",
+     "time": "18:30",
+     "room": "Room 2",
+     "teacher": "Sofia Marchetti",
+     "students": "14",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Stackable chairs for Room 4",
+    "fields": {
+     "supplier": "Bramley Office Supplies",
+     "item": "stackable chairs",
+     "quantity": "24",
+     "total": "288",
+     "status": "placed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "room",
+     "time"
+    ],
+    "from": "Klaus Brandt",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please sort out my Monday Spanish B2 evening class so the room fits everyone enrolled, adjust anything of mine that follows from that, and email Ana Reyes confirming her Monday room and start time.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "room",
+    "value": "Room 6",
+    "stale": [
+     "Room 4"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "room",
+    "value": "Room 6",
+    "stale": [
+     "Room 4"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "quantity",
+    "value": "16",
+    "stale": [
+     "24"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "192",
+    "stale": [
+     "288"
+    ]
+   },
+   {
+    "message_to": "Ana Reyes",
+    "regarding": "EV-1",
+    "says": [
+     "Room 6",
+     "18:30"
+    ],
+    "stale": [
+     "Room 4"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Priya Shah's 12 October email fixed Room 4 at 16 seats, replacing the 24-seat figure the autumn bookings relied on. The Spanish B2 class (20 students) no longer fits, so Marta moves it — and the conversation practice that follows it — to Room 6, which seats 26 and is free on Mondays; the chair order drops to 16 chairs (192), still under the 300 sign-off line, and Ana's confirmation must name Room 6 at 18:30. The German C1 class was confirmed to its students, so moving it needs Klaus Brandt's consent and it stays untouched while consent is requested; the 12-student French club still fits in 16 seats and is unchanged.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "photocopy paper restock",
+    "counterpart": "Della Byrne",
+    "org": "Bramley Office Supplies",
+    "item": "A4 photocopy paper",
+    "unit": "boxes",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Willow Street annex office"
+   },
+   {
+    "kind": "order",
+    "topic": "whiteboard markers",
+    "counterpart": "Della Byrne",
+    "org": "Bramley Office Supplies",
+    "item": "whiteboard marker packs",
+    "unit": "packs",
+    "values": [
+     "3",
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Willow Street annex office"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee and tea for staff room",
+    "counterpart": "Rui Costa",
+    "org": "Cuppability Wholesale",
+    "item": "coffee and tea bundles",
+    "unit": "bundles",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Northgate centre staff room"
+   },
+   {
+    "kind": "order",
+    "topic": "notebook restock for shop",
+    "counterpart": "Hana Iqbal",
+    "org": "Papertrail Ltd",
+    "item": "student notebooks",
+    "unit": "cartons",
+    "values": [
+     "4",
+     "6",
+     "9"
+    ],
+    "place": "Northgate centre reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "German department planning meeting",
+    "counterpart": "Klaus Brandt",
+    "org": "Lingua Nova Institute",
+    "item": "meeting room for German teachers",
+    "unit": "room",
+    "values": [
+     "Room 2",
+     "Room 3",
+     "Room 5"
+    ],
+    "place": "Willow Street annex"
+   },
+   {
+    "kind": "booking",
+    "topic": "teacher training workshop",
+    "counterpart": "Marta",
+    "org": "Lingua Nova Institute",
+    "item": "workshop room for teacher training",
+    "unit": "room",
+    "values": [
+     "Room 6",
+     "Room 5",
+     "Room 1"
+    ],
+    "place": "Willow Street annex"
+   },
+   {
+    "kind": "booking",
+    "topic": "Spanish film club",
+    "counterpart": "Ana Reyes",
+    "org": "Lingua Nova Institute",
+    "item": "room for Spanish film club",
+    "unit": "room",
+    "values": [
+     "Room 3",
+     "Room 5",
+     "Room 1"
+    ],
+    "place": "Northgate centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "Italian conversation circle",
+    "counterpart": "Sofia Marchetti",
+    "org": "Lingua Nova Institute",
+    "item": "room for Italian conversation circle",
+    "unit": "room",
+    "values": [
+     "Room 1",
+     "Room 3",
+     "Room 5"
+    ],
+    "place": "Northgate centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "mock exam sitting",
+    "counterpart": "Klaus Brandt",
+    "org": "Lingua Nova Institute",
+    "item": "exam room for practice tests",
+    "unit": "room",
+    "values": [
+     "Room 5",
+     "Room 6",
+     "Room 1"
+    ],
+    "place": "Willow Street annex"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Priya Shah",
+    "org": "Willow Street Annex Facilities",
+    "item": "cleaning supply kits",
+    "unit": "kits",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Willow Street annex"
+   },
+   {
+    "kind": "order",
+    "topic": "course flyer reprints",
+    "counterpart": "Colm Duffy",
+    "org": "Bright Print Services",
+    "item": "course flyer batches",
+    "unit": "batches",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Northgate centre reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "open evening taster sessions",
+    "counterpart": "Marta",
+    "org": "Lingua Nova Institute",
+    "item": "room for taster sessions",
+    "unit": "room",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Room 3"
+    ],
+    "place": "Northgate centre"
+   }
+  ],
+  "id": "K500-1-06",
+  "tier": 500,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

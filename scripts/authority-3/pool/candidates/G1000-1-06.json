@@ -671,5 +671,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history fixes the new collection at 15:00 but does not require preserving a 30-minute pick lead or moving Jordan’s entire two-hour shift, so the exact REVISE values are underdetermined. Jordan’s original shift also starts at the stated pick cutoff, making its coverage ambiguous. The dependency structure fits class 3: the collection fact supports the pick, the pick supports Jordan’s shift, and the consolidation decision retains the unaffected capacity aspect.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history fixes the new collection at 15:00 but does not require preserving a 30-minute pick lead or moving Jordan’s entire two-hour shift, so the exact REVISE values are underdetermined. Jordan’s original shift also starts at the stated pick cutoff, making its coverage ambiguous. The dependency structure fits class 3: the collection fact supports the pick, the pick supports Jordan’s shift, and the consolidation decision retains the unaffected capacity aspect."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4482,
+    "completion_tokens": 344,
+    "reasoning_tokens": 215,
+    "cached_tokens": 0
+   },
+   "cost": 0.0732175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8ede5224a24308f2936d2440b8ce12ec7176f8848ec8cd81b202f8c0d27ec18b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e29 revokes the 16:30 collection in e6, and the marks follow from the history: e9 and e16 are REVISE, e11 is ASK under the client-consent rule e1, and e12 is KEEP because the 120-parcel capacity still stands. The tier counts (34 core events, 7 decisions, change 20 days before the task day, 5 core events after it, and echoes e21 and e25) are met, and the change is an ordinary email in the stream.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e29 revokes the 16:30 collection in e6, and the marks follow from the history: e9 and e16 are REVISE, e11 is ASK under the client-consent rule e1, and e12 is KEEP because the 120-parcel capacity still stands. The tier counts (34 core events, 7 decisions, change 20 days before the task day, 5 core events after it, and echoes e21 and e25) are met, and the change is an ordinary email in the stream."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6406,
+    "completion_tokens": 2220,
+    "reasoning_tokens": 2011,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017506,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8ede5224a24308f2936d2440b8ce12ec7176f8848ec8cd81b202f8c0d27ec18b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 14:30 pick and 14:30–16:30 shift are inferred from the 30-minute packing buffer rather than stated verbatim, but the inference is unique and well-grounded in e9/e16. The two-hop ASK (EV-2 protected by the client-consent rule e1, per the consent map) and the KEEP on EV-3 (capacity and dock unchanged) follow cleanly. Tier requirements are met: 34 core events, 7 decisions, change 20 days before task day, and two echoes (e21, e25) restating the 16:30 collection.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 14:30 pick and 14:30–16:30 shift are inferred from the 30-minute packing buffer rather than stated verbatim, but the inference is unique and well-grounded in e9/e16. The two-hop ASK (EV-2 protected by the client-consent rule e1, per the consent map) and the KEEP on EV-3 (capacity and dock unchanged) follow cleanly. Tier requirements are met: 34 core events, 7 decisions, change 20 days before task day, and two echoes (e21, e25) restating the 16:30 collection."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4576,
+    "completion_tokens": 523,
+    "reasoning_tokens": 339,
+    "cached_tokens": 256
+   },
+   "cost": 0.0208818,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8ede5224a24308f2936d2440b8ce12ec7176f8848ec8cd81b202f8c0d27ec18b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

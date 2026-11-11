@@ -1,0 +1,493 @@
+{
+ "id": "K100-4-03",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 4,
+ "idx": 2,
+ "setting": "Coffee roastery operations lead at Ember Roast Coffee, a small-batch roaster",
+ "prompt_sha256": "036e4f25c24fb2c9df5a6331e0714d7a534636fc755f099ad3ed0ae7e226176e",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Packaging delivery correction beside a cupping plan\",\n \"setting\": \"Coffee roastery operations lead at Ember Roast Coffee, a small-batch roaster\",\n \"owner\": \"Mara\",\n \"org\": \"Ember Roast Coffee\",\n \"now\": \"2026-10-19\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for the roastery: any supplier order above 800 must be signed off by our finance lead Tessa Grant before it is placed. Orders of 800 or less can be placed directly.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Once a client cupping session is confirmed with the client, its date and time may only be moved with that client's written agreement. Ask the client first, every time.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Jonah Beck (Brewlane Café)\", \"text\": \"Thanks for the samples. For anything about Brewlane Café, write to me, Jonah Beck, at jonah.beck@brewlane.example, or call the café on 01632 960441.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-06\", \"type\": \"quote\", \"from\": \"Helena Voss (Highland Importers)\", \"text\": \"Highland Importers can supply Ethiopian Yirgacheffe green beans at 9.50 per kg through the autumn; current stock comfortably covers a 200 kg order delivered to your roastery in Leeds.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Camila Ruiz (Andina Green Coffee)\", \"text\": \"Andina Green Coffee offers Colombian Huila green beans at 8.20 per kg this quarter, delivered to your Leeds roastery within ten days of order.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-08-20\", \"type\": \"message\", \"from\": \"Ravi Anand (Ember Roast Coffee)\", \"text\": \"Checked the roastery diary: the cupping room at the Leeds roastery is free on the morning of Friday 23 October 2026, no clashes before noon.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-08-24\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed an order with Highland Importers for 200 kg of Ethiopian Yirgacheffe green beans at 9.50 per kg, total 1900. Tessa Grant signed it off on Friday since it is over the 800 line.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 50 kg of Colombian Huila green beans from Andina Green Coffee at 8.20 per kg, total 410, so no finance sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked a cupping session with Jonah Beck of Brewlane Café for Friday 23 October 2026 at 10:00 in our cupping room at the Leeds roastery. Jonah confirmed by email, so it is a confirmed client session.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e3\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-04\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Amos Doyle, our delivery driver, is available for Saturday delivery runs in the van through October and November.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-07\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled a delivery run for Saturday 24 October 2026: Amos takes the van to Brewlane Café with 30 kg of roasted beans, leaving the roastery at 08:30.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e9\"], \"record\": \"EV-2\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Ravi Anand to the evening roast shift on Thursday 22 October 2026, 16:00 to 22:00, to get the Brewlane roast done ahead of the cupping.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-3\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Petra Lindqvist (Paperhouse Packaging)\", \"text\": \"Your order of 500 flat white coffee boxes from Paperhouse Packaging is scheduled for delivery to your Leeds roastery on Thursday 22 October 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Petra Lindqvist (Paperhouse Packaging)\", \"text\": \"Quick note from Paperhouse Packaging: the unit price on your flat white coffee boxes stays at 0.38 per box on the current run.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e15\", \"date\": \"2026-10-06\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Pay Highland Importers' invoice for the Yirgacheffe beans by Friday 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Petra Lindqvist (Paperhouse Packaging)\", \"text\": \"Apologies for the slip on our side: your Paperhouse Packaging delivery of 500 flat white coffee boxes will actually reach your Leeds roastery on Saturday 24 October 2026, not Thursday 22 October as I wrote before.\", \"role\": \"change\", \"revokes\": [\"e13\"]},\n  {\"id\": \"e17\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Ravi Anand (Ember Roast Coffee)\", \"text\": \"Roast logs are up to date and the Colombian Huila from Andina Green Coffee has landed; I will cup it tomorrow morning.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Petra Lindqvist (Paperhouse Packaging)\", \"text\": \"Separately from the boxes, your roll of printed Ember Roast labels ships from Paperhouse Packaging and should arrive on Monday 26 October 2026.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e19\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Jonah Beck (Brewlane Café)\", \"text\": \"Looking forward to the cupping with you on Friday 23 October. Could we taste the Yirgacheffe alongside a Colombian?\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-16\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Friday catch-up notes: Tessa confirmed the October cash position is fine, Amos confirmed the van service is done, and the Brewlane delivery run for Saturday 24 October stays as scheduled.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-17\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Cupping prep list for Brewlane: Yirgacheffe and Colombian Huila samples, two grinders cleaned, score sheets printed.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Ethiopian Yirgacheffe green beans order\", \"fields\": {\"supplier\": \"Highland Importers\", \"item\": \"Ethiopian Yirgacheffe green beans\", \"quantity\": \"200\", \"unit\": \"kg\", \"total\": \"1900\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Colombian Huila green beans order\", \"fields\": {\"supplier\": \"Andina Green Coffee\", \"item\": \"Colombian Huila green beans\", \"quantity\": \"50\", \"unit\": \"kg\", \"total\": \"410\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Cupping session with Brewlane Café\", \"fields\": {\"date\": \"2026-10-23\", \"time\": \"10:00\", \"place\": \"cupping room, Leeds roastery\", \"client\": \"Jonah Beck (Brewlane Café)\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Delivery run to Brewlane Café\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"08:30\", \"driver\": \"Amos Doyle\", \"load\": \"30\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Evening roast shift\", \"fields\": {\"date\": \"2026-10-22\", \"time\": \"16:00\", \"person\": \"Ravi Anand\", \"status\": \"scheduled\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Brewlane Café\", \"fields\": {\"contact\": \"Jonah Beck\", \"email\": \"jonah.beck@brewlane.example\", \"phone\": \"01632 960441\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Jonah Beck (Brewlane Café)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Jonah Beck at Brewlane Café a short confirmation that our cupping session is on for Friday 23 October at 10:00 in the cupping room at our Leeds roastery.\",\n \"expect\": [\n  {\"message_to\": \"Jonah Beck (Brewlane Café)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-23\", \"10:00\", \"cupping room, Leeds roastery\"], \"stale\": [\"2026-10-24\", \"2026-10-22\", \"2026-10-26\"], \"task\": true}\n ],\n \"why\": \"This is a control: the Paperhouse Packaging correction (box delivery moved from 22 October to 24 October) revokes a fact no decision rests on, and the label-roll note on 26 October is only a distractor, so no record changes. The cupping plan stands exactly as decided, so the task is carried out on the plan as it stands: send Jonah Beck confirmation of Friday 23 October 2026 at 10:00, and do not pass off any packaging or label date as the session date.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"green bean restock\", \"counterpart\": \"Helena Voss\", \"org\": \"Highland Importers\", \"item\": \"green coffee beans\", \"unit\": \"kg\", \"values\": [\"25\", \"40\", \"60\", \"100\", \"150\"], \"place\": \"Leeds roastery\"},\n  {\"kind\": \"order\", \"topic\": \"packaging restock\", \"counterpart\": \"Petra Lindqvist\", \"org\": \"Paperhouse Packaging\", \"item\": \"flat white coffee boxes\", \"unit\": \"boxes\", \"values\": [\"100\", \"200\", \"300\", \"500\"], \"place\": \"Leeds roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"cupping room slot\", \"counterpart\": \"Jonah Beck\", \"org\": \"Brewlane Café\", \"item\": \"cupping room\", \"unit\": \"room\", \"values\": [\"cupping room\", \"roastery meeting nook\", \"cupping room annex\"], \"place\": \"Leeds roastery\"},\n  {\"kind\": \"order\", \"topic\": \"milk for cuppings\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Dairy\", \"item\": \"whole milk\", \"unit\": \"litres\", \"values\": [\"10\", \"20\", \"30\", \"50\"], \"place\": \"Leeds roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"delivery van run\", \"counterpart\": \"Amos Doyle\", \"org\": \"Ember Roast Coffee\", \"item\": \"delivery van\", \"unit\": \"vehicle\", \"values\": [\"van one\", \"van two\", \"estate car\"], \"place\": \"Leeds roastery yard\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Sam Whitaker\", \"org\": \"Cleanco Supplies\", \"item\": \"grinder cleaner\", \"unit\": \"bottles\", \"values\": [\"2\", \"4\", \"6\", \"10\"], \"place\": \"Leeds roastery\"},\n  {\"kind\": \"order\", \"topic\": \"cupping bowls\", \"counterpart\": \"Ingrid Marsh\", \"org\": \"Kilnware Pottery\", \"item\": \"cupping bowls\", \"unit\": \"bowls\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Leeds roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"staff training room\", \"counterpart\": \"Tessa Grant\", \"org\": \"Ember Roast Coffee\", \"item\": \"training room\", \"unit\": \"room\", \"values\": [\"training room\", \"office corner\", \"cupping room\"], \"place\": \"Leeds roastery\"},\n  {\"kind\": \"order\", \"topic\": \"jute sack restock\", \"counterpart\": \"Camila Ruiz\", \"org\": \"Andina Green Coffee\", \"item\": \"jute sacks\", \"unit\": \"sacks\", \"values\": [\"10\", \"20\", \"40\", \"60\"], \"place\": \"Leeds roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"maintenance visit\", \"counterpart\": \"Owen Pike\", \"org\": \"Roastech Engineering\", \"item\": \"roaster service bay\", \"unit\": \"bay\", \"values\": [\"bay one\", \"bay two\", \"loading dock\"], \"place\": \"Leeds roastery\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3193,
+    "completion_tokens": 4584,
+    "reasoning_tokens": 1203,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0700446,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Packaging delivery correction beside a cupping plan",
+  "setting": "Coffee roastery operations lead at Ember Roast Coffee, a small-batch roaster",
+  "owner": "Mara",
+  "org": "Ember Roast Coffee",
+  "now": "2026-10-19",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing rule for the roastery: any supplier order above 800 must be signed off by our finance lead Tessa Grant before it is placed. Orders of 800 or less can be placed directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Once a client cupping session is confirmed with the client, its date and time may only be moved with that client's written agreement. Ask the client first, every time.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Jonah Beck (Brewlane Café)",
+    "text": "Thanks for the samples. For anything about Brewlane Café, write to me, Jonah Beck, at jonah.beck@brewlane.example, or call the café on 01632 960441.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-06",
+    "type": "quote",
+    "from": "Helena Voss (Highland Importers)",
+    "text": "Highland Importers can supply Ethiopian Yirgacheffe green beans at 9.50 per kg through the autumn; current stock comfortably covers a 200 kg order delivered to your roastery in Leeds.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-08",
+    "type": "quote",
+    "from": "Camila Ruiz (Andina Green Coffee)",
+    "text": "Andina Green Coffee offers Colombian Huila green beans at 8.20 per kg this quarter, delivered to your Leeds roastery within ten days of order.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-08-20",
+    "type": "message",
+    "from": "Ravi Anand (Ember Roast Coffee)",
+    "text": "Checked the roastery diary: the cupping room at the Leeds roastery is free on the morning of Friday 23 October 2026, no clashes before noon.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-08-24",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Placed an order with Highland Importers for 200 kg of Ethiopian Yirgacheffe green beans at 9.50 per kg, total 1900. Tessa Grant signed it off on Friday since it is over the 800 line.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 50 kg of Colombian Huila green beans from Andina Green Coffee at 8.20 per kg, total 410, so no finance sign-off was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-01",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked a cupping session with Jonah Beck of Brewlane Café for Friday 23 October 2026 at 10:00 in our cupping room at the Leeds roastery. Jonah confirmed by email, so it is a confirmed client session.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e3",
+     "e2"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-04",
+    "type": "note",
+    "from": "Mara",
+    "text": "Amos Doyle, our delivery driver, is available for Saturday delivery runs in the van through October and November.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-07",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Scheduled a delivery run for Saturday 24 October 2026: Amos takes the van to Brewlane Café with 30 kg of roasted beans, leaving the roastery at 08:30.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e9"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Assigned Ravi Anand to the evening roast shift on Thursday 22 October 2026, 16:00 to 22:00, to get the Brewlane roast done ahead of the cupping.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Petra Lindqvist (Paperhouse Packaging)",
+    "text": "Your order of 500 flat white coffee boxes from Paperhouse Packaging is scheduled for delivery to your Leeds roastery on Thursday 22 October 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Petra Lindqvist (Paperhouse Packaging)",
+    "text": "Quick note from Paperhouse Packaging: the unit price on your flat white coffee boxes stays at 0.38 per box on the current run.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-06",
+    "type": "task",
+    "from": "Mara",
+    "text": "Pay Highland Importers' invoice for the Yirgacheffe beans by Friday 30 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-09",
+    "type": "email",
+    "from": "Petra Lindqvist (Paperhouse Packaging)",
+    "text": "Apologies for the slip on our side: your Paperhouse Packaging delivery of 500 flat white coffee boxes will actually reach your Leeds roastery on Saturday 24 October 2026, not Thursday 22 October as I wrote before.",
+    "role": "change",
+    "revokes": [
+     "e13"
+    ]
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-12",
+    "type": "message",
+    "from": "Ravi Anand (Ember Roast Coffee)",
+    "text": "Roast logs are up to date and the Colombian Huila from Andina Green Coffee has landed; I will cup it tomorrow morning.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-14",
+    "type": "message",
+    "from": "Petra Lindqvist (Paperhouse Packaging)",
+    "text": "Separately from the boxes, your roll of printed Ember Roast labels ships from Paperhouse Packaging and should arrive on Monday 26 October 2026.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Jonah Beck (Brewlane Café)",
+    "text": "Looking forward to the cupping with you on Friday 23 October. Could we taste the Yirgacheffe alongside a Colombian?",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-16",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Friday catch-up notes: Tessa confirmed the October cash position is fine, Amos confirmed the van service is done, and the Brewlane delivery run for Saturday 24 October stays as scheduled.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-17",
+    "type": "note",
+    "from": "Mara",
+    "text": "Cupping prep list for Brewlane: Yirgacheffe and Colombian Huila samples, two grinders cleaned, score sheets printed.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Ethiopian Yirgacheffe green beans order",
+    "fields": {
+     "supplier": "Highland Importers",
+     "item": "Ethiopian Yirgacheffe green beans",
+     "quantity": "200",
+     "unit": "kg",
+     "total": "1900",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Colombian Huila green beans order",
+    "fields": {
+     "supplier": "Andina Green Coffee",
+     "item": "Colombian Huila green beans",
+     "quantity": "50",
+     "unit": "kg",
+     "total": "410",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Cupping session with Brewlane Café",
+    "fields": {
+     "date": "2026-10-23",
+     "time": "10:00",
+     "place": "cupping room, Leeds roastery",
+     "client": "Jonah Beck (Brewlane Café)",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Delivery run to Brewlane Café",
+    "fields": {
+     "date": "2026-10-24",
+     "time": "08:30",
+     "driver": "Amos Doyle",
+     "load": "30",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Evening roast shift",
+    "fields": {
+     "date": "2026-10-22",
+     "time": "16:00",
+     "person": "Ravi Anand",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Brewlane Café",
+    "fields": {
+     "contact": "Jonah Beck",
+     "email": "jonah.beck@brewlane.example",
+     "phone": "01632 960441",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Jonah Beck (Brewlane Café)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please send Jonah Beck at Brewlane Café a short confirmation that our cupping session is on for Friday 23 October at 10:00 in the cupping room at our Leeds roastery.",
+  "expect": [
+   {
+    "message_to": "Jonah Beck (Brewlane Café)",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-23",
+     "10:00",
+     "cupping room, Leeds roastery"
+    ],
+    "stale": [
+     "2026-10-24",
+     "2026-10-22",
+     "2026-10-26"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the Paperhouse Packaging correction (box delivery moved from 22 October to 24 October) revokes a fact no decision rests on, and the label-roll note on 26 October is only a distractor, so no record changes. The cupping plan stands exactly as decided, so the task is carried out on the plan as it stands: send Jonah Beck confirmation of Friday 23 October 2026 at 10:00, and do not pass off any packaging or label date as the session date.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "green bean restock",
+    "counterpart": "Helena Voss",
+    "org": "Highland Importers",
+    "item": "green coffee beans",
+    "unit": "kg",
+    "values": [
+     "25",
+     "40",
+     "60",
+     "100",
+     "150"
+    ],
+    "place": "Leeds roastery"
+   },
+   {
+    "kind": "order",
+    "topic": "packaging restock",
+    "counterpart": "Petra Lindqvist",
+    "org": "Paperhouse Packaging",
+    "item": "flat white coffee boxes",
+    "unit": "boxes",
+    "values": [
+     "100",
+     "200",
+     "300",
+     "500"
+    ],
+    "place": "Leeds roastery"
+   },
+   {
+    "kind": "booking",
+    "topic": "cupping room slot",
+    "counterpart": "Jonah Beck",
+    "org": "Brewlane Café",
+    "item": "cupping room",
+    "unit": "room",
+    "values": [
+     "cupping room",
+     "roastery meeting nook",
+     "cupping room annex"
+    ],
+    "place": "Leeds roastery"
+   },
+   {
+    "kind": "order",
+    "topic": "milk for cuppings",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Dairy",
+    "item": "whole milk",
+    "unit": "litres",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "50"
+    ],
+    "place": "Leeds roastery"
+   },
+   {
+    "kind": "booking",
+    "topic": "delivery van run",
+    "counterpart": "Amos Doyle",
+    "org": "Ember Roast Coffee",
+    "item": "delivery van",
+    "unit": "vehicle",
+    "values": [
+     "van one",
+     "van two",
+     "estate car"
+    ],
+    "place": "Leeds roastery yard"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Sam Whitaker",
+    "org": "Cleanco Supplies",
+    "item": "grinder cleaner",
+    "unit": "bottles",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "10"
+    ],
+    "place": "Leeds roastery"
+   },
+   {
+    "kind": "order",
+    "topic": "cupping bowls",
+    "counterpart": "Ingrid Marsh",
+    "org": "Kilnware Pottery",
+    "item": "cupping bowls",
+    "unit": "bowls",
+    "values": [
+     "6",
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Leeds roastery"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff training room",
+    "counterpart": "Tessa Grant",
+    "org": "Ember Roast Coffee",
+    "item": "training room",
+    "unit": "room",
+    "values": [
+     "training room",
+     "office corner",
+     "cupping room"
+    ],
+    "place": "Leeds roastery"
+   },
+   {
+    "kind": "order",
+    "topic": "jute sack restock",
+    "counterpart": "Camila Ruiz",
+    "org": "Andina Green Coffee",
+    "item": "jute sacks",
+    "unit": "sacks",
+    "values": [
+     "10",
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "Leeds roastery"
+   },
+   {
+    "kind": "booking",
+    "topic": "maintenance visit",
+    "counterpart": "Owen Pike",
+    "org": "Roastech Engineering",
+    "item": "roaster service bay",
+    "unit": "bay",
+    "values": [
+     "bay one",
+     "bay two",
+     "loading dock"
+    ],
+    "place": "Leeds roastery"
+   }
+  ],
+  "id": "K100-4-03",
+  "tier": 100,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

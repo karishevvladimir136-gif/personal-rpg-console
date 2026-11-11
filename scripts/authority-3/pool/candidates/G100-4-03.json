@@ -557,5 +557,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The Harborline address change affects no existing decision or record; Marta's Beacon Mutual claim uses the established fee of 48 and provider number MB-774. Filing the claim requires workplace action without the task hinting at a change. The core has 20 events and four decisions, with the change 12 days before the task and four core events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Harborline address change affects no existing decision or record; Marta's Beacon Mutual claim uses the established fee of 48 and provider number MB-774. Filing the claim requires workplace action without the task hinting at a change. The core has 20 events and four decisions, with the change 12 days before the task and four core events after it."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3009,
+    "completion_tokens": 175,
+    "reasoning_tokens": 66,
+    "cached_tokens": 0
+   },
+   "cost": 0.046355,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a6247e82437eaa14a66d4a883778ec5c5be415a2f0c9061cd2b6e41197611f6d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Harborline address change (e16) revokes only e6, which no decision rests on, and it concerns a different insurer from the Beacon Mutual claim, so the control class and the expected state hold. The core has 20 events, 4 decisions, a change 12 days before the task day, and 4 core events after it, which meets tier 100. The change is an ordinary email not labelled as a correction, and filing the claim requires sending a message and creating a record.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Harborline address change (e16) revokes only e6, which no decision rests on, and it concerns a different insurer from the Beacon Mutual claim, so the control class and the expected state hold. The core has 20 events, 4 decisions, a change 12 days before the task day, and 4 core events after it, which meets tier 100. The change is an ordinary email not labelled as a correction, and filing the claim requires sending a message and creating a record."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4398,
+    "completion_tokens": 1182,
+    "reasoning_tokens": 983,
+    "cached_tokens": 0
+   },
+   "cost": 0.0010308,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a6247e82437eaa14a66d4a883778ec5c5be415a2f0c9061cd2b6e41197611f6d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e16) revokes only e6, on which no decision rests, so all records stay unchanged and the task is a routine Beacon Mutual claim at 48 with MB-774; the 52 distractor is a different insurer. Tier 100 is met: 20 core events, 4 decisions, change 12 days before the task day with 4 core events after it, and it sits unannounced mid-history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e16) revokes only e6, on which no decision rests, so all records stay unchanged and the task is a routine Beacon Mutual claim at 48 with MB-774; the 52 distractor is a different insurer. Tier 100 is met: 20 core events, 4 decisions, change 12 days before the task day with 4 core events after it, and it sits unannounced mid-history."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3094,
+    "completion_tokens": 311,
+    "reasoning_tokens": 166,
+    "cached_tokens": 2560
+   },
+   "cost": 0.007035,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a6247e82437eaa14a66d4a883778ec5c5be415a2f0c9061cd2b6e41197611f6d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

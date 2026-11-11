@@ -1,0 +1,679 @@
+{
+ "id": "K500-2-10",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 2,
+ "idx": 9,
+ "setting": "Church parish administrator at St. Aidan's Anglican Parish",
+ "prompt_sha256": "0f6fb1b5f8797d82fd36548a44bd6121c6a1e95bb60bc1a69218385fc98195e3",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Friday evenings return to the nave\",\n  \"setting\": \"Church parish administrator at St. Aidan's Anglican Parish\",\n  \"owner\": \"Miriam\",\n  \"org\": \"St. Aidan's Anglican Parish\",\n  \"now\": \"2026-10-08\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Miriam\", \"text\": \"Standing rule for hall hire: once an outside group's booking is confirmed, the date, start time or room may only be changed with that hirer's written agreement. Parish-run services are exempt.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Tomas Reyes (Reyes & Sons Organ Builders)\", \"text\": \"Confirming our organ restoration programme at St. Aidan's: pipe work runs June to November, and the heaviest work happens on Fridays, so the nave will be dusty and noisy on Friday evenings throughout the project.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Miriam\", \"text\": \"Parish Hall seats 120, has the kitchen and the loop system; the nave seats 200 and has the organ and the choir stalls.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Ordered 24 boxes of altar candles from Waxwell Supplies for the autumn term, delivery to the vestry.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"ORD-1\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"instruction\", \"from\": \"Miriam\", \"text\": \"Standing instruction until Monday 30 November: because of the organ works, every Friday evening event after 18:00 at St. Aidan's is to be held in the Parish Hall, not the nave.\", \"role\": \"rule\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Colin Marsh (Riverside Chamber Players)\", \"text\": \"We would like to book St. Aidan's for our autumn concert on the evening of Friday 30 October, starting at 19:30, if the church is available.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Booked the Parish Hall every Tuesday at 10:00 for the community coffee morning for the rest of the year.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-5\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"June Carter (Flower Guild)\", \"text\": \"Thank you for the new storage cupboard keys; the guild will keep its vases there from now on.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Ordered 60 copies of the new hymnal from Canterbury Press for the choir and the nave pews.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"ORD-2\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Moved the choir rehearsal on Friday 9 October at 19:00 into the Parish Hall, in line with the standing instruction on Friday evening use during the organ works.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Peter Anson (Verger)\", \"text\": \"Just to confirm I look after room setup for Friday evening events, with two volunteers from the rota.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Booked Compline for Friday 23 October at 19:00 in the Parish Hall, since Friday evening events sit in the hall while the organ works continue.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-01\", \"type\": \"note\", \"from\": \"Miriam\", \"text\": \"Newsletter draft: remind everyone about gift day envelopes and the autumn fair rota.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Asked Peter Anson and his two volunteers to set up the Parish Hall on the afternoon of Friday 23 October ready for Compline that evening.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e11\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Howard Blythe (Treasurer)\", \"text\": \"Hall hire stays at 180 per evening for community groups this year; please keep invoices going through me.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-11\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Confirmed the Riverside Chamber Players concert for Friday 30 October at 19:30 in the Parish Hall, as the nave is not offered for Friday evenings under the standing instruction during the organ works.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Miriam\", \"text\": \"This month's parish newsletter reminds readers that all Friday evening events continue in the Parish Hall through the autumn while the organ is rebuilt.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e18\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Grace Nkomo (Cleaning Contractor)\", \"text\": \"Please note the nave will be closed on Saturday mornings throughout October for floor polishing; Saturday afternoon access is unaffected.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-09-21\", \"type\": \"call\", \"from\": \"Derek Oldfield (Tower Captain)\", \"text\": \"The bellringers keep their Thursday practice at 19:30; nothing changes for the ringers this term.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Tomas Reyes (Reyes & Sons Organ Builders)\", \"text\": \"Good news: the organ work has finished three weeks early and the final voicing is done. The nave can be used for Friday evening events again from Friday 16 October onwards, so the Friday-evening hall arrangement no longer needs to apply after that date.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e21\", \"date\": \"2026-10-02\", \"type\": \"minutes\", \"from\": \"Miriam\", \"text\": \"Harvest supper planning: supper on Saturday 24 October in the Parish Hall, Ruth Pell coordinating desserts, tickets 12 each.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Miriam\", \"text\": \"Pay the Waxwell Supplies candle invoice by Thursday 15 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Alicia Brent (Choir Director)\", \"text\": \"Could you double-check which room the choir has for its remaining October rehearsals? The parents keep asking me.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Ruth Pell (Churchwarden)\", \"text\": \"My phone is 07700 900 314 and I am in the parish office on Monday and Wednesday mornings if anything needs a warden's signature.\", \"role\": \"fact\"},\n    {\"id\": \"e25\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Assigned the October Sunday readers rota: first Sunday Ruth Pell, second Derek Oldfield, third June Carter, fourth Howard Blythe.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"EV-6\"},\n    {\"id\": \"e26\", \"date\": \"2026-08-30\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Ordered 30 small flower arrangements from Bloomfield Florists for the harvest weekend, delivery to the church porch.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"ORD-3\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Waxwell Supplies\", \"text\": \"Your candle order has been dispatched and should reach the vestry within three working days.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Colin Marsh (Riverside Chamber Players)\", \"text\": \"Looking forward to the concert; our cellist asked whether the room has enough space for twelve players at the front.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Diocesan Office\", \"text\": \"The annual parish returns form is due back by the end of November.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-07\", \"type\": \"message\", \"from\": \"Peter Anson (Verger)\", \"text\": \"I have the keys for both the hall and the church this month, so setup either way is no trouble.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Altar candles autumn order\", \"fields\": {\"supplier\": \"Waxwell Supplies\", \"item\": \"altar candles\", \"quantity\": \"24 boxes\", \"delivery\": \"vestry\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"New hymnals\", \"fields\": {\"supplier\": \"Canterbury Press\", \"item\": \"hymnals\", \"quantity\": \"60\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Harvest flower arrangements\", \"fields\": {\"supplier\": \"Bloomfield Florists\", \"item\": \"flower arrangements\", \"quantity\": \"30\", \"delivery\": \"church porch\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Compline Friday 23 October\", \"fields\": {\"date\": \"2026-10-23\", \"time\": \"19:00\", \"place\": \"Parish Hall\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Riverside Chamber Players concert\", \"fields\": {\"date\": \"2026-10-30\", \"time\": \"19:30\", \"place\": \"Parish Hall\", \"hirer\": \"Riverside Chamber Players\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Compline setup 23 October\", \"fields\": {\"date\": \"2026-10-23\", \"team\": \"Peter Anson and two volunteers\", \"place\": \"Parish Hall\", \"status\": \"assigned\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Choir rehearsal 9 October\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"19:00\", \"place\": \"Parish Hall\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Tuesday coffee morning\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"10:00\", \"place\": \"Parish Hall\", \"status\": \"booked\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"October readers rota\", \"fields\": {\"month\": \"2026-10\", \"readers\": \"Ruth Pell, Derek Oldfield, June Carter, Howard Blythe\", \"status\": \"assigned\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Colin Marsh (Riverside Chamber Players)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send the weekly notices email to the parish notices list with the final time and place for Compline on Friday 23 October.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"place\", \"value\": \"church nave\", \"stale\": [\"Parish Hall\"]},\n    {\"record\": \"EV-3\", \"field\": \"place\", \"value\": \"church nave\", \"stale\": [\"Parish Hall\"]},\n    {\"message_to\": \"parish notices list\", \"regarding\": \"EV-1\", \"says\": [\"church nave\", \"19:00\"], \"stale\": [\"Parish Hall\"], \"task\": true}\n  ],\n  \"why\": \"The organ builders' email of 25 September ends the Friday-evening hall rule for events from Friday 16 October onward. Compline on 23 October and Peter's linked setup are parish-run and fall after that date, so both move back to the nave (REVISE), and the notices email must say the nave, not the hall. The Riverside concert on 30 October could also return to the nave but is a confirmed outside hire, so the hirer's written agreement is required (ASK, record untouched). The choir rehearsal on Friday 9 October falls before the amendment's effective date and stays in the hall (KEEP).\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Waxwell Supplies sales desk\", \"org\": \"Waxwell Supplies\", \"item\": \"altar candles\", \"unit\": \"boxes\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"vestry\"},\n    {\"kind\": \"booking\", \"topic\": \"chamber players rehearsal\", \"counterpart\": \"Colin Marsh (Riverside Chamber Players)\", \"org\": \"Riverside Chamber Players\", \"item\": \"rehearsal space\", \"unit\": \"session\", \"values\": [\"Parish Hall\", \"church nave\", \"choir vestry\"], \"place\": \"St. Aidan's\"},\n    {\"kind\": \"booking\", \"topic\": \"stitchers group\", \"counterpart\": \"Pamela Oduya\", \"org\": \"Tuesday Stitchers Circle\", \"item\": \"meeting room\", \"unit\": \"session\", \"values\": [\"Parish Hall\", \"committee room\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Grace Nkomo\", \"org\": \"Nkomo Cleaning Services\", \"item\": \"cleaning consumables\", \"unit\": \"packs\", \"values\": [\"4\", \"8\", \"10\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"coffee morning supplies\", \"counterpart\": \"Harbour Cash & Carry\", \"org\": \"Harbour Cash & Carry\", \"item\": \"coffee and tea\", \"unit\": \"kilos\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Parish Hall kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"office paper\", \"counterpart\": \"Printwell Stationery\", \"org\": \"Printwell Stationery\", \"item\": \"A4 paper\", \"unit\": \"reams\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"parish office\"},\n    {\"kind\": \"order\", \"topic\": \"flower restock\", \"counterpart\": \"Bloomfield Florists\", \"org\": \"Bloomfield Florists\", \"item\": \"Sunday pedestal flowers\", \"unit\": \"arrangements\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"church porch\"},\n    {\"kind\": \"booking\", \"topic\": \"minibus outing\", \"counterpart\": \"Lakeside Minibus Hire\", \"org\": \"Lakeside Minibus Hire\", \"item\": \"minibus\", \"unit\": \"day\", \"values\": [\"16 seater\", \"24 seater\"], \"place\": \"church car park\"},\n    {\"kind\": \"booking\", \"topic\": \"boiler service\", \"counterpart\": \"Aldgate Heating\", \"org\": \"Aldgate Heating\", \"item\": \"boiler service visit\", \"unit\": \"visit\", \"values\": [\"Parish Hall\", \"vicarage\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"communion wine\", \"counterpart\": \"Vinery Direct\", \"org\": \"Vinery Direct\", \"item\": \"communion wine\", \"unit\": \"cases\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"vestry\"},\n    {\"kind\": \"booking\", \"topic\": \"deanery meeting\", \"counterpart\": \"Ruth Pell (Churchwarden)\", \"org\": \"Riverside Deanery\", \"item\": \"meeting space\", \"unit\": \"evening\", \"values\": [\"Parish Hall\", \"committee room\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"choir robe cleaning\", \"counterpart\": \"Freshfold Laundry\", \"org\": \"Freshfold Laundry\", \"item\": \"choir robes\", \"unit\": \"robes\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"choir vestry\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3231,
+    "completion_tokens": 8324,
+    "reasoning_tokens": 4093,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1262586,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Friday evenings return to the nave\",\n  \"setting\": \"Church parish administrator at St. Aidan's Anglican Parish\",\n  \"owner\": \"Miriam\",\n  \"org\": \"St. Aidan's Anglican Parish\",\n  \"now\": \"2026-10-08\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Miriam\", \"text\": \"Standing rule for hall hire: once an outside group's booking is confirmed, the date, start time or room may only be changed with that hirer's written agreement. Parish-run services are exempt.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Tomas Reyes (Reyes & Sons Organ Builders)\", \"text\": \"Confirming our organ restoration programme at St. Aidan's: pipe work runs June to November, and the heaviest work happens on Fridays, so the nave will be dusty and noisy on Friday evenings throughout the project.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Miriam\", \"text\": \"Parish Hall seats 120, has the kitchen and the loop system; the nave seats 200 and has the organ and the choir stalls.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Ordered 24 boxes of altar candles from Waxwell Supplies for the autumn term, delivery to the vestry.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"instruction\", \"from\": \"Miriam\", \"text\": \"Standing instruction until Monday 30 November: because of the organ works, every Friday evening event after 18:00 at St. Aidan's is to be held in the Parish Hall, not the nave.\", \"role\": \"rule\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Colin Marsh (Riverside Chamber Players)\", \"text\": \"We would like to book St. Aidan's for our autumn concert on the evening of Friday 30 October, starting at 19:30, if the church is available.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Booked the Parish Hall every Tuesday at 10:00 for the community coffee morning for the rest of the year.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-5\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"June Carter (Flower Guild)\", \"text\": \"Thank you for the new storage cupboard keys; the guild will keep its vases there from now on.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Ordered 60 copies of the new hymnal from Canterbury Press for the choir and the nave pews.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Moved the choir rehearsal on Friday 9 October at 19:00 into the Parish Hall, in line with the standing instruction on Friday evening use during the organ works.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Peter Anson (Verger)\", \"text\": \"Just to confirm I look after room setup for Friday evening events, with two volunteers from the rota.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Booked Compline for Friday 23 October at 19:00 in the Parish Hall, since Friday evening events sit in the hall while the organ works continue.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-01\", \"type\": \"note\", \"from\": \"Miriam\", \"text\": \"Newsletter draft: remind everyone about gift day envelopes and the autumn fair rota.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Asked Peter Anson and his two volunteers to set up the Parish Hall on the afternoon of Friday 23 October ready for Compline that evening.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e11\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Howard Blythe (Treasurer)\", \"text\": \"Hall hire stays at 180 per evening for community groups this year; please keep invoices going through me.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-11\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Confirmed the Riverside Chamber Players concert for Friday 30 October at 19:30 in the Parish Hall, as the nave is not offered for Friday evenings under the standing instruction during the organ works.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Miriam\", \"text\": \"This month's parish newsletter reminds readers that all Friday evening events continue in the Parish Hall through the autumn while the organ is rebuilt.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e18\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Grace Nkomo (Cleaning Contractor)\", \"text\": \"Please note the nave will be closed on Saturday mornings throughout October for floor polishing; Saturday afternoon access is unaffected.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-09-21\", \"type\": \"call\", \"from\": \"Derek Oldfield (Tower Captain)\", \"text\": \"The bellringers keep their Thursday practice at 19:30; nothing changes for the ringers this term.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Tomas Reyes (Reyes & Sons Organ Builders)\", \"text\": \"Good news: the organ work has finished three weeks early and the final voicing is done. The nave can be used for Friday evening events again from Friday 16 October onwards, so the Friday-evening hall arrangement no longer needs to apply after that date.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e21\", \"date\": \"2026-10-02\", \"type\": \"minutes\", \"from\": \"Miriam\", \"text\": \"Harvest supper planning: supper on Saturday 24 October in the Parish Hall, Ruth Pell coordinating desserts, tickets 12 each.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Miriam\", \"text\": \"Pay the Waxwell Supplies candle invoice by Thursday 15 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Alicia Brent (Choir Director)\", \"text\": \"Could you double-check which room the choir has for its remaining October rehearsals? The parents keep asking me.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Ruth Pell (Churchwarden)\", \"text\": \"My phone is 07700 900 314 and I am in the parish office on Monday and Wednesday mornings if anything needs a warden's signature.\", \"role\": \"fact\"},\n    {\"id\": \"e25\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Assigned the October Sunday readers rota: first Sunday Ruth Pell, second Derek Oldfield, third June Carter, fourth Howard Blythe.\", \"role\": \"decision\", \"rests_on\": [\"e24\"], \"record\": \"EV-6\"},\n    {\"id\": \"e26\", \"date\": \"2026-08-30\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Ordered 30 small flower arrangements from Bloomfield Florists for the harvest weekend, delivery to the church porch.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Waxwell Supplies\", \"text\": \"Your candle order has been dispatched and should reach the vestry within three working days.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Colin Marsh (Riverside Chamber Players)\", \"text\": \"Looking forward to the concert; our cellist asked whether the room has enough space for twelve players at the front.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Diocesan Office\", \"text\": \"The annual parish returns form is due back by the end of November.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-07\", \"type\": \"message\", \"from\": \"Peter Anson (Verger)\", \"text\": \"I have the keys for both the hall and the church this month, so setup either way is no trouble.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Altar candles autumn order\", \"fields\": {\"supplier\": \"Waxwell Supplies\", \"item\": \"altar candles\", \"quantity\": \"24 boxes\", \"delivery\": \"vestry\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"New hymnals\", \"fields\": {\"supplier\": \"Canterbury Press\", \"item\": \"hymnals\", \"quantity\": \"60\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Harvest flower arrangements\", \"fields\": {\"supplier\": \"Bloomfield Florists\", \"item\": \"flower arrangements\", \"quantity\": \"30\", \"delivery\": \"church porch\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Compline Friday 23 October\", \"fields\": {\"date\": \"2026-10-23\", \"time\": \"19:00\", \"place\": \"Parish Hall\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Riverside Chamber Players concert\", \"fields\": {\"date\": \"2026-10-30\", \"time\": \"19:30\", \"place\": \"Parish Hall\", \"hirer\": \"Riverside Chamber Players\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Compline setup 23 October\", \"fields\": {\"date\": \"2026-10-23\", \"team\": \"Peter Anson and two volunteers\", \"place\": \"Parish Hall\", \"status\": \"assigned\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Choir rehearsal 9 October\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"19:00\", \"place\": \"Parish Hall\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Tuesday coffee morning\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"10:00\", \"place\": \"Parish Hall\", \"status\": \"booked\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"October readers rota\", \"fields\": {\"month\": \"2026-10\", \"readers\": \"Ruth Pell, Derek Oldfield, June Carter, Howard Blythe\", \"status\": \"assigned\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Colin Marsh (Riverside Chamber Players)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send the weekly notices email to the parish notices list with the final time and place for Compline on Friday 23 October.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"place\", \"value\": \"church nave\", \"stale\": [\"Parish Hall\"]},\n    {\"record\": \"EV-3\", \"field\": \"place\", \"value\": \"church nave\", \"stale\": [\"Parish Hall\"]},\n    {\"message_to\": \"parish notices list\", \"regarding\": \"EV-1\", \"says\": [\"church nave\", \"19:00\"], \"stale\": [\"Parish Hall\"], \"task\": true}\n  ],\n  \"why\": \"The organ builders' email of 25 September ends the Friday-evening hall rule for events from Friday 16 October onward. Compline on 23 October and Peter's linked setup are parish-run and fall after that date, so both move back to the nave (REVISE), and the notices email must say the nave, not the hall. The Riverside concert on 30 October could also return to the nave but is a confirmed outside hire, so the hirer's written agreement is required (ASK, record untouched). The choir rehearsal on Friday 9 October falls before the amendment's effective date and stays in the hall (KEEP).\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Waxwell Supplies sales desk\", \"org\": \"Waxwell Supplies\", \"item\": \"altar candles\", \"unit\": \"boxes\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"vestry\"},\n    {\"kind\": \"booking\", \"topic\": \"chamber players rehearsal\", \"counterpart\": \"Colin Marsh (Riverside Chamber Players)\", \"org\": \"Riverside Chamber Players\", \"item\": \"rehearsal space\", \"unit\": \"session\", \"values\": [\"Parish Hall\", \"church nave\", \"choir vestry\"], \"place\": \"St. Aidan's\"},\n    {\"kind\": \"booking\", \"topic\": \"stitchers group\", \"counterpart\": \"Pamela Oduya\", \"org\": \"Tuesday Stitchers Circle\", \"item\": \"meeting room\", \"unit\": \"session\", \"values\": [\"Parish Hall\", \"committee room\", \"choir vestry\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Grace Nkomo\", \"org\": \"Nkomo Cleaning Services\", \"item\": \"cleaning consumables\", \"unit\": \"packs\", \"values\": [\"4\", \"8\", \"10\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"coffee morning supplies\", \"counterpart\": \"Harbour Cash & Carry\", \"org\": \"Harbour Cash & Carry\", \"item\": \"coffee and tea\", \"unit\": \"kilos\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Parish Hall kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"office paper\", \"counterpart\": \"Printwell Stationery\", \"org\": \"Printwell Stationery\", \"item\": \"A4 paper\", \"unit\": \"reams\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"parish office\"},\n    {\"kind\": \"order\", \"topic\": \"flower restock\", \"counterpart\": \"Bloomfield Florists\", \"org\": \"Bloomfield Florists\", \"item\": \"Sunday pedestal flowers\", \"unit\": \"arrangements\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"church porch\"},\n    {\"kind\": \"booking\", \"topic\": \"minibus outing\", \"counterpart\": \"Lakeside Minibus Hire\", \"org\": \"Lakeside Minibus Hire\", \"item\": \"minibus\", \"unit\": \"day\", \"values\": [\"16 seater\", \"24 seater\", \"33 seater\"], \"place\": \"church car park\"},\n    {\"kind\": \"booking\", \"topic\": \"boiler service\", \"counterpart\": \"Aldgate Heating\", \"org\": \"Aldgate Heating\", \"item\": \"boiler service visit\", \"unit\": \"visit\", \"values\": [\"Parish Hall\", \"vicarage\", \"church boiler room\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"communion wine\", \"counterpart\": \"Vinery Direct\", \"org\": \"Vinery Direct\", \"item\": \"communion wine\", \"unit\": \"cases\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"vestry\"},\n    {\"kind\": \"booking\", \"topic\": \"deanery meeting\", \"counterpart\": \"Ruth Pell (Churchwarden)\", \"org\": \"Riverside Deanery\", \"item\": \"meeting space\", \"unit\": \"evening\", \"values\": [\"Parish Hall\", \"committee room\", \"church nave\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"choir robe cleaning\", \"counterpart\": \"Freshfold Laundry\", \"org\": \"Freshfold Laundry\", \"item\": \"choir robes\", \"unit\": \"robes\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"choir vestry\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7648,
+    "completion_tokens": 4531,
+    "reasoning_tokens": 268,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0826146,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e17 is dated before e16)\n- e4: a decision must rest on at least one earlier event\n- e9: a decision must rest on at least one earlier event\n- e25: a decision must rest on at least one earlier event\n- e26: a decision must rest on at least one earlier event\n- noise topic 'stitchers group': values needs at least three entries\n- noise topic 'minibus outing': values needs at least three entries\n- noise topic 'boiler service': values needs at least three entries\n- noise topic 'deanery meeting': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Friday evenings return to the nave\",\n  \"setting\": \"Church parish administrator at St. Aidan's Anglican Parish\",\n  \"owner\": \"Miriam\",\n  \"org\": \"St. Aidan's Anglican Parish\",\n  \"now\": \"2026-10-08\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Miriam\", \"text\": \"Standing rule for hall hire: once an outside group's booking is confirmed, the date, start time or room may only be changed with that hirer's written agreement. Parish-run services are exempt.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Tomas Reyes (Reyes & Sons Organ Builders)\", \"text\": \"Confirming our organ restoration programme at St. Aidan's: pipe work runs June to November, and the heaviest work happens on Fridays, so the nave will be dusty and noisy on Friday evenings throughout the project.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Miriam\", \"text\": \"Parish Hall seats 120, has the kitchen and the loop system; the nave seats 200 and has the organ and the choir stalls.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Ordered 24 boxes of altar candles from Waxwell Supplies for the autumn term, delivery to the vestry.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e24\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Ruth Pell (Churchwarden)\", \"text\": \"My phone is 07700 900 314 and I am in the parish office on Monday and Wednesday mornings if anything needs a warden's signature.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"instruction\", \"from\": \"Miriam\", \"text\": \"Standing instruction until Monday 30 November: because of the organ works, every Friday evening event after 18:00 at St. Aidan's is to be held in the Parish Hall, not the nave.\", \"role\": \"rule\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Colin Marsh (Riverside Chamber Players)\", \"text\": \"We would like to book St. Aidan's for our autumn concert on the evening of Friday 30 October, starting at 19:30, if the church is available.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Booked the Parish Hall every Tuesday at 10:00 for the community coffee morning for the rest of the year.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-5\"},\n    {\"id\": \"e25\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Assigned the October Sunday readers rota: first Sunday Ruth Pell, second Derek Oldfield, third June Carter, fourth Howard Blythe.\", \"role\": \"decision\", \"rests_on\": [\"e24\"], \"record\": \"EV-6\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"June Carter (Flower Guild)\", \"text\": \"Thank you for the new storage cupboard keys; the guild will keep its vases there from now on.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Ordered 60 copies of the new hymnal from Canterbury Press for the choir and the nave pews.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Moved the choir rehearsal on Friday 9 October at 19:00 into the Parish Hall, in line with the standing instruction on Friday evening use during the organ works.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Peter Anson (Verger)\", \"text\": \"Just to confirm I look after room setup for Friday evening events, with two volunteers from the rota.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Booked Compline for Friday 23 October at 19:00 in the Parish Hall, since Friday evening events sit in the hall while the organ works continue.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e26\", \"date\": \"2026-08-30\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Ordered 30 small flower arrangements from Bloomfield Florists for the harvest weekend, delivery to the church porch.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-01\", \"type\": \"note\", \"from\": \"Miriam\", \"text\": \"Newsletter draft: remind everyone about gift day envelopes and the autumn fair rota.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Asked Peter Anson and his two volunteers to set up the Parish Hall on the afternoon of Friday 23 October ready for Compline that evening.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e11\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Howard Blythe (Treasurer)\", \"text\": \"Hall hire stays at 180 per evening for community groups this year; please keep invoices going through me.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-11\", \"type\": \"decision\", \"from\": \"Miriam\", \"text\": \"Confirmed the Riverside Chamber Players concert for Friday 30 October at 19:30 in the Parish Hall, as the nave is not offered for Friday evenings under the standing instruction during the organ works.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Miriam\", \"text\": \"This month's parish newsletter reminds readers that all Friday evening events continue in the Parish Hall through the autumn while the organ is rebuilt.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e27\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Waxwell Supplies\", \"text\": \"Your candle order has been dispatched and should reach the vestry within three working days.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Grace Nkomo (Cleaning Contractor)\", \"text\": \"Please note the nave will be closed on Saturday mornings throughout October for floor polishing; Saturday afternoon access is unaffected.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-09-21\", \"type\": \"call\", \"from\": \"Derek Oldfield (Tower Captain)\", \"text\": \"The bellringers keep their Thursday practice at 19:30; nothing changes for the ringers this term.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Tomas Reyes (Reyes & Sons Organ Builders)\", \"text\": \"Good news: the organ work has finished three weeks early and the final voicing is done. The nave can be used for Friday evening events again from Friday 16 October onwards, so the Friday-evening hall arrangement no longer needs to apply after that date.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e28\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Colin Marsh (Riverside Chamber Players)\", \"text\": \"Looking forward to the concert; our cellist asked whether the room has enough space for twelve players at the front.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Diocesan Office\", \"text\": \"The annual parish returns form is due back by the end of November.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-02\", \"type\": \"minutes\", \"from\": \"Miriam\", \"text\": \"Harvest supper planning: supper on Saturday 24 October in the Parish Hall, Ruth Pell coordinating desserts, tickets 12 each.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Miriam\", \"text\": \"Pay the Waxwell Supplies candle invoice by Thursday 15 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Alicia Brent (Choir Director)\", \"text\": \"Could you double-check which room the choir has for its remaining October rehearsals? The parents keep asking me.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-07\", \"type\": \"message\", \"from\": \"Peter Anson (Verger)\", \"text\": \"I have the keys for both the hall and the church this month, so setup either way is no trouble.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Altar candles autumn order\", \"fields\": {\"supplier\": \"Waxwell Supplies\", \"item\": \"altar candles\", \"quantity\": \"24 boxes\", \"delivery\": \"vestry\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"New hymnals\", \"fields\": {\"supplier\": \"Canterbury Press\", \"item\": \"hymnals\", \"quantity\": \"60\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Harvest flower arrangements\", \"fields\": {\"supplier\": \"Bloomfield Florists\", \"item\": \"flower arrangements\", \"quantity\": \"30\", \"delivery\": \"church porch\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Compline Friday 23 October\", \"fields\": {\"date\": \"2026-10-23\", \"time\": \"19:00\", \"place\": \"Parish Hall\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Riverside Chamber Players concert\", \"fields\": {\"date\": \"2026-10-30\", \"time\": \"19:30\", \"place\": \"Parish Hall\", \"hirer\": \"Riverside Chamber Players\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Compline setup 23 October\", \"fields\": {\"date\": \"2026-10-23\", \"team\": \"Peter Anson and two volunteers\", \"place\": \"Parish Hall\", \"status\": \"assigned\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Choir rehearsal 9 October\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"19:00\", \"place\": \"Parish Hall\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Tuesday coffee morning\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"10:00\", \"place\": \"Parish Hall\", \"status\": \"booked\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"October readers rota\", \"fields\": {\"month\": \"2026-10\", \"readers\": \"Ruth Pell, Derek Oldfield, June Carter, Howard Blythe\", \"status\": \"assigned\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Colin Marsh (Riverside Chamber Players)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send the weekly notices email to the parish notices list with the final time and place for Compline on Friday 23 October.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"place\", \"value\": \"church nave\", \"stale\": [\"Parish Hall\"]},\n    {\"record\": \"EV-3\", \"field\": \"place\", \"value\": \"church nave\", \"stale\": [\"Parish Hall\"]},\n    {\"message_to\": \"parish notices list\", \"regarding\": \"EV-1\", \"says\": [\"church nave\", \"19:00\"], \"stale\": [\"Parish Hall\"], \"task\": true}\n  ],\n  \"why\": \"The organ builders' email of 25 September ends the Friday-evening hall rule for events from Friday 16 October onward. Compline on 23 October and Peter's linked setup are parish-run and fall after that date, so both move back to the nave (REVISE), and the notices email must say the nave, not the hall. The Riverside concert on 30 October could also return to the nave but is a confirmed outside hire, so the hirer's written agreement is required (ASK, record untouched). The choir rehearsal on Friday 9 October falls before the amendment's effective date and stays in the hall (KEEP).\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Waxwell Supplies sales desk\", \"org\": \"Waxwell Supplies\", \"item\": \"altar candles\", \"unit\": \"boxes\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"vestry\"},\n    {\"kind\": \"booking\", \"topic\": \"chamber players rehearsal\", \"counterpart\": \"Colin Marsh (Riverside Chamber Players)\", \"org\": \"Riverside Chamber Players\", \"item\": \"rehearsal space\", \"unit\": \"session\", \"values\": [\"Parish Hall\", \"church nave\", \"choir vestry\"], \"place\": \"St. Aidan's\"},\n    {\"kind\": \"booking\", \"topic\": \"stitchers group\", \"counterpart\": \"Pamela Oduya\", \"org\": \"Tuesday Stitchers Circle\", \"item\": \"meeting room\", \"unit\": \"session\", \"values\": [\"Parish Hall\", \"committee room\", \"choir vestry\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Grace Nkomo\", \"org\": \"Nkomo Cleaning Services\", \"item\": \"cleaning consumables\", \"unit\": \"packs\", \"values\": [\"4\", \"8\", \"10\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"coffee morning supplies\", \"counterpart\": \"Harbour Cash & Carry\", \"org\": \"Harbour Cash & Carry\", \"item\": \"coffee and tea\", \"unit\": \"kilos\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Parish Hall kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"office paper\", \"counterpart\": \"Printwell Stationery\", \"org\": \"Printwell Stationery\", \"item\": \"A4 paper\", \"unit\": \"reams\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"parish office\"},\n    {\"kind\": \"order\", \"topic\": \"flower restock\", \"counterpart\": \"Bloomfield Florists\", \"org\": \"Bloomfield Florists\", \"item\": \"Sunday pedestal flowers\", \"unit\": \"arrangements\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"church porch\"},\n    {\"kind\": \"booking\", \"topic\": \"minibus outing\", \"counterpart\": \"Lakeside Minibus Hire\", \"org\": \"Lakeside Minibus Hire\", \"item\": \"minibus\", \"unit\": \"day\", \"values\": [\"16 seater\", \"24 seater\", \"33 seater\"], \"place\": \"church car park\"},\n    {\"kind\": \"booking\", \"topic\": \"boiler service\", \"counterpart\": \"Aldgate Heating\", \"org\": \"Aldgate Heating\", \"item\": \"boiler service visit\", \"unit\": \"visit\", \"values\": [\"Parish Hall\", \"vicarage\", \"church boiler room\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"communion wine\", \"counterpart\": \"Vinery Direct\", \"org\": \"Vinery Direct\", \"item\": \"communion wine\", \"unit\": \"cases\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"vestry\"},\n    {\"kind\": \"booking\", \"topic\": \"deanery meeting\", \"counterpart\": \"Ruth Pell (Churchwarden)\", \"org\": \"Riverside Deanery\", \"item\": \"meeting space\", \"unit\": \"evening\", \"values\": [\"Parish Hall\", \"committee room\", \"church nave\"], \"place\": \"Parish Hall\"},\n    {\"kind\": \"order\", \"topic\": \"choir robe cleaning\", \"counterpart\": \"Freshfold Laundry\", \"org\": \"Freshfold Laundry\", \"item\": \"choir robes\", \"unit\": \"robes\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"choir vestry\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 11975,
+    "completion_tokens": 4283,
+    "reasoning_tokens": 20,
+    "cached_tokens": 7424
+   },
+   "cost": 0.0801252,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e24 is dated before e23)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Friday evenings return to the nave",
+  "setting": "Church parish administrator at St. Aidan's Anglican Parish",
+  "owner": "Miriam",
+  "org": "St. Aidan's Anglican Parish",
+  "now": "2026-10-08",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Miriam",
+    "text": "Standing rule for hall hire: once an outside group's booking is confirmed, the date, start time or room may only be changed with that hirer's written agreement. Parish-run services are exempt.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Tomas Reyes (Reyes & Sons Organ Builders)",
+    "text": "Confirming our organ restoration programme at St. Aidan's: pipe work runs June to November, and the heaviest work happens on Fridays, so the nave will be dusty and noisy on Friday evenings throughout the project.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Miriam",
+    "text": "Parish Hall seats 120, has the kitchen and the loop system; the nave seats 200 and has the organ and the choir stalls.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Miriam",
+    "text": "Ordered 24 boxes of altar candles from Waxwell Supplies for the autumn term, delivery to the vestry.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e24",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Ruth Pell (Churchwarden)",
+    "text": "My phone is 07700 900 314 and I am in the parish office on Monday and Wednesday mornings if anything needs a warden's signature.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-02",
+    "type": "instruction",
+    "from": "Miriam",
+    "text": "Standing instruction until Monday 30 November: because of the organ works, every Friday evening event after 18:00 at St. Aidan's is to be held in the Parish Hall, not the nave.",
+    "role": "rule"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Colin Marsh (Riverside Chamber Players)",
+    "text": "We would like to book St. Aidan's for our autumn concert on the evening of Friday 30 October, starting at 19:30, if the church is available.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Miriam",
+    "text": "Booked the Parish Hall every Tuesday at 10:00 for the community coffee morning for the rest of the year.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e25",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Miriam",
+    "text": "Assigned the October Sunday readers rota: first Sunday Ruth Pell, second Derek Oldfield, third June Carter, fourth Howard Blythe.",
+    "role": "decision",
+    "rests_on": [
+     "e24"
+    ],
+    "record": "EV-6"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "June Carter (Flower Guild)",
+    "text": "Thank you for the new storage cupboard keys; the guild will keep its vases there from now on.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Miriam",
+    "text": "Ordered 60 copies of the new hymnal from Canterbury Press for the choir and the nave pews.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Miriam",
+    "text": "Moved the choir rehearsal on Friday 9 October at 19:00 into the Parish Hall, in line with the standing instruction on Friday evening use during the organ works.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-21",
+    "type": "email",
+    "from": "Peter Anson (Verger)",
+    "text": "Just to confirm I look after room setup for Friday evening events, with two volunteers from the rota.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-28",
+    "type": "decision",
+    "from": "Miriam",
+    "text": "Booked Compline for Friday 23 October at 19:00 in the Parish Hall, since Friday evening events sit in the hall while the organ works continue.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e26",
+    "date": "2026-08-30",
+    "type": "decision",
+    "from": "Miriam",
+    "text": "Ordered 30 small flower arrangements from Bloomfield Florists for the harvest weekend, delivery to the church porch.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-01",
+    "type": "note",
+    "from": "Miriam",
+    "text": "Newsletter draft: remind everyone about gift day envelopes and the autumn fair rota.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-04",
+    "type": "decision",
+    "from": "Miriam",
+    "text": "Asked Peter Anson and his two volunteers to set up the Parish Hall on the afternoon of Friday 23 October ready for Compline that evening.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e11"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Howard Blythe (Treasurer)",
+    "text": "Hall hire stays at 180 per evening for community groups this year; please keep invoices going through me.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-11",
+    "type": "decision",
+    "from": "Miriam",
+    "text": "Confirmed the Riverside Chamber Players concert for Friday 30 October at 19:30 in the Parish Hall, as the nave is not offered for Friday evenings under the standing instruction during the organ works.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Miriam",
+    "text": "This month's parish newsletter reminds readers that all Friday evening events continue in the Parish Hall through the autumn while the organ is rebuilt.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Waxwell Supplies",
+    "text": "Your candle order has been dispatched and should reach the vestry within three working days.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Grace Nkomo (Cleaning Contractor)",
+    "text": "Please note the nave will be closed on Saturday mornings throughout October for floor polishing; Saturday afternoon access is unaffected.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-21",
+    "type": "call",
+    "from": "Derek Oldfield (Tower Captain)",
+    "text": "The bellringers keep their Thursday practice at 19:30; nothing changes for the ringers this term.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Tomas Reyes (Reyes & Sons Organ Builders)",
+    "text": "Good news: the organ work has finished three weeks early and the final voicing is done. The nave can be used for Friday evening events again from Friday 16 October onwards, so the Friday-evening hall arrangement no longer needs to apply after that date.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Colin Marsh (Riverside Chamber Players)",
+    "text": "Looking forward to the concert; our cellist asked whether the room has enough space for twelve players at the front.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-01",
+    "type": "notice",
+    "from": "Diocesan Office",
+    "text": "The annual parish returns form is due back by the end of November.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-02",
+    "type": "minutes",
+    "from": "Miriam",
+    "text": "Harvest supper planning: supper on Saturday 24 October in the Parish Hall, Ruth Pell coordinating desserts, tickets 12 each.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-05",
+    "type": "task",
+    "from": "Miriam",
+    "text": "Pay the Waxwell Supplies candle invoice by Thursday 15 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Alicia Brent (Choir Director)",
+    "text": "Could you double-check which room the choir has for its remaining October rehearsals? The parents keep asking me.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-07",
+    "type": "message",
+    "from": "Peter Anson (Verger)",
+    "text": "I have the keys for both the hall and the church this month, so setup either way is no trouble.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Altar candles autumn order",
+    "fields": {
+     "supplier": "Waxwell Supplies",
+     "item": "altar candles",
+     "quantity": "24 boxes",
+     "delivery": "vestry",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "New hymnals",
+    "fields": {
+     "supplier": "Canterbury Press",
+     "item": "hymnals",
+     "quantity": "60",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Harvest flower arrangements",
+    "fields": {
+     "supplier": "Bloomfield Florists",
+     "item": "flower arrangements",
+     "quantity": "30",
+     "delivery": "church porch",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Compline Friday 23 October",
+    "fields": {
+     "date": "2026-10-23",
+     "time": "19:00",
+     "place": "Parish Hall",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Riverside Chamber Players concert",
+    "fields": {
+     "date": "2026-10-30",
+     "time": "19:30",
+     "place": "Parish Hall",
+     "hirer": "Riverside Chamber Players",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Compline setup 23 October",
+    "fields": {
+     "date": "2026-10-23",
+     "team": "Peter Anson and two volunteers",
+     "place": "Parish Hall",
+     "status": "assigned"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Choir rehearsal 9 October",
+    "fields": {
+     "date": "2026-10-09",
+     "time": "19:00",
+     "place": "Parish Hall",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Tuesday coffee morning",
+    "fields": {
+     "day": "Tuesday",
+     "time": "10:00",
+     "place": "Parish Hall",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "October readers rota",
+    "fields": {
+     "month": "2026-10",
+     "readers": "Ruth Pell, Derek Oldfield, June Carter, Howard Blythe",
+     "status": "assigned"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "time",
+     "place"
+    ],
+    "from": "Colin Marsh (Riverside Chamber Players)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please send the weekly notices email to the parish notices list with the final time and place for Compline on Friday 23 October.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "place",
+    "value": "church nave",
+    "stale": [
+     "Parish Hall"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "place",
+    "value": "church nave",
+    "stale": [
+     "Parish Hall"
+    ]
+   },
+   {
+    "message_to": "parish notices list",
+    "regarding": "EV-1",
+    "says": [
+     "church nave",
+     "19:00"
+    ],
+    "stale": [
+     "Parish Hall"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The organ builders' email of 25 September ends the Friday-evening hall rule for events from Friday 16 October onward. Compline on 23 October and Peter's linked setup are parish-run and fall after that date, so both move back to the nave (REVISE), and the notices email must say the nave, not the hall. The Riverside concert on 30 October could also return to the nave but is a confirmed outside hire, so the hirer's written agreement is required (ASK, record untouched). The choir rehearsal on Friday 9 October falls before the amendment's effective date and stays in the hall (KEEP).",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "candle restock",
+    "counterpart": "Waxwell Supplies sales desk",
+    "org": "Waxwell Supplies",
+    "item": "altar candles",
+    "unit": "boxes",
+    "values": [
+     "6",
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "vestry"
+   },
+   {
+    "kind": "booking",
+    "topic": "chamber players rehearsal",
+    "counterpart": "Colin Marsh (Riverside Chamber Players)",
+    "org": "Riverside Chamber Players",
+    "item": "rehearsal space",
+    "unit": "session",
+    "values": [
+     "Parish Hall",
+     "church nave",
+     "choir vestry"
+    ],
+    "place": "St. Aidan's"
+   },
+   {
+    "kind": "booking",
+    "topic": "stitchers group",
+    "counterpart": "Pamela Oduya",
+    "org": "Tuesday Stitchers Circle",
+    "item": "meeting room",
+    "unit": "session",
+    "values": [
+     "Parish Hall",
+     "committee room",
+     "choir vestry"
+    ],
+    "place": "Parish Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Grace Nkomo",
+    "org": "Nkomo Cleaning Services",
+    "item": "cleaning consumables",
+    "unit": "packs",
+    "values": [
+     "4",
+     "8",
+     "10"
+    ],
+    "place": "Parish Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee morning supplies",
+    "counterpart": "Harbour Cash & Carry",
+    "org": "Harbour Cash & Carry",
+    "item": "coffee and tea",
+    "unit": "kilos",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Parish Hall kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "office paper",
+    "counterpart": "Printwell Stationery",
+    "org": "Printwell Stationery",
+    "item": "A4 paper",
+    "unit": "reams",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "parish office"
+   },
+   {
+    "kind": "order",
+    "topic": "flower restock",
+    "counterpart": "Bloomfield Florists",
+    "org": "Bloomfield Florists",
+    "item": "Sunday pedestal flowers",
+    "unit": "arrangements",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "church porch"
+   },
+   {
+    "kind": "booking",
+    "topic": "minibus outing",
+    "counterpart": "Lakeside Minibus Hire",
+    "org": "Lakeside Minibus Hire",
+    "item": "minibus",
+    "unit": "day",
+    "values": [
+     "16 seater",
+     "24 seater",
+     "33 seater"
+    ],
+    "place": "church car park"
+   },
+   {
+    "kind": "booking",
+    "topic": "boiler service",
+    "counterpart": "Aldgate Heating",
+    "org": "Aldgate Heating",
+    "item": "boiler service visit",
+    "unit": "visit",
+    "values": [
+     "Parish Hall",
+     "vicarage",
+     "church boiler room"
+    ],
+    "place": "Parish Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "communion wine",
+    "counterpart": "Vinery Direct",
+    "org": "Vinery Direct",
+    "item": "communion wine",
+    "unit": "cases",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "vestry"
+   },
+   {
+    "kind": "booking",
+    "topic": "deanery meeting",
+    "counterpart": "Ruth Pell (Churchwarden)",
+    "org": "Riverside Deanery",
+    "item": "meeting space",
+    "unit": "evening",
+    "values": [
+     "Parish Hall",
+     "committee room",
+     "church nave"
+    ],
+    "place": "Parish Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "choir robe cleaning",
+    "counterpart": "Freshfold Laundry",
+    "org": "Freshfold Laundry",
+    "item": "choir robes",
+    "unit": "robes",
+    "values": [
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "choir vestry"
+   }
+  ],
+  "id": "K500-2-10",
+  "tier": 500,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

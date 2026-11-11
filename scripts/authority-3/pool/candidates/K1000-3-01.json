@@ -684,5 +684,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e25) corrects fact A (e5); EV-1 rests directly on it (REVISE to Thursday), EV-2 rests two hops away via e6 and needs Rosa's consent under rule e1 (ASK), and ORD-1 cites only the unchanged price (KEEP), matching class 3 exactly. The task requires acting now without naming the change. Tier requirements (event/decision counts, change 21 days before task day, 9 core events after it, two echoes) are all met, and the change sits mid-history as an ordinary supplier email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e25) corrects fact A (e5); EV-1 rests directly on it (REVISE to Thursday), EV-2 rests two hops away via e6 and needs Rosa's consent under rule e1 (ASK), and ORD-1 cites only the unchanged price (KEEP), matching class 3 exactly. The task requires acting now without naming the change. Tier requirements (event/decision counts, change 21 days before task day, 9 core events after it, two echoes) are all met, and the change sits mid-history as an ordinary supplier email."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4324,
+    "completion_tokens": 312,
+    "reasoning_tokens": 149,
+    "cached_tokens": 0
+   },
+   "cost": 0.0074264,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3696a3a2b2bfd767da3fadb0aa5ebbb246a699ed8c9751748ba92e3328c2f366",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"EV-1 assigns Dan a regular receiving slot, so changing its weekday requires his agreement under e1, just as changing Rosa's slot does. Dan's weekday availability and willingness to receive deliveries do not unambiguously authorize changing his confirmed rota slot; the consent map therefore omits a required consent and EV-1's REVISE mark is unsupported.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "EV-1 assigns Dan a regular receiving slot, so changing its weekday requires his agreement under e1, just as changing Rosa's slot does. Dan's weekday availability and willingness to receive deliveries do not unambiguously authorize changing his confirmed rota slot; the consent map therefore omits a required consent and EV-1's REVISE mark is unsupported."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4256,
+    "completion_tokens": 275,
+    "reasoning_tokens": 167,
+    "cached_tokens": 0
+   },
+   "cost": 0.0669425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3696a3a2b2bfd767da3fadb0aa5ebbb246a699ed8c9751748ba92e3328c2f366",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e25) revokes the Tuesday fact in e5 and is labelled as a revocation, not a correction, with a decision two hops away (e7 via e6), which is class 1 rather than the intended class 3. The expected state is unclear on EV-1: the rota policy in e1 covers any change to a staff member's regular rota slot, and EV-1 is Dan Phelps's recurring receiving slot, yet it is marked REVISE with no consent for Dan while EV-2 requires Rosa's consent. The counts, distance and hidden placement of the change all meet the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e25) revokes the Tuesday fact in e5 and is labelled as a revocation, not a correction, with a decision two hops away (e7 via e6), which is class 1 rather than the intended class 3. The expected state is unclear on EV-1: the rota policy in e1 covers any change to a staff member's regular rota slot, and EV-1 is Dan Phelps's recurring receiving slot, yet it is marked REVISE with no consent for Dan while EV-2 requires Rosa's consent. The counts, distance and hidden placement of the change all meet the tier requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6388,
+    "completion_tokens": 2052,
+    "reasoning_tokens": 1802,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016648,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3696a3a2b2bfd767da3fadb0aa5ebbb246a699ed8c9751748ba92e3328c2f366",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

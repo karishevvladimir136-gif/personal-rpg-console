@@ -672,5 +672,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The rule permits starts at or after 10:00; neither Ravi nor Priya uniquely fixes 10:00, so the expected state excludes other compliant morning bookings. The consent map also applies e2 to EV-5, a review session, although e2 expressly covers confirmed kickoff dates only. The restatement changes nothing, and the core meets the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The rule permits starts at or after 10:00; neither Ravi nor Priya uniquely fixes 10:00, so the expected state excludes other compliant morning bookings. The consent map also applies e2 to EV-5, a review session, although e2 expressly covers confirmed kickoff dates only. The restatement changes nothing, and the core meets the tier requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4157,
+    "completion_tokens": 217,
+    "reasoning_tokens": 106,
+    "cached_tokens": 0
+   },
+   "cost": 0.062805,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "09271a449df626d542454ceda832f65fea07e23eeb147d814edef2ba31ef05cb",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Martin's e26 restates the existing kickoff rules without revoking any fact, rule or consent, so the control class and all-KEEP marks hold, and the Fernwood booking (2 hours, so no sign-off needed) follows from the rules. Counts meet tier 500: 32 core events, 8 decisions, the change 15 days before the task day, and 5 core events after it. The 'stale' entries in the expected create-record are a minor oddity for a new record, but they do not make the expected state wrong.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Martin's e26 restates the existing kickoff rules without revoking any fact, rule or consent, so the control class and all-KEEP marks hold, and the Fernwood booking (2 hours, so no sign-off needed) follows from the rules. Counts meet tier 500: 32 core events, 8 decisions, the change 15 days before the task day, and 5 core events after it. The 'stale' entries in the expected create-record are a minor oddity for a new record, but they do not make the expected state wrong."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6004,
+    "completion_tokens": 1303,
+    "reasoning_tokens": 1082,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012519,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "09271a449df626d542454ceda832f65fea07e23eeb147d814edef2ba31ef05cb",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change merely restates the standing kickoff rule and revokes nothing, so the control class is sound; the task forces a real act (booking plus confirmation) without hinting at any change. A two-hour kickoff starting 10:00 in Room 2 needs no sign-off under the rule's own terms, and the stale markers (11:30 from Nell's 90-minute idea, Room 1) are well grounded. Tier counts (31 core events, 8 decisions, change 14 days before task day with 71 later events) all fit.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change merely restates the standing kickoff rule and revokes nothing, so the control class is sound; the task forces a real act (booking plus confirmation) without hinting at any change. A two-hour kickoff starting 10:00 in Room 2 needs no sign-off under the rule's own terms, and the stale markers (11:30 from Nell's 90-minute idea, Room 1) are well grounded. Tier counts (31 core events, 8 decisions, change 14 days before task day with 71 later events) all fit."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4257,
+    "completion_tokens": 454,
+    "reasoning_tokens": 283,
+    "cached_tokens": 256
+   },
+   "cost": 0.0188898,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "09271a449df626d542454ceda832f65fea07e23eeb147d814edef2ba31ef05cb",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

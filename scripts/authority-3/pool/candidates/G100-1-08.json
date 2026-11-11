@@ -612,5 +612,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The new room capacity does not fix the concert's eventual attendance or supplier quantities at 60 while Ruth's consent to resize or move the booking is pending. Moving the concert to the Main Hall with her agreement could preserve the 80-person plan, so immediately reducing and confirming both supplier orders to 60 is not unambiguously justified.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The new room capacity does not fix the concert's eventual attendance or supplier quantities at 60 while Ruth's consent to resize or move the booking is pending. Moving the concert to the Main Hall with her agreement could preserve the 80-person plan, so immediately reducing and confirming both supplier orders to 60 is not unambiguously justified."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3463,
+    "completion_tokens": 198,
+    "reasoning_tokens": 94,
+    "cached_tokens": 0
+   },
+   "cost": 0.05318,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b5200060210e3a54b808fd9db895597d86ec525daec13522066c3bf740301fa1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core chain is consistent: the revoked capacity fact (e3) touches EV-1 (ASK under the standing rule e1), ORD-2 (REVISE, direct), ORD-1 (REVISE, two hops via e5), and EV-2 (KEEP, since 45 fits 60). The core meets tier 100 (20 events, 5 decisions, change 10 days before the task day, 4 core events after it), and the change is an ordinary notice. The routine sample has a 40-chair Valley Hire order and $-denominated items that could confuse record mapping, but these are noise and do not contradict the core.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core chain is consistent: the revoked capacity fact (e3) touches EV-1 (ASK under the standing rule e1), ORD-2 (REVISE, direct), ORD-1 (REVISE, two hops via e5), and EV-2 (KEEP, since 45 fits 60). The core meets tier 100 (20 events, 5 decisions, change 10 days before the task day, 4 core events after it), and the change is an ordinary notice. The routine sample has a 40-chair Valley Hire order and $-denominated items that could confuse record mapping, but these are noise and do not contradict the core."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5098,
+    "completion_tokens": 2415,
+    "reasoning_tokens": 2158,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017173,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b5200060210e3a54b808fd9db895597d86ec525daec13522066c3bf740301fa1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The re-survey revokes the 80-capacity fact; the catering and chair orders get the fixed value 60 (ORD-1 two hops from e3 via e5), EV-1 correctly stays put with a consent request under e1's written-agreement rule, and the WI booking is a genuine KEEP at 45<60. The task requires acting on orders now without mentioning the change, the change sits mid-history with 13 later events, and the tier's 20 events, 5 decisions, and 10-day gap all fit.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The re-survey revokes the 80-capacity fact; the catering and chair orders get the fixed value 60 (ORD-1 two hops from e3 via e5), EV-1 correctly stays put with a consent request under e1's written-agreement rule, and the WI booking is a genuine KEEP at 45<60. The task requires acting on orders now without mentioning the change, the change sits mid-history with 13 later events, and the tier's 20 events, 5 decisions, and 10-day gap all fit."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3542,
+    "completion_tokens": 435,
+    "reasoning_tokens": 267,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0095478,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b5200060210e3a54b808fd9db895597d86ec525daec13522066c3bf740301fa1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

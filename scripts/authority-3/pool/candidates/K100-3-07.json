@@ -1,0 +1,538 @@
+{
+ "id": "K100-3-07",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 3,
+ "idx": 6,
+ "setting": "Wedding planner at Everly Events, a two-person planning boutique",
+ "prompt_sha256": "446744b7e202f5e91ed191173939c8381bbfcf1b118234a626ddad2cca1a127f",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Hartley wedding flower delivery slips to 10:00\",\n \"setting\": \"Wedding planner at Everly Events, a two-person planning boutique\",\n \"owner\": \"Maya\",\n \"org\": \"Everly Events\",\n \"now\": \"2026-10-09\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"House rule: once a wedding-day schedule has been confirmed with the couple, no timing on it may be changed without the couple's written OK. Always ask them first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"House rule: any supplier order over 1000 needs Theo's sign-off before it is sent to the supplier.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Petra Voss (Rosehill Barn)\", \"text\": \"Confirming Rosehill Barn is booked for the Hartley wedding on 17 October 2026, with supplier access from 07:00 and the ceremony room ready by 14:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Nora Hartley\", \"text\": \"Ben and I are delighted to confirm the Hartley wedding for Saturday 17 October 2026 at Rosehill Barn, 56 guests, with Everly Events running the day.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Quote for the Hartley wedding: three-course wedding breakfast for 56 guests at 68 per head, total 3808, valid for 60 days.\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Ilsa Brandt (Lilybank Blooms)\", \"text\": \"Flower plan for the Hartley wedding at Rosehill Barn on 17 October 2026: bridal bouquet, six table centres and ceremony urns in a dusty-pink dahlia and garden rose palette, total 1240. We will deliver to the barn at 08:00 on the morning of the wedding.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Kim Aldero (Aldero Photography)\", \"text\": \"For the Hartley wedding I can start whenever suits. I need about 30 minutes for detail shots of the flowers and table styling before guests are around.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Thea Marlow (Marlow Bridal)\", \"text\": \"Bridal hair and makeup for Nora will take about 90 minutes start to finish; happy to work around your morning schedule.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Placed the Lilybank Blooms order for the Hartley wedding: dusty-pink dahlia and garden rose flowers, 1240, delivered to Rosehill Barn at 08:00 on 17 October 2026. Theo countersigned as it is over 1000.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Kim Aldero to start detail shots of the flowers and styling at 08:30 on 17 October 2026, straight after the Lilybank delivery lands at the barn at 08:00, giving her the 30 minutes she asked for before the morning gets busy.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e7\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Sent the Hartleys their confirmed wedding-day morning timeline: flowers at 08:00, Kim's detail photography at 08:30, then Thea starting Nora's 90-minute hair and makeup at 09:45 once the detail shots wrap. Nora replied in writing that they are happy with it.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e8\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered dusty-pink linen for the eight guest tables from Hartfield Hire to match the dahlia and garden rose palette in the Lilybank flower plan.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Theo Lindqvist (Everly Events)\", \"text\": \"Chased Hartfield Hire on the linen quote turnaround; they say delivery slots for mid-October are filling up.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-01\", \"type\": \"invoice\", \"from\": \"Ilsa Brandt (Lilybank Blooms)\", \"text\": \"Deposit invoice for the Hartley wedding flowers: 372 payable by 15 August, balance on delivery.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Fairway Catering for the Hartley wedding: three-course wedding breakfast for 56 guests at 68 per head, total 3808.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Ilsa Brandt (Lilybank Blooms)\", \"text\": \"For the Okafor wedding on 21 November we will deliver to the Orchard Room at 08:00 sharp; the couple asked for a white and green palette.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Theo paid the Lilybank deposit of 372 today; receipt filed.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-04\", \"type\": \"email\", \"from\": \"Kim Aldero (Aldero Photography)\", \"text\": \"Quick note: I will bring a second shooter for the Hartley wedding from the ceremony onwards, no change to the morning plan.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-18\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Catch-up with Theo: final numbers for the Hartleys confirmed at 56, menu tasting done, linen due to arrive 16 October.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Ilsa Brandt (Lilybank Blooms)\", \"text\": \"Small logistics update on the Hartley wedding: our van route that Saturday has changed, so the earliest we can get the flowers to Rosehill Barn on 17 October is 10:00. The flowers themselves, the dusty-pink palette and the 1240 total all stay exactly as agreed.\", \"role\": \"change\", \"revokes\": [\"e6\"]},\n  {\"id\": \"e21\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Nora Hartley\", \"text\": \"Just checking everything is on track for the 17th — Ben's mother keeps asking what time she should arrive!\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"Reminder to myself: send Kim Aldero her final confirmed timings for the Hartley wedding by Friday 9 October.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Lilybank Blooms – Hartley wedding flowers\", \"fields\": {\"supplier\": \"Lilybank Blooms\", \"date\": \"2026-10-17\", \"place\": \"Rosehill Barn\", \"delivery_time\": \"08:00\", \"amount\": \"1240\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Kim Aldero detail photography – Hartley wedding\", \"fields\": {\"date\": \"2026-10-17\", \"place\": \"Rosehill Barn\", \"start\": \"08:30\", \"duration\": \"30\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Hartley wedding morning timeline (confirmed with couple)\", \"fields\": {\"date\": \"2026-10-17\", \"place\": \"Rosehill Barn\", \"flowers\": \"08:00\", \"details_photo\": \"08:30\", \"prep_start\": \"09:45\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Hartfield Hire – dusty-pink linen\", \"fields\": {\"supplier\": \"Hartfield Hire\", \"date\": \"2026-10-16\", \"place\": \"Rosehill Barn\", \"colour\": \"dusty pink\", \"tables\": \"8\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Fairway Catering – Hartley wedding breakfast\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-10-17\", \"place\": \"Rosehill Barn\", \"guests\": \"56\", \"amount\": \"3808\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"flowers\", \"details_photo\", \"prep_start\"], \"from\": \"Nora and Ben Hartley\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please get Kim Aldero locked in for the Hartley wedding: update her schedule entry to the right start time and send her a message confirming when her detail shots begin on the 17th.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"delivery_time\", \"value\": \"10:00\", \"stale\": [\"08:00\"]},\n  {\"record\": \"EV-3\", \"field\": \"start\", \"value\": \"10:30\", \"stale\": [\"08:30\"], \"task\": true},\n  {\"message_to\": \"Kim Aldero (Aldero Photography)\", \"regarding\": \"EV-3\", \"says\": [\"10:30\"], \"stale\": [\"08:30\"], \"task\": true}\n ],\n \"why\": \"The florist's update moves the delivery from 08:00 to 10:00 while leaving flowers, palette and price untouched. The flower order (ORD-1) and the downstream photography slot (EV-3, 08:30 was anchored to the 08:00 delivery plus Kim's 30 minutes) are simple revisions, but the couple-confirmed timeline (EV-2) cannot be altered without the Hartleys' written OK, so the assistant must ask, not change it. The linen order only used the palette, which still stands, so it is KEEP; the task exercises the end of the chain by updating and confirming Kim's start at 10:30.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"ribbon and wrap restock\", \"counterpart\": \"Ilsa Brandt\", \"org\": \"Lilybank Blooms\", \"item\": \"florist ribbon and gift wrap\", \"unit\": \"rolls\", \"values\": [\"4\", \"6\", \"10\", \"12\"], \"place\": \"Everly Events studio\"},\n  {\"kind\": \"booking\", \"topic\": \"Lilybank workshop hire\", \"counterpart\": \"Ilsa Brandt\", \"org\": \"Lilybank Blooms\", \"item\": \"flower arranging workshop room\", \"unit\": \"\", \"values\": [\"Workshop Room\", \"Back Studio\", \"Glasshouse Annex\"], \"place\": \"Lilybank Blooms premises\"},\n  {\"kind\": \"booking\", \"topic\": \"Rosehill Barn viewing slots\", \"counterpart\": \"Petra Voss\", \"org\": \"Rosehill Barn\", \"item\": \"venue viewing appointment\", \"unit\": \"\", \"values\": [\"Orchard Room\", \"Ceremony Room\", \"Main Barn\", \"Terrace\"], \"place\": \"Rosehill Barn\"},\n  {\"kind\": \"order\", \"topic\": \"Fairway tasting boxes\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"menu tasting box\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"Everly Events studio\"},\n  {\"kind\": \"booking\", \"topic\": \"photography consultation calls\", \"counterpart\": \"Kim Aldero\", \"org\": \"Aldero Photography\", \"item\": \"client consultation call\", \"unit\": \"\", \"values\": [\"Studio Line\", \"Video Call Room 1\", \"Video Call Room 2\"], \"place\": \"Aldero Photography studio\"},\n  {\"kind\": \"order\", \"topic\": \"linen hire recurring\", \"counterpart\": \"Sam Hartfield\", \"org\": \"Hartfield Hire\", \"item\": \"table linen set\", \"unit\": \"sets\", \"values\": [\"6\", \"8\", \"10\", \"14\"], \"place\": \"Rosehill Barn\"},\n  {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"June Perrin\", \"org\": \"Perrin Candle Co\", \"item\": \"ivory pillar candles\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"8\", \"12\"], \"place\": \"Everly Events studio\"},\n  {\"kind\": \"booking\", \"topic\": \"bridal trial appointments\", \"counterpart\": \"Thea Marlow\", \"org\": \"Marlow Bridal\", \"item\": \"hair and makeup trial slot\", \"unit\": \"\", \"values\": [\"Salon Chair 1\", \"Salon Chair 2\", \"Private Suite\"], \"place\": \"Marlow Bridal salon\"},\n  {\"kind\": \"order\", \"topic\": \"stationery printing\", \"counterpart\": \"Owen Blake\", \"org\": \"Blake Print Works\", \"item\": \"place cards and menus\", \"unit\": \"packs\", \"values\": [\"40\", \"56\", \"80\", \"120\"], \"place\": \"Everly Events studio\"},\n  {\"kind\": \"booking\", \"topic\": \"delivery van hire\", \"counterpart\": \"Ruth Kelsey\", \"org\": \"Kelsey Vans\", \"item\": \"small delivery van\", \"unit\": \"\", \"values\": [\"Van A\", \"Van B\", \"Luton Van\"], \"place\": \"Kelsey Vans depot\"},\n  {\"kind\": \"order\", \"topic\": \"confetti and favours\", \"counterpart\": \"Priya Anand\", \"org\": \"Anand Favours\", \"item\": \"dried petal confetti\", \"unit\": \"bags\", \"values\": [\"10\", \"20\", \"30\", \"50\"], \"place\": \"Everly Events studio\"},\n  {\"kind\": \"booking\", \"topic\": \"planning team coworking\", \"counterpart\": \"Theo Lindqvist\", \"org\": \"Everly Events\", \"item\": \"weekly planning room\", \"unit\": \"\", \"values\": [\"Studio Desk 1\", \"Studio Desk 2\", \"Meeting Nook\"], \"place\": \"Everly Events studio\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3176,
+    "completion_tokens": 6486,
+    "reasoning_tokens": 2799,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0985236,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Hartley wedding flower delivery slips to 10:00",
+  "setting": "Wedding planner at Everly Events, a two-person planning boutique",
+  "owner": "Maya",
+  "org": "Everly Events",
+  "now": "2026-10-09",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Maya",
+    "text": "House rule: once a wedding-day schedule has been confirmed with the couple, no timing on it may be changed without the couple's written OK. Always ask them first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Maya",
+    "text": "House rule: any supplier order over 1000 needs Theo's sign-off before it is sent to the supplier.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Petra Voss (Rosehill Barn)",
+    "text": "Confirming Rosehill Barn is booked for the Hartley wedding on 17 October 2026, with supplier access from 07:00 and the ceremony room ready by 14:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Nora Hartley",
+    "text": "Ben and I are delighted to confirm the Hartley wedding for Saturday 17 October 2026 at Rosehill Barn, 56 guests, with Everly Events running the day.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-25",
+    "type": "quote",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Quote for the Hartley wedding: three-course wedding breakfast for 56 guests at 68 per head, total 3808, valid for 60 days.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Ilsa Brandt (Lilybank Blooms)",
+    "text": "Flower plan for the Hartley wedding at Rosehill Barn on 17 October 2026: bridal bouquet, six table centres and ceremony urns in a dusty-pink dahlia and garden rose palette, total 1240. We will deliver to the barn at 08:00 on the morning of the wedding.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Kim Aldero (Aldero Photography)",
+    "text": "For the Hartley wedding I can start whenever suits. I need about 30 minutes for detail shots of the flowers and table styling before guests are around.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Thea Marlow (Marlow Bridal)",
+    "text": "Bridal hair and makeup for Nora will take about 90 minutes start to finish; happy to work around your morning schedule.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Placed the Lilybank Blooms order for the Hartley wedding: dusty-pink dahlia and garden rose flowers, 1240, delivered to Rosehill Barn at 08:00 on 17 October 2026. Theo countersigned as it is over 1000.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-12",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked Kim Aldero to start detail shots of the flowers and styling at 08:30 on 17 October 2026, straight after the Lilybank delivery lands at the barn at 08:00, giving her the 30 minutes she asked for before the morning gets busy.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e7"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Sent the Hartleys their confirmed wedding-day morning timeline: flowers at 08:00, Kim's detail photography at 08:30, then Thea starting Nora's 90-minute hair and makeup at 09:45 once the detail shots wrap. Nora replied in writing that they are happy with it.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e8",
+     "e1"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-18",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered dusty-pink linen for the eight guest tables from Hartfield Hire to match the dahlia and garden rose palette in the Lilybank flower plan.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-22",
+    "type": "email",
+    "from": "Theo Lindqvist (Everly Events)",
+    "text": "Chased Hartfield Hire on the linen quote turnaround; they say delivery slots for mid-October are filling up.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-01",
+    "type": "invoice",
+    "from": "Ilsa Brandt (Lilybank Blooms)",
+    "text": "Deposit invoice for the Hartley wedding flowers: 372 payable by 15 August, balance on delivery.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-06",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked Fairway Catering for the Hartley wedding: three-course wedding breakfast for 56 guests at 68 per head, total 3808.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e4"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-10",
+    "type": "email",
+    "from": "Ilsa Brandt (Lilybank Blooms)",
+    "text": "For the Okafor wedding on 21 November we will deliver to the Orchard Room at 08:00 sharp; the couple asked for a white and green palette.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-20",
+    "type": "note",
+    "from": "Maya",
+    "text": "Theo paid the Lilybank deposit of 372 today; receipt filed.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-04",
+    "type": "email",
+    "from": "Kim Aldero (Aldero Photography)",
+    "text": "Quick note: I will bring a second shooter for the Hartley wedding from the ceremony onwards, no change to the morning plan.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-18",
+    "type": "minutes",
+    "from": "Maya",
+    "text": "Catch-up with Theo: final numbers for the Hartleys confirmed at 56, menu tasting done, linen due to arrive 16 October.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Ilsa Brandt (Lilybank Blooms)",
+    "text": "Small logistics update on the Hartley wedding: our van route that Saturday has changed, so the earliest we can get the flowers to Rosehill Barn on 17 October is 10:00. The flowers themselves, the dusty-pink palette and the 1240 total all stay exactly as agreed.",
+    "role": "change",
+    "revokes": [
+     "e6"
+    ]
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Nora Hartley",
+    "text": "Just checking everything is on track for the 17th — Ben's mother keeps asking what time she should arrive!",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-05",
+    "type": "task",
+    "from": "Maya",
+    "text": "Reminder to myself: send Kim Aldero her final confirmed timings for the Hartley wedding by Friday 9 October.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Lilybank Blooms – Hartley wedding flowers",
+    "fields": {
+     "supplier": "Lilybank Blooms",
+     "date": "2026-10-17",
+     "place": "Rosehill Barn",
+     "delivery_time": "08:00",
+     "amount": "1240",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Kim Aldero detail photography – Hartley wedding",
+    "fields": {
+     "date": "2026-10-17",
+     "place": "Rosehill Barn",
+     "start": "08:30",
+     "duration": "30",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Hartley wedding morning timeline (confirmed with couple)",
+    "fields": {
+     "date": "2026-10-17",
+     "place": "Rosehill Barn",
+     "flowers": "08:00",
+     "details_photo": "08:30",
+     "prep_start": "09:45",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Hartfield Hire – dusty-pink linen",
+    "fields": {
+     "supplier": "Hartfield Hire",
+     "date": "2026-10-16",
+     "place": "Rosehill Barn",
+     "colour": "dusty pink",
+     "tables": "8",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Fairway Catering – Hartley wedding breakfast",
+    "fields": {
+     "supplier": "Fairway Catering",
+     "date": "2026-10-17",
+     "place": "Rosehill Barn",
+     "guests": "56",
+     "amount": "3808",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "flowers",
+     "details_photo",
+     "prep_start"
+    ],
+    "from": "Nora and Ben Hartley",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please get Kim Aldero locked in for the Hartley wedding: update her schedule entry to the right start time and send her a message confirming when her detail shots begin on the 17th.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "delivery_time",
+    "value": "10:00",
+    "stale": [
+     "08:00"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "start",
+    "value": "10:30",
+    "stale": [
+     "08:30"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Kim Aldero (Aldero Photography)",
+    "regarding": "EV-3",
+    "says": [
+     "10:30"
+    ],
+    "stale": [
+     "08:30"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The florist's update moves the delivery from 08:00 to 10:00 while leaving flowers, palette and price untouched. The flower order (ORD-1) and the downstream photography slot (EV-3, 08:30 was anchored to the 08:00 delivery plus Kim's 30 minutes) are simple revisions, but the couple-confirmed timeline (EV-2) cannot be altered without the Hartleys' written OK, so the assistant must ask, not change it. The linen order only used the palette, which still stands, so it is KEEP; the task exercises the end of the chain by updating and confirming Kim's start at 10:30.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "ribbon and wrap restock",
+    "counterpart": "Ilsa Brandt",
+    "org": "Lilybank Blooms",
+    "item": "florist ribbon and gift wrap",
+    "unit": "rolls",
+    "values": [
+     "4",
+     "6",
+     "10",
+     "12"
+    ],
+    "place": "Everly Events studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "Lilybank workshop hire",
+    "counterpart": "Ilsa Brandt",
+    "org": "Lilybank Blooms",
+    "item": "flower arranging workshop room",
+    "unit": "",
+    "values": [
+     "Workshop Room",
+     "Back Studio",
+     "Glasshouse Annex"
+    ],
+    "place": "Lilybank Blooms premises"
+   },
+   {
+    "kind": "booking",
+    "topic": "Rosehill Barn viewing slots",
+    "counterpart": "Petra Voss",
+    "org": "Rosehill Barn",
+    "item": "venue viewing appointment",
+    "unit": "",
+    "values": [
+     "Orchard Room",
+     "Ceremony Room",
+     "Main Barn",
+     "Terrace"
+    ],
+    "place": "Rosehill Barn"
+   },
+   {
+    "kind": "order",
+    "topic": "Fairway tasting boxes",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "menu tasting box",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "6"
+    ],
+    "place": "Everly Events studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "photography consultation calls",
+    "counterpart": "Kim Aldero",
+    "org": "Aldero Photography",
+    "item": "client consultation call",
+    "unit": "",
+    "values": [
+     "Studio Line",
+     "Video Call Room 1",
+     "Video Call Room 2"
+    ],
+    "place": "Aldero Photography studio"
+   },
+   {
+    "kind": "order",
+    "topic": "linen hire recurring",
+    "counterpart": "Sam Hartfield",
+    "org": "Hartfield Hire",
+    "item": "table linen set",
+    "unit": "sets",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "14"
+    ],
+    "place": "Rosehill Barn"
+   },
+   {
+    "kind": "order",
+    "topic": "candle restock",
+    "counterpart": "June Perrin",
+    "org": "Perrin Candle Co",
+    "item": "ivory pillar candles",
+    "unit": "boxes",
+    "values": [
+     "3",
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "Everly Events studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "bridal trial appointments",
+    "counterpart": "Thea Marlow",
+    "org": "Marlow Bridal",
+    "item": "hair and makeup trial slot",
+    "unit": "",
+    "values": [
+     "Salon Chair 1",
+     "Salon Chair 2",
+     "Private Suite"
+    ],
+    "place": "Marlow Bridal salon"
+   },
+   {
+    "kind": "order",
+    "topic": "stationery printing",
+    "counterpart": "Owen Blake",
+    "org": "Blake Print Works",
+    "item": "place cards and menus",
+    "unit": "packs",
+    "values": [
+     "40",
+     "56",
+     "80",
+     "120"
+    ],
+    "place": "Everly Events studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "delivery van hire",
+    "counterpart": "Ruth Kelsey",
+    "org": "Kelsey Vans",
+    "item": "small delivery van",
+    "unit": "",
+    "values": [
+     "Van A",
+     "Van B",
+     "Luton Van"
+    ],
+    "place": "Kelsey Vans depot"
+   },
+   {
+    "kind": "order",
+    "topic": "confetti and favours",
+    "counterpart": "Priya Anand",
+    "org": "Anand Favours",
+    "item": "dried petal confetti",
+    "unit": "bags",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "50"
+    ],
+    "place": "Everly Events studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "planning team coworking",
+    "counterpart": "Theo Lindqvist",
+    "org": "Everly Events",
+    "item": "weekly planning room",
+    "unit": "",
+    "values": [
+     "Studio Desk 1",
+     "Studio Desk 2",
+     "Meeting Nook"
+    ],
+    "place": "Everly Events studio"
+   }
+  ],
+  "id": "K100-3-07",
+  "tier": 100,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

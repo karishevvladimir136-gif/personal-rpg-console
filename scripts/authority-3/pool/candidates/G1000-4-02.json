@@ -1,0 +1,744 @@
+{
+ "id": "G1000-4-02",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 4,
+ "idx": 1,
+ "setting": "The facilities supervisor at Grandvale Office Park whose assistant logs work orders, contractor visits, and access-card records",
+ "prompt_sha256": "c0963fd8895c9b360538435cab6bd36b6bda6eeff24d4a552f8efd976ce0875a",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Grandvale work orders: policy restated, roof inspection confirmed\",\n \"setting\": \"The facilities supervisor at Grandvale Office Park whose assistant logs work orders, contractor visits, and access-card records\",\n \"owner\": \"Marta\",\n \"org\": \"Grandvale Office Park facilities team\",\n \"now\": \"2026-10-28\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Booking policy for Grandvale: any contractor working in an occupied suite outside business hours, or at any time on a weekend, must have my written approval before the visit is confirmed. Weekday visits between 08:00 and 18:00 need no approval.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Crystalview Window Care\", \"text\": \"Quote from Crystalview Window Care: full atrium and south facade wash at 290 dollars per visit. We can take bookings on Thursdays with two weeks' notice.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"invoice\", \"from\": \"Airworks Filters\", \"text\": \"Airworks Filters price list: standard HVAC pleated filters at 6.50 dollars each, delivery to Grandvale loading bay within five working days.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Tomas Vega (Suite 330 tenant)\", \"text\": \"Just a note that the lobby plants look thirsty. Not urgent, whenever the maintenance round happens.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Crystalview Window Care to wash the atrium and south facade on 2026-08-14 at their quoted 290 dollars, which falls on a Thursday inside business hours.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Lumen Clean\", \"text\": \"Lumen Clean quote: evening deep carpet clean for Suite 410 at 520 dollars, any weeknight after 18:00, we bring our own equipment.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-28\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 40 HVAC pleated filters from Airworks Filters at 6.50 dollars each for the quarterly changeover, delivered to the loading bay.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Marta, I've seen the Lumen Clean quote for the Suite 410 evening clean. You have my approval to confirm it for an evening slot.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Lumen Clean for the Suite 410 carpet deep clean on 2026-08-06 at 19:00, 520 dollars, with Priya Nair's approval already in hand since it is outside business hours.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e6\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-09\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Reminder to myself: check the fire extinguisher service dates before August.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Secureline Systems\", \"text\": \"Secureline Systems can run the quarterly access-card audit on any Tuesday that suits you; we need the card-reader room and about four hours.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled Secureline Systems for the quarterly access-card audit on 2026-09-10, a Tuesday, in the card-reader room.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-3\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Nora Blum (Grandvale front desk)\", \"text\": \"Parking bay B12 is blocked by a delivery van again, just so you know.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-02\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Fire extinguisher service is up to date, nothing to book there.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-19\", \"type\": \"quote\", \"from\": \"Dan Luca (Danelu Roofing)\", \"text\": \"Danelu Roofing quote: full roof inspection of the Level 7 rooftop at a flat fee of 380 dollars. Our inspector is available on Thursday mornings; two hours on site.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Danelu Roofing for the Level 7 rooftop inspection on 2026-11-05 at 09:00, at the quoted flat fee of 380 dollars, a weekday morning inside business hours.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"EV-4\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-30\", \"type\": \"notice\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Standing reminder to all supervisors: outside-hours and weekend contractor work in occupied suites still goes through me in writing before you confirm anything. Weekday daytime visits are fine to book directly.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Marta, approved: the Saturday generator load test with Volt Ridge Services in October. Book it whenever suits the maintenance calendar.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled Volt Ridge Services for the generator load test on 2026-10-17 at 08:00, a Saturday, with Priya Nair's written approval on file as the policy requires.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e18\"], \"record\": \"EV-5\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Confirming the Saturday generator test is on my calendar for 17 October at 08:00 with Volt Ridge. Approval stands.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Policy note for the Grandvale facilities team, restating how we work: no contractor may be confirmed for work in an occupied suite outside normal business hours, nor for any weekend work, unless I have given written approval in advance. Bookings within weekday business hours are exempt.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e22\", \"date\": \"2026-10-14\", \"type\": \"quote\", \"from\": \"Hartwell Hardware\", \"text\": \"Hartwell Hardware quote: heavy-duty door hinges at 4.20 dollars each, minimum order 12, delivered to the Grandvale loading bay.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-16\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 12 heavy-duty door hinges from Hartwell Hardware at 4.20 dollars each for the ground-floor door repairs, delivered to the loading bay.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Dan Luca (Danelu Roofing)\", \"text\": \"Marta, a heads-up: another job may push our visit back. If it moves, the inspection would go to 2026-11-09 instead. I'll let you know by end of next week whether we actually need to shift it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e25\", \"date\": \"2026-10-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Fixwell Plumbing for the Suite 210 leak repair on 2026-11-12 at 10:00, a weekday morning inside business hours, no approval needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"EV-6\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Nora Blum (Grandvale front desk)\", \"text\": \"Suite 210 says the leak is holding for now, no emergencies over the weekend.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-27\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Before the roofing visit I owe Dan Luca a confirmation with access details: date, time, and where to report on site.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Iris Kwan (Suite 120 tenant)\", \"text\": \"Our meeting room chairs have a wobble, could someone look at them this month?\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-06-12\", \"type\": \"call\", \"from\": \"Marta\", \"text\": \"Called Iris Kwan in Suite 120; the wobbly chairs are on the small-repairs list for late June.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-07-11\", \"type\": \"letter\", \"from\": \"Grandvale Office Park management\", \"text\": \"Annual letter to contractors: site passes must be worn at all times and signed in at the front desk.\", \"role\": \"rule\"},\n  {\"id\": \"e31\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Lumen Clean\", \"text\": \"Thanks for the 6 August evening clean, invoice 520 dollars attached for your finance lead.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Secureline Systems\", \"text\": \"Access-card audit on 10 September complete, 3 cards flagged for review and disabled.\", \"role\": \"fact\"},\n  {\"id\": \"e33\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"Volt Ridge confirmed they'll bring their own load-bank equipment for the Saturday test.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Window wash, atrium and south facade\", \"fields\": {\"date\": \"2026-08-14\", \"contractor\": \"Crystalview Window Care\", \"area\": \"Atrium and south facade\", \"cost\": \"290\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"HVAC pleated filters\", \"fields\": {\"supplier\": \"Airworks Filters\", \"item\": \"HVAC pleated filters\", \"quantity\": \"40\", \"unit_cost\": \"6.50\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Evening carpet clean, Suite 410\", \"fields\": {\"date\": \"2026-08-06\", \"time\": \"19:00\", \"contractor\": \"Lumen Clean\", \"area\": \"Suite 410\", \"approved_by\": \"Priya Nair\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Quarterly access-card audit\", \"fields\": {\"date\": \"2026-09-10\", \"contractor\": \"Secureline Systems\", \"area\": \"Card-reader room\", \"status\": \"done\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Roof inspection, Level 7 rooftop\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"09:00\", \"contractor\": \"Danelu Roofing\", \"area\": \"Level 7 rooftop\", \"fee\": \"380\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Generator load test\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"08:00\", \"contractor\": \"Volt Ridge Services\", \"area\": \"Generator house\", \"approved_by\": \"Priya Nair\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Heavy-duty door hinges\", \"fields\": {\"supplier\": \"Hartwell Hardware\", \"item\": \"Heavy-duty door hinges\", \"quantity\": \"12\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Leak repair, Suite 210\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"10:00\", \"contractor\": \"Fixwell Plumbing\", \"area\": \"Suite 210\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [],\n \"task\": \"Danelu Roofing is coming soon for the rooftop inspection. Please send them a confirmation with everything they need for site access: the date, the time, and where they should report on site.\",\n \"expect\": [\n  {\"message_to\": \"Dan Luca (Danelu Roofing)\", \"regarding\": \"EV-4\", \"says\": [\"2026-11-05\", \"09:00\", \"Level 7 rooftop\", \"front desk\"], \"stale\": [\"2026-11-09\"], \"task\": true}\n ],\n \"why\": \"The change (e21) merely restates the after-hours approval policy in other words and revokes nothing, so no decision carries a mark and every record stays exactly as it is. The right act is only the task: confirm the roof inspection with Danelu Roofing for 2026-11-05 at 09:00 on the Level 7 rooftop, reporting through the front desk. Dan Luca's unconfirmed mention of possibly shifting to 2026-11-09 is a distractor, not a value to act on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"filter restock\", \"counterpart\": \"Airworks Filters\", \"org\": \"Airworks\", \"item\": \"HVAC pleated filters\", \"unit\": \"boxes\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"Grandvale loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"window washing\", \"counterpart\": \"Crystalview Window Care\", \"org\": \"Crystalview\", \"item\": \"window washing round\", \"unit\": \"\", \"values\": [\"Atrium\", \"South facade\", \"North facade\", \"Lobby\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"booking\", \"topic\": \"evening cleaning\", \"counterpart\": \"Lumen Clean\", \"org\": \"Lumen Clean\", \"item\": \"carpet deep clean\", \"unit\": \"\", \"values\": [\"Suite 210\", \"Suite 330\", \"Suite 410\", \"Meeting rooms\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"booking\", \"topic\": \"access-card audit\", \"counterpart\": \"Secureline Systems\", \"org\": \"Secureline\", \"item\": \"card audit session\", \"unit\": \"\", \"values\": [\"Card-reader room\", \"Front desk\", \"Server room\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Hartwell Hardware\", \"org\": \"Hartwell Hardware\", \"item\": \"cleaning concentrate\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Grandvale loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"plant watering\", \"counterpart\": \"Greenleaf Services\", \"org\": \"Greenleaf\", \"item\": \"plant maintenance round\", \"unit\": \"\", \"values\": [\"Lobby\", \"Atrium\", \"Suite 120\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"order\", \"topic\": \"light bulbs\", \"counterpart\": \"Brightline Supply\", \"org\": \"Brightline\", \"item\": \"LED ceiling panels\", \"unit\": \"panels\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"Grandvale loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"generator test\", \"counterpart\": \"Volt Ridge Services\", \"org\": \"Volt Ridge\", \"item\": \"generator load test\", \"unit\": \"\", \"values\": [\"Generator house\", \"Loading bay\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"order\", \"topic\": \"paper towels\", \"counterpart\": \"CleanSource Wholesale\", \"org\": \"CleanSource\", \"item\": \"paper towel rolls\", \"unit\": \"rolls\", \"values\": [\"100\", \"200\", \"300\"], \"place\": \"Grandvale loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"elevator service\", \"counterpart\": \"RiseWell Lifts\", \"org\": \"RiseWell\", \"item\": \"elevator maintenance visit\", \"unit\": \"\", \"values\": [\"Lift A\", \"Lift B\", \"Service lift\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"order\", \"topic\": \"hand soap\", \"counterpart\": \"CleanSource Wholesale\", \"org\": \"CleanSource\", \"item\": \"foam soap cartridges\", \"unit\": \"cartridges\", \"values\": [\"30\", \"60\", \"90\"], \"place\": \"Grandvale loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"pest control\", \"counterpart\": \"NoPest Regional\", \"org\": \"NoPest\", \"item\": \"pest control inspection\", \"unit\": \"\", \"values\": [\"Basement\", \"Kitchen areas\", \"Loading bay\"], \"place\": \"Grandvale Office Park\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3215,
+    "completion_tokens": 7446,
+    "reasoning_tokens": 3074,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03368836,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Grandvale work orders: policy restated, roof inspection confirmed\",\n \"setting\": \"The facilities supervisor at Grandvale Office Park whose assistant logs work orders, contractor visits, and access-card records\",\n \"owner\": \"Marta\",\n \"org\": \"Grandvale Office Park facilities team\",\n \"now\": \"2026-10-28\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Booking policy for Grandvale: any contractor working in an occupied suite outside business hours, or at any time on a weekend, must have my written approval before the visit is confirmed. Weekday visits between 08:00 and 18:00 need no approval.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Iris Kwan (Suite 120 tenant)\", \"text\": \"Our meeting room chairs have a wobble, could someone look at them this month?\", \"role\": \"other\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Crystalview Window Care\", \"text\": \"Quote from Crystalview Window Care: full atrium and south facade wash at 290 dollars per visit. We can take bookings on Thursdays with two weeks' notice.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"call\", \"from\": \"Marta\", \"text\": \"Called Iris Kwan in Suite 120; the wobbly chairs are on the small-repairs list for late June.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"invoice\", \"from\": \"Airworks Filters\", \"text\": \"Airworks Filters price list: standard HVAC pleated filters at 6.50 dollars each, delivery to Grandvale loading bay within five working days.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Tomas Vega (Suite 330 tenant)\", \"text\": \"Just a note that the lobby plants look thirsty. Not urgent, whenever the maintenance round happens.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Crystalview Window Care to wash the atrium and south facade on 2026-08-14 at their quoted 290 dollars, which falls on a Thursday inside business hours.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Lumen Clean\", \"text\": \"Lumen Clean quote: evening deep carpet clean for Suite 410 at 520 dollars, any weeknight after 18:00, we bring our own equipment.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-28\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 40 HVAC pleated filters from Airworks Filters at 6.50 dollars each for the quarterly changeover, delivered to the loading bay.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Marta, I've seen the Lumen Clean quote for the Suite 410 evening clean. You have my approval to confirm it for an evening slot.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Lumen Clean for the Suite 410 carpet deep clean on 2026-08-06 at 19:00, 520 dollars, with Priya Nair's approval already in hand since it is outside business hours.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e8\", \"e10\"], \"record\": \"EV-2\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-09\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Reminder to myself: check the fire extinguisher service dates before August.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-11\", \"type\": \"email\", \"from\": \"Secureline Systems\", \"text\": \"Secureline Systems can run the quarterly access-card audit on any Tuesday that suits you; we need the card-reader room and about four hours.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled Secureline Systems for the quarterly access-card audit on 2026-09-10, a Tuesday, in the card-reader room.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-18\", \"type\": \"email\", \"from\": \"Nora Blum (Grandvale front desk)\", \"text\": \"Parking bay B12 is blocked by a delivery van again, just so you know.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-22\", \"type\": \"letter\", \"from\": \"Grandvale Office Park management\", \"text\": \"Annual letter to contractors: site passes must be worn at all times and signed in at the front desk.\", \"role\": \"rule\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-02\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Fire extinguisher service is up to date, nothing to book there.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Lumen Clean\", \"text\": \"Thanks for the 6 August evening clean, invoice 520 dollars attached for your finance lead.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-19\", \"type\": \"quote\", \"from\": \"Dan Luca (Danelu Roofing)\", \"text\": \"Danelu Roofing quote: full roof inspection of the Level 7 rooftop at a flat fee of 380 dollars. Our inspector is available on Thursday mornings; two hours on site.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Danelu Roofing for the Level 7 rooftop inspection on 2026-11-05 at 09:00, at the quoted flat fee of 380 dollars, a weekday morning inside business hours.\", \"role\": \"decision\", \"rests_on\": [\"e19\"], \"record\": \"EV-4\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-30\", \"type\": \"notice\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Standing reminder to all supervisors: outside-hours and weekend contractor work in occupied suites still goes through me in writing before you confirm anything. Weekday daytime visits are fine to book directly.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Marta, approved: the Saturday generator load test with Volt Ridge Services in October. Book it whenever suits the maintenance calendar.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled Volt Ridge Services for the generator load test on 2026-10-17 at 08:00, a Saturday, with Priya Nair's written approval on file as the policy requires.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e22\"], \"record\": \"EV-5\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Secureline Systems\", \"text\": \"Access-card audit on 10 September complete, 3 cards flagged for review and disabled.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"Volt Ridge confirmed they'll bring their own load-bank equipment for the Saturday test.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Confirming the Saturday generator test is on my calendar for 17 October at 08:00 with Volt Ridge. Approval stands.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Priya Nair (property manager)\", \"text\": \"Policy note for the Grandvale facilities team, restating how we work: no contractor may be confirmed for work in an occupied suite outside normal business hours, nor for any weekend work, unless I have given written approval in advance. Bookings within weekday business hours are exempt.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e28\", \"date\": \"2026-10-14\", \"type\": \"quote\", \"from\": \"Hartwell Hardware\", \"text\": \"Hartwell Hardware quote: heavy-duty door hinges at 4.20 dollars each, minimum order 12, delivered to the Grandvale loading bay.\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-16\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 12 heavy-duty door hinges from Hartwell Hardware at 4.20 dollars each for the ground-floor door repairs, delivered to the loading bay.\", \"role\": \"decision\", \"rests_on\": [\"e28\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Dan Luca (Danelu Roofing)\", \"text\": \"Marta, a heads-up: another job may push our visit back. If it moves, the inspection would go to 2026-11-09 instead. I'll let you know by end of next week whether we actually need to shift it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e31\", \"date\": \"2026-10-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Fixwell Plumbing for the Suite 210 leak repair on 2026-11-12 at 10:00, a weekday morning inside business hours, no approval needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"EV-6\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Nora Blum (Grandvale front desk)\", \"text\": \"Suite 210 says the leak is holding for now, no emergencies over the weekend.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-27\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Before the roofing visit I owe Dan Luca a confirmation with access details: date, time, and where to report on site.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Window wash, atrium and south facade\", \"fields\": {\"date\": \"2026-08-14\", \"contractor\": \"Crystalview Window Care\", \"area\": \"Atrium and south facade\", \"cost\": \"290\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"HVAC pleated filters\", \"fields\": {\"supplier\": \"Airworks Filters\", \"item\": \"HVAC pleated filters\", \"quantity\": \"40\", \"unit_cost\": \"6.50\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Evening carpet clean, Suite 410\", \"fields\": {\"date\": \"2026-08-06\", \"time\": \"19:00\", \"contractor\": \"Lumen Clean\", \"area\": \"Suite 410\", \"approved_by\": \"Priya Nair\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Quarterly access-card audit\", \"fields\": {\"date\": \"2026-09-10\", \"contractor\": \"Secureline Systems\", \"area\": \"Card-reader room\", \"status\": \"done\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Roof inspection, Level 7 rooftop\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"09:00\", \"contractor\": \"Danelu Roofing\", \"area\": \"Level 7 rooftop\", \"fee\": \"380\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Generator load test\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"08:00\", \"contractor\": \"Volt Ridge Services\", \"area\": \"Generator house\", \"approved_by\": \"Priya Nair\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Heavy-duty door hinges\", \"fields\": {\"supplier\": \"Hartwell Hardware\", \"item\": \"Heavy-duty door hinges\", \"quantity\": \"12\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Leak repair, Suite 210\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"10:00\", \"contractor\": \"Fixwell Plumbing\", \"area\": \"Suite 210\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [],\n \"task\": \"Danelu Roofing is coming soon for the rooftop inspection. Please send them a confirmation with everything they need for site access: the date, the time, and where they should report on site.\",\n \"expect\": [\n  {\"message_to\": \"Dan Luca (Danelu Roofing)\", \"regarding\": \"EV-4\", \"says\": [\"2026-11-05\", \"09:00\", \"Level 7 rooftop\", \"front desk\"], \"stale\": [\"2026-11-09\"], \"task\": true}\n ],\n \"why\": \"The change (e27) merely restates the after-hours approval policy in other words and revokes nothing, so no decision carries a mark and every record stays exactly as it is. The right act is only the task: confirm the roof inspection with Danelu Roofing for 2026-11-05 at 09:00 on the Level 7 rooftop, reporting through the front desk. Dan Luca's unconfirmed mention of possibly shifting to 2026-11-09 is a distractor, not a value to act on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"filter restock\", \"counterpart\": \"Airworks Filters\", \"org\": \"Airworks\", \"item\": \"HVAC pleated filters\", \"unit\": \"boxes\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"Grandvale loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"window washing\", \"counterpart\": \"Crystalview Window Care\", \"org\": \"Crystalview\", \"item\": \"window washing round\", \"unit\": \"\", \"values\": [\"Atrium\", \"South facade\", \"North facade\", \"Lobby\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"booking\", \"topic\": \"evening cleaning\", \"counterpart\": \"Lumen Clean\", \"org\": \"Lumen Clean\", \"item\": \"carpet deep clean\", \"unit\": \"\", \"values\": [\"Suite 210\", \"Suite 330\", \"Suite 410\", \"Meeting rooms\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"booking\", \"topic\": \"access-card audit\", \"counterpart\": \"Secureline Systems\", \"org\": \"Secureline\", \"item\": \"card audit session\", \"unit\": \"\", \"values\": [\"Card-reader room\", \"Front desk\", \"Server room\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Hartwell Hardware\", \"org\": \"Hartwell Hardware\", \"item\": \"cleaning concentrate\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Grandvale loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"plant watering\", \"counterpart\": \"Greenleaf Services\", \"org\": \"Greenleaf\", \"item\": \"plant maintenance round\", \"unit\": \"\", \"values\": [\"Lobby\", \"Atrium\", \"Suite 120\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"order\", \"topic\": \"light bulbs\", \"counterpart\": \"Brightline Supply\", \"org\": \"Brightline\", \"item\": \"LED ceiling panels\", \"unit\": \"panels\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"Grandvale loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"generator test\", \"counterpart\": \"Volt Ridge Services\", \"org\": \"Volt Ridge\", \"item\": \"generator load test\", \"unit\": \"\", \"values\": [\"Generator house\", \"Loading bay\", \"Basement switchroom\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"order\", \"topic\": \"paper towels\", \"counterpart\": \"CleanSource Wholesale\", \"org\": \"CleanSource\", \"item\": \"paper towel rolls\", \"unit\": \"rolls\", \"values\": [\"100\", \"200\", \"300\"], \"place\": \"Grandvale loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"elevator service\", \"counterpart\": \"RiseWell Lifts\", \"org\": \"RiseWell\", \"item\": \"elevator maintenance visit\", \"unit\": \"\", \"values\": [\"Lift A\", \"Lift B\", \"Service lift\"], \"place\": \"Grandvale Office Park\"},\n  {\"kind\": \"order\", \"topic\": \"hand soap\", \"counterpart\": \"CleanSource Wholesale\", \"org\": \"CleanSource\", \"item\": \"foam soap cartridges\", \"unit\": \"cartridges\", \"values\": [\"30\", \"60\", \"90\"], \"place\": \"Grandvale loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"pest control\", \"counterpart\": \"NoPest Regional\", \"org\": \"NoPest\", \"item\": \"pest control inspection\", \"unit\": \"\", \"values\": [\"Basement\", \"Kitchen areas\", \"Loading bay\"], \"place\": \"Grandvale Office Park\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7646,
+    "completion_tokens": 5467,
+    "reasoning_tokens": 1089,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0311112,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e28 is dated before e27)\n- noise topic 'generator test': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Grandvale work orders: policy restated, roof inspection confirmed",
+  "setting": "The facilities supervisor at Grandvale Office Park whose assistant logs work orders, contractor visits, and access-card records",
+  "owner": "Marta",
+  "org": "Grandvale Office Park facilities team",
+  "now": "2026-10-28",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Priya Nair (property manager)",
+    "text": "Booking policy for Grandvale: any contractor working in an occupied suite outside business hours, or at any time on a weekend, must have my written approval before the visit is confirmed. Weekday visits between 08:00 and 18:00 need no approval.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Iris Kwan (Suite 120 tenant)",
+    "text": "Our meeting room chairs have a wobble, could someone look at them this month?",
+    "role": "other"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "quote",
+    "from": "Crystalview Window Care",
+    "text": "Quote from Crystalview Window Care: full atrium and south facade wash at 290 dollars per visit. We can take bookings on Thursdays with two weeks' notice.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "call",
+    "from": "Marta",
+    "text": "Called Iris Kwan in Suite 120; the wobbly chairs are on the small-repairs list for late June.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "invoice",
+    "from": "Airworks Filters",
+    "text": "Airworks Filters price list: standard HVAC pleated filters at 6.50 dollars each, delivery to Grandvale loading bay within five working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Tomas Vega (Suite 330 tenant)",
+    "text": "Just a note that the lobby plants look thirsty. Not urgent, whenever the maintenance round happens.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked Crystalview Window Care to wash the atrium and south facade on 2026-08-14 at their quoted 290 dollars, which falls on a Thursday inside business hours.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "quote",
+    "from": "Lumen Clean",
+    "text": "Lumen Clean quote: evening deep carpet clean for Suite 410 at 520 dollars, any weeknight after 18:00, we bring our own equipment.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-28",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 40 HVAC pleated filters from Airworks Filters at 6.50 dollars each for the quarterly changeover, delivered to the loading bay.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Priya Nair (property manager)",
+    "text": "Marta, I've seen the Lumen Clean quote for the Suite 410 evening clean. You have my approval to confirm it for an evening slot.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-05",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked Lumen Clean for the Suite 410 carpet deep clean on 2026-08-06 at 19:00, 520 dollars, with Priya Nair's approval already in hand since it is outside business hours.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e8",
+     "e10"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-09",
+    "type": "task",
+    "from": "Marta",
+    "text": "Reminder to myself: check the fire extinguisher service dates before August.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-11",
+    "type": "email",
+    "from": "Secureline Systems",
+    "text": "Secureline Systems can run the quarterly access-card audit on any Tuesday that suits you; we need the card-reader room and about four hours.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled Secureline Systems for the quarterly access-card audit on 2026-09-10, a Tuesday, in the card-reader room.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-18",
+    "type": "email",
+    "from": "Nora Blum (Grandvale front desk)",
+    "text": "Parking bay B12 is blocked by a delivery van again, just so you know.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-22",
+    "type": "letter",
+    "from": "Grandvale Office Park management",
+    "text": "Annual letter to contractors: site passes must be worn at all times and signed in at the front desk.",
+    "role": "rule"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-02",
+    "type": "note",
+    "from": "Marta",
+    "text": "Fire extinguisher service is up to date, nothing to book there.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-11",
+    "type": "email",
+    "from": "Lumen Clean",
+    "text": "Thanks for the 6 August evening clean, invoice 520 dollars attached for your finance lead.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-19",
+    "type": "quote",
+    "from": "Dan Luca (Danelu Roofing)",
+    "text": "Danelu Roofing quote: full roof inspection of the Level 7 rooftop at a flat fee of 380 dollars. Our inspector is available on Thursday mornings; two hours on site.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-24",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked Danelu Roofing for the Level 7 rooftop inspection on 2026-11-05 at 09:00, at the quoted flat fee of 380 dollars, a weekday morning inside business hours.",
+    "role": "decision",
+    "rests_on": [
+     "e19"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-30",
+    "type": "notice",
+    "from": "Priya Nair (property manager)",
+    "text": "Standing reminder to all supervisors: outside-hours and weekend contractor work in occupied suites still goes through me in writing before you confirm anything. Weekday daytime visits are fine to book directly.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-03",
+    "type": "email",
+    "from": "Priya Nair (property manager)",
+    "text": "Marta, approved: the Saturday generator load test with Volt Ridge Services in October. Book it whenever suits the maintenance calendar.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-06",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled Volt Ridge Services for the generator load test on 2026-10-17 at 08:00, a Saturday, with Priya Nair's written approval on file as the policy requires.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e22"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Secureline Systems",
+    "text": "Access-card audit on 10 September complete, 3 cards flagged for review and disabled.",
+    "role": "fact"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-28",
+    "type": "message",
+    "from": "Marta",
+    "text": "Volt Ridge confirmed they'll bring their own load-bank equipment for the Saturday test.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Priya Nair (property manager)",
+    "text": "Confirming the Saturday generator test is on my calendar for 17 October at 08:00 with Volt Ridge. Approval stands.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-08",
+    "type": "notice",
+    "from": "Priya Nair (property manager)",
+    "text": "Policy note for the Grandvale facilities team, restating how we work: no contractor may be confirmed for work in an occupied suite outside normal business hours, nor for any weekend work, unless I have given written approval in advance. Bookings within weekday business hours are exempt.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-14",
+    "type": "quote",
+    "from": "Hartwell Hardware",
+    "text": "Hartwell Hardware quote: heavy-duty door hinges at 4.20 dollars each, minimum order 12, delivered to the Grandvale loading bay.",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-16",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 12 heavy-duty door hinges from Hartwell Hardware at 4.20 dollars each for the ground-floor door repairs, delivered to the loading bay.",
+    "role": "decision",
+    "rests_on": [
+     "e28"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Dan Luca (Danelu Roofing)",
+    "text": "Marta, a heads-up: another job may push our visit back. If it moves, the inspection would go to 2026-11-09 instead. I'll let you know by end of next week whether we actually need to shift it.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-24",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked Fixwell Plumbing for the Suite 210 leak repair on 2026-11-12 at 10:00, a weekday morning inside business hours, no approval needed.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "EV-6"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-26",
+    "type": "email",
+    "from": "Nora Blum (Grandvale front desk)",
+    "text": "Suite 210 says the leak is holding for now, no emergencies over the weekend.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-27",
+    "type": "note",
+    "from": "Marta",
+    "text": "Before the roofing visit I owe Dan Luca a confirmation with access details: date, time, and where to report on site.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Window wash, atrium and south facade",
+    "fields": {
+     "date": "2026-08-14",
+     "contractor": "Crystalview Window Care",
+     "area": "Atrium and south facade",
+     "cost": "290",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "HVAC pleated filters",
+    "fields": {
+     "supplier": "Airworks Filters",
+     "item": "HVAC pleated filters",
+     "quantity": "40",
+     "unit_cost": "6.50",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Evening carpet clean, Suite 410",
+    "fields": {
+     "date": "2026-08-06",
+     "time": "19:00",
+     "contractor": "Lumen Clean",
+     "area": "Suite 410",
+     "approved_by": "Priya Nair",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Quarterly access-card audit",
+    "fields": {
+     "date": "2026-09-10",
+     "contractor": "Secureline Systems",
+     "area": "Card-reader room",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Roof inspection, Level 7 rooftop",
+    "fields": {
+     "date": "2026-11-05",
+     "time": "09:00",
+     "contractor": "Danelu Roofing",
+     "area": "Level 7 rooftop",
+     "fee": "380",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Generator load test",
+    "fields": {
+     "date": "2026-10-17",
+     "time": "08:00",
+     "contractor": "Volt Ridge Services",
+     "area": "Generator house",
+     "approved_by": "Priya Nair",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Heavy-duty door hinges",
+    "fields": {
+     "supplier": "Hartwell Hardware",
+     "item": "Heavy-duty door hinges",
+     "quantity": "12",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Leak repair, Suite 210",
+    "fields": {
+     "date": "2026-11-12",
+     "time": "10:00",
+     "contractor": "Fixwell Plumbing",
+     "area": "Suite 210",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [],
+  "task": "Danelu Roofing is coming soon for the rooftop inspection. Please send them a confirmation with everything they need for site access: the date, the time, and where they should report on site.",
+  "expect": [
+   {
+    "message_to": "Dan Luca (Danelu Roofing)",
+    "regarding": "EV-4",
+    "says": [
+     "2026-11-05",
+     "09:00",
+     "Level 7 rooftop",
+     "front desk"
+    ],
+    "stale": [
+     "2026-11-09"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change (e27) merely restates the after-hours approval policy in other words and revokes nothing, so no decision carries a mark and every record stays exactly as it is. The right act is only the task: confirm the roof inspection with Danelu Roofing for 2026-11-05 at 09:00 on the Level 7 rooftop, reporting through the front desk. Dan Luca's unconfirmed mention of possibly shifting to 2026-11-09 is a distractor, not a value to act on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "filter restock",
+    "counterpart": "Airworks Filters",
+    "org": "Airworks",
+    "item": "HVAC pleated filters",
+    "unit": "boxes",
+    "values": [
+     "20",
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "Grandvale loading bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "window washing",
+    "counterpart": "Crystalview Window Care",
+    "org": "Crystalview",
+    "item": "window washing round",
+    "unit": "",
+    "values": [
+     "Atrium",
+     "South facade",
+     "North facade",
+     "Lobby"
+    ],
+    "place": "Grandvale Office Park"
+   },
+   {
+    "kind": "booking",
+    "topic": "evening cleaning",
+    "counterpart": "Lumen Clean",
+    "org": "Lumen Clean",
+    "item": "carpet deep clean",
+    "unit": "",
+    "values": [
+     "Suite 210",
+     "Suite 330",
+     "Suite 410",
+     "Meeting rooms"
+    ],
+    "place": "Grandvale Office Park"
+   },
+   {
+    "kind": "booking",
+    "topic": "access-card audit",
+    "counterpart": "Secureline Systems",
+    "org": "Secureline",
+    "item": "card audit session",
+    "unit": "",
+    "values": [
+     "Card-reader room",
+     "Front desk",
+     "Server room"
+    ],
+    "place": "Grandvale Office Park"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Hartwell Hardware",
+    "org": "Hartwell Hardware",
+    "item": "cleaning concentrate",
+    "unit": "bottles",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "Grandvale loading bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "plant watering",
+    "counterpart": "Greenleaf Services",
+    "org": "Greenleaf",
+    "item": "plant maintenance round",
+    "unit": "",
+    "values": [
+     "Lobby",
+     "Atrium",
+     "Suite 120"
+    ],
+    "place": "Grandvale Office Park"
+   },
+   {
+    "kind": "order",
+    "topic": "light bulbs",
+    "counterpart": "Brightline Supply",
+    "org": "Brightline",
+    "item": "LED ceiling panels",
+    "unit": "panels",
+    "values": [
+     "10",
+     "25",
+     "50"
+    ],
+    "place": "Grandvale loading bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "generator test",
+    "counterpart": "Volt Ridge Services",
+    "org": "Volt Ridge",
+    "item": "generator load test",
+    "unit": "",
+    "values": [
+     "Generator house",
+     "Loading bay",
+     "Basement switchroom"
+    ],
+    "place": "Grandvale Office Park"
+   },
+   {
+    "kind": "order",
+    "topic": "paper towels",
+    "counterpart": "CleanSource Wholesale",
+    "org": "CleanSource",
+    "item": "paper towel rolls",
+    "unit": "rolls",
+    "values": [
+     "100",
+     "200",
+     "300"
+    ],
+    "place": "Grandvale loading bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "elevator service",
+    "counterpart": "RiseWell Lifts",
+    "org": "RiseWell",
+    "item": "elevator maintenance visit",
+    "unit": "",
+    "values": [
+     "Lift A",
+     "Lift B",
+     "Service lift"
+    ],
+    "place": "Grandvale Office Park"
+   },
+   {
+    "kind": "order",
+    "topic": "hand soap",
+    "counterpart": "CleanSource Wholesale",
+    "org": "CleanSource",
+    "item": "foam soap cartridges",
+    "unit": "cartridges",
+    "values": [
+     "30",
+     "60",
+     "90"
+    ],
+    "place": "Grandvale loading bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "pest control",
+    "counterpart": "NoPest Regional",
+    "org": "NoPest",
+    "item": "pest control inspection",
+    "unit": "",
+    "values": [
+     "Basement",
+     "Kitchen areas",
+     "Loading bay"
+    ],
+    "place": "Grandvale Office Park"
+   }
+  ],
+  "id": "G1000-4-02",
+  "tier": 1000,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The policy notice restates the existing rule, and the possible roofing reschedule is explicitly unconfirmed, so the confirmation should use November 5 at 09:00, Level 7 rooftop, with front-desk reporting. The task requires sending a message without prompting review of a change. The core has 33 events and 8 decisions; the notice precedes the task by 20 days and has six later core events, with no stale-value echoes required for class 4.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The policy notice restates the existing rule, and the possible roofing reschedule is explicitly unconfirmed, so the confirmation should use November 5 at 09:00, Level 7 rooftop, with front-desk reporting. The task requires sending a message without prompting review of a change. The core has 33 events and 8 decisions; the notice precedes the task by 20 days and has six later core events, with no stale-value echoes required for class 4."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4087,
+    "completion_tokens": 404,
+    "reasoning_tokens": 270,
+    "cached_tokens": 0
+   },
+   "cost": 0.07128,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a884c0c5f185b4a30dbde5ddaa25a6b6118444ff251d02c676c91a015a8c4fa1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e27) restates the existing approval policy verbatim in substance, so no decision is touched and all records stay as they are; the only required act is the confirmation message with values fixed by EV-4 and the front-desk sign-in rule (e16), with the 2026-11-09 mention a mere unconfirmed distractor. Tier counts hold (33 core events, 8 decisions, change 20 days before task day with many later events), and the echo requirement does not apply to class 4.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e27) restates the existing approval policy verbatim in substance, so no decision is touched and all records stay as they are; the only required act is the confirmation message with values fixed by EV-4 and the front-desk sign-in rule (e16), with the 2026-11-09 mention a mere unconfirmed distractor. Tier counts hold (33 core events, 8 decisions, change 20 days before task day with many later events), and the echo requirement does not apply to class 4."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4192,
+    "completion_tokens": 415,
+    "reasoning_tokens": 249,
+    "cached_tokens": 0
+   },
+   "cost": 0.018801,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a884c0c5f185b4a30dbde5ddaa25a6b6118444ff251d02c676c91a015a8c4fa1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e27 restates the e1 approval rule without revoking anything, so the control class and the no-marks expected state are consistent with the history. The core has the required event count (33), eight decisions, a change 20 days before the task day, six core events after it, and the change sits at event 866 of 1000 without being labelled a correction. Two day-of-week labels are wrong: 2026-08-14 is a Friday, not the Thursday e7 claims, and 2026-09-10 is a Thursday, not the Tuesday e14 claims. Neither changes any mark, but the first also falls outside Crystalview's Thursday-only booking terms, so the writer should fix these labels.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e27 restates the e1 approval rule without revoking anything, so the control class and the no-marks expected state are consistent with the history. The core has the required event count (33), eight decisions, a change 20 days before the task day, six core events after it, and the change sits at event 866 of 1000 without being labelled a correction. Two day-of-week labels are wrong: 2026-08-14 is a Friday, not the Thursday e7 claims, and 2026-09-10 is a Thursday, not the Tuesday e14 claims. Neither changes any mark, but the first also falls outside Crystalview's Thursday-only booking terms, so the writer should fix these labels."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5905,
+    "completion_tokens": 2438,
+    "reasoning_tokens": 2165,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018095,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a884c0c5f185b4a30dbde5ddaa25a6b6118444ff251d02c676c91a015a8c4fa1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

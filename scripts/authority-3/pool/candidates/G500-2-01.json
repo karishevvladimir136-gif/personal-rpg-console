@@ -651,5 +651,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"EV-1 requires Nadia's sign-off, but the expected state instead requires consent from Mrs Farlow, whose consent is needed only for changing the booked day or time. The revised round-trip distance is not fixed at 59 km: a pickup 7 km beyond the last stop does not establish that dropping it saves exactly 7 km. Sending an unconditional booking confirmation while Nadia's required sign-off remains outstanding is also not justified.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "EV-1 requires Nadia's sign-off, but the expected state instead requires consent from Mrs Farlow, whose consent is needed only for changing the booked day or time. The revised round-trip distance is not fixed at 59 km: a pickup 7 km beyond the last stop does not establish that dropping it saves exactly 7 km. Sending an unconditional booking confirmation while Nadia's required sign-off remains outstanding is also not justified."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4301,
+    "completion_tokens": 208,
+    "reasoning_tokens": 85,
+    "cached_tokens": 0
+   },
+   "cost": 0.064155,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "18951b4f5360d75bbf61cdf560b489efef2fcd5f91117abc2a4d096ec399f0c3",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 66-to-59 km figure assumes the 7 km feed-store leg is subtracted once, but if it is 7 km past the last stop and the run returns to base, dropping it saves about 14 km, so the distance value is not clearly fixed by the history. The expected Farlow message also sends a confirmation of EV-1's date and time while EV-1 is marked ASK pending consent, so the expected state's handling of that message is not clearly right. The class, tier, hiddenness and forced-act judgments all hold.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 66-to-59 km figure assumes the 7 km feed-store leg is subtracted once, but if it is 7 km past the last stop and the run returns to base, dropping it saves about 14 km, so the distance value is not clearly fixed by the history. The expected Farlow message also sends a confirmation of EV-1's date and time while EV-1 is marked ASK pending consent, so the expected state's handling of that message is not clearly right. The class, tier, hiddenness and forced-act judgments all hold."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6222,
+    "completion_tokens": 2706,
+    "reasoning_tokens": 2483,
+    "cached_tokens": 0
+   },
+   "cost": 0.0019752,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "18951b4f5360d75bbf61cdf560b489efef2fcd5f91117abc2a4d096ec399f0c3",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The ASK on e9 is mishandled: under the amended rule and the consent map, EV-1's status needs Nadia's sign-off, so the consent request should go to Nadia (as the scenario correctly does for EV-4), yet the expected state demands a consent request to Mrs Farlow, which no rule fixes. The rest is sound — the run revision (4 stops, 59 km via dropping the now-redundant feed-store pickup), the KEEPs on e11 and e15, and the distractor all follow cleanly. Tier counts, change placement, and the echo event all meet the 500-tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The ASK on e9 is mishandled: under the amended rule and the consent map, EV-1's status needs Nadia's sign-off, so the consent request should go to Nadia (as the scenario correctly does for EV-4), yet the expected state demands a consent request to Mrs Farlow, which no rule fixes. The rest is sound — the run revision (4 stops, 59 km via dropping the now-redundant feed-store pickup), the KEEPs on e11 and e15, and the distractor all follow cleanly. Tier counts, change placement, and the echo event all meet the 500-tier requirements."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4404,
+    "completion_tokens": 1089,
+    "reasoning_tokens": 903,
+    "cached_tokens": 256
+   },
+   "cost": 0.0288558,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "18951b4f5360d75bbf61cdf560b489efef2fcd5f91117abc2a4d096ec399f0c3",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

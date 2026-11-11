@@ -658,5 +658,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The outage invalidates the member-slot week of 19 October, but no stated rule fixes its replacement to 26 October; availability alone does not determine that booking. Ivo also offers the 28 October firing conditionally, rather than confirming that it works for the group, so sending those dates as confirmed requires an additional assumption. The core otherwise meets the tier requirements and contains a two-hop stale-fact dependency.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The outage invalidates the member-slot week of 19 October, but no stated rule fixes its replacement to 26 October; availability alone does not determine that booking. Ivo also offers the 28 October firing conditionally, rather than confirming that it works for the group, so sending those dates as confirmed requires an additional assumption. The core otherwise meets the tier requirements and contains a two-hop stale-fact dependency."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4388,
+    "completion_tokens": 262,
+    "reasoning_tokens": 142,
+    "cached_tokens": 0
+   },
+   "cost": 0.0679425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "41ea2fcf2e4a58ad847ec63129092fff734df7232fa15e3798bda74a105c5e11",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The stale fact e7 (Cormorant free from 8 October) is revoked by e21, and the REVISE, ASK and KEEP marks follow from the dependency chain, including the two-hop REVISE at e12. The core meets the tier-500 counts (28 events, 8 decisions), the change is 13 days before the task day with many core events after it, and echo e17 restates the stale value. The change is an ordinary-looking \\\"Bad news\\\" email with no correction label. The KEEP on e14 is somewhat arguable, since its 9 October date still precedes the new loading date, but the writer's reasoning covers it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The stale fact e7 (Cormorant free from 8 October) is revoked by e21, and the REVISE, ASK and KEEP marks follow from the dependency chain, including the two-hop REVISE at e12. The core meets the tier-500 counts (28 events, 8 decisions), the change is 13 days before the task day with many core events after it, and echo e17 restates the stale value. The change is an ordinary-looking \"Bad news\" email with no correction label. The KEEP on e14 is somewhat arguable, since its 9 October date still precedes the new loading date, but the writer's reasoning covers it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6150,
+    "completion_tokens": 1825,
+    "reasoning_tokens": 1567,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015275,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "41ea2fcf2e4a58ad847ec63129092fff734df7232fa15e3798bda74a105c5e11",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes the Cormorant's October availability (e7), cleanly propagating to the firing (REVISE to 28/27 Oct as Ivo offered), the pickup evening (two-hop REVISE to 30 Oct), and member slots (REVISE to week of 26 Oct), while Petra's session is ASK under rule e1 and the consent map, and the cone order and glaze-mixing survive as KEEP on aspects the correction leaves standing. The task demands sending, tidying, and asking without naming the change, and the change sits as an ordinary email at event 458 of 500 with an echo (e17) and 42 later events. Tier counts (28 core events, 9 decisions, 13-day gap) all meet the 500-tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes the Cormorant's October availability (e7), cleanly propagating to the firing (REVISE to 28/27 Oct as Ivo offered), the pickup evening (two-hop REVISE to 30 Oct), and member slots (REVISE to week of 26 Oct), while Petra's session is ASK under rule e1 and the consent map, and the cone order and glaze-mixing survive as KEEP on aspects the correction leaves standing. The task demands sending, tidying, and asking without naming the change, and the change sits as an ordinary email at event 458 of 500 with an echo (e17) and 42 later events. Tier counts (28 core events, 9 decisions, 13-day gap) all meet the 500-tier requirements."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4492,
+    "completion_tokens": 570,
+    "reasoning_tokens": 349,
+    "cached_tokens": 256
+   },
+   "cost": 0.0213348,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "41ea2fcf2e4a58ad847ec63129092fff734df7232fa15e3798bda74a105c5e11",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

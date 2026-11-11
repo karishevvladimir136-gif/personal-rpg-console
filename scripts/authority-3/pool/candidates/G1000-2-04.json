@@ -1,0 +1,816 @@
+{
+ "id": "G1000-2-04",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 2,
+ "idx": 3,
+ "setting": "The theatre stage manager at Littlewick Playhouse whose assistant keeps rehearsal schedules, cue sheets, and cast availability",
+ "prompt_sha256": "373f71f7adc4d47ce4b804a3499abf6fd946eecb24f4ece98589711c087faef6",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Copper Kettle curfew\",\n \"setting\": \"The theatre stage manager at Littlewick Playhouse whose assistant keeps rehearsal schedules, cue sheets, and cast availability\",\n \"owner\": \"Nadia\",\n \"org\": \"Littlewick Playhouse\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marcus Hale (Littlewick Playhouse)\", \"text\": \"Standing rule on spending: any supplier order or freelance hire above 400 pounds needs written sign-off from Priya Nair, our finance lead, before it is confirmed. Anything at or below 400 pounds can go ahead without her.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Autumn production confirmed: 'The Copper Kettle', playing the Main House. Tech run and dress rehearsal will land in late October, with the opening at the end of the month.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Fen Adeyemi (Littlewick Playhouse office)\", \"text\": \"Just to confirm staffing: Colin Fenn runs the Green Room bar on show nights and tech nights this season. He is our regular steward and knows the till and the cellar.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"policy\", \"from\": \"Marcus Hale (Littlewick Playhouse)\", \"text\": \"House rules for the building, effective now. The Main House has an evening noise curfew of 23:00. The Studio has no curfew. Any Main House booking that needs to run past the curfew requires my prior agreement. The Green Room bar closes one hour after curfew. Confirmed bookings may only be moved to a different date or space with my agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Ruth Okafor (Littlewick Choral Society)\", \"text\": \"We would love to hire the Main House for our autumn concert on 15 November, an afternoon slot. Roughly 60 singers and an audience of about 120. Could you hold it for us?\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Read-through for 'The Copper Kettle' booked in the Green Room on 3 September at 18:30, full cast. Confirmed in the diary.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-2\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"quote\", \"from\": \"Dev Apte (Halden Theatrical Supplies)\", \"text\": \"Quote for your autumn props consumables box: 260 pounds including delivery of tape, rope, Velcro, and sundries to the Main House lighting store.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Props consumables ordered from Halden Theatrical Supplies at 260 pounds. That is below the 400 pound sign-off threshold, so Priya Nair's approval is not needed. Order placed.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Ruth Okafor (Littlewick Choral Society)\", \"text\": \"To confirm terms: a 14:00 start on 15 November, finishing by 17:30, and our usual hire fee of 600 pounds for the afternoon.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"The Littlewick Choral Society's autumn concert is confirmed in the Main House on 15 November, 14:00 to 17:30, fee 600 pounds, contact Ruth Okafor. Booking confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e9\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-14\", \"type\": \"message\", \"from\": \"Tom Bright (deputy stage manager)\", \"text\": \"Cast availability for blocking is best on Tuesday and Thursday evenings. Everyone has kept those free through the autumn.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Blocking rehearsals for 'The Copper Kettle' will run in the Studio on Tuesday and Thursday evenings, 19:00 to 23:00. The Studio has no curfew under the July house rules, so we can work late there without any special agreement. Series booked and confirmed in the diary.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-01\", \"type\": \"notice\", \"from\": \"Fen Adeyemi (Littlewick Playhouse office)\", \"text\": \"Season reminder of the house rules: the Main House falls quiet at 23:00, the Green Room bar closes at midnight, one hour after curfew, and the Studio has no curfew. Any Main House booking running past 23:00 needs Marcus's agreement.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e14\", \"date\": \"2026-09-03\", \"type\": \"minutes\", \"from\": \"Tom Bright (deputy stage manager)\", \"text\": \"Read-through minutes: full cast attended, the Green Room worked well, and the first blocking call is set for next Tuesday.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Sam Reddy is booked as freelance followspot operator for 'The Copper Kettle' at 140 pounds a night, covering the tech run and the dress rehearsal.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"CL-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Marcus Hale (Littlewick Playhouse)\", \"text\": \"Production dates are locked: tech run on 22 October, dress rehearsal on 26 October, opening night on 30 October. All in the Main House.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Tech run for 'The Copper Kettle' booked in the Main House on Thursday 22 October, 19:00 to 23:00. It finishes exactly at the Main House curfew of 23:00, so no special agreement from Marcus is needed under the house rules. Confirmed in the diary with Sam Reddy on the followspot.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e4\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Colin Fenn\", \"text\": \"Happy to steward the Green Room bar on the tech night on the 22nd, as usual. Just let me know what time we are closing and I will sort myself a taxi home.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-17\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Bar arrangements for the tech night on 22 October: Colin Fenn will steward the Green Room bar, closing at midnight, since the house rules have the bar close one hour after the 23:00 Main House curfew. Booked in the schedule.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e18\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Night taxi booked with Littlewick Cars for Colin Fenn after the tech-night bar closes at midnight: pickup at 00:15 on 22 October at the Main House stage door.\", \"role\": \"decision\", \"rests_on\": [\"e19\", \"e3\"], \"record\": \"EV-5\", \"mark\": \"REVISE\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Ruth Okafor (Littlewick Choral Society)\", \"text\": \"For the concert we would need about 250 printed programmes. Can the theatre handle that through your usual printer?\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Concert programmes ordered from Rowan Print: 250 copies at 310 pounds, delivering to the front-of-house desk before 15 November. Below the 400 pound threshold, so no finance sign-off is needed. Order confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e21\", \"e10\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-23\", \"type\": \"email\", \"from\": \"Tom Bright (deputy stage manager)\", \"text\": \"Tech-night plan as booked: the run goes 19:00 to 23:00 in the Main House, the Green Room bar is open with Colin until midnight, and his taxi is called for 00:15 at the stage door. All set.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-24\", \"type\": \"notice\", \"from\": \"Marcus Hale (Littlewick Playhouse)\", \"text\": \"Team, I have had a formal noise complaint from the flats on Weaver Lane about noise carrying from the Main House late at night. From Monday 12 October the Main House must be quiet by 21:30 instead of 23:00. This replaces the July house rules on the curfew: the Studio still has no curfew, moving a confirmed booking to another date or space still needs my agreement, and any Main House booking that has to run past 21:30 now needs my prior sign-off. The Green Room bar closes one hour after curfew, so midnight bar finishes are gone. Please look at everything in the diary for the Main House after 21:30 from the 12th onwards.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n  {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Tom Bright (deputy stage manager)\", \"text\": \"For the cast party after the dress rehearsal on the 26th, could the bar stay open till midnight? Colin says he is happy to stay late if we book him another taxi. Let's give the cast a proper send-off before opening night.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e26\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Dress rehearsal for 'The Copper Kettle' booked in the Main House on 26 October, 18:30 to 21:15, comfortably inside the new 21:30 quiet time, so no late agreement is needed. Confirmed in the diary.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e24\"], \"record\": \"EV-6\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Ruth Okafor (Littlewick Choral Society)\", \"text\": \"Perfect, 14:00 start on the 15th works for us. We will bring our own piano accompanist.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Interval drinks for opening night ordered from Bramble Wines: 24 bottles at 300 pounds, delivering to the Green Room bar before 30 October. Below the 400 pound sign-off threshold. Order placed.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Sam Reddy\", \"text\": \"Confirming I am free for both the tech run on the 22nd and the dress on the 26th. I will bring my own headset.\", \"role\": \"fact\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Tom Bright (deputy stage manager)\", \"text\": \"Production meeting notes: cue sheets for Act One are with lighting, props list is nearly final, and the choral society concert crew is confirmed for the 15th.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-15\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"To do before tech week: confirm the final running order with Marcus by 21 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-18\", \"type\": \"email\", \"from\": \"Colin Fenn\", \"text\": \"Nadia, what time should I tell the taxi firm for the tech night on the 22nd? And when do we close the bar that evening? I want to get home at a sensible hour.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-19\", \"type\": \"call\", \"from\": \"Dev Apte (Halden Theatrical Supplies)\", \"text\": \"Called to say the props consumables invoice has been issued and the autumn restock list is ready whenever you need it.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"The Copper Kettle - studio blocking rehearsals\", \"fields\": {\"production\": \"The Copper Kettle\", \"space\": \"Studio\", \"start_time\": \"19:00\", \"end_time\": \"23:00\", \"recurring\": \"Tuesday and Thursday\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"The Copper Kettle - read-through\", \"fields\": {\"production\": \"The Copper Kettle\", \"date\": \"2026-09-03\", \"space\": \"Green Room\", \"time\": \"18:30\", \"status\": \"done\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"The Copper Kettle - tech run\", \"fields\": {\"production\": \"The Copper Kettle\", \"date\": \"2026-10-22\", \"space\": \"Main House\", \"start_time\": \"19:00\", \"end_time\": \"23:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Green Room bar - tech night\", \"fields\": {\"date\": \"2026-10-22\", \"steward\": \"Colin Fenn\", \"close_time\": \"00:00\", \"status\": \"booked\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Night taxi - Colin Fenn (tech night)\", \"fields\": {\"date\": \"2026-10-22\", \"pickup_time\": \"00:15\", \"pickup_place\": \"Main House stage door\", \"passenger\": \"Colin Fenn\", \"status\": \"booked\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"The Copper Kettle - dress rehearsal\", \"fields\": {\"production\": \"The Copper Kettle\", \"date\": \"2026-10-26\", \"space\": \"Main House\", \"start_time\": \"18:30\", \"end_time\": \"21:15\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Props consumables - Halden Theatrical Supplies\", \"fields\": {\"supplier\": \"Halden Theatrical Supplies\", \"item\": \"props consumables box\", \"amount\": \"260\", \"placed\": \"2026-08-03\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Concert programmes - Rowan Print\", \"fields\": {\"supplier\": \"Rowan Print\", \"item\": \"concert programmes\", \"copies\": \"250\", \"amount\": \"310\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Interval wine - Bramble Wines\", \"fields\": {\"supplier\": \"Bramble Wines\", \"item\": \"interval wine\", \"bottles\": \"24\", \"amount\": \"300\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Littlewick Choral Society - autumn concert\", \"fields\": {\"client\": \"Littlewick Choral Society\", \"contact\": \"Ruth Okafor\", \"event\": \"autumn concert\", \"date\": \"2026-11-15\", \"time\": \"14:00\", \"fee\": \"600\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Freelance crew - Sam Reddy\", \"fields\": {\"name\": \"Sam Reddy\", \"role\": \"followspot operator\", \"dates\": \"2026-10-22 and 2026-10-26\", \"rate\": \"140\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"end_time\"], \"from\": \"Marcus Hale\", \"rule\": \"e4\"}\n ],\n \"task\": \"Colin is chasing me about the tech night on Thursday the 22nd. Can you send him his taxi pickup time, and make sure the schedule shows the right closing time for the Green Room bar that evening?\",\n \"expect\": [\n  {\"record\": \"EV-4\", \"field\": \"close_time\", \"value\": \"22:30\", \"stale\": [\"00:00\"], \"task\": true},\n  {\"record\": \"EV-5\", \"field\": \"pickup_time\", \"value\": \"22:45\", \"stale\": [\"00:15\"], \"task\": true},\n  {\"message_to\": \"Colin Fenn\", \"regarding\": \"EV-5\", \"says\": [\"22:45\"], \"stale\": [\"00:15\"], \"task\": true}\n ],\n \"why\": \"The amendment moves the Main House curfew from 23:00 to 21:30 from 12 October and restates that past-curfew Main House bookings need Marcus's agreement and the bar closes one hour after curfew. The tech run's 23:00 finish now runs past the new curfew, so its end time may only change with Marcus's consent (ASK, record stays). The bar close and Colin's taxi follow arithmetically from the new curfew with no consent needed (REVISE to 22:30 and 22:45), and the studio blocking series falls outside the Main House terms (KEEP). The task asks for the taxi time and bar close, which must carry the new values, not the midnight-era ones.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Gel restock\", \"counterpart\": \"Dev Apte\", \"org\": \"Halden Theatrical Supplies\", \"item\": \"colour gel sheets\", \"unit\": \"sheets\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"Main House lighting store\"},\n  {\"kind\": \"booking\", \"topic\": \"Studio rehearsals\", \"counterpart\": \"Tom Bright\", \"org\": \"Littlewick Playhouse\", \"item\": \"studio rehearsal slot\", \"unit\": \"\", \"values\": [\"Studio\", \"Green Room\"], \"place\": \"Littlewick Playhouse\"},\n  {\"kind\": \"order\", \"topic\": \"Programme paper\", \"counterpart\": \"Marta Kline\", \"org\": \"Rowan Print\", \"item\": \"programme booklets\", \"unit\": \"copies\", \"values\": [\"150\", \"200\", \"250\", \"300\"], \"place\": \"front-of-house desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Choral society rehearsals\", \"counterpart\": \"Ruth Okafor\", \"org\": \"Littlewick Choral Society\", \"item\": \"hall rehearsal evening\", \"unit\": \"\", \"values\": [\"Main House\", \"Green Room\"], \"place\": \"Main House\"},\n  {\"kind\": \"order\", \"topic\": \"Interval wine\", \"counterpart\": \"Owen Pike\", \"org\": \"Bramble Wines\", \"item\": \"wine bottles\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Green Room bar\"},\n  {\"kind\": \"booking\", \"topic\": \"Taxi runs\", \"counterpart\": \"Colin Fenn\", \"org\": \"Littlewick Cars\", \"item\": \"night taxi\", \"unit\": \"\", \"values\": [\"Main House stage door\", \"Weaver Lane entrance\"], \"place\": \"Littlewick Playhouse\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Hana Sul\", \"org\": \"Brightline Facilities\", \"item\": \"floor cleaner drums\", \"unit\": \"drums\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Main House foyer\"},\n  {\"kind\": \"booking\", \"topic\": \"Followspot cover\", \"counterpart\": \"Sam Reddy\", \"org\": \"Littlewick Playhouse\", \"item\": \"followspot shift\", \"unit\": \"\", \"values\": [\"Main House lighting box\", \"Studio lighting box\"], \"place\": \"Main House\"},\n  {\"kind\": \"order\", \"topic\": \"Tape restock\", \"counterpart\": \"Dev Apte\", \"org\": \"Halden Theatrical Supplies\", \"item\": \"gaffer tape rolls\", \"unit\": \"rolls\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"props store\"},\n  {\"kind\": \"booking\", \"topic\": \"Notes sessions\", \"counterpart\": \"Marcus Hale\", \"org\": \"Littlewick Playhouse\", \"item\": \"notes session room\", \"unit\": \"\", \"values\": [\"Green Room\", \"Studio\"], \"place\": \"Littlewick Playhouse\"},\n  {\"kind\": \"order\", \"topic\": \"Costume hire\", \"counterpart\": \"Bilva Rane\", \"org\": \"Threadneedle Costumes\", \"item\": \"costume sets\", \"unit\": \"sets\", \"values\": [\"6\", \"8\", \"10\"], \"place\": \"costume store\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3200,
+    "completion_tokens": 19368,
+    "reasoning_tokens": 14112,
+    "cached_tokens": 3136
+   },
+   "cost": 0.08612416,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Copper Kettle curfew\",\n \"setting\": \"The theatre stage manager at Littlewick Playhouse whose assistant keeps rehearsal schedules, cue sheets, and cast availability\",\n \"owner\": \"Nadia\",\n \"org\": \"Littlewick Playhouse\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marcus Hale (Littlewick Playhouse)\", \"text\": \"Standing rule on spending: any supplier order or freelance hire above 400 pounds needs written sign-off from Priya Nair, our finance lead, before it is confirmed. Anything at or below 400 pounds can go ahead without her.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Autumn production confirmed: 'The Copper Kettle', playing the Main House. Tech run and dress rehearsal will land in late October, with the opening at the end of the month.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Fen Adeyemi (Littlewick Playhouse office)\", \"text\": \"Just to confirm staffing: Colin Fenn runs the Green Room bar on show nights and tech nights this season. He is our regular steward and knows the till and the cellar.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"policy\", \"from\": \"Marcus Hale (Littlewick Playhouse)\", \"text\": \"House rules for the building, effective now. The Main House has an evening noise curfew of 23:00. The Studio has no curfew. Any Main House booking that needs to run past the curfew requires my prior agreement. The Green Room bar closes one hour after curfew. Confirmed bookings may only be moved to a different date or space with my agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Ruth Okafor (Littlewick Choral Society)\", \"text\": \"We would love to hire the Main House for our autumn concert on 15 November, an afternoon slot. Roughly 60 singers and an audience of about 120. Could you hold it for us?\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Read-through for 'The Copper Kettle' booked in the Green Room on 3 September at 18:30, full cast. Confirmed in the diary.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-2\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"quote\", \"from\": \"Dev Apte (Halden Theatrical Supplies)\", \"text\": \"Quote for your autumn props consumables box: 260 pounds including delivery of tape, rope, Velcro, and sundries to the Main House lighting store.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Props consumables ordered from Halden Theatrical Supplies at 260 pounds. That is below the 400 pound sign-off threshold, so Priya Nair's approval is not needed. Order placed.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Ruth Okafor (Littlewick Choral Society)\", \"text\": \"To confirm terms: a 14:00 start on 15 November, finishing by 17:30, and our usual hire fee of 600 pounds for the afternoon.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"The Littlewick Choral Society's autumn concert is confirmed in the Main House on 15 November, 14:00 to 17:30, fee 600 pounds, contact Ruth Okafor. Booking confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e9\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-14\", \"type\": \"message\", \"from\": \"Tom Bright (deputy stage manager)\", \"text\": \"Cast availability for blocking is best on Tuesday and Thursday evenings. Everyone has kept those free through the autumn.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Blocking rehearsals for 'The Copper Kettle' will run in the Studio on Tuesday and Thursday evenings, 19:00 to 23:00. The Studio has no curfew under the July house rules, so we can work late there without any special agreement. Series booked and confirmed in the diary.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-01\", \"type\": \"notice\", \"from\": \"Fen Adeyemi (Littlewick Playhouse office)\", \"text\": \"Season reminder of the house rules: the Main House falls quiet at 23:00, the Green Room bar closes at midnight, one hour after curfew, and the Studio has no curfew. Any Main House booking running past 23:00 needs Marcus's agreement.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e14\", \"date\": \"2026-09-03\", \"type\": \"minutes\", \"from\": \"Tom Bright (deputy stage manager)\", \"text\": \"Read-through minutes: full cast attended, the Green Room worked well, and the first blocking call is set for next Tuesday.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Sam Reddy is booked as freelance followspot operator for 'The Copper Kettle' at 140 pounds a night, covering the tech run and the dress rehearsal.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"CL-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Marcus Hale (Littlewick Playhouse)\", \"text\": \"Production dates are locked: tech run on 22 October, dress rehearsal on 26 October, opening night on 30 October. All in the Main House.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Tech run for 'The Copper Kettle' booked in the Main House on Thursday 22 October, 19:00 to 23:00. It finishes exactly at the Main House curfew of 23:00, so no special agreement from Marcus is needed under the house rules. Confirmed in the diary with Sam Reddy on the followspot.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e4\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Colin Fenn\", \"text\": \"Happy to steward the Green Room bar on the tech night on the 22nd, as usual. Just let me know what time we are closing and I will sort myself a taxi home.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-17\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Bar arrangements for the tech night on 22 October: Colin Fenn will steward the Green Room bar, closing at midnight, since the house rules have the bar close one hour after the 23:00 Main House curfew. Booked in the schedule.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e18\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Night taxi booked with Littlewick Cars for Colin Fenn after the tech-night bar closes at midnight: pickup at 00:15 on 22 October at the Main House stage door.\", \"role\": \"decision\", \"rests_on\": [\"e19\", \"e3\"], \"record\": \"EV-5\", \"mark\": \"REVISE\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Ruth Okafor (Littlewick Choral Society)\", \"text\": \"For the concert we would need about 250 printed programmes. Can the theatre handle that through your usual printer?\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Concert programmes ordered from Rowan Print: 250 copies at 310 pounds, delivering to the front-of-house desk before 15 November. Below the 400 pound threshold, so no finance sign-off is needed. Order confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e21\", \"e10\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-23\", \"type\": \"email\", \"from\": \"Tom Bright (deputy stage manager)\", \"text\": \"Tech-night plan as booked: the run goes 19:00 to 23:00 in the Main House, the Green Room bar is open with Colin until midnight, and his taxi is called for 00:15 at the stage door. All set.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-24\", \"type\": \"notice\", \"from\": \"Marcus Hale (Littlewick Playhouse)\", \"text\": \"Team, I have had a formal noise complaint from the flats on Weaver Lane about noise carrying from the Main House late at night. From Monday 12 October the Main House must be quiet by 21:30 instead of 23:00. This replaces the July house rules on the curfew: the Studio still has no curfew, moving a confirmed booking to another date or space still needs my agreement, and any Main House booking that has to run past 21:30 now needs my prior sign-off. The Green Room bar closes one hour after curfew, so midnight bar finishes are gone. Please look at everything in the diary for the Main House after 21:30 from the 12th onwards.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n  {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Tom Bright (deputy stage manager)\", \"text\": \"For the cast party after the dress rehearsal on the 26th, could the bar stay open till midnight? Colin says he is happy to stay late if we book him another taxi. Let's give the cast a proper send-off before opening night.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e26\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Dress rehearsal for 'The Copper Kettle' booked in the Main House on 26 October, 18:30 to 21:15, comfortably inside the new 21:30 quiet time, so no late agreement is needed. Confirmed in the diary.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e24\"], \"record\": \"EV-6\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Ruth Okafor (Littlewick Choral Society)\", \"text\": \"Perfect, 14:00 start on the 15th works for us. We will bring our own piano accompanist.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Interval drinks for opening night ordered from Bramble Wines: 24 bottles at 300 pounds, delivering to the Green Room bar before 30 October. Below the 400 pound sign-off threshold. Order placed.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Sam Reddy\", \"text\": \"Confirming I am free for both the tech run on the 22nd and the dress on the 26th. I will bring my own headset.\", \"role\": \"fact\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Tom Bright (deputy stage manager)\", \"text\": \"Production meeting notes: cue sheets for Act One are with lighting, props list is nearly final, and the choral society concert crew is confirmed for the 15th.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-15\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"To do before tech week: confirm the final running order with Marcus by 21 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-18\", \"type\": \"email\", \"from\": \"Colin Fenn\", \"text\": \"Nadia, what time should I tell the taxi firm for the tech night on the 22nd? And when do we close the bar that evening? I want to get home at a sensible hour.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-19\", \"type\": \"call\", \"from\": \"Dev Apte (Halden Theatrical Supplies)\", \"text\": \"Called to say the props consumables invoice has been issued and the autumn restock list is ready whenever you need it.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"The Copper Kettle - studio blocking rehearsals\", \"fields\": {\"production\": \"The Copper Kettle\", \"space\": \"Studio\", \"start_time\": \"19:00\", \"end_time\": \"23:00\", \"recurring\": \"Tuesday and Thursday\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"The Copper Kettle - read-through\", \"fields\": {\"production\": \"The Copper Kettle\", \"date\": \"2026-09-03\", \"space\": \"Green Room\", \"time\": \"18:30\", \"status\": \"done\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"The Copper Kettle - tech run\", \"fields\": {\"production\": \"The Copper Kettle\", \"date\": \"2026-10-22\", \"space\": \"Main House\", \"start_time\": \"19:00\", \"end_time\": \"23:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Green Room bar - tech night\", \"fields\": {\"date\": \"2026-10-22\", \"steward\": \"Colin Fenn\", \"close_time\": \"00:00\", \"status\": \"booked\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Night taxi - Colin Fenn (tech night)\", \"fields\": {\"date\": \"2026-10-22\", \"pickup_time\": \"00:15\", \"pickup_place\": \"Main House stage door\", \"passenger\": \"Colin Fenn\", \"status\": \"booked\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"The Copper Kettle - dress rehearsal\", \"fields\": {\"production\": \"The Copper Kettle\", \"date\": \"2026-10-26\", \"space\": \"Main House\", \"start_time\": \"18:30\", \"end_time\": \"21:15\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Props consumables - Halden Theatrical Supplies\", \"fields\": {\"supplier\": \"Halden Theatrical Supplies\", \"item\": \"props consumables box\", \"amount\": \"260\", \"placed\": \"2026-08-03\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Concert programmes - Rowan Print\", \"fields\": {\"supplier\": \"Rowan Print\", \"item\": \"concert programmes\", \"copies\": \"250\", \"amount\": \"310\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Interval wine - Bramble Wines\", \"fields\": {\"supplier\": \"Bramble Wines\", \"item\": \"interval wine\", \"bottles\": \"24\", \"amount\": \"300\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Littlewick Choral Society - autumn concert\", \"fields\": {\"client\": \"Littlewick Choral Society\", \"contact\": \"Ruth Okafor\", \"event\": \"autumn concert\", \"date\": \"2026-11-15\", \"time\": \"14:00\", \"fee\": \"600\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Freelance crew - Sam Reddy\", \"fields\": {\"name\": \"Sam Reddy\", \"role\": \"followspot operator\", \"dates\": \"2026-10-22 and 2026-10-26\", \"rate\": \"140\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"end_time\"], \"from\": \"Marcus Hale\", \"rule\": \"e4\"}\n ],\n \"task\": \"Colin is chasing me about the tech night on Thursday the 22nd. Can you send him his taxi pickup time, and make sure the schedule shows the right closing time for the Green Room bar that evening?\",\n \"expect\": [\n  {\"record\": \"EV-4\", \"field\": \"close_time\", \"value\": \"22:30\", \"stale\": [\"00:00\"], \"task\": true},\n  {\"record\": \"EV-5\", \"field\": \"pickup_time\", \"value\": \"22:45\", \"stale\": [\"00:15\"], \"task\": true},\n  {\"message_to\": \"Colin Fenn\", \"regarding\": \"EV-5\", \"says\": [\"22:45\"], \"stale\": [\"00:15\"], \"task\": true}\n ],\n \"why\": \"The amendment moves the Main House curfew from 23:00 to 21:30 from 12 October and restates that past-curfew Main House bookings need Marcus's agreement and the bar closes one hour after curfew. The tech run's 23:00 finish now runs past the new curfew, so its end time may only change with Marcus's consent (ASK, record stays). The bar close and Colin's taxi follow arithmetically from the new curfew with no consent needed (REVISE to 22:30 and 22:45), and the studio blocking series falls outside the Main House terms (KEEP). The task asks for the taxi time and bar close, which must carry the new values, not the midnight-era ones.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Gel restock\", \"counterpart\": \"Dev Apte\", \"org\": \"Halden Theatrical Supplies\", \"item\": \"colour gel sheets\", \"unit\": \"sheets\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"Main House lighting store\"},\n  {\"kind\": \"booking\", \"topic\": \"Studio rehearsals\", \"counterpart\": \"Tom Bright\", \"org\": \"Littlewick Playhouse\", \"item\": \"studio rehearsal slot\", \"unit\": \"\", \"values\": [\"Studio\", \"Green Room\", \"Main House\"], \"place\": \"Littlewick Playhouse\"},\n  {\"kind\": \"order\", \"topic\": \"Programme paper\", \"counterpart\": \"Marta Kline\", \"org\": \"Rowan Print\", \"item\": \"programme booklets\", \"unit\": \"copies\", \"values\": [\"150\", \"200\", \"250\", \"300\"], \"place\": \"front-of-house desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Choral society rehearsals\", \"counterpart\": \"Ruth Okafor\", \"org\": \"Littlewick Choral Society\", \"item\": \"hall rehearsal evening\", \"unit\": \"\", \"values\": [\"Main House\", \"Green Room\", \"Studio\"], \"place\": \"Main House\"},\n  {\"kind\": \"order\", \"topic\": \"Interval wine\", \"counterpart\": \"Owen Pike\", \"org\": \"Bramble Wines\", \"item\": \"wine bottles\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Green Room bar\"},\n  {\"kind\": \"booking\", \"topic\": \"Taxi runs\", \"counterpart\": \"Colin Fenn\", \"org\": \"Littlewick Cars\", \"item\": \"night taxi\", \"unit\": \"\", \"values\": [\"Main House stage door\", \"Weaver Lane entrance\", \"Green Room side door\"], \"place\": \"Littlewick Playhouse\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Hana Sul\", \"org\": \"Brightline Facilities\", \"item\": \"floor cleaner drums\", \"unit\": \"drums\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Main House foyer\"},\n  {\"kind\": \"booking\", \"topic\": \"Followspot cover\", \"counterpart\": \"Sam Reddy\", \"org\": \"Littlewick Playhouse\", \"item\": \"followspot shift\", \"unit\": \"\", \"values\": [\"Main House lighting box\", \"Studio lighting box\", \"Green Room corner rig\"], \"place\": \"Main House\"},\n  {\"kind\": \"order\", \"topic\": \"Tape restock\", \"counterpart\": \"Dev Apte\", \"org\": \"Halden Theatrical Supplies\", \"item\": \"gaffer tape rolls\", \"unit\": \"rolls\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"props store\"},\n  {\"kind\": \"booking\", \"topic\": \"Notes sessions\", \"counterpart\": \"Marcus Hale\", \"org\": \"Littlewick Playhouse\", \"item\": \"notes session room\", \"unit\": \"\", \"values\": [\"Green Room\", \"Studio\", \"Main House\"], \"place\": \"Littlewick Playhouse\"},\n  {\"kind\": \"order\", \"topic\": \"Costume hire\", \"counterpart\": \"Bilva Rane\", \"org\": \"Threadneedle Costumes\", \"item\": \"costume sets\", \"unit\": \"sets\", \"values\": [\"6\", \"8\", \"10\"], \"place\": \"costume store\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 8560,
+    "completion_tokens": 5289,
+    "reasoning_tokens": 10,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03168056,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Studio rehearsals': values needs at least three entries\n- noise topic 'Choral society rehearsals': values needs at least three entries\n- noise topic 'Taxi runs': values needs at least three entries\n- noise topic 'Followspot cover': values needs at least three entries\n- noise topic 'Notes sessions': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Copper Kettle curfew",
+  "setting": "The theatre stage manager at Littlewick Playhouse whose assistant keeps rehearsal schedules, cue sheets, and cast availability",
+  "owner": "Nadia",
+  "org": "Littlewick Playhouse",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Marcus Hale (Littlewick Playhouse)",
+    "text": "Standing rule on spending: any supplier order or freelance hire above 400 pounds needs written sign-off from Priya Nair, our finance lead, before it is confirmed. Anything at or below 400 pounds can go ahead without her.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Autumn production confirmed: 'The Copper Kettle', playing the Main House. Tech run and dress rehearsal will land in late October, with the opening at the end of the month.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Fen Adeyemi (Littlewick Playhouse office)",
+    "text": "Just to confirm staffing: Colin Fenn runs the Green Room bar on show nights and tech nights this season. He is our regular steward and knows the till and the cellar.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-02",
+    "type": "policy",
+    "from": "Marcus Hale (Littlewick Playhouse)",
+    "text": "House rules for the building, effective now. The Main House has an evening noise curfew of 23:00. The Studio has no curfew. Any Main House booking that needs to run past the curfew requires my prior agreement. The Green Room bar closes one hour after curfew. Confirmed bookings may only be moved to a different date or space with my agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Ruth Okafor (Littlewick Choral Society)",
+    "text": "We would love to hire the Main House for our autumn concert on 15 November, an afternoon slot. Roughly 60 singers and an audience of about 120. Could you hold it for us?",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Read-through for 'The Copper Kettle' booked in the Green Room on 3 September at 18:30, full cast. Confirmed in the diary.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-22",
+    "type": "quote",
+    "from": "Dev Apte (Halden Theatrical Supplies)",
+    "text": "Quote for your autumn props consumables box: 260 pounds including delivery of tape, rope, Velcro, and sundries to the Main House lighting store.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Props consumables ordered from Halden Theatrical Supplies at 260 pounds. That is below the 400 pound sign-off threshold, so Priya Nair's approval is not needed. Order placed.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-06",
+    "type": "email",
+    "from": "Ruth Okafor (Littlewick Choral Society)",
+    "text": "To confirm terms: a 14:00 start on 15 November, finishing by 17:30, and our usual hire fee of 600 pounds for the afternoon.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "The Littlewick Choral Society's autumn concert is confirmed in the Main House on 15 November, 14:00 to 17:30, fee 600 pounds, contact Ruth Okafor. Booking confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e9"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-14",
+    "type": "message",
+    "from": "Tom Bright (deputy stage manager)",
+    "text": "Cast availability for blocking is best on Tuesday and Thursday evenings. Everyone has kept those free through the autumn.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Blocking rehearsals for 'The Copper Kettle' will run in the Studio on Tuesday and Thursday evenings, 19:00 to 23:00. The Studio has no curfew under the July house rules, so we can work late there without any special agreement. Series booked and confirmed in the diary.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-01",
+    "type": "notice",
+    "from": "Fen Adeyemi (Littlewick Playhouse office)",
+    "text": "Season reminder of the house rules: the Main House falls quiet at 23:00, the Green Room bar closes at midnight, one hour after curfew, and the Studio has no curfew. Any Main House booking running past 23:00 needs Marcus's agreement.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-03",
+    "type": "minutes",
+    "from": "Tom Bright (deputy stage manager)",
+    "text": "Read-through minutes: full cast attended, the Green Room worked well, and the first blocking call is set for next Tuesday.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-05",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Sam Reddy is booked as freelance followspot operator for 'The Copper Kettle' at 140 pounds a night, covering the tech run and the dress rehearsal.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "CL-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Marcus Hale (Littlewick Playhouse)",
+    "text": "Production dates are locked: tech run on 22 October, dress rehearsal on 26 October, opening night on 30 October. All in the Main House.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-12",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Tech run for 'The Copper Kettle' booked in the Main House on Thursday 22 October, 19:00 to 23:00. It finishes exactly at the Main House curfew of 23:00, so no special agreement from Marcus is needed under the house rules. Confirmed in the diary with Sam Reddy on the followspot.",
+    "role": "decision",
+    "rests_on": [
+     "e16",
+     "e4"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Colin Fenn",
+    "text": "Happy to steward the Green Room bar on the tech night on the 22nd, as usual. Just let me know what time we are closing and I will sort myself a taxi home.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-17",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Bar arrangements for the tech night on 22 October: Colin Fenn will steward the Green Room bar, closing at midnight, since the house rules have the bar close one hour after the 23:00 Main House curfew. Booked in the schedule.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e18"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-18",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Night taxi booked with Littlewick Cars for Colin Fenn after the tech-night bar closes at midnight: pickup at 00:15 on 22 October at the Main House stage door.",
+    "role": "decision",
+    "rests_on": [
+     "e19",
+     "e3"
+    ],
+    "record": "EV-5",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Ruth Okafor (Littlewick Choral Society)",
+    "text": "For the concert we would need about 250 printed programmes. Can the theatre handle that through your usual printer?",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Concert programmes ordered from Rowan Print: 250 copies at 310 pounds, delivering to the front-of-house desk before 15 November. Below the 400 pound threshold, so no finance sign-off is needed. Order confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e21",
+     "e10",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-23",
+    "type": "email",
+    "from": "Tom Bright (deputy stage manager)",
+    "text": "Tech-night plan as booked: the run goes 19:00 to 23:00 in the Main House, the Green Room bar is open with Colin until midnight, and his taxi is called for 00:15 at the stage door. All set.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-24",
+    "type": "notice",
+    "from": "Marcus Hale (Littlewick Playhouse)",
+    "text": "Team, I have had a formal noise complaint from the flats on Weaver Lane about noise carrying from the Main House late at night. From Monday 12 October the Main House must be quiet by 21:30 instead of 23:00. This replaces the July house rules on the curfew: the Studio still has no curfew, moving a confirmed booking to another date or space still needs my agreement, and any Main House booking that has to run past 21:30 now needs my prior sign-off. The Green Room bar closes one hour after curfew, so midnight bar finishes are gone. Please look at everything in the diary for the Main House after 21:30 from the 12th onwards.",
+    "role": "change",
+    "revokes": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-28",
+    "type": "message",
+    "from": "Tom Bright (deputy stage manager)",
+    "text": "For the cast party after the dress rehearsal on the 26th, could the bar stay open till midnight? Colin says he is happy to stay late if we book him another taxi. Let's give the cast a proper send-off before opening night.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-01",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Dress rehearsal for 'The Copper Kettle' booked in the Main House on 26 October, 18:30 to 21:15, comfortably inside the new 21:30 quiet time, so no late agreement is needed. Confirmed in the diary.",
+    "role": "decision",
+    "rests_on": [
+     "e16",
+     "e24"
+    ],
+    "record": "EV-6"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Ruth Okafor (Littlewick Choral Society)",
+    "text": "Perfect, 14:00 start on the 15th works for us. We will bring our own piano accompanist.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-05",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Interval drinks for opening night ordered from Bramble Wines: 24 bottles at 300 pounds, delivering to the Green Room bar before 30 October. Below the 400 pound sign-off threshold. Order placed.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Sam Reddy",
+    "text": "Confirming I am free for both the tech run on the 22nd and the dress on the 26th. I will bring my own headset.",
+    "role": "fact"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-12",
+    "type": "minutes",
+    "from": "Tom Bright (deputy stage manager)",
+    "text": "Production meeting notes: cue sheets for Act One are with lighting, props list is nearly final, and the choral society concert crew is confirmed for the 15th.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-15",
+    "type": "task",
+    "from": "Nadia",
+    "text": "To do before tech week: confirm the final running order with Marcus by 21 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-18",
+    "type": "email",
+    "from": "Colin Fenn",
+    "text": "Nadia, what time should I tell the taxi firm for the tech night on the 22nd? And when do we close the bar that evening? I want to get home at a sensible hour.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-19",
+    "type": "call",
+    "from": "Dev Apte (Halden Theatrical Supplies)",
+    "text": "Called to say the props consumables invoice has been issued and the autumn restock list is ready whenever you need it.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "The Copper Kettle - studio blocking rehearsals",
+    "fields": {
+     "production": "The Copper Kettle",
+     "space": "Studio",
+     "start_time": "19:00",
+     "end_time": "23:00",
+     "recurring": "Tuesday and Thursday",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "The Copper Kettle - read-through",
+    "fields": {
+     "production": "The Copper Kettle",
+     "date": "2026-09-03",
+     "space": "Green Room",
+     "time": "18:30",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "The Copper Kettle - tech run",
+    "fields": {
+     "production": "The Copper Kettle",
+     "date": "2026-10-22",
+     "space": "Main House",
+     "start_time": "19:00",
+     "end_time": "23:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Green Room bar - tech night",
+    "fields": {
+     "date": "2026-10-22",
+     "steward": "Colin Fenn",
+     "close_time": "00:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Night taxi - Colin Fenn (tech night)",
+    "fields": {
+     "date": "2026-10-22",
+     "pickup_time": "00:15",
+     "pickup_place": "Main House stage door",
+     "passenger": "Colin Fenn",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "The Copper Kettle - dress rehearsal",
+    "fields": {
+     "production": "The Copper Kettle",
+     "date": "2026-10-26",
+     "space": "Main House",
+     "start_time": "18:30",
+     "end_time": "21:15",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Props consumables - Halden Theatrical Supplies",
+    "fields": {
+     "supplier": "Halden Theatrical Supplies",
+     "item": "props consumables box",
+     "amount": "260",
+     "placed": "2026-08-03",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Concert programmes - Rowan Print",
+    "fields": {
+     "supplier": "Rowan Print",
+     "item": "concert programmes",
+     "copies": "250",
+     "amount": "310",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Interval wine - Bramble Wines",
+    "fields": {
+     "supplier": "Bramble Wines",
+     "item": "interval wine",
+     "bottles": "24",
+     "amount": "300",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Littlewick Choral Society - autumn concert",
+    "fields": {
+     "client": "Littlewick Choral Society",
+     "contact": "Ruth Okafor",
+     "event": "autumn concert",
+     "date": "2026-11-15",
+     "time": "14:00",
+     "fee": "600",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Freelance crew - Sam Reddy",
+    "fields": {
+     "name": "Sam Reddy",
+     "role": "followspot operator",
+     "dates": "2026-10-22 and 2026-10-26",
+     "rate": "140",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "end_time"
+    ],
+    "from": "Marcus Hale",
+    "rule": "e4"
+   }
+  ],
+  "task": "Colin is chasing me about the tech night on Thursday the 22nd. Can you send him his taxi pickup time, and make sure the schedule shows the right closing time for the Green Room bar that evening?",
+  "expect": [
+   {
+    "record": "EV-4",
+    "field": "close_time",
+    "value": "22:30",
+    "stale": [
+     "00:00"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-5",
+    "field": "pickup_time",
+    "value": "22:45",
+    "stale": [
+     "00:15"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Colin Fenn",
+    "regarding": "EV-5",
+    "says": [
+     "22:45"
+    ],
+    "stale": [
+     "00:15"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The amendment moves the Main House curfew from 23:00 to 21:30 from 12 October and restates that past-curfew Main House bookings need Marcus's agreement and the bar closes one hour after curfew. The tech run's 23:00 finish now runs past the new curfew, so its end time may only change with Marcus's consent (ASK, record stays). The bar close and Colin's taxi follow arithmetically from the new curfew with no consent needed (REVISE to 22:30 and 22:45), and the studio blocking series falls outside the Main House terms (KEEP). The task asks for the taxi time and bar close, which must carry the new values, not the midnight-era ones.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Gel restock",
+    "counterpart": "Dev Apte",
+    "org": "Halden Theatrical Supplies",
+    "item": "colour gel sheets",
+    "unit": "sheets",
+    "values": [
+     "20",
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "Main House lighting store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Studio rehearsals",
+    "counterpart": "Tom Bright",
+    "org": "Littlewick Playhouse",
+    "item": "studio rehearsal slot",
+    "unit": "",
+    "values": [
+     "Studio",
+     "Green Room",
+     "Main House"
+    ],
+    "place": "Littlewick Playhouse"
+   },
+   {
+    "kind": "order",
+    "topic": "Programme paper",
+    "counterpart": "Marta Kline",
+    "org": "Rowan Print",
+    "item": "programme booklets",
+    "unit": "copies",
+    "values": [
+     "150",
+     "200",
+     "250",
+     "300"
+    ],
+    "place": "front-of-house desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "Choral society rehearsals",
+    "counterpart": "Ruth Okafor",
+    "org": "Littlewick Choral Society",
+    "item": "hall rehearsal evening",
+    "unit": "",
+    "values": [
+     "Main House",
+     "Green Room",
+     "Studio"
+    ],
+    "place": "Main House"
+   },
+   {
+    "kind": "order",
+    "topic": "Interval wine",
+    "counterpart": "Owen Pike",
+    "org": "Bramble Wines",
+    "item": "wine bottles",
+    "unit": "bottles",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "Green Room bar"
+   },
+   {
+    "kind": "booking",
+    "topic": "Taxi runs",
+    "counterpart": "Colin Fenn",
+    "org": "Littlewick Cars",
+    "item": "night taxi",
+    "unit": "",
+    "values": [
+     "Main House stage door",
+     "Weaver Lane entrance",
+     "Green Room side door"
+    ],
+    "place": "Littlewick Playhouse"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies",
+    "counterpart": "Hana Sul",
+    "org": "Brightline Facilities",
+    "item": "floor cleaner drums",
+    "unit": "drums",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Main House foyer"
+   },
+   {
+    "kind": "booking",
+    "topic": "Followspot cover",
+    "counterpart": "Sam Reddy",
+    "org": "Littlewick Playhouse",
+    "item": "followspot shift",
+    "unit": "",
+    "values": [
+     "Main House lighting box",
+     "Studio lighting box",
+     "Green Room corner rig"
+    ],
+    "place": "Main House"
+   },
+   {
+    "kind": "order",
+    "topic": "Tape restock",
+    "counterpart": "Dev Apte",
+    "org": "Halden Theatrical Supplies",
+    "item": "gaffer tape rolls",
+    "unit": "rolls",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "props store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Notes sessions",
+    "counterpart": "Marcus Hale",
+    "org": "Littlewick Playhouse",
+    "item": "notes session room",
+    "unit": "",
+    "values": [
+     "Green Room",
+     "Studio",
+     "Main House"
+    ],
+    "place": "Littlewick Playhouse"
+   },
+   {
+    "kind": "order",
+    "topic": "Costume hire",
+    "counterpart": "Bilva Rane",
+    "org": "Threadneedle Costumes",
+    "item": "costume sets",
+    "unit": "sets",
+    "values": [
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "costume store"
+   }
+  ],
+  "id": "G1000-2-04",
+  "tier": 1000,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history requires Marcus's agreement to run past curfew or move a confirmed booking's date or space, not to change its end time generally, so the consent map overstates the rule. The taxi's original 00:15 booking does not establish a standing requirement for pickup exactly 15 minutes after bar closing, so 22:45 is plausible but not unambiguously fixed by the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history requires Marcus's agreement to run past curfew or move a confirmed booking's date or space, not to change its end time generally, so the consent map overstates the rule. The taxi's original 00:15 booking does not establish a standing requirement for pickup exactly 15 minutes after bar closing, so 22:45 is plausible but not unambiguously fixed by the history."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 5102,
+    "completion_tokens": 201,
+    "reasoning_tokens": 84,
+    "cached_tokens": 0
+   },
+   "cost": 0.0738175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f2fd76db6d72a2b9ac76078dc6f030b79314ec0ef6fda7758d801908db126600",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state follows from the history: e24 moves the Main House curfew to 21:30, so the bar closes at 22:30 and the taxi is 22:45, while e17 needs Marcus's consent and e12 stays KEEP because the Studio has no curfew. The tier counts are met: 33 core events, 11 decisions, the change 26 days before the task day, and two echoes (e13, e23). One minor point: the consent map cites e4, which e24 revokes, though e24 restates the same sign-off requirement, so the consent basis still holds.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state follows from the history: e24 moves the Main House curfew to 21:30, so the bar closes at 22:30 and the taxi is 22:45, while e17 needs Marcus's consent and e12 stays KEEP because the Studio has no curfew. The tier counts are met: 33 core events, 11 decisions, the change 26 days before the task day, and two echoes (e13, e23). One minor point: the consent map cites e4, which e24 revokes, though e24 restates the same sign-off requirement, so the consent basis still holds."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 7294,
+    "completion_tokens": 2296,
+    "reasoning_tokens": 2060,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018774,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f2fd76db6d72a2b9ac76078dc6f030b79314ec0ef6fda7758d801908db126600",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The curfew amendment (e24) voids decisions resting on the old 23:00 rule: the tech run's 23:00 finish now needs Marcus's sign-off (ASK, matching the consent map), while bar close (22:30) and taxi (22:45, 15 min after close per e20) follow arithmetically (REVISE), and the Studio blocking series stands (KEEP). Tier met: 33 core events, 11 decisions, change 26 days before the task day with later core events, and two pre-change echoes (e13, e23) restate the stale midnight closing. The task asks for the taxi time and bar closing without mentioning the change, and the change sits at event 826 of 1000 among routine noise.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The curfew amendment (e24) voids decisions resting on the old 23:00 rule: the tech run's 23:00 finish now needs Marcus's sign-off (ASK, matching the consent map), while bar close (22:30) and taxi (22:45, 15 min after close per e20) follow arithmetically (REVISE), and the Studio blocking series stands (KEEP). Tier met: 33 core events, 11 decisions, change 26 days before the task day with later core events, and two pre-change echoes (e13, e23) restate the stale midnight closing. The task asks for the taxi time and bar closing without mentioning the change, and the change sits at event 826 of 1000 among routine noise."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 5182,
+    "completion_tokens": 685,
+    "reasoning_tokens": 467,
+    "cached_tokens": 0
+   },
+   "cost": 0.025821,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f2fd76db6d72a2b9ac76078dc6f030b79314ec0ef6fda7758d801908db126600",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

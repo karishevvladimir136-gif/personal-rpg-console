@@ -1,0 +1,591 @@
+{
+ "id": "K500-1-05",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 1,
+ "idx": 4,
+ "setting": "Dive centre manager at Coral Bay Scuba Adventures, a PADI dive shop",
+ "prompt_sha256": "40acde24205b3b5599f8ba040bea7a5b1dce88dd64abe9c03318cfba44d0eae0",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Marlin II capacity cut before the Blue Reef club trip\",\n \"setting\": \"Dive centre manager at Coral Bay Scuba Adventures, a PADI dive shop\",\n \"owner\": \"Marta\",\n \"org\": \"Coral Bay Scuba Adventures\",\n \"now\": \"2026-10-28\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule at Coral Bay Scuba Adventures: any supplier order over 800 needs sign-off from our finance lead Priya Nair before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule: once a client group booking is confirmed, we do not change the diver count without the group leader's written consent. Email them and wait for their yes.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Luis Ferrer (Bay Gas Supplies)\", \"text\": \"Confirming our rates for Coral Bay Scuba Adventures: rental tanks are 9 per tank per day, delivered to the Coral Bay Marina fuel dock the evening before your trip. Order through me, Luis Ferrer.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Dana Ruiz (Blue Reef Diving Club)\", \"text\": \"Hi Marta, I am the group leader for Blue Reef Diving Club bookings at your centre. Anything about our club trips comes through me, Dana Ruiz.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Captain Rob Hale (Marlin II Charters)\", \"text\": \"For the season: my boat Marlin II is certified for 14 divers, runs Saturdays from Coral Bay Marina, and I skipper her myself. Book through me, Captain Rob Hale.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Our second charter option is the boat Dolphin Run, skippered by Ana Beltran, based at the same Coral Bay Marina.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"June accounts are reconciled. Reminder that I am away the first week of July, so get any large orders to me before then.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked our regular Saturday reef trip on Marlin II with Captain Rob Hale for Saturday 7 November 2026, departing Coral Bay Marina at 09:00, since Marlin II runs Saturdays from the marina.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Ana Beltran\", \"text\": \"Happy to cover Open Water pool sessions again this season on Tuesday evenings if you need me, Marta.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Blue Reef Diving Club group trip with Dana Ruiz: 12 club divers on Marlin II for Saturday 7 November 2026. The boat's 14-diver certification covers 12 divers plus crew comfortably.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Dana Ruiz (Blue Reef Diving Club)\", \"text\": \"Great, the club is looking forward to 7 November. I will collect balances from our 12 divers in October.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Drafted the rental tank order with Bay Gas Supplies for the Blue Reef club trip on 7 November 2026: 14 tanks, that is 12 for the club divers plus 2 for staff, at 9 per tank per day from Luis Ferrer. Total 126, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e3\", \"e1\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"message\", \"from\": \"Tomas Vega\", \"text\": \"Compressor room filters arrived. I have shelved them next to the nitrox analyser.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered a restock of 6 rental wetsuits from Seafit Gear for 540 in total, under the 800 finance sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Captain Rob Hale (Marlin II Charters)\", \"text\": \"Autumn schedule note for your newsletter, Marta: Marlin II, certified for 14 divers, Saturdays from Coral Bay Marina as usual.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Tuesday evening Discover Scuba pool session at Coral Bay Leisure Pool for 3 November 2026 with Ana Beltran instructing.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Ana Beltran\", \"text\": \"Heads up: Dolphin Run is certified for 18 divers if you ever need a bigger boat for a club charter this autumn.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Priya Nair\", \"text\": \"October card statements are in. Nothing unusual except the fuel bill from the marina.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Luis Ferrer (Bay Gas Supplies)\", \"text\": \"We will be closed 12 to 14 October for stocktake, so send any tank orders early that week.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Captain Rob Hale (Marlin II Charters)\", \"text\": \"Marta, the surveyor has been aboard after the engine refit: Marlin II is now certified for 10 divers maximum. She still runs Saturdays from Coral Bay Marina with me skippering, same departure setup as ever.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e21\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Tomas Vega\", \"text\": \"Nitrox blend for the weekend group is done and logged. Cylinders are racked by the back door.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-19\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Assigned Ana Beltran to instruct the Open Water course classroom session at the dive centre on 5 November 2026.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-4\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Dana Ruiz (Blue Reef Diving Club)\", \"text\": \"Club balances for the 7 November trip are nearly all in. Let me know if you need anything else from me.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-21\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 4 compressor filters from AirPure Marine for 320 in total, under the 800 sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-22\", \"type\": \"notice\", \"from\": \"Coral Bay Marina Office\", \"text\": \"Fuel dock access will be restricted on 30 October from 06:00 to 10:00 for maintenance.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-23\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Pay the Bay Gas Supplies September invoice by 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-26\", \"type\": \"message\", \"from\": \"Ana Beltran\", \"text\": \"Confirmed with the leisure pool for 3 November. They want us in by 18:30.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-27\", \"type\": \"email\", \"from\": \"Seafit Gear\", \"text\": \"Your wetsuit restock has shipped and should reach the dive centre early next week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Blue Reef Diving Club group trip\", \"fields\": {\"date\": \"2026-11-07\", \"boat\": \"Marlin II\", \"divers\": \"12\", \"contact\": \"Dana Ruiz\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Saturday reef trip on Marlin II\", \"fields\": {\"date\": \"2026-11-07\", \"boat\": \"Marlin II\", \"departure\": \"09:00\", \"place\": \"Coral Bay Marina\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Discover Scuba pool session\", \"fields\": {\"date\": \"2026-11-03\", \"place\": \"Coral Bay Leisure Pool\", \"instructor\": \"Ana Beltran\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Open Water classroom session\", \"fields\": {\"date\": \"2026-11-05\", \"place\": \"Coral Bay Scuba Adventures\", \"instructor\": \"Ana Beltran\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Rental tanks for Blue Reef club trip\", \"fields\": {\"supplier\": \"Bay Gas Supplies\", \"item\": \"rental tanks\", \"quantity\": \"14\", \"date\": \"2026-11-07\", \"total\": \"126\", \"status\": \"draft\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Wetsuit restock\", \"fields\": {\"supplier\": \"Seafit Gear\", \"item\": \"rental wetsuits\", \"quantity\": \"6\", \"total\": \"540\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Compressor filter restock\", \"fields\": {\"supplier\": \"AirPure Marine\", \"item\": \"compressor filters\", \"quantity\": \"4\", \"total\": \"320\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Blue Reef Diving Club\", \"fields\": {\"contact\": \"Dana Ruiz\", \"role\": \"group leader\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"divers\"], \"from\": \"Dana Ruiz (Blue Reef Diving Club)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please get the Blue Reef club trip on Saturday 7 November wrapped up: finalise the Bay Gas tank order so it matches what Marlin II can actually take, and email Dana Ruiz the trip plan for the group.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"12\", \"stale\": [\"14\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"108\", \"stale\": [\"126\"], \"task\": true},\n  {\"message_to\": \"Dana Ruiz (Blue Reef Diving Club)\", \"regarding\": \"EV-1\", \"says\": [\"10\"], \"stale\": [\"12\", \"14\"], \"task\": true}\n ],\n \"why\": \"Captain Rob Hale's October email re-certifies Marlin II at 10 divers, revoking the 14-diver fact. The tank order rests on the 12-diver club booking (two hops from the fact), so it is REVISE: 10 divers plus 2 staff means 12 tanks at 108 total, no consent needed. The club booking itself is ASK: its diver count may not change without Dana Ruiz's written consent under the standing rule, so EV-1 stays at 12 and the owner must ask. The regular Saturday reef trip only uses Marlin II's Saturday schedule, which the change leaves standing, so it is KEEP; Dolphin Run's 18-diver capacity is a distractor and must not be acted on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"air fills\", \"counterpart\": \"Luis Ferrer\", \"org\": \"Bay Gas Supplies\", \"item\": \"rental tanks\", \"unit\": \"tank\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Coral Bay Marina fuel dock\"},\n  {\"kind\": \"order\", \"topic\": \"nitrox fills\", \"counterpart\": \"Luis Ferrer\", \"org\": \"Bay Gas Supplies\", \"item\": \"nitrox cylinders\", \"unit\": \"cylinder\", \"values\": [\"2\", \"3\", \"5\", \"6\"], \"place\": \"Coral Bay Marina fuel dock\"},\n  {\"kind\": \"booking\", \"topic\": \"club fun dive\", \"counterpart\": \"Dana Ruiz\", \"org\": \"Blue Reef Diving Club\", \"item\": \"guided shore dive\", \"unit\": \"session\", \"values\": [\"Coral Bay House Reef\", \"Pier Point\", \"Turtle Cove\"], \"place\": \"Coral Bay House Reef\"},\n  {\"kind\": \"booking\", \"topic\": \"pool training\", \"counterpart\": \"Ana Beltran\", \"org\": \"Coral Bay Leisure Pool\", \"item\": \"training pool lane\", \"unit\": \"evening\", \"values\": [\"lane 1\", \"lane 2\", \"lane 3\"], \"place\": \"Coral Bay Leisure Pool\"},\n  {\"kind\": \"order\", \"topic\": \"wetsuit restock\", \"counterpart\": \"Seafit Gear sales desk\", \"org\": \"Seafit Gear\", \"item\": \"rental wetsuits\", \"unit\": \"suit\", \"values\": [\"3\", \"4\", \"5\", \"6\"], \"place\": \"Coral Bay Scuba Adventures\"},\n  {\"kind\": \"order\", \"topic\": \"mask restock\", \"counterpart\": \"Seafit Gear sales desk\", \"org\": \"Seafit Gear\", \"item\": \"rental masks\", \"unit\": \"mask\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Coral Bay Scuba Adventures\"},\n  {\"kind\": \"order\", \"topic\": \"compressor parts\", \"counterpart\": \"AirPure Marine parts desk\", \"org\": \"AirPure Marine\", \"item\": \"compressor filters\", \"unit\": \"filter\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Coral Bay Scuba Adventures\"},\n  {\"kind\": \"booking\", \"topic\": \"marina berth\", \"counterpart\": \"Coral Bay Marina Office\", \"org\": \"Coral Bay Marina\", \"item\": \"loading berth slot\", \"unit\": \"morning\", \"values\": [\"berth A\", \"berth B\", \"berth C\"], \"place\": \"Coral Bay Marina\"},\n  {\"kind\": \"order\", \"topic\": \"fuel for boats\", \"counterpart\": \"Coral Bay Marina fuel dock\", \"org\": \"Coral Bay Marina\", \"item\": \"marine diesel\", \"unit\": \"litre\", \"values\": [\"120\", \"150\", \"180\", \"200\"], \"place\": \"Coral Bay Marina fuel dock\"},\n  {\"kind\": \"booking\", \"topic\": \"classroom hire\", \"counterpart\": \"Coral Bay Community Hall\", \"org\": \"Coral Bay Community Hall\", \"item\": \"classroom for theory evening\", \"unit\": \"evening\", \"values\": [\"small room\", \"main hall\", \"upstairs room\"], \"place\": \"Coral Bay Community Hall\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3236,
+    "completion_tokens": 6042,
+    "reasoning_tokens": 2020,
+    "cached_tokens": 0
+   },
+   "cost": 0.100338,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Marlin II capacity cut before the Blue Reef club trip",
+  "setting": "Dive centre manager at Coral Bay Scuba Adventures, a PADI dive shop",
+  "owner": "Marta",
+  "org": "Coral Bay Scuba Adventures",
+  "now": "2026-10-28",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule at Coral Bay Scuba Adventures: any supplier order over 800 needs sign-off from our finance lead Priya Nair before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule: once a client group booking is confirmed, we do not change the diver count without the group leader's written consent. Email them and wait for their yes.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "email",
+    "from": "Luis Ferrer (Bay Gas Supplies)",
+    "text": "Confirming our rates for Coral Bay Scuba Adventures: rental tanks are 9 per tank per day, delivered to the Coral Bay Marina fuel dock the evening before your trip. Order through me, Luis Ferrer.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Dana Ruiz (Blue Reef Diving Club)",
+    "text": "Hi Marta, I am the group leader for Blue Reef Diving Club bookings at your centre. Anything about our club trips comes through me, Dana Ruiz.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Captain Rob Hale (Marlin II Charters)",
+    "text": "For the season: my boat Marlin II is certified for 14 divers, runs Saturdays from Coral Bay Marina, and I skipper her myself. Book through me, Captain Rob Hale.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-10",
+    "type": "note",
+    "from": "Marta",
+    "text": "Our second charter option is the boat Dolphin Run, skippered by Ana Beltran, based at the same Coral Bay Marina.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "June accounts are reconciled. Reminder that I am away the first week of July, so get any large orders to me before then.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked our regular Saturday reef trip on Marlin II with Captain Rob Hale for Saturday 7 November 2026, departing Coral Bay Marina at 09:00, since Marlin II runs Saturdays from the marina.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Ana Beltran",
+    "text": "Happy to cover Open Water pool sessions again this season on Tuesday evenings if you need me, Marta.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Confirmed the Blue Reef Diving Club group trip with Dana Ruiz: 12 club divers on Marlin II for Saturday 7 November 2026. The boat's 14-diver certification covers 12 divers plus crew comfortably.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Dana Ruiz (Blue Reef Diving Club)",
+    "text": "Great, the club is looking forward to 7 November. I will collect balances from our 12 divers in October.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Drafted the rental tank order with Bay Gas Supplies for the Blue Reef club trip on 7 November 2026: 14 tanks, that is 12 for the club divers plus 2 for staff, at 9 per tank per day from Luis Ferrer. Total 126, so no finance sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-15",
+    "type": "message",
+    "from": "Tomas Vega",
+    "text": "Compressor room filters arrived. I have shelved them next to the nitrox analyser.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered a restock of 6 rental wetsuits from Seafit Gear for 540 in total, under the 800 finance sign-off threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Captain Rob Hale (Marlin II Charters)",
+    "text": "Autumn schedule note for your newsletter, Marta: Marlin II, certified for 14 divers, Saturdays from Coral Bay Marina as usual.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-24",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Tuesday evening Discover Scuba pool session at Coral Bay Leisure Pool for 3 November 2026 with Ana Beltran instructing.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Ana Beltran",
+    "text": "Heads up: Dolphin Run is certified for 18 divers if you ever need a bigger boat for a club charter this autumn.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-02",
+    "type": "message",
+    "from": "Priya Nair",
+    "text": "October card statements are in. Nothing unusual except the fuel bill from the marina.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Luis Ferrer (Bay Gas Supplies)",
+    "text": "We will be closed 12 to 14 October for stocktake, so send any tank orders early that week.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Captain Rob Hale (Marlin II Charters)",
+    "text": "Marta, the surveyor has been aboard after the engine refit: Marlin II is now certified for 10 divers maximum. She still runs Saturdays from Coral Bay Marina with me skippering, same departure setup as ever.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-17",
+    "type": "message",
+    "from": "Tomas Vega",
+    "text": "Nitrox blend for the weekend group is done and logged. Cylinders are racked by the back door.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-19",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Assigned Ana Beltran to instruct the Open Water course classroom session at the dive centre on 5 November 2026.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Dana Ruiz (Blue Reef Diving Club)",
+    "text": "Club balances for the 7 November trip are nearly all in. Let me know if you need anything else from me.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-21",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 4 compressor filters from AirPure Marine for 320 in total, under the 800 sign-off threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-22",
+    "type": "notice",
+    "from": "Coral Bay Marina Office",
+    "text": "Fuel dock access will be restricted on 30 October from 06:00 to 10:00 for maintenance.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-23",
+    "type": "task",
+    "from": "Marta",
+    "text": "Pay the Bay Gas Supplies September invoice by 30 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-26",
+    "type": "message",
+    "from": "Ana Beltran",
+    "text": "Confirmed with the leisure pool for 3 November. They want us in by 18:30.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-27",
+    "type": "email",
+    "from": "Seafit Gear",
+    "text": "Your wetsuit restock has shipped and should reach the dive centre early next week.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Blue Reef Diving Club group trip",
+    "fields": {
+     "date": "2026-11-07",
+     "boat": "Marlin II",
+     "divers": "12",
+     "contact": "Dana Ruiz",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Saturday reef trip on Marlin II",
+    "fields": {
+     "date": "2026-11-07",
+     "boat": "Marlin II",
+     "departure": "09:00",
+     "place": "Coral Bay Marina",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Discover Scuba pool session",
+    "fields": {
+     "date": "2026-11-03",
+     "place": "Coral Bay Leisure Pool",
+     "instructor": "Ana Beltran",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Open Water classroom session",
+    "fields": {
+     "date": "2026-11-05",
+     "place": "Coral Bay Scuba Adventures",
+     "instructor": "Ana Beltran",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Rental tanks for Blue Reef club trip",
+    "fields": {
+     "supplier": "Bay Gas Supplies",
+     "item": "rental tanks",
+     "quantity": "14",
+     "date": "2026-11-07",
+     "total": "126",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Wetsuit restock",
+    "fields": {
+     "supplier": "Seafit Gear",
+     "item": "rental wetsuits",
+     "quantity": "6",
+     "total": "540",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Compressor filter restock",
+    "fields": {
+     "supplier": "AirPure Marine",
+     "item": "compressor filters",
+     "quantity": "4",
+     "total": "320",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Blue Reef Diving Club",
+    "fields": {
+     "contact": "Dana Ruiz",
+     "role": "group leader",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "divers"
+    ],
+    "from": "Dana Ruiz (Blue Reef Diving Club)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please get the Blue Reef club trip on Saturday 7 November wrapped up: finalise the Bay Gas tank order so it matches what Marlin II can actually take, and email Dana Ruiz the trip plan for the group.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "quantity",
+    "value": "12",
+    "stale": [
+     "14"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "108",
+    "stale": [
+     "126"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Dana Ruiz (Blue Reef Diving Club)",
+    "regarding": "EV-1",
+    "says": [
+     "10"
+    ],
+    "stale": [
+     "12",
+     "14"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Captain Rob Hale's October email re-certifies Marlin II at 10 divers, revoking the 14-diver fact. The tank order rests on the 12-diver club booking (two hops from the fact), so it is REVISE: 10 divers plus 2 staff means 12 tanks at 108 total, no consent needed. The club booking itself is ASK: its diver count may not change without Dana Ruiz's written consent under the standing rule, so EV-1 stays at 12 and the owner must ask. The regular Saturday reef trip only uses Marlin II's Saturday schedule, which the change leaves standing, so it is KEEP; Dolphin Run's 18-diver capacity is a distractor and must not be acted on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "air fills",
+    "counterpart": "Luis Ferrer",
+    "org": "Bay Gas Supplies",
+    "item": "rental tanks",
+    "unit": "tank",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Coral Bay Marina fuel dock"
+   },
+   {
+    "kind": "order",
+    "topic": "nitrox fills",
+    "counterpart": "Luis Ferrer",
+    "org": "Bay Gas Supplies",
+    "item": "nitrox cylinders",
+    "unit": "cylinder",
+    "values": [
+     "2",
+     "3",
+     "5",
+     "6"
+    ],
+    "place": "Coral Bay Marina fuel dock"
+   },
+   {
+    "kind": "booking",
+    "topic": "club fun dive",
+    "counterpart": "Dana Ruiz",
+    "org": "Blue Reef Diving Club",
+    "item": "guided shore dive",
+    "unit": "session",
+    "values": [
+     "Coral Bay House Reef",
+     "Pier Point",
+     "Turtle Cove"
+    ],
+    "place": "Coral Bay House Reef"
+   },
+   {
+    "kind": "booking",
+    "topic": "pool training",
+    "counterpart": "Ana Beltran",
+    "org": "Coral Bay Leisure Pool",
+    "item": "training pool lane",
+    "unit": "evening",
+    "values": [
+     "lane 1",
+     "lane 2",
+     "lane 3"
+    ],
+    "place": "Coral Bay Leisure Pool"
+   },
+   {
+    "kind": "order",
+    "topic": "wetsuit restock",
+    "counterpart": "Seafit Gear sales desk",
+    "org": "Seafit Gear",
+    "item": "rental wetsuits",
+    "unit": "suit",
+    "values": [
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "place": "Coral Bay Scuba Adventures"
+   },
+   {
+    "kind": "order",
+    "topic": "mask restock",
+    "counterpart": "Seafit Gear sales desk",
+    "org": "Seafit Gear",
+    "item": "rental masks",
+    "unit": "mask",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Coral Bay Scuba Adventures"
+   },
+   {
+    "kind": "order",
+    "topic": "compressor parts",
+    "counterpart": "AirPure Marine parts desk",
+    "org": "AirPure Marine",
+    "item": "compressor filters",
+    "unit": "filter",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Coral Bay Scuba Adventures"
+   },
+   {
+    "kind": "booking",
+    "topic": "marina berth",
+    "counterpart": "Coral Bay Marina Office",
+    "org": "Coral Bay Marina",
+    "item": "loading berth slot",
+    "unit": "morning",
+    "values": [
+     "berth A",
+     "berth B",
+     "berth C"
+    ],
+    "place": "Coral Bay Marina"
+   },
+   {
+    "kind": "order",
+    "topic": "fuel for boats",
+    "counterpart": "Coral Bay Marina fuel dock",
+    "org": "Coral Bay Marina",
+    "item": "marine diesel",
+    "unit": "litre",
+    "values": [
+     "120",
+     "150",
+     "180",
+     "200"
+    ],
+    "place": "Coral Bay Marina fuel dock"
+   },
+   {
+    "kind": "booking",
+    "topic": "classroom hire",
+    "counterpart": "Coral Bay Community Hall",
+    "org": "Coral Bay Community Hall",
+    "item": "classroom for theory evening",
+    "unit": "evening",
+    "values": [
+     "small room",
+     "main hall",
+     "upstairs room"
+    ],
+    "place": "Coral Bay Community Hall"
+   }
+  ],
+  "id": "K500-1-05",
+  "tier": 500,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

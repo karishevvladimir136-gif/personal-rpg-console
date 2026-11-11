@@ -1,0 +1,567 @@
+{
+ "id": "K100-4-08",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 4,
+ "idx": 7,
+ "setting": "Funeral home director at Holloway & Sons Funeral Services",
+ "prompt_sha256": "758552c2a07d9f65f4fea9ff066e90c0504793da52ce4e17388c01e1f1e381c5",
+ "rounds": [
+  {
+   "text": "{\n \"title\": \"Candle restock beside a restated rule\",\n \"setting\": \"Funeral home director at Holloway & Sons Funeral Services\",\n \"owner\": \"Margot\",\n \"org\": \"Holloway & Sons Funeral Services\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Margot\", \"text\": \"Standing instruction for the office: any supplier order over £800 needs Tomas Reyes, our finance lead, to sign off before it is placed. Anything at £800 or under I can approve myself.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Margot\", \"text\": \"House rule: once a family's service booking is confirmed, the date or time of that service may not be moved without the family's own agreement. Always ask the family first.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Paul Waxworth (Waxworth Candles)\", \"text\": \"Confirming our standard supply terms for Holloway & Sons: memorial candles at £2.40 each, boxed in twenties, delivery to your Chapel of Rest store room on Tuesdays and Fridays, payment on 30 days.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Beatrice Bloom (Bloom & Stem Florists)\", \"text\": \"Our standing arrangement for Holloway & Sons still holds: standard white lily and rose coffin spray £145, double-ended spray £210, chapel pedestal pair £95, delivery to the Chapel of Rest by 09:00 on service days.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Gareth Hale (Hale Memorial Print)\", \"text\": \"Price list for the year: orders of service booklets, 50 copies £180, 100 copies £260; memorial acknowledgement cards, 100 cards £120. Artwork turnaround three working days.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Margot\", \"text\": \"Fleet note: hearse one (the silver Daimler) is serviced and available all days; hearse two (the black Daimler) is booked for bodywork 9 to 13 November. Driver Edwin Marsh is available weekdays, driver Priya Shah weekdays except Wednesdays.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Reverend June Calloway\", \"text\": \"Delighted to keep taking services for Holloway & Sons. My regular availability: Mondays, Thursdays and Fridays, mornings or afternoons. My fee remains £180 per service, paid on the day.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Margot\", \"text\": \"Placed the standing fortnightly restock with Waxworth Candles: 200 memorial candles at £2.40 each, so £480, delivered to the Chapel of Rest store room on Fridays. Under my own approval limit so no further sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"minutes\", \"from\": \"Tomas Reyes\", \"text\": \"Staff meeting notes: chapel cleaning rota agreed, Edwin to keep the hearse log weekly, reminder that the organ tuner visits the first Monday of each month.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-28\", \"type\": \"call\", \"from\": \"Nina Alder\", \"text\": \"Nina Alder phoned about her father Arthur's service. The family would like Friday 23 October 2026 at 11:00 in our Chapel of Rest, Reverend June Calloway to officiate, burial afterwards at Rosehill Cemetery. About 60 mourners expected.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Reverend June Calloway\", \"text\": \"Yes, Friday 23 October at 11:00 suits me perfectly for the Alder service. Please have the order of service readings to me by Monday 19 October.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Margot\", \"text\": \"Confirmed the Alder service: Friday 23 October 2026, 11:00, Chapel of Rest, Reverend June Calloway officiating at her £180 fee, burial after at Rosehill Cemetery. Nina Alder confirmed the date and time herself on the phone, so the booking stands with the family's agreement.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e11\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Margot\", \"text\": \"Booked hearse one and Edwin Marsh for the Alder service on Friday 23 October: collect from the Chapel of Rest at 10:30, cortege to Rosehill Cemetery after the 11:00 service.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e6\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-10-02\", \"type\": \"decision\", \"from\": \"Margot\", \"text\": \"Ordered the Alder flowers with Bloom & Stem per the standing list: one standard white lily and rose coffin spray at £145 and a chapel pedestal pair at £95, total £240, delivered to the Chapel of Rest by 09:00 on Friday 23 October.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e4\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-02\", \"type\": \"decision\", \"from\": \"Margot\", \"text\": \"Ordered the Alder order of service booklets from Hale Memorial Print: 100 copies at £260, readings to follow by Monday 19 October so they make their three-day turnaround.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e5\", \"e11\", \"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Nina Alder\", \"text\": \"Thank you, Margot. The family is settled on Friday 23 October at 11:00. Please do not change anything about the time; several relatives are travelling down and trains are booked.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-06\", \"type\": \"quote\", \"from\": \"Beatrice Bloom (Bloom & Stem Florists)\", \"text\": \"As requested, a quote for a premium tribute: full casket cover in autumn roses and oak foliage, £920, plus a matching garland for the chapel door at £160. Let me know if the Alder family would like this instead of the standard spray.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-10-07\", \"type\": \"invoice\", \"from\": \"Paul Waxworth (Waxworth Candles)\", \"text\": \"Invoice 4471: 200 memorial candles delivered 2 October, £480, payable within 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-09\", \"type\": \"instruction\", \"from\": \"Tomas Reyes\", \"text\": \"Just to restate the house purchasing rule in plain terms for the new office staff: Margot may approve supplier orders up to and including £800 on her own authority; anything dearer than that comes to me first for sign-off before the order goes out. Nothing about the rule has changed, this is only a clearer wording.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e20\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Beatrice Bloom (Bloom & Stem Florists)\", \"text\": \"Following up on the premium casket cover quote at £920 for the Alder service — I can still source the autumn roses if you confirm by Thursday. The standard spray and pedestal order for 23 October is already scheduled either way.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-10-13\", \"type\": \"message\", \"from\": \"Edwin Marsh\", \"text\": \"Hearse one valeted and fuelled. Log updated. I am clear for the Alder funeral on the 23rd and will have the car at the chapel for 10:15 to be safe.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-14\", \"type\": \"task\", \"from\": \"Margot\", \"text\": \"To-do: get the final Alder readings from Nina and send them to Hale Memorial Print by Monday 19 October, and to Reverend Calloway the same day.\", \"role\": \"obligation\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Paul Waxworth (Waxworth Candles)\", \"text\": \"Stock check courtesy note: your candle restock is due this Friday 16 October as usual — 200 candles, £480, store room delivery. Also, winter scented lines are now available if you ever want a sample box.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Nina Alder\", \"text\": \"Final readings attached for Arthur's service, as promised. We are staying with the standard flowers — the premium cover is more than we want. See you Friday 23 October at 11:00.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Alder service — Arthur Alder\", \"fields\": {\"date\": \"2026-10-23\", \"time\": \"11:00\", \"place\": \"Chapel of Rest\", \"officiant\": \"Reverend June Calloway\", \"family_contact\": \"Nina Alder\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Hearse and driver — Alder cortege\", \"fields\": {\"date\": \"2026-10-23\", \"vehicle\": \"hearse one\", \"driver\": \"Edwin Marsh\", \"collect_time\": \"10:30\", \"destination\": \"Rosehill Cemetery\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing candle restock — Waxworth Candles\", \"fields\": {\"supplier\": \"Waxworth Candles\", \"item\": \"memorial candles\", \"quantity\": \"200\", \"amount\": \"480\", \"delivery_day\": \"Friday\", \"status\": \"standing\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Alder flowers — Bloom & Stem\", \"fields\": {\"supplier\": \"Bloom & Stem Florists\", \"items\": \"standard coffin spray and chapel pedestal pair\", \"amount\": \"240\", \"delivery_date\": \"2026-10-23\", \"delivery_time\": \"09:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Alder service booklets — Hale Memorial Print\", \"fields\": {\"supplier\": \"Hale Memorial Print\", \"item\": \"order of service booklets\", \"quantity\": \"100\", \"amount\": \"260\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Alder family\", \"fields\": {\"contact\": \"Nina Alder\", \"deceased\": \"Arthur Alder\", \"service\": \"2026-10-23 11:00\", \"flowers\": \"standard\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Nina Alder (the Alder family)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Nina Alder a final confirmation for her father's service — the date, time, place, officiant and the flowers we're providing — and put through this week's routine candle restock with Waxworth, the usual 200 candles.\",\n \"expect\": [\n  {\"message_to\": \"Nina Alder\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-23\", \"11:00\", \"Chapel of Rest\", \"Reverend June Calloway\", \"240\"], \"stale\": [\"920\"], \"task\": true},\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Waxworth Candles\", \"item\": \"memorial candles\", \"quantity\": \"200\", \"amount\": \"480\", \"delivery_day\": \"Friday\", \"status\": \"confirmed\"}, \"stale\": {\"amount\": [\"920\"], \"quantity\": [\"920\"]}, \"task\": true}\n ],\n \"why\": \"Control class: the 9 October instruction merely restates the £800 purchasing rule in clearer words and revokes nothing, so no decision is touched and every record stays exactly as it is. The £920 premium flower quote is a distractor — the family declined it — and must not appear in the confirmation or the restock. The task is carried out on the standing plan: confirm the Alder service as booked (23 October, 11:00, Chapel of Rest, Reverend Calloway, £240 standard flowers) and place the routine 200-candle, £480 Waxworth restock, which sits under Margot's own approval limit.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Paul Waxworth\", \"org\": \"Waxworth Candles\", \"item\": \"memorial candles\", \"unit\": \"candles\", \"values\": [\"120\", \"160\", \"200\", \"240\", \"300\"], \"place\": \"Chapel of Rest store room\"},\n  {\"kind\": \"order\", \"topic\": \"flower standing order\", \"counterpart\": \"Beatrice Bloom\", \"org\": \"Bloom & Stem Florists\", \"item\": \"chapel pedestal flowers\", \"unit\": \"arrangements\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Chapel of Rest\"},\n  {\"kind\": \"order\", \"topic\": \"booklet printing\", \"counterpart\": \"Gareth Hale\", \"org\": \"Hale Memorial Print\", \"item\": \"memorial acknowledgement cards\", \"unit\": \"cards\", \"values\": [\"50\", \"100\", \"150\", \"200\"], \"place\": \"Holloway & Sons office\"},\n  {\"kind\": \"order\", \"topic\": \"catering supplies\", \"counterpart\": \"Marta Voss\", \"org\": \"Voss Pantry Supplies\", \"item\": \"tea and coffee catering packs\", \"unit\": \"packs\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Holloway & Sons reception kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"chapel rehearsal slot\", \"counterpart\": \"Reverend June Calloway\", \"org\": \"St Cuthbert's Parish\", \"item\": \"organ practice booking\", \"values\": [\"Chapel of Rest\", \"side chapel\", \"vestry room\"], \"place\": \"Chapel of Rest\"},\n  {\"kind\": \"booking\", \"topic\": \"hearse maintenance\", \"counterpart\": \"Colin Brigg\", \"org\": \"Brigg & Lane Coachworks\", \"item\": \"vehicle valet and service slot\", \"values\": [\"workshop bay one\", \"workshop bay two\", \"valet bay\"], \"place\": \"Brigg & Lane yard\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Whitfield Janitorial\", \"item\": \"chapel cleaning consumables\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"7\", \"9\"], \"place\": \"Holloway & Sons store room\"},\n  {\"kind\": \"booking\", \"topic\": \"cemetery liaison meeting\", \"counterpart\": \"Harold Penn\", \"org\": \"Rosehill Cemetery Office\", \"item\": \"grounds coordination meeting\", \"values\": [\"cemetery office\", \"Chapel of Rest\", \"Holloway & Sons office\"], \"place\": \"Rosehill Cemetery\"},\n  {\"kind\": \"order\", \"topic\": \"stationery restock\", \"counterpart\": \"Gareth Hale\", \"org\": \"Hale Memorial Print\", \"item\": \"condolence register books\", \"unit\": \"books\", \"values\": [\"6\", \"10\", \"12\", \"20\"], \"place\": \"Holloway & Sons office\"},\n  {\"kind\": \"booking\", \"topic\": \"driver scheduling\", \"counterpart\": \"Priya Shah\", \"org\": \"Holloway & Sons Funeral Services\", \"item\": \"driver rota slot\", \"values\": [\"morning shift\", \"afternoon shift\", \"full day\"], \"place\": \"Holloway & Sons yard\"},\n  {\"kind\": \"order\", \"topic\": \"urn stock\", \"counterpart\": \"Lena Ashdown\", \"org\": \"Ashdown Memorial Ware\", \"item\": \"standard cremation urns\", \"unit\": \"urns\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"Holloway & Sons store room\"},\n  {\"kind\": \"booking\", \"topic\": \"family arrangement room\", \"counterpart\": \"Nina Alder\", \"org\": \"Alder family\", \"item\": \"arrangement meeting room\", \"values\": [\"arrangement room one\", \"arrangement room two\", \"quiet room\"], \"place\": \"Holloway & Sons office\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3190,
+    "completion_tokens": 4768,
+    "reasoning_tokens": 613,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0727956,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Candle restock beside a restated rule",
+  "setting": "Funeral home director at Holloway & Sons Funeral Services",
+  "owner": "Margot",
+  "org": "Holloway & Sons Funeral Services",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Margot",
+    "text": "Standing instruction for the office: any supplier order over £800 needs Tomas Reyes, our finance lead, to sign off before it is placed. Anything at £800 or under I can approve myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Margot",
+    "text": "House rule: once a family's service booking is confirmed, the date or time of that service may not be moved without the family's own agreement. Always ask the family first.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Paul Waxworth (Waxworth Candles)",
+    "text": "Confirming our standard supply terms for Holloway & Sons: memorial candles at £2.40 each, boxed in twenties, delivery to your Chapel of Rest store room on Tuesdays and Fridays, payment on 30 days.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Beatrice Bloom (Bloom & Stem Florists)",
+    "text": "Our standing arrangement for Holloway & Sons still holds: standard white lily and rose coffin spray £145, double-ended spray £210, chapel pedestal pair £95, delivery to the Chapel of Rest by 09:00 on service days.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Gareth Hale (Hale Memorial Print)",
+    "text": "Price list for the year: orders of service booklets, 50 copies £180, 100 copies £260; memorial acknowledgement cards, 100 cards £120. Artwork turnaround three working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Margot",
+    "text": "Fleet note: hearse one (the silver Daimler) is serviced and available all days; hearse two (the black Daimler) is booked for bodywork 9 to 13 November. Driver Edwin Marsh is available weekdays, driver Priya Shah weekdays except Wednesdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Reverend June Calloway",
+    "text": "Delighted to keep taking services for Holloway & Sons. My regular availability: Mondays, Thursdays and Fridays, mornings or afternoons. My fee remains £180 per service, paid on the day.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Margot",
+    "text": "Placed the standing fortnightly restock with Waxworth Candles: 200 memorial candles at £2.40 each, so £480, delivered to the Chapel of Rest store room on Fridays. Under my own approval limit so no further sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-22",
+    "type": "minutes",
+    "from": "Tomas Reyes",
+    "text": "Staff meeting notes: chapel cleaning rota agreed, Edwin to keep the hearse log weekly, reminder that the organ tuner visits the first Monday of each month.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-28",
+    "type": "call",
+    "from": "Nina Alder",
+    "text": "Nina Alder phoned about her father Arthur's service. The family would like Friday 23 October 2026 at 11:00 in our Chapel of Rest, Reverend June Calloway to officiate, burial afterwards at Rosehill Cemetery. About 60 mourners expected.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-29",
+    "type": "email",
+    "from": "Reverend June Calloway",
+    "text": "Yes, Friday 23 October at 11:00 suits me perfectly for the Alder service. Please have the order of service readings to me by Monday 19 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-30",
+    "type": "decision",
+    "from": "Margot",
+    "text": "Confirmed the Alder service: Friday 23 October 2026, 11:00, Chapel of Rest, Reverend June Calloway officiating at her £180 fee, burial after at Rosehill Cemetery. Nina Alder confirmed the date and time herself on the phone, so the booking stands with the family's agreement.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e11",
+     "e2"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e13",
+    "date": "2026-10-01",
+    "type": "decision",
+    "from": "Margot",
+    "text": "Booked hearse one and Edwin Marsh for the Alder service on Friday 23 October: collect from the Chapel of Rest at 10:30, cortege to Rosehill Cemetery after the 11:00 service.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e6"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-10-02",
+    "type": "decision",
+    "from": "Margot",
+    "text": "Ordered the Alder flowers with Bloom & Stem per the standing list: one standard white lily and rose coffin spray at £145 and a chapel pedestal pair at £95, total £240, delivered to the Chapel of Rest by 09:00 on Friday 23 October.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-02",
+    "type": "decision",
+    "from": "Margot",
+    "text": "Ordered the Alder order of service booklets from Hale Memorial Print: 100 copies at £260, readings to follow by Monday 19 October so they make their three-day turnaround.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e5",
+     "e11",
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Nina Alder",
+    "text": "Thank you, Margot. The family is settled on Friday 23 October at 11:00. Please do not change anything about the time; several relatives are travelling down and trains are booked.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-06",
+    "type": "quote",
+    "from": "Beatrice Bloom (Bloom & Stem Florists)",
+    "text": "As requested, a quote for a premium tribute: full casket cover in autumn roses and oak foliage, £920, plus a matching garland for the chapel door at £160. Let me know if the Alder family would like this instead of the standard spray.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-07",
+    "type": "invoice",
+    "from": "Paul Waxworth (Waxworth Candles)",
+    "text": "Invoice 4471: 200 memorial candles delivered 2 October, £480, payable within 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-09",
+    "type": "instruction",
+    "from": "Tomas Reyes",
+    "text": "Just to restate the house purchasing rule in plain terms for the new office staff: Margot may approve supplier orders up to and including £800 on her own authority; anything dearer than that comes to me first for sign-off before the order goes out. Nothing about the rule has changed, this is only a clearer wording.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Beatrice Bloom (Bloom & Stem Florists)",
+    "text": "Following up on the premium casket cover quote at £920 for the Alder service — I can still source the autumn roses if you confirm by Thursday. The standard spray and pedestal order for 23 October is already scheduled either way.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-13",
+    "type": "message",
+    "from": "Edwin Marsh",
+    "text": "Hearse one valeted and fuelled. Log updated. I am clear for the Alder funeral on the 23rd and will have the car at the chapel for 10:15 to be safe.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-14",
+    "type": "task",
+    "from": "Margot",
+    "text": "To-do: get the final Alder readings from Nina and send them to Hale Memorial Print by Monday 19 October, and to Reverend Calloway the same day.",
+    "role": "obligation"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Paul Waxworth (Waxworth Candles)",
+    "text": "Stock check courtesy note: your candle restock is due this Friday 16 October as usual — 200 candles, £480, store room delivery. Also, winter scented lines are now available if you ever want a sample box.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Nina Alder",
+    "text": "Final readings attached for Arthur's service, as promised. We are staying with the standard flowers — the premium cover is more than we want. See you Friday 23 October at 11:00.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Alder service — Arthur Alder",
+    "fields": {
+     "date": "2026-10-23",
+     "time": "11:00",
+     "place": "Chapel of Rest",
+     "officiant": "Reverend June Calloway",
+     "family_contact": "Nina Alder",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Hearse and driver — Alder cortege",
+    "fields": {
+     "date": "2026-10-23",
+     "vehicle": "hearse one",
+     "driver": "Edwin Marsh",
+     "collect_time": "10:30",
+     "destination": "Rosehill Cemetery",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Standing candle restock — Waxworth Candles",
+    "fields": {
+     "supplier": "Waxworth Candles",
+     "item": "memorial candles",
+     "quantity": "200",
+     "amount": "480",
+     "delivery_day": "Friday",
+     "status": "standing"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Alder flowers — Bloom & Stem",
+    "fields": {
+     "supplier": "Bloom & Stem Florists",
+     "items": "standard coffin spray and chapel pedestal pair",
+     "amount": "240",
+     "delivery_date": "2026-10-23",
+     "delivery_time": "09:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Alder service booklets — Hale Memorial Print",
+    "fields": {
+     "supplier": "Hale Memorial Print",
+     "item": "order of service booklets",
+     "quantity": "100",
+     "amount": "260",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Alder family",
+    "fields": {
+     "contact": "Nina Alder",
+     "deceased": "Arthur Alder",
+     "service": "2026-10-23 11:00",
+     "flowers": "standard",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Nina Alder (the Alder family)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please send Nina Alder a final confirmation for her father's service — the date, time, place, officiant and the flowers we're providing — and put through this week's routine candle restock with Waxworth, the usual 200 candles.",
+  "expect": [
+   {
+    "message_to": "Nina Alder",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-23",
+     "11:00",
+     "Chapel of Rest",
+     "Reverend June Calloway",
+     "240"
+    ],
+    "stale": [
+     "920"
+    ],
+    "task": true
+   },
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Waxworth Candles",
+     "item": "memorial candles",
+     "quantity": "200",
+     "amount": "480",
+     "delivery_day": "Friday",
+     "status": "confirmed"
+    },
+    "stale": {
+     "amount": [
+      "920"
+     ],
+     "quantity": [
+      "920"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "Control class: the 9 October instruction merely restates the £800 purchasing rule in clearer words and revokes nothing, so no decision is touched and every record stays exactly as it is. The £920 premium flower quote is a distractor — the family declined it — and must not appear in the confirmation or the restock. The task is carried out on the standing plan: confirm the Alder service as booked (23 October, 11:00, Chapel of Rest, Reverend Calloway, £240 standard flowers) and place the routine 200-candle, £480 Waxworth restock, which sits under Margot's own approval limit.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "candle restock",
+    "counterpart": "Paul Waxworth",
+    "org": "Waxworth Candles",
+    "item": "memorial candles",
+    "unit": "candles",
+    "values": [
+     "120",
+     "160",
+     "200",
+     "240",
+     "300"
+    ],
+    "place": "Chapel of Rest store room"
+   },
+   {
+    "kind": "order",
+    "topic": "flower standing order",
+    "counterpart": "Beatrice Bloom",
+    "org": "Bloom & Stem Florists",
+    "item": "chapel pedestal flowers",
+    "unit": "arrangements",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Chapel of Rest"
+   },
+   {
+    "kind": "order",
+    "topic": "booklet printing",
+    "counterpart": "Gareth Hale",
+    "org": "Hale Memorial Print",
+    "item": "memorial acknowledgement cards",
+    "unit": "cards",
+    "values": [
+     "50",
+     "100",
+     "150",
+     "200"
+    ],
+    "place": "Holloway & Sons office"
+   },
+   {
+    "kind": "order",
+    "topic": "catering supplies",
+    "counterpart": "Marta Voss",
+    "org": "Voss Pantry Supplies",
+    "item": "tea and coffee catering packs",
+    "unit": "packs",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Holloway & Sons reception kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "chapel rehearsal slot",
+    "counterpart": "Reverend June Calloway",
+    "org": "St Cuthbert's Parish",
+    "item": "organ practice booking",
+    "values": [
+     "Chapel of Rest",
+     "side chapel",
+     "vestry room"
+    ],
+    "place": "Chapel of Rest"
+   },
+   {
+    "kind": "booking",
+    "topic": "hearse maintenance",
+    "counterpart": "Colin Brigg",
+    "org": "Brigg & Lane Coachworks",
+    "item": "vehicle valet and service slot",
+    "values": [
+     "workshop bay one",
+     "workshop bay two",
+     "valet bay"
+    ],
+    "place": "Brigg & Lane yard"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Dana Whitfield",
+    "org": "Whitfield Janitorial",
+    "item": "chapel cleaning consumables",
+    "unit": "boxes",
+    "values": [
+     "3",
+     "5",
+     "7",
+     "9"
+    ],
+    "place": "Holloway & Sons store room"
+   },
+   {
+    "kind": "booking",
+    "topic": "cemetery liaison meeting",
+    "counterpart": "Harold Penn",
+    "org": "Rosehill Cemetery Office",
+    "item": "grounds coordination meeting",
+    "values": [
+     "cemetery office",
+     "Chapel of Rest",
+     "Holloway & Sons office"
+    ],
+    "place": "Rosehill Cemetery"
+   },
+   {
+    "kind": "order",
+    "topic": "stationery restock",
+    "counterpart": "Gareth Hale",
+    "org": "Hale Memorial Print",
+    "item": "condolence register books",
+    "unit": "books",
+    "values": [
+     "6",
+     "10",
+     "12",
+     "20"
+    ],
+    "place": "Holloway & Sons office"
+   },
+   {
+    "kind": "booking",
+    "topic": "driver scheduling",
+    "counterpart": "Priya Shah",
+    "org": "Holloway & Sons Funeral Services",
+    "item": "driver rota slot",
+    "values": [
+     "morning shift",
+     "afternoon shift",
+     "full day"
+    ],
+    "place": "Holloway & Sons yard"
+   },
+   {
+    "kind": "order",
+    "topic": "urn stock",
+    "counterpart": "Lena Ashdown",
+    "org": "Ashdown Memorial Ware",
+    "item": "standard cremation urns",
+    "unit": "urns",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "Holloway & Sons store room"
+   },
+   {
+    "kind": "booking",
+    "topic": "family arrangement room",
+    "counterpart": "Nina Alder",
+    "org": "Alder family",
+    "item": "arrangement meeting room",
+    "values": [
+     "arrangement room one",
+     "arrangement room two",
+     "quiet room"
+    ],
+    "place": "Holloway & Sons office"
+   }
+  ],
+  "id": "K100-4-08",
+  "tier": 100,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

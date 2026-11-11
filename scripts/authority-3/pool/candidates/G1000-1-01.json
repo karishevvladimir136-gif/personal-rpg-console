@@ -698,5 +698,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected state leaves kit delivery on 14 October, after the revised class start on 12 October, despite the requirement to have kit ready beforehand; the history fixes no replacement delivery date. Tomás’s course is explicitly booked to start on 1 October, contradicting later statements that it starts the task week and leaving the handling of already-past sessions unclear. The core otherwise meets the tier requirements and includes a hidden stale-fact change with a two-hop dependency.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state leaves kit delivery on 14 October, after the revised class start on 12 October, despite the requirement to have kit ready beforehand; the history fixes no replacement delivery date. Tomás’s course is explicitly booked to start on 1 October, contradicting later statements that it starts the task week and leaving the handling of already-past sessions unclear. The core otherwise meets the tier requirements and includes a hidden stale-fact change with a two-hop dependency."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4662,
+    "completion_tokens": 303,
+    "reasoning_tokens": 172,
+    "cached_tokens": 0
+   },
+   "cost": 0.0734175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d84d93ad400345dc2ac285f0fa143affbc0029a89be362de265d4d00642f3791",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core meets the 1,000-tier requirements: 32 core events, 8 decisions, the change 22 days before the task day with 7 core events after it, and echoes e21 and e22. The expected state follows from the history, with EV-1 correctly ASK under the e1 consent rule and ORD-2 correctly KEEP. Minor ambiguity remains: e18 says Ellen's Tuesday mornings suit her, but no rule in the history requires staff consent, so the Monday move still follows.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core meets the 1,000-tier requirements: 32 core events, 8 decisions, the change 22 days before the task day with 7 core events after it, and echoes e21 and e22. The expected state follows from the history, with EV-1 correctly ASK under the e1 consent rule and ORD-2 correctly KEEP. Minor ambiguity remains: e18 says Ellen's Tuesday mornings suit her, but no rule in the history requires staff consent, so the Monday move still follows."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6959,
+    "completion_tokens": 2871,
+    "reasoning_tokens": 2651,
+    "cached_tokens": 0
+   },
+   "cost": 0.0021314,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d84d93ad400345dc2ac285f0fa143affbc0029a89be362de265d4d00642f3791",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The closure notice (e25) revokes e4 and fixes transfer days/times/venue, so REVISE values are determined; EV-1 correctly requires Tomás's consent under e1 (individual confirmed session), ORD-2 survives on the unchanged 40-pound rate. Ellen's assignment (e10) is two hops from the revoked fact, satisfying class 1. Counts (32 core events, 8 decisions), 22-day gap, two echoes (e21, e22), and the change sitting mid-history at event 834 all meet the tier and hiding requirements.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The closure notice (e25) revokes e4 and fixes transfer days/times/venue, so REVISE values are determined; EV-1 correctly requires Tomás's consent under e1 (individual confirmed session), ORD-2 survives on the unchanged 40-pound rate. Ellen's assignment (e10) is two hops from the revoked fact, satisfying class 1. Counts (32 core events, 8 decisions), 22-day gap, two echoes (e21, e22), and the change sitting mid-history at event 834 all meet the tier and hiding requirements."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4781,
+    "completion_tokens": 435,
+    "reasoning_tokens": 258,
+    "cached_tokens": 4096
+   },
+   "cost": 0.0098088,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d84d93ad400345dc2ac285f0fa143affbc0029a89be362de265d4d00642f3791",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

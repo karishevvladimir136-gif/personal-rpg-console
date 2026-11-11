@@ -623,5 +623,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amended rule permits placing the books directly, requires Tom’s consent for the laptops and installation, and leaves the glassware order unchanged. The core has 20 events and six decisions, with the change ten days before the task and three later core events. The task requires workplace action, and the change appears as an ordinary email within the history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended rule permits placing the books directly, requires Tom’s consent for the laptops and installation, and leaves the glassware order unchanged. The core has 20 events and six decisions, with the change ten days before the task and three later core events. The task requires workplace action, and the change appears as an ordinary email within the history."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3407,
+    "completion_tokens": 266,
+    "reasoning_tokens": 160,
+    "cached_tokens": 0
+   },
+   "cost": 0.05588,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e3c5d67bcb72aeb316b2a7087a1c098c2b8f89265cd0ff48a908e5bc1923b80b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The consent map cites e2 as the rule requiring Tom's consent, but e17 revokes e2 and moves sign-off to Tom under the new terms, so the consent basis should cite e17. The core meets the tier at its minimum of 20 events, with 5 decisions and the change 10 days before the task with 3 core events after it. The change is an ordinary policy email, not labelled as a correction, and seven events follow it.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The consent map cites e2 as the rule requiring Tom's consent, but e17 revokes e2 and moves sign-off to Tom under the new terms, so the consent basis should cite e17. The core meets the tier at its minimum of 20 events, with 5 decisions and the change 10 days before the task with 3 core events after it. The change is an ordinary policy email, not labelled as a correction, and seven events follow it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4939,
+    "completion_tokens": 2098,
+    "reasoning_tokens": 1905,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015429,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e3c5d67bcb72aeb316b2a7087a1c098c2b8f89265cd0ff48a908e5bc1923b80b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment's own terms cleanly split goods (>5000) from services (>2000), making ORD-1 placeable, ORD-2 and ORD-4 still consent-bound (now via Tom), and ORD-3 untouched; the 2,600 distractor is properly excluded. Minor blemish: the consent map cites revoked rule e2 rather than its successor e17, though the history makes the Tom routing clear. Counts, timing (change 10 days before task day, 7 events after), and 5 decisions all fit tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment's own terms cleanly split goods (>5000) from services (>2000), making ORD-1 placeable, ORD-2 and ORD-4 still consent-bound (now via Tom), and ORD-3 untouched; the 2,600 distractor is properly excluded. Minor blemish: the consent map cites revoked rule e2 rather than its successor e17, though the history makes the Tom routing clear. Counts, timing (change 10 days before task day, 7 events after), and 5 decisions all fit tier 100."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3530,
+    "completion_tokens": 480,
+    "reasoning_tokens": 308,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0101868,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e3c5d67bcb72aeb316b2a7087a1c098c2b8f89265cd0ff48a908e5bc1923b80b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

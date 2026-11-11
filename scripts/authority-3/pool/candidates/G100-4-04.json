@@ -561,5 +561,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The January violin/viola appointment affects none of the existing decisions, so the task correctly requires sending Marcus the scheduled mock exam details and confirming the Recital Hall booking without other changes. The core has 20 events and four decisions, with the change 12 days before the task day and five core events after it. The change appears as an ordinary email within the history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The January violin/viola appointment affects none of the existing decisions, so the task correctly requires sending Marcus the scheduled mock exam details and confirming the Recital Hall booking without other changes. The core has 20 events and four decisions, with the change 12 days before the task day and five core events after it. The change appears as an ordinary email within the history."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3167,
+    "completion_tokens": 165,
+    "reasoning_tokens": 53,
+    "cached_tokens": 0
+   },
+   "cost": 0.04783,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a71b06897841bd6ea47c777db38786673af34bc98deb93b310f4b34935c6da86",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected message lists \\\"2026-10-22\\\" as a stale value, but no event in the history mentions that date, so the answer key includes a constraint the history does not support. The class 4 control and the other marks, the consent map, and the Westgate distractor are consistent with the history. The task forces an act (sending the message and confirming EV-1), and the tier counts and change placement meet the 100-event requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected message lists \"2026-10-22\" as a stale value, but no event in the history mentions that date, so the answer key includes a constraint the history does not support. The class 4 control and the other marks, the consent map, and the Westgate distractor are consistent with the history. The task forces an act (sending the message and confirming EV-1), and the tier counts and change placement meet the 100-event requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4553,
+    "completion_tokens": 1398,
+    "reasoning_tokens": 1214,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011543,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a71b06897841bd6ea47c777db38786673af34bc98deb93b310f4b34935c6da86",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (a violin teacher starting January 2027) touches no existing decision, so the control expected state — send Marcus the EV-2 details and confirm EV-1, leaving CL-1/ORD-1 untouched and ignoring the Westgate distractor — follows unambiguously. Counts (20 core events, 4 decisions), the 12-day gap, and 12 later events all meet tier 100. The '2026-10-22' stale marker is mildly arbitrary since that date appears nowhere, but it only guards against inventing details and does not break the scenario.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (a violin teacher starting January 2027) touches no existing decision, so the control expected state — send Marcus the EV-2 details and confirm EV-1, leaving CL-1/ORD-1 untouched and ignoring the Westgate distractor — follows unambiguously. Counts (20 core events, 4 decisions), the 12-day gap, and 12 later events all meet tier 100. The '2026-10-22' stale marker is mildly arbitrary since that date appears nowhere, but it only guards against inventing details and does not break the scenario."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3256,
+    "completion_tokens": 390,
+    "reasoning_tokens": 214,
+    "cached_tokens": 2560
+   },
+   "cost": 0.008706,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a71b06897841bd6ea47c777db38786673af34bc98deb93b310f4b34935c6da86",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

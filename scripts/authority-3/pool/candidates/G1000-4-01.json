@@ -1,0 +1,768 @@
+{
+ "id": "G1000-4-01",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 4,
+ "idx": 0,
+ "setting": "A caterer running Sage & Salt Events whose assistant tracks menus, dietary requirements, and event-day timelines",
+ "prompt_sha256": "8ac39e8de899d7bb38b772f42acc8d4a312d94d3546aebaca3740df45cd4f4cc",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Tasting dinner run-sheet beside a new venue fact\",\n \"setting\": \"A caterer running Sage & Salt Events whose assistant tracks menus, dietary requirements, and event-day timelines\",\n \"owner\": \"Priya\",\n \"org\": \"Sage & Salt Events\",\n \"now\": \"2026-10-09\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Standing policy: any supplier order above 800 needs sign-off from Marcus, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Standing rule: once an event with a client is confirmed, we do not move or reschedule it without that client's written consent.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Dana Ortiz (Bellwood Barn)\", \"text\": \"Bellwood Barn is free on 2026-10-16 for an evening event. Evening hire is 950, with the main barn and kitchen included.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Sam Reed (Harvest Table)\", \"text\": \"Quote: seasonal three-course menu at 42 per cover, minimum 40 covers, delivery and service staff included. Quote runs through 2026-12-31.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Sofia Marsh (Kettle & Co)\", \"text\": \"For our autumn tasting dinner, we're expecting around 60 guests. I'm your contact for everything on this one.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Booked Bellwood Barn for the Kettle & Co autumn tasting dinner on the evening of 2026-10-16 at the 950 evening hire rate.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Marcus Webb (finance lead)\", \"text\": \"Approved the Harvest Table catering order for the tasting dinner up to 2600 in total, per the sign-off policy for orders above 800.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e4\"]},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Confirmed Harvest Table for the tasting dinner: 60 covers of the seasonal three-course menu at 42 per cover, within the approved amount.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e7\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Assigned Ravi Nair as head chef for the Kettle & Co tasting dinner at Bellwood Barn on 2026-10-16.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-28\", \"type\": \"email\", \"from\": \"Lena Frost (Copper Keg)\", \"text\": \"Drinks cases are 18 per case, mixed sparkling and still, minimum order of 5 cases, delivered free to your prep kitchen.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Placed the Copper Keg order for the tasting dinner: 10 mixed drinks cases at 18 per case, well under the sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Sofia Marsh (Kettle & Co)\", \"text\": \"Final dietary list for the tasting dinner: of the 60 guests, 6 are gluten-free. No other allergies reported.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Arranged with Harvest Table that 6 of the 60 covers at the tasting dinner will be prepared gluten-free, and put Ravi in charge of keeping those plates separate in the Bellwood Barn kitchen.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e12\", \"e9\"]},\n  {\"id\": \"e14\", \"date\": \"2026-07-10\", \"type\": \"instruction\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Standing rule: for every client event, the run-sheet is emailed to the venue contact five days before the event date.\", \"role\": \"rule\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Scheduled the tasting dinner staff briefing for 09:00 on 2026-10-16 at Bellwood Barn, before the load-in.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-3\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-16\", \"type\": \"email\", \"from\": \"Hannah Willow\", \"text\": \"We'd like the garden party at Bellwood Barn on 2026-09-05, about 30 guests, drinks and canapés only.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Booked the Willow birthday garden party at Bellwood Barn on 2026-09-05 for 30 guests.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Ordered 12 Copper Keg drinks cases for the Willow party at 18 per case, above the minimum and under the sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-24\", \"type\": \"note\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Reminder to self: book the delivery van in for its service in November.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-07-28\", \"type\": \"message\", \"from\": \"Tom Beale\", \"text\": \"Just to confirm, I'm available for weekend and evening shifts through the autumn if you need extra hands on events.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-07-30\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Added Tom Beale to the service team for the Kettle & Co tasting dinner on 2026-10-16.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"EV-5\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Sofia Marsh (Kettle & Co)\", \"text\": \"For the tasting dinner, could we go with the sage-green napkins rather than the cream ones? Thanks!\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Dana Ortiz (Bellwood Barn)\", \"text\": \"A note for your planning: on event days the loading bay at Bellwood Barn opens at 14:00, not earlier.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-08-15\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Set load-in for the tasting dinner at Bellwood Barn to 14:00 on 2026-10-16, matching the loading bay opening time.\", \"role\": \"decision\", \"rests_on\": [\"e23\", \"e6\"], \"record\": \"EV-1\"},\n  {\"id\": \"e25\", \"date\": \"2026-08-20\", \"type\": \"minutes\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Team meeting notes: autumn menus printed next week; Copper Keg orders on standing monthly schedule; tasting dinner prep on track.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Dana Ortiz (Bellwood Barn)\", \"text\": \"Confirmation of your booking: Bellwood Barn, evening of 2026-10-16, Kettle & Co tasting dinner, 60 guests. We look forward to having you.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Sam Reed (Harvest Table)\", \"text\": \"Order confirmation: 60 covers of the seasonal three-course menu at 42 per cover for 2026-10-16, including 6 gluten-free covers. All set.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-09-05\", \"type\": \"message\", \"from\": \"Hannah Willow\", \"text\": \"Thank you all so much for today's party — everything was lovely.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-15\", \"type\": \"quote\", \"from\": \"Marta Vines (Linen Loop)\", \"text\": \"Current price list: linen napkins 20 per pack of 50, tablecloths 35 each, weekly rates on request.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Dana Ortiz (Bellwood Barn)\", \"text\": \"Some news from us: the new terrace at Bellwood Barn has just opened. It's a lovely spot for canapé receptions and evening hire is 150. It's available from this October if you'd ever like to use it for a future event.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e31\", \"date\": \"2026-09-26\", \"type\": \"message\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Note to team: the printed autumn menus are back from the printers and in the prep kitchen store.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-01\", \"type\": \"quote\", \"from\": \"Sam Reed (Harvest Table)\", \"text\": \"Quote as requested: Northgate charity supper on 2026-10-24, 70 covers of the same seasonal three-course menu at 48 per cover. Valid for two weeks.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e33\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Sofia Marsh (Kettle & Co)\", \"text\": \"Final details for the tasting dinner: guest list is locked at 60, guests arrive from 18:30, and we'd like first service at 19:00.\", \"role\": \"fact\"},\n  {\"id\": \"e34\", \"date\": \"2026-10-07\", \"type\": \"notice\", \"from\": \"Marcus Webb (finance lead)\", \"text\": \"Reminder: the deposit for the Copper Keg September order is due to be paid by the end of next week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn tasting dinner — Kettle & Co\", \"fields\": {\"date\": \"2026-10-16\", \"place\": \"Bellwood Barn\", \"guests\": \"60\", \"arrival\": \"18:30\", \"service\": \"19:00\", \"load_in\": \"14:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Harvest Table — tasting dinner catering\", \"fields\": {\"supplier\": \"Harvest Table\", \"item\": \"Seasonal three-course menu\", \"covers\": \"60\", \"price_per_cover\": \"42\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Tasting dinner kitchen — head chef\", \"fields\": {\"date\": \"2026-10-16\", \"person\": \"Ravi Nair\", \"place\": \"Bellwood Barn\", \"status\": \"assigned\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Copper Keg — tasting dinner drinks\", \"fields\": {\"supplier\": \"Copper Keg\", \"item\": \"Mixed drinks cases\", \"cases\": \"10\", \"total\": \"180\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Staff briefing — tasting dinner\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"09:00\", \"place\": \"Bellwood Barn\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Willow birthday garden party\", \"fields\": {\"date\": \"2026-09-05\", \"place\": \"Bellwood Barn\", \"guests\": \"30\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Copper Keg — Willow party drinks\", \"fields\": {\"supplier\": \"Copper Keg\", \"item\": \"Mixed drinks cases\", \"cases\": \"12\", \"total\": \"216\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Tasting dinner service staff\", \"fields\": {\"date\": \"2026-10-16\", \"staff\": \"Tom Beale\", \"status\": \"assigned\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"place\"], \"from\": \"Sofia Marsh (Kettle & Co)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Can you send Dana at Bellwood Barn the run-sheet for our Kettle & Co tasting dinner? She should get the date, when guests arrive and how many we're expecting.\",\n \"expect\": [\n  {\"message_to\": \"Dana Ortiz (Bellwood Barn)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-16\", \"60\", \"18:30\"], \"stale\": [\"70\", \"48\"], \"task\": true}\n ],\n \"why\": \"This is a control: the terrace email adds a new venue fact that no decision rests on, so the tasting dinner plan stands exactly as booked. The task is only to send Dana the run-sheet carrying the standing values (2026-10-16, 60 guests, 18:30 arrival); the 70 covers and 48 per cover belong to the separate Northgate charity supper quote and must not be passed off as current. No record changes, and EV-1's date and place remain protected by Sofia's consent under the standing rule.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"Bellwood Barn viewings\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Bellwood Barn\", \"item\": \"venue viewing slot\", \"unit\": \"\", \"values\": [\"Main Barn\", \"Terrace Room\", \"Courtyard\"], \"place\": \"Bellwood Barn\"},\n  {\"kind\": \"order\", \"topic\": \"Harvest Table bread\", \"counterpart\": \"Sam Reed\", \"org\": \"Harvest Table\", \"item\": \"sourdough loaves\", \"unit\": \"loaf\", \"values\": [\"24\", \"36\", \"48\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"Copper Keg restock\", \"counterpart\": \"Lena Frost\", \"org\": \"Copper Keg\", \"item\": \"sparkling water cases\", \"unit\": \"case\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"napkin restock\", \"counterpart\": \"Marta Vines\", \"org\": \"Linen Loop\", \"item\": \"linen napkin packs\", \"unit\": \"pack\", \"values\": [\"50\", \"100\", \"200\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"van bookings\", \"counterpart\": \"Carl Dean\", \"org\": \"Gridway Rentals\", \"item\": \"delivery van\", \"unit\": \"\", \"values\": [\"van A\", \"van B\", \"van C\"], \"place\": \"Gridway depot\"},\n  {\"kind\": \"order\", \"topic\": \"cheese restock\", \"counterpart\": \"Omar Haddad\", \"org\": \"Dellway Foods\", \"item\": \"cheese wheels\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"staff room use\", \"counterpart\": \"Nina Cole\", \"org\": \"Sage & Salt Events\", \"item\": \"staff room slot\", \"unit\": \"\", \"values\": [\"staff room\", \"office\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"herb orders\", \"counterpart\": \"June Park\", \"org\": \"Greenrow Farm\", \"item\": \"basil bunches\", \"unit\": \"bunch\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"Northgate fair stalls\", \"counterpart\": \"Roy Bell\", \"org\": \"Northgate School\", \"item\": \"fair stall pitch\", \"unit\": \"\", \"values\": [\"stall 1\", \"stall 2\", \"stall 3\"], \"place\": \"Northgate School field\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Ivo Marsh\", \"org\": \"Beanline Roasters\", \"item\": \"coffee bean bags\", \"unit\": \"kg\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"tasting room slots\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Bellwood Barn\", \"item\": \"tasting room slot\", \"unit\": \"\", \"values\": [\"tasting room\", \"Main Barn\"], \"place\": \"Bellwood Barn\"},\n  {\"kind\": \"order\", \"topic\": \"Harvest Table veg boxes\", \"counterpart\": \"Sam Reed\", \"org\": \"Harvest Table\", \"item\": \"veg boxes\", \"unit\": \"box\", \"values\": [\"6\", \"10\", \"15\"], \"place\": \"Sage & Salt prep kitchen\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3209,
+    "completion_tokens": 9345,
+    "reasoning_tokens": 4823,
+    "cached_tokens": 3136
+   },
+   "cost": 0.04203556,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Tasting dinner run-sheet beside a new venue fact\",\n \"setting\": \"A caterer running Sage & Salt Events whose assistant tracks menus, dietary requirements, and event-day timelines\",\n \"owner\": \"Priya\",\n \"org\": \"Sage & Salt Events\",\n \"now\": \"2026-10-09\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Standing policy: any supplier order above 800 needs sign-off from Marcus, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Standing rule: once an event with a client is confirmed, we do not move or reschedule it without that client's written consent.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Dana Ortiz (Bellwood Barn)\", \"text\": \"Bellwood Barn is free on 2026-10-16 for an evening event. Evening hire is 950, with the main barn and kitchen included.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Sam Reed (Harvest Table)\", \"text\": \"Quote: seasonal three-course menu at 42 per cover, minimum 40 covers, delivery and service staff included. Quote runs through 2026-12-31.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Sofia Marsh (Kettle & Co)\", \"text\": \"For our autumn tasting dinner, we're expecting around 60 guests. I'm your contact for everything on this one.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Booked Bellwood Barn for the Kettle & Co autumn tasting dinner on the evening of 2026-10-16 at the 950 evening hire rate.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Marcus Webb (finance lead)\", \"text\": \"Approved the Harvest Table catering order for the tasting dinner up to 2600 in total, per the sign-off policy for orders above 800.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e4\"]},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Confirmed Harvest Table for the tasting dinner: 60 covers of the seasonal three-course menu at 42 per cover, within the approved amount.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e7\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Assigned Ravi Nair as head chef for the Kettle & Co tasting dinner at Bellwood Barn on 2026-10-16.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-28\", \"type\": \"email\", \"from\": \"Lena Frost (Copper Keg)\", \"text\": \"Drinks cases are 18 per case, mixed sparkling and still, minimum order of 5 cases, delivered free to your prep kitchen.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Placed the Copper Keg order for the tasting dinner: 10 mixed drinks cases at 18 per case, well under the sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Sofia Marsh (Kettle & Co)\", \"text\": \"Final dietary list for the tasting dinner: of the 60 guests, 6 are gluten-free. No other allergies reported.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Arranged with Harvest Table that 6 of the 60 covers at the tasting dinner will be prepared gluten-free, and put Ravi in charge of keeping those plates separate in the Bellwood Barn kitchen.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e12\", \"e9\"]},\n  {\"id\": \"e14\", \"date\": \"2026-07-10\", \"type\": \"instruction\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Standing rule: for every client event, the run-sheet is emailed to the venue contact five days before the event date.\", \"role\": \"rule\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Scheduled the tasting dinner staff briefing for 09:00 on 2026-10-16 at Bellwood Barn, before the load-in.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-3\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-16\", \"type\": \"email\", \"from\": \"Hannah Willow\", \"text\": \"We'd like the garden party at Bellwood Barn on 2026-09-05, about 30 guests, drinks and canapés only.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Booked the Willow birthday garden party at Bellwood Barn on 2026-09-05 for 30 guests.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Ordered 12 Copper Keg drinks cases for the Willow party at 18 per case, above the minimum and under the sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-24\", \"type\": \"note\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Reminder to self: book the delivery van in for its service in November.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-07-28\", \"type\": \"message\", \"from\": \"Tom Beale\", \"text\": \"Just to confirm, I'm available for weekend and evening shifts through the autumn if you need extra hands on events.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-07-30\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Added Tom Beale to the service team for the Kettle & Co tasting dinner on 2026-10-16.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"EV-5\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Sofia Marsh (Kettle & Co)\", \"text\": \"For the tasting dinner, could we go with the sage-green napkins rather than the cream ones? Thanks!\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Dana Ortiz (Bellwood Barn)\", \"text\": \"A note for your planning: on event days the loading bay at Bellwood Barn opens at 14:00, not earlier.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-08-15\", \"type\": \"decision\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Set load-in for the tasting dinner at Bellwood Barn to 14:00 on 2026-10-16, matching the loading bay opening time.\", \"role\": \"decision\", \"rests_on\": [\"e23\", \"e6\"], \"record\": \"EV-1\"},\n  {\"id\": \"e25\", \"date\": \"2026-08-20\", \"type\": \"minutes\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Team meeting notes: autumn menus printed next week; Copper Keg orders on standing monthly schedule; tasting dinner prep on track.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Dana Ortiz (Bellwood Barn)\", \"text\": \"Confirmation of your booking: Bellwood Barn, evening of 2026-10-16, Kettle & Co tasting dinner, 60 guests. We look forward to having you.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Sam Reed (Harvest Table)\", \"text\": \"Order confirmation: 60 covers of the seasonal three-course menu at 42 per cover for 2026-10-16, including 6 gluten-free covers. All set.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-09-05\", \"type\": \"message\", \"from\": \"Hannah Willow\", \"text\": \"Thank you all so much for today's party — everything was lovely.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-15\", \"type\": \"quote\", \"from\": \"Marta Vines (Linen Loop)\", \"text\": \"Current price list: linen napkins 20 per pack of 50, tablecloths 35 each, weekly rates on request.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Dana Ortiz (Bellwood Barn)\", \"text\": \"Some news from us: the new terrace at Bellwood Barn has just opened. It's a lovely spot for canapé receptions and evening hire is 150. It's available from this October if you'd ever like to use it for a future event.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e31\", \"date\": \"2026-09-26\", \"type\": \"message\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Note to team: the printed autumn menus are back from the printers and in the prep kitchen store.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-01\", \"type\": \"quote\", \"from\": \"Sam Reed (Harvest Table)\", \"text\": \"Quote as requested: Northgate charity supper on 2026-10-24, 70 covers of the same seasonal three-course menu at 48 per cover. Valid for two weeks.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e33\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Sofia Marsh (Kettle & Co)\", \"text\": \"Final details for the tasting dinner: guest list is locked at 60, guests arrive from 18:30, and we'd like first service at 19:00.\", \"role\": \"fact\"},\n  {\"id\": \"e34\", \"date\": \"2026-10-07\", \"type\": \"notice\", \"from\": \"Marcus Webb (finance lead)\", \"text\": \"Reminder: the deposit for the Copper Keg September order is due to be paid by the end of next week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn tasting dinner — Kettle & Co\", \"fields\": {\"date\": \"2026-10-16\", \"place\": \"Bellwood Barn\", \"guests\": \"60\", \"arrival\": \"18:30\", \"service\": \"19:00\", \"load_in\": \"14:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Harvest Table — tasting dinner catering\", \"fields\": {\"supplier\": \"Harvest Table\", \"item\": \"Seasonal three-course menu\", \"covers\": \"60\", \"price_per_cover\": \"42\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Tasting dinner kitchen — head chef\", \"fields\": {\"date\": \"2026-10-16\", \"person\": \"Ravi Nair\", \"place\": \"Bellwood Barn\", \"status\": \"assigned\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Copper Keg — tasting dinner drinks\", \"fields\": {\"supplier\": \"Copper Keg\", \"item\": \"Mixed drinks cases\", \"cases\": \"10\", \"total\": \"180\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Staff briefing — tasting dinner\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"09:00\", \"place\": \"Bellwood Barn\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Willow birthday garden party\", \"fields\": {\"date\": \"2026-09-05\", \"place\": \"Bellwood Barn\", \"guests\": \"30\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Copper Keg — Willow party drinks\", \"fields\": {\"supplier\": \"Copper Keg\", \"item\": \"Mixed drinks cases\", \"cases\": \"12\", \"total\": \"216\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Tasting dinner service staff\", \"fields\": {\"date\": \"2026-10-16\", \"staff\": \"Tom Beale\", \"status\": \"assigned\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"place\"], \"from\": \"Sofia Marsh (Kettle & Co)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Can you send Dana at Bellwood Barn the run-sheet for our Kettle & Co tasting dinner? She should get the date, when guests arrive and how many we're expecting.\",\n \"expect\": [\n  {\"message_to\": \"Dana Ortiz (Bellwood Barn)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-16\", \"60\", \"18:30\"], \"stale\": [\"70\", \"48\"], \"task\": true}\n ],\n \"why\": \"This is a control: the terrace email adds a new venue fact that no decision rests on, so the tasting dinner plan stands exactly as booked. The task is only to send Dana the run-sheet carrying the standing values (2026-10-16, 60 guests, 18:30 arrival); the 70 covers and 48 per cover belong to the separate Northgate charity supper quote and must not be passed off as current. No record changes, and EV-1's date and place remain protected by Sofia's consent under the standing rule.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"Bellwood Barn viewings\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Bellwood Barn\", \"item\": \"venue viewing slot\", \"unit\": \"\", \"values\": [\"Main Barn\", \"Terrace Room\", \"Courtyard\"], \"place\": \"Bellwood Barn\"},\n  {\"kind\": \"order\", \"topic\": \"Harvest Table bread\", \"counterpart\": \"Sam Reed\", \"org\": \"Harvest Table\", \"item\": \"sourdough loaves\", \"unit\": \"loaf\", \"values\": [\"24\", \"36\", \"48\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"Copper Keg restock\", \"counterpart\": \"Lena Frost\", \"org\": \"Copper Keg\", \"item\": \"sparkling water cases\", \"unit\": \"case\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"napkin restock\", \"counterpart\": \"Marta Vines\", \"org\": \"Linen Loop\", \"item\": \"linen napkin packs\", \"unit\": \"pack\", \"values\": [\"50\", \"100\", \"200\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"van bookings\", \"counterpart\": \"Carl Dean\", \"org\": \"Gridway Rentals\", \"item\": \"delivery van\", \"unit\": \"\", \"values\": [\"van A\", \"van B\", \"van C\"], \"place\": \"Gridway depot\"},\n  {\"kind\": \"order\", \"topic\": \"cheese restock\", \"counterpart\": \"Omar Haddad\", \"org\": \"Dellway Foods\", \"item\": \"cheese wheels\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"staff room use\", \"counterpart\": \"Nina Cole\", \"org\": \"Sage & Salt Events\", \"item\": \"staff room slot\", \"unit\": \"\", \"values\": [\"staff room\", \"office\", \"prep kitchen\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"herb orders\", \"counterpart\": \"June Park\", \"org\": \"Greenrow Farm\", \"item\": \"basil bunches\", \"unit\": \"bunch\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"Northgate fair stalls\", \"counterpart\": \"Roy Bell\", \"org\": \"Northgate School\", \"item\": \"fair stall pitch\", \"unit\": \"\", \"values\": [\"stall 1\", \"stall 2\", \"stall 3\"], \"place\": \"Northgate School field\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Ivo Marsh\", \"org\": \"Beanline Roasters\", \"item\": \"coffee bean bags\", \"unit\": \"kg\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"Sage & Salt prep kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"tasting room slots\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Bellwood Barn\", \"item\": \"tasting room slot\", \"unit\": \"\", \"values\": [\"tasting room\", \"Main Barn\", \"Terrace Room\"], \"place\": \"Bellwood Barn\"},\n  {\"kind\": \"order\", \"topic\": \"Harvest Table veg boxes\", \"counterpart\": \"Sam Reed\", \"org\": \"Harvest Table\", \"item\": \"veg boxes\", \"unit\": \"box\", \"values\": [\"6\", \"10\", \"15\"], \"place\": \"Sage & Salt prep kitchen\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7790,
+    "completion_tokens": 4531,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0271944,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'staff room use': values needs at least three entries\n- noise topic 'tasting room slots': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Tasting dinner run-sheet beside a new venue fact",
+  "setting": "A caterer running Sage & Salt Events whose assistant tracks menus, dietary requirements, and event-day timelines",
+  "owner": "Priya",
+  "org": "Sage & Salt Events",
+  "now": "2026-10-09",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Standing policy: any supplier order above 800 needs sign-off from Marcus, our finance lead, before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Standing rule: once an event with a client is confirmed, we do not move or reschedule it without that client's written consent.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Dana Ortiz (Bellwood Barn)",
+    "text": "Bellwood Barn is free on 2026-10-16 for an evening event. Evening hire is 950, with the main barn and kitchen included.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "quote",
+    "from": "Sam Reed (Harvest Table)",
+    "text": "Quote: seasonal three-course menu at 42 per cover, minimum 40 covers, delivery and service staff included. Quote runs through 2026-12-31.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Sofia Marsh (Kettle & Co)",
+    "text": "For our autumn tasting dinner, we're expecting around 60 guests. I'm your contact for everything on this one.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Booked Bellwood Barn for the Kettle & Co autumn tasting dinner on the evening of 2026-10-16 at the 950 evening hire rate.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-19",
+    "type": "decision",
+    "from": "Marcus Webb (finance lead)",
+    "text": "Approved the Harvest Table catering order for the tasting dinner up to 2600 in total, per the sign-off policy for orders above 800.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e4"
+    ]
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Confirmed Harvest Table for the tasting dinner: 60 covers of the seasonal three-course menu at 42 per cover, within the approved amount.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e7"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Assigned Ravi Nair as head chef for the Kettle & Co tasting dinner at Bellwood Barn on 2026-10-16.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-28",
+    "type": "email",
+    "from": "Lena Frost (Copper Keg)",
+    "text": "Drinks cases are 18 per case, mixed sparkling and still, minimum order of 5 cases, delivered free to your prep kitchen.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Placed the Copper Keg order for the tasting dinner: 10 mixed drinks cases at 18 per case, well under the sign-off threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Sofia Marsh (Kettle & Co)",
+    "text": "Final dietary list for the tasting dinner: of the 60 guests, 6 are gluten-free. No other allergies reported.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Arranged with Harvest Table that 6 of the 60 covers at the tasting dinner will be prepared gluten-free, and put Ravi in charge of keeping those plates separate in the Bellwood Barn kitchen.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e12",
+     "e9"
+    ]
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-10",
+    "type": "instruction",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Standing rule: for every client event, the run-sheet is emailed to the venue contact five days before the event date.",
+    "role": "rule"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Scheduled the tasting dinner staff briefing for 09:00 on 2026-10-16 at Bellwood Barn, before the load-in.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-16",
+    "type": "email",
+    "from": "Hannah Willow",
+    "text": "We'd like the garden party at Bellwood Barn on 2026-09-05, about 30 guests, drinks and canapés only.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-18",
+    "type": "decision",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Booked the Willow birthday garden party at Bellwood Barn on 2026-09-05 for 30 guests.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Ordered 12 Copper Keg drinks cases for the Willow party at 18 per case, above the minimum and under the sign-off threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-24",
+    "type": "note",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Reminder to self: book the delivery van in for its service in November.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-07-28",
+    "type": "message",
+    "from": "Tom Beale",
+    "text": "Just to confirm, I'm available for weekend and evening shifts through the autumn if you need extra hands on events.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-07-30",
+    "type": "decision",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Added Tom Beale to the service team for the Kettle & Co tasting dinner on 2026-10-16.",
+    "role": "decision",
+    "rests_on": [
+     "e20"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-05",
+    "type": "email",
+    "from": "Sofia Marsh (Kettle & Co)",
+    "text": "For the tasting dinner, could we go with the sage-green napkins rather than the cream ones? Thanks!",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Dana Ortiz (Bellwood Barn)",
+    "text": "A note for your planning: on event days the loading bay at Bellwood Barn opens at 14:00, not earlier.",
+    "role": "fact"
+   },
+   {
+    "id": "e24",
+    "date": "2026-08-15",
+    "type": "decision",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Set load-in for the tasting dinner at Bellwood Barn to 14:00 on 2026-10-16, matching the loading bay opening time.",
+    "role": "decision",
+    "rests_on": [
+     "e23",
+     "e6"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e25",
+    "date": "2026-08-20",
+    "type": "minutes",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Team meeting notes: autumn menus printed next week; Copper Keg orders on standing monthly schedule; tasting dinner prep on track.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Dana Ortiz (Bellwood Barn)",
+    "text": "Confirmation of your booking: Bellwood Barn, evening of 2026-10-16, Kettle & Co tasting dinner, 60 guests. We look forward to having you.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Sam Reed (Harvest Table)",
+    "text": "Order confirmation: 60 covers of the seasonal three-course menu at 42 per cover for 2026-10-16, including 6 gluten-free covers. All set.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-05",
+    "type": "message",
+    "from": "Hannah Willow",
+    "text": "Thank you all so much for today's party — everything was lovely.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-15",
+    "type": "quote",
+    "from": "Marta Vines (Linen Loop)",
+    "text": "Current price list: linen napkins 20 per pack of 50, tablecloths 35 each, weekly rates on request.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Dana Ortiz (Bellwood Barn)",
+    "text": "Some news from us: the new terrace at Bellwood Barn has just opened. It's a lovely spot for canapé receptions and evening hire is 150. It's available from this October if you'd ever like to use it for a future event.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e31",
+    "date": "2026-09-26",
+    "type": "message",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Note to team: the printed autumn menus are back from the printers and in the prep kitchen store.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-01",
+    "type": "quote",
+    "from": "Sam Reed (Harvest Table)",
+    "text": "Quote as requested: Northgate charity supper on 2026-10-24, 70 covers of the same seasonal three-course menu at 48 per cover. Valid for two weeks.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Sofia Marsh (Kettle & Co)",
+    "text": "Final details for the tasting dinner: guest list is locked at 60, guests arrive from 18:30, and we'd like first service at 19:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e34",
+    "date": "2026-10-07",
+    "type": "notice",
+    "from": "Marcus Webb (finance lead)",
+    "text": "Reminder: the deposit for the Copper Keg September order is due to be paid by the end of next week.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Autumn tasting dinner — Kettle & Co",
+    "fields": {
+     "date": "2026-10-16",
+     "place": "Bellwood Barn",
+     "guests": "60",
+     "arrival": "18:30",
+     "service": "19:00",
+     "load_in": "14:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Harvest Table — tasting dinner catering",
+    "fields": {
+     "supplier": "Harvest Table",
+     "item": "Seasonal three-course menu",
+     "covers": "60",
+     "price_per_cover": "42",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Tasting dinner kitchen — head chef",
+    "fields": {
+     "date": "2026-10-16",
+     "person": "Ravi Nair",
+     "place": "Bellwood Barn",
+     "status": "assigned"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Copper Keg — tasting dinner drinks",
+    "fields": {
+     "supplier": "Copper Keg",
+     "item": "Mixed drinks cases",
+     "cases": "10",
+     "total": "180",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Staff briefing — tasting dinner",
+    "fields": {
+     "date": "2026-10-16",
+     "time": "09:00",
+     "place": "Bellwood Barn",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Willow birthday garden party",
+    "fields": {
+     "date": "2026-09-05",
+     "place": "Bellwood Barn",
+     "guests": "30",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Copper Keg — Willow party drinks",
+    "fields": {
+     "supplier": "Copper Keg",
+     "item": "Mixed drinks cases",
+     "cases": "12",
+     "total": "216",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Tasting dinner service staff",
+    "fields": {
+     "date": "2026-10-16",
+     "staff": "Tom Beale",
+     "status": "assigned"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "place"
+    ],
+    "from": "Sofia Marsh (Kettle & Co)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Can you send Dana at Bellwood Barn the run-sheet for our Kettle & Co tasting dinner? She should get the date, when guests arrive and how many we're expecting.",
+  "expect": [
+   {
+    "message_to": "Dana Ortiz (Bellwood Barn)",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-16",
+     "60",
+     "18:30"
+    ],
+    "stale": [
+     "70",
+     "48"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the terrace email adds a new venue fact that no decision rests on, so the tasting dinner plan stands exactly as booked. The task is only to send Dana the run-sheet carrying the standing values (2026-10-16, 60 guests, 18:30 arrival); the 70 covers and 48 per cover belong to the separate Northgate charity supper quote and must not be passed off as current. No record changes, and EV-1's date and place remain protected by Sofia's consent under the standing rule.",
+  "noise_kit": [
+   {
+    "kind": "booking",
+    "topic": "Bellwood Barn viewings",
+    "counterpart": "Dana Ortiz",
+    "org": "Bellwood Barn",
+    "item": "venue viewing slot",
+    "unit": "",
+    "values": [
+     "Main Barn",
+     "Terrace Room",
+     "Courtyard"
+    ],
+    "place": "Bellwood Barn"
+   },
+   {
+    "kind": "order",
+    "topic": "Harvest Table bread",
+    "counterpart": "Sam Reed",
+    "org": "Harvest Table",
+    "item": "sourdough loaves",
+    "unit": "loaf",
+    "values": [
+     "24",
+     "36",
+     "48"
+    ],
+    "place": "Sage & Salt prep kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "Copper Keg restock",
+    "counterpart": "Lena Frost",
+    "org": "Copper Keg",
+    "item": "sparkling water cases",
+    "unit": "case",
+    "values": [
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "Sage & Salt prep kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "napkin restock",
+    "counterpart": "Marta Vines",
+    "org": "Linen Loop",
+    "item": "linen napkin packs",
+    "unit": "pack",
+    "values": [
+     "50",
+     "100",
+     "200"
+    ],
+    "place": "Sage & Salt prep kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "van bookings",
+    "counterpart": "Carl Dean",
+    "org": "Gridway Rentals",
+    "item": "delivery van",
+    "unit": "",
+    "values": [
+     "van A",
+     "van B",
+     "van C"
+    ],
+    "place": "Gridway depot"
+   },
+   {
+    "kind": "order",
+    "topic": "cheese restock",
+    "counterpart": "Omar Haddad",
+    "org": "Dellway Foods",
+    "item": "cheese wheels",
+    "unit": "kg",
+    "values": [
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "Sage & Salt prep kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff room use",
+    "counterpart": "Nina Cole",
+    "org": "Sage & Salt Events",
+    "item": "staff room slot",
+    "unit": "",
+    "values": [
+     "staff room",
+     "office",
+     "prep kitchen"
+    ],
+    "place": "Sage & Salt prep kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "herb orders",
+    "counterpart": "June Park",
+    "org": "Greenrow Farm",
+    "item": "basil bunches",
+    "unit": "bunch",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "Sage & Salt prep kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "Northgate fair stalls",
+    "counterpart": "Roy Bell",
+    "org": "Northgate School",
+    "item": "fair stall pitch",
+    "unit": "",
+    "values": [
+     "stall 1",
+     "stall 2",
+     "stall 3"
+    ],
+    "place": "Northgate School field"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee beans",
+    "counterpart": "Ivo Marsh",
+    "org": "Beanline Roasters",
+    "item": "coffee bean bags",
+    "unit": "kg",
+    "values": [
+     "4",
+     "6",
+     "10"
+    ],
+    "place": "Sage & Salt prep kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "tasting room slots",
+    "counterpart": "Dana Ortiz",
+    "org": "Bellwood Barn",
+    "item": "tasting room slot",
+    "unit": "",
+    "values": [
+     "tasting room",
+     "Main Barn",
+     "Terrace Room"
+    ],
+    "place": "Bellwood Barn"
+   },
+   {
+    "kind": "order",
+    "topic": "Harvest Table veg boxes",
+    "counterpart": "Sam Reed",
+    "org": "Harvest Table",
+    "item": "veg boxes",
+    "unit": "box",
+    "values": [
+     "6",
+     "10",
+     "15"
+    ],
+    "place": "Sage & Salt prep kitchen"
+   }
+  ],
+  "id": "G1000-4-01",
+  "tier": 1000,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The terrace email revokes no fact and amends no rule, so the control class and the unchanged records hold, and the 70/48 values are correctly kept out of the message. The counts (34 core events, 11 decisions), the 19-day gap from the change to the task day, and the four core events after the change all meet the tier. A minor ambiguity is that the terrace's 150 evening hire could be misread as revising the 950 Bellwood rate, though the text scopes it to the terrace.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The terrace email revokes no fact and amends no rule, so the control class and the unchanged records hold, and the 70/48 values are correctly kept out of the message. The counts (34 core events, 11 decisions), the 19-day gap from the change to the task day, and the four core events after the change all meet the tier. A minor ambiguity is that the terrace's 150 evening hire could be misread as revising the 950 Bellwood rate, though the text scopes it to the terrace."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6072,
+    "completion_tokens": 1680,
+    "reasoning_tokens": 1470,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014472,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9b81381db9c59c757437bb90872d4921331cf32c4ec7191f85b5df45b40d98c9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The message values are correct, but e14 requires the run-sheet to be emailed five days before the October 16 event—October 11, not the October 9 task day. The task does not explicitly override that timing rule, so immediate sending rather than scheduling is not unambiguously justified. Otherwise, the terrace announcement changes no existing plan, and the core meets the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The message values are correct, but e14 requires the run-sheet to be emailed five days before the October 16 event—October 11, not the October 9 task day. The task does not explicitly override that timing rule, so immediate sending rather than scheduling is not unambiguously justified. Otherwise, the terrace announcement changes no existing plan, and the core meets the tier requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4198,
+    "completion_tokens": 362,
+    "reasoning_tokens": 247,
+    "cached_tokens": 0
+   },
+   "cost": 0.0705675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9b81381db9c59c757437bb90872d4921331cf32c4ec7191f85b5df45b40d98c9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The terrace email introduces a fact no decision rests on, so all records stand and the task is just sending the run-sheet with the standing values (2026-10-16, 60, 18:30), with the Northgate 70/48 quote a clear separate-event distractor. Core has 34 events and 11 decisions within tier bounds, the change is 19 days before the task day with later core events, and echoes are not required for class 4. The consent map correctly reflects rule e2, and the change sits unannounced mid-history as event 907 of 1000.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The terrace email introduces a fact no decision rests on, so all records stand and the task is just sending the run-sheet with the standing values (2026-10-16, 60, 18:30), with the Northgate 70/48 quote a clear separate-event distractor. Core has 34 events and 11 decisions within tier bounds, the change is 19 days before the task day with later core events, and echoes are not required for class 4. The consent map correctly reflects rule e2, and the change sits unannounced mid-history as event 907 of 1000."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4293,
+    "completion_tokens": 395,
+    "reasoning_tokens": 213,
+    "cached_tokens": 0
+   },
+   "cost": 0.018804,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9b81381db9c59c757437bb90872d4921331cf32c4ec7191f85b5df45b40d98c9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

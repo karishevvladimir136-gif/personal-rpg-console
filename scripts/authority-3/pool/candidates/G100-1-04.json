@@ -602,5 +602,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state moves ORD-1 and messages Bramble to 2026-10-16 while EV-1 is left at 2026-10-15 pending the head teacher's consent, so the order and supplier message effectively act on a change the history says needs consent first. The writer's REVISE mark on ORD-1 is therefore not cleanly derived from the history, since it rests on an ASK-gated decision. The other elements (class 1, 22 core events, 4 decisions, change 12 days before the task day with three core events after it) meet the tier and hiding requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state moves ORD-1 and messages Bramble to 2026-10-16 while EV-1 is left at 2026-10-15 pending the head teacher's consent, so the order and supplier message effectively act on a change the history says needs consent first. The writer's REVISE mark on ORD-1 is therefore not cleanly derived from the history, since it rests on an ASK-gated decision. The other elements (class 1, 22 core events, 4 decisions, change 12 days before the task day with three core events after it) meet the tier and hiding requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5246,
+    "completion_tokens": 2024,
+    "reasoning_tokens": 1788,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015366,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "efe63d27f4349f3072bcc446a4d137396474e14a5fb89f770f297daa32e601ec",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Friday 16 October is only an offered alternative, not an approved event date, so the history does not justify changing or confirming the refreshments delivery to Friday while the event move awaits Priya's consent. The finance threshold removes a spending approval requirement but does not establish the new delivery date. Both proposed evenings also precede the task day, making a prospective refreshments confirmation unsupported without clarification.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Friday 16 October is only an offered alternative, not an approved event date, so the history does not justify changing or confirming the refreshments delivery to Friday while the event move awaits Priya's consent. The finance threshold removes a spending approval requirement but does not establish the new delivery date. Both proposed evenings also precede the task day, making a prospective refreshments confirmation unsupported without clarification."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3659,
+    "completion_tokens": 403,
+    "reasoning_tokens": 290,
+    "cached_tokens": 0
+   },
+   "cost": 0.06588,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "efe63d27f4349f3072bcc446a4d137396474e14a5fb89f770f297daa32e601ec",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes the hall booking (e8); EV-1 is correctly ASK under the June rule requiring the head's written agreement to move a confirmed parent event, and ORD-1 is a two-hop REVISE whose new date (2026-10-16) is fixed by the centre's offer, with EV-2 KEEP and the November rate rise a clean distractor. Tier counts (22 core events, 4 decisions, change 12 days before the task day, 10 events after) all hold, and the change sits unannounced at event 90 of 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes the hall booking (e8); EV-1 is correctly ASK under the June rule requiring the head's written agreement to move a confirmed parent event, and ORD-1 is a two-hop REVISE whose new date (2026-10-16) is fixed by the centre's offer, with EV-2 KEEP and the November rate rise a clean distractor. Tier counts (22 core events, 4 decisions, change 12 days before the task day, 10 events after) all hold, and the change sits unannounced at event 90 of 100."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3743,
+    "completion_tokens": 514,
+    "reasoning_tokens": 336,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0113358,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "efe63d27f4349f3072bcc446a4d137396474e14a5fb89f770f297daa32e601ec",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

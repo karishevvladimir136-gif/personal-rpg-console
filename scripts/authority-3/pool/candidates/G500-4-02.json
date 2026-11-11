@@ -659,5 +659,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The e24 change restates the same deposit substance (150 pounds for the main hall, small room free), so the expected booking with a 150 deposit follows and no marks are needed. The task's 'this Friday' does not match 16 October relative to the task day of 24 September, which is a wording flaw. The phrases 'new wording, effective now' hint that something changed, though the event sits mid-history and is not labelled a correction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The e24 change restates the same deposit substance (150 pounds for the main hall, small room free), so the expected booking with a 150 deposit follows and no marks are needed. The task's 'this Friday' does not match 16 October relative to the task day of 24 September, which is a wording flaw. The phrases 'new wording, effective now' hint that something changed, though the event sits mid-history and is not labelled a correction."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5865,
+    "completion_tokens": 1732,
+    "reasoning_tokens": 1541,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014525,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9db64d86eae1abbb102d732f7697c54a44416dba71e972a8056be09c820dc16c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The September 8 wording preserves the main-hall deposit of 150 pounds, so the new booking and confirmation are required without changing existing records or seeking consent. The small-room key deposit does not apply. The core has 30 events and 7 decisions, with the change 16 days before the task and six core events after it; class 4 requires no stale-value echo.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The September 8 wording preserves the main-hall deposit of 150 pounds, so the new booking and confirmation are required without changing existing records or seeking consent. The small-room key deposit does not apply. The core has 30 events and 7 decisions, with the change 16 days before the task and six core events after it; class 4 requires no stale-value echo."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4090,
+    "completion_tokens": 460,
+    "reasoning_tokens": 346,
+    "cached_tokens": 0
+   },
+   "cost": 0.0741175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9db64d86eae1abbb102d732f7697c54a44416dba71e972a8056be09c820dc16c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 8 September change restates the same 150-pound refundable main-hall deposit policy in new words, so nothing is touched and the fresh booking correctly uses 150 (the 75 figure is only a small-room key-deposit distractor). The task compels creating the booking and sending the confirmation now, with no consent needed. Counts (30 core events, 7 decisions), change distance (16 days, 73 events after), and concealment all meet tier 500.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 8 September change restates the same 150-pound refundable main-hall deposit policy in new words, so nothing is touched and the fresh booking correctly uses 150 (the 75 figure is only a small-room key-deposit distractor). The task compels creating the booking and sending the confirmation now, with no consent needed. Counts (30 core events, 7 decisions), change distance (16 days, 73 events after), and concealment all meet tier 500."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4204,
+    "completion_tokens": 486,
+    "reasoning_tokens": 332,
+    "cached_tokens": 256
+   },
+   "cost": 0.0192108,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9db64d86eae1abbb102d732f7697c54a44416dba71e972a8056be09c820dc16c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

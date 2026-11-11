@@ -646,5 +646,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The Wednesday collection rule changes the standing order and November run, carries the packing session with it, and requires asking Lena before moving her confirmed delivery; the completed September run remains unchanged. The task requires workplace updates and confirmation to Dana without announcing the change. The core has 30 events and 8 decisions, an old Friday-collection echo, and a change 25 days before the task with six later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Wednesday collection rule changes the standing order and November run, carries the packing session with it, and requires asking Lena before moving her confirmed delivery; the completed September run remains unchanged. The task requires workplace updates and confirmation to Dana without announcing the change. The core has 30 events and 8 decisions, an old Friday-collection echo, and a change 25 days before the task with six later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4073,
+    "completion_tokens": 366,
+    "reasoning_tokens": 246,
+    "cached_tokens": 0
+   },
+   "cost": 0.069205,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f0887941aed34fbc2bcfe8c62c23e67a4d05e16e2d6faa6f419993b7ab2bddab",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state follows from the history: the Friday rule e2 is amended from 1 October, so ORD-1, EV-1 and EV-4 move to Wednesday 4 November, EV-2 is KEEP because it predates the change, and EV-3 is ASK under the client-consent rule e3. The counts meet tier 500 (30 core events, 8 decisions, change 25 days before the task day, 6 core events after it), and the change is an ordinary email at event 411 of 500. One weakness is that the change comes from a supplier's revised yard availability, so it could be read as a revoked fact (class 1) rather than an amended rule (class 2).\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state follows from the history: the Friday rule e2 is amended from 1 October, so ORD-1, EV-1 and EV-4 move to Wednesday 4 November, EV-2 is KEEP because it predates the change, and EV-3 is ASK under the client-consent rule e3. The counts meet tier 500 (30 core events, 8 decisions, change 25 days before the task day, 6 core events after it), and the change is an ordinary email at event 411 of 500. One weakness is that the change comes from a supplier's revised yard availability, so it could be read as a revoked fact (class 1) rather than an amended rule (class 2)."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5877,
+    "completion_tokens": 1969,
+    "reasoning_tokens": 1700,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015722,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f0887941aed34fbc2bcfe8c62c23e67a4d05e16e2d6faa6f419993b7ab2bddab",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e24) amends the Friday-collection rule with its own effective date (from start of October), correctly voiding the November run, standing order day, and packing session (REVISE to Wednesday 4 Nov), keeping the September run (KEEP), and routing the café drop through the stated consent rule (ASK, matching the consent map). Counts fit tier 500 (30 events, 8 decisions, change 25 days before the task day, echo e22 restates Friday), and the change sits as event 411 of 500 with later routine events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e24) amends the Friday-collection rule with its own effective date (from start of October), correctly voiding the November run, standing order day, and packing session (REVISE to Wednesday 4 Nov), keeping the September run (KEEP), and routing the café drop through the stated consent rule (ASK, matching the consent map). Counts fit tier 500 (30 events, 8 decisions, change 25 days before the task day, echo e22 restates Friday), and the change sits as event 411 of 500 with later routine events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4174,
+    "completion_tokens": 526,
+    "reasoning_tokens": 352,
+    "cached_tokens": 256
+   },
+   "cost": 0.0197208,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f0887941aed34fbc2bcfe8c62c23e67a4d05e16e2d6faa6f419993b7ab2bddab",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

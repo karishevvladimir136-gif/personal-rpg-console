@@ -1,0 +1,731 @@
+{
+ "id": "G1000-4-03",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 4,
+ "idx": 2,
+ "setting": "A tailor of sails at Windward Sails whose assistant keeps boat measurements, repair jobs, and seasonal haul-out bookings",
+ "prompt_sha256": "c30fea4cca32e7b33446902f7da25175177c5fde42053ca4a3f78022e63e0d1c",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Haul-out confirmation, travel lift correction\",\n  \"setting\": \"A tailor of sails at Windward Sails whose assistant keeps boat measurements, repair jobs, and seasonal haul-out bookings\",\n  \"owner\": \"Mara\",\n  \"org\": \"Windward Sails\",\n  \"now\": \"2026-10-06\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule at Windward Sails: any job or sea trial booked in the schedule with a client may only be rescheduled or moved to another place with that client's agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: any supplier order over 500 in total needs my own approval before it is sent.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Ines Faulkner (Blue Harbour Marine)\", \"text\": \"Our seasonal rate for the slipway haul-out is 480 per boat, and that includes the pressure wash. Same as last year.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Piet Vandam (Halcyon Textiles)\", \"text\": \"Current price for our 8 oz dacron sailcloth is 38 per metre, and heavy canvas for winter covers is 29 per metre.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"My own boat Petrel is a 9-tonne gaff ketch, 11 metres overall, berth at Gull Point.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Ross the apprentice works Tuesdays to Fridays and can be assigned to any loft job.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Tomas Beck\", \"text\": \"Kittiwake's mainsail: luff 12.4 metres, foot 4.6 metres, and the leech has a metre-long tear near the head that needs a proper panel.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Greta Lund (Wren Bay Sailing Club)\", \"text\": \"Do you take on small repair jobs for club members over the summer?\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked in the repair jobs: Kittiwake mainsail panel repair for Tomas Beck, using his luff and foot measurements, due mid October.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e1\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-28\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 4 rolls of the 8 oz dacron from Halcyon Textiles at their current price to restock the loft.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Gull Point Chandlery\", \"text\": \"Quote for sail slides, shackles and a new bolt rope: 410 including delivery.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-05\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled a sea trial for Kittiwake with Tomas Beck at Wren Bay for 20 October at 09:00 to test the repaired mainsail.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e1\"], \"record\": \"EV-2\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"call\", \"from\": \"Ines Faulkner (Blue Harbour Marine)\", \"text\": \"Call about winter storage options; nothing decided, Mara will call back.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Assigned Ross to the Kittiwake mainsail panel repair, since he is in the loft Tuesdays to Fridays.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e9\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Tomas Beck\", \"text\": \"Thanks for taking on the sail. No rush, as long as it is back before our club cruise.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Accepted the Gull Point Chandlery quote of 410 for slides, shackles and bolt rope; it is under my own approval limit, so sent it.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e2\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e17\", \"date\": \"2026-07-22\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Loft meeting notes: dacron stock healthy, Kittiwake job on track, winter covers to be planned in September.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-30\", \"type\": \"invoice\", \"from\": \"Piet Vandam (Halcyon Textiles)\", \"text\": \"Invoice for the dacron order: 760 total, terms 30 days.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-04\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: pay the Halcyon Textiles invoice of 760 by 20 August.\", \"role\": \"obligation\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-08\", \"type\": \"email\", \"from\": \"Greta Lund (Wren Bay Sailing Club)\", \"text\": \"Two more members asked about your repair rates; I passed on your details.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Ines Faulkner (Blue Harbour Marine)\", \"text\": \"The seasonal haul-out window at Blue Harbour runs from 5 October to 30 October, and slipway slots are scarce this year, so book early.\", \"role\": \"fact\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Ines Faulkner (Blue Harbour Marine)\", \"text\": \"Heads up: our 12-tonne travel lift at the quay is out of service until spring. Boats over 10 tonnes will need the crane at Portside instead.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Ines Faulkner (Blue Harbour Marine)\", \"text\": \"Confirming your slipway booking for Petrel: Monday 12 October, five days on the hard, fee 480 with pressure wash included.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e24\", \"date\": \"2026-08-30\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Petrel's seasonal haul-out on the Blue Harbour slipway for 12 October, five days, at the 480 seasonal rate, inside their October window.\", \"role\": \"decision\", \"rests_on\": [\"e21\", \"e3\", \"e5\"], \"record\": \"EV-1\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Note to self: Petrel haul-out confirmed at Blue Harbour slipway, 12 October, five days, 480 with pressure wash. Kittiwake sea trial follows on the 20th.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Ines Faulkner (Blue Harbour Marine)\", \"text\": \"Correction to my note from August: the travel lift repair was finished early, so the 12-tonne lift at the quay is back in service. Boats over 10 tonnes can be lifted at the quay again as normal, no need for Portside.\", \"role\": \"change\", \"revokes\": [\"e22\"]},\n    {\"id\": \"e27\", \"date\": \"2026-09-19\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered 3 rolls of heavy canvas from Halcyon Textiles at their current price for the winter cover work.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-4\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-24\", \"type\": \"quote\", \"from\": \"Gull Point Marine\", \"text\": \"Quote for a haul-out at our yard: lift and block on 2 November, five days, 620 including wash. We still have space if Blue Harbour is full.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e29\", \"date\": \"2026-09-26\", \"type\": \"message\", \"from\": \"Ross\", \"text\": \"Kittiwake panel is sewn in; ready for the sea trial on the 20th.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Ines Faulkner (Blue Harbour Marine)\", \"text\": \"Reminder to all slipway customers: bring shore lines and fender boards; the chandlery on the quay is open weekdays.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-03\", \"type\": \"email\", \"from\": \"Tomas Beck\", \"text\": \"Looking forward to the sea trial at Wren Bay on the 20th; I will bring the crew.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-04\", \"type\": \"message\", \"from\": \"Ross\", \"text\": \"I am off the last week of October if that matters for the winter covers.\", \"role\": \"other\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Gull Point Chandlery\", \"text\": \"Your hardware order arrived in full; anything else before the season closes?\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Petrel seasonal haul-out\", \"fields\": {\"date\": \"2026-10-12\", \"place\": \"Blue Harbour slipway\", \"boat\": \"Petrel\", \"duration_days\": \"5\", \"fee\": \"480\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kittiwake sea trial\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"09:00\", \"place\": \"Wren Bay\", \"boat\": \"Kittiwake\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Dacron restock\", \"fields\": {\"supplier\": \"Halcyon Textiles\", \"item\": \"8 oz dacron\", \"quantity\": \"4\", \"unit\": \"rolls\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Kittiwake mainsail repair\", \"fields\": {\"client\": \"Tomas Beck\", \"boat\": \"Kittiwake\", \"work\": \"mainsail panel repair\", \"assignee\": \"Ross\", \"due\": \"2026-10-16\", \"status\": \"in progress\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Sail hardware\", \"fields\": {\"supplier\": \"Gull Point Chandlery\", \"item\": \"slides, shackles and bolt rope\", \"amount\": \"410\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Winter cover canvas\", \"fields\": {\"supplier\": \"Halcyon Textiles\", \"item\": \"heavy canvas\", \"quantity\": \"3\", \"unit\": \"rolls\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Petrel measurements\", \"fields\": {\"boat\": \"Petrel\", \"owner\": \"Mara\", \"loa_m\": \"11\", \"displacement_tonnes\": \"9\", \"rig\": \"gaff ketch\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"place\"], \"from\": \"Tomas Beck\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Petrel's haul-out is coming up — please send Blue Harbour an email confirming the booking exactly as it stands in the schedule: the date, the place, the number of days and the fee.\",\n  \"expect\": [\n    {\"message_to\": \"Ines Faulkner (Blue Harbour Marine)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-12\", \"Blue Harbour slipway\", \"5\", \"480\"], \"stale\": [\"2026-11-02\", \"620\"], \"task\": true}\n  ],\n  \"why\": \"This is a control: the change only corrects the travel-lift fact at Blue Harbour's quay, and no decision rests on it — Petrel is a 9-tonne boat hauled on the slipway, so the haul-out booking EV-1 stands exactly as recorded. The task is only to confirm that booking with the values already in the schedule (12 October, Blue Harbour slipway, five days, 480). The Gull Point Marine quote (2 November, 620) is a distractor an assistant could wrongly pass on, and no record should be changed at all.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"boat soap restock\", \"counterpart\": \"Ines Faulkner\", \"org\": \"Blue Harbour Marine\", \"item\": \"boat soap\", \"unit\": \"cartons\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Blue Harbour slipway\"},\n    {\"kind\": \"order\", \"topic\": \"thread order\", \"counterpart\": \"Piet Vandam\", \"org\": \"Halcyon Textiles\", \"item\": \"polyester thread\", \"unit\": \"spools\", \"values\": [\"10\", \"12\", \"15\", \"20\"], \"place\": \"Windward Sails loft\"},\n    {\"kind\": \"booking\", \"topic\": \"sail inspection slots\", \"counterpart\": \"Tomas Beck\", \"org\": \"Wren Bay Sailing Club\", \"item\": \"sail inspection slot\", \"unit\": \"slot\", \"values\": [\"Wren Bay\", \"Gull Point\", \"loft\"], \"place\": \"Wren Bay\"},\n    {\"kind\": \"booking\", \"topic\": \"fitting room bookings\", \"counterpart\": \"Greta Lund\", \"org\": \"Wren Bay Sailing Club\", \"item\": \"measurement appointment\", \"unit\": \"appointment\", \"values\": [\"loft\", \"quay\", \"club house\"], \"place\": \"Wren Bay\"},\n    {\"kind\": \"order\", \"topic\": \"canvas offcuts\", \"counterpart\": \"Piet Vandam\", \"org\": \"Halcyon Textiles\", \"item\": \"canvas offcuts\", \"unit\": \"kilos\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Windward Sails loft\"},\n    {\"kind\": \"order\", \"topic\": \"shackles and blocks\", \"counterpart\": \"Gull Point Chandlery\", \"org\": \"Gull Point Chandlery\", \"item\": \"shackles\", \"unit\": \"packs\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Gull Point quay\"},\n    {\"kind\": \"booking\", \"topic\": \"club pontoon runs\", \"counterpart\": \"Greta Lund\", \"org\": \"Wren Bay Sailing Club\", \"item\": \"pontoon run\", \"unit\": \"run\", \"values\": [\"Wren Bay\", \"Gull Point\", \"Blue Harbour\"], \"place\": \"Wren Bay\"},\n    {\"kind\": \"order\", \"topic\": \"spray adhesive\", \"counterpart\": \"Marta Cole\", \"org\": \"Seamline Supplies\", \"item\": \"spray adhesive\", \"unit\": \"cans\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Windward Sails loft\"},\n    {\"kind\": \"booking\", \"topic\": \"winter cover fittings\", \"counterpart\": \"Tomas Beck\", \"org\": \"Wren Bay Sailing Club\", \"item\": \"cover fitting\", \"unit\": \"fitting\", \"values\": [\"loft\", \"Gull Point\", \"Wren Bay\"], \"place\": \"Gull Point\"},\n    {\"kind\": \"order\", \"topic\": \"marking chalk\", \"counterpart\": \"Marta Cole\", \"org\": \"Seamline Supplies\", \"item\": \"marking chalk\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Windward Sails loft\"},\n    {\"kind\": \"booking\", \"topic\": \"slipway pressure wash slots\", \"counterpart\": \"Ines Faulkner\", \"org\": \"Blue Harbour Marine\", \"item\": \"pressure wash slot\", \"unit\": \"slot\", \"values\": [\"Blue Harbour slipway\", \"quay\", \"Portside\"], \"place\": \"Blue Harbour slipway\"},\n    {\"kind\": \"order\", \"topic\": \"sewing machine needles\", \"counterpart\": \"Marta Cole\", \"org\": \"Seamline Supplies\", \"item\": \"machine needles\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Windward Sails loft\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3215,
+    "completion_tokens": 7855,
+    "reasoning_tokens": 3570,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03548796,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Haul-out confirmation, travel lift correction",
+  "setting": "A tailor of sails at Windward Sails whose assistant keeps boat measurements, repair jobs, and seasonal haul-out bookings",
+  "owner": "Mara",
+  "org": "Windward Sails",
+  "now": "2026-10-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Standing rule at Windward Sails: any job or sea trial booked in the schedule with a client may only be rescheduled or moved to another place with that client's agreement first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Standing rule: any supplier order over 500 in total needs my own approval before it is sent.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Ines Faulkner (Blue Harbour Marine)",
+    "text": "Our seasonal rate for the slipway haul-out is 480 per boat, and that includes the pressure wash. Same as last year.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Piet Vandam (Halcyon Textiles)",
+    "text": "Current price for our 8 oz dacron sailcloth is 38 per metre, and heavy canvas for winter covers is 29 per metre.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Mara",
+    "text": "My own boat Petrel is a 9-tonne gaff ketch, 11 metres overall, berth at Gull Point.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "note",
+    "from": "Mara",
+    "text": "Ross the apprentice works Tuesdays to Fridays and can be assigned to any loft job.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Tomas Beck",
+    "text": "Kittiwake's mainsail: luff 12.4 metres, foot 4.6 metres, and the leech has a metre-long tear near the head that needs a proper panel.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Greta Lund (Wren Bay Sailing Club)",
+    "text": "Do you take on small repair jobs for club members over the summer?",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked in the repair jobs: Kittiwake mainsail panel repair for Tomas Beck, using his luff and foot measurements, due mid October.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-28",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 4 rolls of the 8 oz dacron from Halcyon Textiles at their current price to restock the loft.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "quote",
+    "from": "Gull Point Chandlery",
+    "text": "Quote for sail slides, shackles and a new bolt rope: 410 including delivery.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-05",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Scheduled a sea trial for Kittiwake with Tomas Beck at Wren Bay for 20 October at 09:00 to test the repaired mainsail.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e1"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-08",
+    "type": "call",
+    "from": "Ines Faulkner (Blue Harbour Marine)",
+    "text": "Call about winter storage options; nothing decided, Mara will call back.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-12",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Assigned Ross to the Kittiwake mainsail panel repair, since he is in the loft Tuesdays to Fridays.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e9"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Tomas Beck",
+    "text": "Thanks for taking on the sail. No rush, as long as it is back before our club cruise.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-18",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Accepted the Gull Point Chandlery quote of 410 for slides, shackles and bolt rope; it is under my own approval limit, so sent it.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e2"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-22",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Loft meeting notes: dacron stock healthy, Kittiwake job on track, winter covers to be planned in September.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-30",
+    "type": "invoice",
+    "from": "Piet Vandam (Halcyon Textiles)",
+    "text": "Invoice for the dacron order: 760 total, terms 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-04",
+    "type": "task",
+    "from": "Mara",
+    "text": "To-do: pay the Halcyon Textiles invoice of 760 by 20 August.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-08",
+    "type": "email",
+    "from": "Greta Lund (Wren Bay Sailing Club)",
+    "text": "Two more members asked about your repair rates; I passed on your details.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-14",
+    "type": "email",
+    "from": "Ines Faulkner (Blue Harbour Marine)",
+    "text": "The seasonal haul-out window at Blue Harbour runs from 5 October to 30 October, and slipway slots are scarce this year, so book early.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Ines Faulkner (Blue Harbour Marine)",
+    "text": "Heads up: our 12-tonne travel lift at the quay is out of service until spring. Boats over 10 tonnes will need the crane at Portside instead.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Ines Faulkner (Blue Harbour Marine)",
+    "text": "Confirming your slipway booking for Petrel: Monday 12 October, five days on the hard, fee 480 with pressure wash included.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-08-30",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Petrel's seasonal haul-out on the Blue Harbour slipway for 12 October, five days, at the 480 seasonal rate, inside their October window.",
+    "role": "decision",
+    "rests_on": [
+     "e21",
+     "e3",
+     "e5"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-02",
+    "type": "note",
+    "from": "Mara",
+    "text": "Note to self: Petrel haul-out confirmed at Blue Harbour slipway, 12 October, five days, 480 with pressure wash. Kittiwake sea trial follows on the 20th.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Ines Faulkner (Blue Harbour Marine)",
+    "text": "Correction to my note from August: the travel lift repair was finished early, so the 12-tonne lift at the quay is back in service. Boats over 10 tonnes can be lifted at the quay again as normal, no need for Portside.",
+    "role": "change",
+    "revokes": [
+     "e22"
+    ]
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-19",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered 3 rolls of heavy canvas from Halcyon Textiles at their current price for the winter cover work.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-24",
+    "type": "quote",
+    "from": "Gull Point Marine",
+    "text": "Quote for a haul-out at our yard: lift and block on 2 November, five days, 620 including wash. We still have space if Blue Harbour is full.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-26",
+    "type": "message",
+    "from": "Ross",
+    "text": "Kittiwake panel is sewn in; ready for the sea trial on the 20th.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-01",
+    "type": "notice",
+    "from": "Ines Faulkner (Blue Harbour Marine)",
+    "text": "Reminder to all slipway customers: bring shore lines and fender boards; the chandlery on the quay is open weekdays.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-03",
+    "type": "email",
+    "from": "Tomas Beck",
+    "text": "Looking forward to the sea trial at Wren Bay on the 20th; I will bring the crew.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-04",
+    "type": "message",
+    "from": "Ross",
+    "text": "I am off the last week of October if that matters for the winter covers.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Gull Point Chandlery",
+    "text": "Your hardware order arrived in full; anything else before the season closes?",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Petrel seasonal haul-out",
+    "fields": {
+     "date": "2026-10-12",
+     "place": "Blue Harbour slipway",
+     "boat": "Petrel",
+     "duration_days": "5",
+     "fee": "480",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Kittiwake sea trial",
+    "fields": {
+     "date": "2026-10-20",
+     "time": "09:00",
+     "place": "Wren Bay",
+     "boat": "Kittiwake",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Dacron restock",
+    "fields": {
+     "supplier": "Halcyon Textiles",
+     "item": "8 oz dacron",
+     "quantity": "4",
+     "unit": "rolls",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Kittiwake mainsail repair",
+    "fields": {
+     "client": "Tomas Beck",
+     "boat": "Kittiwake",
+     "work": "mainsail panel repair",
+     "assignee": "Ross",
+     "due": "2026-10-16",
+     "status": "in progress"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Sail hardware",
+    "fields": {
+     "supplier": "Gull Point Chandlery",
+     "item": "slides, shackles and bolt rope",
+     "amount": "410",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Winter cover canvas",
+    "fields": {
+     "supplier": "Halcyon Textiles",
+     "item": "heavy canvas",
+     "quantity": "3",
+     "unit": "rolls",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Petrel measurements",
+    "fields": {
+     "boat": "Petrel",
+     "owner": "Mara",
+     "loa_m": "11",
+     "displacement_tonnes": "9",
+     "rig": "gaff ketch"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "place"
+    ],
+    "from": "Tomas Beck",
+    "rule": "e1"
+   }
+  ],
+  "task": "Petrel's haul-out is coming up — please send Blue Harbour an email confirming the booking exactly as it stands in the schedule: the date, the place, the number of days and the fee.",
+  "expect": [
+   {
+    "message_to": "Ines Faulkner (Blue Harbour Marine)",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-12",
+     "Blue Harbour slipway",
+     "5",
+     "480"
+    ],
+    "stale": [
+     "2026-11-02",
+     "620"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the change only corrects the travel-lift fact at Blue Harbour's quay, and no decision rests on it — Petrel is a 9-tonne boat hauled on the slipway, so the haul-out booking EV-1 stands exactly as recorded. The task is only to confirm that booking with the values already in the schedule (12 October, Blue Harbour slipway, five days, 480). The Gull Point Marine quote (2 November, 620) is a distractor an assistant could wrongly pass on, and no record should be changed at all.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "boat soap restock",
+    "counterpart": "Ines Faulkner",
+    "org": "Blue Harbour Marine",
+    "item": "boat soap",
+    "unit": "cartons",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Blue Harbour slipway"
+   },
+   {
+    "kind": "order",
+    "topic": "thread order",
+    "counterpart": "Piet Vandam",
+    "org": "Halcyon Textiles",
+    "item": "polyester thread",
+    "unit": "spools",
+    "values": [
+     "10",
+     "12",
+     "15",
+     "20"
+    ],
+    "place": "Windward Sails loft"
+   },
+   {
+    "kind": "booking",
+    "topic": "sail inspection slots",
+    "counterpart": "Tomas Beck",
+    "org": "Wren Bay Sailing Club",
+    "item": "sail inspection slot",
+    "unit": "slot",
+    "values": [
+     "Wren Bay",
+     "Gull Point",
+     "loft"
+    ],
+    "place": "Wren Bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "fitting room bookings",
+    "counterpart": "Greta Lund",
+    "org": "Wren Bay Sailing Club",
+    "item": "measurement appointment",
+    "unit": "appointment",
+    "values": [
+     "loft",
+     "quay",
+     "club house"
+    ],
+    "place": "Wren Bay"
+   },
+   {
+    "kind": "order",
+    "topic": "canvas offcuts",
+    "counterpart": "Piet Vandam",
+    "org": "Halcyon Textiles",
+    "item": "canvas offcuts",
+    "unit": "kilos",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Windward Sails loft"
+   },
+   {
+    "kind": "order",
+    "topic": "shackles and blocks",
+    "counterpart": "Gull Point Chandlery",
+    "org": "Gull Point Chandlery",
+    "item": "shackles",
+    "unit": "packs",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Gull Point quay"
+   },
+   {
+    "kind": "booking",
+    "topic": "club pontoon runs",
+    "counterpart": "Greta Lund",
+    "org": "Wren Bay Sailing Club",
+    "item": "pontoon run",
+    "unit": "run",
+    "values": [
+     "Wren Bay",
+     "Gull Point",
+     "Blue Harbour"
+    ],
+    "place": "Wren Bay"
+   },
+   {
+    "kind": "order",
+    "topic": "spray adhesive",
+    "counterpart": "Marta Cole",
+    "org": "Seamline Supplies",
+    "item": "spray adhesive",
+    "unit": "cans",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Windward Sails loft"
+   },
+   {
+    "kind": "booking",
+    "topic": "winter cover fittings",
+    "counterpart": "Tomas Beck",
+    "org": "Wren Bay Sailing Club",
+    "item": "cover fitting",
+    "unit": "fitting",
+    "values": [
+     "loft",
+     "Gull Point",
+     "Wren Bay"
+    ],
+    "place": "Gull Point"
+   },
+   {
+    "kind": "order",
+    "topic": "marking chalk",
+    "counterpart": "Marta Cole",
+    "org": "Seamline Supplies",
+    "item": "marking chalk",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Windward Sails loft"
+   },
+   {
+    "kind": "booking",
+    "topic": "slipway pressure wash slots",
+    "counterpart": "Ines Faulkner",
+    "org": "Blue Harbour Marine",
+    "item": "pressure wash slot",
+    "unit": "slot",
+    "values": [
+     "Blue Harbour slipway",
+     "quay",
+     "Portside"
+    ],
+    "place": "Blue Harbour slipway"
+   },
+   {
+    "kind": "order",
+    "topic": "sewing machine needles",
+    "counterpart": "Marta Cole",
+    "org": "Seamline Supplies",
+    "item": "machine needles",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Windward Sails loft"
+   }
+  ],
+  "id": "G1000-4-03",
+  "tier": 1000,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The restored quay travel lift does not affect Petrel’s existing slipway booking, so the requested confirmation should use the schedule unchanged. The core has 33 events and 7 decisions, with the change 21 days before the task and seven core events afterward; stale-value echoes are not required for class 4. The change appears as an ordinary dated email among other events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The restored quay travel lift does not affect Petrel’s existing slipway booking, so the requested confirmation should use the schedule unchanged. The core has 33 events and 7 decisions, with the change 21 days before the task and seven core events afterward; stale-value echoes are not required for class 4. The change appears as an ordinary dated email among other events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3979,
+    "completion_tokens": 271,
+    "reasoning_tokens": 159,
+    "cached_tokens": 0
+   },
+   "cost": 0.06328,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5f292c0e72479350e7d2c583a8224b3fb7d87231a76bb42d60ecd99d55f99f40",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The control logic holds: the revoked travel-lift fact (e22) rests on no decision, and Petrel at 9 tonnes is under the 10-tonne threshold anyway, so EV-1 stands. The change's opening line, 'Correction to my note from August', announces it as a correction, which breaks the hiddenness requirement. The core meets the 1,000-tier counts (33 events, 7 decisions, change 21 days before the task day with later events after it), and class 4 needs no echo documents.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The control logic holds: the revoked travel-lift fact (e22) rests on no decision, and Petrel at 9 tonnes is under the 10-tonne threshold anyway, so EV-1 stands. The change's opening line, 'Correction to my note from August', announces it as a correction, which breaks the hiddenness requirement. The core meets the 1,000-tier counts (33 events, 7 decisions, change 21 days before the task day with later events after it), and class 4 needs no echo documents."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5670,
+    "completion_tokens": 1351,
+    "reasoning_tokens": 1132,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5f292c0e72479350e7d2c583a8224b3fb7d87231a76bb42d60ecd99d55f99f40",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (lift back in service) revokes a fact no decision rests on — Petrel is 9 tonnes, under the 10-tonne threshold, and booked on the slipway — so confirming EV-1 as recorded is unambiguously right, with the Gull Point quote as a clean distractor. Tier fits: 33 core events, 7 decisions, change 21 days before the task day with 154 events after. Consent map matches rule e1 and is irrelevant here since nothing is rescheduled.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (lift back in service) revokes a fact no decision rests on — Petrel is 9 tonnes, under the 10-tonne threshold, and booked on the slipway — so confirming EV-1 as recorded is unambiguously right, with the Gull Point quote as a clean distractor. Tier fits: 33 core events, 7 decisions, change 21 days before the task day with 154 events after. Consent map matches rule e1 and is irrelevant here since nothing is rescheduled."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4085,
+    "completion_tokens": 344,
+    "reasoning_tokens": 180,
+    "cached_tokens": 0
+   },
+   "cost": 0.017415,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5f292c0e72479350e7d2c583a8224b3fb7d87231a76bb42d60ecd99d55f99f40",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

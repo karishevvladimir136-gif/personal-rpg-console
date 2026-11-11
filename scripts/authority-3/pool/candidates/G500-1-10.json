@@ -677,5 +677,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e28, 15 Sept, 16 days before the task day, with six later core events) revokes the 80-seat licence (e3), and the touched decisions e7, e10, e12 and e17 match the marks given, with e12 two hops from the fact. The expected state follows from the owner's explicit 50-stall instruction and the standing rule e1, and the task requires sending Dana a message. The task's phrase \\\"final numbers\\\" is a mild hint, but the change is an ordinary mid-history email with no correction label.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e28, 15 Sept, 16 days before the task day, with six later core events) revokes the 80-seat licence (e3), and the touched decisions e7, e10, e12 and e17 match the marks given, with e12 two hops from the fact. The expected state follows from the owner's explicit 50-stall instruction and the standing rule e1, and the task requires sending Dana a message. The task's phrase \"final numbers\" is a mild hint, but the change is an ordinary mid-history email with no correction label."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6105,
+    "completion_tokens": 1765,
+    "reasoning_tokens": 1540,
+    "cached_tokens": 0
+   },
+   "cost": 0.001493,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d85f8fa8b072aa9b5eaae91bda72b24b54864015f96c71e8c7fa3ca25d48472f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The craft fair booking is described as confirmed, so e1 requires the client's written agreement before changing its details; Miriam telling Stella about 50 stalls does not establish that agreement. The Harris consent map names only Priya, whereas the change explicitly requires Gareth and Priya to agree in writing. The craft-fair-only task also does not unambiguously require initiating wedding consent proceedings.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The craft fair booking is described as confirmed, so e1 requires the client's written agreement before changing its details; Miriam telling Stella about 50 stalls does not establish that agreement. The Harris consent map names only Priya, whereas the change explicitly requires Gareth and Priya to agree in writing. The craft-fair-only task also does not unambiguously require initiating wedding consent proceedings."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4207,
+    "completion_tokens": 332,
+    "reasoning_tokens": 219,
+    "cached_tokens": 0
+   },
+   "cost": 0.06918,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d85f8fa8b072aa9b5eaae91bda72b24b54864015f96c71e8c7fa3ca25d48472f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes the licence fact (e3): EV-1/ORD-1 are REVISE to the owner-fixed 50 with a required message to Fairway Hire, EV-2 is ASK under the standing written-agreement rule (consent map matches e1), and EV-4 KEEPs under the unchanged 100 standing limit; the two-hop condition is met by ORD-1 (via e10). The task ('bring records up to the final numbers and send Dana our confirmed table quantity') forces an act without naming the change, which sits as an ordinary email at position 424 of 500. Tier is met: 34 core events, 6 core decisions, change 16 days before the task day with later events, and echo e25 restates the stale 80-seat limit.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes the licence fact (e3): EV-1/ORD-1 are REVISE to the owner-fixed 50 with a required message to Fairway Hire, EV-2 is ASK under the standing written-agreement rule (consent map matches e1), and EV-4 KEEPs under the unchanged 100 standing limit; the two-hop condition is met by ORD-1 (via e10). The task ('bring records up to the final numbers and send Dana our confirmed table quantity') forces an act without naming the change, which sits as an ordinary email at position 424 of 500. Tier is met: 34 core events, 6 core decisions, change 16 days before the task day with later events, and echo e25 restates the stale 80-seat limit."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4325,
+    "completion_tokens": 426,
+    "reasoning_tokens": 205,
+    "cached_tokens": 256
+   },
+   "cost": 0.0186738,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d85f8fa8b072aa9b5eaae91bda72b24b54864015f96c71e8c7fa3ca25d48472f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -673,5 +673,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The date change requires revising EV-1 and seeking Marcus's consent for the downstream EV-2 assignment, while the unchanged fee leaves ORD-1 intact; Marcus's later generic message does not explicitly consent to the new date. The task requires sending an email without mentioning the change. The core has 32 events, 9 decisions, two stale-value echoes, and a change 28 days before the task with later events following it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The date change requires revising EV-1 and seeking Marcus's consent for the downstream EV-2 assignment, while the unchanged fee leaves ORD-1 intact; Marcus's later generic message does not explicitly consent to the new date. The task requires sending an email without mentioning the change. The core has 32 events, 9 decisions, two stale-value echoes, and a change 28 days before the task with later events following it."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4240,
+    "completion_tokens": 217,
+    "reasoning_tokens": 92,
+    "cached_tokens": 0
+   },
+   "cost": 0.0638425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "212f0b2c373a39af0cbe0ac12a1ad146399a8c0aa3fdd56b023147bf173b4254",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The structure fits class 3: e25 revokes the date fact e9, EV-1 (rests on e9) and EV-2 (two hops away, via e10) are touched, and ORD-1 cites e9 only for the fee, which stands, so it is KEEP. The one soft spot is e30 (Marcus, 26 Oct: \\\"all fine for the November invigilation as agreed\\\"), which an assistant could read as consent to the move, although \\\"as agreed\\\" most plausibly refers to the original 21 November assignment. Counts (32 core events, 9 decisions, change 28 days before the task day, 7 core events after it, two echoes e21 and e24) meet the tier, and the change is an ordinary mid-history event.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The structure fits class 3: e25 revokes the date fact e9, EV-1 (rests on e9) and EV-2 (two hops away, via e10) are touched, and ORD-1 cites e9 only for the fee, which stands, so it is KEEP. The one soft spot is e30 (Marcus, 26 Oct: \"all fine for the November invigilation as agreed\"), which an assistant could read as consent to the move, although \"as agreed\" most plausibly refers to the original 21 November assignment. Counts (32 core events, 9 decisions, change 28 days before the task day, 7 core events after it, two echoes e21 and e24) meet the tier, and the change is an ordinary mid-history event."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6143,
+    "completion_tokens": 1913,
+    "reasoning_tokens": 1621,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015708,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "212f0b2c373a39af0cbe0ac12a1ad146399a8c0aa3fdd56b023147bf173b4254",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: fact e9 is revoked, booking EV-1 rests directly on it (REVISE), invigilation EV-2 rests on the booking and needs Marcus's consent under rule e1 (ASK), and ORD-1 uses only the unchanged fee (KEEP). Tier fits: 32 core events, 9 decisions, change 28 days before the task day with later core events, and two echoes (e21, e24) restating 21 November. Minor wrinkle: e30's 'all fine for the November invigilation as agreed' post-dates the change but references the old agreement, so it doesn't defeat the ASK mark.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: fact e9 is revoked, booking EV-1 rests directly on it (REVISE), invigilation EV-2 rests on the booking and needs Marcus's consent under rule e1 (ASK), and ORD-1 uses only the unchanged fee (KEEP). Tier fits: 32 core events, 9 decisions, change 28 days before the task day with later core events, and two echoes (e21, e24) restating 21 November. Minor wrinkle: e30's 'all fine for the November invigilation as agreed' post-dates the change but references the old agreement, so it doesn't defeat the ASK mark."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4347,
+    "completion_tokens": 613,
+    "reasoning_tokens": 417,
+    "cached_tokens": 256
+   },
+   "cost": 0.0215448,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "212f0b2c373a39af0cbe0ac12a1ad146399a8c0aa3fdd56b023147bf173b4254",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

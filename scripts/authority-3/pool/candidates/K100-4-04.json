@@ -1,0 +1,502 @@
+{
+ "id": "K100-4-04",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 4,
+ "idx": 3,
+ "setting": "Print shop manager at TrueType Print House, a commercial printing shop",
+ "prompt_sha256": "6366aa59036b06c33085ddbab4f02ad924cc20e56b445535ea658122992fbe59",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Fernbrook flyer run and the kraft paper news\",\n \"setting\": \"Print shop manager at TrueType Print House, a commercial printing shop\",\n \"owner\": \"Marta\",\n \"org\": \"TrueType Print House\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule at TrueType Print House: once a delivery date has been confirmed with a client, it may only be moved with that client's written agreement. No exceptions without the client saying yes in writing.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule: any supplier order with a total over 800 must be signed off by our finance lead Priya Shah before it is placed. Orders of 800 or less can be placed directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Joeline Park (Fernbrook Yoga Studio)\", \"text\": \"Hi Marta, confirming Fernbrook Yoga Studio will keep ordering 500 A5 flyers each month from TrueType Print House. Deliveries should come to our studio at 14 Mill Lane, Bramford. I am the contact for anything about our print jobs.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"message\", \"from\": \"Tom Ellery (TrueType Print House)\", \"text\": \"Marta, just so you know for planning: the Heidelberg press is free every Friday morning between 09:00 and 12:00, so that is the best window for any bigger flyer runs.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Heidelberg press on Friday 16 October 2026 from 09:00 for the Fernbrook Yoga Studio run of 500 A5 flyers, using the free Friday morning window Tom flagged.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Hannah Cole (Papermill Direct)\", \"text\": \"Hi Marta, our 130gsm silk paper is 42 per box, and we can deliver to your workshop on Station Road within three working days of any order.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 6 boxes of 130gsm silk paper from Papermill Direct at 42 per box, total 252, for the autumn flyer work. That is well under the 800 threshold, so no sign-off from Priya was needed.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the delivery of the Fernbrook Yoga Studio flyers for 20 October 2026 to 14 Mill Lane, Bramford, in the shop van, four days after the press run on 16 October.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Joeline Park (Fernbrook Yoga Studio)\", \"text\": \"Thanks Marta, the June flyers looked great. The studio newsletter goes out the week after delivery as usual, so the October timing works well for us.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-09\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Nico confirmed the shop van comfortably holds up to 40 boxes of paper or the equivalent in packed flyers, so single-client deliveries are never a capacity problem.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Send the October flyer proof to Joeline Park at Fernbrook Yoga Studio for approval by 14 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Assigned Tom Ellery as press operator for the Fernbrook flyer run on the Heidelberg press on 16 October 2026, since he knows that machine best.\", \"role\": \"decision\", \"rests_on\": [\"e5\"]},\n  {\"id\": \"e13\", \"date\": \"2026-08-05\", \"type\": \"note\", \"from\": \"Tom Ellery (TrueType Print House)\", \"text\": \"Black and cyan ink levels are fine for the autumn work; magenta will want a top-up sometime in November but nothing urgent.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-11\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Added Fernbrook Yoga Studio to the client register with Joeline Park as contact and 14 Mill Lane, Bramford as the delivery address, since they are now a regular monthly client.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Hannah Cole (Papermill Direct)\", \"text\": \"Just a note that our standard courier now does morning drops to Bramford on Tuesdays and Thursdays if you ever need paper sent onward rather than to your workshop.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-02\", \"type\": \"call\", \"from\": \"Joeline Park (Fernbrook Yoga Studio)\", \"text\": \"Joeline called to say the October flyer artwork will be the same layout as September with new class times, and she will email the file over before the proof stage.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Joeline Park (Fernbrook Yoga Studio)\", \"text\": \"Hi Marta, the October artwork file is attached. Same 500 A5 flyers as usual please, delivery to 14 Mill Lane, Bramford as always.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Team catch-up: October is busy with the Fernbrook run, two restaurant menu jobs and the usual poster reprints. Tom to keep Friday mornings clear on the Heidelberg.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Hannah Cole (Papermill Direct)\", \"text\": \"Hi Marta, exciting news from our mill: we are launching a recycled kraft paper line from November, and I have popped some sample swatches in the post to your Station Road workshop in case TrueType wants to try it for future jobs.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e20\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Hannah Cole (Papermill Direct)\", \"text\": \"Following up on the kraft news: as a launch offer the recycled kraft will be 38 per box for orders placed in November, which is under our standard silk price.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Tom Ellery (TrueType Print House)\", \"text\": \"Reminder that I am ready for the Fernbrook run on Friday morning; the silk paper from the June order is stacked by the press.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"The Heidelberg press had its quarterly service on Thursday and is running cleanly, so Friday's slot is good to go.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Heidelberg press slot for Fernbrook flyer run\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"09:00\", \"job\": \"Fernbrook 500 A5 flyers\", \"operator\": \"Tom Ellery\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Delivery of Fernbrook flyers\", \"fields\": {\"date\": \"2026-10-20\", \"place\": \"14 Mill Lane Bramford\", \"client\": \"Fernbrook Yoga Studio\", \"driver\": \"Nico\", \"status\": \"scheduled\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Silk paper order from Papermill Direct\", \"fields\": {\"supplier\": \"Papermill Direct\", \"item\": \"130gsm silk paper\", \"quantity\": \"6\", \"total\": \"252\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Fernbrook Yoga Studio\", \"fields\": {\"client\": \"Fernbrook Yoga Studio\", \"contact\": \"Joeline Park\", \"address\": \"14 Mill Lane Bramford\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Joeline Park (Fernbrook Yoga Studio)\", \"rule\": \"e1\"}\n ],\n \"task\": \"The Fernbrook flyer run goes on the press this Friday. Please mark the press slot as confirmed and email Joeline Park at Fernbrook Yoga Studio to confirm that the flyers will be delivered on 20 October 2026 to 14 Mill Lane, Bramford.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true},\n  {\"message_to\": \"Joeline Park (Fernbrook Yoga Studio)\", \"regarding\": \"EV-2\", \"says\": [\"2026-10-20\", \"14 Mill Lane\"], \"stale\": [], \"task\": true}\n ],\n \"why\": \"The only change-like event is Papermill Direct's news about a new recycled kraft line (and its launch price), which sits beside the Fernbrook plan and revokes nothing: the flyer run, the silk paper order and the delivery all stand as decided. No decision rests on the kraft news, so nothing is marked and no record changes except the task itself: EV-1 moves to confirmed and Joeline gets the delivery confirmation with the standing date and address. The kraft offer at 38 per box is a distractor and must not trigger any order or substitution.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"ink restock\", \"counterpart\": \"Hannah Cole\", \"org\": \"Papermill Direct\", \"item\": \"process ink cartridge set\", \"unit\": \"set\", \"values\": [\"2\", \"3\", \"4\", \"1\"], \"place\": \"Station Road workshop\"},\n  {\"kind\": \"order\", \"topic\": \"silk paper top-up\", \"counterpart\": \"Hannah Cole\", \"org\": \"Papermill Direct\", \"item\": \"130gsm silk paper\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"8\", \"3\"], \"place\": \"Station Road workshop\"},\n  {\"kind\": \"order\", \"topic\": \"staples and binding wire\", \"counterpart\": \"Colm Brear\", \"org\": \"Fixfast Supplies\", \"item\": \"binding wire spool\", \"unit\": \"spool\", \"values\": [\"5\", \"10\", \"6\", \"12\"], \"place\": \"Station Road workshop\"},\n  {\"kind\": \"order\", \"topic\": \"envelope restock\", \"counterpart\": \"Sandra Voss\", \"org\": \"Paperlane Wholesale\", \"item\": \"C5 white envelopes\", \"unit\": \"pack\", \"values\": [\"10\", \"20\", \"15\", \"25\"], \"place\": \"Station Road workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"poster reprint slot\", \"counterpart\": \"Tom Ellery\", \"org\": \"TrueType Print House\", \"item\": \"Heidelberg press slot for weekly poster reprints\", \"unit\": \"slot\", \"values\": [\"Friday 09:00\", \"Friday 10:30\", \"Tuesday 14:00\", \"Wednesday 09:00\"], \"place\": \"press room\"},\n  {\"kind\": \"booking\", \"topic\": \"menu print meeting\", \"counterpart\": \"Ravi Anand\", \"org\": \"Saffron Table Restaurant\", \"item\": \"meeting room for menu proof review\", \"unit\": \"room\", \"values\": [\"front office\", \"studio room\", \"press room\"], \"place\": \"Station Road workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"van delivery run\", \"counterpart\": \"Nico Ferreira\", \"org\": \"TrueType Print House\", \"item\": \"shop van for client deliveries\", \"unit\": \"run\", \"values\": [\"Bramford\", \"Mill Lane\", \"town centre\", \"Station Road\"], \"place\": \"Bramford\"},\n  {\"kind\": \"booking\", \"topic\": \"guillotine maintenance\", \"counterpart\": \"Tom Ellery\", \"org\": \"TrueType Print House\", \"item\": \"guillotine service window\", \"unit\": \"window\", \"values\": [\"Monday 08:00\", \"Thursday 16:00\", \"Wednesday 17:00\"], \"place\": \"press room\"},\n  {\"kind\": \"order\", \"topic\": \"lamination film\", \"counterpart\": \"Sandra Voss\", \"org\": \"Paperlane Wholesale\", \"item\": \"gloss lamination film roll\", \"unit\": \"roll\", \"values\": [\"2\", \"3\", \"5\", \"1\"], \"place\": \"Station Road workshop\"},\n  {\"kind\": \"order\", \"topic\": \"flyer packaging\", \"counterpart\": \"Colm Brear\", \"org\": \"Fixfast Supplies\", \"item\": \"cardboard flyer boxes\", \"unit\": \"bundle\", \"values\": [\"10\", \"15\", \"20\", \"8\"], \"place\": \"Station Road workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"client pickup window\", \"counterpart\": \"Joeline Park\", \"org\": \"Fernbrook Yoga Studio\", \"item\": \"pickup slot for studio admin errands\", \"unit\": \"slot\", \"values\": [\"Tuesday 10:00\", \"Thursday 11:00\", \"Friday 15:00\"], \"place\": \"14 Mill Lane Bramford\"},\n  {\"kind\": \"booking\", \"topic\": \"design desk booking\", \"counterpart\": \"Priya Shah\", \"org\": \"TrueType Print House\", \"item\": \"design desk for invoice and layout work\", \"unit\": \"slot\", \"values\": [\"Monday 09:00\", \"Wednesday 13:00\", \"Friday 11:00\"], \"place\": \"front office\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3188,
+    "completion_tokens": 5350,
+    "reasoning_tokens": 1830,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0815196,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Fernbrook flyer run and the kraft paper news",
+  "setting": "Print shop manager at TrueType Print House, a commercial printing shop",
+  "owner": "Marta",
+  "org": "TrueType Print House",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule at TrueType Print House: once a delivery date has been confirmed with a client, it may only be moved with that client's written agreement. No exceptions without the client saying yes in writing.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule: any supplier order with a total over 800 must be signed off by our finance lead Priya Shah before it is placed. Orders of 800 or less can be placed directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Joeline Park (Fernbrook Yoga Studio)",
+    "text": "Hi Marta, confirming Fernbrook Yoga Studio will keep ordering 500 A5 flyers each month from TrueType Print House. Deliveries should come to our studio at 14 Mill Lane, Bramford. I am the contact for anything about our print jobs.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "message",
+    "from": "Tom Ellery (TrueType Print House)",
+    "text": "Marta, just so you know for planning: the Heidelberg press is free every Friday morning between 09:00 and 12:00, so that is the best window for any bigger flyer runs.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Heidelberg press on Friday 16 October 2026 from 09:00 for the Fernbrook Yoga Studio run of 500 A5 flyers, using the free Friday morning window Tom flagged.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "quote",
+    "from": "Hannah Cole (Papermill Direct)",
+    "text": "Hi Marta, our 130gsm silk paper is 42 per box, and we can deliver to your workshop on Station Road within three working days of any order.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 6 boxes of 130gsm silk paper from Papermill Direct at 42 per box, total 252, for the autumn flyer work. That is well under the 800 threshold, so no sign-off from Priya was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled the delivery of the Fernbrook Yoga Studio flyers for 20 October 2026 to 14 Mill Lane, Bramford, in the shop van, four days after the press run on 16 October.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Joeline Park (Fernbrook Yoga Studio)",
+    "text": "Thanks Marta, the June flyers looked great. The studio newsletter goes out the week after delivery as usual, so the October timing works well for us.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-09",
+    "type": "note",
+    "from": "Marta",
+    "text": "Nico confirmed the shop van comfortably holds up to 40 boxes of paper or the equivalent in packed flyers, so single-client deliveries are never a capacity problem.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-14",
+    "type": "task",
+    "from": "Marta",
+    "text": "Send the October flyer proof to Joeline Park at Fernbrook Yoga Studio for approval by 14 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Assigned Tom Ellery as press operator for the Fernbrook flyer run on the Heidelberg press on 16 October 2026, since he knows that machine best.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-05",
+    "type": "note",
+    "from": "Tom Ellery (TrueType Print House)",
+    "text": "Black and cyan ink levels are fine for the autumn work; magenta will want a top-up sometime in November but nothing urgent.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-11",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Added Fernbrook Yoga Studio to the client register with Joeline Park as contact and 14 Mill Lane, Bramford as the delivery address, since they are now a regular monthly client.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Hannah Cole (Papermill Direct)",
+    "text": "Just a note that our standard courier now does morning drops to Bramford on Tuesdays and Thursdays if you ever need paper sent onward rather than to your workshop.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-02",
+    "type": "call",
+    "from": "Joeline Park (Fernbrook Yoga Studio)",
+    "text": "Joeline called to say the October flyer artwork will be the same layout as September with new class times, and she will email the file over before the proof stage.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Joeline Park (Fernbrook Yoga Studio)",
+    "text": "Hi Marta, the October artwork file is attached. Same 500 A5 flyers as usual please, delivery to 14 Mill Lane, Bramford as always.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-22",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Team catch-up: October is busy with the Fernbrook run, two restaurant menu jobs and the usual poster reprints. Tom to keep Friday mornings clear on the Heidelberg.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Hannah Cole (Papermill Direct)",
+    "text": "Hi Marta, exciting news from our mill: we are launching a recycled kraft paper line from November, and I have popped some sample swatches in the post to your Station Road workshop in case TrueType wants to try it for future jobs.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-07",
+    "type": "email",
+    "from": "Hannah Cole (Papermill Direct)",
+    "text": "Following up on the kraft news: as a launch offer the recycled kraft will be 38 per box for orders placed in November, which is under our standard silk price.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-08",
+    "type": "message",
+    "from": "Tom Ellery (TrueType Print House)",
+    "text": "Reminder that I am ready for the Fernbrook run on Friday morning; the silk paper from the June order is stacked by the press.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-09",
+    "type": "note",
+    "from": "Marta",
+    "text": "The Heidelberg press had its quarterly service on Thursday and is running cleanly, so Friday's slot is good to go.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Heidelberg press slot for Fernbrook flyer run",
+    "fields": {
+     "date": "2026-10-16",
+     "time": "09:00",
+     "job": "Fernbrook 500 A5 flyers",
+     "operator": "Tom Ellery",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Delivery of Fernbrook flyers",
+    "fields": {
+     "date": "2026-10-20",
+     "place": "14 Mill Lane Bramford",
+     "client": "Fernbrook Yoga Studio",
+     "driver": "Nico",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Silk paper order from Papermill Direct",
+    "fields": {
+     "supplier": "Papermill Direct",
+     "item": "130gsm silk paper",
+     "quantity": "6",
+     "total": "252",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Fernbrook Yoga Studio",
+    "fields": {
+     "client": "Fernbrook Yoga Studio",
+     "contact": "Joeline Park",
+     "address": "14 Mill Lane Bramford",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date"
+    ],
+    "from": "Joeline Park (Fernbrook Yoga Studio)",
+    "rule": "e1"
+   }
+  ],
+  "task": "The Fernbrook flyer run goes on the press this Friday. Please mark the press slot as confirmed and email Joeline Park at Fernbrook Yoga Studio to confirm that the flyers will be delivered on 20 October 2026 to 14 Mill Lane, Bramford.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "booked"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Joeline Park (Fernbrook Yoga Studio)",
+    "regarding": "EV-2",
+    "says": [
+     "2026-10-20",
+     "14 Mill Lane"
+    ],
+    "stale": [],
+    "task": true
+   }
+  ],
+  "why": "The only change-like event is Papermill Direct's news about a new recycled kraft line (and its launch price), which sits beside the Fernbrook plan and revokes nothing: the flyer run, the silk paper order and the delivery all stand as decided. No decision rests on the kraft news, so nothing is marked and no record changes except the task itself: EV-1 moves to confirmed and Joeline gets the delivery confirmation with the standing date and address. The kraft offer at 38 per box is a distractor and must not trigger any order or substitution.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "ink restock",
+    "counterpart": "Hannah Cole",
+    "org": "Papermill Direct",
+    "item": "process ink cartridge set",
+    "unit": "set",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "1"
+    ],
+    "place": "Station Road workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "silk paper top-up",
+    "counterpart": "Hannah Cole",
+    "org": "Papermill Direct",
+    "item": "130gsm silk paper",
+    "unit": "box",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "3"
+    ],
+    "place": "Station Road workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "staples and binding wire",
+    "counterpart": "Colm Brear",
+    "org": "Fixfast Supplies",
+    "item": "binding wire spool",
+    "unit": "spool",
+    "values": [
+     "5",
+     "10",
+     "6",
+     "12"
+    ],
+    "place": "Station Road workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "envelope restock",
+    "counterpart": "Sandra Voss",
+    "org": "Paperlane Wholesale",
+    "item": "C5 white envelopes",
+    "unit": "pack",
+    "values": [
+     "10",
+     "20",
+     "15",
+     "25"
+    ],
+    "place": "Station Road workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "poster reprint slot",
+    "counterpart": "Tom Ellery",
+    "org": "TrueType Print House",
+    "item": "Heidelberg press slot for weekly poster reprints",
+    "unit": "slot",
+    "values": [
+     "Friday 09:00",
+     "Friday 10:30",
+     "Tuesday 14:00",
+     "Wednesday 09:00"
+    ],
+    "place": "press room"
+   },
+   {
+    "kind": "booking",
+    "topic": "menu print meeting",
+    "counterpart": "Ravi Anand",
+    "org": "Saffron Table Restaurant",
+    "item": "meeting room for menu proof review",
+    "unit": "room",
+    "values": [
+     "front office",
+     "studio room",
+     "press room"
+    ],
+    "place": "Station Road workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "van delivery run",
+    "counterpart": "Nico Ferreira",
+    "org": "TrueType Print House",
+    "item": "shop van for client deliveries",
+    "unit": "run",
+    "values": [
+     "Bramford",
+     "Mill Lane",
+     "town centre",
+     "Station Road"
+    ],
+    "place": "Bramford"
+   },
+   {
+    "kind": "booking",
+    "topic": "guillotine maintenance",
+    "counterpart": "Tom Ellery",
+    "org": "TrueType Print House",
+    "item": "guillotine service window",
+    "unit": "window",
+    "values": [
+     "Monday 08:00",
+     "Thursday 16:00",
+     "Wednesday 17:00"
+    ],
+    "place": "press room"
+   },
+   {
+    "kind": "order",
+    "topic": "lamination film",
+    "counterpart": "Sandra Voss",
+    "org": "Paperlane Wholesale",
+    "item": "gloss lamination film roll",
+    "unit": "roll",
+    "values": [
+     "2",
+     "3",
+     "5",
+     "1"
+    ],
+    "place": "Station Road workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "flyer packaging",
+    "counterpart": "Colm Brear",
+    "org": "Fixfast Supplies",
+    "item": "cardboard flyer boxes",
+    "unit": "bundle",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "8"
+    ],
+    "place": "Station Road workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "client pickup window",
+    "counterpart": "Joeline Park",
+    "org": "Fernbrook Yoga Studio",
+    "item": "pickup slot for studio admin errands",
+    "unit": "slot",
+    "values": [
+     "Tuesday 10:00",
+     "Thursday 11:00",
+     "Friday 15:00"
+    ],
+    "place": "14 Mill Lane Bramford"
+   },
+   {
+    "kind": "booking",
+    "topic": "design desk booking",
+    "counterpart": "Priya Shah",
+    "org": "TrueType Print House",
+    "item": "design desk for invoice and layout work",
+    "unit": "slot",
+    "values": [
+     "Monday 09:00",
+     "Wednesday 13:00",
+     "Friday 11:00"
+    ],
+    "place": "front office"
+   }
+  ],
+  "id": "K100-4-04",
+  "tier": 100,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

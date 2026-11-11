@@ -1,0 +1,634 @@
+{
+ "id": "K500-2-08",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 2,
+ "idx": 7,
+ "setting": "Community centre director at Eastfield Neighbourhood Centre",
+ "prompt_sha256": "e5953ed4e91c95b19d53ca6bedb43b1c9e6fdec862cb7337a60fd656e22e9af7",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Countersignature threshold raised at Eastfield\",\n  \"setting\": \"Community centre director at Eastfield Neighbourhood Centre\",\n  \"owner\": \"Ruth\",\n  \"org\": \"Eastfield Neighbourhood Centre\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Started planning the autumn term hall hires: craft fair, choir concert and the regular kitchen and toddler groups all need slots in October.\", \"role\": \"other\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Hire policy reminder: any hall hire invoiced over £400 must be countersigned by me before the booking is confirmed. Please leave such bookings pending until I sign.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Ruth\", \"text\": \"House rule: no booking in the Main Hall may be given a start time after 17:30 without the agreement of Tom Reece, our caretaker, because he arranges locking up and heating.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"June Pargeter (Brampton Craft Circle)\", \"text\": \"We would like the Main Hall on Friday 16 October 2026, 14:00 to 17:00, for our autumn craft fair, at the agreed hire fee of £450.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-11\", \"type\": \"message\", \"from\": \"Tom Reece (caretaker)\", \"text\": \"Caretaker cover is available weekdays until 21:30 through the autumn, including October.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked the Brampton Craft Circle into the Main Hall on Friday 16 October 2026 at 14:00 for their craft fair at £450. Because £450 is over the £400 countersign threshold, I left the booking pending until Priya signs it off.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Selim Arda (Kettle & Crumb Bakery)\", \"text\": \"Confirming our community kitchen hire for autumn: Fridays 09:00 to 12:00, £880 per month.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Confirmed the Kettle & Crumb Bakery kitchen hire at £880 per month, Fridays 09:00, after Priya countersigned it as required for hires over £400.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Moya Lindsay (Larkspur Choir)\", \"text\": \"The choir would like the Main Hall on Thursday 22 October 2026, 18:00 to 21:00, for our autumn concert. We agree the hire fee of £620.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-27\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked the Larkspur Choir concert for Thursday 22 October 2026, 18:00 to 21:00, at £620. Since £620 is over £400 it stays pending until Priya countersigns, and the 18:00 evening start needs Tom's agreement.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\", \"e3\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Debs Okafor (Willow Toddler Group)\", \"text\": \"We would like the Main Hall on Wednesday 14 October 2026, 10:00 to 12:00, for our autumn session, at the usual fee of £380.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-04\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Confirmed the Willow Toddler Group for Wednesday 14 October 2026 at 10:00 in the Main Hall at £380; at £380 it is under the £400 threshold, so no countersign was needed.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e2\"], \"record\": \"EV-5\", \"mark\": \"KEEP\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Drew up the setup sheet for the Brampton craft fair: Tom's team to set out 60 chairs and 12 tables in the Main Hall at 13:00 on Friday 16 October 2026. I kept the sheet in draft because the craft fair booking itself is still pending.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-15\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Trustees' meeting noted that the autumn budget review will look at the hire countersignature arrangements among other items.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"Renew the hall insurance policy before 2026-11-30.\", \"role\": \"obligation\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"quote\", \"from\": \"Anita Ford (Mendip Supplies)\", \"text\": \"Quote: 20 trestle-table cloths at £240 total, delivery to Eastfield Neighbourhood Centre within three weeks of order.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 20 trestle-table cloths from Mendip Supplies for £240 for the autumn events.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Just a reminder that any hall hire over £400 needs my countersign before you confirm it. Three have come across my desk this month already.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Tom Reece (caretaker)\", \"text\": \"Main Hall floor polishing planned for the last weekend of September; no bookings that weekend.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"message\", \"from\": \"Moya Lindsay (Larkspur Choir)\", \"text\": \"Forty singers confirmed for the autumn concert on 22 October.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"June Pargeter (Brampton Craft Circle)\", \"text\": \"Could we have the long tables along the windows for the craft fair on Friday 16 October? The stallholders prefer the daylight.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"June Pargeter (Brampton Craft Circle)\", \"text\": \"We might add a second craft fair day on Saturday 17 October 2026 at £680 if the Main Hall is free, but the committee has not decided yet.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Staff meeting covered October rotas, the boiler service and craft fair stewarding.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"minutes\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Trustees held the autumn budget review and agreed to simplify the hire approval paperwork.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Following the trustees' budget review, from 1 October 2026 the countersignature threshold for hall hires rises from £400 to £700. Any hire at £700 or under no longer needs my sign-off before you confirm it; only hires above £700 come to me.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Tom Reece (caretaker)\", \"text\": \"Boiler service booked for Monday 19 October; heating will be off that morning.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Anita Ford (Mendip Supplies)\", \"text\": \"Your 20 trestle-table cloths were delivered to Eastfield Neighbourhood Centre today and signed for at reception.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Debs Okafor (Willow Toddler Group)\", \"text\": \"We will have 18 children with us on Wednesday 14 October, so the small chairs please.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Brampton Craft Circle autumn craft fair\", \"fields\": {\"date\": \"2026-10-16\", \"start_time\": \"14:00\", \"place\": \"Main Hall\", \"client\": \"Brampton Craft Circle\", \"fee\": \"450\", \"status\": \"pending\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kettle & Crumb Bakery kitchen hire\", \"fields\": {\"day\": \"Friday\", \"start_time\": \"09:00\", \"place\": \"Community Kitchen\", \"client\": \"Kettle & Crumb Bakery\", \"monthly_fee\": \"880\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Larkspur Choir autumn concert\", \"fields\": {\"date\": \"2026-10-22\", \"start_time\": \"18:00\", \"place\": \"Main Hall\", \"client\": \"Larkspur Choir\", \"fee\": \"620\", \"status\": \"pending\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Craft fair setup: 60 chairs and 12 tables\", \"fields\": {\"date\": \"2026-10-16\", \"start_time\": \"13:00\", \"place\": \"Main Hall\", \"task\": \"Set out 60 chairs and 12 tables\", \"status\": \"draft\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Willow Toddler Group autumn session\", \"fields\": {\"date\": \"2026-10-14\", \"start_time\": \"10:00\", \"place\": \"Main Hall\", \"client\": \"Willow Toddler Group\", \"fee\": \"380\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trestle-table cloths\", \"fields\": {\"supplier\": \"Mendip Supplies\", \"item\": \"Trestle-table cloths\", \"quantity\": \"20\", \"amount\": \"240\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"start_time\"], \"from\": \"Tom Reece\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"The autumn craft fair is this week — please confirm the Brampton Craft Circle's Main Hall booking for Friday 16 October and email June Pargeter at the craft circle with the date, start time and hire fee. While you're at it, get the Larkspur Choir concert booking finalised as well.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"]},\n    {\"record\": \"EV-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"draft\"]},\n    {\"message_to\": \"June Pargeter (Brampton Craft Circle)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-16\", \"14:00\", \"450\"], \"stale\": [\"pending\", \"680\"], \"task\": true}\n  ],\n  \"why\": \"Priya's email of 2 October raises the countersign threshold from £400 to £700 effective 1 October, revoking the old rule. The Brampton booking (£450) and its dependent setup sheet were held back only because of the £400 rule, so both are REVISE and can now be confirmed; the Larkspur booking (£620) is freed from countersigning but its 18:00 evening start still needs Tom Reece's agreement, so it is ASK and must stay pending until his consent. The £880 kitchen hire remains above the new threshold (KEEP) and the £380 toddler session was never within the rule's terms (KEEP); the £680 second craft fair day is only an undecided enquiry and must not be acted on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies restock\", \"counterpart\": \"Anita Ford\", \"org\": \"Mendip Supplies\", \"item\": \"Multi-surface cleaner\", \"unit\": \"litres\", \"values\": [\"10\", \"20\", \"25\", \"40\"], \"place\": \"Eastfield Neighbourhood Centre stores\"},\n    {\"kind\": \"order\", \"topic\": \"Craft fair sundries\", \"counterpart\": \"Anita Ford\", \"org\": \"Mendip Supplies\", \"item\": \"Paper table covers\", \"unit\": \"rolls\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Main Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"Caretaker weekly check-in\", \"counterpart\": \"Tom Reece\", \"org\": \"Eastfield Neighbourhood Centre\", \"item\": \"Maintenance walkthrough\", \"unit\": null, \"values\": [\"Main Hall\", \"Community Kitchen\", \"Foyer\", \"Store Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"Toddler group regulars\", \"counterpart\": \"Debs Okafor\", \"org\": \"Willow Toddler Group\", \"item\": \"Morning play session\", \"unit\": null, \"values\": [\"Main Hall\", \"Small Hall\", \"Garden Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Bakery flour delivery\", \"counterpart\": \"Selim Arda\", \"org\": \"Kettle & Crumb Bakery\", \"item\": \"Strong white flour\", \"unit\": \"kg\", \"values\": [\"25\", \"50\", \"75\", \"100\"], \"place\": \"Community Kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Choir rehearsal slot\", \"counterpart\": \"Moya Lindsay\", \"org\": \"Larkspur Choir\", \"item\": \"Weekly rehearsal\", \"unit\": null, \"values\": [\"Main Hall\", \"Small Hall\", \"Music Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"Finance volunteer desk\", \"counterpart\": \"Priya Nair\", \"org\": \"Eastfield Neighbourhood Centre\", \"item\": \"Accounts desk session\", \"unit\": null, \"values\": [\"Office\", \"Meeting Room 1\", \"Meeting Room 2\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Office stationery\", \"counterpart\": \"Hannah Bliss\", \"org\": \"Quill & Paper\", \"item\": \"A4 copier paper\", \"unit\": \"reams\", \"values\": [\"10\", \"20\", \"30\", \"50\"], \"place\": \"Eastfield Neighbourhood Centre office\"},\n    {\"kind\": \"booking\", \"topic\": \"Yoga class weekly\", \"counterpart\": \"Iris Meller\", \"org\": \"Eastfield Yoga Circle\", \"item\": \"Evening yoga class\", \"unit\": null, \"values\": [\"Main Hall\", \"Small Hall\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Kitchen consumables\", \"counterpart\": \"Selim Arda\", \"org\": \"Kettle & Crumb Bakery\", \"item\": \"Baking parchment\", \"unit\": \"boxes\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Community Kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"U3A craft morning\", \"counterpart\": \"June Pargeter\", \"org\": \"Brampton Craft Circle\", \"item\": \"Monthly craft morning\", \"unit\": null, \"values\": [\"Small Hall\", \"Garden Room\", \"Meeting Room 1\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"First aid restock\", \"counterpart\": \"Anita Ford\", \"org\": \"Mendip Supplies\", \"item\": \"Plasters and dressings kit\", \"unit\": \"kits\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Eastfield Neighbourhood Centre reception\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3230,
+    "completion_tokens": 10993,
+    "reasoning_tokens": 6786,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1662906,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Countersignature threshold raised at Eastfield\",\n  \"setting\": \"Community centre director at Eastfield Neighbourhood Centre\",\n  \"owner\": \"Ruth\",\n  \"org\": \"Eastfield Neighbourhood Centre\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Started planning the autumn term hall hires: craft fair, choir concert and the regular kitchen and toddler groups all need slots in October.\", \"role\": \"other\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Hire policy reminder: any hall hire invoiced over £400 must be countersigned by me before the booking is confirmed. Please leave such bookings pending until I sign.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Ruth\", \"text\": \"House rule: no booking in the Main Hall may be given a start time after 17:30 without the agreement of Tom Reece, our caretaker, because he arranges locking up and heating.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"June Pargeter (Brampton Craft Circle)\", \"text\": \"We would like the Main Hall on Friday 16 October 2026, 14:00 to 17:00, for our autumn craft fair, at the agreed hire fee of £450.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-11\", \"type\": \"message\", \"from\": \"Tom Reece (caretaker)\", \"text\": \"Caretaker cover is available weekdays until 21:30 through the autumn, including October.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked the Brampton Craft Circle into the Main Hall on Friday 16 October 2026 at 14:00 for their craft fair at £450. Because £450 is over the £400 countersign threshold, I left the booking pending until Priya signs it off.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Selim Arda (Kettle & Crumb Bakery)\", \"text\": \"Confirming our community kitchen hire for autumn: Fridays 09:00 to 12:00, £880 per month.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Confirmed the Kettle & Crumb Bakery kitchen hire at £880 per month, Fridays 09:00, after Priya countersigned it as required for hires over £400.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Moya Lindsay (Larkspur Choir)\", \"text\": \"The choir would like the Main Hall on Thursday 22 October 2026, 18:00 to 21:00, for our autumn concert. We agree the hire fee of £620.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-27\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked the Larkspur Choir concert for Thursday 22 October 2026, 18:00 to 21:00, at £620. Since £620 is over £400 it stays pending until Priya countersigns, and the 18:00 evening start needs Tom's agreement.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\", \"e3\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Debs Okafor (Willow Toddler Group)\", \"text\": \"We would like the Main Hall on Wednesday 14 October 2026, 10:00 to 12:00, for our autumn session, at the usual fee of £380.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-04\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Confirmed the Willow Toddler Group for Wednesday 14 October 2026 at 10:00 in the Main Hall at £380; at £380 it is under the £400 threshold, so no countersign was needed.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e2\"], \"record\": \"EV-5\", \"mark\": \"KEEP\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Drew up the setup sheet for the Brampton craft fair: Tom's team to set out 60 chairs and 12 tables in the Main Hall at 13:00 on Friday 16 October 2026. I kept the sheet in draft because the craft fair booking itself is still pending.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-15\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Trustees' meeting noted that the autumn budget review will look at the hire countersignature arrangements among other items.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"Renew the hall insurance policy before 2026-11-30.\", \"role\": \"obligation\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"quote\", \"from\": \"Anita Ford (Mendip Supplies)\", \"text\": \"Quote: 20 trestle-table cloths at £240 total, delivery to Eastfield Neighbourhood Centre within three weeks of order.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 20 trestle-table cloths from Mendip Supplies for £240 for the autumn events.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Just a reminder that any hall hire over £400 needs my countersign before you confirm it. Three have come across my desk this month already.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Tom Reece (caretaker)\", \"text\": \"Main Hall floor polishing planned for the last weekend of September; no bookings that weekend.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"message\", \"from\": \"Moya Lindsay (Larkspur Choir)\", \"text\": \"Forty singers confirmed for the autumn concert on 22 October.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"June Pargeter (Brampton Craft Circle)\", \"text\": \"Could we have the long tables along the windows for the craft fair on Friday 16 October? The stallholders prefer the daylight.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"June Pargeter (Brampton Craft Circle)\", \"text\": \"We might add a second craft fair day on Saturday 17 October 2026 at £680 if the Main Hall is free, but the committee has not decided yet.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Staff meeting covered October rotas, the boiler service and craft fair stewarding.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"minutes\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Trustees held the autumn budget review and agreed to simplify the hire approval paperwork.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Following the trustees' budget review, from 1 October 2026 the countersignature threshold for hall hires rises from £400 to £700. Any hire at £700 or under no longer needs my sign-off before you confirm it; only hires above £700 come to me.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Tom Reece (caretaker)\", \"text\": \"Boiler service booked for Monday 19 October; heating will be off that morning.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Anita Ford (Mendip Supplies)\", \"text\": \"Your 20 trestle-table cloths were delivered to Eastfield Neighbourhood Centre today and signed for at reception.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Debs Okafor (Willow Toddler Group)\", \"text\": \"We will have 18 children with us on Wednesday 14 October, so the small chairs please.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Brampton Craft Circle autumn craft fair\", \"fields\": {\"date\": \"2026-10-16\", \"start_time\": \"14:00\", \"place\": \"Main Hall\", \"client\": \"Brampton Craft Circle\", \"fee\": \"450\", \"status\": \"pending\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kettle & Crumb Bakery kitchen hire\", \"fields\": {\"day\": \"Friday\", \"start_time\": \"09:00\", \"place\": \"Community Kitchen\", \"client\": \"Kettle & Crumb Bakery\", \"monthly_fee\": \"880\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Larkspur Choir autumn concert\", \"fields\": {\"date\": \"2026-10-22\", \"start_time\": \"18:00\", \"place\": \"Main Hall\", \"client\": \"Larkspur Choir\", \"fee\": \"620\", \"status\": \"pending\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Craft fair setup: 60 chairs and 12 tables\", \"fields\": {\"date\": \"2026-10-16\", \"start_time\": \"13:00\", \"place\": \"Main Hall\", \"task\": \"Set out 60 chairs and 12 tables\", \"status\": \"draft\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Willow Toddler Group autumn session\", \"fields\": {\"date\": \"2026-10-14\", \"start_time\": \"10:00\", \"place\": \"Main Hall\", \"client\": \"Willow Toddler Group\", \"fee\": \"380\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trestle-table cloths\", \"fields\": {\"supplier\": \"Mendip Supplies\", \"item\": \"Trestle-table cloths\", \"quantity\": \"20\", \"amount\": \"240\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"start_time\"], \"from\": \"Tom Reece\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"The autumn craft fair is this week — please confirm the Brampton Craft Circle's Main Hall booking for Friday 16 October and email June Pargeter at the craft circle with the date, start time and hire fee. While you're at it, get the Larkspur Choir concert booking finalised as well.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"]},\n    {\"record\": \"EV-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"draft\"]},\n    {\"message_to\": \"June Pargeter (Brampton Craft Circle)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-16\", \"14:00\", \"450\"], \"stale\": [\"pending\", \"680\"], \"task\": true}\n  ],\n  \"why\": \"Priya's email of 2 October raises the countersign threshold from £400 to £700 effective 1 October, revoking the old rule. The Brampton booking (£450) and its dependent setup sheet were held back only because of the £400 rule, so both are REVISE and can now be confirmed; the Larkspur booking (£620) is freed from countersigning but its 18:00 evening start still needs Tom Reece's agreement, so it is ASK and must stay pending until his consent. The £880 kitchen hire remains above the new threshold (KEEP) and the £380 toddler session was never within the rule's terms (KEEP); the £680 second craft fair day is only an undecided enquiry and must not be acted on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies restock\", \"counterpart\": \"Anita Ford\", \"org\": \"Mendip Supplies\", \"item\": \"Multi-surface cleaner\", \"unit\": \"litres\", \"values\": [\"10\", \"20\", \"25\", \"40\"], \"place\": \"Eastfield Neighbourhood Centre stores\"},\n    {\"kind\": \"order\", \"topic\": \"Craft fair sundries\", \"counterpart\": \"Anita Ford\", \"org\": \"Mendip Supplies\", \"item\": \"Paper table covers\", \"unit\": \"rolls\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Main Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"Caretaker weekly check-in\", \"counterpart\": \"Tom Reece\", \"org\": \"Eastfield Neighbourhood Centre\", \"item\": \"Maintenance walkthrough\", \"unit\": null, \"values\": [\"Main Hall\", \"Community Kitchen\", \"Foyer\", \"Store Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"Toddler group regulars\", \"counterpart\": \"Debs Okafor\", \"org\": \"Willow Toddler Group\", \"item\": \"Morning play session\", \"unit\": null, \"values\": [\"Main Hall\", \"Small Hall\", \"Garden Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Bakery flour delivery\", \"counterpart\": \"Selim Arda\", \"org\": \"Kettle & Crumb Bakery\", \"item\": \"Strong white flour\", \"unit\": \"kg\", \"values\": [\"25\", \"50\", \"75\", \"100\"], \"place\": \"Community Kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Choir rehearsal slot\", \"counterpart\": \"Moya Lindsay\", \"org\": \"Larkspur Choir\", \"item\": \"Weekly rehearsal\", \"unit\": null, \"values\": [\"Main Hall\", \"Small Hall\", \"Music Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"Finance volunteer desk\", \"counterpart\": \"Priya Nair\", \"org\": \"Eastfield Neighbourhood Centre\", \"item\": \"Accounts desk session\", \"unit\": null, \"values\": [\"Office\", \"Meeting Room 1\", \"Meeting Room 2\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Office stationery\", \"counterpart\": \"Hannah Bliss\", \"org\": \"Quill & Paper\", \"item\": \"A4 copier paper\", \"unit\": \"reams\", \"values\": [\"10\", \"20\", \"30\", \"50\"], \"place\": \"Eastfield Neighbourhood Centre office\"},\n    {\"kind\": \"booking\", \"topic\": \"Yoga class weekly\", \"counterpart\": \"Iris Meller\", \"org\": \"Eastfield Yoga Circle\", \"item\": \"Evening yoga class\", \"unit\": null, \"values\": [\"Main Hall\", \"Small Hall\", \"Garden Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Kitchen consumables\", \"counterpart\": \"Selim Arda\", \"org\": \"Kettle & Crumb Bakery\", \"item\": \"Baking parchment\", \"unit\": \"boxes\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Community Kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"U3A craft morning\", \"counterpart\": \"June Pargeter\", \"org\": \"Brampton Craft Circle\", \"item\": \"Monthly craft morning\", \"unit\": null, \"values\": [\"Small Hall\", \"Garden Room\", \"Meeting Room 1\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"First aid restock\", \"counterpart\": \"Anita Ford\", \"org\": \"Mendip Supplies\", \"item\": \"Plasters and dressings kit\", \"unit\": \"kits\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Eastfield Neighbourhood Centre reception\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7500,
+    "completion_tokens": 4221,
+    "reasoning_tokens": 10,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0775206,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Yoga class weekly': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Countersignature threshold raised at Eastfield\",\n  \"setting\": \"Community centre director at Eastfield Neighbourhood Centre\",\n  \"owner\": \"Ruth\",\n  \"org\": \"Eastfield Neighbourhood Centre\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Started planning the autumn term hall hires: craft fair, choir concert and the regular kitchen and toddler groups all need slots in October.\", \"role\": \"other\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Hire policy reminder: any hall hire invoiced over £400 must be countersigned by me before the booking is confirmed. Please leave such bookings pending until I sign.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Ruth\", \"text\": \"House rule: no booking in the Main Hall may be given a start time after 17:30 without the agreement of Tom Reece, our caretaker, because he arranges locking up and heating.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"June Pargeter (Brampton Craft Circle)\", \"text\": \"We would like the Main Hall on Friday 16 October 2026, 14:00 to 17:00, for our autumn craft fair, at the agreed hire fee of £450.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-11\", \"type\": \"message\", \"from\": \"Tom Reece (caretaker)\", \"text\": \"Caretaker cover is available weekdays until 21:30 through the autumn, including October.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked the Brampton Craft Circle into the Main Hall on Friday 16 October 2026 at 14:00 for their craft fair at £450. Because £450 is over the £400 countersign threshold, I left the booking pending until Priya signs it off.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Selim Arda (Kettle & Crumb Bakery)\", \"text\": \"Confirming our community kitchen hire for autumn: Fridays 09:00 to 12:00, £880 per month.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Confirmed the Kettle & Crumb Bakery kitchen hire at £880 per month, Fridays 09:00, after Priya countersigned it as required for hires over £400.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Moya Lindsay (Larkspur Choir)\", \"text\": \"The choir would like the Main Hall on Thursday 22 October 2026, 18:00 to 21:00, for our autumn concert. We agree the hire fee of £620.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-27\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked the Larkspur Choir concert for Thursday 22 October 2026, 18:00 to 21:00, at £620. Since £620 is over £400 it stays pending until Priya countersigns, and the 18:00 evening start needs Tom's agreement.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\", \"e3\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Debs Okafor (Willow Toddler Group)\", \"text\": \"We would like the Main Hall on Wednesday 14 October 2026, 10:00 to 12:00, for our autumn session, at the usual fee of £380.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-04\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Confirmed the Willow Toddler Group for Wednesday 14 October 2026 at 10:00 in the Main Hall at £380; at £380 it is under the £400 threshold, so no countersign was needed.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e2\"], \"record\": \"EV-5\", \"mark\": \"KEEP\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Drew up the setup sheet for the Brampton craft fair: Tom's team to set out 60 chairs and 12 tables in the Main Hall at 13:00 on Friday 16 October 2026. I kept the sheet in draft because the craft fair booking itself is still pending.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-15\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Trustees' meeting noted that the autumn budget review will look at the hire countersignature arrangements among other items.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"Renew the hall insurance policy before 2026-11-30.\", \"role\": \"obligation\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"quote\", \"from\": \"Anita Ford (Mendip Supplies)\", \"text\": \"Quote: 20 trestle-table cloths at £240 total, delivery to Eastfield Neighbourhood Centre within three weeks of order.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 20 trestle-table cloths from Mendip Supplies for £240 for the autumn events.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Just a reminder that any hall hire over £400 needs my countersign before you confirm it. Three have come across my desk this month already.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Tom Reece (caretaker)\", \"text\": \"Main Hall floor polishing planned for the last weekend of September; no bookings that weekend.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"minutes\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Trustees held the autumn budget review and agreed to simplify the hire approval paperwork.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"message\", \"from\": \"Moya Lindsay (Larkspur Choir)\", \"text\": \"Forty singers confirmed for the autumn concert on 22 October.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"June Pargeter (Brampton Craft Circle)\", \"text\": \"Could we have the long tables along the windows for the craft fair on Friday 16 October? The stallholders prefer the daylight.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Priya Nair (finance volunteer)\", \"text\": \"Following the trustees' budget review last week, from 1 September 2026 the countersignature threshold for hall hires rises from £400 to £700. Any hire at £700 or under no longer needs my sign-off before you confirm it; only hires above £700 come to me.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"June Pargeter (Brampton Craft Circle)\", \"text\": \"We might add a second craft fair day on Saturday 17 October 2026 at £680 if the Main Hall is free, but the committee has not decided yet.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Staff meeting covered October rotas, the boiler service and craft fair stewarding.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Tom Reece (caretaker)\", \"text\": \"Boiler service booked for Monday 19 October; heating will be off that morning.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Anita Ford (Mendip Supplies)\", \"text\": \"Your 20 trestle-table cloths were delivered to Eastfield Neighbourhood Centre today and signed for at reception.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Debs Okafor (Willow Toddler Group)\", \"text\": \"We will have 18 children with us on Wednesday 14 October, so the small chairs please.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Brampton Craft Circle autumn craft fair\", \"fields\": {\"date\": \"2026-10-16\", \"start_time\": \"14:00\", \"place\": \"Main Hall\", \"client\": \"Brampton Craft Circle\", \"fee\": \"450\", \"status\": \"pending\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kettle & Crumb Bakery kitchen hire\", \"fields\": {\"day\": \"Friday\", \"start_time\": \"09:00\", \"place\": \"Community Kitchen\", \"client\": \"Kettle & Crumb Bakery\", \"monthly_fee\": \"880\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Larkspur Choir autumn concert\", \"fields\": {\"date\": \"2026-10-22\", \"start_time\": \"18:00\", \"place\": \"Main Hall\", \"client\": \"Larkspur Choir\", \"fee\": \"620\", \"status\": \"pending\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Craft fair setup: 60 chairs and 12 tables\", \"fields\": {\"date\": \"2026-10-16\", \"start_time\": \"13:00\", \"place\": \"Main Hall\", \"task\": \"Set out 60 chairs and 12 tables\", \"status\": \"draft\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Willow Toddler Group autumn session\", \"fields\": {\"date\": \"2026-10-14\", \"start_time\": \"10:00\", \"place\": \"Main Hall\", \"client\": \"Willow Toddler Group\", \"fee\": \"380\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trestle-table cloths\", \"fields\": {\"supplier\": \"Mendip Supplies\", \"item\": \"Trestle-table cloths\", \"quantity\": \"20\", \"amount\": \"240\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"start_time\"], \"from\": \"Tom Reece\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"The autumn craft fair is this week — please confirm the Brampton Craft Circle's Main Hall booking for Friday 16 October and email June Pargeter at the craft circle with the date, start time and hire fee. While you're at it, get the Larkspur Choir concert booking finalised as well.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"]},\n    {\"record\": \"EV-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"draft\"]},\n    {\"message_to\": \"June Pargeter (Brampton Craft Circle)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-16\", \"14:00\", \"450\"], \"stale\": [\"pending\", \"680\"], \"task\": true}\n  ],\n  \"why\": \"Priya's email of 15 September raises the countersign threshold from £400 to £700 effective 1 September, revoking the old rule. The Brampton booking (£450) and its dependent setup sheet were held back only because of the £400 rule, so both are REVISE and can now be confirmed; the Larkspur booking (£620) is freed from countersigning but its 18:00 evening start still needs Tom Reece's agreement, so it is ASK and must stay pending until his consent. The £880 kitchen hire remains above the new threshold (KEEP) and the £380 toddler session was never within the rule's terms (KEEP); the £680 second craft fair day is only an undecided enquiry and must not be acted on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies restock\", \"counterpart\": \"Anita Ford\", \"org\": \"Mendip Supplies\", \"item\": \"Multi-surface cleaner\", \"unit\": \"litres\", \"values\": [\"10\", \"20\", \"25\", \"40\"], \"place\": \"Eastfield Neighbourhood Centre stores\"},\n    {\"kind\": \"order\", \"topic\": \"Craft fair sundries\", \"counterpart\": \"Anita Ford\", \"org\": \"Mendip Supplies\", \"item\": \"Paper table covers\", \"unit\": \"rolls\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Main Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"Caretaker weekly check-in\", \"counterpart\": \"Tom Reece\", \"org\": \"Eastfield Neighbourhood Centre\", \"item\": \"Maintenance walkthrough\", \"unit\": null, \"values\": [\"Main Hall\", \"Community Kitchen\", \"Foyer\", \"Store Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"Toddler group regulars\", \"counterpart\": \"Debs Okafor\", \"org\": \"Willow Toddler Group\", \"item\": \"Morning play session\", \"unit\": null, \"values\": [\"Main Hall\", \"Small Hall\", \"Garden Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Bakery flour delivery\", \"counterpart\": \"Selim Arda\", \"org\": \"Kettle & Crumb Bakery\", \"item\": \"Strong white flour\", \"unit\": \"kg\", \"values\": [\"25\", \"50\", \"75\", \"100\"], \"place\": \"Community Kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Choir rehearsal slot\", \"counterpart\": \"Moya Lindsay\", \"org\": \"Larkspur Choir\", \"item\": \"Weekly rehearsal\", \"unit\": null, \"values\": [\"Main Hall\", \"Small Hall\", \"Music Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"Finance volunteer desk\", \"counterpart\": \"Priya Nair\", \"org\": \"Eastfield Neighbourhood Centre\", \"item\": \"Accounts desk session\", \"unit\": null, \"values\": [\"Office\", \"Meeting Room 1\", \"Meeting Room 2\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Office stationery\", \"counterpart\": \"Hannah Bliss\", \"org\": \"Quill & Paper\", \"item\": \"A4 copier paper\", \"unit\": \"reams\", \"values\": [\"10\", \"20\", \"30\", \"50\"], \"place\": \"Eastfield Neighbourhood Centre office\"},\n    {\"kind\": \"booking\", \"topic\": \"Yoga class weekly\", \"counterpart\": \"Iris Meller\", \"org\": \"Eastfield Yoga Circle\", \"item\": \"Evening yoga class\", \"unit\": null, \"values\": [\"Main Hall\", \"Small Hall\", \"Garden Room\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Kitchen consumables\", \"counterpart\": \"Selim Arda\", \"org\": \"Kettle & Crumb Bakery\", \"item\": \"Baking parchment\", \"unit\": \"boxes\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Community Kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"U3A craft morning\", \"counterpart\": \"June Pargeter\", \"org\": \"Brampton Craft Circle\", \"item\": \"Monthly craft morning\", \"unit\": null, \"values\": [\"Small Hall\", \"Garden Room\", \"Meeting Room 1\"], \"place\": \"Eastfield Neighbourhood Centre\"},\n    {\"kind\": \"order\", \"topic\": \"First aid restock\", \"counterpart\": \"Anita Ford\", \"org\": \"Mendip Supplies\", \"item\": \"Plasters and dressings kit\", \"unit\": \"kits\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Eastfield Neighbourhood Centre reception\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 11784,
+    "completion_tokens": 4507,
+    "reasoning_tokens": 294,
+    "cached_tokens": 7424
+   },
+   "cost": 0.0829122,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- the change is too close to now: only 23 of 500 events would come after it; move the change earlier\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Countersignature threshold raised at Eastfield",
+  "setting": "Community centre director at Eastfield Neighbourhood Centre",
+  "owner": "Ruth",
+  "org": "Eastfield Neighbourhood Centre",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "note",
+    "from": "Ruth",
+    "text": "Started planning the autumn term hall hires: craft fair, choir concert and the regular kitchen and toddler groups all need slots in October.",
+    "role": "other"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Priya Nair (finance volunteer)",
+    "text": "Hire policy reminder: any hall hire invoiced over £400 must be countersigned by me before the booking is confirmed. Please leave such bookings pending until I sign.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Ruth",
+    "text": "House rule: no booking in the Main Hall may be given a start time after 17:30 without the agreement of Tom Reece, our caretaker, because he arranges locking up and heating.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "June Pargeter (Brampton Craft Circle)",
+    "text": "We would like the Main Hall on Friday 16 October 2026, 14:00 to 17:00, for our autumn craft fair, at the agreed hire fee of £450.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-11",
+    "type": "message",
+    "from": "Tom Reece (caretaker)",
+    "text": "Caretaker cover is available weekdays until 21:30 through the autumn, including October.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Booked the Brampton Craft Circle into the Main Hall on Friday 16 October 2026 at 14:00 for their craft fair at £450. Because £450 is over the £400 countersign threshold, I left the booking pending until Priya signs it off.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Selim Arda (Kettle & Crumb Bakery)",
+    "text": "Confirming our community kitchen hire for autumn: Fridays 09:00 to 12:00, £880 per month.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Confirmed the Kettle & Crumb Bakery kitchen hire at £880 per month, Fridays 09:00, after Priya countersigned it as required for hires over £400.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e2"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Moya Lindsay (Larkspur Choir)",
+    "text": "The choir would like the Main Hall on Thursday 22 October 2026, 18:00 to 21:00, for our autumn concert. We agree the hire fee of £620.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-27",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Booked the Larkspur Choir concert for Thursday 22 October 2026, 18:00 to 21:00, at £620. Since £620 is over £400 it stays pending until Priya countersigns, and the 18:00 evening start needs Tom's agreement.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e2",
+     "e3"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Debs Okafor (Willow Toddler Group)",
+    "text": "We would like the Main Hall on Wednesday 14 October 2026, 10:00 to 12:00, for our autumn session, at the usual fee of £380.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-04",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Confirmed the Willow Toddler Group for Wednesday 14 October 2026 at 10:00 in the Main Hall at £380; at £380 it is under the £400 threshold, so no countersign was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e2"
+    ],
+    "record": "EV-5",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Drew up the setup sheet for the Brampton craft fair: Tom's team to set out 60 chairs and 12 tables in the Main Hall at 13:00 on Friday 16 October 2026. I kept the sheet in draft because the craft fair booking itself is still pending.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-15",
+    "type": "minutes",
+    "from": "Ruth",
+    "text": "Trustees' meeting noted that the autumn budget review will look at the hire countersignature arrangements among other items.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-22",
+    "type": "task",
+    "from": "Ruth",
+    "text": "Renew the hall insurance policy before 2026-11-30.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-05",
+    "type": "quote",
+    "from": "Anita Ford (Mendip Supplies)",
+    "text": "Quote: 20 trestle-table cloths at £240 total, delivery to Eastfield Neighbourhood Centre within three weeks of order.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-07",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Ordered 20 trestle-table cloths from Mendip Supplies for £240 for the autumn events.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Priya Nair (finance volunteer)",
+    "text": "Just a reminder that any hall hire over £400 needs my countersign before you confirm it. Three have come across my desk this month already.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-02",
+    "type": "note",
+    "from": "Tom Reece (caretaker)",
+    "text": "Main Hall floor polishing planned for the last weekend of September; no bookings that weekend.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-08",
+    "type": "minutes",
+    "from": "Priya Nair (finance volunteer)",
+    "text": "Trustees held the autumn budget review and agreed to simplify the hire approval paperwork.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-10",
+    "type": "message",
+    "from": "Moya Lindsay (Larkspur Choir)",
+    "text": "Forty singers confirmed for the autumn concert on 22 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "June Pargeter (Brampton Craft Circle)",
+    "text": "Could we have the long tables along the windows for the craft fair on Friday 16 October? The stallholders prefer the daylight.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Priya Nair (finance volunteer)",
+    "text": "Following the trustees' budget review last week, from 1 September 2026 the countersignature threshold for hall hires rises from £400 to £700. Any hire at £700 or under no longer needs my sign-off before you confirm it; only hires above £700 come to me.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "June Pargeter (Brampton Craft Circle)",
+    "text": "We might add a second craft fair day on Saturday 17 October 2026 at £680 if the Main Hall is free, but the committee has not decided yet.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-22",
+    "type": "minutes",
+    "from": "Ruth",
+    "text": "Staff meeting covered October rotas, the boiler service and craft fair stewarding.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-05",
+    "type": "message",
+    "from": "Tom Reece (caretaker)",
+    "text": "Boiler service booked for Monday 19 October; heating will be off that morning.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Anita Ford (Mendip Supplies)",
+    "text": "Your 20 trestle-table cloths were delivered to Eastfield Neighbourhood Centre today and signed for at reception.",
+    "role": "fact"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-09",
+    "type": "message",
+    "from": "Debs Okafor (Willow Toddler Group)",
+    "text": "We will have 18 children with us on Wednesday 14 October, so the small chairs please.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Brampton Craft Circle autumn craft fair",
+    "fields": {
+     "date": "2026-10-16",
+     "start_time": "14:00",
+     "place": "Main Hall",
+     "client": "Brampton Craft Circle",
+     "fee": "450",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Kettle & Crumb Bakery kitchen hire",
+    "fields": {
+     "day": "Friday",
+     "start_time": "09:00",
+     "place": "Community Kitchen",
+     "client": "Kettle & Crumb Bakery",
+     "monthly_fee": "880",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Larkspur Choir autumn concert",
+    "fields": {
+     "date": "2026-10-22",
+     "start_time": "18:00",
+     "place": "Main Hall",
+     "client": "Larkspur Choir",
+     "fee": "620",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Craft fair setup: 60 chairs and 12 tables",
+    "fields": {
+     "date": "2026-10-16",
+     "start_time": "13:00",
+     "place": "Main Hall",
+     "task": "Set out 60 chairs and 12 tables",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Willow Toddler Group autumn session",
+    "fields": {
+     "date": "2026-10-14",
+     "start_time": "10:00",
+     "place": "Main Hall",
+     "client": "Willow Toddler Group",
+     "fee": "380",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Trestle-table cloths",
+    "fields": {
+     "supplier": "Mendip Supplies",
+     "item": "Trestle-table cloths",
+     "quantity": "20",
+     "amount": "240",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "start_time"
+    ],
+    "from": "Tom Reece",
+    "rule": "e3"
+   }
+  ],
+  "task": "The autumn craft fair is this week — please confirm the Brampton Craft Circle's Main Hall booking for Friday 16 October and email June Pargeter at the craft circle with the date, start time and hire fee. While you're at it, get the Larkspur Choir concert booking finalised as well.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending"
+    ]
+   },
+   {
+    "record": "EV-4",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "draft"
+    ]
+   },
+   {
+    "message_to": "June Pargeter (Brampton Craft Circle)",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-16",
+     "14:00",
+     "450"
+    ],
+    "stale": [
+     "pending",
+     "680"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Priya's email of 15 September raises the countersign threshold from £400 to £700 effective 1 September, revoking the old rule. The Brampton booking (£450) and its dependent setup sheet were held back only because of the £400 rule, so both are REVISE and can now be confirmed; the Larkspur booking (£620) is freed from countersigning but its 18:00 evening start still needs Tom Reece's agreement, so it is ASK and must stay pending until his consent. The £880 kitchen hire remains above the new threshold (KEEP) and the £380 toddler session was never within the rule's terms (KEEP); the £680 second craft fair day is only an undecided enquiry and must not be acted on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies restock",
+    "counterpart": "Anita Ford",
+    "org": "Mendip Supplies",
+    "item": "Multi-surface cleaner",
+    "unit": "litres",
+    "values": [
+     "10",
+     "20",
+     "25",
+     "40"
+    ],
+    "place": "Eastfield Neighbourhood Centre stores"
+   },
+   {
+    "kind": "order",
+    "topic": "Craft fair sundries",
+    "counterpart": "Anita Ford",
+    "org": "Mendip Supplies",
+    "item": "Paper table covers",
+    "unit": "rolls",
+    "values": [
+     "6",
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Main Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "Caretaker weekly check-in",
+    "counterpart": "Tom Reece",
+    "org": "Eastfield Neighbourhood Centre",
+    "item": "Maintenance walkthrough",
+    "unit": null,
+    "values": [
+     "Main Hall",
+     "Community Kitchen",
+     "Foyer",
+     "Store Room"
+    ],
+    "place": "Eastfield Neighbourhood Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "Toddler group regulars",
+    "counterpart": "Debs Okafor",
+    "org": "Willow Toddler Group",
+    "item": "Morning play session",
+    "unit": null,
+    "values": [
+     "Main Hall",
+     "Small Hall",
+     "Garden Room"
+    ],
+    "place": "Eastfield Neighbourhood Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Bakery flour delivery",
+    "counterpart": "Selim Arda",
+    "org": "Kettle & Crumb Bakery",
+    "item": "Strong white flour",
+    "unit": "kg",
+    "values": [
+     "25",
+     "50",
+     "75",
+     "100"
+    ],
+    "place": "Community Kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "Choir rehearsal slot",
+    "counterpart": "Moya Lindsay",
+    "org": "Larkspur Choir",
+    "item": "Weekly rehearsal",
+    "unit": null,
+    "values": [
+     "Main Hall",
+     "Small Hall",
+     "Music Room"
+    ],
+    "place": "Eastfield Neighbourhood Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "Finance volunteer desk",
+    "counterpart": "Priya Nair",
+    "org": "Eastfield Neighbourhood Centre",
+    "item": "Accounts desk session",
+    "unit": null,
+    "values": [
+     "Office",
+     "Meeting Room 1",
+     "Meeting Room 2"
+    ],
+    "place": "Eastfield Neighbourhood Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Office stationery",
+    "counterpart": "Hannah Bliss",
+    "org": "Quill & Paper",
+    "item": "A4 copier paper",
+    "unit": "reams",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "50"
+    ],
+    "place": "Eastfield Neighbourhood Centre office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Yoga class weekly",
+    "counterpart": "Iris Meller",
+    "org": "Eastfield Yoga Circle",
+    "item": "Evening yoga class",
+    "unit": null,
+    "values": [
+     "Main Hall",
+     "Small Hall",
+     "Garden Room"
+    ],
+    "place": "Eastfield Neighbourhood Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Kitchen consumables",
+    "counterpart": "Selim Arda",
+    "org": "Kettle & Crumb Bakery",
+    "item": "Baking parchment",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "Community Kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "U3A craft morning",
+    "counterpart": "June Pargeter",
+    "org": "Brampton Craft Circle",
+    "item": "Monthly craft morning",
+    "unit": null,
+    "values": [
+     "Small Hall",
+     "Garden Room",
+     "Meeting Room 1"
+    ],
+    "place": "Eastfield Neighbourhood Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "First aid restock",
+    "counterpart": "Anita Ford",
+    "org": "Mendip Supplies",
+    "item": "Plasters and dressings kit",
+    "unit": "kits",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Eastfield Neighbourhood Centre reception"
+   }
+  ],
+  "id": "K500-2-08",
+  "tier": 500,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

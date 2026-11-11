@@ -619,5 +619,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amendment permits Katya's extension to be confirmed in-house but does not require restoring her former slot or requesting a move. Her current slot was agreed in writing, and the task concerns only Tomas; the consent rule requires asking before a proposed move, not proactively proposing one, so the mandatory consent request is not unambiguously warranted.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment permits Katya's extension to be confirmed in-house but does not require restoring her former slot or requesting a move. Her current slot was agreed in writing, and the task concerns only Tomas; the consent rule requires asking before a proposed move, not proactively proposing one, so the mandatory consent request is not unambiguously warranted."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3687,
+    "completion_tokens": 180,
+    "reasoning_tokens": 76,
+    "cached_tokens": 0
+   },
+   "cost": 0.05508,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "77e322fb5ea9fc15a466f6eda9d2d355bdddd644c23ce8977eba0bd0652ce835",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment e21 raises the e5 threshold from 8 to 12, voiding the ASK (e12) and REVISE (e13) decisions that cite e5 while leaving the KEEP decision (e8) standing, which fits class 2. The core has 23 events, 5 decisions, and the change falls 12 days before the task day with two core events after it. The change is an ordinary dated email among routine events, and the task asks for a confirmation without hinting at a change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment e21 raises the e5 threshold from 8 to 12, voiding the ASK (e12) and REVISE (e13) decisions that cite e5 while leaving the KEEP decision (e8) standing, which fits class 2. The core has 23 events, 5 decisions, and the change falls 12 days before the task day with two core events after it. The change is an ordinary dated email among routine events, and the task asks for a confirmation without hinting at a change."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5482,
+    "completion_tokens": 2011,
+    "reasoning_tokens": 1804,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015537,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "77e322fb5ea9fc15a466f6eda9d2d355bdddd644c23ce8977eba0bd0652ce835",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment to e5 (threshold 8→12) cleanly voids e13/e14 (REVISE to confirmed), leaves e8 standing under its own 'approvals already granted' clause (KEEP), and makes e12 an ASK since reverting Katya's slot needs her written consent under e3. Tier fits: 23 core events, 5 decisions, change 12 days before the task day with 9 events after. The change is an ordinary mid-history email and the task (confirm Tomas's extension) forces record changes plus a message without hinting at the rule change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment to e5 (threshold 8→12) cleanly voids e13/e14 (REVISE to confirmed), leaves e8 standing under its own 'approvals already granted' clause (KEEP), and makes e12 an ASK since reverting Katya's slot needs her written consent under e3. Tier fits: 23 core events, 5 decisions, change 12 days before the task day with 9 events after. The change is an ordinary mid-history email and the task (confirm Tomas's extension) forces record changes plus a message without hinting at the rule change."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3804,
+    "completion_tokens": 597,
+    "reasoning_tokens": 421,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0120726,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "77e322fb5ea9fc15a466f6eda9d2d355bdddd644c23ce8977eba0bd0652ce835",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

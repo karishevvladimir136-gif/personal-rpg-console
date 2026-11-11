@@ -675,5 +675,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The residential lasts two nights at £33 per pupil per night, making the centre cost £2,640, not £1,320; with the £560 coach, the stated cost-sharing calculation yields £80 per pupil, so £47 is not unambiguously justified. The staffing history also contradicts itself: two named staff cannot provide a 1:10 ratio for 40 pupils, while later confirmations assume four adults.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The residential lasts two nights at £33 per pupil per night, making the centre cost £2,640, not £1,320; with the £560 coach, the stated cost-sharing calculation yields £80 per pupil, so £47 is not unambiguously justified. The staffing history also contradicts itself: two named staff cannot provide a 1:10 ratio for 40 pupils, while later confirmations assume four adults."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4112,
+    "completion_tokens": 295,
+    "reasoning_tokens": 172,
+    "cached_tokens": 0
+   },
+   "cost": 0.0661425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a003e871744a94706bc6824b0a7480fed3162ec835e4ee891d636cdb534dca9a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state checks out: £560 gives a fee of £47 across 40 pupils, EV-2 is ASK under the headteacher's rule, EV-3 is KEEP, and the change is 11 days before the task with three later core events. The change is written as a revocation of e4 ('revokes e4'), with e11 two hops away through e6, which fits the stale-fact class more literally than the chain class, so the intended class 3 label is questionable. The trigger text and the echo at e21 are otherwise consistent.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state checks out: £560 gives a fee of £47 across 40 pupils, EV-2 is ASK under the headteacher's rule, EV-3 is KEEP, and the change is 11 days before the task with three later core events. The change is written as a revocation of e4 ('revokes e4'), with e11 two hops away through e6, which fits the stale-fact class more literally than the chain class, so the intended class 3 label is questionable. The trigger text and the echo at e21 are otherwise consistent."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5854,
+    "completion_tokens": 2572,
+    "reasoning_tokens": 2349,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018714,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a003e871744a94706bc6824b0a7480fed3162ec835e4ee891d636cdb534dca9a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e25) corrects only the coach cost in fact e4; e6 (on e4) is ASK under the headteacher's consent rule, e11/CL-1 (resting on e6) must be REVISEd to £47 ((560+1320)/40), and e22 (citing e4's unchanged 08:15 pickup) is KEEP, giving a clean class-3 chain. Tier 500 is met: 28 core events, 9 decisions, change 11 days before the task day with later core events, and echo e21 restates the stale £480; the £520 Bath quote is a legitimate distractor. The change sits mid-history with 50 events after it and the task (send the final letter with the fee) forces an act without naming the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e25) corrects only the coach cost in fact e4; e6 (on e4) is ASK under the headteacher's consent rule, e11/CL-1 (resting on e6) must be REVISEd to £47 ((560+1320)/40), and e22 (citing e4's unchanged 08:15 pickup) is KEEP, giving a clean class-3 chain. Tier 500 is met: 28 core events, 9 decisions, change 11 days before the task day with later core events, and echo e21 restates the stale £480; the £520 Bath quote is a legitimate distractor. The change sits mid-history with 50 events after it and the task (send the final letter with the fee) forces an act without naming the change."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4208,
+    "completion_tokens": 627,
+    "reasoning_tokens": 400,
+    "cached_tokens": 256
+   },
+   "cost": 0.0213378,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a003e871744a94706bc6824b0a7480fed3162ec835e4ee891d636cdb534dca9a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -1,0 +1,619 @@
+{
+ "id": "K100-2-10",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 2,
+ "idx": 9,
+ "setting": "Theatre administrator at The Marlowe Playhouse, a 200-seat community theatre",
+ "prompt_sha256": "4ace68a61a6a4f4626f86e66f16b2c3d803277918f2e6f0e0bdbf1c4ad6a68ff",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Rehearsal curfew change at The Marlowe\",\n \"setting\": \"Theatre administrator at The Marlowe Playhouse, a 200-seat community theatre\",\n \"owner\": \"Helen\",\n \"org\": \"The Marlowe Playhouse\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Marcus Bell (caretaker, The Marlowe Playhouse)\", \"text\": \"Just confirming my details for the season file: Marcus Bell, caretaker, on site weekdays from 16:00, and I live two doors down on Chapel Lane so late finishes carry through the wall.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"The Marlowe Playhouse board\", \"text\": \"Standing house rule: evening rehearsals on the main stage may run until 22:00. Any rehearsal that is to run past 22:00 needs the caretaker Marcus Bell's agreement in advance, and the caretaker must agree before the confirmed end time of any main-stage evening booking is changed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Nair (Ashford Players)\", \"text\": \"The Ashford Players confirm our autumn production of 'The Lantern Men' for the week of 9 to 14 November 2026 at The Marlowe Playhouse, with the dress rehearsal on the main stage on Thursday 12 November.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Grove Cafe Catering (Tessa Vaughan)\", \"text\": \"Quote for interval drinks service for the Ashford Players week, 9 to 14 November: 56 covers per evening at 4 per cover, delivered to the foyer bar by 18:30.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"CleanSweep Services (Rob Adeyemi)\", \"text\": \"Our evening crew rate is 90 per callout for up to two hours on site; we bill from the time we arrive at the stage door on Chapel Lane.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"instruction\", \"from\": \"Helen\", \"text\": \"House note: any supplier order above 500 needs the finance lead's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Northgate Stewards (Iris Falk)\", \"text\": \"Front-of-house stewarding for evening events at The Marlowe: two stewards, booked in half-hour blocks, and we ask that shifts end no later than 23:00.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Booked the Ashford Players dress rehearsal of 'The Lantern Men' on the main stage for 12 November 2026, 19:00 to 22:00, using the full evening rehearsal window the house rule allows.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Booked the CleanSweep evening crew for 12 November 2026 after the dress rehearsal, on site until 22:30, since the rehearsal can run to 22:00 under the house rule and they bill from arrival at the stage door.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Booked two Northgate stewards for the 12 November dress rehearsal evening, shift 18:30 to 22:30, to cover the half hour after the rehearsal's 22:00 finish while the cast clears the stage.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e7\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Scheduled the Ashford Players technical rehearsal on the main stage for 18 November 2026, 19:00 to 21:00, comfortably inside the evening rehearsal window.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"EV-5\", \"mark\": \"KEEP\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Placed the Grove Cafe interval drinks order for the Ashford Players week, 56 covers per evening at 4 per cover as quoted, delivery to the foyer bar by 18:30.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-19\", \"type\": \"minutes\", \"from\": \"The Marlowe Playhouse board\", \"text\": \"Board minutes, 18 August: ticket sales for the autumn season are healthy; the foyer bar refurbishment is postponed to January 2027; the caretaker raised the question of evening noise on Chapel Lane.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-01\", \"type\": \"email\", \"from\": \"Priya Nair (Ashford Players)\", \"text\": \"Cast list for 'The Lantern Men' is now final at 14 performers; please make sure the main stage is clear of set pieces from the youth workshop before our November dates.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Booked the monthly Chapel Lane Open Mic on the main stage for 20 November 2026, 19:30 to 22:00, as a standing community night.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-4\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Dario Finch (Chapel Lane Open Mic)\", \"text\": \"Thanks for locking in 20 November — we'll run the open mic 19:30 to 22:00 as usual and bring our own PA.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-10-06\", \"type\": \"invoice\", \"from\": \"CleanSweep Services (Rob Adeyemi)\", \"text\": \"Invoice for September stage-door and auditorium callouts: four visits at 90 each, total 360, payable by 20 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-24\", \"type\": \"email\", \"from\": \"The Marlowe Playhouse board\", \"text\": \"Following the noise complaint from Chapel Lane residents discussed at the October meeting, the board has agreed that from 1 November 2026 all evening rehearsals on the main stage must end by 21:30. This replaces the previous 22:00 rehearsal limit. Community performances such as the open mic are unaffected, and the caretaker's agreement is still required before changing the confirmed end time of any main-stage evening booking.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e19\", \"date\": \"2026-10-27\", \"type\": \"email\", \"from\": \"Priya Nair (Ashford Players)\", \"text\": \"Looking forward to next month — can you confirm the final timings for the 12 November dress rehearsal so I can tell the cast?\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-30\", \"type\": \"note\", \"from\": \"Helen\", \"text\": \"Reminder to myself: print the November foyer posters and check the lantern stock for the Lantern Men run before 9 November.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Ashford Players dress rehearsal, The Lantern Men\", \"fields\": {\"date\": \"2026-11-12\", \"place\": \"main stage\", \"start\": \"19:00\", \"end\": \"22:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"CleanSweep evening crew after dress rehearsal\", \"fields\": {\"date\": \"2026-11-12\", \"crew\": \"CleanSweep Services\", \"arrive\": \"20:30\", \"end\": \"22:30\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Northgate steward shift, dress rehearsal evening\", \"fields\": {\"date\": \"2026-11-12\", \"stewards\": \"2\", \"start\": \"18:30\", \"end\": \"22:30\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Chapel Lane Open Mic, November\", \"fields\": {\"date\": \"2026-11-20\", \"place\": \"main stage\", \"start\": \"19:30\", \"end\": \"22:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Ashford Players technical rehearsal\", \"fields\": {\"date\": \"2026-11-18\", \"place\": \"main stage\", \"start\": \"19:00\", \"end\": \"21:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Grove Cafe interval drinks, Lantern Men week\", \"fields\": {\"supplier\": \"Grove Cafe Catering\", \"covers\": \"56\", \"price_per_cover\": \"4\", \"delivery\": \"foyer bar\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"end\"], \"from\": \"Marcus Bell (caretaker)\", \"rule\": \"e18\"}\n ],\n \"task\": \"Please tidy up the plan for the 12 November dress rehearsal: set the crew and steward bookings to match the rehearsal evening, and send Marcus Bell a note asking him to agree to the rehearsal's updated finish time.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"end\", \"value\": \"22:00\", \"stale\": [\"22:30\"], \"task\": true},\n  {\"record\": \"EV-3\", \"field\": \"end\", \"value\": \"22:00\", \"stale\": [\"22:30\"], \"task\": true},\n  {\"message_to\": \"Marcus Bell (caretaker)\", \"regarding\": \"EV-1\", \"says\": [\"21:30\", \"2026-11-12\"], \"stale\": [\"22:00\"], \"task\": true}\n ],\n \"why\": \"The board's 24 October email amends the rehearsal curfew rule from 22:00 to 21:30 effective 1 November. The dress rehearsal decision (EV-1) rests on the old rule, so its end time is touched, but changing a confirmed main-stage end time needs the caretaker's consent, so it is ASK: the assistant must ask Marcus, not edit EV-1. The CleanSweep crew (EV-2) cites the rule directly and the steward shift (EV-3) rests on the rehearsal decision two hops out; both only need internal adjustment to end at 22:00 once the rehearsal finishes at 21:30, so both are REVISE. The 18 November technical rehearsal ends at 21:00, valid under the amended rule, so it is KEEP; the open mic's 22:00 finish is a distractor because the amendment explicitly exempts community performances.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"youth workshop\", \"counterpart\": \"Lena Marsh\", \"org\": \"Marlowe Youth Theatre\", \"item\": \"weekly youth workshop\", \"values\": [\"main stage\", \"studio room\", \"rehearsal room\"], \"place\": \"main stage\"},\n  {\"kind\": \"booking\", \"topic\": \"open mic monthly\", \"counterpart\": \"Dario Finch\", \"org\": \"Chapel Lane Open Mic\", \"item\": \"monthly open mic night\", \"values\": [\"main stage\", \"foyer bar\"], \"place\": \"main stage\"},\n  {\"kind\": \"order\", \"topic\": \"interval drinks restock\", \"counterpart\": \"Tessa Vaughan\", \"org\": \"Grove Cafe Catering\", \"item\": \"interval drinks covers\", \"unit\": \"covers\", \"values\": [\"40\", \"56\", \"72\", \"30\"], \"place\": \"foyer bar\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning callouts\", \"counterpart\": \"Rob Adeyemi\", \"org\": \"CleanSweep Services\", \"item\": \"evening cleaning callout\", \"unit\": \"visits\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"stage door, Chapel Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"steward shifts\", \"counterpart\": \"Iris Falk\", \"org\": \"Northgate Stewards\", \"item\": \"front-of-house steward shift\", \"values\": [\"auditorium\", \"foyer bar\", \"main stage\"], \"place\": \"foyer bar\"},\n  {\"kind\": \"order\", \"topic\": \"poster printing\", \"counterpart\": \"Sam Whitlock\", \"org\": \"Whitlock Print\", \"item\": \"foyer posters\", \"unit\": \"posters\", \"values\": [\"25\", \"50\", \"100\"], \"place\": \"foyer bar\"},\n  {\"kind\": \"order\", \"topic\": \"lamp stock\", \"counterpart\": \"Tessa Vaughan\", \"org\": \"Grove Cafe Catering\", \"item\": \"bar glassware restock\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"foyer bar\"},\n  {\"kind\": \"booking\", \"topic\": \"am-dram rehearsals\", \"counterpart\": \"Priya Nair\", \"org\": \"Ashford Players\", \"item\": \"evening rehearsal slot\", \"values\": [\"main stage\", \"rehearsal room\"], \"place\": \"main stage\"},\n  {\"kind\": \"order\", \"topic\": \"stage lamps\", \"counterpart\": \"Owen Pruitt\", \"org\": \"Pruitt Stage Supplies\", \"item\": \"replacement stage lamps\", \"unit\": \"lamps\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"stage door, Chapel Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"book club\", \"counterpart\": \"Marcus Bell\", \"org\": \"Chapel Lane Book Club\", \"item\": \"monthly book club evening\", \"values\": [\"studio room\", \"foyer bar\"], \"place\": \"studio room\"},\n  {\"kind\": \"order\", \"topic\": \"programme paper\", \"counterpart\": \"Sam Whitlock\", \"org\": \"Whitlock Print\", \"item\": \"programme paper reams\", \"unit\": \"reams\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"box office\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3181,
+    "completion_tokens": 5081,
+    "reasoning_tokens": 1487,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0774636,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Rehearsal curfew change at The Marlowe\",\n \"setting\": \"Theatre administrator at The Marlowe Playhouse, a 200-seat community theatre\",\n \"owner\": \"Helen\",\n \"org\": \"The Marlowe Playhouse\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Marcus Bell (caretaker, The Marlowe Playhouse)\", \"text\": \"Just confirming my details for the season file: Marcus Bell, caretaker, on site weekdays from 16:00, and I live two doors down on Chapel Lane so late finishes carry through the wall.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"The Marlowe Playhouse board\", \"text\": \"Standing house rule: evening rehearsals on the main stage may run until 22:00. Any rehearsal that is to run past 22:00 needs the caretaker Marcus Bell's agreement in advance, and the caretaker must agree before the confirmed end time of any main-stage evening booking is changed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Nair (Ashford Players)\", \"text\": \"The Ashford Players confirm our autumn production of 'The Lantern Men' for the week of 9 to 14 November 2026 at The Marlowe Playhouse, with the dress rehearsal on the main stage on Thursday 12 November.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Grove Cafe Catering (Tessa Vaughan)\", \"text\": \"Quote for interval drinks service for the Ashford Players week, 9 to 14 November: 56 covers per evening at 4 per cover, delivered to the foyer bar by 18:30.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"CleanSweep Services (Rob Adeyemi)\", \"text\": \"Our evening crew rate is 90 per callout for up to two hours on site; we bill from the time we arrive at the stage door on Chapel Lane.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"instruction\", \"from\": \"Helen\", \"text\": \"House note: any supplier order above 500 needs the finance lead's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Northgate Stewards (Iris Falk)\", \"text\": \"Front-of-house stewarding for evening events at The Marlowe: two stewards, booked in half-hour blocks, and we ask that shifts end no later than 23:00.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Booked the Ashford Players dress rehearsal of 'The Lantern Men' on the main stage for 12 November 2026, 19:00 to 22:00, using the full evening rehearsal window the house rule allows.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Booked the CleanSweep evening crew for 12 November 2026 after the dress rehearsal, on site until 22:30, since the rehearsal can run to 22:00 under the house rule and they bill from arrival at the stage door.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Booked two Northgate stewards for the 12 November dress rehearsal evening, shift 18:30 to 22:30, to cover the half hour after the rehearsal's 22:00 finish while the cast clears the stage.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e7\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Scheduled the Ashford Players technical rehearsal on the main stage for 18 November 2026, 19:00 to 21:00, comfortably inside the evening rehearsal window.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"EV-5\", \"mark\": \"KEEP\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Placed the Grove Cafe interval drinks order for the Ashford Players week, 56 covers per evening at 4 per cover as quoted, delivery to the foyer bar by 18:30.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-19\", \"type\": \"minutes\", \"from\": \"The Marlowe Playhouse board\", \"text\": \"Board minutes, 18 August: ticket sales for the autumn season are healthy; the foyer bar refurbishment is postponed to January 2027; the caretaker raised the question of evening noise on Chapel Lane.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-01\", \"type\": \"email\", \"from\": \"Priya Nair (Ashford Players)\", \"text\": \"Cast list for 'The Lantern Men' is now final at 14 performers; please make sure the main stage is clear of set pieces from the youth workshop before our November dates.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Helen\", \"text\": \"Booked the monthly Chapel Lane Open Mic on the main stage for 20 November 2026, 19:30 to 22:00, as a standing community night.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Dario Finch (Chapel Lane Open Mic)\", \"text\": \"Thanks for locking in 20 November — we'll run the open mic 19:30 to 22:00 as usual and bring our own PA.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-10-06\", \"type\": \"invoice\", \"from\": \"CleanSweep Services (Rob Adeyemi)\", \"text\": \"Invoice for September stage-door and auditorium callouts: four visits at 90 each, total 360, payable by 20 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-24\", \"type\": \"email\", \"from\": \"The Marlowe Playhouse board\", \"text\": \"Following the noise complaint from Chapel Lane residents discussed at the October meeting, the board has agreed that from 1 November 2026 all evening rehearsals on the main stage must end by 21:30. This replaces the previous 22:00 rehearsal limit. Community performances such as the open mic are unaffected, and the caretaker's agreement is still required before changing the confirmed end time of any main-stage evening booking.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e19\", \"date\": \"2026-10-27\", \"type\": \"email\", \"from\": \"Priya Nair (Ashford Players)\", \"text\": \"Looking forward to next month — can you confirm the final timings for the 12 November dress rehearsal so I can tell the cast?\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-30\", \"type\": \"note\", \"from\": \"Helen\", \"text\": \"Reminder to myself: print the November foyer posters and check the lantern stock for the Lantern Men run before 9 November.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Ashford Players dress rehearsal, The Lantern Men\", \"fields\": {\"date\": \"2026-11-12\", \"place\": \"main stage\", \"start\": \"19:00\", \"end\": \"22:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"CleanSweep evening crew after dress rehearsal\", \"fields\": {\"date\": \"2026-11-12\", \"crew\": \"CleanSweep Services\", \"arrive\": \"20:30\", \"end\": \"22:30\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Northgate steward shift, dress rehearsal evening\", \"fields\": {\"date\": \"2026-11-12\", \"stewards\": \"2\", \"start\": \"18:30\", \"end\": \"22:30\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Chapel Lane Open Mic, November\", \"fields\": {\"date\": \"2026-11-20\", \"place\": \"main stage\", \"start\": \"19:30\", \"end\": \"22:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Ashford Players technical rehearsal\", \"fields\": {\"date\": \"2026-11-18\", \"place\": \"main stage\", \"start\": \"19:00\", \"end\": \"21:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Grove Cafe interval drinks, Lantern Men week\", \"fields\": {\"supplier\": \"Grove Cafe Catering\", \"covers\": \"56\", \"price_per_cover\": \"4\", \"delivery\": \"foyer bar\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"end\"], \"from\": \"Marcus Bell (caretaker)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please tidy up the plan for the 12 November dress rehearsal: set the crew and steward bookings to match the rehearsal evening, and send Marcus Bell a note asking him to agree to the rehearsal's updated finish time.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"end\", \"value\": \"22:00\", \"stale\": [\"22:30\"], \"task\": true},\n  {\"record\": \"EV-3\", \"field\": \"end\", \"value\": \"22:00\", \"stale\": [\"22:30\"], \"task\": true},\n  {\"message_to\": \"Marcus Bell (caretaker)\", \"regarding\": \"EV-1\", \"says\": [\"21:30\", \"2026-11-12\"], \"stale\": [\"22:00\"], \"task\": true}\n ],\n \"why\": \"The board's 24 October email amends the rehearsal curfew rule from 22:00 to 21:30 effective 1 November. The dress rehearsal decision (EV-1) rests on the old rule, so its end time is touched, but changing a confirmed main-stage end time needs the caretaker's consent under the house rule, so it is ASK: the assistant must ask Marcus, not edit EV-1. The CleanSweep crew (EV-2) cites the rule directly and the steward shift (EV-3) rests on the rehearsal decision two hops out; both only need internal adjustment to end at 22:00 once the rehearsal finishes at 21:30, so both are REVISE. The 18 November technical rehearsal ends at 21:00, valid under the amended rule, so it is KEEP; the open mic on 20 November is also KEEP because the amendment explicitly exempts community performances, making its 22:00 finish a distractor.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"youth workshop\", \"counterpart\": \"Lena Marsh\", \"org\": \"Marlowe Youth Theatre\", \"item\": \"weekly youth workshop\", \"values\": [\"main stage\", \"studio room\", \"rehearsal room\"], \"place\": \"main stage\"},\n  {\"kind\": \"booking\", \"topic\": \"open mic monthly\", \"counterpart\": \"Dario Finch\", \"org\": \"Chapel Lane Open Mic\", \"item\": \"monthly open mic night\", \"values\": [\"main stage\", \"foyer bar\", \"studio room\"], \"place\": \"main stage\"},\n  {\"kind\": \"order\", \"topic\": \"interval drinks restock\", \"counterpart\": \"Tessa Vaughan\", \"org\": \"Grove Cafe Catering\", \"item\": \"interval drinks covers\", \"unit\": \"covers\", \"values\": [\"40\", \"56\", \"72\", \"30\"], \"place\": \"foyer bar\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning callouts\", \"counterpart\": \"Rob Adeyemi\", \"org\": \"CleanSweep Services\", \"item\": \"evening cleaning callout\", \"unit\": \"visits\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"stage door, Chapel Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"steward shifts\", \"counterpart\": \"Iris Falk\", \"org\": \"Northgate Stewards\", \"item\": \"front-of-house steward shift\", \"values\": [\"auditorium\", \"foyer bar\", \"main stage\"], \"place\": \"foyer bar\"},\n  {\"kind\": \"order\", \"topic\": \"poster printing\", \"counterpart\": \"Sam Whitlock\", \"org\": \"Whitlock Print\", \"item\": \"foyer posters\", \"unit\": \"posters\", \"values\": [\"25\", \"50\", \"100\"], \"place\": \"foyer bar\"},\n  {\"kind\": \"order\", \"topic\": \"bar glassware\", \"counterpart\": \"Tessa Vaughan\", \"org\": \"Grove Cafe Catering\", \"item\": \"bar glassware restock\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"foyer bar\"},\n  {\"kind\": \"booking\", \"topic\": \"am-dram rehearsals\", \"counterpart\": \"Priya Nair\", \"org\": \"Ashford Players\", \"item\": \"evening rehearsal slot\", \"values\": [\"main stage\", \"rehearsal room\", \"studio room\"], \"place\": \"main stage\"},\n  {\"kind\": \"order\", \"topic\": \"stage lamps\", \"counterpart\": \"Owen Pruitt\", \"org\": \"Pruitt Stage Supplies\", \"item\": \"replacement stage lamps\", \"unit\": \"lamps\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"stage door, Chapel Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"book club\", \"counterpart\": \"Marcus Bell\", \"org\": \"Chapel Lane Book Club\", \"item\": \"monthly book club evening\", \"values\": [\"studio room\", \"foyer bar\", \"rehearsal room\"], \"place\": \"studio room\"},\n  {\"kind\": \"order\", \"topic\": \"programme paper\", \"counterpart\": \"Sam Whitlock\", \"org\": \"Whitlock Print\", \"item\": \"programme paper reams\", \"unit\": \"reams\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"box office\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6910,
+    "completion_tokens": 3790,
+    "reasoning_tokens": 163,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0692856,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- decisions resting (directly or through other decisions) on what the change revokes need a mark: ['e15']\n- consent on EV-1: «rule» must name the rule event that requires the consent\n- noise topic 'open mic monthly': values needs at least three entries\n- noise topic 'am-dram rehearsals': values needs at least three entries\n- noise topic 'book club': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Rehearsal curfew change at The Marlowe",
+  "setting": "Theatre administrator at The Marlowe Playhouse, a 200-seat community theatre",
+  "owner": "Helen",
+  "org": "The Marlowe Playhouse",
+  "now": "2026-11-02",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "email",
+    "from": "Marcus Bell (caretaker, The Marlowe Playhouse)",
+    "text": "Just confirming my details for the season file: Marcus Bell, caretaker, on site weekdays from 16:00, and I live two doors down on Chapel Lane so late finishes carry through the wall.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "The Marlowe Playhouse board",
+    "text": "Standing house rule: evening rehearsals on the main stage may run until 22:00. Any rehearsal that is to run past 22:00 needs the caretaker Marcus Bell's agreement in advance, and the caretaker must agree before the confirmed end time of any main-stage evening booking is changed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Priya Nair (Ashford Players)",
+    "text": "The Ashford Players confirm our autumn production of 'The Lantern Men' for the week of 9 to 14 November 2026 at The Marlowe Playhouse, with the dress rehearsal on the main stage on Thursday 12 November.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "quote",
+    "from": "Grove Cafe Catering (Tessa Vaughan)",
+    "text": "Quote for interval drinks service for the Ashford Players week, 9 to 14 November: 56 covers per evening at 4 per cover, delivered to the foyer bar by 18:30.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "CleanSweep Services (Rob Adeyemi)",
+    "text": "Our evening crew rate is 90 per callout for up to two hours on site; we bill from the time we arrive at the stage door on Chapel Lane.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-02",
+    "type": "instruction",
+    "from": "Helen",
+    "text": "House note: any supplier order above 500 needs the finance lead's sign-off before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Northgate Stewards (Iris Falk)",
+    "text": "Front-of-house stewarding for evening events at The Marlowe: two stewards, booked in half-hour blocks, and we ask that shifts end no later than 23:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Helen",
+    "text": "Booked the Ashford Players dress rehearsal of 'The Lantern Men' on the main stage for 12 November 2026, 19:00 to 22:00, using the full evening rehearsal window the house rule allows.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e2"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Helen",
+    "text": "Booked the CleanSweep evening crew for 12 November 2026 after the dress rehearsal, on site until 22:30, since the rehearsal can run to 22:00 under the house rule and they bill from arrival at the stage door.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-23",
+    "type": "decision",
+    "from": "Helen",
+    "text": "Booked two Northgate stewards for the 12 November dress rehearsal evening, shift 18:30 to 22:30, to cover the half hour after the rehearsal's 22:00 finish while the cast clears the stage.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e7"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-28",
+    "type": "decision",
+    "from": "Helen",
+    "text": "Scheduled the Ashford Players technical rehearsal on the main stage for 18 November 2026, 19:00 to 21:00, comfortably inside the evening rehearsal window.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e2"
+    ],
+    "record": "EV-5",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Helen",
+    "text": "Placed the Grove Cafe interval drinks order for the Ashford Players week, 56 covers per evening at 4 per cover as quoted, delivery to the foyer bar by 18:30.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-19",
+    "type": "minutes",
+    "from": "The Marlowe Playhouse board",
+    "text": "Board minutes, 18 August: ticket sales for the autumn season are healthy; the foyer bar refurbishment is postponed to January 2027; the caretaker raised the question of evening noise on Chapel Lane.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-01",
+    "type": "email",
+    "from": "Priya Nair (Ashford Players)",
+    "text": "Cast list for 'The Lantern Men' is now final at 14 performers; please make sure the main stage is clear of set pieces from the youth workshop before our November dates.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Helen",
+    "text": "Booked the monthly Chapel Lane Open Mic on the main stage for 20 November 2026, 19:30 to 22:00, as a standing community night.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "EV-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Dario Finch (Chapel Lane Open Mic)",
+    "text": "Thanks for locking in 20 November — we'll run the open mic 19:30 to 22:00 as usual and bring our own PA.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-06",
+    "type": "invoice",
+    "from": "CleanSweep Services (Rob Adeyemi)",
+    "text": "Invoice for September stage-door and auditorium callouts: four visits at 90 each, total 360, payable by 20 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-24",
+    "type": "email",
+    "from": "The Marlowe Playhouse board",
+    "text": "Following the noise complaint from Chapel Lane residents discussed at the October meeting, the board has agreed that from 1 November 2026 all evening rehearsals on the main stage must end by 21:30. This replaces the previous 22:00 rehearsal limit. Community performances such as the open mic are unaffected, and the caretaker's agreement is still required before changing the confirmed end time of any main-stage evening booking.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-27",
+    "type": "email",
+    "from": "Priya Nair (Ashford Players)",
+    "text": "Looking forward to next month — can you confirm the final timings for the 12 November dress rehearsal so I can tell the cast?",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-30",
+    "type": "note",
+    "from": "Helen",
+    "text": "Reminder to myself: print the November foyer posters and check the lantern stock for the Lantern Men run before 9 November.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Ashford Players dress rehearsal, The Lantern Men",
+    "fields": {
+     "date": "2026-11-12",
+     "place": "main stage",
+     "start": "19:00",
+     "end": "22:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "CleanSweep evening crew after dress rehearsal",
+    "fields": {
+     "date": "2026-11-12",
+     "crew": "CleanSweep Services",
+     "arrive": "20:30",
+     "end": "22:30",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Northgate steward shift, dress rehearsal evening",
+    "fields": {
+     "date": "2026-11-12",
+     "stewards": "2",
+     "start": "18:30",
+     "end": "22:30",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Chapel Lane Open Mic, November",
+    "fields": {
+     "date": "2026-11-20",
+     "place": "main stage",
+     "start": "19:30",
+     "end": "22:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Ashford Players technical rehearsal",
+    "fields": {
+     "date": "2026-11-18",
+     "place": "main stage",
+     "start": "19:00",
+     "end": "21:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Grove Cafe interval drinks, Lantern Men week",
+    "fields": {
+     "supplier": "Grove Cafe Catering",
+     "covers": "56",
+     "price_per_cover": "4",
+     "delivery": "foyer bar",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "end"
+    ],
+    "from": "Marcus Bell (caretaker)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please tidy up the plan for the 12 November dress rehearsal: set the crew and steward bookings to match the rehearsal evening, and send Marcus Bell a note asking him to agree to the rehearsal's updated finish time.",
+  "expect": [
+   {
+    "record": "EV-2",
+    "field": "end",
+    "value": "22:00",
+    "stale": [
+     "22:30"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-3",
+    "field": "end",
+    "value": "22:00",
+    "stale": [
+     "22:30"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Marcus Bell (caretaker)",
+    "regarding": "EV-1",
+    "says": [
+     "21:30",
+     "2026-11-12"
+    ],
+    "stale": [
+     "22:00"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The board's 24 October email amends the rehearsal curfew rule from 22:00 to 21:30 effective 1 November. The dress rehearsal decision (EV-1) rests on the old rule, so its end time is touched, but changing a confirmed main-stage end time needs the caretaker's consent under the house rule, so it is ASK: the assistant must ask Marcus, not edit EV-1. The CleanSweep crew (EV-2) cites the rule directly and the steward shift (EV-3) rests on the rehearsal decision two hops out; both only need internal adjustment to end at 22:00 once the rehearsal finishes at 21:30, so both are REVISE. The 18 November technical rehearsal ends at 21:00, valid under the amended rule, so it is KEEP; the open mic on 20 November is also KEEP because the amendment explicitly exempts community performances, making its 22:00 finish a distractor.",
+  "noise_kit": [
+   {
+    "kind": "booking",
+    "topic": "youth workshop",
+    "counterpart": "Lena Marsh",
+    "org": "Marlowe Youth Theatre",
+    "item": "weekly youth workshop",
+    "values": [
+     "main stage",
+     "studio room",
+     "rehearsal room"
+    ],
+    "place": "main stage"
+   },
+   {
+    "kind": "booking",
+    "topic": "open mic monthly",
+    "counterpart": "Dario Finch",
+    "org": "Chapel Lane Open Mic",
+    "item": "monthly open mic night",
+    "values": [
+     "main stage",
+     "foyer bar",
+     "studio room"
+    ],
+    "place": "main stage"
+   },
+   {
+    "kind": "order",
+    "topic": "interval drinks restock",
+    "counterpart": "Tessa Vaughan",
+    "org": "Grove Cafe Catering",
+    "item": "interval drinks covers",
+    "unit": "covers",
+    "values": [
+     "40",
+     "56",
+     "72",
+     "30"
+    ],
+    "place": "foyer bar"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning callouts",
+    "counterpart": "Rob Adeyemi",
+    "org": "CleanSweep Services",
+    "item": "evening cleaning callout",
+    "unit": "visits",
+    "values": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "stage door, Chapel Lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "steward shifts",
+    "counterpart": "Iris Falk",
+    "org": "Northgate Stewards",
+    "item": "front-of-house steward shift",
+    "values": [
+     "auditorium",
+     "foyer bar",
+     "main stage"
+    ],
+    "place": "foyer bar"
+   },
+   {
+    "kind": "order",
+    "topic": "poster printing",
+    "counterpart": "Sam Whitlock",
+    "org": "Whitlock Print",
+    "item": "foyer posters",
+    "unit": "posters",
+    "values": [
+     "25",
+     "50",
+     "100"
+    ],
+    "place": "foyer bar"
+   },
+   {
+    "kind": "order",
+    "topic": "bar glassware",
+    "counterpart": "Tessa Vaughan",
+    "org": "Grove Cafe Catering",
+    "item": "bar glassware restock",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "foyer bar"
+   },
+   {
+    "kind": "booking",
+    "topic": "am-dram rehearsals",
+    "counterpart": "Priya Nair",
+    "org": "Ashford Players",
+    "item": "evening rehearsal slot",
+    "values": [
+     "main stage",
+     "rehearsal room",
+     "studio room"
+    ],
+    "place": "main stage"
+   },
+   {
+    "kind": "order",
+    "topic": "stage lamps",
+    "counterpart": "Owen Pruitt",
+    "org": "Pruitt Stage Supplies",
+    "item": "replacement stage lamps",
+    "unit": "lamps",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "stage door, Chapel Lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "book club",
+    "counterpart": "Marcus Bell",
+    "org": "Chapel Lane Book Club",
+    "item": "monthly book club evening",
+    "values": [
+     "studio room",
+     "foyer bar",
+     "rehearsal room"
+    ],
+    "place": "studio room"
+   },
+   {
+    "kind": "order",
+    "topic": "programme paper",
+    "counterpart": "Sam Whitlock",
+    "org": "Whitlock Print",
+    "item": "programme paper reams",
+    "unit": "reams",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "box office"
+   }
+  ],
+  "id": "K100-2-10",
+  "tier": 100,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"no\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history fixes a half-hour post-rehearsal allowance for stewards, but does not establish that the CleanSweep crew's end must move to 22:00; its 22:30 booking and two-hour rate do not uniquely imply that adjustment. The task requires workplace action, but explicitly hints at a change by asking for consent to the rehearsal's 'updated finish time'.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "no",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history fixes a half-hour post-rehearsal allowance for stewards, but does not establish that the CleanSweep crew's end must move to 22:00; its 22:30 booking and two-hour rate do not uniquely imply that adjustment. The task requires workplace action, but explicitly hints at a change by asking for consent to the rehearsal's 'updated finish time'."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3705,
+    "completion_tokens": 201,
+    "reasoning_tokens": 86,
+    "cached_tokens": 0
+   },
+   "cost": 0.056355,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aba317532eea2ce8d99eb62985a3e0f6dbf650a764c536465219f5ccb5b545a7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core has 20 events, 6 decisions, and the change falls 9 days before the task day with 2 core events after it, so the tier is met. The change amends rule e2, voiding the ASK (EV-1) and REVISE (EV-2, EV-3) decisions while the KEEP decisions (EV-4, EV-5) stand, which fits class 2. The task's word 'updated' slightly hints that something changed, and the REVISE value of 22:00 is derived rather than fixed directly by the amendment, but neither makes the expected state wrong.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core has 20 events, 6 decisions, and the change falls 9 days before the task day with 2 core events after it, so the tier is met. The change amends rule e2, voiding the ASK (EV-1) and REVISE (EV-2, EV-3) decisions while the KEEP decisions (EV-4, EV-5) stand, which fits class 2. The task's word 'updated' slightly hints that something changed, and the REVISE value of 22:00 is derived rather than fixed directly by the amendment, but neither makes the expected state wrong."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5347,
+    "completion_tokens": 2181,
+    "reasoning_tokens": 1945,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016252,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aba317532eea2ce8d99eb62985a3e0f6dbf650a764c536465219f5ccb5b545a7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment's own terms (21:30 limit, community events exempt) cleanly yield ASK on EV-1 under the caretaker-consent clause, KEEP on EV-5 and EV-4, and REVISE on EV-2/EV-3 to end 22:00 once the rehearsal finishes 21:30. EV-2's new 22:00 end is slightly underdetermined (the crew bills two hours from 20:30 arrival, which would allow 22:30), but the task's 'match the rehearsal evening' makes 22:00 the reasonable reading. Counts, change distance (9 days) and two post-change core events all meet tier 100, and the change sits at event 93 among routine noise.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment's own terms (21:30 limit, community events exempt) cleanly yield ASK on EV-1 under the caretaker-consent clause, KEEP on EV-5 and EV-4, and REVISE on EV-2/EV-3 to end 22:00 once the rehearsal finishes 21:30. EV-2's new 22:00 end is slightly underdetermined (the crew bills two hours from 20:30 arrival, which would allow 22:30), but the task's 'match the rehearsal evening' makes 22:00 the reasonable reading. Counts, change distance (9 days) and two post-change core events all meet tier 100, and the change sits at event 93 among routine noise."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3757,
+    "completion_tokens": 814,
+    "reasoning_tokens": 616,
+    "cached_tokens": 384
+   },
+   "cost": 0.00840364,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aba317532eea2ce8d99eb62985a3e0f6dbf650a764c536465219f5ccb5b545a7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

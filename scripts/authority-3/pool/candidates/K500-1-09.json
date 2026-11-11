@@ -1,0 +1,659 @@
+{
+ "id": "K500-1-09",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 1,
+ "idx": 8,
+ "setting": "Mini-storage facility manager at LockBox Self Storage, a 300-unit site",
+ "prompt_sha256": "8fea6f1931dd7be282ba1225212f340f5959d76b4ff3d62d7b582a3d757bf917",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Climate unit rate rise at LockBox\",\n \"setting\": \"Mini-storage facility manager at LockBox Self Storage, a 300-unit site\",\n \"owner\": \"Rosa\",\n \"org\": \"LockBox Self Storage\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rosa Delgado\", \"text\": \"Standing instruction: any supplier order over $500 needs assistant manager Theo Grant's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rosa Delgado\", \"text\": \"Standing instruction: any change to a confirmed tenant booking — the rate, the unit or the move-in date — requires the tenant's consent before it is made.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"Site profile for your records: LockBox has 300 units in total, of which 60 are climate-controlled units in Building C.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"notice\", \"from\": \"Rosa Delgado\", \"text\": \"Gate access hours are 06:00 to 22:00 daily; the office is staffed 09:00 to 17:00 on weekdays.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"Confirmed pricing: climate-controlled units at LockBox rent at $145 per month, effective through 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"For completeness: standard drive-up units at LockBox rent at $110 per month.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Ordered 24 disc locks from SecureLine Supplies for $216; under the $500 threshold so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Posted the front-desk rate sheet: climate-controlled 10x10 units listed at $145 per month, per regional pricing.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"SecureLine Supplies\", \"text\": \"Your order of 24 disc locks has shipped; delivery expected at the LockBox loading bay this week.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Marcus Vale\", \"text\": \"I'm interested in a climate-controlled unit. You confirmed unit C-08, a 10x10 in Building C, is available from 2026-10-01.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Sent Marcus Vale a draft quote for climate unit C-08 at $145 per month, the current climate rate, for a move-in on 2026-10-20.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e10\"], \"record\": \"CL-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Confirmed Marcus Vale's move-in booking: unit C-08 on 2026-10-20, Elevator 3 reserved 10:00 to 12:00, at the quoted $145 per month.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-25\", \"type\": \"task\", \"from\": \"Rosa Delgado\", \"text\": \"To-do: restock moving boxes at the front desk before 2026-08-15.\", \"role\": \"obligation\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"fact\", \"from\": \"Priya Anand\", \"text\": \"Priya Anand rents climate unit C-02; her current lease runs to 2026-10-31.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-10\", \"type\": \"message\", \"from\": \"Theo Grant\", \"text\": \"Cleaners will do Building C hallways on the first Tuesday of each month; please keep the corridor carts clear.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Ordered 40 moving boxes from PackRight Packaging for $180 for front-desk retail stock.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"Reminder that standard drive-up units stay at $110 per month through 2026; climate pricing is being reviewed separately and I'll write about that soon.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-01\", \"type\": \"notice\", \"from\": \"Rosa Delgado\", \"text\": \"September rate card printed for the front desk: climate-controlled units $145 per month, drive-up units $110 per month.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Signed Priya Anand's renewal for climate unit C-02: twelve months from 2026-11-01 at $145 per month, the current climate rate.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e14\"], \"record\": \"CL-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Rosa Delgado\", \"text\": \"Staff meeting notes: autumn lockdown checks start in October; Theo to audit unit inventory tags by month end.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"fact\", \"from\": \"LiftSafe Services\", \"text\": \"Elevator 3 in Building C is scheduled for routine servicing on 2026-10-05 and will be out of service that day.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Booked the quarterly pest-control visit from ClearPest for $320, within my sign-off limit.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Rosa Delgado\", \"text\": \"Reminder: lien-auction paperwork for delinquent units must be double-checked against the ledger before listing.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"New pricing: the climate-controlled unit rate rises to $165 per month from 2026-10-15. Leases already signed before 2026-10-15 keep their current rate until their next renewal; all new quotes, rate sheets and unsigned deals must use $165 from that date.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Rosa Delgado\", \"text\": \"October gate codes are now active; tenants can collect their new code at the front desk with photo ID.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"LiftSafe Services\", \"text\": \"Elevator 3 servicing is complete and the lift is back in service in Building C.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Rosa Delgado\", \"text\": \"To-do: finalise Marcus Vale's paperwork for unit C-08 before his move-in on 2026-10-20.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Marcus Vale\", \"text\": \"Just confirming I'm still planning to move into unit C-08 on 2026-10-20 and will need the elevator slot we discussed.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Disc locks restock — SecureLine Supplies\", \"fields\": {\"item\": \"disc locks\", \"quantity\": \"24\", \"amount\": \"216\", \"supplier\": \"SecureLine Supplies\", \"status\": \"received\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Moving boxes restock — PackRight Packaging\", \"fields\": {\"item\": \"moving boxes\", \"quantity\": \"40\", \"amount\": \"180\", \"supplier\": \"PackRight Packaging\", \"status\": \"received\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Quarterly pest control — ClearPest\", \"fields\": {\"item\": \"pest control visit\", \"quantity\": \"1\", \"amount\": \"320\", \"supplier\": \"ClearPest\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Front-desk rate sheet — climate units\", \"fields\": {\"unit_type\": \"climate 10x10\", \"rate\": \"145\", \"effective\": \"2026-06-15\", \"status\": \"posted\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Quote — Marcus Vale, unit C-08\", \"fields\": {\"tenant\": \"Marcus Vale\", \"unit\": \"C-08\", \"rate\": \"145\", \"movein\": \"2026-10-20\", \"status\": \"draft\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Move-in booking — Marcus Vale\", \"fields\": {\"tenant\": \"Marcus Vale\", \"unit\": \"C-08\", \"date\": \"2026-10-20\", \"elevator\": \"Elevator 3\", \"time\": \"10:00\", \"rate\": \"145\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-3\", \"collection\": \"crm\", \"title\": \"Lease renewal — Priya Anand, unit C-02\", \"fields\": {\"tenant\": \"Priya Anand\", \"unit\": \"C-02\", \"rate\": \"145\", \"start\": \"2026-11-01\", \"term_months\": \"12\", \"status\": \"signed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"rate\"], \"from\": \"Marcus Vale\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Marcus Vale his final quote for climate unit C-08 with the current monthly rate ahead of his move-in, and make sure the front-desk rate sheet and his quote record show the right figure.\",\n \"expect\": [\n  {\"record\": \"CL-1\", \"field\": \"rate\", \"value\": \"165\", \"stale\": [\"145\"]},\n  {\"record\": \"CL-2\", \"field\": \"rate\", \"value\": \"165\", \"stale\": [\"145\"]},\n  {\"record\": \"CL-2\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"draft\"], \"task\": true},\n  {\"message_to\": \"Marcus Vale\", \"regarding\": \"CL-2\", \"says\": [\"165\"], \"stale\": [\"145\"], \"task\": true},\n  {\"message_to\": \"Marcus Vale\", \"regarding\": \"EV-1\", \"says\": [\"165\"], \"stale\": [\"145\"]}\n ],\n \"why\": \"The regional office raised the climate rate to $165 from 2026-10-15 (change revokes the $145 fact). The rate sheet (CL-1) and Marcus's draft quote (CL-2) rest on that fact and are revised directly; Marcus's confirmed move-in booking (EV-1) rests on the draft quote — two hops — and changing a confirmed booking's rate needs his consent, so the assistant must ask rather than edit. Priya's renewal (CL-3) was signed before 2026-10-15, so under the amendment's own terms it keeps $145 and stays untouched; the drive-up $110 rate is a distractor.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"disc lock restock\", \"counterpart\": \"SecureLine Supplies\", \"org\": \"SecureLine Supplies\", \"item\": \"disc locks\", \"unit\": \"locks\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"LockBox loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"moving box restock\", \"counterpart\": \"PackRight Packaging\", \"org\": \"PackRight Packaging\", \"item\": \"moving boxes\", \"unit\": \"boxes\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"LockBox front desk\"},\n  {\"kind\": \"order\", \"topic\": \"packing tape restock\", \"counterpart\": \"PackRight Packaging\", \"org\": \"PackRight Packaging\", \"item\": \"packing tape rolls\", \"unit\": \"rolls\", \"values\": [\"24\", \"48\", \"72\"], \"place\": \"LockBox front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Elevator 3 move-in slots\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"Elevator 3 reservation\", \"unit\": \"slot\", \"values\": [\"Building C Elevator 3 morning\", \"Building C Elevator 3 midday\", \"Building C Elevator 3 afternoon\"], \"place\": \"Building C\"},\n  {\"kind\": \"booking\", \"topic\": \"truck bay deliveries\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"truck bay reservation\", \"unit\": \"slot\", \"values\": [\"loading bay north\", \"loading bay south\"], \"place\": \"LockBox loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"keypad battery restock\", \"counterpart\": \"GateTech Systems\", \"org\": \"GateTech Systems\", \"item\": \"keypad batteries\", \"unit\": \"batteries\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"LockBox gate house\"},\n  {\"kind\": \"order\", \"topic\": \"gate remote restock\", \"counterpart\": \"GateTech Systems\", \"org\": \"GateTech Systems\", \"item\": \"gate remotes\", \"unit\": \"remotes\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"LockBox gate house\"},\n  {\"kind\": \"order\", \"topic\": \"office paper restock\", \"counterpart\": \"OfficeMart\", \"org\": \"OfficeMart\", \"item\": \"printer paper\", \"unit\": \"reams\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"LockBox office\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"CleanPro Distributors\", \"org\": \"CleanPro Distributors\", \"item\": \"cleaning supplies\", \"unit\": \"cases\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"LockBox storage closet\"},\n  {\"kind\": \"booking\", \"topic\": \"lobby auction previews\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"lobby reservation\", \"unit\": \"slot\", \"values\": [\"front lobby morning\", \"front lobby afternoon\"], \"place\": \"LockBox front lobby\"},\n  {\"kind\": \"order\", \"topic\": \"padlock hasp restock\", \"counterpart\": \"SecureLine Supplies\", \"org\": \"SecureLine Supplies\", \"item\": \"padlock hasps\", \"unit\": \"hasps\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"LockBox loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"conference nook staff meetings\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"conference nook reservation\", \"unit\": \"slot\", \"values\": [\"office conference nook morning\", \"office conference nook afternoon\"], \"place\": \"LockBox office\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3236,
+    "completion_tokens": 7247,
+    "reasoning_tokens": 3194,
+    "cached_tokens": 0
+   },
+   "cost": 0.118413,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Climate unit rate rise at LockBox\",\n \"setting\": \"Mini-storage facility manager at LockBox Self Storage, a 300-unit site\",\n \"owner\": \"Rosa\",\n \"org\": \"LockBox Self Storage\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rosa Delgado\", \"text\": \"Standing instruction: any supplier order over $500 needs assistant manager Theo Grant's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rosa Delgado\", \"text\": \"Standing instruction: any change to a confirmed tenant booking — the rate, the unit or the move-in date — requires the tenant's consent before it is made.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"Site profile for your records: LockBox has 300 units in total, of which 60 are climate-controlled units in Building C.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"notice\", \"from\": \"Rosa Delgado\", \"text\": \"Gate access hours are 06:00 to 22:00 daily; the office is staffed 09:00 to 17:00 on weekdays.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"Confirmed pricing: climate-controlled units at LockBox rent at $145 per month, effective through 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"For completeness: standard drive-up units at LockBox rent at $110 per month.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Ordered 24 disc locks from SecureLine Supplies for $216; under the $500 threshold so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Posted the front-desk rate sheet: climate-controlled 10x10 units listed at $145 per month, per regional pricing.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"SecureLine Supplies\", \"text\": \"Your order of 24 disc locks has shipped; delivery expected at the LockBox loading bay this week.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Marcus Vale\", \"text\": \"I'm interested in a climate-controlled unit. You confirmed unit C-08, a 10x10 in Building C, is available from 2026-10-01.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Sent Marcus Vale a draft quote for climate unit C-08 at $145 per month, the current climate rate, for a move-in on 2026-10-20.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e10\"], \"record\": \"CL-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Confirmed Marcus Vale's move-in booking: unit C-08 on 2026-10-20, Elevator 3 reserved 10:00 to 12:00, at the quoted $145 per month.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-25\", \"type\": \"task\", \"from\": \"Rosa Delgado\", \"text\": \"To-do: restock moving boxes at the front desk before 2026-08-15.\", \"role\": \"obligation\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Priya Anand\", \"text\": \"Priya Anand rents climate unit C-02; her current lease runs to 2026-10-31.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-10\", \"type\": \"message\", \"from\": \"Theo Grant\", \"text\": \"Cleaners will do Building C hallways on the first Tuesday of each month; please keep the corridor carts clear.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Ordered 40 moving boxes from PackRight Packaging for $180 for front-desk retail stock.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"Reminder that standard drive-up units stay at $110 per month through 2026; climate pricing is being reviewed separately and I'll write about that soon.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-01\", \"type\": \"notice\", \"from\": \"Rosa Delgado\", \"text\": \"September rate card printed for the front desk: climate-controlled units $145 per month, drive-up units $110 per month.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Signed Priya Anand's renewal for climate unit C-02: twelve months from 2026-11-01 at $145 per month, the current climate rate.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e14\"], \"record\": \"CL-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Rosa Delgado\", \"text\": \"Staff meeting notes: autumn lockdown checks start in October; Theo to audit unit inventory tags by month end.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"notice\", \"from\": \"LiftSafe Services\", \"text\": \"Elevator 3 in Building C is scheduled for routine servicing on 2026-10-05 and will be out of service that day.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Booked the quarterly pest-control visit from ClearPest for $320, within my sign-off limit.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Rosa Delgado\", \"text\": \"Reminder: lien-auction paperwork for delinquent units must be double-checked against the ledger before listing.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"New pricing: the climate-controlled unit rate rises to $165 per month from 2026-10-15. Leases already signed before 2026-10-15 keep their current rate until their next renewal; all new quotes, rate sheets and unsigned deals must use $165 from that date.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Rosa Delgado\", \"text\": \"October gate codes are now active; tenants can collect their new code at the front desk with photo ID.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"LiftSafe Services\", \"text\": \"Elevator 3 servicing is complete and the lift is back in service in Building C.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Rosa Delgado\", \"text\": \"To-do: finalise Marcus Vale's paperwork for unit C-08 before his move-in on 2026-10-20.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Marcus Vale\", \"text\": \"Just confirming I'm still planning to move into unit C-08 on 2026-10-20 and will need the elevator slot we discussed.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Disc locks restock — SecureLine Supplies\", \"fields\": {\"item\": \"disc locks\", \"quantity\": \"24\", \"amount\": \"216\", \"supplier\": \"SecureLine Supplies\", \"status\": \"received\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Moving boxes restock — PackRight Packaging\", \"fields\": {\"item\": \"moving boxes\", \"quantity\": \"40\", \"amount\": \"180\", \"supplier\": \"PackRight Packaging\", \"status\": \"received\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Quarterly pest control — ClearPest\", \"fields\": {\"item\": \"pest control visit\", \"quantity\": \"1\", \"amount\": \"320\", \"supplier\": \"ClearPest\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Front-desk rate sheet — climate units\", \"fields\": {\"unit_type\": \"climate 10x10\", \"rate\": \"145\", \"effective\": \"2026-06-15\", \"status\": \"posted\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Quote — Marcus Vale, unit C-08\", \"fields\": {\"tenant\": \"Marcus Vale\", \"unit\": \"C-08\", \"rate\": \"145\", \"movein\": \"2026-10-20\", \"status\": \"draft\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Move-in booking — Marcus Vale\", \"fields\": {\"tenant\": \"Marcus Vale\", \"unit\": \"C-08\", \"date\": \"2026-10-20\", \"elevator\": \"Elevator 3\", \"time\": \"10:00\", \"rate\": \"145\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-3\", \"collection\": \"crm\", \"title\": \"Lease renewal — Priya Anand, unit C-02\", \"fields\": {\"tenant\": \"Priya Anand\", \"unit\": \"C-02\", \"rate\": \"145\", \"start\": \"2026-11-01\", \"term_months\": \"12\", \"status\": \"signed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"rate\"], \"from\": \"Marcus Vale\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Marcus Vale his final quote for climate unit C-08 with the current monthly rate ahead of his move-in, and make sure the front-desk rate sheet and his quote record show the right figure.\",\n \"expect\": [\n  {\"record\": \"CL-1\", \"field\": \"rate\", \"value\": \"165\", \"stale\": [\"145\"]},\n  {\"record\": \"CL-2\", \"field\": \"rate\", \"value\": \"165\", \"stale\": [\"145\"]},\n  {\"record\": \"CL-2\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"draft\"], \"task\": true},\n  {\"message_to\": \"Marcus Vale\", \"regarding\": \"CL-2\", \"says\": [\"165\"], \"stale\": [\"145\"], \"task\": true},\n  {\"message_to\": \"Marcus Vale\", \"regarding\": \"EV-1\", \"says\": [\"165\"], \"stale\": [\"145\"]}\n ],\n \"why\": \"The regional office raised the climate rate to $165 from 2026-10-15 (change revokes the $145 fact). The rate sheet (CL-1) and Marcus's draft quote (CL-2) rest on that fact and are revised directly; Marcus's confirmed move-in booking (EV-1) rests on the draft quote — two hops — and changing a confirmed booking's rate needs his consent, so the assistant must ask rather than edit. Priya's renewal (CL-3) was signed before 2026-10-15, so under the amendment's own terms it keeps $145 and stays untouched; the drive-up $110 rate is a distractor.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"disc lock restock\", \"counterpart\": \"SecureLine Supplies\", \"org\": \"SecureLine Supplies\", \"item\": \"disc locks\", \"unit\": \"locks\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"LockBox loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"moving box restock\", \"counterpart\": \"PackRight Packaging\", \"org\": \"PackRight Packaging\", \"item\": \"moving boxes\", \"unit\": \"boxes\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"LockBox front desk\"},\n  {\"kind\": \"order\", \"topic\": \"packing tape restock\", \"counterpart\": \"PackRight Packaging\", \"org\": \"PackRight Packaging\", \"item\": \"packing tape rolls\", \"unit\": \"rolls\", \"values\": [\"24\", \"48\", \"72\"], \"place\": \"LockBox front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Elevator 3 move-in slots\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"Elevator 3 reservation\", \"unit\": \"slot\", \"values\": [\"Building C Elevator 3 morning\", \"Building C Elevator 3 midday\", \"Building C Elevator 3 afternoon\"], \"place\": \"Building C\"},\n  {\"kind\": \"booking\", \"topic\": \"truck bay deliveries\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"truck bay reservation\", \"unit\": \"slot\", \"values\": [\"loading bay north\", \"loading bay south\"], \"place\": \"LockBox loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"keypad battery restock\", \"counterpart\": \"GateTech Systems\", \"org\": \"GateTech Systems\", \"item\": \"keypad batteries\", \"unit\": \"batteries\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"LockBox gate house\"},\n  {\"kind\": \"order\", \"topic\": \"gate remote restock\", \"counterpart\": \"GateTech Systems\", \"org\": \"GateTech Systems\", \"item\": \"gate remotes\", \"unit\": \"remotes\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"LockBox gate house\"},\n  {\"kind\": \"order\", \"topic\": \"office paper restock\", \"counterpart\": \"OfficeMart\", \"org\": \"OfficeMart\", \"item\": \"printer paper\", \"unit\": \"reams\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"LockBox office\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"CleanPro Distributors\", \"org\": \"CleanPro Distributors\", \"item\": \"cleaning supplies\", \"unit\": \"cases\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"LockBox storage closet\"},\n  {\"kind\": \"booking\", \"topic\": \"lobby auction previews\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"lobby reservation\", \"unit\": \"slot\", \"values\": [\"front lobby morning\", \"front lobby afternoon\"], \"place\": \"LockBox front lobby\"},\n  {\"kind\": \"order\", \"topic\": \"padlock hasp restock\", \"counterpart\": \"SecureLine Supplies\", \"org\": \"SecureLine Supplies\", \"item\": \"padlock hasps\", \"unit\": \"hasps\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"LockBox loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"conference nook staff meetings\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"conference nook reservation\", \"unit\": \"slot\", \"values\": [\"office conference nook morning\", \"office conference nook afternoon\"], \"place\": \"LockBox office\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7448,
+    "completion_tokens": 4079,
+    "reasoning_tokens": 26,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0752346,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e14: type «fact» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\n- e21: type «fact» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Climate unit rate rise at LockBox\",\n \"setting\": \"Mini-storage facility manager at LockBox Self Storage, a 300-unit site\",\n \"owner\": \"Rosa\",\n \"org\": \"LockBox Self Storage\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rosa Delgado\", \"text\": \"Standing instruction: any supplier order over $500 needs assistant manager Theo Grant's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rosa Delgado\", \"text\": \"Standing instruction: any change to a confirmed tenant booking — the rate, the unit or the move-in date — requires the tenant's consent before it is made.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"Site profile for your records: LockBox has 300 units in total, of which 60 are climate-controlled units in Building C.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"notice\", \"from\": \"Rosa Delgado\", \"text\": \"Gate access hours are 06:00 to 22:00 daily; the office is staffed 09:00 to 17:00 on weekdays.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"Confirmed pricing: climate-controlled units at LockBox rent at $145 per month, effective through 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"For completeness: standard drive-up units at LockBox rent at $110 per month.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Ordered 24 disc locks from SecureLine Supplies for $216; under the $500 threshold so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Posted the front-desk rate sheet: climate-controlled 10x10 units listed at $145 per month, per regional pricing.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"SecureLine Supplies\", \"text\": \"Your order of 24 disc locks has shipped; delivery expected at the LockBox loading bay this week.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Marcus Vale\", \"text\": \"I'm interested in a climate-controlled unit. You confirmed unit C-08, a 10x10 in Building C, is available from 2026-10-01.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Sent Marcus Vale a draft quote for climate unit C-08 at $145 per month, the current climate rate, for a move-in on 2026-10-20.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e10\"], \"record\": \"CL-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Confirmed Marcus Vale's move-in booking: unit C-08 on 2026-10-20, Elevator 3 reserved 10:00 to 12:00, at the quoted $145 per month.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-25\", \"type\": \"task\", \"from\": \"Rosa Delgado\", \"text\": \"To-do: restock moving boxes at the front desk before 2026-08-15.\", \"role\": \"obligation\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Priya Anand\", \"text\": \"Priya Anand rents climate unit C-02; her current lease runs to 2026-10-31.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-10\", \"type\": \"message\", \"from\": \"Theo Grant\", \"text\": \"Cleaners will do Building C hallways on the first Tuesday of each month; please keep the corridor carts clear.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Ordered 40 moving boxes from PackRight Packaging for $180 for front-desk retail stock.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"Reminder that standard drive-up units stay at $110 per month through 2026; climate pricing is being reviewed separately and I'll write about that soon.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-01\", \"type\": \"notice\", \"from\": \"Rosa Delgado\", \"text\": \"September rate card printed for the front desk: climate-controlled units $145 per month, drive-up units $110 per month.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Signed Priya Anand's renewal for climate unit C-02: twelve months from 2026-11-01 at $145 per month, the current climate rate.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e14\"], \"record\": \"CL-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Rosa Delgado\", \"text\": \"Staff meeting notes: autumn lockdown checks start in October; Theo to audit unit inventory tags by month end.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"notice\", \"from\": \"LiftSafe Services\", \"text\": \"Elevator 3 in Building C is scheduled for routine servicing on 2026-10-05 and will be out of service that day.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Rosa Delgado\", \"text\": \"Booked the quarterly pest-control visit from ClearPest for $320, within my sign-off limit.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Rosa Delgado\", \"text\": \"Reminder: lien-auction paperwork for delinquent units must be double-checked against the ledger before listing.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Carla Nguyen (Regional Office)\", \"text\": \"New pricing: the climate-controlled unit rate rises to $165 per month from 2026-10-15. Leases already signed before 2026-10-15 keep their current rate until their next renewal; all new quotes, rate sheets and unsigned deals must use $165 from that date.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Rosa Delgado\", \"text\": \"October gate codes are now active; tenants can collect their new code at the front desk with photo ID.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"LiftSafe Services\", \"text\": \"Elevator 3 servicing is complete and the lift is back in service in Building C.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Rosa Delgado\", \"text\": \"To-do: finalise Marcus Vale's paperwork for unit C-08 before his move-in on 2026-10-20.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-10\", \"type\": \"message\", \"from\": \"Marcus Vale\", \"text\": \"Just confirming I'm still planning to move into unit C-08 on 2026-10-20 and will need the elevator slot we discussed.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Disc locks restock — SecureLine Supplies\", \"fields\": {\"item\": \"disc locks\", \"quantity\": \"24\", \"amount\": \"216\", \"supplier\": \"SecureLine Supplies\", \"status\": \"received\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Moving boxes restock — PackRight Packaging\", \"fields\": {\"item\": \"moving boxes\", \"quantity\": \"40\", \"amount\": \"180\", \"supplier\": \"PackRight Packaging\", \"status\": \"received\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Quarterly pest control — ClearPest\", \"fields\": {\"item\": \"pest control visit\", \"quantity\": \"1\", \"amount\": \"320\", \"supplier\": \"ClearPest\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Front-desk rate sheet — climate units\", \"fields\": {\"unit_type\": \"climate 10x10\", \"rate\": \"145\", \"effective\": \"2026-06-15\", \"status\": \"posted\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Quote — Marcus Vale, unit C-08\", \"fields\": {\"tenant\": \"Marcus Vale\", \"unit\": \"C-08\", \"rate\": \"145\", \"movein\": \"2026-10-20\", \"status\": \"draft\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Move-in booking — Marcus Vale\", \"fields\": {\"tenant\": \"Marcus Vale\", \"unit\": \"C-08\", \"date\": \"2026-10-20\", \"elevator\": \"Elevator 3\", \"time\": \"10:00\", \"rate\": \"145\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-3\", \"collection\": \"crm\", \"title\": \"Lease renewal — Priya Anand, unit C-02\", \"fields\": {\"tenant\": \"Priya Anand\", \"unit\": \"C-02\", \"rate\": \"145\", \"start\": \"2026-11-01\", \"term_months\": \"12\", \"status\": \"signed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"rate\"], \"from\": \"Marcus Vale\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Marcus Vale his final quote for climate unit C-08 with the current monthly rate ahead of his move-in, and make sure the front-desk rate sheet and his quote record show the right figure.\",\n \"expect\": [\n  {\"record\": \"CL-1\", \"field\": \"rate\", \"value\": \"165\", \"stale\": [\"145\"]},\n  {\"record\": \"CL-2\", \"field\": \"rate\", \"value\": \"165\", \"stale\": [\"145\"]},\n  {\"record\": \"CL-2\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"draft\"], \"task\": true},\n  {\"message_to\": \"Marcus Vale\", \"regarding\": \"CL-2\", \"says\": [\"165\"], \"stale\": [\"145\"], \"task\": true},\n  {\"message_to\": \"Marcus Vale\", \"regarding\": \"EV-1\", \"says\": [\"165\"], \"stale\": [\"145\"]}\n ],\n \"why\": \"The regional office raised the climate rate to $165 from 2026-10-15 (change revokes the $145 fact). The rate sheet (CL-1) and Marcus's draft quote (CL-2) rest on that fact and are revised directly; Marcus's confirmed move-in booking (EV-1) rests on the draft quote — two hops — and changing a confirmed booking's rate needs his consent, so the assistant must ask rather than edit. Priya's renewal (CL-3) was signed before 2026-10-15, so under the amendment's own terms it keeps $145 and stays untouched; the drive-up $110 rate is a distractor.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"disc lock restock\", \"counterpart\": \"SecureLine Supplies\", \"org\": \"SecureLine Supplies\", \"item\": \"disc locks\", \"unit\": \"locks\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"LockBox loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"moving box restock\", \"counterpart\": \"PackRight Packaging\", \"org\": \"PackRight Packaging\", \"item\": \"moving boxes\", \"unit\": \"boxes\", \"values\": [\"20\", \"40\", \"60\", \"80\"], \"place\": \"LockBox front desk\"},\n  {\"kind\": \"order\", \"topic\": \"packing tape restock\", \"counterpart\": \"PackRight Packaging\", \"org\": \"PackRight Packaging\", \"item\": \"packing tape rolls\", \"unit\": \"rolls\", \"values\": [\"24\", \"48\", \"72\"], \"place\": \"LockBox front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Elevator 3 move-in slots\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"Elevator 3 reservation\", \"unit\": \"slot\", \"values\": [\"Building C Elevator 3 morning\", \"Building C Elevator 3 midday\", \"Building C Elevator 3 afternoon\"], \"place\": \"Building C\"},\n  {\"kind\": \"booking\", \"topic\": \"truck bay deliveries\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"truck bay reservation\", \"unit\": \"slot\", \"values\": [\"loading bay north morning\", \"loading bay north afternoon\", \"loading bay south morning\", \"loading bay south afternoon\"], \"place\": \"LockBox loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"keypad battery restock\", \"counterpart\": \"GateTech Systems\", \"org\": \"GateTech Systems\", \"item\": \"keypad batteries\", \"unit\": \"batteries\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"LockBox gate house\"},\n  {\"kind\": \"order\", \"topic\": \"gate remote restock\", \"counterpart\": \"GateTech Systems\", \"org\": \"GateTech Systems\", \"item\": \"gate remotes\", \"unit\": \"remotes\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"LockBox gate house\"},\n  {\"kind\": \"order\", \"topic\": \"office paper restock\", \"counterpart\": \"OfficeMart\", \"org\": \"OfficeMart\", \"item\": \"printer paper\", \"unit\": \"reams\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"LockBox office\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"CleanPro Distributors\", \"org\": \"CleanPro Distributors\", \"item\": \"cleaning supplies\", \"unit\": \"cases\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"LockBox storage closet\"},\n  {\"kind\": \"booking\", \"topic\": \"lobby auction previews\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"lobby reservation\", \"unit\": \"slot\", \"values\": [\"front lobby morning\", \"front lobby midday\", \"front lobby afternoon\"], \"place\": \"LockBox front lobby\"},\n  {\"kind\": \"order\", \"topic\": \"padlock hasp restock\", \"counterpart\": \"SecureLine Supplies\", \"org\": \"SecureLine Supplies\", \"item\": \"padlock hasps\", \"unit\": \"hasps\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"LockBox loading bay\"},\n  {\"kind\": \"booking\", \"topic\": \"conference nook staff meetings\", \"counterpart\": \"Theo Grant\", \"org\": \"LockBox Self Storage\", \"item\": \"conference nook reservation\", \"unit\": \"slot\", \"values\": [\"office conference nook morning\", \"office conference nook midday\", \"office conference nook afternoon\"], \"place\": \"LockBox office\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 11597,
+    "completion_tokens": 4078,
+    "reasoning_tokens": 0,
+    "cached_tokens": 7424
+   },
+   "cost": 0.0759162,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'truck bay deliveries': values needs at least three entries\n- noise topic 'lobby auction previews': values needs at least three entries\n- noise topic 'conference nook staff meetings': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Climate unit rate rise at LockBox",
+  "setting": "Mini-storage facility manager at LockBox Self Storage, a 300-unit site",
+  "owner": "Rosa",
+  "org": "LockBox Self Storage",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Rosa Delgado",
+    "text": "Standing instruction: any supplier order over $500 needs assistant manager Theo Grant's sign-off before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Rosa Delgado",
+    "text": "Standing instruction: any change to a confirmed tenant booking — the rate, the unit or the move-in date — requires the tenant's consent before it is made.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Carla Nguyen (Regional Office)",
+    "text": "Site profile for your records: LockBox has 300 units in total, of which 60 are climate-controlled units in Building C.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "notice",
+    "from": "Rosa Delgado",
+    "text": "Gate access hours are 06:00 to 22:00 daily; the office is staffed 09:00 to 17:00 on weekdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Carla Nguyen (Regional Office)",
+    "text": "Confirmed pricing: climate-controlled units at LockBox rent at $145 per month, effective through 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Carla Nguyen (Regional Office)",
+    "text": "For completeness: standard drive-up units at LockBox rent at $110 per month.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Rosa Delgado",
+    "text": "Ordered 24 disc locks from SecureLine Supplies for $216; under the $500 threshold so no sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Rosa Delgado",
+    "text": "Posted the front-desk rate sheet: climate-controlled 10x10 units listed at $145 per month, per regional pricing.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "CL-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "SecureLine Supplies",
+    "text": "Your order of 24 disc locks has shipped; delivery expected at the LockBox loading bay this week.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Marcus Vale",
+    "text": "I'm interested in a climate-controlled unit. You confirmed unit C-08, a 10x10 in Building C, is available from 2026-10-01.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Rosa Delgado",
+    "text": "Sent Marcus Vale a draft quote for climate unit C-08 at $145 per month, the current climate rate, for a move-in on 2026-10-20.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e10"
+    ],
+    "record": "CL-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Rosa Delgado",
+    "text": "Confirmed Marcus Vale's move-in booking: unit C-08 on 2026-10-20, Elevator 3 reserved 10:00 to 12:00, at the quoted $145 per month.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-25",
+    "type": "task",
+    "from": "Rosa Delgado",
+    "text": "To-do: restock moving boxes at the front desk before 2026-08-15.",
+    "role": "obligation"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-03",
+    "type": "email",
+    "from": "Priya Anand",
+    "text": "Priya Anand rents climate unit C-02; her current lease runs to 2026-10-31.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-10",
+    "type": "message",
+    "from": "Theo Grant",
+    "text": "Cleaners will do Building C hallways on the first Tuesday of each month; please keep the corridor carts clear.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Rosa Delgado",
+    "text": "Ordered 40 moving boxes from PackRight Packaging for $180 for front-desk retail stock.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-21",
+    "type": "email",
+    "from": "Carla Nguyen (Regional Office)",
+    "text": "Reminder that standard drive-up units stay at $110 per month through 2026; climate pricing is being reviewed separately and I'll write about that soon.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-01",
+    "type": "notice",
+    "from": "Rosa Delgado",
+    "text": "September rate card printed for the front desk: climate-controlled units $145 per month, drive-up units $110 per month.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-08",
+    "type": "decision",
+    "from": "Rosa Delgado",
+    "text": "Signed Priya Anand's renewal for climate unit C-02: twelve months from 2026-11-01 at $145 per month, the current climate rate.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e14"
+    ],
+    "record": "CL-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-12",
+    "type": "minutes",
+    "from": "Rosa Delgado",
+    "text": "Staff meeting notes: autumn lockdown checks start in October; Theo to audit unit inventory tags by month end.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-15",
+    "type": "notice",
+    "from": "LiftSafe Services",
+    "text": "Elevator 3 in Building C is scheduled for routine servicing on 2026-10-05 and will be out of service that day.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-18",
+    "type": "decision",
+    "from": "Rosa Delgado",
+    "text": "Booked the quarterly pest-control visit from ClearPest for $320, within my sign-off limit.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-22",
+    "type": "note",
+    "from": "Rosa Delgado",
+    "text": "Reminder: lien-auction paperwork for delinquent units must be double-checked against the ledger before listing.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Carla Nguyen (Regional Office)",
+    "text": "New pricing: the climate-controlled unit rate rises to $165 per month from 2026-10-15. Leases already signed before 2026-10-15 keep their current rate until their next renewal; all new quotes, rate sheets and unsigned deals must use $165 from that date.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-01",
+    "type": "notice",
+    "from": "Rosa Delgado",
+    "text": "October gate codes are now active; tenants can collect their new code at the front desk with photo ID.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-05",
+    "type": "message",
+    "from": "LiftSafe Services",
+    "text": "Elevator 3 servicing is complete and the lift is back in service in Building C.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-08",
+    "type": "task",
+    "from": "Rosa Delgado",
+    "text": "To-do: finalise Marcus Vale's paperwork for unit C-08 before his move-in on 2026-10-20.",
+    "role": "obligation"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-10",
+    "type": "message",
+    "from": "Marcus Vale",
+    "text": "Just confirming I'm still planning to move into unit C-08 on 2026-10-20 and will need the elevator slot we discussed.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Disc locks restock — SecureLine Supplies",
+    "fields": {
+     "item": "disc locks",
+     "quantity": "24",
+     "amount": "216",
+     "supplier": "SecureLine Supplies",
+     "status": "received"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Moving boxes restock — PackRight Packaging",
+    "fields": {
+     "item": "moving boxes",
+     "quantity": "40",
+     "amount": "180",
+     "supplier": "PackRight Packaging",
+     "status": "received"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Quarterly pest control — ClearPest",
+    "fields": {
+     "item": "pest control visit",
+     "quantity": "1",
+     "amount": "320",
+     "supplier": "ClearPest",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Front-desk rate sheet — climate units",
+    "fields": {
+     "unit_type": "climate 10x10",
+     "rate": "145",
+     "effective": "2026-06-15",
+     "status": "posted"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Quote — Marcus Vale, unit C-08",
+    "fields": {
+     "tenant": "Marcus Vale",
+     "unit": "C-08",
+     "rate": "145",
+     "movein": "2026-10-20",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Move-in booking — Marcus Vale",
+    "fields": {
+     "tenant": "Marcus Vale",
+     "unit": "C-08",
+     "date": "2026-10-20",
+     "elevator": "Elevator 3",
+     "time": "10:00",
+     "rate": "145",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-3",
+    "collection": "crm",
+    "title": "Lease renewal — Priya Anand, unit C-02",
+    "fields": {
+     "tenant": "Priya Anand",
+     "unit": "C-02",
+     "rate": "145",
+     "start": "2026-11-01",
+     "term_months": "12",
+     "status": "signed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "rate"
+    ],
+    "from": "Marcus Vale",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please send Marcus Vale his final quote for climate unit C-08 with the current monthly rate ahead of his move-in, and make sure the front-desk rate sheet and his quote record show the right figure.",
+  "expect": [
+   {
+    "record": "CL-1",
+    "field": "rate",
+    "value": "165",
+    "stale": [
+     "145"
+    ]
+   },
+   {
+    "record": "CL-2",
+    "field": "rate",
+    "value": "165",
+    "stale": [
+     "145"
+    ]
+   },
+   {
+    "record": "CL-2",
+    "field": "status",
+    "value": "sent",
+    "stale": [
+     "draft"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Marcus Vale",
+    "regarding": "CL-2",
+    "says": [
+     "165"
+    ],
+    "stale": [
+     "145"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Marcus Vale",
+    "regarding": "EV-1",
+    "says": [
+     "165"
+    ],
+    "stale": [
+     "145"
+    ]
+   }
+  ],
+  "why": "The regional office raised the climate rate to $165 from 2026-10-15 (change revokes the $145 fact). The rate sheet (CL-1) and Marcus's draft quote (CL-2) rest on that fact and are revised directly; Marcus's confirmed move-in booking (EV-1) rests on the draft quote — two hops — and changing a confirmed booking's rate needs his consent, so the assistant must ask rather than edit. Priya's renewal (CL-3) was signed before 2026-10-15, so under the amendment's own terms it keeps $145 and stays untouched; the drive-up $110 rate is a distractor.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "disc lock restock",
+    "counterpart": "SecureLine Supplies",
+    "org": "SecureLine Supplies",
+    "item": "disc locks",
+    "unit": "locks",
+    "values": [
+     "12",
+     "24",
+     "36",
+     "48"
+    ],
+    "place": "LockBox loading bay"
+   },
+   {
+    "kind": "order",
+    "topic": "moving box restock",
+    "counterpart": "PackRight Packaging",
+    "org": "PackRight Packaging",
+    "item": "moving boxes",
+    "unit": "boxes",
+    "values": [
+     "20",
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "LockBox front desk"
+   },
+   {
+    "kind": "order",
+    "topic": "packing tape restock",
+    "counterpart": "PackRight Packaging",
+    "org": "PackRight Packaging",
+    "item": "packing tape rolls",
+    "unit": "rolls",
+    "values": [
+     "24",
+     "48",
+     "72"
+    ],
+    "place": "LockBox front desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "Elevator 3 move-in slots",
+    "counterpart": "Theo Grant",
+    "org": "LockBox Self Storage",
+    "item": "Elevator 3 reservation",
+    "unit": "slot",
+    "values": [
+     "Building C Elevator 3 morning",
+     "Building C Elevator 3 midday",
+     "Building C Elevator 3 afternoon"
+    ],
+    "place": "Building C"
+   },
+   {
+    "kind": "booking",
+    "topic": "truck bay deliveries",
+    "counterpart": "Theo Grant",
+    "org": "LockBox Self Storage",
+    "item": "truck bay reservation",
+    "unit": "slot",
+    "values": [
+     "loading bay north morning",
+     "loading bay north afternoon",
+     "loading bay south morning",
+     "loading bay south afternoon"
+    ],
+    "place": "LockBox loading bay"
+   },
+   {
+    "kind": "order",
+    "topic": "keypad battery restock",
+    "counterpart": "GateTech Systems",
+    "org": "GateTech Systems",
+    "item": "keypad batteries",
+    "unit": "batteries",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "LockBox gate house"
+   },
+   {
+    "kind": "order",
+    "topic": "gate remote restock",
+    "counterpart": "GateTech Systems",
+    "org": "GateTech Systems",
+    "item": "gate remotes",
+    "unit": "remotes",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "LockBox gate house"
+   },
+   {
+    "kind": "order",
+    "topic": "office paper restock",
+    "counterpart": "OfficeMart",
+    "org": "OfficeMart",
+    "item": "printer paper",
+    "unit": "reams",
+    "values": [
+     "5",
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "LockBox office"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies restock",
+    "counterpart": "CleanPro Distributors",
+    "org": "CleanPro Distributors",
+    "item": "cleaning supplies",
+    "unit": "cases",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "LockBox storage closet"
+   },
+   {
+    "kind": "booking",
+    "topic": "lobby auction previews",
+    "counterpart": "Theo Grant",
+    "org": "LockBox Self Storage",
+    "item": "lobby reservation",
+    "unit": "slot",
+    "values": [
+     "front lobby morning",
+     "front lobby midday",
+     "front lobby afternoon"
+    ],
+    "place": "LockBox front lobby"
+   },
+   {
+    "kind": "order",
+    "topic": "padlock hasp restock",
+    "counterpart": "SecureLine Supplies",
+    "org": "SecureLine Supplies",
+    "item": "padlock hasps",
+    "unit": "hasps",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "LockBox loading bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "conference nook staff meetings",
+    "counterpart": "Theo Grant",
+    "org": "LockBox Self Storage",
+    "item": "conference nook reservation",
+    "unit": "slot",
+    "values": [
+     "office conference nook morning",
+     "office conference nook midday",
+     "office conference nook afternoon"
+    ],
+    "place": "LockBox office"
+   }
+  ],
+  "id": "K500-1-09",
+  "tier": 500,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

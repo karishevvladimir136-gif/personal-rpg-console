@@ -623,5 +623,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e11) revokes fact e3 outright, which is the class 1 stale-fact pattern, not a class 3 correction: e6 (REVISE) rests directly on e3, and e7 (ASK) is two hops from e3 through e6. The intended class 3 label is wrong, and e7 also rests on e5, so it is not a clean B-then-C chain. The core counts (20 events, 5 decisions), the change's distance from the task day, and its position in the history all meet the tier-100 requirements.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e11) revokes fact e3 outright, which is the class 1 stale-fact pattern, not a class 3 correction: e6 (REVISE) rests directly on e3, and e7 (ASK) is two hops from e3 through e6. The intended class 3 label is wrong, and e7 also rests on e5, so it is not a clean B-then-C chain. The core counts (20 events, 5 decisions), the change's distance from the task day, and its position in the history all meet the tier-100 requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5074,
+    "completion_tokens": 1583,
+    "reasoning_tokens": 1360,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012989,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8ae3a34fc375dfa0df02c44dae8b3a84ff357dbed9e853316daed5ffa0eb6b67",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The core chain supports revising EV-1 and seeking Gina's consent for ORD-1, but leaving every other field unchanged is not unambiguous: e15 says entries have closed, while CL-1 remains open, and its implied closing date conflicts with the preserved 5 September deadline. The consent map also omits ORD-2, although the standing consent rule applies to every confirmed Fairway order.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core chain supports revising EV-1 and seeking Gina's consent for ORD-1, but leaving every other field unchanged is not unambiguous: e15 says entries have closed, while CL-1 remains open, and its implied closing date conflicts with the preserved 5 September deadline. The consent map also omits ORD-2, although the standing consent rule applies to every confirmed Fairway order."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3545,
+    "completion_tokens": 336,
+    "reasoning_tokens": 217,
+    "cached_tokens": 0
+   },
+   "cost": 0.061105,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8ae3a34fc375dfa0df02c44dae8b3a84ff357dbed9e853316daed5ffa0eb6b67",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is well-formed: fact e3 (course plan) -> decision e6 (tee sheet, REVISE to Blue/10:30) -> decision e7 (breakfast order resting on e6, ASK under the Fairway consent rule e1), with e4 KEEP since the change explicitly preserves date, cap and closing date. Tier 100 is met: 20 core events, 5 decisions, change 11 days before the task day with several core events after it, and the change sits at event 91 of 100 unannounced. The consent map matches rule e1, and ORD-2/EV-2 rest only on untouched facts.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is well-formed: fact e3 (course plan) -> decision e6 (tee sheet, REVISE to Blue/10:30) -> decision e7 (breakfast order resting on e6, ASK under the Fairway consent rule e1), with e4 KEEP since the change explicitly preserves date, cap and closing date. Tier 100 is met: 20 core events, 5 decisions, change 11 days before the task day with several core events after it, and the change sits at event 91 of 100 unannounced. The consent map matches rule e1, and ORD-2/EV-2 rest only on untouched facts."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3630,
+    "completion_tokens": 667,
+    "reasoning_tokens": 474,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0132918,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8ae3a34fc375dfa0df02c44dae8b3a84ff357dbed9e853316daed5ffa0eb6b67",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

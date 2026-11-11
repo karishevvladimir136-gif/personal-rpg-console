@@ -706,5 +706,102 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The standing consent rule covers Sara's confirmed test and booked lesson, but the expected state changes them without consent and the consent map omits them; no explicit exception authorizes this. The Sara-focused task also does not unambiguously require consent requests about Tom's bookings. On the task day, 26 October, 'next Thursday' ordinarily means 29 October, not the recorded test date of 5 November.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The standing consent rule covers Sara's confirmed test and booked lesson, but the expected state changes them without consent and the consent map omits them; no explicit exception authorizes this. The Sara-focused task also does not unambiguously require consent requests about Tom's bookings. On the task day, 26 October, 'next Thursday' ordinarily means 29 October, not the recorded test date of 5 November."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4463,
+    "completion_tokens": 240,
+    "reasoning_tokens": 120,
+    "cached_tokens": 4460
+   },
+   "cost": 0.01649,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "dfb553e8407f896003308eed2d764122d44c28896849334c7f2478c16f29aeea",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": false
+    },
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The standing rule in e1 says a pupil's confirmed test or lesson booking must not move without that pupil's agreement, but the expected state revises Sara's confirmed test (EV-1) and her booked familiarisation lesson (EV-3) with no consent request, while Tom's identical situation (EV-4, EV-5) is marked ASK. The consent map also omits Sara's records, so the marks and expected state do not follow consistently from the history's own rule. The structure otherwise meets class 1, the tier counts, the echo documents and the 20-day gap from the change to the task day.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The standing rule in e1 says a pupil's confirmed test or lesson booking must not move without that pupil's agreement, but the expected state revises Sara's confirmed test (EV-1) and her booked familiarisation lesson (EV-3) with no consent request, while Tom's identical situation (EV-4, EV-5) is marked ASK. The consent map also omits Sara's records, so the marks and expected state do not follow consistently from the history's own rule. The structure otherwise meets class 1, the tier counts, the echo documents and the 20-day gap from the change to the task day."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6507,
+    "completion_tokens": 2126,
+    "reasoning_tokens": 1880,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017137,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "dfb553e8407f896003308eed2d764122d44c28896849334c7f2478c16f29aeea",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Millbrook fact is revoked with decisions touched across hops (e17/e19 are two hops via e8/e13), REVISE values are fixed by the change, ASK marks track the consent rule in e1, and the KEEPs hold because the change preserves Saturday testing and Marcus's role. Minor tension: e1's wording could be read to cover Sara's confirmed test (EV-1), but treating the externally-imposed test-office venue move as a direct record fix rather than a Kay-initiated booking move is the natural reading. Tier counts (34 events, 9 decisions, change 20 days out with 119 later events, 2 echoes) all hold.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Millbrook fact is revoked with decisions touched across hops (e17/e19 are two hops via e8/e13), REVISE values are fixed by the change, ASK marks track the consent rule in e1, and the KEEPs hold because the change preserves Saturday testing and Marcus's role. Minor tension: e1's wording could be read to cover Sara's confirmed test (EV-1), but treating the externally-imposed test-office venue move as a direct record fix rather than a Kay-initiated booking move is the natural reading. Tier counts (34 events, 9 decisions, change 20 days out with 119 later events, 2 echoes) all hold."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4561,
+    "completion_tokens": 745,
+    "reasoning_tokens": 550,
+    "cached_tokens": 256
+   },
+   "cost": 0.0241668,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "dfb553e8407f896003308eed2d764122d44c28896849334c7f2478c16f29aeea",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

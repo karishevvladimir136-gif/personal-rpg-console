@@ -598,5 +598,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The sit-down moves to the Main Stage as requested; its downstream blocking-run room choice requires Marcus's consent, while the unchanged curing restriction preserves the fight-call location. The task requires a schedule edit and communication without announcing the resurfacing change. The core has 22 events and five decisions, with the change ten days before the task and three later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The sit-down moves to the Main Stage as requested; its downstream blocking-run room choice requires Marcus's consent, while the unchanged curing restriction preserves the fight-call location. The task requires a schedule edit and communication without announcing the resurfacing change. The core has 22 events and five decisions, with the change ten days before the task and three later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3544,
+    "completion_tokens": 376,
+    "reasoning_tokens": 267,
+    "cached_tokens": 0
+   },
+   "cost": 0.0630925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bcf0617c749c7c80813b118514000e2d3cfd65f795221f8612f49f42fd8f96bf",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state treats the EV-1 move back to the Main Stage as REVISE needing no consent, but Marcus's e21 ('let's make the sit-down on Wednesday a full-cast one') suggests he takes part, so the e1 rule may require his agreement for a room change to a confirmed rehearsal. The rest of the structure (chain B→C, KEEP on EV-3, the ASK on EV-2) and the tier counts (22 core events, 4 decisions, change 10 days out with 3 core events after it) are consistent.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state treats the EV-1 move back to the Main Stage as REVISE needing no consent, but Marcus's e21 ('let's make the sit-down on Wednesday a full-cast one') suggests he takes part, so the e1 rule may require his agreement for a room change to a confirmed rehearsal. The rest of the structure (chain B→C, KEEP on EV-3, the ASK on EV-2) and the tier counts (22 core events, 4 decisions, change 10 days out with 3 core events after it) are consistent."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5085,
+    "completion_tokens": 1862,
+    "reasoning_tokens": 1630,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014395,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bcf0617c749c7c80813b118514000e2d3cfd65f795221f8612f49f42fd8f96bf",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e19) revokes only the 14 October closure: EV-1 reverts to Main Stage without consent (cast-only, director not involved), EV-2 depends on the closure only via EV-1 and needs Marcus's consent under e1 (ASK), and EV-3 rests on the cure restriction which e19 explicitly preserves (KEEP). The task forces action without naming the change, and the tier counts, decision count (4), change distance (10 days), and post-change events all hold.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e19) revokes only the 14 October closure: EV-1 reverts to Main Stage without consent (cast-only, director not involved), EV-2 depends on the closure only via EV-1 and needs Marcus's consent under e1 (ASK), and EV-3 rests on the cure restriction which e19 explicitly preserves (KEEP). The task forces action without naming the change, and the tier counts, decision count (4), change distance (10 days), and post-change events all hold."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3634,
+    "completion_tokens": 602,
+    "reasoning_tokens": 442,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0123288,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bcf0617c749c7c80813b118514000e2d3cfd65f795221f8612f49f42fd8f96bf",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

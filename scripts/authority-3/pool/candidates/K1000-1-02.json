@@ -1,0 +1,748 @@
+{
+ "id": "K1000-1-02",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 1,
+ "idx": 1,
+ "setting": "Property manager at Juniper Court Apartments, a 40-unit residential building",
+ "prompt_sha256": "13720968bd9955ca61ccf0239eb15db2bb84b95327c8078f1282ecd4523a26b6",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Water shutdown rescheduled at Juniper Court\",\n \"setting\": \"Property manager at Juniper Court Apartments, a 40-unit residential building\",\n \"owner\": \"Mara\",\n \"org\": \"Juniper Court Apartments\",\n \"now\": \"2026-10-16\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule for Juniper Court: any work inside a tenant's flat that has been agreed with that tenant may only be moved to a new date or time with that tenant's agreement first. Staff and contractors must never rebook in-flat work on their own.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for the building accounts: any supplier order over £300 needs sign-off from our finance lead Theo Marsh before it is placed. Orders of £300 or less can go ahead without him.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Confirming my caretaker hours at Juniper Court are Monday to Friday, 08:00 to 16:00, and I hold the master keys and the plant room alarm code.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Bruno Keller (Greenfinger Gardening)\", \"text\": \"Greenfinger will keep visiting Juniper Court on alternate Thursdays through autumn to keep the courtyard beds tidy, same as this year.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-09\", \"type\": \"email\", \"from\": \"Imogen Hart (Flat 7)\", \"text\": \"The kitchen tap in Flat 7 has been dripping for a week. Could someone take a look?\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-10\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Asked Leon Alvarez to replace the washer in the Flat 7 kitchen tap during his Friday round, since he is on site weekdays 08:00 to 16:00.\", \"role\": \"decision\", \"rests_on\": [\"e3\"]},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"letter\", \"from\": \"Haven Mutual Insurance\", \"text\": \"Your buildings policy for Juniper Court Apartments renews on 1 December 2026; the schedule is enclosed and no action is needed unless your sums insured have changed.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-24\", \"type\": \"quote\", \"from\": \"Dana Whitfield (Sparky Electrics)\", \"text\": \"Quote for Juniper Court: supply and fit LED hallway light fittings on all four floors, £410 including parts, valid 60 days.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Theo Marsh (finance lead)\", \"text\": \"Happy to sign off the £410 for the Sparky Electrics hallway light fittings at Juniper Court, as it is over the £300 line. Go ahead.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the order with Sparky Electrics for the £410 hallway LED fittings on all four floors, with Theo Marsh's sign-off since it is over £300.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e9\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Liftcare Services for the annual lift inspection at Juniper Court on Monday 9 November 2026 at 10:00, in the lift motor room.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"EV-5\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-21\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Renewed the corridor and stairwell cleaning contract with Crystal Cleaners for another year, keeping their Friday morning visits.\", \"role\": \"decision\", \"rests_on\": []},\n  {\"id\": \"e13\", \"date\": \"2026-08-28\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"The bin store keypad code at Juniper Court is now 4417. Please do not share it outside the building.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Callum Price (Pinnacle Plumbing)\", \"text\": \"We can fit in the annual boiler service at Juniper Court on Tuesday 27 October 2026 at 09:00 if that suits, in the boiler room as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Pinnacle Plumbing for the annual boiler service on Tuesday 27 October 2026 at 09:00 in the boiler room.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-6\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-08\", \"type\": \"call\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Leon reported that the two isolation valves in the boiler room are badly worn and should be replaced the next time the mains water is off, so the whole building does not need draining twice.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Ferret Free Pest Control\", \"text\": \"Quarterly inspection at Juniper Court completed today; no activity found in the bin store or plant room. Next visit due December.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"Notice of planned mains work at Juniper Court Apartments: the water supply to the building will be off on Tuesday 20 October 2026 from 09:00 to 12:00 while we renew a section of main on the street.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-21\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered the two replacement isolation valves from Plumbase for £260; that is under the £300 line so no sign-off from Theo Marsh was needed. Delivery to the Juniper Court store room.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Pinnacle Plumbing to replace the two worn boiler-room isolation valves while the water is off on Tuesday 20 October 2026, arriving 09:00, so the job is done inside the announced 09:00 to 12:00 shutdown.\", \"role\": \"decision\", \"rests_on\": [\"e18\", \"e16\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-23\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Agreed with Priya Nair that the stopcock check inside Flat 18 will happen on Tuesday 20 October 2026 at 10:00, while the mains water is already off for the street works.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-24\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Reserved the loading bay for the Pinnacle Plumbing van on Tuesday 20 October 2026, 08:30 to 12:30, covering their 09:00 arrival for the valve job.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Put up the resident notice telling everyone at Juniper Court that the water will be off for a few hours one day in the week of 19 October because of the street mains works.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"Just confirming our crew will be at Juniper Court on Tuesday 20 October 2026 and your supply will be off 09:00 to 12:00. Please keep tap use to a minimum that morning.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-30\", \"type\": \"note\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Pinned on the works board: water off Tuesday 20 October 09:00 to 12:00, Pinnacle Plumbing in the boiler room from 09:00, loading bay held for their van.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e26\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"Apologies for the short notice: our mains work at Juniper Court Apartments has been rescheduled. Your water supply will now be off on Wednesday 21 October 2026 from 13:00 to 16:00 instead of the morning slot we gave you. Everything else about the job is unchanged.\", \"role\": \"change\", \"revokes\": [\"e18\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"For your awareness only: we will be lining the mains on Elm Row, two streets over, on Tuesday 20 October 2026 from 09:00 to 12:00. This does not affect the supply at Juniper Court.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Plumbase Trade Counter\", \"text\": \"Your order of two isolation valves was delivered to the Juniper Court store room today and signed for by L. Alvarez.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"minutes\", \"from\": \"Residents' Association\", \"text\": \"Minutes of the October meeting: planters for the courtyard approved, bike rack discussion deferred to November, no other business.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-09\", \"type\": \"invoice\", \"from\": \"Plumbase Trade Counter\", \"text\": \"Invoice PB-1184 for £260 for the two isolation valves delivered to Juniper Court; please pay by 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Dana Whitfield (Sparky Electrics)\", \"text\": \"The hallway LED fittings on all four floors are now installed and tested; invoice to follow this week.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Liftcare Services\", \"text\": \"Reminder: annual lift inspection at Juniper Court on Monday 9 November 2026 at 10:00. Please ensure access to the lift motor room.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-14\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Arrange the monthly fire alarm test with Leon before the end of October and log the result in the compliance folder.\", \"role\": \"obligation\"},\n  {\"id\": \"e34\", \"date\": \"2026-10-15\", \"type\": \"note\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Spare keys for Flats 12 and 18 are back in the key safe after the window latch repairs last week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Pinnacle Plumbing boiler-room valve replacement\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"09:00\", \"contractor\": \"Pinnacle Plumbing\", \"place\": \"Boiler room\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Flat 18 stopcock check\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"10:00\", \"flat\": \"18\", \"tenant\": \"Priya Nair\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Loading bay reservation for Pinnacle Plumbing van\", \"fields\": {\"date\": \"2026-10-20\", \"slot\": \"08:30-12:30\", \"place\": \"Loading bay\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Resident notice: water works week\", \"fields\": {\"week\": \"2026-10-19\", \"channel\": \"Noticeboard\", \"status\": \"sent\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Liftcare annual lift inspection\", \"fields\": {\"date\": \"2026-11-09\", \"time\": \"10:00\", \"contractor\": \"Liftcare Services\", \"place\": \"Lift motor room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Pinnacle Plumbing annual boiler service\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"09:00\", \"contractor\": \"Pinnacle Plumbing\", \"place\": \"Boiler room\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Two isolation valves from Plumbase\", \"fields\": {\"supplier\": \"Plumbase\", \"amount\": \"260\", \"place\": \"Store room\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Hallway LED light fittings from Sparky Electrics\", \"fields\": {\"supplier\": \"Sparky Electrics\", \"amount\": \"410\", \"status\": \"completed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Priya Nair, Flat 18\", \"fields\": {\"name\": \"Priya Nair\", \"flat\": \"18\", \"phone\": \"07700 900318\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Priya Nair (Flat 18)\", \"rule\": \"e1\"}\n ],\n \"task\": \"The replacement valves are finally sitting in the store room, so let's get everything lined up. Please send Pinnacle Plumbing their final confirmation for the valve job — which day and what time they should arrive — and make sure the loading bay is held for their van. Also get the Flat 18 stopcock check with Priya lined up so it all happens while the water is off.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-21\", \"stale\": [\"2026-10-20\"]},\n  {\"record\": \"EV-1\", \"field\": \"time\", \"value\": \"13:00\", \"stale\": [\"09:00\"]},\n  {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-21\", \"stale\": [\"2026-10-20\"]},\n  {\"record\": \"EV-3\", \"field\": \"slot\", \"value\": \"12:30-16:30\", \"stale\": [\"08:30-12:30\"]},\n  {\"message_to\": \"Pinnacle Plumbing\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-21\", \"13:00\"], \"stale\": [\"2026-10-20\", \"09:00\"], \"task\": true}\n ],\n \"why\": \"Northgate moved the shutdown from Tuesday 20 October 09:00–12:00 to Wednesday 21 October 13:00–16:00, so the Pinnacle valve booking (EV-1) and its loading-bay hold (EV-3, which hangs off the booking) must be revised to 21 October, and the confirmation to Pinnacle must carry the new slot, not the stale 20 October 09:00. The Flat 18 check (EV-2) is touched too, but the house rule requires Priya Nair's agreement before moving agreed in-flat work, so the right act is to ask her consent and leave EV-2 unchanged; the resident notice only cited the week of 19 October, which still stands (KEEP). The Elm Row works on 20 October are a different site and must not be used.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"boiler room consumables\", \"counterpart\": \"Callum Price\", \"org\": \"Pinnacle Plumbing\", \"item\": \"boiler filter and gasket service kit\", \"unit\": \"kit\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Boiler room\"},\n  {\"kind\": \"order\", \"topic\": \"plumbing restock\", \"counterpart\": \"Plumbase Trade Counter\", \"org\": \"Plumbase\", \"item\": \"copper pipe fittings box\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"Store room\"},\n  {\"kind\": \"booking\", \"topic\": \"lift maintenance slot\", \"counterpart\": \"Liftcare Services\", \"org\": \"Liftcare Services\", \"item\": \"routine lift maintenance visit\", \"unit\": \"visit\", \"values\": [\"Lift motor room\", \"Lift car 1\", \"Ground floor lobby\"], \"place\": \"Lift motor room\"},\n  {\"kind\": \"booking\", \"topic\": \"corridor cleaning\", \"counterpart\": \"Crystal Cleaners\", \"org\": \"Crystal Cleaners\", \"item\": \"Friday corridor and stairwell clean\", \"unit\": \"visit\", \"values\": [\"Ground floor\", \"First floor\", \"Second floor\", \"Third floor\"], \"place\": \"Corridors\"},\n  {\"kind\": \"order\", \"topic\": \"lighting spares\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Sparky Electrics\", \"item\": \"LED replacement tubes\", \"unit\": \"pack\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Store room\"},\n  {\"kind\": \"booking\", \"topic\": \"gardening visit\", \"counterpart\": \"Bruno Keller\", \"org\": \"Greenfinger Gardening\", \"item\": \"courtyard tidy-up visit\", \"unit\": \"visit\", \"values\": [\"Courtyard beds\", \"Front planters\", \"Rear path\"], \"place\": \"Courtyard\"},\n  {\"kind\": \"booking\", \"topic\": \"loading bay use\", \"counterpart\": \"Leon Alvarez\", \"org\": \"Juniper Court Apartments\", \"item\": \"loading bay hold for deliveries\", \"unit\": \"slot\", \"values\": [\"Loading bay\", \"Side gate\", \"Store room door\"], \"place\": \"Loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Crystal Cleaners\", \"org\": \"Crystal Cleaners\", \"item\": \"bulk cleaning consumables\", \"unit\": \"crate\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Store room\"},\n  {\"kind\": \"booking\", \"topic\": \"pest inspection\", \"counterpart\": \"Ferret Free Pest Control\", \"org\": \"Ferret Free Pest Control\", \"item\": \"quarterly pest inspection\", \"unit\": \"visit\", \"values\": [\"Bin store\", \"Plant room\", \"Basement\"], \"place\": \"Bin store\"},\n  {\"kind\": \"order\", \"topic\": \"water works sundries\", \"counterpart\": \"Sonia Reyes\", \"org\": \"Northgate Water Services\", \"item\": \"hydrant sign and barrier hire\", \"unit\": \"set\", \"values\": [\"1\", \"2\"], \"place\": \"Street frontage\"},\n  {\"kind\": \"booking\", \"topic\": \"community room hire\", \"counterpart\": \"Imogen Hart\", \"org\": \"Residents' Association\", \"item\": \"residents' meeting room booking\", \"unit\": \"evening\", \"values\": [\"Community room\", \"Lobby area\", \"Courtyard\"], \"place\": \"Community room\"},\n  {\"kind\": \"order\", \"topic\": \"key cutting\", \"counterpart\": \"Leon Alvarez\", \"org\": \"Juniper Court Apartments\", \"item\": \"spare flat keys\", \"unit\": \"key\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Key safe\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3239,
+    "completion_tokens": 10689,
+    "reasoning_tokens": 5700,
+    "cached_tokens": 0
+   },
+   "cost": 0.170052,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Water shutdown rescheduled at Juniper Court\",\n \"setting\": \"Property manager at Juniper Court Apartments, a 40-unit residential building\",\n \"owner\": \"Mara\",\n \"org\": \"Juniper Court Apartments\",\n \"now\": \"2026-10-16\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule for Juniper Court: any work inside a tenant's flat that has been agreed with that tenant may only be moved to a new date or time with that tenant's agreement first. Staff and contractors must never rebook in-flat work on their own.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for the building accounts: any supplier order over £300 needs sign-off from our finance lead Theo Marsh before it is placed. Orders of £300 or less can go ahead without him.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Confirming my caretaker hours at Juniper Court are Monday to Friday, 08:00 to 16:00, and I hold the master keys and the plant room alarm code.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Bruno Keller (Greenfinger Gardening)\", \"text\": \"Greenfinger will keep visiting Juniper Court on alternate Thursdays through autumn to keep the courtyard beds tidy, same as this year.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-09\", \"type\": \"email\", \"from\": \"Imogen Hart (Flat 7)\", \"text\": \"The kitchen tap in Flat 7 has been dripping for a week. Could someone take a look?\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-10\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Asked Leon Alvarez to replace the washer in the Flat 7 kitchen tap during his Friday round, since he is on site weekdays 08:00 to 16:00.\", \"role\": \"decision\", \"rests_on\": [\"e3\"]},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"letter\", \"from\": \"Haven Mutual Insurance\", \"text\": \"Your buildings policy for Juniper Court Apartments renews on 1 December 2026; the schedule is enclosed and no action is needed unless your sums insured have changed.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-24\", \"type\": \"quote\", \"from\": \"Dana Whitfield (Sparky Electrics)\", \"text\": \"Quote for Juniper Court: supply and fit LED hallway light fittings on all four floors, £410 including parts, valid 60 days.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Theo Marsh (finance lead)\", \"text\": \"Happy to sign off the £410 for the Sparky Electrics hallway light fittings at Juniper Court, as it is over the £300 line. Go ahead.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the order with Sparky Electrics for the £410 hallway LED fittings on all four floors, with Theo Marsh's sign-off since it is over £300.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e9\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e10a\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Liftcare Services\", \"text\": \"We can attend Juniper Court for the annual lift inspection on Monday 9 November 2026 at 10:00, working in the lift motor room.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Liftcare Services for the annual lift inspection at Juniper Court on Monday 9 November 2026 at 10:00, in the lift motor room.\", \"role\": \"decision\", \"rests_on\": [\"e10a\"], \"record\": \"EV-5\"},\n  {\"id\": \"e11a\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Crystal Cleaners\", \"text\": \"We would be glad to continue the corridor and stairwell cleaning at Juniper Court for another year, keeping our Friday morning visits at the current rate.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-21\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Renewed the corridor and stairwell cleaning contract with Crystal Cleaners for another year, keeping their Friday morning visits at the current rate.\", \"role\": \"decision\", \"rests_on\": [\"e11a\"]},\n  {\"id\": \"e13\", \"date\": \"2026-08-28\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"The bin store keypad code at Juniper Court is now 4417. Please do not share it outside the building.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Callum Price (Pinnacle Plumbing)\", \"text\": \"We can fit in the annual boiler service at Juniper Court on Tuesday 27 October 2026 at 09:00 if that suits, in the boiler room as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Pinnacle Plumbing for the annual boiler service on Tuesday 27 October 2026 at 09:00 in the boiler room.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-6\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-08\", \"type\": \"call\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Leon reported that the two isolation valves in the boiler room are badly worn and should be replaced the next time the mains water is off, so the whole building does not need draining twice.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Ferret Free Pest Control\", \"text\": \"Quarterly inspection at Juniper Court completed today; no activity found in the bin store or plant room. Next visit due December.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"Notice of planned mains work at Juniper Court Apartments: the water supply to the building will be off on Tuesday 20 October 2026 from 09:00 to 12:00 while we renew a section of main on the street.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-21\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered the two replacement isolation valves from Plumbase for £260; that is under the £300 line so no sign-off from Theo Marsh was needed. Delivery to the Juniper Court store room.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Pinnacle Plumbing to replace the two worn boiler-room isolation valves while the water is off on Tuesday 20 October 2026, arriving 09:00, so the job is done inside the announced 09:00 to 12:00 shutdown.\", \"role\": \"decision\", \"rests_on\": [\"e18\", \"e16\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-23\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Agreed with Priya Nair that the stopcock check inside Flat 18 will happen on Tuesday 20 October 2026 at 10:00, while the mains water is already off for the street works.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-24\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Reserved the loading bay for the Pinnacle Plumbing van on Tuesday 20 October 2026, 08:30 to 12:30, covering their 09:00 arrival for the valve job.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Put up the resident notice telling everyone at Juniper Court that the water will be off for a few hours one day in the week of 19 October because of the street mains works.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"Just confirming our crew will be at Juniper Court on Tuesday 20 October 2026 and your supply will be off 09:00 to 12:00. Please keep tap use to a minimum that morning.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-30\", \"type\": \"note\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Pinned on the works board: water off Tuesday 20 October 09:00 to 12:00, Pinnacle Plumbing in the boiler room from 09:00, loading bay held for their van.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e26\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"Apologies for the short notice: our mains work at Juniper Court Apartments has been rescheduled. Your water supply will now be off on Wednesday 21 October 2026 from 13:00 to 16:00 instead of the morning slot we gave you. Everything else about the job is unchanged.\", \"role\": \"change\", \"revokes\": [\"e18\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"For your awareness only: we will be lining the mains on Elm Row, two streets over, on Tuesday 20 October 2026 from 09:00 to 12:00. This does not affect the supply at Juniper Court.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Plumbase Trade Counter\", \"text\": \"Your order of two isolation valves was delivered to the Juniper Court store room today and signed for by L. Alvarez.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"minutes\", \"from\": \"Residents' Association\", \"text\": \"Minutes of the October meeting: planters for the courtyard approved, bike rack discussion deferred to November, no other business.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-09\", \"type\": \"invoice\", \"from\": \"Plumbase Trade Counter\", \"text\": \"Invoice PB-1184 for £260 for the two isolation valves delivered to Juniper Court; please pay by 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Dana Whitfield (Sparky Electrics)\", \"text\": \"The hallway LED fittings on all four floors are now installed and tested; invoice to follow this week.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Liftcare Services\", \"text\": \"Reminder: annual lift inspection at Juniper Court on Monday 9 November 2026 at 10:00. Please ensure access to the lift motor room.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-14\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Arrange the monthly fire alarm test with Leon before the end of October and log the result in the compliance folder.\", \"role\": \"obligation\"},\n  {\"id\": \"e34\", \"date\": \"2026-10-15\", \"type\": \"note\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Spare keys for Flats 12 and 18 are back in the key safe after the window latch repairs last week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Pinnacle Plumbing boiler-room valve replacement\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"09:00\", \"contractor\": \"Pinnacle Plumbing\", \"place\": \"Boiler room\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Flat 18 stopcock check\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"10:00\", \"flat\": \"18\", \"tenant\": \"Priya Nair\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Loading bay reservation for Pinnacle Plumbing van\", \"fields\": {\"date\": \"2026-10-20\", \"slot\": \"08:30-12:30\", \"place\": \"Loading bay\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Resident notice: water works week\", \"fields\": {\"week\": \"2026-10-19\", \"channel\": \"Noticeboard\", \"status\": \"sent\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Liftcare annual lift inspection\", \"fields\": {\"date\": \"2026-11-09\", \"time\": \"10:00\", \"contractor\": \"Liftcare Services\", \"place\": \"Lift motor room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Pinnacle Plumbing annual boiler service\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"09:00\", \"contractor\": \"Pinnacle Plumbing\", \"place\": \"Boiler room\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Two isolation valves from Plumbase\", \"fields\": {\"supplier\": \"Plumbase\", \"amount\": \"260\", \"place\": \"Store room\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Hallway LED light fittings from Sparky Electrics\", \"fields\": {\"supplier\": \"Sparky Electrics\", \"amount\": \"410\", \"status\": \"completed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Priya Nair, Flat 18\", \"fields\": {\"name\": \"Priya Nair\", \"flat\": \"18\", \"phone\": \"07700 900318\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Priya Nair (Flat 18)\", \"rule\": \"e1\"}\n ],\n \"task\": \"The replacement valves are finally sitting in the store room, so let's get everything lined up. Please send Pinnacle Plumbing their final confirmation for the valve job — which day and what time they should arrive — and make sure the loading bay is held for their van. Also get the Flat 18 stopcock check with Priya lined up so it all happens while the water is off.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-21\", \"stale\": [\"2026-10-20\"]},\n  {\"record\": \"EV-1\", \"field\": \"time\", \"value\": \"13:00\", \"stale\": [\"09:00\"]},\n  {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-21\", \"stale\": [\"2026-10-20\"]},\n  {\"record\": \"EV-3\", \"field\": \"slot\", \"value\": \"12:30-16:30\", \"stale\": [\"08:30-12:30\"]},\n  {\"message_to\": \"Pinnacle Plumbing\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-21\", \"13:00\"], \"stale\": [\"2026-10-20\", \"09:00\"], \"task\": true}\n ],\n \"why\": \"Northgate moved the shutdown from Tuesday 20 October 09:00–12:00 to Wednesday 21 October 13:00–16:00, so the Pinnacle valve booking (EV-1) and its loading-bay hold (EV-3, which hangs off the booking) must be revised to 21 October, and the confirmation to Pinnacle must carry the new slot, not the stale 20 October 09:00. The Flat 18 check (EV-2) is touched too, but the house rule requires Priya Nair's agreement before moving agreed in-flat work, so the right act is to ask her consent and leave EV-2 unchanged; the resident notice only cited the week of 19 October, which still stands (KEEP). The Elm Row works on 20 October are a different site and must not be used.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"boiler room consumables\", \"counterpart\": \"Callum Price\", \"org\": \"Pinnacle Plumbing\", \"item\": \"boiler filter and gasket service kit\", \"unit\": \"kit\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Boiler room\"},\n  {\"kind\": \"order\", \"topic\": \"plumbing restock\", \"counterpart\": \"Plumbase Trade Counter\", \"org\": \"Plumbase\", \"item\": \"copper pipe fittings box\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"Store room\"},\n  {\"kind\": \"booking\", \"topic\": \"lift maintenance slot\", \"counterpart\": \"Liftcare Services\", \"org\": \"Liftcare Services\", \"item\": \"routine lift maintenance visit\", \"unit\": \"visit\", \"values\": [\"Lift motor room\", \"Lift car 1\", \"Ground floor lobby\"], \"place\": \"Lift motor room\"},\n  {\"kind\": \"booking\", \"topic\": \"corridor cleaning\", \"counterpart\": \"Crystal Cleaners\", \"org\": \"Crystal Cleaners\", \"item\": \"Friday corridor and stairwell clean\", \"unit\": \"visit\", \"values\": [\"Ground floor\", \"First floor\", \"Second floor\", \"Third floor\"], \"place\": \"Corridors\"},\n  {\"kind\": \"order\", \"topic\": \"lighting spares\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Sparky Electrics\", \"item\": \"LED replacement tubes\", \"unit\": \"pack\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Store room\"},\n  {\"kind\": \"booking\", \"topic\": \"gardening visit\", \"counterpart\": \"Bruno Keller\", \"org\": \"Greenfinger Gardening\", \"item\": \"courtyard tidy-up visit\", \"unit\": \"visit\", \"values\": [\"Courtyard beds\", \"Front planters\", \"Rear path\"], \"place\": \"Courtyard\"},\n  {\"kind\": \"booking\", \"topic\": \"loading bay use\", \"counterpart\": \"Leon Alvarez\", \"org\": \"Juniper Court Apartments\", \"item\": \"loading bay hold for deliveries\", \"unit\": \"slot\", \"values\": [\"Loading bay\", \"Side gate\", \"Store room door\"], \"place\": \"Loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Crystal Cleaners\", \"org\": \"Crystal Cleaners\", \"item\": \"bulk cleaning consumables\", \"unit\": \"crate\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Store room\"},\n  {\"kind\": \"booking\", \"topic\": \"pest inspection\", \"counterpart\": \"Ferret Free Pest Control\", \"org\": \"Ferret Free Pest Control\", \"item\": \"quarterly pest inspection\", \"unit\": \"visit\", \"values\": [\"Bin store\", \"Plant room\", \"Basement\"], \"place\": \"Bin store\"},\n  {\"kind\": \"order\", \"topic\": \"water works sundries\", \"counterpart\": \"Sonia Reyes\", \"org\": \"Northgate Water Services\", \"item\": \"hydrant sign and barrier hire\", \"unit\": \"set\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Street frontage\"},\n  {\"kind\": \"booking\", \"topic\": \"community room hire\", \"counterpart\": \"Imogen Hart\", \"org\": \"Residents' Association\", \"item\": \"residents' meeting room booking\", \"unit\": \"evening\", \"values\": [\"Community room\", \"Lobby area\", \"Courtyard\"], \"place\": \"Community room\"},\n  {\"kind\": \"order\", \"topic\": \"key cutting\", \"counterpart\": \"Leon Alvarez\", \"org\": \"Juniper Court Apartments\", \"item\": \"spare flat keys\", \"unit\": \"key\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Key safe\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 8321,
+    "completion_tokens": 5172,
+    "reasoning_tokens": 18,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0942486,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e11: a decision must rest on at least one earlier event\n- e12: a decision must rest on at least one earlier event\n- noise topic 'water works sundries': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Water shutdown rescheduled at Juniper Court\",\n \"setting\": \"Property manager at Juniper Court Apartments, a 40-unit residential building\",\n \"owner\": \"Mara\",\n \"org\": \"Juniper Court Apartments\",\n \"now\": \"2026-10-16\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule for Juniper Court: any work inside a tenant's flat that has been agreed with that tenant may only be moved to a new date or time with that tenant's agreement first. Staff and contractors must never rebook in-flat work on their own.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing instruction for the building accounts: any supplier order over £300 needs sign-off from our finance lead Theo Marsh before it is placed. Orders of £300 or less can go ahead without him.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Confirming my caretaker hours at Juniper Court are Monday to Friday, 08:00 to 16:00, and I hold the master keys and the plant room alarm code.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Bruno Keller (Greenfinger Gardening)\", \"text\": \"Greenfinger will keep visiting Juniper Court on alternate Thursdays through autumn to keep the courtyard beds tidy, same as this year.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-09\", \"type\": \"email\", \"from\": \"Imogen Hart (Flat 7)\", \"text\": \"The kitchen tap in Flat 7 has been dripping for a week. Could someone take a look?\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-10\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Asked Leon Alvarez to replace the washer in the Flat 7 kitchen tap during his Friday round, since he is on site weekdays 08:00 to 16:00.\", \"role\": \"decision\", \"rests_on\": [\"e3\"]},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"letter\", \"from\": \"Haven Mutual Insurance\", \"text\": \"Your buildings policy for Juniper Court Apartments renews on 1 December 2026; the schedule is enclosed and no action is needed unless your sums insured have changed.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-24\", \"type\": \"quote\", \"from\": \"Dana Whitfield (Sparky Electrics)\", \"text\": \"Quote for Juniper Court: supply and fit LED hallway light fittings on all four floors, £410 including parts, valid 60 days.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Theo Marsh (finance lead)\", \"text\": \"Happy to sign off the £410 for the Sparky Electrics hallway light fittings at Juniper Court, as it is over the £300 line. Go ahead.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the order with Sparky Electrics for the £410 hallway LED fittings on all four floors, with Theo Marsh's sign-off since it is over £300.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e9\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Liftcare Services\", \"text\": \"We can attend Juniper Court for the annual lift inspection on Monday 9 November 2026 at 10:00, working in the lift motor room.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Liftcare Services for the annual lift inspection at Juniper Court on Monday 9 November 2026 at 10:00, in the lift motor room.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-5\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Crystal Cleaners\", \"text\": \"We would be glad to continue the corridor and stairwell cleaning at Juniper Court for another year, keeping our Friday morning visits at the current rate.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-21\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Renewed the corridor and stairwell cleaning contract with Crystal Cleaners for another year, keeping their Friday morning visits at the current rate.\", \"role\": \"decision\", \"rests_on\": [\"e13\"]},\n  {\"id\": \"e15\", \"date\": \"2026-08-28\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"The bin store keypad code at Juniper Court is now 4417. Please do not share it outside the building.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Callum Price (Pinnacle Plumbing)\", \"text\": \"We can fit in the annual boiler service at Juniper Court on Tuesday 27 October 2026 at 09:00 if that suits, in the boiler room as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Pinnacle Plumbing for the annual boiler service on Tuesday 27 October 2026 at 09:00 in the boiler room.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"EV-6\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-08\", \"type\": \"call\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Leon reported that the two isolation valves in the boiler room are badly worn and should be replaced the next time the mains water is off, so the whole building does not need draining twice.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Ferret Free Pest Control\", \"text\": \"Quarterly inspection at Juniper Court completed today; no activity found in the bin store or plant room. Next visit due December.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"Notice of planned mains work at Juniper Court Apartments: the water supply to the building will be off on Tuesday 20 October 2026 from 09:00 to 12:00 while we renew a section of main on the street.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-21\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered the two replacement isolation valves from Plumbase for £260; that is under the £300 line so no sign-off from Theo Marsh was needed. Delivery to the Juniper Court store room.\", \"role\": \"decision\", \"rests_on\": [\"e18\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Pinnacle Plumbing to replace the two worn boiler-room isolation valves while the water is off on Tuesday 20 October 2026, arriving 09:00, so the job is done inside the announced 09:00 to 12:00 shutdown.\", \"role\": \"decision\", \"rests_on\": [\"e20\", \"e18\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-23\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Agreed with Priya Nair that the stopcock check inside Flat 18 will happen on Tuesday 20 October 2026 at 10:00, while the mains water is already off for the street works.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-24\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Reserved the loading bay for the Pinnacle Plumbing van on Tuesday 20 October 2026, 08:30 to 12:30, covering their 09:00 arrival for the valve job.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Put up the resident notice telling everyone at Juniper Court that the water will be off for a few hours one day in the week of 19 October because of the street mains works.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"Just confirming our crew will be at Juniper Court on Tuesday 20 October 2026 and your supply will be off 09:00 to 12:00. Please keep tap use to a minimum that morning.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-30\", \"type\": \"note\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Pinned on the works board: water off Tuesday 20 October 09:00 to 12:00, Pinnacle Plumbing in the boiler room from 09:00, loading bay held for their van.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"Apologies for the short notice: our mains work at Juniper Court Apartments has been rescheduled. Your water supply will now be off on Wednesday 21 October 2026 from 13:00 to 16:00 instead of the morning slot we gave you. Everything else about the job is unchanged.\", \"role\": \"change\", \"revokes\": [\"e20\"]},\n  {\"id\": \"e29\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Sonia Reyes (Northgate Water Services)\", \"text\": \"For your awareness only: we will be lining the mains on Elm Row, two streets over, on Tuesday 20 October 2026 from 09:00 to 12:00. This does not affect the supply at Juniper Court.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Plumbase Trade Counter\", \"text\": \"Your order of two isolation valves was delivered to the Juniper Court store room today and signed for by L. Alvarez.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-08\", \"type\": \"minutes\", \"from\": \"Residents' Association\", \"text\": \"Minutes of the October meeting: planters for the courtyard approved, bike rack discussion deferred to November, no other business.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-09\", \"type\": \"invoice\", \"from\": \"Plumbase Trade Counter\", \"text\": \"Invoice PB-1184 for £260 for the two isolation valves delivered to Juniper Court; please pay by 30 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Dana Whitfield (Sparky Electrics)\", \"text\": \"The hallway LED fittings on all four floors are now installed and tested; invoice to follow this week.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Liftcare Services\", \"text\": \"Reminder: annual lift inspection at Juniper Court on Monday 9 November 2026 at 10:00. Please ensure access to the lift motor room.\", \"role\": \"other\"},\n  {\"id\": \"e35\", \"date\": \"2026-10-14\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Arrange the monthly fire alarm test with Leon before the end of October and log the result in the compliance folder.\", \"role\": \"obligation\"},\n  {\"id\": \"e36\", \"date\": \"2026-10-15\", \"type\": \"note\", \"from\": \"Leon Alvarez (caretaker)\", \"text\": \"Spare keys for Flats 12 and 18 are back in the key safe after the window latch repairs last week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Pinnacle Plumbing boiler-room valve replacement\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"09:00\", \"contractor\": \"Pinnacle Plumbing\", \"place\": \"Boiler room\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Flat 18 stopcock check\", \"fields\": {\"date\": \"2026-10-20\", \"time\": \"10:00\", \"flat\": \"18\", \"tenant\": \"Priya Nair\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Loading bay reservation for Pinnacle Plumbing van\", \"fields\": {\"date\": \"2026-10-20\", \"slot\": \"08:30-12:30\", \"place\": \"Loading bay\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Resident notice: water works week\", \"fields\": {\"week\": \"2026-10-19\", \"channel\": \"Noticeboard\", \"status\": \"sent\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Liftcare annual lift inspection\", \"fields\": {\"date\": \"2026-11-09\", \"time\": \"10:00\", \"contractor\": \"Liftcare Services\", \"place\": \"Lift motor room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Pinnacle Plumbing annual boiler service\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"09:00\", \"contractor\": \"Pinnacle Plumbing\", \"place\": \"Boiler room\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Two isolation valves from Plumbase\", \"fields\": {\"supplier\": \"Plumbase\", \"amount\": \"260\", \"place\": \"Store room\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Hallway LED light fittings from Sparky Electrics\", \"fields\": {\"supplier\": \"Sparky Electrics\", \"amount\": \"410\", \"status\": \"completed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Priya Nair, Flat 18\", \"fields\": {\"name\": \"Priya Nair\", \"flat\": \"18\", \"phone\": \"07700 900318\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Priya Nair (Flat 18)\", \"rule\": \"e1\"}\n ],\n \"task\": \"The replacement valves are finally sitting in the store room, so let's get everything lined up. Please send Pinnacle Plumbing their final confirmation for the valve job — which day and what time they should arrive — and make sure the loading bay is held for their van. Also get the Flat 18 stopcock check with Priya lined up so it all happens while the water is off.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-21\", \"stale\": [\"2026-10-20\"]},\n  {\"record\": \"EV-1\", \"field\": \"time\", \"value\": \"13:00\", \"stale\": [\"09:00\"]},\n  {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-21\", \"stale\": [\"2026-10-20\"]},\n  {\"record\": \"EV-3\", \"field\": \"slot\", \"value\": \"12:30-16:30\", \"stale\": [\"08:30-12:30\"]},\n  {\"message_to\": \"Pinnacle Plumbing\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-21\", \"13:00\"], \"stale\": [\"2026-10-20\", \"09:00\"], \"task\": true}\n ],\n \"why\": \"Northgate moved the shutdown from Tuesday 20 October 09:00–12:00 to Wednesday 21 October 13:00–16:00, so the Pinnacle valve booking (EV-1) and its loading-bay hold (EV-3, which hangs off the booking) must be revised to 21 October, and the confirmation to Pinnacle must carry the new slot, not the stale 20 October 09:00. The Flat 18 check (EV-2) is touched too, but the house rule requires Priya Nair's agreement before moving agreed in-flat work, so the right act is to ask her consent and leave EV-2 unchanged; the resident notice only cited the week of 19 October, which still stands (KEEP). The Elm Row works on 20 October are a different site and must not be used.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"boiler room consumables\", \"counterpart\": \"Callum Price\", \"org\": \"Pinnacle Plumbing\", \"item\": \"boiler filter and gasket service kit\", \"unit\": \"kit\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Boiler room\"},\n  {\"kind\": \"order\", \"topic\": \"plumbing restock\", \"counterpart\": \"Plumbase Trade Counter\", \"org\": \"Plumbase\", \"item\": \"copper pipe fittings box\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"Store room\"},\n  {\"kind\": \"booking\", \"topic\": \"lift maintenance slot\", \"counterpart\": \"Liftcare Services\", \"org\": \"Liftcare Services\", \"item\": \"routine lift maintenance visit\", \"unit\": \"visit\", \"values\": [\"Lift motor room\", \"Lift car 1\", \"Ground floor lobby\"], \"place\": \"Lift motor room\"},\n  {\"kind\": \"booking\", \"topic\": \"corridor cleaning\", \"counterpart\": \"Crystal Cleaners\", \"org\": \"Crystal Cleaners\", \"item\": \"Friday corridor and stairwell clean\", \"unit\": \"visit\", \"values\": [\"Ground floor\", \"First floor\", \"Second floor\", \"Third floor\"], \"place\": \"Corridors\"},\n  {\"kind\": \"order\", \"topic\": \"lighting spares\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Sparky Electrics\", \"item\": \"LED replacement tubes\", \"unit\": \"pack\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Store room\"},\n  {\"kind\": \"booking\", \"topic\": \"gardening visit\", \"counterpart\": \"Bruno Keller\", \"org\": \"Greenfinger Gardening\", \"item\": \"courtyard tidy-up visit\", \"unit\": \"visit\", \"values\": [\"Courtyard beds\", \"Front planters\", \"Rear path\"], \"place\": \"Courtyard\"},\n  {\"kind\": \"booking\", \"topic\": \"loading bay use\", \"counterpart\": \"Leon Alvarez\", \"org\": \"Juniper Court Apartments\", \"item\": \"loading bay hold for deliveries\", \"unit\": \"slot\", \"values\": [\"Loading bay\", \"Side gate\", \"Store room door\"], \"place\": \"Loading bay\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Crystal Cleaners\", \"org\": \"Crystal Cleaners\", \"item\": \"bulk cleaning consumables\", \"unit\": \"crate\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Store room\"},\n  {\"kind\": \"booking\", \"topic\": \"pest inspection\", \"counterpart\": \"Ferret Free Pest Control\", \"org\": \"Ferret Free Pest Control\", \"item\": \"quarterly pest inspection\", \"unit\": \"visit\", \"values\": [\"Bin store\", \"Plant room\", \"Basement\"], \"place\": \"Bin store\"},\n  {\"kind\": \"order\", \"topic\": \"water works sundries\", \"counterpart\": \"Sonia Reyes\", \"org\": \"Northgate Water Services\", \"item\": \"hydrant sign and barrier hire\", \"unit\": \"set\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Street frontage\"},\n  {\"kind\": \"booking\", \"topic\": \"community room hire\", \"counterpart\": \"Imogen Hart\", \"org\": \"Residents' Association\", \"item\": \"residents' meeting room booking\", \"unit\": \"evening\", \"values\": [\"Community room\", \"Lobby area\", \"Courtyard\"], \"place\": \"Community room\"},\n  {\"kind\": \"order\", \"topic\": \"key cutting\", \"counterpart\": \"Leon Alvarez\", \"org\": \"Juniper Court Apartments\", \"item\": \"spare flat keys\", \"unit\": \"key\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Key safe\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 13560,
+    "completion_tokens": 5182,
+    "reasoning_tokens": 32,
+    "cached_tokens": 8192
+   },
+   "cost": 0.0962916,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- event id 'e10a' must look like e1, e2, …\n- event id 'e11a' must look like e1, e2, …\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Water shutdown rescheduled at Juniper Court",
+  "setting": "Property manager at Juniper Court Apartments, a 40-unit residential building",
+  "owner": "Mara",
+  "org": "Juniper Court Apartments",
+  "now": "2026-10-16",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Mara",
+    "text": "House rule for Juniper Court: any work inside a tenant's flat that has been agreed with that tenant may only be moved to a new date or time with that tenant's agreement first. Staff and contractors must never rebook in-flat work on their own.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-12",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing instruction for the building accounts: any supplier order over £300 needs sign-off from our finance lead Theo Marsh before it is placed. Orders of £300 or less can go ahead without him.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Leon Alvarez (caretaker)",
+    "text": "Confirming my caretaker hours at Juniper Court are Monday to Friday, 08:00 to 16:00, and I hold the master keys and the plant room alarm code.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-01",
+    "type": "email",
+    "from": "Bruno Keller (Greenfinger Gardening)",
+    "text": "Greenfinger will keep visiting Juniper Court on alternate Thursdays through autumn to keep the courtyard beds tidy, same as this year.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-09",
+    "type": "email",
+    "from": "Imogen Hart (Flat 7)",
+    "text": "The kitchen tap in Flat 7 has been dripping for a week. Could someone take a look?",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-10",
+    "type": "task",
+    "from": "Mara",
+    "text": "Asked Leon Alvarez to replace the washer in the Flat 7 kitchen tap during his Friday round, since he is on site weekdays 08:00 to 16:00.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-15",
+    "type": "letter",
+    "from": "Haven Mutual Insurance",
+    "text": "Your buildings policy for Juniper Court Apartments renews on 1 December 2026; the schedule is enclosed and no action is needed unless your sums insured have changed.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-24",
+    "type": "quote",
+    "from": "Dana Whitfield (Sparky Electrics)",
+    "text": "Quote for Juniper Court: supply and fit LED hallway light fittings on all four floors, £410 including parts, valid 60 days.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-03",
+    "type": "email",
+    "from": "Theo Marsh (finance lead)",
+    "text": "Happy to sign off the £410 for the Sparky Electrics hallway light fittings at Juniper Court, as it is over the £300 line. Go ahead.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Placed the order with Sparky Electrics for the £410 hallway LED fittings on all four floors, with Theo Marsh's sign-off since it is over £300.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e9",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-06",
+    "type": "email",
+    "from": "Liftcare Services",
+    "text": "We can attend Juniper Court for the annual lift inspection on Monday 9 November 2026 at 10:00, working in the lift motor room.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Liftcare Services for the annual lift inspection at Juniper Court on Monday 9 November 2026 at 10:00, in the lift motor room.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Crystal Cleaners",
+    "text": "We would be glad to continue the corridor and stairwell cleaning at Juniper Court for another year, keeping our Friday morning visits at the current rate.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-21",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Renewed the corridor and stairwell cleaning contract with Crystal Cleaners for another year, keeping their Friday morning visits at the current rate.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ]
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-28",
+    "type": "notice",
+    "from": "Mara",
+    "text": "The bin store keypad code at Juniper Court is now 4417. Please do not share it outside the building.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Callum Price (Pinnacle Plumbing)",
+    "text": "We can fit in the annual boiler service at Juniper Court on Tuesday 27 October 2026 at 09:00 if that suits, in the boiler room as usual.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-03",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Pinnacle Plumbing for the annual boiler service on Tuesday 27 October 2026 at 09:00 in the boiler room.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "EV-6"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-08",
+    "type": "call",
+    "from": "Leon Alvarez (caretaker)",
+    "text": "Leon reported that the two isolation valves in the boiler room are badly worn and should be replaced the next time the mains water is off, so the whole building does not need draining twice.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Ferret Free Pest Control",
+    "text": "Quarterly inspection at Juniper Court completed today; no activity found in the bin store or plant room. Next visit due December.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Sonia Reyes (Northgate Water Services)",
+    "text": "Notice of planned mains work at Juniper Court Apartments: the water supply to the building will be off on Tuesday 20 October 2026 from 09:00 to 12:00 while we renew a section of main on the street.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-21",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered the two replacement isolation valves from Plumbase for £260; that is under the £300 line so no sign-off from Theo Marsh was needed. Delivery to the Juniper Court store room.",
+    "role": "decision",
+    "rests_on": [
+     "e18",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Pinnacle Plumbing to replace the two worn boiler-room isolation valves while the water is off on Tuesday 20 October 2026, arriving 09:00, so the job is done inside the announced 09:00 to 12:00 shutdown.",
+    "role": "decision",
+    "rests_on": [
+     "e20",
+     "e18"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-23",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Agreed with Priya Nair that the stopcock check inside Flat 18 will happen on Tuesday 20 October 2026 at 10:00, while the mains water is already off for the street works.",
+    "role": "decision",
+    "rests_on": [
+     "e20"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-24",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Reserved the loading bay for the Pinnacle Plumbing van on Tuesday 20 October 2026, 08:30 to 12:30, covering their 09:00 arrival for the valve job.",
+    "role": "decision",
+    "rests_on": [
+     "e22"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-25",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Put up the resident notice telling everyone at Juniper Court that the water will be off for a few hours one day in the week of 19 October because of the street mains works.",
+    "role": "decision",
+    "rests_on": [
+     "e20"
+    ],
+    "record": "EV-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Sonia Reyes (Northgate Water Services)",
+    "text": "Just confirming our crew will be at Juniper Court on Tuesday 20 October 2026 and your supply will be off 09:00 to 12:00. Please keep tap use to a minimum that morning.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-30",
+    "type": "note",
+    "from": "Leon Alvarez (caretaker)",
+    "text": "Pinned on the works board: water off Tuesday 20 October 09:00 to 12:00, Pinnacle Plumbing in the boiler room from 09:00, loading bay held for their van.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Sonia Reyes (Northgate Water Services)",
+    "text": "Apologies for the short notice: our mains work at Juniper Court Apartments has been rescheduled. Your water supply will now be off on Wednesday 21 October 2026 from 13:00 to 16:00 instead of the morning slot we gave you. Everything else about the job is unchanged.",
+    "role": "change",
+    "revokes": [
+     "e20"
+    ]
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Sonia Reyes (Northgate Water Services)",
+    "text": "For your awareness only: we will be lining the mains on Elm Row, two streets over, on Tuesday 20 October 2026 from 09:00 to 12:00. This does not affect the supply at Juniper Court.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Plumbase Trade Counter",
+    "text": "Your order of two isolation valves was delivered to the Juniper Court store room today and signed for by L. Alvarez.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-08",
+    "type": "minutes",
+    "from": "Residents' Association",
+    "text": "Minutes of the October meeting: planters for the courtyard approved, bike rack discussion deferred to November, no other business.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-09",
+    "type": "invoice",
+    "from": "Plumbase Trade Counter",
+    "text": "Invoice PB-1184 for £260 for the two isolation valves delivered to Juniper Court; please pay by 30 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Dana Whitfield (Sparky Electrics)",
+    "text": "The hallway LED fittings on all four floors are now installed and tested; invoice to follow this week.",
+    "role": "other"
+   },
+   {
+    "id": "e34",
+    "date": "2026-10-13",
+    "type": "email",
+    "from": "Liftcare Services",
+    "text": "Reminder: annual lift inspection at Juniper Court on Monday 9 November 2026 at 10:00. Please ensure access to the lift motor room.",
+    "role": "other"
+   },
+   {
+    "id": "e35",
+    "date": "2026-10-14",
+    "type": "task",
+    "from": "Mara",
+    "text": "Arrange the monthly fire alarm test with Leon before the end of October and log the result in the compliance folder.",
+    "role": "obligation"
+   },
+   {
+    "id": "e36",
+    "date": "2026-10-15",
+    "type": "note",
+    "from": "Leon Alvarez (caretaker)",
+    "text": "Spare keys for Flats 12 and 18 are back in the key safe after the window latch repairs last week.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Pinnacle Plumbing boiler-room valve replacement",
+    "fields": {
+     "date": "2026-10-20",
+     "time": "09:00",
+     "contractor": "Pinnacle Plumbing",
+     "place": "Boiler room",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Flat 18 stopcock check",
+    "fields": {
+     "date": "2026-10-20",
+     "time": "10:00",
+     "flat": "18",
+     "tenant": "Priya Nair",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Loading bay reservation for Pinnacle Plumbing van",
+    "fields": {
+     "date": "2026-10-20",
+     "slot": "08:30-12:30",
+     "place": "Loading bay",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Resident notice: water works week",
+    "fields": {
+     "week": "2026-10-19",
+     "channel": "Noticeboard",
+     "status": "sent"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Liftcare annual lift inspection",
+    "fields": {
+     "date": "2026-11-09",
+     "time": "10:00",
+     "contractor": "Liftcare Services",
+     "place": "Lift motor room",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Pinnacle Plumbing annual boiler service",
+    "fields": {
+     "date": "2026-10-27",
+     "time": "09:00",
+     "contractor": "Pinnacle Plumbing",
+     "place": "Boiler room",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Two isolation valves from Plumbase",
+    "fields": {
+     "supplier": "Plumbase",
+     "amount": "260",
+     "place": "Store room",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Hallway LED light fittings from Sparky Electrics",
+    "fields": {
+     "supplier": "Sparky Electrics",
+     "amount": "410",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Priya Nair, Flat 18",
+    "fields": {
+     "name": "Priya Nair",
+     "flat": "18",
+     "phone": "07700 900318",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Priya Nair (Flat 18)",
+    "rule": "e1"
+   }
+  ],
+  "task": "The replacement valves are finally sitting in the store room, so let's get everything lined up. Please send Pinnacle Plumbing their final confirmation for the valve job — which day and what time they should arrive — and make sure the loading bay is held for their van. Also get the Flat 18 stopcock check with Priya lined up so it all happens while the water is off.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-10-21",
+    "stale": [
+     "2026-10-20"
+    ]
+   },
+   {
+    "record": "EV-1",
+    "field": "time",
+    "value": "13:00",
+    "stale": [
+     "09:00"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "date",
+    "value": "2026-10-21",
+    "stale": [
+     "2026-10-20"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "slot",
+    "value": "12:30-16:30",
+    "stale": [
+     "08:30-12:30"
+    ]
+   },
+   {
+    "message_to": "Pinnacle Plumbing",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-21",
+     "13:00"
+    ],
+    "stale": [
+     "2026-10-20",
+     "09:00"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Northgate moved the shutdown from Tuesday 20 October 09:00–12:00 to Wednesday 21 October 13:00–16:00, so the Pinnacle valve booking (EV-1) and its loading-bay hold (EV-3, which hangs off the booking) must be revised to 21 October, and the confirmation to Pinnacle must carry the new slot, not the stale 20 October 09:00. The Flat 18 check (EV-2) is touched too, but the house rule requires Priya Nair's agreement before moving agreed in-flat work, so the right act is to ask her consent and leave EV-2 unchanged; the resident notice only cited the week of 19 October, which still stands (KEEP). The Elm Row works on 20 October are a different site and must not be used.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "boiler room consumables",
+    "counterpart": "Callum Price",
+    "org": "Pinnacle Plumbing",
+    "item": "boiler filter and gasket service kit",
+    "unit": "kit",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Boiler room"
+   },
+   {
+    "kind": "order",
+    "topic": "plumbing restock",
+    "counterpart": "Plumbase Trade Counter",
+    "org": "Plumbase",
+    "item": "copper pipe fittings box",
+    "unit": "box",
+    "values": [
+     "1",
+     "2",
+     "4"
+    ],
+    "place": "Store room"
+   },
+   {
+    "kind": "booking",
+    "topic": "lift maintenance slot",
+    "counterpart": "Liftcare Services",
+    "org": "Liftcare Services",
+    "item": "routine lift maintenance visit",
+    "unit": "visit",
+    "values": [
+     "Lift motor room",
+     "Lift car 1",
+     "Ground floor lobby"
+    ],
+    "place": "Lift motor room"
+   },
+   {
+    "kind": "booking",
+    "topic": "corridor cleaning",
+    "counterpart": "Crystal Cleaners",
+    "org": "Crystal Cleaners",
+    "item": "Friday corridor and stairwell clean",
+    "unit": "visit",
+    "values": [
+     "Ground floor",
+     "First floor",
+     "Second floor",
+     "Third floor"
+    ],
+    "place": "Corridors"
+   },
+   {
+    "kind": "order",
+    "topic": "lighting spares",
+    "counterpart": "Dana Whitfield",
+    "org": "Sparky Electrics",
+    "item": "LED replacement tubes",
+    "unit": "pack",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Store room"
+   },
+   {
+    "kind": "booking",
+    "topic": "gardening visit",
+    "counterpart": "Bruno Keller",
+    "org": "Greenfinger Gardening",
+    "item": "courtyard tidy-up visit",
+    "unit": "visit",
+    "values": [
+     "Courtyard beds",
+     "Front planters",
+     "Rear path"
+    ],
+    "place": "Courtyard"
+   },
+   {
+    "kind": "booking",
+    "topic": "loading bay use",
+    "counterpart": "Leon Alvarez",
+    "org": "Juniper Court Apartments",
+    "item": "loading bay hold for deliveries",
+    "unit": "slot",
+    "values": [
+     "Loading bay",
+     "Side gate",
+     "Store room door"
+    ],
+    "place": "Loading bay"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Crystal Cleaners",
+    "org": "Crystal Cleaners",
+    "item": "bulk cleaning consumables",
+    "unit": "crate",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Store room"
+   },
+   {
+    "kind": "booking",
+    "topic": "pest inspection",
+    "counterpart": "Ferret Free Pest Control",
+    "org": "Ferret Free Pest Control",
+    "item": "quarterly pest inspection",
+    "unit": "visit",
+    "values": [
+     "Bin store",
+     "Plant room",
+     "Basement"
+    ],
+    "place": "Bin store"
+   },
+   {
+    "kind": "order",
+    "topic": "water works sundries",
+    "counterpart": "Sonia Reyes",
+    "org": "Northgate Water Services",
+    "item": "hydrant sign and barrier hire",
+    "unit": "set",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Street frontage"
+   },
+   {
+    "kind": "booking",
+    "topic": "community room hire",
+    "counterpart": "Imogen Hart",
+    "org": "Residents' Association",
+    "item": "residents' meeting room booking",
+    "unit": "evening",
+    "values": [
+     "Community room",
+     "Lobby area",
+     "Courtyard"
+    ],
+    "place": "Community room"
+   },
+   {
+    "kind": "order",
+    "topic": "key cutting",
+    "counterpart": "Leon Alvarez",
+    "org": "Juniper Court Apartments",
+    "item": "spare flat keys",
+    "unit": "key",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Key safe"
+   }
+  ],
+  "id": "K1000-1-02",
+  "tier": 1000,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

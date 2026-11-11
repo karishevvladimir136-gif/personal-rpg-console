@@ -629,5 +629,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"EV-2's ASK mark does not follow from the threshold amendment: its approved, confirmed booking remains valid under the new rule. Consent is needed only because the task separately requests a date change under e2, so the expected operational action is sensible but the change-based marking is incorrect.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "EV-2's ASK mark does not follow from the threshold amendment: its approved, confirmed booking remains valid under the new rule. Consent is needed only because the task separately requests a date change under e2, so the expected operational action is sensible but the change-based marking is incorrect."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4178,
+    "completion_tokens": 217,
+    "reasoning_tokens": 123,
+    "cached_tokens": 0
+   },
+   "cost": 0.0630675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e2b0f401cf8c212e9d471052092d91989d66a19f2e9ddad9f6ef4b6a00b579a6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment at e26 lifts the threshold from £400 to £800, so the £520 refresher (e10) and £440 Tempo cover (e14) become REVISE, while the £360 and £180 bookings (e13, e18) stay KEEP, which fits class 2. The task's date move on EV-2 is governed by Mara's June consent rule (e2), not the threshold change, so the ASK mark is correct though its link to the amendment is indirect. The change is an ordinary email with four core events after it, and the core counts and echoes (e9, e23) meet the 500 tier, though the phrase 'replaces the arrangement I set out in June' points at the revocation somewhat.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment at e26 lifts the threshold from £400 to £800, so the £520 refresher (e10) and £440 Tempo cover (e14) become REVISE, while the £360 and £180 bookings (e13, e18) stay KEEP, which fits class 2. The task's date move on EV-2 is governed by Mara's June consent rule (e2), not the threshold change, so the ASK mark is correct though its link to the amendment is indirect. The change is an ordinary email with four core events after it, and the core counts and echoes (e9, e23) meet the 500 tier, though the phrase 'replaces the arrangement I set out in June' points at the revocation somewhat."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6141,
+    "completion_tokens": 2216,
+    "reasoning_tokens": 1938,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017221,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e2b0f401cf8c212e9d471052092d91989d66a19f2e9ddad9f6ef4b6a00b579a6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The £800 amendment cleanly voids the pending sign-offs on EV-1 (£520) and ORD-1 (£440) while EV-3 (£360) and ORD-2 (£180) stand under both thresholds, and the EV-2 move requires Gwen Rowan's written agreement per the June standing instruction, matching the consent map. The task requests acts (confirm, move) without hinting at the threshold change. Counts (30 core, 6 decisions), 17-day gap, post-change events, and two echoes of the old £400 rule all meet tier 500, and the change sits mid-history with 38 later events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The £800 amendment cleanly voids the pending sign-offs on EV-1 (£520) and ORD-1 (£440) while EV-3 (£360) and ORD-2 (£180) stand under both thresholds, and the EV-2 move requires Gwen Rowan's written agreement per the June standing instruction, matching the consent map. The task requests acts (confirm, move) without hinting at the threshold change. Counts (30 core, 6 decisions), 17-day gap, post-change events, and two echoes of the old £400 rule all meet tier 500, and the change sits mid-history with 38 later events."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4273,
+    "completion_tokens": 574,
+    "reasoning_tokens": 385,
+    "cached_tokens": 256
+   },
+   "cost": 0.0207378,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e2b0f401cf8c212e9d471052092d91989d66a19f2e9ddad9f6ef4b6a00b579a6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

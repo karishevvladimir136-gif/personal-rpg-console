@@ -687,5 +687,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Northgate independently requires attached finance sign-off to confirm an order; the practice’s threshold amendment does not explicitly waive that supplier requirement. Delivery within five working days does not fix an exact delivery date of 19 October. Dr Hassan’s Wednesday constraint does not uniquely require proposing 21 October or invalidate the already-confirmed Wednesday clinic on 28 October, although any rescheduling requires his consent.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Northgate independently requires attached finance sign-off to confirm an order; the practice’s threshold amendment does not explicitly waive that supplier requirement. Delivery within five working days does not fix an exact delivery date of 19 October. Dr Hassan’s Wednesday constraint does not uniquely require proposing 21 October or invalidate the already-confirmed Wednesday clinic on 28 October, although any rescheduling requires his consent."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3614,
+    "completion_tokens": 176,
+    "reasoning_tokens": 62,
+    "cached_tokens": 0
+   },
+   "cost": 0.0539675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8736482f7d90d081b899216db3d6e15321c202b43b2343950a8636139672b448",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The threshold change to £1000 does void the £400 citations on ORD-2 and ORD-3 and leaves ORD-1 standing, so the class-2 structure holds. However, the expected move of EV-1 to 21 October is not fixed by the history: the earlier delivery of 19 October still precedes the 28 October clinic, so the clinic is not invalidated. The supplier's 'confirmed only once finance sign-off is attached' term (e6, e11) is also left unaddressed, so the sending of ORD-2 and ORD-3 without sign-off is not fully settled by the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The threshold change to £1000 does void the £400 citations on ORD-2 and ORD-3 and leaves ORD-1 standing, so the class-2 structure holds. However, the expected move of EV-1 to 21 October is not fixed by the history: the earlier delivery of 19 October still precedes the 28 October clinic, so the clinic is not invalidated. The supplier's 'confirmed only once finance sign-off is attached' term (e6, e11) is also left unaddressed, so the sending of ORD-2 and ORD-3 without sign-off is not fully settled by the history."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5149,
+    "completion_tokens": 2582,
+    "reasoning_tokens": 2332,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018059,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8736482f7d90d081b899216db3d6e15321c202b43b2343950a8636139672b448",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The threshold amendment cleanly voids the two pending orders (both under £1000) while the pre-amendment stationery order stands as KEEP, and the clinic's dependence on the Northgate delivery plus Dr Hassan's consent rule and Wednesday-only note fix the ASK with the proposed 21 October. The 5-working-day delivery term fixes 19 October from the task day, the consent map matches the stated rescheduling rule, and the change sits mid-history with later routine events. Core counts (22 events, 6 decisions) and the 10-day change-to-task gap meet tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The threshold amendment cleanly voids the two pending orders (both under £1000) while the pre-amendment stationery order stands as KEEP, and the clinic's dependence on the Northgate delivery plus Dr Hassan's consent rule and Wednesday-only note fix the ASK with the proposed 21 October. The 5-working-day delivery term fixes 19 October from the task day, the consent map matches the stated rescheduling rule, and the change sits mid-history with later routine events. Core counts (22 events, 6 decisions) and the 10-day change-to-task gap meet tier 100."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3693,
+    "completion_tokens": 565,
+    "reasoning_tokens": 388,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0112596,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8736482f7d90d081b899216db3d6e15321c202b43b2343950a8636139672b448",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

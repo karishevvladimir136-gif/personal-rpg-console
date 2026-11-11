@@ -613,5 +613,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The marks follow from the history: EV-1 is ASK under the e2 consent rule, EV-2 and ORD-1 are REVISE with ORD-1 two hops from the revoked e4, and ORD-2 is KEEP because the courthouse filing desk stands. The 13:30 interpreter start is inferred from the original 30-minute offset rather than stated outright, which is a minor point. Core counts (20 events, 5 decisions), change distance (12 days before the task day, 3 core events after it) and hiddenness all meet the spec.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The marks follow from the history: EV-1 is ASK under the e2 consent rule, EV-2 and ORD-1 are REVISE with ORD-1 two hops from the revoked e4, and ORD-2 is KEEP because the courthouse filing desk stands. The 13:30 interpreter start is inferred from the original 30-minute offset rather than stated outright, which is a minor point. Core counts (20 events, 5 decisions), change distance (12 days before the task day, 3 core events after it) and hiddenness all meet the spec."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4817,
+    "completion_tokens": 1698,
+    "reasoning_tokens": 1462,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013307,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "587d0c7e825fab438ec690f1ab0349fe683c72afa320e00b6f8e8309fc3c8f81",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history specifies the interpreter's original 09:30 start but never establishes a standing thirty-minute lead time, so the required 13:30 replacement is not unambiguously fixed. The scenario fits class 3: the hearing listing supports the interpreter booking, which supports the hotel booking, while the copies order relies on the unchanged courthouse.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history specifies the interpreter's original 09:30 start but never establishes a standing thirty-minute lead time, so the required 13:30 replacement is not unambiguously fixed. The scenario fits class 3: the hearing listing supports the interpreter booking, which supports the hotel booking, while the copies order relies on the unchanged courthouse."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3410,
+    "completion_tokens": 436,
+    "reasoning_tokens": 331,
+    "cached_tokens": 0
+   },
+   "cost": 0.0644175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "587d0c7e825fab438ec690f1ab0349fe683c72afa320e00b6f8e8309fc3c8f81",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The relisting revokes e4; EV-1 is consent-protected by rule e2 (matching the consent map), EV-2 and ORD-1 (two hops via e8) get values fixed by the history, including Lena's stated availability covering 19 Nov, and ORD-2 is KEEP since the courthouse filing desk is unchanged. Counts fit tier 100 (20 core events, 5 decisions, change 12 days before task day with 3 core events after), and the change sits as event 92 of 100 among routine noise.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The relisting revokes e4; EV-1 is consent-protected by rule e2 (matching the consent map), EV-2 and ORD-1 (two hops via e8) get values fixed by the history, including Lena's stated availability covering 19 Nov, and ORD-2 is KEEP since the courthouse filing desk is unchanged. Counts fit tier 100 (20 core events, 5 decisions, change 12 days before task day with 3 core events after), and the change sits as event 92 of 100 among routine noise."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3516,
+    "completion_tokens": 852,
+    "reasoning_tokens": 680,
+    "cached_tokens": 2816
+   },
+   "cost": 0.0157248,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "587d0c7e825fab438ec690f1ab0349fe683c72afa320e00b6f8e8309fc3c8f81",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

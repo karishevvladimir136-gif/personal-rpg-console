@@ -613,5 +613,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The revised yield propagates through the harvest plan to the batch-specific client commitment, requiring a 55 kg harvest estimate and Priya's consent before changing the committed quantity; the colony-strength-based treatment remains valid. The task requires contacting Priya without disclosing the change. The core has 28 events and 6 decisions, an old echo, and a change 27 days before the task with multiple later events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The revised yield propagates through the harvest plan to the batch-specific client commitment, requiring a 55 kg harvest estimate and Priya's consent before changing the committed quantity; the colony-strength-based treatment remains valid. The task requires contacting Priya without disclosing the change. The core has 28 events and 6 decisions, an old echo, and a change 27 days before the task with multiple later events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4025,
+    "completion_tokens": 262,
+    "reasoning_tokens": 142,
+    "cached_tokens": 0
+   },
+   "cost": 0.063405,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ed0c321552cf76172d6d9811ed540431995c693dd3b8b7e2d58b35a091c65048",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e23 revokes fact e4 outright, which matches the stale-fact class: e14 (REVISE) rests on e4 directly, and e19 (ASK) is two hops away through e14, while e13 (KEEP) keeps only the strong-colony aspect. The writer's intended class 3 fits less well because the change is a revocation rather than a correction, though the chain structure is also present. The expected state, marks, tier counts, echo at e18, and the hidden change all check out.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e23 revokes fact e4 outright, which matches the stale-fact class: e14 (REVISE) rests on e4 directly, and e19 (ASK) is two hops away through e14, while e13 (KEEP) keeps only the strong-colony aspect. The writer's intended class 3 fits less well because the change is a revocation rather than a correction, though the chain structure is also present. The expected state, marks, tier counts, echo at e18, and the hidden change all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5891,
+    "completion_tokens": 1918,
+    "reasoning_tokens": 1704,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015481,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ed0c321552cf76172d6d9811ed540431995c693dd3b8b7e2d58b35a091c65048",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: e23 corrects e4's yield (A), e14/EV-2 rests on it (B, REVISE to 55), e19/CL-2 rests on e14 not e4 (C, ASK under the client-consent rule e3 matching the consent map), and e13 cites e4 only for colony strength, which the correction leaves standing (KEEP). The task asks to confirm the delivery and update the harvest record without hinting at the correction, forcing an act. Tier fits: 28 core events, 6 decisions, change 27 days before the task day with later core events, an echo (e18) restating 80, and the change sits as event 379 of 500 as routine email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: e23 corrects e4's yield (A), e14/EV-2 rests on it (B, REVISE to 55), e19/CL-2 rests on e14 not e4 (C, ASK under the client-consent rule e3 matching the consent map), and e13 cites e4 only for colony strength, which the correction leaves standing (KEEP). The task asks to confirm the delivery and update the harvest record without hinting at the correction, forcing an act. Tier fits: 28 core events, 6 decisions, change 27 days before the task day with later core events, an echo (e18) restating 80, and the change sits as event 379 of 500 as routine email."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4130,
+    "completion_tokens": 458,
+    "reasoning_tokens": 245,
+    "cached_tokens": 256
+   },
+   "cost": 0.0185688,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ed0c321552cf76172d6d9811ed540431995c693dd3b8b7e2d58b35a091c65048",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

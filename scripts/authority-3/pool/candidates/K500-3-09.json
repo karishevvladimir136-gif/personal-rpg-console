@@ -1,0 +1,655 @@
+{
+ "id": "K500-3-09",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 3,
+ "idx": 8,
+ "setting": "Facilities supervisor at Stonebridge Business Park, a 20-tenant commercial complex",
+ "prompt_sha256": "62c20d25edd6dc6136c1995daaf117d1c4010d790ff29f80723b9d15c2ab6df1",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Bin store chain at Stonebridge\",\n \"setting\": \"Facilities supervisor at Stonebridge Business Park, a 20-tenant commercial complex\",\n \"owner\": \"Mara\",\n \"org\": \"Stonebridge Business Park Management\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule: any confirmed contractor booking that takes place inside a tenant's unit or its private areas may only be moved or rescheduled with the consent of our tenant liaison, Priya Anand. Ask her before confirming any change.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: any supplier order above 400 pounds needs sign-off from our finance lead, Tomas Reed, before it is placed. Orders at or under 400 pounds can be placed directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Ledger & Vine Accountants (Unit 7)\", \"text\": \"Confirming Ledger & Vine Accountants are the tenant of Unit 7 at Stonebridge Business Park, including the private bin store at the rear of the unit. Please route any works near our bin store through your tenant liaison.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Sonia Bray (Brightbay Cleaning)\", \"text\": \"Brightbay Cleaning can offer deep cleans at Stonebridge on weekday evenings from 18:00 to 22:00. Our two-person crew needs four hours for a bin store deep clean.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"Fenbrook Waste will collect general waste from Stonebridge Business Park every Tuesday at 07:00 from Dock 2, under the service agreement running through 2027. The crew will always use Dock 2.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Owen Pell (Halden Pest Control)\", \"text\": \"Halden Pest Control can carry out treatments at Stonebridge on early mornings from 05:30. A bin store treatment takes about 90 minutes and the area must have been deep cleaned beforehand so the gel bait is not washed away.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"Summer newsletter to all tenants: courtyard planting refreshed, bike rack repairs scheduled, and a reminder to report any leaks to the facilities office.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered cleaning consumables from Brightbay Cleaning's supply arm for 320 pounds, which is under the 400 pound threshold so no finance sign-off was needed. Order placed for the facilities store.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the annual fire alarm test with Kestrel Fire Systems for Tuesday 10 November 2026 at 08:00 across the whole park, notices to go to tenants a week ahead.\", \"role\": \"decision\", \"record\": \"EV-4\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Brightbay Cleaning to deep clean the Unit 7 bin store on Wednesday 4 November 2026 at 19:00, the evening after Fenbrook Waste's Tuesday collection at Dock 2, so the store is cleaned once it has been emptied. Four-hour slot confirmed with Sonia Bray.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Priya Anand (Stonebridge tenant liaison)\", \"text\": \"Reminder that I am on leave the last week of July; anything needing tenant consent that week should come to me before 24 July.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Halden Pest Control to treat the Unit 7 bin store on Thursday 5 November 2026 at 06:00, the morning after the deep clean booked for Wednesday evening, so the gel bait goes onto a freshly cleaned surface as Owen Pell requires. Confirmed booking, with tenant liaison consent already noted as required for any later move.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e6\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Iris Dale (Weald Recycling)\", \"text\": \"Weald Recycling can deliver a replacement cardboard baler to Stonebridge Business Park; delivery vehicle needs Dock 2 access and about one hour on site.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Weald Recycling to deliver the replacement cardboard baler to Dock 2 on Tuesday 3 November 2026 at 10:00, using the Dock 2 access Fenbrook's crew also uses, well after their 07:00 collection has cleared the dock.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e13\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared an order for winter grit salt from Bracken Supplies for 610 pounds; because this is above the 400 pound threshold it is held pending finance lead Tomas Reed's sign-off before placement.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-11\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered pest monitor refill packs from Halden Pest Control for 145 pounds for the routine station checks across the park.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Sonia Bray (Brightbay Cleaning)\", \"text\": \"Confirming our crew for the Unit 7 bin store deep clean on Wednesday 4 November 2026 at 19:00, slotted as usual for the evening after Fenbrook Waste's Tuesday 07:00 collection at Dock 2 so the store is empty when we start.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"Fenbrook Waste can offer a one-off extra cardboard collection on Friday 25 September 2026 at 09:00 to clear the overflow behind Unit 12. Let us know by Wednesday if you want it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-30\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Facilities monthly minutes: gutters cleared on Blocks A and B, two lamp posts rewired, and a note to review waste contract costs in the new year.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"Route reorganisation notice: from Thursday 15 October 2026 our Stonebridge collection moves from Tuesday to Thursday, still at 07:00 and still at Dock 2. Everything else about the service stays the same through 2027.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e21\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"First Thursday collection at Dock 2 completed this morning at 07:00 without issues. Thanks for having the bins ready.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-19\", \"type\": \"invoice\", \"from\": \"Fenbrook Waste\", \"text\": \"Fenbrook Waste invoice FW-1042 for October collections, 412 pounds, due by 10 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-26\", \"type\": \"message\", \"from\": \"Priya Anand (Stonebridge tenant liaison)\", \"text\": \"Ledger & Vine mentioned a faint smell near their bin store over the weekend; can you make sure the planned clean and treatment are still on track for early November?\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-29\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Note to self: order replacement dock bumpers for Dock 1 before the frost, and check the baler delivery paperwork with Weald Recycling.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Unit 7 bin store deep clean - Brightbay Cleaning\", \"fields\": {\"date\": \"2026-11-04\", \"time\": \"19:00\", \"place\": \"Unit 7 bin store\", \"contractor\": \"Brightbay Cleaning\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Unit 7 bin store pest treatment - Halden Pest Control\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"06:00\", \"place\": \"Unit 7 bin store\", \"contractor\": \"Halden Pest Control\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Cardboard baler delivery - Weald Recycling\", \"fields\": {\"date\": \"2026-11-03\", \"time\": \"10:00\", \"place\": \"Dock 2\", \"contractor\": \"Weald Recycling\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Annual fire alarm test - Kestrel Fire Systems\", \"fields\": {\"date\": \"2026-11-10\", \"time\": \"08:00\", \"place\": \"Whole park\", \"contractor\": \"Kestrel Fire Systems\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cleaning consumables - Brightbay Cleaning\", \"fields\": {\"supplier\": \"Brightbay Cleaning\", \"amount\": \"320\", \"status\": \"confirmed\", \"delivery_place\": \"Facilities store\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Winter grit salt - Bracken Supplies\", \"fields\": {\"supplier\": \"Bracken Supplies\", \"amount\": \"610\", \"status\": \"pending\", \"delivery_place\": \"Facilities store\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Pest monitor refills - Halden Pest Control\", \"fields\": {\"supplier\": \"Halden Pest Control\", \"amount\": \"145\", \"status\": \"confirmed\", \"delivery_place\": \"Facilities store\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Halden Pest Control contact\", \"fields\": {\"contact\": \"Owen Pell\", \"org\": \"Halden Pest Control\", \"service\": \"Pest treatments and monitors\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Priya Anand\", \"rule\": \"e1\"}\n ],\n \"task\": \"The Halden pest treatment in the Unit 7 bin store is coming up soon. Please line it up against the waste collection and cleaning schedule, fix whatever in our plan no longer fits, and send Priya Anand what she needs to approve.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-06\", \"stale\": [\"2026-11-04\"]},\n  {\"message_to\": \"Priya Anand\", \"regarding\": \"EV-2\", \"says\": [\"2026-11-07\"], \"stale\": [\"2026-11-05\"], \"task\": true}\n ],\n \"why\": \"Fenbrook's change moves collections from Tuesday to Thursday at the same dock and time, so only the day aspect of e5 is stale. The deep clean (EV-1) was booked the evening after a Tuesday collection, so it must move to Friday 6 November, the evening after the Thursday collection; Mara controls that booking, so REVISE. The pest treatment (EV-2) was chained to the deep clean and should move to Saturday 7 November, but it sits inside a tenant's private bin store, so under rule e1 Mara must ask Priya Anand rather than change the record, so ASK and the consent request carries 2026-11-07. The baler delivery (EV-3) only relies on Dock 2 access, which the change leaves standing, so KEEP and no other record changes.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"Brightbay routine corridor cleans\", \"counterpart\": \"Sonia Bray\", \"org\": \"Brightbay Cleaning\", \"item\": \"communal corridor clean\", \"unit\": \"visit\", \"values\": [\"Block A lobby\", \"Block B lobby\", \"Unit 7 rear corridor\", \"Block C stairwell\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"booking\", \"topic\": \"Fenbrook extra skip hires\", \"counterpart\": \"Callum Rice\", \"org\": \"Fenbrook Waste\", \"item\": \"one-off skip hire\", \"unit\": \"day\", \"values\": [\"Dock 2\", \"Dock 1\", \"rear of Unit 12\", \"car park south\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Halden monitor refills\", \"counterpart\": \"Owen Pell\", \"org\": \"Halden Pest Control\", \"item\": \"pest monitor refill pack\", \"unit\": \"pack\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"order\", \"topic\": \"Paper and towel restock\", \"counterpart\": \"Denise Marr\", \"org\": \"Bracken Supplies\", \"item\": \"paper towel case\", \"unit\": \"case\", \"values\": [\"4\", \"8\", \"12\", \"16\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"order\", \"topic\": \"Grit salt top-ups\", \"counterpart\": \"Denise Marr\", \"org\": \"Bracken Supplies\", \"item\": \"grit salt bag\", \"unit\": \"bag\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"order\", \"topic\": \"Light tube restock\", \"counterpart\": \"Harvey Quinn\", \"org\": \"Lumen Electrical\", \"item\": \"LED tube\", \"unit\": \"box\", \"values\": [\"5\", \"10\", \"15\", \"25\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"booking\", \"topic\": \"Meeting pod reservations\", \"counterpart\": \"Priya Anand\", \"org\": \"Stonebridge Business Park Management\", \"item\": \"tenant meeting pod\", \"unit\": \"hour\", \"values\": [\"Pod 1\", \"Pod 2\", \"Pod 3\", \"Courtyard room\"], \"place\": \"Management suite\"},\n  {\"kind\": \"booking\", \"topic\": \"Lift inspection slots\", \"counterpart\": \"Greta Voss\", \"org\": \"Calder & Frost Lifts\", \"item\": \"routine lift inspection\", \"unit\": \"visit\", \"values\": [\"Block A lift\", \"Block B lift\", \"Block C lift\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"HVAC filter changes\", \"counterpart\": \"Martin Shaw\", \"org\": \"Airmatic Services\", \"item\": \"HVAC filter set\", \"unit\": \"set\", \"values\": [\"3\", \"6\", \"9\", \"12\"], \"place\": \"Roof plant room\"},\n  {\"kind\": \"booking\", \"topic\": \"Window cleaning rounds\", \"counterpart\": \"Talia Reed\", \"org\": \"Clearview Contractors\", \"item\": \"external window clean\", \"unit\": \"visit\", \"values\": [\"Block A\", \"Block B\", \"Block C\", \"Unit 7 frontage\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Courtyard plants\", \"counterpart\": \"Nadia Fox\", \"org\": \"Fernhill Nurseries\", \"item\": \"seasonal planter refill\", \"unit\": \"planter\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Courtyard\"},\n  {\"kind\": \"booking\", \"topic\": \"Van bay reservations\", \"counterpart\": \"Priya Anand\", \"org\": \"Stonebridge Business Park Management\", \"item\": \"loading van bay\", \"unit\": \"hour\", \"values\": [\"Dock 1 bay\", \"Dock 2 bay\", \"North bay\", \"South bay\"], \"place\": \"Loading area\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3234,
+    "completion_tokens": 7268,
+    "reasoning_tokens": 3125,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1104276,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Bin store chain at Stonebridge\",\n \"setting\": \"Facilities supervisor at Stonebridge Business Park, a 20-tenant commercial complex\",\n \"owner\": \"Mara\",\n \"org\": \"Stonebridge Business Park Management\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule: any confirmed contractor booking that takes place inside a tenant's unit or its private areas may only be moved or rescheduled with the consent of our tenant liaison, Priya Anand. Ask her before confirming any change.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: any supplier order above 400 pounds needs sign-off from our finance lead, Tomas Reed, before it is placed. Orders at or under 400 pounds can be placed directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Ledger & Vine Accountants (Unit 7)\", \"text\": \"Confirming Ledger & Vine Accountants are the tenant of Unit 7 at Stonebridge Business Park, including the private bin store at the rear of the unit. Please route any works near our bin store through your tenant liaison.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Sonia Bray (Brightbay Cleaning)\", \"text\": \"Brightbay Cleaning can offer deep cleans at Stonebridge on weekday evenings from 18:00 to 22:00. Our two-person crew needs four hours for a bin store deep clean.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"Fenbrook Waste will collect general waste from Stonebridge Business Park every Tuesday at 07:00 from Dock 2, under the service agreement running through 2027. The crew will always use Dock 2.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Owen Pell (Halden Pest Control)\", \"text\": \"Halden Pest Control can carry out treatments at Stonebridge on early mornings from 05:30. A bin store treatment takes about 90 minutes and the area must have been deep cleaned beforehand so the gel bait is not washed away.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"Summer newsletter to all tenants: courtyard planting refreshed, bike rack repairs scheduled, and a reminder to report any leaks to the facilities office.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered cleaning consumables from Brightbay Cleaning's supply arm for 320 pounds, which is under the 400 pound threshold so no finance sign-off was needed. Order placed for the facilities store.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the annual fire alarm test with Kestrel Fire Systems for Tuesday 10 November 2026 at 08:00 across the whole park, notices to go to tenants a week ahead.\", \"role\": \"decision\", \"record\": \"EV-4\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Brightbay Cleaning to deep clean the Unit 7 bin store on Wednesday 4 November 2026 at 19:00, the evening after Fenbrook Waste's Tuesday collection at Dock 2, so the store is cleaned once it has been emptied. Four-hour slot confirmed with Sonia Bray.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Priya Anand (Stonebridge tenant liaison)\", \"text\": \"Reminder that I am on leave the last week of July; anything needing tenant consent that week should come to me before 24 July.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Halden Pest Control to treat the Unit 7 bin store on Thursday 5 November 2026 at 06:00, the morning after the deep clean booked for Wednesday evening, so the gel bait goes onto a freshly cleaned surface as Owen Pell requires. Confirmed booking, with tenant liaison consent already noted as required for any later move.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e6\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Iris Dale (Weald Recycling)\", \"text\": \"Weald Recycling can deliver a replacement cardboard baler to Stonebridge Business Park; delivery vehicle needs Dock 2 access and about one hour on site.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Weald Recycling to deliver the replacement cardboard baler to Dock 2 on Tuesday 3 November 2026 at 10:00, using the Dock 2 access Fenbrook's crew also uses, well after their 07:00 collection has cleared the dock.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e13\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared an order for winter grit salt from Bracken Supplies for 610 pounds; because this is above the 400 pound threshold it is held pending finance lead Tomas Reed's sign-off before placement.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-11\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered pest monitor refill packs from Halden Pest Control for 145 pounds for the routine station checks across the park.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Greta Voss (Calder & Frost Lifts)\", \"text\": \"Routine quarterly lift inspections for Blocks A, B and C are pencilled in for the first week of September; the usual certificates will follow within ten days of each visit.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-01\", \"type\": \"message\", \"from\": \"Tomas Reed (Stonebridge finance lead)\", \"text\": \"Please keep September supplier orders itemised by block where you can; it makes the quarterly tenant service charge reconciliation much quicker.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Sonia Bray (Brightbay Cleaning)\", \"text\": \"Confirming our crew for the Unit 7 bin store deep clean on Wednesday 4 November 2026 at 19:00, slotted as usual for the evening after Fenbrook Waste's Tuesday 07:00 collection at Dock 2 so the store is empty when we start.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"Fenbrook Waste can offer a one-off extra cardboard collection on Friday 25 September 2026 at 09:00 to clear the overflow behind Unit 12. Let us know by Wednesday if you want it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-30\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Facilities monthly minutes: gutters cleared on Blocks A and B, two lamp posts rewired, and a note to review waste contract costs in the new year.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-06\", \"type\": \"letter\", \"from\": \"Ledger & Vine Accountants (Unit 7)\", \"text\": \"Thank you for arranging the rear corridor repaint last month. Our only request is that noisy works near Unit 7 avoid our payroll processing days, the last two working days of each month.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"Route reorganisation notice: from Thursday 15 October 2026 our Stonebridge collection moves from Tuesday to Thursday, still at 07:00 and still at Dock 2. Everything else about the service stays the same through 2027.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e24\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"First Thursday collection at Dock 2 completed this morning at 07:00 without issues. Thanks for having the bins ready.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-19\", \"type\": \"invoice\", \"from\": \"Fenbrook Waste\", \"text\": \"Fenbrook Waste invoice FW-1042 for October collections, 412 pounds, due by 10 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-21\", \"type\": \"email\", \"from\": \"Harvey Quinn (Lumen Electrical)\", \"text\": \"Your LED tube restock for the Block B stairwell was delivered to the facilities store today; fifteen boxes signed for by the caretaker.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-26\", \"type\": \"message\", \"from\": \"Priya Anand (Stonebridge tenant liaison)\", \"text\": \"Ledger & Vine mentioned a faint smell near their bin store over the weekend; can you make sure the planned clean and treatment are still on track for early November?\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-29\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Note to self: order replacement dock bumpers for Dock 1 before the frost, and check the baler delivery paperwork with Weald Recycling.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Unit 7 bin store deep clean - Brightbay Cleaning\", \"fields\": {\"date\": \"2026-11-04\", \"time\": \"19:00\", \"place\": \"Unit 7 bin store\", \"contractor\": \"Brightbay Cleaning\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Unit 7 bin store pest treatment - Halden Pest Control\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"06:00\", \"place\": \"Unit 7 bin store\", \"contractor\": \"Halden Pest Control\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Cardboard baler delivery - Weald Recycling\", \"fields\": {\"date\": \"2026-11-03\", \"time\": \"10:00\", \"place\": \"Dock 2\", \"contractor\": \"Weald Recycling\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Annual fire alarm test - Kestrel Fire Systems\", \"fields\": {\"date\": \"2026-11-10\", \"time\": \"08:00\", \"place\": \"Whole park\", \"contractor\": \"Kestrel Fire Systems\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cleaning consumables - Brightbay Cleaning\", \"fields\": {\"supplier\": \"Brightbay Cleaning\", \"amount\": \"320\", \"status\": \"confirmed\", \"delivery_place\": \"Facilities store\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Winter grit salt - Bracken Supplies\", \"fields\": {\"supplier\": \"Bracken Supplies\", \"amount\": \"610\", \"status\": \"pending\", \"delivery_place\": \"Facilities store\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Pest monitor refills - Halden Pest Control\", \"fields\": {\"supplier\": \"Halden Pest Control\", \"amount\": \"145\", \"status\": \"confirmed\", \"delivery_place\": \"Facilities store\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Halden Pest Control contact\", \"fields\": {\"contact\": \"Owen Pell\", \"org\": \"Halden Pest Control\", \"service\": \"Pest treatments and monitors\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Priya Anand\", \"rule\": \"e1\"}\n ],\n \"task\": \"The Halden pest treatment in the Unit 7 bin store is coming up soon. Please line it up against the waste collection and cleaning schedule, fix whatever in our plan no longer fits, and send Priya Anand what she needs to approve.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-06\", \"stale\": [\"2026-11-04\"]},\n  {\"message_to\": \"Priya Anand\", \"regarding\": \"EV-2\", \"says\": [\"2026-11-07\"], \"stale\": [\"2026-11-05\"], \"task\": true}\n ],\n \"why\": \"Fenbrook's change moves collections from Tuesday to Thursday at the same dock and time, so only the day aspect of e5 is stale. The deep clean (EV-1) was booked the evening after a Tuesday collection, so it must move to Friday 6 November, the evening after the Thursday collection; Mara controls that booking, so REVISE. The pest treatment (EV-2) was chained to the deep clean and should move to Saturday 7 November, but it sits inside a tenant's private bin store, so under rule e1 Mara must ask Priya Anand rather than change the record, so ASK and the consent request carries 2026-11-07. The baler delivery (EV-3) only relies on Dock 2 access, which the change leaves standing, so KEEP and no other record changes.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"Brightbay routine corridor cleans\", \"counterpart\": \"Sonia Bray\", \"org\": \"Brightbay Cleaning\", \"item\": \"communal corridor clean\", \"unit\": \"visit\", \"values\": [\"Block A lobby\", \"Block B lobby\", \"Unit 7 rear corridor\", \"Block C stairwell\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"booking\", \"topic\": \"Fenbrook extra skip hires\", \"counterpart\": \"Callum Rice\", \"org\": \"Fenbrook Waste\", \"item\": \"one-off skip hire\", \"unit\": \"day\", \"values\": [\"Dock 2\", \"Dock 1\", \"rear of Unit 12\", \"car park south\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Halden monitor refills\", \"counterpart\": \"Owen Pell\", \"org\": \"Halden Pest Control\", \"item\": \"pest monitor refill pack\", \"unit\": \"pack\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"order\", \"topic\": \"Paper and towel restock\", \"counterpart\": \"Denise Marr\", \"org\": \"Bracken Supplies\", \"item\": \"paper towel case\", \"unit\": \"case\", \"values\": [\"4\", \"8\", \"12\", \"16\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"order\", \"topic\": \"Grit salt top-ups\", \"counterpart\": \"Denise Marr\", \"org\": \"Bracken Supplies\", \"item\": \"grit salt bag\", \"unit\": \"bag\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"order\", \"topic\": \"Light tube restock\", \"counterpart\": \"Harvey Quinn\", \"org\": \"Lumen Electrical\", \"item\": \"LED tube\", \"unit\": \"box\", \"values\": [\"5\", \"10\", \"15\", \"25\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"booking\", \"topic\": \"Meeting pod reservations\", \"counterpart\": \"Priya Anand\", \"org\": \"Stonebridge Business Park Management\", \"item\": \"tenant meeting pod\", \"unit\": \"hour\", \"values\": [\"Pod 1\", \"Pod 2\", \"Pod 3\", \"Courtyard room\"], \"place\": \"Management suite\"},\n  {\"kind\": \"booking\", \"topic\": \"Lift inspection slots\", \"counterpart\": \"Greta Voss\", \"org\": \"Calder & Frost Lifts\", \"item\": \"routine lift inspection\", \"unit\": \"visit\", \"values\": [\"Block A lift\", \"Block B lift\", \"Block C lift\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"HVAC filter changes\", \"counterpart\": \"Martin Shaw\", \"org\": \"Airmatic Services\", \"item\": \"HVAC filter set\", \"unit\": \"set\", \"values\": [\"3\", \"6\", \"9\", \"12\"], \"place\": \"Roof plant room\"},\n  {\"kind\": \"booking\", \"topic\": \"Window cleaning rounds\", \"counterpart\": \"Talia Reed\", \"org\": \"Clearview Contractors\", \"item\": \"external window clean\", \"unit\": \"visit\", \"values\": [\"Block A\", \"Block B\", \"Block C\", \"Unit 7 frontage\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Courtyard plants\", \"counterpart\": \"Nadia Fox\", \"org\": \"Fernhill Nurseries\", \"item\": \"seasonal planter refill\", \"unit\": \"planter\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Courtyard\"},\n  {\"kind\": \"booking\", \"topic\": \"Van bay reservations\", \"counterpart\": \"Priya Anand\", \"org\": \"Stonebridge Business Park Management\", \"item\": \"loading van bay\", \"unit\": \"hour\", \"values\": [\"Dock 1 bay\", \"Dock 2 bay\", \"North bay\", \"South bay\"], \"place\": \"Loading area\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7442,
+    "completion_tokens": 4481,
+    "reasoning_tokens": 19,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0812466,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: the core has 24 events; need 28–55\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Bin store chain at Stonebridge\",\n \"setting\": \"Facilities supervisor at Stonebridge Business Park, a 20-tenant commercial complex\",\n \"owner\": \"Mara\",\n \"org\": \"Stonebridge Business Park Management\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule: any confirmed contractor booking that takes place inside a tenant's unit or its private areas may only be moved or rescheduled with the consent of our tenant liaison, Priya Anand. Ask her before confirming any change.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Standing rule: any supplier order above 400 pounds needs sign-off from our finance lead, Tomas Reed, before it is placed. Orders at or under 400 pounds can be placed directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Ledger & Vine Accountants (Unit 7)\", \"text\": \"Confirming Ledger & Vine Accountants are the tenant of Unit 7 at Stonebridge Business Park, including the private bin store at the rear of the unit. Please route any works near our bin store through your tenant liaison.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Sonia Bray (Brightbay Cleaning)\", \"text\": \"Brightbay Cleaning can offer deep cleans at Stonebridge on weekday evenings from 18:00 to 22:00. Our two-person crew needs four hours for a bin store deep clean.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"Fenbrook Waste will collect general waste from Stonebridge Business Park every Tuesday at 07:00 from Dock 2, under the service agreement running through 2027. The crew will always use Dock 2.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Owen Pell (Halden Pest Control)\", \"text\": \"Halden Pest Control can carry out treatments at Stonebridge on early mornings from 05:30. A bin store treatment takes about 90 minutes and the area must have been deep cleaned beforehand so the gel bait is not washed away.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"Summer newsletter to all tenants: courtyard planting refreshed, bike rack repairs scheduled, and a reminder to report any leaks to the facilities office.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered cleaning consumables from Brightbay Cleaning's supply arm for 320 pounds, which is under the 400 pound threshold so no finance sign-off was needed. Order placed for the facilities store.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Nell Archer (Kestrel Fire Systems)\", \"text\": \"Kestrel Fire Systems can carry out the annual fire alarm test at Stonebridge Business Park in the week beginning Monday 9 November 2026; a whole-park test takes about three hours starting from 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the annual fire alarm test with Kestrel Fire Systems for Tuesday 10 November 2026 at 08:00 across the whole park, using the slot Nell Archer offered for that week; notices to go to tenants a week ahead.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-4\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Brightbay Cleaning to deep clean the Unit 7 bin store on Wednesday 4 November 2026 at 19:00, the evening after Fenbrook Waste's Tuesday collection at Dock 2, so the store is cleaned once it has been emptied. Four-hour slot confirmed with Sonia Bray.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Priya Anand (Stonebridge tenant liaison)\", \"text\": \"Reminder that I am on leave the last week of July; anything needing tenant consent that week should come to me before 24 July.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Halden Pest Control to treat the Unit 7 bin store on Thursday 5 November 2026 at 06:00, the morning after the deep clean booked for Wednesday evening, so the gel bait goes onto a freshly cleaned surface as Owen Pell requires. Confirmed booking, with tenant liaison consent already noted as required for any later move.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e6\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Iris Dale (Weald Recycling)\", \"text\": \"Weald Recycling can deliver a replacement cardboard baler to Stonebridge Business Park; delivery vehicle needs Dock 2 access and about one hour on site.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked Weald Recycling to deliver the replacement cardboard baler to Dock 2 on Tuesday 3 November 2026 at 10:00, using the Dock 2 access Fenbrook's crew also uses, well after their 07:00 collection has cleared the dock.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e14\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared an order for winter grit salt from Bracken Supplies for 610 pounds; because this is above the 400 pound threshold it is held pending finance lead Tomas Reed's sign-off before placement.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-11\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered pest monitor refill packs from Halden Pest Control for 145 pounds for the routine station checks across the park.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Greta Voss (Calder & Frost Lifts)\", \"text\": \"Routine quarterly lift inspections for Blocks A, B and C are pencilled in for the first week of September; the usual certificates will follow within ten days of each visit.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-01\", \"type\": \"message\", \"from\": \"Tomas Reed (Stonebridge finance lead)\", \"text\": \"Please keep September supplier orders itemised by block where you can; it makes the quarterly tenant service charge reconciliation much quicker.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Sonia Bray (Brightbay Cleaning)\", \"text\": \"Confirming our crew for the Unit 7 bin store deep clean on Wednesday 4 November 2026 at 19:00, slotted as usual for the evening after Fenbrook Waste's Tuesday 07:00 collection at Dock 2 so the store is empty when we start.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"Fenbrook Waste can offer a one-off extra cardboard collection on Friday 25 September 2026 at 09:00 to clear the overflow behind Unit 12. Let us know by Wednesday if you want it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-30\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Facilities monthly minutes: gutters cleared on Blocks A and B, two lamp posts rewired, and a note to review waste contract costs in the new year.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-06\", \"type\": \"letter\", \"from\": \"Ledger & Vine Accountants (Unit 7)\", \"text\": \"Thank you for arranging the rear corridor repaint last month. Our only request is that noisy works near Unit 7 avoid our payroll processing days, the last two working days of each month.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"Route reorganisation notice: from Thursday 15 October 2026 our Stonebridge collection moves from Tuesday to Thursday, still at 07:00 and still at Dock 2. Everything else about the service stays the same through 2027.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Callum Rice (Fenbrook Waste)\", \"text\": \"First Thursday collection at Dock 2 completed this morning at 07:00 without issues. Thanks for having the bins ready.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-19\", \"type\": \"invoice\", \"from\": \"Fenbrook Waste\", \"text\": \"Fenbrook Waste invoice FW-1042 for October collections, 412 pounds, due by 10 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-21\", \"type\": \"email\", \"from\": \"Harvey Quinn (Lumen Electrical)\", \"text\": \"Your LED tube restock for the Block B stairwell was delivered to the facilities store today; fifteen boxes signed for by the caretaker.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-26\", \"type\": \"message\", \"from\": \"Priya Anand (Stonebridge tenant liaison)\", \"text\": \"Ledger & Vine mentioned a faint smell near their bin store over the weekend; can you make sure the planned clean and treatment are still on track for early November?\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-29\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Note to self: order replacement dock bumpers for Dock 1 before the frost, and check the baler delivery paperwork with Weald Recycling.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Unit 7 bin store deep clean - Brightbay Cleaning\", \"fields\": {\"date\": \"2026-11-04\", \"time\": \"19:00\", \"place\": \"Unit 7 bin store\", \"contractor\": \"Brightbay Cleaning\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Unit 7 bin store pest treatment - Halden Pest Control\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"06:00\", \"place\": \"Unit 7 bin store\", \"contractor\": \"Halden Pest Control\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Cardboard baler delivery - Weald Recycling\", \"fields\": {\"date\": \"2026-11-03\", \"time\": \"10:00\", \"place\": \"Dock 2\", \"contractor\": \"Weald Recycling\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Annual fire alarm test - Kestrel Fire Systems\", \"fields\": {\"date\": \"2026-11-10\", \"time\": \"08:00\", \"place\": \"Whole park\", \"contractor\": \"Kestrel Fire Systems\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cleaning consumables - Brightbay Cleaning\", \"fields\": {\"supplier\": \"Brightbay Cleaning\", \"amount\": \"320\", \"status\": \"confirmed\", \"delivery_place\": \"Facilities store\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Winter grit salt - Bracken Supplies\", \"fields\": {\"supplier\": \"Bracken Supplies\", \"amount\": \"610\", \"status\": \"pending\", \"delivery_place\": \"Facilities store\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Pest monitor refills - Halden Pest Control\", \"fields\": {\"supplier\": \"Halden Pest Control\", \"amount\": \"145\", \"status\": \"confirmed\", \"delivery_place\": \"Facilities store\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Halden Pest Control contact\", \"fields\": {\"contact\": \"Owen Pell\", \"org\": \"Halden Pest Control\", \"service\": \"Pest treatments and monitors\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Priya Anand\", \"rule\": \"e1\"}\n ],\n \"task\": \"The Halden pest treatment in the Unit 7 bin store is coming up soon. Please line it up against the waste collection and cleaning schedule, fix whatever in our plan no longer fits, and send Priya Anand what she needs to approve.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-06\", \"stale\": [\"2026-11-04\"]},\n  {\"message_to\": \"Priya Anand\", \"regarding\": \"EV-2\", \"says\": [\"2026-11-07\"], \"stale\": [\"2026-11-05\"], \"task\": true}\n ],\n \"why\": \"Fenbrook's change moves collections from Tuesday to Thursday at the same dock and time, so only the day aspect of e5 is stale. The deep clean (EV-1) was booked the evening after a Tuesday collection, so it must move to Friday 6 November, the evening after the Thursday collection; Mara controls that booking, so REVISE. The pest treatment (EV-2) was chained to the deep clean and should move to Saturday 7 November, but it sits inside a tenant's private bin store, so under rule e1 Mara must ask Priya Anand rather than change the record, so ASK and the consent request carries 2026-11-07. The baler delivery (EV-3) only relies on Dock 2 access, which the change leaves standing, so KEEP and no other record changes.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"Brightbay routine corridor cleans\", \"counterpart\": \"Sonia Bray\", \"org\": \"Brightbay Cleaning\", \"item\": \"communal corridor clean\", \"unit\": \"visit\", \"values\": [\"Block A lobby\", \"Block B lobby\", \"Unit 7 rear corridor\", \"Block C stairwell\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"booking\", \"topic\": \"Fenbrook extra skip hires\", \"counterpart\": \"Callum Rice\", \"org\": \"Fenbrook Waste\", \"item\": \"one-off skip hire\", \"unit\": \"day\", \"values\": [\"Dock 2\", \"Dock 1\", \"rear of Unit 12\", \"car park south\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Halden monitor refills\", \"counterpart\": \"Owen Pell\", \"org\": \"Halden Pest Control\", \"item\": \"pest monitor refill pack\", \"unit\": \"pack\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"order\", \"topic\": \"Paper and towel restock\", \"counterpart\": \"Denise Marr\", \"org\": \"Bracken Supplies\", \"item\": \"paper towel case\", \"unit\": \"case\", \"values\": [\"4\", \"8\", \"12\", \"16\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"order\", \"topic\": \"Grit salt top-ups\", \"counterpart\": \"Denise Marr\", \"org\": \"Bracken Supplies\", \"item\": \"grit salt bag\", \"unit\": \"bag\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"order\", \"topic\": \"Light tube restock\", \"counterpart\": \"Harvey Quinn\", \"org\": \"Lumen Electrical\", \"item\": \"LED tube\", \"unit\": \"box\", \"values\": [\"5\", \"10\", \"15\", \"25\"], \"place\": \"Facilities store\"},\n  {\"kind\": \"booking\", \"topic\": \"Meeting pod reservations\", \"counterpart\": \"Priya Anand\", \"org\": \"Stonebridge Business Park Management\", \"item\": \"tenant meeting pod\", \"unit\": \"hour\", \"values\": [\"Pod 1\", \"Pod 2\", \"Pod 3\", \"Courtyard room\"], \"place\": \"Management suite\"},\n  {\"kind\": \"booking\", \"topic\": \"Lift inspection slots\", \"counterpart\": \"Greta Voss\", \"org\": \"Calder & Frost Lifts\", \"item\": \"routine lift inspection\", \"unit\": \"visit\", \"values\": [\"Block A lift\", \"Block B lift\", \"Block C lift\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"HVAC filter changes\", \"counterpart\": \"Martin Shaw\", \"org\": \"Airmatic Services\", \"item\": \"HVAC filter set\", \"unit\": \"set\", \"values\": [\"3\", \"6\", \"9\", \"12\"], \"place\": \"Roof plant room\"},\n  {\"kind\": \"booking\", \"topic\": \"Window cleaning rounds\", \"counterpart\": \"Talia Reed\", \"org\": \"Clearview Contractors\", \"item\": \"external window clean\", \"unit\": \"visit\", \"values\": [\"Block A\", \"Block B\", \"Block C\", \"Unit 7 frontage\"], \"place\": \"Stonebridge Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Courtyard plants\", \"counterpart\": \"Nadia Fox\", \"org\": \"Fernhill Nurseries\", \"item\": \"seasonal planter refill\", \"unit\": \"planter\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Courtyard\"},\n  {\"kind\": \"booking\", \"topic\": \"Van bay reservations\", \"counterpart\": \"Priya Anand\", \"org\": \"Stonebridge Business Park Management\", \"item\": \"loading van bay\", \"unit\": \"hour\", \"values\": [\"Dock 1 bay\", \"Dock 2 bay\", \"North bay\", \"South bay\"], \"place\": \"Loading area\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 11966,
+    "completion_tokens": 4813,
+    "reasoning_tokens": 237,
+    "cached_tokens": 7424
+   },
+   "cost": 0.0880482,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e9: a decision must rest on at least one earlier event\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Bin store chain at Stonebridge",
+  "setting": "Facilities supervisor at Stonebridge Business Park, a 20-tenant commercial complex",
+  "owner": "Mara",
+  "org": "Stonebridge Business Park Management",
+  "now": "2026-11-02",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing rule: any confirmed contractor booking that takes place inside a tenant's unit or its private areas may only be moved or rescheduled with the consent of our tenant liaison, Priya Anand. Ask her before confirming any change.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Standing rule: any supplier order above 400 pounds needs sign-off from our finance lead, Tomas Reed, before it is placed. Orders at or under 400 pounds can be placed directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Ledger & Vine Accountants (Unit 7)",
+    "text": "Confirming Ledger & Vine Accountants are the tenant of Unit 7 at Stonebridge Business Park, including the private bin store at the rear of the unit. Please route any works near our bin store through your tenant liaison.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Sonia Bray (Brightbay Cleaning)",
+    "text": "Brightbay Cleaning can offer deep cleans at Stonebridge on weekday evenings from 18:00 to 22:00. Our two-person crew needs four hours for a bin store deep clean.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Callum Rice (Fenbrook Waste)",
+    "text": "Fenbrook Waste will collect general waste from Stonebridge Business Park every Tuesday at 07:00 from Dock 2, under the service agreement running through 2027. The crew will always use Dock 2.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-11",
+    "type": "email",
+    "from": "Owen Pell (Halden Pest Control)",
+    "text": "Halden Pest Control can carry out treatments at Stonebridge on early mornings from 05:30. A bin store treatment takes about 90 minutes and the area must have been deep cleaned beforehand so the gel bait is not washed away.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "notice",
+    "from": "Mara",
+    "text": "Summer newsletter to all tenants: courtyard planting refreshed, bike rack repairs scheduled, and a reminder to report any leaks to the facilities office.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered cleaning consumables from Brightbay Cleaning's supply arm for 320 pounds, which is under the 400 pound threshold so no finance sign-off was needed. Order placed for the facilities store.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Nell Archer (Kestrel Fire Systems)",
+    "text": "Kestrel Fire Systems can carry out the annual fire alarm test at Stonebridge Business Park in the week beginning Monday 9 November 2026; a whole-park test takes about three hours starting from 08:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the annual fire alarm test with Kestrel Fire Systems for Tuesday 10 November 2026 at 08:00 across the whole park, using the slot Nell Archer offered for that week; notices to go to tenants a week ahead.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Brightbay Cleaning to deep clean the Unit 7 bin store on Wednesday 4 November 2026 at 19:00, the evening after Fenbrook Waste's Tuesday collection at Dock 2, so the store is cleaned once it has been emptied. Four-hour slot confirmed with Sonia Bray.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Priya Anand (Stonebridge tenant liaison)",
+    "text": "Reminder that I am on leave the last week of July; anything needing tenant consent that week should come to me before 24 July.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Halden Pest Control to treat the Unit 7 bin store on Thursday 5 November 2026 at 06:00, the morning after the deep clean booked for Wednesday evening, so the gel bait goes onto a freshly cleaned surface as Owen Pell requires. Confirmed booking, with tenant liaison consent already noted as required for any later move.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e6",
+     "e1"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Iris Dale (Weald Recycling)",
+    "text": "Weald Recycling can deliver a replacement cardboard baler to Stonebridge Business Park; delivery vehicle needs Dock 2 access and about one hour on site.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-23",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked Weald Recycling to deliver the replacement cardboard baler to Dock 2 on Tuesday 3 November 2026 at 10:00, using the Dock 2 access Fenbrook's crew also uses, well after their 07:00 collection has cleared the dock.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e14"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Prepared an order for winter grit salt from Bracken Supplies for 610 pounds; because this is above the 400 pound threshold it is held pending finance lead Tomas Reed's sign-off before placement.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-11",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered pest monitor refill packs from Halden Pest Control for 145 pounds for the routine station checks across the park.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-21",
+    "type": "email",
+    "from": "Greta Voss (Calder & Frost Lifts)",
+    "text": "Routine quarterly lift inspections for Blocks A, B and C are pencilled in for the first week of September; the usual certificates will follow within ten days of each visit.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-01",
+    "type": "message",
+    "from": "Tomas Reed (Stonebridge finance lead)",
+    "text": "Please keep September supplier orders itemised by block where you can; it makes the quarterly tenant service charge reconciliation much quicker.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Sonia Bray (Brightbay Cleaning)",
+    "text": "Confirming our crew for the Unit 7 bin store deep clean on Wednesday 4 November 2026 at 19:00, slotted as usual for the evening after Fenbrook Waste's Tuesday 07:00 collection at Dock 2 so the store is empty when we start.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Callum Rice (Fenbrook Waste)",
+    "text": "Fenbrook Waste can offer a one-off extra cardboard collection on Friday 25 September 2026 at 09:00 to clear the overflow behind Unit 12. Let us know by Wednesday if you want it.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-30",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Facilities monthly minutes: gutters cleared on Blocks A and B, two lamp posts rewired, and a note to review waste contract costs in the new year.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-06",
+    "type": "letter",
+    "from": "Ledger & Vine Accountants (Unit 7)",
+    "text": "Thank you for arranging the rear corridor repaint last month. Our only request is that noisy works near Unit 7 avoid our payroll processing days, the last two working days of each month.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Callum Rice (Fenbrook Waste)",
+    "text": "Route reorganisation notice: from Thursday 15 October 2026 our Stonebridge collection moves from Tuesday to Thursday, still at 07:00 and still at Dock 2. Everything else about the service stays the same through 2027.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Callum Rice (Fenbrook Waste)",
+    "text": "First Thursday collection at Dock 2 completed this morning at 07:00 without issues. Thanks for having the bins ready.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-19",
+    "type": "invoice",
+    "from": "Fenbrook Waste",
+    "text": "Fenbrook Waste invoice FW-1042 for October collections, 412 pounds, due by 10 November 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-21",
+    "type": "email",
+    "from": "Harvey Quinn (Lumen Electrical)",
+    "text": "Your LED tube restock for the Block B stairwell was delivered to the facilities store today; fifteen boxes signed for by the caretaker.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-26",
+    "type": "message",
+    "from": "Priya Anand (Stonebridge tenant liaison)",
+    "text": "Ledger & Vine mentioned a faint smell near their bin store over the weekend; can you make sure the planned clean and treatment are still on track for early November?",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-29",
+    "type": "note",
+    "from": "Mara",
+    "text": "Note to self: order replacement dock bumpers for Dock 1 before the frost, and check the baler delivery paperwork with Weald Recycling.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Unit 7 bin store deep clean - Brightbay Cleaning",
+    "fields": {
+     "date": "2026-11-04",
+     "time": "19:00",
+     "place": "Unit 7 bin store",
+     "contractor": "Brightbay Cleaning",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Unit 7 bin store pest treatment - Halden Pest Control",
+    "fields": {
+     "date": "2026-11-05",
+     "time": "06:00",
+     "place": "Unit 7 bin store",
+     "contractor": "Halden Pest Control",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Cardboard baler delivery - Weald Recycling",
+    "fields": {
+     "date": "2026-11-03",
+     "time": "10:00",
+     "place": "Dock 2",
+     "contractor": "Weald Recycling",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Annual fire alarm test - Kestrel Fire Systems",
+    "fields": {
+     "date": "2026-11-10",
+     "time": "08:00",
+     "place": "Whole park",
+     "contractor": "Kestrel Fire Systems",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Cleaning consumables - Brightbay Cleaning",
+    "fields": {
+     "supplier": "Brightbay Cleaning",
+     "amount": "320",
+     "status": "confirmed",
+     "delivery_place": "Facilities store"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Winter grit salt - Bracken Supplies",
+    "fields": {
+     "supplier": "Bracken Supplies",
+     "amount": "610",
+     "status": "pending",
+     "delivery_place": "Facilities store"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Pest monitor refills - Halden Pest Control",
+    "fields": {
+     "supplier": "Halden Pest Control",
+     "amount": "145",
+     "status": "confirmed",
+     "delivery_place": "Facilities store"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Halden Pest Control contact",
+    "fields": {
+     "contact": "Owen Pell",
+     "org": "Halden Pest Control",
+     "service": "Pest treatments and monitors",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Priya Anand",
+    "rule": "e1"
+   }
+  ],
+  "task": "The Halden pest treatment in the Unit 7 bin store is coming up soon. Please line it up against the waste collection and cleaning schedule, fix whatever in our plan no longer fits, and send Priya Anand what she needs to approve.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-11-06",
+    "stale": [
+     "2026-11-04"
+    ]
+   },
+   {
+    "message_to": "Priya Anand",
+    "regarding": "EV-2",
+    "says": [
+     "2026-11-07"
+    ],
+    "stale": [
+     "2026-11-05"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Fenbrook's change moves collections from Tuesday to Thursday at the same dock and time, so only the day aspect of e5 is stale. The deep clean (EV-1) was booked the evening after a Tuesday collection, so it must move to Friday 6 November, the evening after the Thursday collection; Mara controls that booking, so REVISE. The pest treatment (EV-2) was chained to the deep clean and should move to Saturday 7 November, but it sits inside a tenant's private bin store, so under rule e1 Mara must ask Priya Anand rather than change the record, so ASK and the consent request carries 2026-11-07. The baler delivery (EV-3) only relies on Dock 2 access, which the change leaves standing, so KEEP and no other record changes.",
+  "noise_kit": [
+   {
+    "kind": "booking",
+    "topic": "Brightbay routine corridor cleans",
+    "counterpart": "Sonia Bray",
+    "org": "Brightbay Cleaning",
+    "item": "communal corridor clean",
+    "unit": "visit",
+    "values": [
+     "Block A lobby",
+     "Block B lobby",
+     "Unit 7 rear corridor",
+     "Block C stairwell"
+    ],
+    "place": "Stonebridge Business Park"
+   },
+   {
+    "kind": "booking",
+    "topic": "Fenbrook extra skip hires",
+    "counterpart": "Callum Rice",
+    "org": "Fenbrook Waste",
+    "item": "one-off skip hire",
+    "unit": "day",
+    "values": [
+     "Dock 2",
+     "Dock 1",
+     "rear of Unit 12",
+     "car park south"
+    ],
+    "place": "Stonebridge Business Park"
+   },
+   {
+    "kind": "order",
+    "topic": "Halden monitor refills",
+    "counterpart": "Owen Pell",
+    "org": "Halden Pest Control",
+    "item": "pest monitor refill pack",
+    "unit": "pack",
+    "values": [
+     "6",
+     "10",
+     "14",
+     "20"
+    ],
+    "place": "Facilities store"
+   },
+   {
+    "kind": "order",
+    "topic": "Paper and towel restock",
+    "counterpart": "Denise Marr",
+    "org": "Bracken Supplies",
+    "item": "paper towel case",
+    "unit": "case",
+    "values": [
+     "4",
+     "8",
+     "12",
+     "16"
+    ],
+    "place": "Facilities store"
+   },
+   {
+    "kind": "order",
+    "topic": "Grit salt top-ups",
+    "counterpart": "Denise Marr",
+    "org": "Bracken Supplies",
+    "item": "grit salt bag",
+    "unit": "bag",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "Facilities store"
+   },
+   {
+    "kind": "order",
+    "topic": "Light tube restock",
+    "counterpart": "Harvey Quinn",
+    "org": "Lumen Electrical",
+    "item": "LED tube",
+    "unit": "box",
+    "values": [
+     "5",
+     "10",
+     "15",
+     "25"
+    ],
+    "place": "Facilities store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Meeting pod reservations",
+    "counterpart": "Priya Anand",
+    "org": "Stonebridge Business Park Management",
+    "item": "tenant meeting pod",
+    "unit": "hour",
+    "values": [
+     "Pod 1",
+     "Pod 2",
+     "Pod 3",
+     "Courtyard room"
+    ],
+    "place": "Management suite"
+   },
+   {
+    "kind": "booking",
+    "topic": "Lift inspection slots",
+    "counterpart": "Greta Voss",
+    "org": "Calder & Frost Lifts",
+    "item": "routine lift inspection",
+    "unit": "visit",
+    "values": [
+     "Block A lift",
+     "Block B lift",
+     "Block C lift"
+    ],
+    "place": "Stonebridge Business Park"
+   },
+   {
+    "kind": "order",
+    "topic": "HVAC filter changes",
+    "counterpart": "Martin Shaw",
+    "org": "Airmatic Services",
+    "item": "HVAC filter set",
+    "unit": "set",
+    "values": [
+     "3",
+     "6",
+     "9",
+     "12"
+    ],
+    "place": "Roof plant room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Window cleaning rounds",
+    "counterpart": "Talia Reed",
+    "org": "Clearview Contractors",
+    "item": "external window clean",
+    "unit": "visit",
+    "values": [
+     "Block A",
+     "Block B",
+     "Block C",
+     "Unit 7 frontage"
+    ],
+    "place": "Stonebridge Business Park"
+   },
+   {
+    "kind": "order",
+    "topic": "Courtyard plants",
+    "counterpart": "Nadia Fox",
+    "org": "Fernhill Nurseries",
+    "item": "seasonal planter refill",
+    "unit": "planter",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Courtyard"
+   },
+   {
+    "kind": "booking",
+    "topic": "Van bay reservations",
+    "counterpart": "Priya Anand",
+    "org": "Stonebridge Business Park Management",
+    "item": "loading van bay",
+    "unit": "hour",
+    "values": [
+     "Dock 1 bay",
+     "Dock 2 bay",
+     "North bay",
+     "South bay"
+    ],
+    "place": "Loading area"
+   }
+  ],
+  "id": "K500-3-09",
+  "tier": 500,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

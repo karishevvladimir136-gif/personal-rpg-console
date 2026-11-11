@@ -1,0 +1,622 @@
+{
+ "id": "K100-1-04",
+ "writer": "kimi",
+ "tier": 100,
+ "class": 1,
+ "idx": 3,
+ "setting": "Front desk lead at Cedar Hills Veterinary Clinic, a four-vet animal hospital",
+ "prompt_sha256": "42d354a027aae126da90ddc413e63e6d5b1d53766eaf340392a604b341f6b289",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Kibble delivery day moves from Thursday to Monday\",\n \"setting\": \"Front desk lead at Cedar Hills Veterinary Clinic, a four-vet animal hospital\",\n \"owner\": \"Maya\",\n \"org\": \"Cedar Hills Veterinary Clinic\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"House rule: any change to a staff member's recurring weekly duty at Cedar Hills needs that staff member's own agreement before it is made. Put the request to them first, always.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Any single supplier order over 2000 needs sign-off from our finance lead Tomas Rey before it is placed. Orders at or under 2000 I can place myself.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Rosa Beltran (PetNutri Foods)\", \"text\": \"Hi Maya, confirming our standing arrangement for Cedar Hills Veterinary Clinic: HillsDiet Adult kibble at 38 per 15 kg bag, and our van delivers to your clinic on Thursdays, usually mid-morning. Order any time through me.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-09\", \"type\": \"email\", \"from\": \"Dr. Priya Anand (Cedar Hills Veterinary Clinic)\", \"text\": \"Maya, the new ultrasound gel arrives next week. Please keep the storeroom shelf by the door clear for it.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Rosa at PetNutri confirmed: HillsDiet Adult kibble is 38 per bag and the van comes to us on Thursdays, mid-morning. Good, that fits before the Friday rush.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e6\", \"date\": \"2026-07-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up the standing weekly restock with PetNutri Foods: 40 bags of HillsDiet Adult kibble at 38 per bag, so 1520 a week, under the 2000 sign-off line, delivered to the clinic on Thursdays. Booked it in as our weekly order.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Greta Lindqvist (Happy Paws Grooming)\", \"text\": \"Hi Maya, can we keep our Tuesday morning slot for the groomers' pickup of supplies? Same as usual, 09:30 at the side door.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked our volunteer Sam Whitfield to help unpack the weekly PetNutri kibble delivery, every Thursday at 10:00 in the storeroom, timed to when the van comes in.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-03\", \"type\": \"message\", \"from\": \"Sam Whitfield\", \"text\": \"Thanks Maya, Thursdays at 10 work well for me, see you at the storeroom each week.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Assigned vet tech Lena Park to the recurring receiving duty on Thursdays, since that is when the PetNutri van delivers the kibble; she signs for the delivery and checks the bags.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-13\", \"type\": \"invoice\", \"from\": \"Rosa Beltran (PetNutri Foods)\", \"text\": \"Invoice 4471: 40 bags HillsDiet Adult kibble at 38 per bag, total 1520, delivered Thursday. Thank you!\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Approved the monthly kibble budget line at 6080, based on four weekly orders of 40 bags at 38 per bag with PetNutri. Logged it in the orders book.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-27\", \"type\": \"email\", \"from\": \"Tomas Rey (Cedar Hills Veterinary Clinic)\", \"text\": \"Maya, the August supplier summary looks fine. Kibble spend is steady at 1520 a week, well under my sign-off threshold.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-03\", \"type\": \"call\", \"from\": \"Rosa Beltran (PetNutri Foods)\", \"text\": \"Quick call with Rosa: all good on the Thursday deliveries, no supply issues with HillsDiet Adult expected through autumn.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-10\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"Reminder to self: renew the clinic's kettle service contract with ClearStream Water by 2026-09-30.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-17\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Front desk huddle notes: Dr. Feld wants quieter afternoons on Wednesdays for cat appointments; Lena mentioned the Thursday receiving duty suits her fine.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Ana Ruiz\", \"text\": \"Hello, booking confirmation for Milo's booster on 2026-10-08 at 11:00 with Dr. Anand. We will be there!\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-12\", \"type\": \"quote\", \"from\": \"Rosa Beltran (PetNutri Foods)\", \"text\": \"Hi Maya, quoting for the ClumpSafe cat litter you asked about: 12 per 10 kg tub, and if you took it on standing order those pallets would run on our Wednesday route. Let me know.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e19\", \"date\": \"2026-10-15\", \"type\": \"message\", \"from\": \"Sam Whitfield\", \"text\": \"Maya, I can also cover some weekend shifts in November if the kennels get busy. Just say the word.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Rosa Beltran (PetNutri Foods)\", \"text\": \"Hi Maya, heads-up from our logistics team: from the week of 2 November our route changes and your PetNutri deliveries will come on Mondays instead of Thursdays, still mid-morning. Pricing on HillsDiet is unchanged at 38 per bag. Sorry for the shuffle!\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e21\", \"date\": \"2026-10-26\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Ordered spare printer toner for the front desk; also need to check the November rota with Dr. Feld before Friday.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-28\", \"type\": \"message\", \"from\": \"Lena Park\", \"text\": \"Maya, reminder that I'm off 2026-11-06 for a family thing, already swapped with Owen for that day's shift.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly HillsDiet kibble restock (PetNutri Foods)\", \"fields\": {\"supplier\": \"PetNutri Foods\", \"item\": \"HillsDiet Adult kibble\", \"quantity\": \"40\", \"unit_price\": \"38\", \"delivery_day\": \"Thursday\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Volunteer unpack help for kibble delivery\", \"fields\": {\"person\": \"Sam Whitfield\", \"day\": \"Thursday\", \"time\": \"10:00\", \"place\": \"storeroom\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Receiving duty for weekly kibble delivery\", \"fields\": {\"staff\": \"Lena Park\", \"day\": \"Thursday\", \"time\": \"10:00\", \"place\": \"receiving bay\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Monthly kibble budget line\", \"fields\": {\"supplier\": \"PetNutri Foods\", \"item\": \"HillsDiet Adult kibble\", \"monthly_amount\": \"6080\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"day\"], \"from\": \"Lena Park\", \"rule\": \"e1\"}\n ],\n \"task\": \"Can you confirm this week's kibble restock with Rosa at PetNutri? Send her a quick note with the delivery day she should expect us ready for, and make sure the standing order record matches what we'll actually be ready for.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"delivery_day\", \"value\": \"Monday\", \"stale\": [\"Thursday\"], \"task\": true},\n  {\"record\": \"EV-2\", \"field\": \"day\", \"value\": \"Monday\", \"stale\": [\"Thursday\"]},\n  {\"message_to\": \"Rosa Beltran\", \"regarding\": \"ORD-1\", \"says\": [\"Monday\"], \"stale\": [\"Thursday\", \"Wednesday\"], \"task\": true}\n ],\n \"why\": \"PetNutri's route change (e20) replaces the Thursday delivery fact, so the standing order record ORD-1 and Sam's unpack slot EV-2 (two hops away, resting on the order decision) must move to Monday; neither needs anyone's consent. Lena's receiving duty is also affected, but moving her recurring duty needs her own agreement under the house rule, so that is ASK and the record stays untouched. The monthly budget decision only used the unchanged price of 38 per bag, so it is KEEP, and the Wednesday litter quote is a distractor that touches nothing.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"syringe and needle restock\", \"counterpart\": \"Rosa Beltran\", \"org\": \"PetNutri Foods\", \"item\": \"disposable syringes\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"receiving bay\"},\n  {\"kind\": \"order\", \"topic\": \"exam glove restock\", \"counterpart\": \"Dana Whitaker\", \"org\": \"MedVet Supplies\", \"item\": \"nitrile exam gloves\", \"unit\": \"case\", \"values\": [\"3\", \"4\", \"6\", \"8\"], \"place\": \"storeroom\"},\n  {\"kind\": \"order\", \"topic\": \"prescription diet top-up\", \"counterpart\": \"Rosa Beltran\", \"org\": \"PetNutri Foods\", \"item\": \"HillsDiet renal tinned food\", \"unit\": \"tray\", \"values\": [\"6\", \"10\", \"14\", \"18\"], \"place\": \"receiving bay\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly vet team huddle\", \"counterpart\": \"Dr. Priya Anand\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"team huddle room\", \"unit\": \"room\", \"values\": [\"meeting room A\", \"meeting room B\", \"break room\"], \"place\": \"first floor\"},\n  {\"kind\": \"booking\", \"topic\": \"groomer supply pickup\", \"counterpart\": \"Greta Lindqvist\", \"org\": \"Happy Paws Grooming\", \"item\": \"pickup slot\", \"unit\": \"slot\", \"values\": [\"side door\", \"receiving bay\", \"front desk\"], \"place\": \"clinic annex\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Marta Voss\", \"org\": \"BrightLine Janitorial\", \"item\": \"kennel disinfectant\", \"unit\": \"canister\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"storeroom\"},\n  {\"kind\": \"booking\", \"topic\": \"mobile grooming van visit\", \"counterpart\": \"Greta Lindqvist\", \"org\": \"Happy Paws Grooming\", \"item\": \"van parking bay\", \"unit\": \"bay\", \"values\": [\"north bay\", \"south bay\", \"side lot\"], \"place\": \"clinic car park\"},\n  {\"kind\": \"order\", \"topic\": \"microchip stock\", \"counterpart\": \"Dana Whitaker\", \"org\": \"MedVet Supplies\", \"item\": \"pet microchips\", \"unit\": \"pack\", \"values\": [\"10\", \"20\", \"30\", \"50\"], \"place\": \"receiving bay\"},\n  {\"kind\": \"booking\", \"topic\": \"student shadow day\", \"counterpart\": \"Owen Hale\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"shadow placement\", \"unit\": \"placement\", \"values\": [\"consult room 1\", \"consult room 2\", \"treatment room\"], \"place\": \"ground floor\"},\n  {\"kind\": \"order\", \"topic\": \"cat litter retail stock\", \"counterpart\": \"Marta Voss\", \"org\": \"BrightLine Janitorial\", \"item\": \"paper-based cat litter\", \"unit\": \"bag\", \"values\": [\"6\", \"8\", \"12\", \"16\"], \"place\": \"storeroom\"},\n  {\"kind\": \"booking\", \"topic\": \"reception cover swap\", \"counterpart\": \"Lena Park\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"front desk cover\", \"unit\": \"shift\", \"values\": [\"morning shift\", \"afternoon shift\", \"evening shift\"], \"place\": \"front desk\"},\n  {\"kind\": \"order\", \"topic\": \"bandage and gauze restock\", \"counterpart\": \"Dana Whitaker\", \"org\": \"MedVet Supplies\", \"item\": \"cohesive bandage rolls\", \"unit\": \"carton\", \"values\": [\"2\", \"4\", \"6\", \"9\"], \"place\": \"receiving bay\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3181,
+    "completion_tokens": 5221,
+    "reasoning_tokens": 1727,
+    "cached_tokens": 0
+   },
+   "cost": 0.087858,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Kibble delivery day moves from Thursday to Monday\",\n \"setting\": \"Front desk lead at Cedar Hills Veterinary Clinic, a four-vet animal hospital\",\n \"owner\": \"Maya\",\n \"org\": \"Cedar Hills Veterinary Clinic\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"House rule: any change to a staff member's recurring weekly duty at Cedar Hills needs that staff member's own agreement before it is made. Put the request to them first, always.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Any single supplier order over 2000 needs sign-off from our finance lead Tomas Rey before it is placed. Orders at or under 2000 I can place myself.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Rosa Beltran (PetNutri Foods)\", \"text\": \"Hi Maya, confirming our standing arrangement for Cedar Hills Veterinary Clinic: HillsDiet Adult kibble at 38 per 15 kg bag, and our van delivers to your clinic on Thursdays, usually mid-morning. Order any time through me.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-09\", \"type\": \"email\", \"from\": \"Dr. Priya Anand (Cedar Hills Veterinary Clinic)\", \"text\": \"Maya, the new ultrasound gel arrives next week. Please keep the storeroom shelf by the door clear for it.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Rosa at PetNutri confirmed: HillsDiet Adult kibble is 38 per bag and the van comes to us on Thursdays, mid-morning. Good, that fits before the Friday rush.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e6\", \"date\": \"2026-07-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up the standing weekly restock with PetNutri Foods: 40 bags of HillsDiet Adult kibble at 38 per bag, so 1520 a week, under the 2000 sign-off line, delivered to the clinic on Thursdays. Booked it in as our weekly order.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Greta Lindqvist (Happy Paws Grooming)\", \"text\": \"Hi Maya, can we keep our Tuesday morning slot for the groomers' pickup of supplies? Same as usual, 09:30 at the side door.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-23\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked our volunteer Sam Whitfield to help unpack the weekly PetNutri kibble delivery, every Thursday at 10:00 in the storeroom, timed to when the van comes in.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-03\", \"type\": \"message\", \"from\": \"Sam Whitfield\", \"text\": \"Thanks Maya, Thursdays at 10 work well for me, see you at the storeroom each week.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Assigned vet tech Lena Park to the recurring receiving duty on Thursdays, since that is when the PetNutri van delivers the kibble; she signs for the delivery and checks the bags.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-13\", \"type\": \"invoice\", \"from\": \"Rosa Beltran (PetNutri Foods)\", \"text\": \"Invoice 4471: 40 bags HillsDiet Adult kibble at 38 per bag, total 1520, delivered Thursday. Thank you!\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Approved the monthly kibble budget line at 6080, based on four weekly orders of 40 bags at 38 per bag with PetNutri. Logged it in the orders book.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-27\", \"type\": \"email\", \"from\": \"Tomas Rey (Cedar Hills Veterinary Clinic)\", \"text\": \"Maya, the August supplier summary looks fine. Kibble spend is steady at 1520 a week, well under my sign-off threshold.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-03\", \"type\": \"call\", \"from\": \"Rosa Beltran (PetNutri Foods)\", \"text\": \"Quick call with Rosa: all good on the Thursday deliveries, no supply issues with HillsDiet Adult expected through autumn.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-10\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"Reminder to self: renew the clinic's kettle service contract with ClearStream Water by 2026-09-30.\", \"role\": \"obligation\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Rosa Beltran (PetNutri Foods)\", \"text\": \"Hi Maya, early heads-up from our logistics team so you can plan the rota: from the week of 2 November our route changes and your PetNutri deliveries will come on Mondays instead of Thursdays, still mid-morning. Pricing on HillsDiet is unchanged at 38 per bag. Sorry for the shuffle!\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e16\", \"date\": \"2026-09-17\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Front desk huddle notes: Dr. Feld wants quieter afternoons on Wednesdays for cat appointments; Lena mentioned the Thursday receiving duty suits her fine.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Ana Ruiz\", \"text\": \"Hello, booking confirmation for Milo's booster on 2026-10-08 at 11:00 with Dr. Anand. We will be there!\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-12\", \"type\": \"quote\", \"from\": \"Rosa Beltran (PetNutri Foods)\", \"text\": \"Hi Maya, quoting for the ClumpSafe cat litter you asked about: 12 per 10 kg tub, and if you took it on standing order those pallets would run on our Wednesday route. Let me know.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e19\", \"date\": \"2026-10-15\", \"type\": \"message\", \"from\": \"Sam Whitfield\", \"text\": \"Maya, I can also cover some weekend shifts in November if the kennels get busy. Just say the word.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-26\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Ordered spare printer toner for the front desk; also need to check the November rota with Dr. Feld before Friday.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-28\", \"type\": \"message\", \"from\": \"Lena Park\", \"text\": \"Maya, reminder that I'm off 2026-11-06 for a family thing, already swapped with Owen for that day's shift.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly HillsDiet kibble restock (PetNutri Foods)\", \"fields\": {\"supplier\": \"PetNutri Foods\", \"item\": \"HillsDiet Adult kibble\", \"quantity\": \"40\", \"unit_price\": \"38\", \"delivery_day\": \"Thursday\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Volunteer unpack help for kibble delivery\", \"fields\": {\"person\": \"Sam Whitfield\", \"day\": \"Thursday\", \"time\": \"10:00\", \"place\": \"storeroom\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Receiving duty for weekly kibble delivery\", \"fields\": {\"staff\": \"Lena Park\", \"day\": \"Thursday\", \"time\": \"10:00\", \"place\": \"receiving bay\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Monthly kibble budget line\", \"fields\": {\"supplier\": \"PetNutri Foods\", \"item\": \"HillsDiet Adult kibble\", \"monthly_amount\": \"6080\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"day\"], \"from\": \"Lena Park\", \"rule\": \"e1\"}\n ],\n \"task\": \"Can you confirm next week's kibble restock with Rosa at PetNutri? Send her a quick note with the delivery day she should expect us ready for, and make sure the standing order record matches what we'll actually be ready for.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"delivery_day\", \"value\": \"Monday\", \"stale\": [\"Thursday\"], \"task\": true},\n  {\"record\": \"EV-2\", \"field\": \"day\", \"value\": \"Monday\", \"stale\": [\"Thursday\"]},\n  {\"message_to\": \"Rosa Beltran\", \"regarding\": \"ORD-1\", \"says\": [\"Monday\"], \"stale\": [\"Thursday\", \"Wednesday\"], \"task\": true}\n ],\n \"why\": \"PetNutri's route change (e20) replaces the Thursday delivery fact for deliveries from the week of 2 November, so the standing order record ORD-1 and Sam's unpack slot EV-2 (two hops away, resting on the order decision) must move to Monday; neither needs anyone's consent. Lena's receiving duty is also affected, but moving her recurring duty needs her own agreement under the house rule, so that is ASK and the record stays untouched. The monthly budget decision only used the unchanged price of 38 per bag, so it is KEEP, and the Wednesday litter quote is a distractor that touches nothing.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"syringe and needle restock\", \"counterpart\": \"Rosa Beltran\", \"org\": \"PetNutri Foods\", \"item\": \"disposable syringes\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"receiving bay\"},\n  {\"kind\": \"order\", \"topic\": \"exam glove restock\", \"counterpart\": \"Dana Whitaker\", \"org\": \"MedVet Supplies\", \"item\": \"nitrile exam gloves\", \"unit\": \"case\", \"values\": [\"3\", \"4\", \"6\", \"8\"], \"place\": \"storeroom\"},\n  {\"kind\": \"order\", \"topic\": \"prescription diet top-up\", \"counterpart\": \"Rosa Beltran\", \"org\": \"PetNutri Foods\", \"item\": \"HillsDiet renal tinned food\", \"unit\": \"tray\", \"values\": [\"6\", \"10\", \"14\", \"18\"], \"place\": \"receiving bay\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly vet team huddle\", \"counterpart\": \"Dr. Priya Anand\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"team huddle room\", \"unit\": \"room\", \"values\": [\"meeting room A\", \"meeting room B\", \"break room\"], \"place\": \"first floor\"},\n  {\"kind\": \"booking\", \"topic\": \"groomer supply pickup\", \"counterpart\": \"Greta Lindqvist\", \"org\": \"Happy Paws Grooming\", \"item\": \"pickup slot\", \"unit\": \"slot\", \"values\": [\"side door\", \"receiving bay\", \"front desk\"], \"place\": \"clinic annex\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Marta Voss\", \"org\": \"BrightLine Janitorial\", \"item\": \"kennel disinfectant\", \"unit\": \"canister\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"storeroom\"},\n  {\"kind\": \"booking\", \"topic\": \"mobile grooming van visit\", \"counterpart\": \"Greta Lindqvist\", \"org\": \"Happy Paws Grooming\", \"item\": \"van parking bay\", \"unit\": \"bay\", \"values\": [\"north bay\", \"south bay\", \"side lot\"], \"place\": \"clinic car park\"},\n  {\"kind\": \"order\", \"topic\": \"microchip stock\", \"counterpart\": \"Dana Whitaker\", \"org\": \"MedVet Supplies\", \"item\": \"pet microchips\", \"unit\": \"pack\", \"values\": [\"10\", \"20\", \"30\", \"50\"], \"place\": \"receiving bay\"},\n  {\"kind\": \"booking\", \"topic\": \"student shadow day\", \"counterpart\": \"Owen Hale\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"shadow placement\", \"unit\": \"placement\", \"values\": [\"consult room 1\", \"consult room 2\", \"treatment room\"], \"place\": \"ground floor\"},\n  {\"kind\": \"order\", \"topic\": \"cat litter retail stock\", \"counterpart\": \"Marta Voss\", \"org\": \"BrightLine Janitorial\", \"item\": \"paper-based cat litter\", \"unit\": \"bag\", \"values\": [\"6\", \"8\", \"12\", \"16\"], \"place\": \"storeroom\"},\n  {\"kind\": \"booking\", \"topic\": \"reception cover swap\", \"counterpart\": \"Lena Park\", \"org\": \"Cedar Hills Veterinary Clinic\", \"item\": \"front desk cover\", \"unit\": \"shift\", \"values\": [\"morning shift\", \"afternoon shift\", \"evening shift\"], \"place\": \"front desk\"},\n  {\"kind\": \"order\", \"topic\": \"bandage and gauze restock\", \"counterpart\": \"Dana Whitaker\", \"org\": \"MedVet Supplies\", \"item\": \"cohesive bandage rolls\", \"unit\": \"carton\", \"values\": [\"2\", \"4\", \"6\", \"9\"], \"place\": \"receiving bay\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 6745,
+    "completion_tokens": 4031,
+    "reasoning_tokens": 520,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0724056,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- the change is too close to now: only 4 of 100 events would come after it; move the change earlier\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Kibble delivery day moves from Thursday to Monday",
+  "setting": "Front desk lead at Cedar Hills Veterinary Clinic, a four-vet animal hospital",
+  "owner": "Maya",
+  "org": "Cedar Hills Veterinary Clinic",
+  "now": "2026-10-30",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Maya",
+    "text": "House rule: any change to a staff member's recurring weekly duty at Cedar Hills needs that staff member's own agreement before it is made. Put the request to them first, always.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Maya",
+    "text": "Any single supplier order over 2000 needs sign-off from our finance lead Tomas Rey before it is placed. Orders at or under 2000 I can place myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Rosa Beltran (PetNutri Foods)",
+    "text": "Hi Maya, confirming our standing arrangement for Cedar Hills Veterinary Clinic: HillsDiet Adult kibble at 38 per 15 kg bag, and our van delivers to your clinic on Thursdays, usually mid-morning. Order any time through me.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-09",
+    "type": "email",
+    "from": "Dr. Priya Anand (Cedar Hills Veterinary Clinic)",
+    "text": "Maya, the new ultrasound gel arrives next week. Please keep the storeroom shelf by the door clear for it.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-14",
+    "type": "note",
+    "from": "Maya",
+    "text": "Rosa at PetNutri confirmed: HillsDiet Adult kibble is 38 per bag and the van comes to us on Thursdays, mid-morning. Good, that fits before the Friday rush.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-16",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Set up the standing weekly restock with PetNutri Foods: 40 bags of HillsDiet Adult kibble at 38 per bag, so 1520 a week, under the 2000 sign-off line, delivered to the clinic on Thursdays. Booked it in as our weekly order.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Greta Lindqvist (Happy Paws Grooming)",
+    "text": "Hi Maya, can we keep our Tuesday morning slot for the groomers' pickup of supplies? Same as usual, 09:30 at the side door.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-23",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked our volunteer Sam Whitfield to help unpack the weekly PetNutri kibble delivery, every Thursday at 10:00 in the storeroom, timed to when the van comes in.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-03",
+    "type": "message",
+    "from": "Sam Whitfield",
+    "text": "Thanks Maya, Thursdays at 10 work well for me, see you at the storeroom each week.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-06",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Assigned vet tech Lena Park to the recurring receiving duty on Thursdays, since that is when the PetNutri van delivers the kibble; she signs for the delivery and checks the bags.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-13",
+    "type": "invoice",
+    "from": "Rosa Beltran (PetNutri Foods)",
+    "text": "Invoice 4471: 40 bags HillsDiet Adult kibble at 38 per bag, total 1520, delivered Thursday. Thank you!",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Approved the monthly kibble budget line at 6080, based on four weekly orders of 40 bags at 38 per bag with PetNutri. Logged it in the orders book.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-27",
+    "type": "email",
+    "from": "Tomas Rey (Cedar Hills Veterinary Clinic)",
+    "text": "Maya, the August supplier summary looks fine. Kibble spend is steady at 1520 a week, well under my sign-off threshold.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-03",
+    "type": "call",
+    "from": "Rosa Beltran (PetNutri Foods)",
+    "text": "Quick call with Rosa: all good on the Thursday deliveries, no supply issues with HillsDiet Adult expected through autumn.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-10",
+    "type": "task",
+    "from": "Maya",
+    "text": "Reminder to self: renew the clinic's kettle service contract with ClearStream Water by 2026-09-30.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Rosa Beltran (PetNutri Foods)",
+    "text": "Hi Maya, early heads-up from our logistics team so you can plan the rota: from the week of 2 November our route changes and your PetNutri deliveries will come on Mondays instead of Thursdays, still mid-morning. Pricing on HillsDiet is unchanged at 38 per bag. Sorry for the shuffle!",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-17",
+    "type": "minutes",
+    "from": "Maya",
+    "text": "Front desk huddle notes: Dr. Feld wants quieter afternoons on Wednesdays for cat appointments; Lena mentioned the Thursday receiving duty suits her fine.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Ana Ruiz",
+    "text": "Hello, booking confirmation for Milo's booster on 2026-10-08 at 11:00 with Dr. Anand. We will be there!",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-12",
+    "type": "quote",
+    "from": "Rosa Beltran (PetNutri Foods)",
+    "text": "Hi Maya, quoting for the ClumpSafe cat litter you asked about: 12 per 10 kg tub, and if you took it on standing order those pallets would run on our Wednesday route. Let me know.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-15",
+    "type": "message",
+    "from": "Sam Whitfield",
+    "text": "Maya, I can also cover some weekend shifts in November if the kennels get busy. Just say the word.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-26",
+    "type": "note",
+    "from": "Maya",
+    "text": "Ordered spare printer toner for the front desk; also need to check the November rota with Dr. Feld before Friday.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-28",
+    "type": "message",
+    "from": "Lena Park",
+    "text": "Maya, reminder that I'm off 2026-11-06 for a family thing, already swapped with Owen for that day's shift.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Weekly HillsDiet kibble restock (PetNutri Foods)",
+    "fields": {
+     "supplier": "PetNutri Foods",
+     "item": "HillsDiet Adult kibble",
+     "quantity": "40",
+     "unit_price": "38",
+     "delivery_day": "Thursday",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Volunteer unpack help for kibble delivery",
+    "fields": {
+     "person": "Sam Whitfield",
+     "day": "Thursday",
+     "time": "10:00",
+     "place": "storeroom",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Receiving duty for weekly kibble delivery",
+    "fields": {
+     "staff": "Lena Park",
+     "day": "Thursday",
+     "time": "10:00",
+     "place": "receiving bay",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Monthly kibble budget line",
+    "fields": {
+     "supplier": "PetNutri Foods",
+     "item": "HillsDiet Adult kibble",
+     "monthly_amount": "6080",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "day"
+    ],
+    "from": "Lena Park",
+    "rule": "e1"
+   }
+  ],
+  "task": "Can you confirm next week's kibble restock with Rosa at PetNutri? Send her a quick note with the delivery day she should expect us ready for, and make sure the standing order record matches what we'll actually be ready for.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "delivery_day",
+    "value": "Monday",
+    "stale": [
+     "Thursday"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-2",
+    "field": "day",
+    "value": "Monday",
+    "stale": [
+     "Thursday"
+    ]
+   },
+   {
+    "message_to": "Rosa Beltran",
+    "regarding": "ORD-1",
+    "says": [
+     "Monday"
+    ],
+    "stale": [
+     "Thursday",
+     "Wednesday"
+    ],
+    "task": true
+   }
+  ],
+  "why": "PetNutri's route change (e20) replaces the Thursday delivery fact for deliveries from the week of 2 November, so the standing order record ORD-1 and Sam's unpack slot EV-2 (two hops away, resting on the order decision) must move to Monday; neither needs anyone's consent. Lena's receiving duty is also affected, but moving her recurring duty needs her own agreement under the house rule, so that is ASK and the record stays untouched. The monthly budget decision only used the unchanged price of 38 per bag, so it is KEEP, and the Wednesday litter quote is a distractor that touches nothing.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "syringe and needle restock",
+    "counterpart": "Rosa Beltran",
+    "org": "PetNutri Foods",
+    "item": "disposable syringes",
+    "unit": "box",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "receiving bay"
+   },
+   {
+    "kind": "order",
+    "topic": "exam glove restock",
+    "counterpart": "Dana Whitaker",
+    "org": "MedVet Supplies",
+    "item": "nitrile exam gloves",
+    "unit": "case",
+    "values": [
+     "3",
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "storeroom"
+   },
+   {
+    "kind": "order",
+    "topic": "prescription diet top-up",
+    "counterpart": "Rosa Beltran",
+    "org": "PetNutri Foods",
+    "item": "HillsDiet renal tinned food",
+    "unit": "tray",
+    "values": [
+     "6",
+     "10",
+     "14",
+     "18"
+    ],
+    "place": "receiving bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekly vet team huddle",
+    "counterpart": "Dr. Priya Anand",
+    "org": "Cedar Hills Veterinary Clinic",
+    "item": "team huddle room",
+    "unit": "room",
+    "values": [
+     "meeting room A",
+     "meeting room B",
+     "break room"
+    ],
+    "place": "first floor"
+   },
+   {
+    "kind": "booking",
+    "topic": "groomer supply pickup",
+    "counterpart": "Greta Lindqvist",
+    "org": "Happy Paws Grooming",
+    "item": "pickup slot",
+    "unit": "slot",
+    "values": [
+     "side door",
+     "receiving bay",
+     "front desk"
+    ],
+    "place": "clinic annex"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies restock",
+    "counterpart": "Marta Voss",
+    "org": "BrightLine Janitorial",
+    "item": "kennel disinfectant",
+    "unit": "canister",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "storeroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "mobile grooming van visit",
+    "counterpart": "Greta Lindqvist",
+    "org": "Happy Paws Grooming",
+    "item": "van parking bay",
+    "unit": "bay",
+    "values": [
+     "north bay",
+     "south bay",
+     "side lot"
+    ],
+    "place": "clinic car park"
+   },
+   {
+    "kind": "order",
+    "topic": "microchip stock",
+    "counterpart": "Dana Whitaker",
+    "org": "MedVet Supplies",
+    "item": "pet microchips",
+    "unit": "pack",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "50"
+    ],
+    "place": "receiving bay"
+   },
+   {
+    "kind": "booking",
+    "topic": "student shadow day",
+    "counterpart": "Owen Hale",
+    "org": "Cedar Hills Veterinary Clinic",
+    "item": "shadow placement",
+    "unit": "placement",
+    "values": [
+     "consult room 1",
+     "consult room 2",
+     "treatment room"
+    ],
+    "place": "ground floor"
+   },
+   {
+    "kind": "order",
+    "topic": "cat litter retail stock",
+    "counterpart": "Marta Voss",
+    "org": "BrightLine Janitorial",
+    "item": "paper-based cat litter",
+    "unit": "bag",
+    "values": [
+     "6",
+     "8",
+     "12",
+     "16"
+    ],
+    "place": "storeroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "reception cover swap",
+    "counterpart": "Lena Park",
+    "org": "Cedar Hills Veterinary Clinic",
+    "item": "front desk cover",
+    "unit": "shift",
+    "values": [
+     "morning shift",
+     "afternoon shift",
+     "evening shift"
+    ],
+    "place": "front desk"
+   },
+   {
+    "kind": "order",
+    "topic": "bandage and gauze restock",
+    "counterpart": "Dana Whitaker",
+    "org": "MedVet Supplies",
+    "item": "cohesive bandage rolls",
+    "unit": "carton",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "9"
+    ],
+    "place": "receiving bay"
+   }
+  ],
+  "id": "K100-1-04",
+  "tier": 100,
+  "class": 1,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state treats Sam Whitfield (a volunteer) as outside the house rule in e1, which covers only a 'staff member's recurring weekly duty', so EV-2 is marked REVISE with no consent needed. That reading is contestable, since Sam agreed to the Thursday slot in e9 and the rule could reasonably cover any recurring duty holder, which would make EV-2 an ASK. Otherwise the class, counts, distance from the task day, and hidden placement all fit.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state treats Sam Whitfield (a volunteer) as outside the house rule in e1, which covers only a 'staff member's recurring weekly duty', so EV-2 is marked REVISE with no consent needed. That reading is contestable, since Sam agreed to the Thursday slot in e9 and the rule could reasonably cover any recurring duty holder, which would make EV-2 an ASK. Otherwise the class, counts, distance from the task day, and hidden placement all fit."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5076,
+    "completion_tokens": 1538,
+    "reasoning_tokens": 1320,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012766,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0d3f33628a68f54b98df69d0cc7279a813c0773a9023b859fdbe67839eaeea05",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The route change revokes the Thursday delivery fact; ORD-1 and EV-2 (two hops via e6) get Monday, EV-3 needs Lena's consent under e1, and ORD-2 keeps because only the unchanged price fed it. The task forces sending a message and updating records without naming the change. Counts, timing and hiding all meet tier 100; no issues found.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The route change revokes the Thursday delivery fact; ORD-1 and EV-2 (two hops via e6) get Monday, EV-3 needs Lena's consent under e1, and ORD-2 keeps because only the unchanged price fed it. The task forces sending a message and updating records without naming the change. Counts, timing and hiding all meet tier 100; no issues found."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3514,
+    "completion_tokens": 556,
+    "reasoning_tokens": 432,
+    "cached_tokens": 384
+   },
+   "cost": 0.00692824,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0d3f33628a68f54b98df69d0cc7279a813c0773a9023b859fdbe67839eaeea05",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The scenario fits class 3: the supplier fact supports ORD-1, ORD-1 supports EV-2, and ORD-2 cites the same supplier fact only for pricing, which remains unchanged. The expected updates and consent request follow the history. The core has 22 events and five decisions, with the change sufficiently early and followed by multiple events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The scenario fits class 3: the supplier fact supports ORD-1, ORD-1 supports EV-2, and ORD-2 cites the same supplier fact only for pricing, which remains unchanged. The expected updates and consent request follow the history. The core has 22 events and five decisions, with the change sufficiently early and followed by multiple events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3430,
+    "completion_tokens": 557,
+    "reasoning_tokens": 449,
+    "cached_tokens": 0
+   },
+   "cost": 0.0707175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0d3f33628a68f54b98df69d0cc7279a813c0773a9023b859fdbe67839eaeea05",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

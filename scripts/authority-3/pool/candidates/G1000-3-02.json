@@ -651,5 +651,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The latest member message explicitly requests adding two dinner attendees, but the expected state fixes the final number at 80 and leaves the entries record unchanged. Nothing establishes whether those two attendees are already included in the recorded 80, so the final catering count is ambiguous. The chain structure, tier requirements, action requirement and hidden-change placement otherwise hold.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The latest member message explicitly requests adding two dinner attendees, but the expected state fixes the final number at 80 and leaves the entries record unchanged. Nothing establishes whether those two attendees are already included in the recorded 80, so the final catering count is ambiguous. The chain structure, tier requirements, action requirement and hidden-change placement otherwise hold."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4326,
+    "completion_tokens": 234,
+    "reasoning_tokens": 129,
+    "cached_tokens": 0
+   },
+   "cost": 0.0657675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f1251565999488ce5710196ef01cef5f859646d0590aefc3bb3227753c3c3a9e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change explicitly revokes the quote fact e10 ('Fairway Room'), which matches the class 1 definition (stale fact, with e15 ASK and e16 REVISE two hops away and e17 KEEP), so the intended class 3 label is wrong, though chain-like structure makes it partly ambiguous. The core has exactly 32 events, at the tier floor, but it meets the decision count, the 19-day distance, and the two echoes. The expected state, marks, and consent map are internally consistent with the history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change explicitly revokes the quote fact e10 ('Fairway Room'), which matches the class 1 definition (stale fact, with e15 ASK and e16 REVISE two hops away and e17 KEEP), so the intended class 3 label is wrong, though chain-like structure makes it partly ambiguous. The core has exactly 32 events, at the tier floor, but it meets the decision count, the 19-day distance, and the two echoes. The expected state, marks, and consent map are internally consistent with the history."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6379,
+    "completion_tokens": 2135,
+    "reasoning_tokens": 1909,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017054,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f1251565999488ce5710196ef01cef5f859646d0590aefc3bb3227753c3c3a9e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: e10 (quote/Fairway Room) corrected by e26, touching e15 (ORD-1, ASK under the >500-pound confirmed-order rule e1, matching the consent map) and e16 (EV-1, REVISE to Terrace Suite), while e17 (ticket price) is KEEP since the 18-pound head price stands. Tier counts hold: 32 core events, 7 decisions, change 19 days before the task day with later core events, and two echoes (e14, e20) restate the Fairway Room. The change sits at event 892 of 1000 as an ordinary manager email with 108 events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: e10 (quote/Fairway Room) corrected by e26, touching e15 (ORD-1, ASK under the >500-pound confirmed-order rule e1, matching the consent map) and e16 (EV-1, REVISE to Terrace Suite), while e17 (ticket price) is KEEP since the 18-pound head price stands. Tier counts hold: 32 core events, 7 decisions, change 19 days before the task day with later core events, and two echoes (e14, e20) restate the Fairway Room. The change sits at event 892 of 1000 as an ordinary manager email with 108 events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4425,
+    "completion_tokens": 745,
+    "reasoning_tokens": 545,
+    "cached_tokens": 256
+   },
+   "cost": 0.0237588,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f1251565999488ce5710196ef01cef5f859646d0590aefc3bb3227753c3c3a9e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

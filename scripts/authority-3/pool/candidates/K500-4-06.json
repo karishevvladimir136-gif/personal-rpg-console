@@ -1,0 +1,631 @@
+{
+ "id": "K500-4-06",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 4,
+ "idx": 5,
+ "setting": "Restaurant manager at The Copper Kettle, a 60-seat family bistro",
+ "prompt_sha256": "0c20eecad6318f78ba3c11244a305019e987da629fe5ad08301343d5fbd8c0e2",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"The Copper Kettle produce order and a supplier's new phone number\",\n \"setting\": \"Restaurant manager at The Copper Kettle, a 60-seat family bistro\",\n \"owner\": \"Marta\",\n \"org\": \"The Copper Kettle\",\n \"now\": \"2026-11-11\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"House rule from today: any supplier order over 400 pounds must be countersigned by Tomas Reed before it is sent. Anything at or under 400 I can send myself.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the music nights: a confirmed Saturday booking with the Marlowe Trio may not be moved to another date without Jerome Pike's agreement. If a date ever needs to change, ask Jerome first.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Nair (Greenleaf Produce)\", \"text\": \"Confirming Greenleaf Produce delivers to The Copper Kettle every Tuesday and Friday morning. Your standing Friday order is the standard mixed vegetable box at 120 pounds. Order any time and we will slot it into the Friday run.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Lucia Bianchi (Nona's Pantry)\", \"text\": \"Hello Marta, for pasta and flour orders at Nona's Pantry please call my direct line, 07700 900321, rather than the switchboard. It is the quickest way to reach me.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Jerome Pike (Marlowe Trio)\", \"text\": \"The Marlowe Trio is glad to be your Saturday house band at The Copper Kettle: we play every Saturday from 19:30 in the back room, fee 180 pounds per night, settled monthly.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Oskar Velt (Velt & Vine)\", \"text\": \"Our house red, the Velt & Vine Côtes du Ventoux, is 84 pounds per case of twelve for trade accounts. I am your rep, so any wine order for The Copper Kettle comes through me.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up the standing Friday order with Greenleaf Produce: the standard mixed vegetable box at 120 pounds, delivered to the kitchen door each Friday morning.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Marlowe Trio as the Saturday house band, every Saturday at 19:30 in the back room at 180 pounds a night, on the standing terms agreed with Jerome.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"EV-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Sam Oduya (ChillRight Services)\", \"text\": \"ChillRight Services will look after the walk-in fridge at The Copper Kettle with a quarterly service visit. Our engineer covers your area on weekday mornings.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the autumn fridge service with ChillRight for the morning of 20 October 2026 at 09:00, before the lunch prep starts.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-4\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered two cases of the Velt & Vine Côtes du Ventoux at 84 pounds a case, 168 pounds in total, which is under the 400-pound line so no countersignature was needed.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"ORD-5\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Bea Long (FreshFold Linen)\", \"text\": \"FreshFold Linen will collect the table linen from The Copper Kettle every Monday and return it pressed on Thursday.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"August rota is pinned up by the office door. Kasia covers the bar on Fridays and Saturdays; new starters shadow her for two weeks.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-20\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Printed fresh supplier cards for the office wall. Nona's Pantry: Lucia Bianchi, direct line 07700 900321 for pasta and flour orders.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e15\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Rafa Conti (Nona's Pantry)\", \"text\": \"Hello Marta, I am Rafa Conti, the new account manager at Nona's Pantry. You can reach me at r.conti@nonaspantry.example for anything about your account. Lucia still handles order phoning as before.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-29\", \"type\": \"message\", \"from\": \"Kasia Nowak (The Copper Kettle)\", \"text\": \"Tuesday quiz is filling up again. Do we keep the same format of six rounds and a free dessert for the winners?\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Tuesday quiz night in the front room every Tuesday at 20:00 through the autumn, six rounds as usual.\", \"role\": \"decision\", \"record\": \"EV-6\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Dane Whitlock (Harbour Ales)\", \"text\": \"Your Thursday ale delivery is on the van as normal this week, two casks of the bitter and one of the pale.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Lucia Bianchi (Nona's Pantry)\", \"text\": \"Hi Marta, a small admin note: my direct line has changed to 07700 900456, please use that from now on when you phone in orders. The old number now rings through to the accounts office and they cannot take orders.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n  {\"id\": \"e20\", \"date\": \"2026-10-30\", \"type\": \"email\", \"from\": \"Priya Nair (Greenleaf Produce)\", \"text\": \"November availability looks good on all root vegetables and brassicas. Your Friday mixed vegetable box is unchanged at 120 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-11-02\", \"type\": \"message\", \"from\": \"Kasia Nowak (The Copper Kettle)\", \"text\": \"Reminder that the Friday vegetable order for this week went in on Wednesday morning. Also the quiz prize desserts are running low.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-11-06\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"November birthdays card is going around the kitchen for signatures. Please do not leave it near the soup station again.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-11-07\", \"type\": \"email\", \"from\": \"Tomas Reed (The Copper Kettle)\", \"text\": \"I will be in on Saturday afternoon if you need me to look at any invoices or countersign anything over the 400-pound line.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-11-08\", \"type\": \"invoice\", \"from\": \"Oskar Velt (Velt & Vine)\", \"text\": \"Invoice for the October wine delivery: two cases of Côtes du Ventoux, 168 pounds, payment due by 20 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e25\", \"date\": \"2026-11-09\", \"type\": \"message\", \"from\": \"Alfie Brooks (Brooks Dairy)\", \"text\": \"Milk and cream deliveries carry on Monday, Wednesday and Saturday mornings as usual through November.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-11-10\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Extractor fan over the range is due its deep clean; the engineer from BrightAir suggested a Monday before opening.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-11-10\", \"type\": \"letter\", \"from\": \"Brantford Council\", \"text\": \"Your commercial waste collection day remains Wednesday. Christmas week collections move to Thursday 24 December 2026.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-11-10\", \"type\": \"message\", \"from\": \"Chef Bruno Iversen (The Copper Kettle)\", \"text\": \"Tasting notes for the winter menu: the leek and potato soup works, the venison pie needs a richer gravy. We trial both next week.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-11-11\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Table 12 wobble fixed with a new foot. Spare feet are now in the drawer under the till.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-11-11\", \"type\": \"message\", \"from\": \"Kasia Nowak (The Copper Kettle)\", \"text\": \"Christmas party bookings open on Sunday 15 November. Shall we put the poster up this weekend?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Standing Friday vegetable order\", \"fields\": {\"supplier\": \"Greenleaf Produce\", \"item\": \"standard mixed vegetable box\", \"amount\": \"120\", \"delivery\": \"Friday morning\", \"status\": \"standing\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"House red wine order\", \"fields\": {\"supplier\": \"Velt & Vine\", \"item\": \"Cotes du Ventoux, two cases\", \"amount\": \"168\", \"date\": \"2026-07-02\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Saturday house band\", \"fields\": {\"performer\": \"Marlowe Trio\", \"day\": \"Saturday\", \"time\": \"19:30\", \"place\": \"back room\", \"fee\": \"180\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Walk-in fridge service\", \"fields\": {\"contractor\": \"ChillRight Services\", \"date\": \"2026-10-20\", \"time\": \"09:00\", \"status\": \"done\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Tuesday quiz night\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"20:00\", \"place\": \"front room\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Nona's Pantry contact\", \"fields\": {\"name\": \"Lucia Bianchi\", \"organisation\": \"Nona's Pantry\", \"phone\": \"07700 900321\", \"role\": \"order contact\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"day\"], \"from\": \"Jerome Pike\", \"rule\": \"e2\"}\n ],\n \"task\": \"It's Wednesday, so please send Greenleaf Produce our usual Friday order: the standard mixed vegetable box at 120 pounds, for delivery this Friday 13 November.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Greenleaf Produce\", \"item\": \"standard mixed vegetable box\", \"amount\": \"120\", \"delivery\": \"2026-11-13\", \"status\": \"sent\"}, \"task\": true}\n ],\n \"why\": \"This is a control: the only change is Lucia Bianchi's new direct line, and no decision anywhere in the history rests on that phone number, so nothing is marked and nothing in the workplace should be touched, including the stale CL-1 contact card. The task is a routine act beside the change: send the standing Friday Greenleaf order exactly as planned (120 pounds, delivery Friday 13 November 2026), creating one new order record and leaving every existing record, including the supplier contact, exactly as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"herb and garnish restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Greenleaf Produce\", \"item\": \"fresh herb and garnish crate\", \"unit\": \"crate\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"order\", \"topic\": \"dairy restock\", \"counterpart\": \"Alfie Brooks\", \"org\": \"Brooks Dairy\", \"item\": \"semi-skimmed milk\", \"unit\": \"litre\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"order\", \"topic\": \"ale delivery\", \"counterpart\": \"Dane Whitlock\", \"org\": \"Harbour Ales\", \"item\": \"cask of bitter\", \"unit\": \"cask\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"cellar hatch\"},\n  {\"kind\": \"order\", \"topic\": \"pasta and flour restock\", \"counterpart\": \"Lucia Bianchi\", \"org\": \"Nona's Pantry\", \"item\": \"00 flour\", \"unit\": \"bag\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"order\", \"topic\": \"wine top-up\", \"counterpart\": \"Oskar Velt\", \"org\": \"Velt & Vine\", \"item\": \"house white, case of twelve\", \"unit\": \"case\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"cellar hatch\"},\n  {\"kind\": \"booking\", \"topic\": \"linen collection\", \"counterpart\": \"Bea Long\", \"org\": \"FreshFold Linen\", \"item\": \"table linen collection slot\", \"values\": [\"Monday morning\", \"Thursday morning\"], \"place\": \"back door\"},\n  {\"kind\": \"booking\", \"topic\": \"fridge service visit\", \"counterpart\": \"Sam Oduya\", \"org\": \"ChillRight Services\", \"item\": \"walk-in fridge service\", \"values\": [\"kitchen\", \"cellar\"], \"place\": \"kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"band rehearsal slot\", \"counterpart\": \"Jerome Pike\", \"org\": \"Marlowe Trio\", \"item\": \"rehearsal booking\", \"values\": [\"back room\", \"front room\"], \"place\": \"back room\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Greta Hansson\", \"org\": \"Sparkle Trade Supplies\", \"item\": \"degreaser\", \"unit\": \"bottle\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Tomas Reed\", \"org\": \"The Copper Kettle\", \"item\": \"monthly accounts review\", \"values\": [\"office\", \"front room\"], \"place\": \"office\"},\n  {\"kind\": \"order\", \"topic\": \"coffee bean restock\", \"counterpart\": \"Nina Solano\", \"org\": \"Solano Roasters\", \"item\": \"espresso beans\", \"unit\": \"kilogram\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"booking\", \"topic\": \"quiz night setup\", \"counterpart\": \"Kasia Nowak\", \"org\": \"The Copper Kettle\", \"item\": \"quiz table layout\", \"values\": [\"front room\", \"back room\"], \"place\": \"front room\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3247,
+    "completion_tokens": 5756,
+    "reasoning_tokens": 1800,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0877866,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"The Copper Kettle produce order and a supplier's new phone number\",\n \"setting\": \"Restaurant manager at The Copper Kettle, a 60-seat family bistro\",\n \"owner\": \"Marta\",\n \"org\": \"The Copper Kettle\",\n \"now\": \"2026-11-09\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"House rule from today: any supplier order over 400 pounds must be countersigned by Tomas Reed before it is sent. Anything at or under 400 I can send myself.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the music nights: a confirmed Saturday booking with the Marlowe Trio may not be moved to another date without Jerome Pike's agreement. If a date ever needs to change, ask Jerome first.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Nair (Greenleaf Produce)\", \"text\": \"Confirming Greenleaf Produce delivers to The Copper Kettle every Tuesday and Friday morning. Your standing Friday order is the standard mixed vegetable box at 120 pounds. Order any time and we will slot it into the Friday run.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Lucia Bianchi (Nona's Pantry)\", \"text\": \"Hello Marta, for pasta and flour orders at Nona's Pantry please call my direct line, 07700 900321, rather than the switchboard. It is the quickest way to reach me.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Jerome Pike (Marlowe Trio)\", \"text\": \"The Marlowe Trio is glad to be your Saturday house band at The Copper Kettle: we play every Saturday from 19:30 in the back room, fee 180 pounds per night, settled monthly.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Oskar Velt (Velt & Vine)\", \"text\": \"Our house red, the Velt & Vine Côtes du Ventoux, is 84 pounds per case of twelve for trade accounts. I am your rep, so any wine order for The Copper Kettle comes through me.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up the standing Friday order with Greenleaf Produce: the standard mixed vegetable box at 120 pounds, delivered to the kitchen door each Friday morning.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Marlowe Trio as the Saturday house band, every Saturday at 19:30 in the back room at 180 pounds a night, on the standing terms agreed with Jerome.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"EV-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Sam Oduya (ChillRight Services)\", \"text\": \"ChillRight Services will look after the walk-in fridge at The Copper Kettle with a quarterly service visit. Our engineer covers your area on weekday mornings.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the autumn fridge service with ChillRight for the morning of 20 October 2026 at 09:00, before the lunch prep starts.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-4\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered two cases of the Velt & Vine Côtes du Ventoux at 84 pounds a case, 168 pounds in total, which is under the 400-pound line so no countersignature was needed.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"ORD-5\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Bea Long (FreshFold Linen)\", \"text\": \"FreshFold Linen will collect the table linen from The Copper Kettle every Monday and return it pressed on Thursday.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"August rota is pinned up by the office door. Kasia covers the bar on Fridays and Saturdays; new starters shadow her for two weeks.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-20\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Printed fresh supplier cards for the office wall. Nona's Pantry: Lucia Bianchi, direct line 07700 900321 for pasta and flour orders.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e15\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Rafa Conti (Nona's Pantry)\", \"text\": \"Hello Marta, I am Rafa Conti, the new account manager at Nona's Pantry. You can reach me at r.conti@nonaspantry.example for anything about your account. Lucia still handles order phoning as before.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-29\", \"type\": \"message\", \"from\": \"Kasia Nowak (The Copper Kettle)\", \"text\": \"Tuesday quiz is filling up again. Do we keep the same format of six rounds and a free dessert for the winners?\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Tuesday quiz night in the front room every Tuesday at 20:00 through the autumn, six rounds as usual.\", \"role\": \"decision\", \"record\": \"EV-6\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Dane Whitlock (Harbour Ales)\", \"text\": \"Your Thursday ale delivery is on the van as normal this week, two casks of the bitter and one of the pale.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Lucia Bianchi (Nona's Pantry)\", \"text\": \"Hi Marta, a small admin note: my direct line has changed to 07700 900456, please use that from now on when you phone in orders. The old number now rings through to the accounts office and they cannot take orders.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n  {\"id\": \"e20\", \"date\": \"2026-10-30\", \"type\": \"email\", \"from\": \"Priya Nair (Greenleaf Produce)\", \"text\": \"November availability looks good on all root vegetables and brassicas. Your Friday mixed vegetable box is unchanged at 120 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-11-02\", \"type\": \"message\", \"from\": \"Kasia Nowak (The Copper Kettle)\", \"text\": \"Reminder that last week's Friday vegetable order went in on Wednesday morning. Also the quiz prize desserts are running low.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-11-04\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"November birthdays card is going around the kitchen for signatures. Please do not leave it near the soup station again.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-11-05\", \"type\": \"email\", \"from\": \"Tomas Reed (The Copper Kettle)\", \"text\": \"I will be in on Saturday afternoon if you need me to look at any invoices or countersign anything over the 400-pound line.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-11-06\", \"type\": \"invoice\", \"from\": \"Oskar Velt (Velt & Vine)\", \"text\": \"Invoice for the October wine delivery: two cases of Côtes du Ventoux, 168 pounds, payment due by 20 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e25\", \"date\": \"2026-11-07\", \"type\": \"message\", \"from\": \"Alfie Brooks (Brooks Dairy)\", \"text\": \"Milk and cream deliveries carry on Monday, Wednesday and Saturday mornings as usual through November.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-11-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Extractor fan over the range is due its deep clean; the engineer from BrightAir suggested a Monday before opening.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-11-08\", \"type\": \"letter\", \"from\": \"Brantford Council\", \"text\": \"Your commercial waste collection day remains Wednesday. Christmas week collections move to Thursday 24 December 2026.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-11-08\", \"type\": \"message\", \"from\": \"Chef Bruno Iversen (The Copper Kettle)\", \"text\": \"Tasting notes for the winter menu: the leek and potato soup works, the venison pie needs a richer gravy. We trial both next week.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-11-09\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Table 12 wobble fixed with a new foot. Spare feet are now in the drawer under the till.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-11-09\", \"type\": \"message\", \"from\": \"Kasia Nowak (The Copper Kettle)\", \"text\": \"Christmas party bookings open on Sunday 15 November. Shall we put the poster up this weekend?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Standing Friday vegetable order\", \"fields\": {\"supplier\": \"Greenleaf Produce\", \"item\": \"standard mixed vegetable box\", \"amount\": \"120\", \"delivery\": \"Friday morning\", \"status\": \"standing\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"House red wine order\", \"fields\": {\"supplier\": \"Velt & Vine\", \"item\": \"Cotes du Ventoux, two cases\", \"amount\": \"168\", \"date\": \"2026-07-02\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Saturday house band\", \"fields\": {\"performer\": \"Marlowe Trio\", \"day\": \"Saturday\", \"time\": \"19:30\", \"place\": \"back room\", \"fee\": \"180\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Walk-in fridge service\", \"fields\": {\"contractor\": \"ChillRight Services\", \"date\": \"2026-10-20\", \"time\": \"09:00\", \"status\": \"done\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Tuesday quiz night\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"20:00\", \"place\": \"front room\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Nona's Pantry contact\", \"fields\": {\"name\": \"Lucia Bianchi\", \"organisation\": \"Nona's Pantry\", \"phone\": \"07700 900321\", \"role\": \"order contact\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"day\"], \"from\": \"Jerome Pike\", \"rule\": \"e2\"}\n ],\n \"task\": \"It's Monday, so please send Greenleaf Produce our usual Friday order: the standard mixed vegetable box at 120 pounds, for delivery this Friday 13 November.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Greenleaf Produce\", \"item\": \"standard mixed vegetable box\", \"amount\": \"120\", \"delivery\": \"2026-11-13\", \"status\": \"sent\"}, \"task\": true}\n ],\n \"why\": \"This is a control: the only change is Lucia Bianchi's new direct line, and no decision anywhere in the history rests on that phone number, so nothing is marked and nothing in the workplace should be touched, including the stale CL-1 contact card. The task is a routine act beside the change: send the standing Friday Greenleaf order exactly as planned (120 pounds, delivery Friday 13 November 2026), creating one new order record and leaving every existing record, including the supplier contact, exactly as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"herb and garnish restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Greenleaf Produce\", \"item\": \"fresh herb and garnish crate\", \"unit\": \"crate\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"order\", \"topic\": \"dairy restock\", \"counterpart\": \"Alfie Brooks\", \"org\": \"Brooks Dairy\", \"item\": \"semi-skimmed milk\", \"unit\": \"litre\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"order\", \"topic\": \"ale delivery\", \"counterpart\": \"Dane Whitlock\", \"org\": \"Harbour Ales\", \"item\": \"cask of bitter\", \"unit\": \"cask\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"cellar hatch\"},\n  {\"kind\": \"order\", \"topic\": \"pasta and flour restock\", \"counterpart\": \"Lucia Bianchi\", \"org\": \"Nona's Pantry\", \"item\": \"00 flour\", \"unit\": \"bag\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"order\", \"topic\": \"wine top-up\", \"counterpart\": \"Oskar Velt\", \"org\": \"Velt & Vine\", \"item\": \"house white, case of twelve\", \"unit\": \"case\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"cellar hatch\"},\n  {\"kind\": \"booking\", \"topic\": \"linen collection\", \"counterpart\": \"Bea Long\", \"org\": \"FreshFold Linen\", \"item\": \"table linen collection slot\", \"values\": [\"Monday morning\", \"Thursday morning\"], \"place\": \"back door\"},\n  {\"kind\": \"booking\", \"topic\": \"fridge service visit\", \"counterpart\": \"Sam Oduya\", \"org\": \"ChillRight Services\", \"item\": \"walk-in fridge service\", \"values\": [\"kitchen\", \"cellar\"], \"place\": \"kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"band rehearsal slot\", \"counterpart\": \"Jerome Pike\", \"org\": \"Marlowe Trio\", \"item\": \"rehearsal booking\", \"values\": [\"back room\", \"front room\"], \"place\": \"back room\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Greta Hansson\", \"org\": \"Sparkle Trade Supplies\", \"item\": \"degreaser\", \"unit\": \"bottle\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Tomas Reed\", \"org\": \"The Copper Kettle\", \"item\": \"monthly accounts review\", \"values\": [\"office\", \"front room\"], \"place\": \"office\"},\n  {\"kind\": \"order\", \"topic\": \"coffee bean restock\", \"counterpart\": \"Nina Solano\", \"org\": \"Solano Roasters\", \"item\": \"espresso beans\", \"unit\": \"kilogram\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"booking\", \"topic\": \"quiz night setup\", \"counterpart\": \"Kasia Nowak\", \"org\": \"The Copper Kettle\", \"item\": \"quiz table layout\", \"values\": [\"front room\", \"back room\"], \"place\": \"front room\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7280,
+    "completion_tokens": 4045,
+    "reasoning_tokens": 91,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0742206,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- now 2026-11-11 must be an ISO date in 2026-07-01..2026-11-09\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"The Copper Kettle produce order and a supplier's new phone number\",\n \"setting\": \"Restaurant manager at The Copper Kettle, a 60-seat family bistro\",\n \"owner\": \"Marta\",\n \"org\": \"The Copper Kettle\",\n \"now\": \"2026-11-09\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"House rule from today: any supplier order over 400 pounds must be countersigned by Tomas Reed before it is sent. Anything at or under 400 I can send myself.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the music nights: a confirmed Saturday booking with the Marlowe Trio may not be moved to another date without Jerome Pike's agreement. If a date ever needs to change, ask Jerome first.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Nair (Greenleaf Produce)\", \"text\": \"Confirming Greenleaf Produce delivers to The Copper Kettle every Tuesday and Friday morning. Your standing Friday order is the standard mixed vegetable box at 120 pounds. Order any time and we will slot it into the Friday run.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Lucia Bianchi (Nona's Pantry)\", \"text\": \"Hello Marta, for pasta and flour orders at Nona's Pantry please call my direct line, 07700 900321, rather than the switchboard. It is the quickest way to reach me.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Jerome Pike (Marlowe Trio)\", \"text\": \"The Marlowe Trio is glad to be your Saturday house band at The Copper Kettle: we play every Saturday from 19:30 in the back room, fee 180 pounds per night, settled monthly.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Oskar Velt (Velt & Vine)\", \"text\": \"Our house red, the Velt & Vine Côtes du Ventoux, is 84 pounds per case of twelve for trade accounts. I am your rep, so any wine order for The Copper Kettle comes through me.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up the standing Friday order with Greenleaf Produce: the standard mixed vegetable box at 120 pounds, delivered to the kitchen door each Friday morning.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Marlowe Trio as the Saturday house band, every Saturday at 19:30 in the back room at 180 pounds a night, on the standing terms agreed with Jerome.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"EV-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Sam Oduya (ChillRight Services)\", \"text\": \"ChillRight Services will look after the walk-in fridge at The Copper Kettle with a quarterly service visit. Our engineer covers your area on weekday mornings.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the autumn fridge service with ChillRight for the morning of 20 October 2026 at 09:00, before the lunch prep starts.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-4\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered two cases of the Velt & Vine Côtes du Ventoux at 84 pounds a case, 168 pounds in total, which is under the 400-pound line so no countersignature was needed.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"ORD-5\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Bea Long (FreshFold Linen)\", \"text\": \"FreshFold Linen will collect the table linen from The Copper Kettle every Monday and return it pressed on Thursday.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"August rota is pinned up by the office door. Kasia covers the bar on Fridays and Saturdays; new starters shadow her for two weeks.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-20\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Printed fresh supplier cards for the office wall. Nona's Pantry: Lucia Bianchi, direct line 07700 900321 for pasta and flour orders.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e15\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Rafa Conti (Nona's Pantry)\", \"text\": \"Hello Marta, I am Rafa Conti, the new account manager at Nona's Pantry. You can reach me at r.conti@nonaspantry.example for anything about your account. Lucia still handles order phoning as before.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-29\", \"type\": \"message\", \"from\": \"Kasia Nowak (The Copper Kettle)\", \"text\": \"Tuesday quiz is filling up again. Do we keep the same format of six rounds and a free dessert for the winners?\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Tuesday quiz night in the front room every Tuesday at 20:00 through the autumn, six rounds as usual, the format we have run since the summer.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"EV-6\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Dane Whitlock (Harbour Ales)\", \"text\": \"Your Thursday ale delivery is on the van as normal this week, two casks of the bitter and one of the pale.\", \"role\": \"other\"},\n  {\"id\": \"e18b\", \"date\": \"2026-10-08\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up the Monday linen collection with FreshFold: collection at the back door every Monday morning, pressed linen returned Thursday, as Bea confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"EV-7\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Lucia Bianchi (Nona's Pantry)\", \"text\": \"Hi Marta, a small admin note: my direct line has changed to 07700 900456, please use that from now on when you phone in orders. The old number now rings through to the accounts office and they cannot take orders.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n  {\"id\": \"e20\", \"date\": \"2026-10-30\", \"type\": \"email\", \"from\": \"Priya Nair (Greenleaf Produce)\", \"text\": \"November availability looks good on all root vegetables and brassicas. Your Friday mixed vegetable box is unchanged at 120 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-11-02\", \"type\": \"message\", \"from\": \"Kasia Nowak (The Copper Kettle)\", \"text\": \"Reminder that last week's Friday vegetable order went in on Wednesday morning. Also the quiz prize desserts are running low.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-11-04\", \"type\": \"message\", \"from\": \"Marta\", \"text\": \"November birthdays card is going around the kitchen for signatures. Please do not leave it near the soup station again.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-11-05\", \"type\": \"email\", \"from\": \"Tomas Reed (The Copper Kettle)\", \"text\": \"I will be in on Saturday afternoon if you need me to look at any invoices or countersign anything over the 400-pound line.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-11-06\", \"type\": \"invoice\", \"from\": \"Oskar Velt (Velt & Vine)\", \"text\": \"Invoice for the October wine delivery: two cases of Côtes du Ventoux, 168 pounds, payment due by 20 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e25\", \"date\": \"2026-11-07\", \"type\": \"message\", \"from\": \"Alfie Brooks (Brooks Dairy)\", \"text\": \"Milk and cream deliveries carry on Monday, Wednesday and Saturday mornings as usual through November.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-11-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Extractor fan over the range is due its deep clean; the engineer from BrightAir suggested a Monday before opening.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-11-08\", \"type\": \"letter\", \"from\": \"Brantford Council\", \"text\": \"Your commercial waste collection day remains Wednesday. Christmas week collections move to Thursday 24 December 2026.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-11-08\", \"type\": \"message\", \"from\": \"Chef Bruno Iversen (The Copper Kettle)\", \"text\": \"Tasting notes for the winter menu: the leek and potato soup works, the venison pie needs a richer gravy. We trial both next week.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-11-09\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Table 12 wobble fixed with a new foot. Spare feet are now in the drawer under the till.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-11-09\", \"type\": \"message\", \"from\": \"Kasia Nowak (The Copper Kettle)\", \"text\": \"Christmas party bookings open on Sunday 15 November. Shall we put the poster up this weekend?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Standing Friday vegetable order\", \"fields\": {\"supplier\": \"Greenleaf Produce\", \"item\": \"standard mixed vegetable box\", \"amount\": \"120\", \"delivery\": \"Friday morning\", \"status\": \"standing\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"House red wine order\", \"fields\": {\"supplier\": \"Velt & Vine\", \"item\": \"Cotes du Ventoux, two cases\", \"amount\": \"168\", \"date\": \"2026-07-02\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Saturday house band\", \"fields\": {\"performer\": \"Marlowe Trio\", \"day\": \"Saturday\", \"time\": \"19:30\", \"place\": \"back room\", \"fee\": \"180\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Walk-in fridge service\", \"fields\": {\"contractor\": \"ChillRight Services\", \"date\": \"2026-10-20\", \"time\": \"09:00\", \"status\": \"done\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Tuesday quiz night\", \"fields\": {\"day\": \"Tuesday\", \"time\": \"20:00\", \"place\": \"front room\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Monday linen collection\", \"fields\": {\"contractor\": \"FreshFold Linen\", \"day\": \"Monday\", \"time\": \"morning\", \"place\": \"back door\", \"status\": \"standing\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Nona's Pantry contact\", \"fields\": {\"name\": \"Lucia Bianchi\", \"organisation\": \"Nona's Pantry\", \"phone\": \"07700 900321\", \"role\": \"order contact\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"day\"], \"from\": \"Jerome Pike\", \"rule\": \"e2\"}\n ],\n \"task\": \"It's Monday, so please send Greenleaf Produce our usual Friday order: the standard mixed vegetable box at 120 pounds, for delivery this Friday 13 November.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Greenleaf Produce\", \"item\": \"standard mixed vegetable box\", \"amount\": \"120\", \"delivery\": \"2026-11-13\", \"status\": \"sent\"}, \"task\": true}\n ],\n \"why\": \"This is a control: the only change is Lucia Bianchi's new direct line, and no decision anywhere in the history rests on that phone number, so nothing is marked and nothing in the workplace should be touched, including the stale CL-1 contact card. The task is a routine act beside the change: send the standing Friday Greenleaf order exactly as planned (120 pounds, delivery Friday 13 November 2026), creating one new order record and leaving every existing record, including the supplier contact, exactly as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"herb and garnish restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Greenleaf Produce\", \"item\": \"fresh herb and garnish crate\", \"unit\": \"crate\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"order\", \"topic\": \"dairy restock\", \"counterpart\": \"Alfie Brooks\", \"org\": \"Brooks Dairy\", \"item\": \"semi-skimmed milk\", \"unit\": \"litre\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"order\", \"topic\": \"ale delivery\", \"counterpart\": \"Dane Whitlock\", \"org\": \"Harbour Ales\", \"item\": \"cask of bitter\", \"unit\": \"cask\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"cellar hatch\"},\n  {\"kind\": \"order\", \"topic\": \"pasta and flour restock\", \"counterpart\": \"Lucia Bianchi\", \"org\": \"Nona's Pantry\", \"item\": \"00 flour\", \"unit\": \"bag\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"order\", \"topic\": \"wine top-up\", \"counterpart\": \"Oskar Velt\", \"org\": \"Velt & Vine\", \"item\": \"house white, case of twelve\", \"unit\": \"case\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"cellar hatch\"},\n  {\"kind\": \"booking\", \"topic\": \"linen collection\", \"counterpart\": \"Bea Long\", \"org\": \"FreshFold Linen\", \"item\": \"table linen collection slot\", \"values\": [\"Monday morning\", \"Thursday morning\", \"Wednesday morning\"], \"place\": \"back door\"},\n  {\"kind\": \"booking\", \"topic\": \"fridge service visit\", \"counterpart\": \"Sam Oduya\", \"org\": \"ChillRight Services\", \"item\": \"walk-in fridge service\", \"values\": [\"kitchen\", \"cellar\", \"back door\"], \"place\": \"kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"band rehearsal slot\", \"counterpart\": \"Jerome Pike\", \"org\": \"Marlowe Trio\", \"item\": \"rehearsal booking\", \"values\": [\"back room\", \"front room\", \"office\"], \"place\": \"back room\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Greta Hansson\", \"org\": \"Sparkle Trade Supplies\", \"item\": \"degreaser\", \"unit\": \"bottle\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Tomas Reed\", \"org\": \"The Copper Kettle\", \"item\": \"monthly accounts review\", \"values\": [\"office\", \"front room\", \"back room\"], \"place\": \"office\"},\n  {\"kind\": \"order\", \"topic\": \"coffee bean restock\", \"counterpart\": \"Nina Solano\", \"org\": \"Solano Roasters\", \"item\": \"espresso beans\", \"unit\": \"kilogram\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"kitchen door\"},\n  {\"kind\": \"booking\", \"topic\": \"quiz night setup\", \"counterpart\": \"Kasia Nowak\", \"org\": \"The Copper Kettle\", \"item\": \"quiz table layout\", \"values\": [\"front room\", \"back room\", \"bar area\"], \"place\": \"front room\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 11387,
+    "completion_tokens": 4144,
+    "reasoning_tokens": 0,
+    "cached_tokens": 7168
+   },
+   "cost": 0.0769674,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: 5 decisions; need 6–14\n- e17: a decision must rest on at least one earlier event\n- noise topic 'linen collection': values needs at least three entries\n- noise topic 'fridge service visit': values needs at least three entries\n- noise topic 'band rehearsal slot': values needs at least three entries\n- noise topic 'staff meeting room': values needs at least three entries\n- noise topic 'quiz night setup': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "The Copper Kettle produce order and a supplier's new phone number",
+  "setting": "Restaurant manager at The Copper Kettle, a 60-seat family bistro",
+  "owner": "Marta",
+  "org": "The Copper Kettle",
+  "now": "2026-11-09",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "House rule from today: any supplier order over 400 pounds must be countersigned by Tomas Reed before it is sent. Anything at or under 400 I can send myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule for the music nights: a confirmed Saturday booking with the Marlowe Trio may not be moved to another date without Jerome Pike's agreement. If a date ever needs to change, ask Jerome first.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Priya Nair (Greenleaf Produce)",
+    "text": "Confirming Greenleaf Produce delivers to The Copper Kettle every Tuesday and Friday morning. Your standing Friday order is the standard mixed vegetable box at 120 pounds. Order any time and we will slot it into the Friday run.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Lucia Bianchi (Nona's Pantry)",
+    "text": "Hello Marta, for pasta and flour orders at Nona's Pantry please call my direct line, 07700 900321, rather than the switchboard. It is the quickest way to reach me.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Jerome Pike (Marlowe Trio)",
+    "text": "The Marlowe Trio is glad to be your Saturday house band at The Copper Kettle: we play every Saturday from 19:30 in the back room, fee 180 pounds per night, settled monthly.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Oskar Velt (Velt & Vine)",
+    "text": "Our house red, the Velt & Vine Côtes du Ventoux, is 84 pounds per case of twelve for trade accounts. I am your rep, so any wine order for The Copper Kettle comes through me.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Set up the standing Friday order with Greenleaf Produce: the standard mixed vegetable box at 120 pounds, delivered to the kitchen door each Friday morning.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-17",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Marlowe Trio as the Saturday house band, every Saturday at 19:30 in the back room at 180 pounds a night, on the standing terms agreed with Jerome.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e2"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Sam Oduya (ChillRight Services)",
+    "text": "ChillRight Services will look after the walk-in fridge at The Copper Kettle with a quarterly service visit. Our engineer covers your area on weekday mornings.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled the autumn fridge service with ChillRight for the morning of 20 October 2026 at 09:00, before the lunch prep starts.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered two cases of the Velt & Vine Côtes du Ventoux at 84 pounds a case, 168 pounds in total, which is under the 400-pound line so no countersignature was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e1"
+    ],
+    "record": "ORD-5"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Bea Long (FreshFold Linen)",
+    "text": "FreshFold Linen will collect the table linen from The Copper Kettle every Monday and return it pressed on Thursday.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-14",
+    "type": "message",
+    "from": "Marta",
+    "text": "August rota is pinned up by the office door. Kasia covers the bar on Fridays and Saturdays; new starters shadow her for two weeks.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-20",
+    "type": "note",
+    "from": "Marta",
+    "text": "Printed fresh supplier cards for the office wall. Nona's Pantry: Lucia Bianchi, direct line 07700 900321 for pasta and flour orders.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Rafa Conti (Nona's Pantry)",
+    "text": "Hello Marta, I am Rafa Conti, the new account manager at Nona's Pantry. You can reach me at r.conti@nonaspantry.example for anything about your account. Lucia still handles order phoning as before.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-29",
+    "type": "message",
+    "from": "Kasia Nowak (The Copper Kettle)",
+    "text": "Tuesday quiz is filling up again. Do we keep the same format of six rounds and a free dessert for the winners?",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-01",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Confirmed the Tuesday quiz night in the front room every Tuesday at 20:00 through the autumn, six rounds as usual, the format we have run since the summer.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "EV-6"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-06",
+    "type": "message",
+    "from": "Dane Whitlock (Harbour Ales)",
+    "text": "Your Thursday ale delivery is on the van as normal this week, two casks of the bitter and one of the pale.",
+    "role": "other"
+   },
+   {
+    "id": "e18b",
+    "date": "2026-10-08",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Set up the Monday linen collection with FreshFold: collection at the back door every Monday morning, pressed linen returned Thursday, as Bea confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "EV-7"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-28",
+    "type": "email",
+    "from": "Lucia Bianchi (Nona's Pantry)",
+    "text": "Hi Marta, a small admin note: my direct line has changed to 07700 900456, please use that from now on when you phone in orders. The old number now rings through to the accounts office and they cannot take orders.",
+    "role": "change",
+    "revokes": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-30",
+    "type": "email",
+    "from": "Priya Nair (Greenleaf Produce)",
+    "text": "November availability looks good on all root vegetables and brassicas. Your Friday mixed vegetable box is unchanged at 120 pounds.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-11-02",
+    "type": "message",
+    "from": "Kasia Nowak (The Copper Kettle)",
+    "text": "Reminder that last week's Friday vegetable order went in on Wednesday morning. Also the quiz prize desserts are running low.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-11-04",
+    "type": "message",
+    "from": "Marta",
+    "text": "November birthdays card is going around the kitchen for signatures. Please do not leave it near the soup station again.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-11-05",
+    "type": "email",
+    "from": "Tomas Reed (The Copper Kettle)",
+    "text": "I will be in on Saturday afternoon if you need me to look at any invoices or countersign anything over the 400-pound line.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-11-06",
+    "type": "invoice",
+    "from": "Oskar Velt (Velt & Vine)",
+    "text": "Invoice for the October wine delivery: two cases of Côtes du Ventoux, 168 pounds, payment due by 20 November 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e25",
+    "date": "2026-11-07",
+    "type": "message",
+    "from": "Alfie Brooks (Brooks Dairy)",
+    "text": "Milk and cream deliveries carry on Monday, Wednesday and Saturday mornings as usual through November.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-11-08",
+    "type": "note",
+    "from": "Marta",
+    "text": "Extractor fan over the range is due its deep clean; the engineer from BrightAir suggested a Monday before opening.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-11-08",
+    "type": "letter",
+    "from": "Brantford Council",
+    "text": "Your commercial waste collection day remains Wednesday. Christmas week collections move to Thursday 24 December 2026.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-11-08",
+    "type": "message",
+    "from": "Chef Bruno Iversen (The Copper Kettle)",
+    "text": "Tasting notes for the winter menu: the leek and potato soup works, the venison pie needs a richer gravy. We trial both next week.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-11-09",
+    "type": "note",
+    "from": "Marta",
+    "text": "Table 12 wobble fixed with a new foot. Spare feet are now in the drawer under the till.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-11-09",
+    "type": "message",
+    "from": "Kasia Nowak (The Copper Kettle)",
+    "text": "Christmas party bookings open on Sunday 15 November. Shall we put the poster up this weekend?",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Standing Friday vegetable order",
+    "fields": {
+     "supplier": "Greenleaf Produce",
+     "item": "standard mixed vegetable box",
+     "amount": "120",
+     "delivery": "Friday morning",
+     "status": "standing"
+    }
+   },
+   {
+    "id": "ORD-5",
+    "collection": "orders",
+    "title": "House red wine order",
+    "fields": {
+     "supplier": "Velt & Vine",
+     "item": "Cotes du Ventoux, two cases",
+     "amount": "168",
+     "date": "2026-07-02",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Saturday house band",
+    "fields": {
+     "performer": "Marlowe Trio",
+     "day": "Saturday",
+     "time": "19:30",
+     "place": "back room",
+     "fee": "180",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Walk-in fridge service",
+    "fields": {
+     "contractor": "ChillRight Services",
+     "date": "2026-10-20",
+     "time": "09:00",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Tuesday quiz night",
+    "fields": {
+     "day": "Tuesday",
+     "time": "20:00",
+     "place": "front room",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-7",
+    "collection": "schedule",
+    "title": "Monday linen collection",
+    "fields": {
+     "contractor": "FreshFold Linen",
+     "day": "Monday",
+     "time": "morning",
+     "place": "back door",
+     "status": "standing"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Nona's Pantry contact",
+    "fields": {
+     "name": "Lucia Bianchi",
+     "organisation": "Nona's Pantry",
+     "phone": "07700 900321",
+     "role": "order contact"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "day"
+    ],
+    "from": "Jerome Pike",
+    "rule": "e2"
+   }
+  ],
+  "task": "It's Monday, so please send Greenleaf Produce our usual Friday order: the standard mixed vegetable box at 120 pounds, for delivery this Friday 13 November.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Greenleaf Produce",
+     "item": "standard mixed vegetable box",
+     "amount": "120",
+     "delivery": "2026-11-13",
+     "status": "sent"
+    },
+    "task": true
+   }
+  ],
+  "why": "This is a control: the only change is Lucia Bianchi's new direct line, and no decision anywhere in the history rests on that phone number, so nothing is marked and nothing in the workplace should be touched, including the stale CL-1 contact card. The task is a routine act beside the change: send the standing Friday Greenleaf order exactly as planned (120 pounds, delivery Friday 13 November 2026), creating one new order record and leaving every existing record, including the supplier contact, exactly as it is.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "herb and garnish restock",
+    "counterpart": "Priya Nair",
+    "org": "Greenleaf Produce",
+    "item": "fresh herb and garnish crate",
+    "unit": "crate",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "kitchen door"
+   },
+   {
+    "kind": "order",
+    "topic": "dairy restock",
+    "counterpart": "Alfie Brooks",
+    "org": "Brooks Dairy",
+    "item": "semi-skimmed milk",
+    "unit": "litre",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "kitchen door"
+   },
+   {
+    "kind": "order",
+    "topic": "ale delivery",
+    "counterpart": "Dane Whitlock",
+    "org": "Harbour Ales",
+    "item": "cask of bitter",
+    "unit": "cask",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "cellar hatch"
+   },
+   {
+    "kind": "order",
+    "topic": "pasta and flour restock",
+    "counterpart": "Lucia Bianchi",
+    "org": "Nona's Pantry",
+    "item": "00 flour",
+    "unit": "bag",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "kitchen door"
+   },
+   {
+    "kind": "order",
+    "topic": "wine top-up",
+    "counterpart": "Oskar Velt",
+    "org": "Velt & Vine",
+    "item": "house white, case of twelve",
+    "unit": "case",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "cellar hatch"
+   },
+   {
+    "kind": "booking",
+    "topic": "linen collection",
+    "counterpart": "Bea Long",
+    "org": "FreshFold Linen",
+    "item": "table linen collection slot",
+    "values": [
+     "Monday morning",
+     "Thursday morning",
+     "Wednesday morning"
+    ],
+    "place": "back door"
+   },
+   {
+    "kind": "booking",
+    "topic": "fridge service visit",
+    "counterpart": "Sam Oduya",
+    "org": "ChillRight Services",
+    "item": "walk-in fridge service",
+    "values": [
+     "kitchen",
+     "cellar",
+     "back door"
+    ],
+    "place": "kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "band rehearsal slot",
+    "counterpart": "Jerome Pike",
+    "org": "Marlowe Trio",
+    "item": "rehearsal booking",
+    "values": [
+     "back room",
+     "front room",
+     "office"
+    ],
+    "place": "back room"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies restock",
+    "counterpart": "Greta Hansson",
+    "org": "Sparkle Trade Supplies",
+    "item": "degreaser",
+    "unit": "bottle",
+    "values": [
+     "6",
+     "12",
+     "18"
+    ],
+    "place": "kitchen door"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff meeting room",
+    "counterpart": "Tomas Reed",
+    "org": "The Copper Kettle",
+    "item": "monthly accounts review",
+    "values": [
+     "office",
+     "front room",
+     "back room"
+    ],
+    "place": "office"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee bean restock",
+    "counterpart": "Nina Solano",
+    "org": "Solano Roasters",
+    "item": "espresso beans",
+    "unit": "kilogram",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "kitchen door"
+   },
+   {
+    "kind": "booking",
+    "topic": "quiz night setup",
+    "counterpart": "Kasia Nowak",
+    "org": "The Copper Kettle",
+    "item": "quiz table layout",
+    "values": [
+     "front room",
+     "back room",
+     "bar area"
+    ],
+    "place": "front room"
+   }
+  ],
+  "id": "K500-4-06",
+  "tier": 500,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [
+  "event id 'e18b' must look like e1, e2, …"
+ ],
+ "valid": false
+}

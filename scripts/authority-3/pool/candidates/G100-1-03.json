@@ -674,5 +674,97 @@
     }
    ]
   }
+ },
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The stale fact e5 is revoked by e20, which touches e6 and e8 directly and e7, e9 and e13 through the chain, with e7 two hops away, so the class-1 structure holds. The marks follow from the rules in e1 and e2 and the consent map, and the expected state is consistent with them. The core has 25 events, 5 decisions, the change 12 days before the task day with 5 core events after it, and the change sits as an ordinary email. One minor gap is that EV-1's fee of 90 is also tied to the Maple Room, but the expected state leaves the whole ASK record untouched, so this does not break the answer.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The stale fact e5 is revoked by e20, which touches e6 and e8 directly and e7, e9 and e13 through the chain, with e7 two hops away, so the class-1 structure holds. The marks follow from the rules in e1 and e2 and the consent map, and the expected state is consistent with them. The core has 25 events, 5 decisions, the change 12 days before the task day with 5 core events after it, and the change sits as an ordinary email. One minor gap is that EV-1's fee of 90 is also tied to the Maple Room, but the expected state leaves the whole ASK record untouched, so this does not break the answer."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6207,
+    "completion_tokens": 2524,
+    "reasoning_tokens": 2261,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018827,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "82d1ecbca94f2ccbe18c520c6d05fa5b7f0d8586b9b96f6cc4e85a1d5fc8a884",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The venue change fixes the workshop and SMS venue, while the confirmed training and catering changes require consent; the delivered boards are unaffected. Sending the reminders requires an immediate workplace act without the task flagging the change. The core has 25 events and five decisions, with the change 12 days before the task and five later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The venue change fixes the workshop and SMS venue, while the confirmed training and catering changes require consent; the delivered boards are unaffected. Sending the reminders requires an immediate workplace act without the task flagging the change. The core has 25 events and five decisions, with the change 12 days before the task and five later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4206,
+    "completion_tokens": 491,
+    "reasoning_tokens": 387,
+    "cached_tokens": 0
+   },
+   "cost": 0.0771175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "82d1ecbca94f2ccbe18c520c6d05fa5b7f0d8586b9b96f6cc4e85a1d5fc8a884",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e20) revokes the standing venue fact e5; EV-2/CL-1 are in-house REVISE, EV-1 needs Rosa's consent under e1, ORD-2 (two hops via EV-1) needs Sam's written confirmation under e2 (order 180 > 150), and ORD-1 only depends on the building, which is untouched, so KEEP is right. The task (send the reminders today) forces an act without hinting at the change. Tier 100 counts hold: 25 core events, 5 decisions, change 12 days before the task day with 5 core events after it, and it sits at position 88/100 as an ordinary email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e20) revokes the standing venue fact e5; EV-2/CL-1 are in-house REVISE, EV-1 needs Rosa's consent under e1, ORD-2 (two hops via EV-1) needs Sam's written confirmation under e2 (order 180 > 150), and ORD-1 only depends on the building, which is untouched, so KEEP is right. The task (send the reminders today) forces an act without hinting at the change. Tier 100 counts hold: 25 core events, 5 decisions, change 12 days before the task day with 5 core events after it, and it sits at position 88/100 as an ordinary email."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4303,
+    "completion_tokens": 575,
+    "reasoning_tokens": 370,
+    "cached_tokens": 3584
+   },
+   "cost": 0.0118572,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "82d1ecbca94f2ccbe18c520c6d05fa5b7f0d8586b9b96f6cc4e85a1d5fc8a884",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
  }
 }

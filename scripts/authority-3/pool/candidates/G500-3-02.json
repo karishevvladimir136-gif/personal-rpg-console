@@ -631,5 +631,97 @@
   "writer": "glm"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected state requires a booked replacement session while the confirmed session's move still awaits Priya's consent, effectively bypassing the ASK restriction by creating another record. The task also does not unambiguously fix 29 October: the next Thursday after the task day is 22 October, whereas 29 October assumes rescheduling the existing 27 October appointment.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state requires a booked replacement session while the confirmed session's move still awaits Priya's consent, effectively bypassing the ASK restriction by creating another record. The task also does not unambiguously fix 29 October: the next Thursday after the task day is 22 October, whereas 29 October assumes rescheduling the existing 27 October appointment."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4117,
+    "completion_tokens": 197,
+    "reasoning_tokens": 89,
+    "cached_tokens": 0
+   },
+   "cost": 0.061305,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "96c65fb764087e096e42c31f76e9974bd6a511e8c73d272064ceaee113414bc3",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e18 explicitly revokes the fact e2 (Rosa's Tuesday cover) and leaves the rate and language standing, which matches the stale-fact class rather than the chain class the writer intended. The expected state is also ambiguous: the task asks for 'the next' Patel session, yet EV-1 on 27 October is already the next session, so creating a separate 29 October record may double-book rather than replace it. Counts, distance from the task day, the echo e12, the consent rule e1, and the hidden placement of the change all check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e18 explicitly revokes the fact e2 (Rosa's Tuesday cover) and leaves the rate and language standing, which matches the stale-fact class rather than the chain class the writer intended. The expected state is also ambiguous: the task asks for 'the next' Patel session, yet EV-1 on 27 October is already the next session, so creating a separate 29 October record may double-book rather than replace it. Counts, distance from the task day, the echo e12, the consent rule e1, and the hidden placement of the change all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6131,
+    "completion_tokens": 2154,
+    "reasoning_tokens": 1923,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016901,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "96c65fb764087e096e42c31f76e9974bd6a511e8c73d272064ceaee113414bc3",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (Rosa switches from Tuesday to Thursday, rate/language unchanged) cleanly yields ORD-1 REVISE, EV-1 ASK under the house rule on moving confirmed appointments, and ORD-2 KEEP; the task books Thursday 29 Oct and messages Priya without hinting at the change. Tier counts (30 core events, 7 decisions, 25 days before task day, echo e12) all fit, and the change sits mid-history among routine events with 125 later events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (Rosa switches from Tuesday to Thursday, rate/language unchanged) cleanly yields ORD-1 REVISE, EV-1 ASK under the house rule on moving confirmed appointments, and ORD-2 KEEP; the task books Thursday 29 Oct and messages Priya without hinting at the change. Tier counts (30 core events, 7 decisions, 25 days before task day, echo e12) all fit, and the change sits mid-history among routine events with 125 later events."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4216,
+    "completion_tokens": 673,
+    "reasoning_tokens": 515,
+    "cached_tokens": 256
+   },
+   "cost": 0.0220518,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "96c65fb764087e096e42c31f76e9974bd6a511e8c73d272064ceaee113414bc3",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }
