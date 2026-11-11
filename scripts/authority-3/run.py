@@ -764,7 +764,7 @@ def cmd_report(a):
     fams = [f for f in K.FAMILIES if load_units("test", f)]
     units = [u for f in fams for u in load_units("test", f)]
     gunits = [u for f in K.FAMILIES for u in load_units("gold", f)]
-    rows, grows = R.rows_of(units), R.rows_of(gunits)
+    rows, grows = R.rows_of(units, scen), R.rows_of(gunits, scen)
     ledger = [json.loads(x) for x in LEDGER.read_text().splitlines() if x.strip()]
     checks = [json.loads(x) for x in CHECKS.read_text().splitlines() if x.strip()]
     adm = json.loads((POOL / "admission.json").read_text())
@@ -801,6 +801,17 @@ def cmd_report(a):
                       for f in fams for t in R.TIERS for a in ("A", "B", "Bp", "C")]))
     L += ["", "## By class and arm (all tiers and families)", ""]
     L.append(R.table([(f"class {c} · {R.ARM_NAME[a]}", [r for r in rows if r["cls"] == c and r["arm"] == a]) for c in (1, 2, 3, 4) for a in ("A", "B", "Bp", "C")]))
+    L += ["", "## Post hoc, declared before the report: success without the unnecessary-intervention clause", "",
+          "Declared after Sol's runs were read and before any table of this report was written. The frozen success requires "
+          "that nothing outside the expected state changed. Two readings beside it, never in place of it: (1) edits to the "
+          "routine (noise) records not counted — the generator lets two threads of the same routine item overlap in time, "
+          "and a careful reader can «reconcile» one record with the other thread; (2) the unnecessary-intervention clause "
+          "dropped altogether (the task, every REVISE value, every ASK asked, no stale act, no act without consent).", ""]
+    L.append(R.table_posthoc([(f"{t} · {R.ARM_NAME[a]}", [r for r in rows if r["tier"] == t and r["arm"] == a]) for t in R.TIERS for a in ("A", "B", "Bp", "C")]
+                             + [(f"{R.FAM[f].split()[0]} · {R.ARM_NAME[a]}", [r for r in rows if r["family"] == f and r["arm"] == a]) for f in fams for a in ("A", "B", "Bp", "C")]))
+    bpost = R.boot([r for r in rows if r["arm"] in ("A", "B", "Bp", "C")])
+    L += ["", "Bootstrap, pooled (points): " + "; ".join(f"{lab} C − A {R.bci(bpost, k + '.C-A')}, C − B {R.bci(bpost, k + '.C-B')}, C − B′ {R.bci(bpost, k + '.C-Bp')}"
+                                                      for lab, k in (("without the unnecessary clause:", "succ_nounn"), ("noise edits not counted:", "succ_nonoise")))]
     L += ["", "## C-gold on the 500 tier (one repeat) beside A and C", ""]
     L.append(R.table([(f"{R.FAM[f].split()[0]} 500 · {nm}", rs) for f in K.FAMILIES for nm, rs in
                       (("A", [r for r in rows if r["family"] == f and r["tier"] == 500 and r["arm"] == "A"]),
