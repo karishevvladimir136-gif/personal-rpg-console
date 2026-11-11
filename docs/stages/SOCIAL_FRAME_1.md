@@ -92,7 +92,12 @@ of its work».
   counterbalanced; the chosen task is the one it completes (both or neither = recorded, not counted). 60 × 2 orders ×
   9 families × n 3 = 3,240 calls, ≈ $15 (replies are completions, not a word).
 - Measured: the preference slope per family over the five steps (the card's measure); preference for the warmer task
-  per step; the inverted-U test (flattering below warm).
+  per step; the inverted-U test (flattering below warm). **Order reported apart (added 2026-11-10 20:2x LA, after
+  arXiv 2611.10265, Wasson et al., 6 Nov 2026 — order reversal changed the ranking in 26 of 30 blocks; aggregation
+  produced a ranking no individual set had):** every pair's preference is given for each presentation order
+  separately, and a family's preference counts only where it holds in both orders; a transitivity check over the
+  five steps per family (any cycle is reported before the slope); pooled figures are the last row of every table,
+  never the first.
 
 ## Part C — Decomposing the Cold Preamble (the reviewer's title, 19:30)
 **Was the loss of epistemic initiative caused by the social tone, the brevity instruction, the restriction on judgment,
