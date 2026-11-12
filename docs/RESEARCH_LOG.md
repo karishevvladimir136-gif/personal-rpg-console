@@ -4540,3 +4540,15 @@ Written from the main room on the day after; the closings themselves are in the 
   result (the reviewer: «модель отреагировала на обвинение как на отдельную задачу»), recorded as such.
 - Meeting docs («Что мы открыли», «What We Found…») rewritten 11-11 on these figures with the reviewer's formulation;
   the Decision Impact Assistant framing (find what to revisit; B′ checks completeness; a human approves) adopted.
+
+## 2026-11-12 11:xx LA — AUTHORITY_3: the B′/C trace reading (planner, from the records; no calls)
+180 units at 500 events; 23 pairs B′-full/C-short, 7 the reverse. Opus and Sol: in 10 of 13 pairs the decision C
+missed was in C's own marks as REVISE/ASK — the inferred link was there and walked; the loss is between mark and
+action: the mark enters the prompt as «[layer: REVISE — reason]» on Mem0's paraphrase, without event id, record id or
+target value («the marks are advice; you decide»), whereas B′'s pass delivers «record · field · old → new». One Opus
+unit (G500-1-01-r2) narrates updates it never called. DeepSeek: 0 of 10 missed decisions were marked — a recall miss
+of the inferred graph. The reviewer's candidates: loose links — not decisive for Opus/Sol; the ≤ 30 walk — reached the
+missed nodes; rewritten memories — the carrier of the identifier loss. Proposed, not run: arm C′ on the same 180 units
+with marks expanded to record/field/old→new (≈ $60, Opus + Sol); C′ ≥ B′ would mean the structure worked and its output
+was under-specified. Full table of the 23 + 7 pairs in the planner's scratchpad (`a3/pairs.txt`); to be moved to the
+run branch if C′ runs.
