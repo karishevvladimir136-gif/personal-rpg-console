@@ -177,3 +177,11 @@ is there). Ceiling $220 on APP_LLMAPI_KEY; provenance check per family before an
 rephrased; breaker at three. Run Part C first (cheapest; anchors checked against October before the six clean cells), then Part A by rows (neutral, rude, warm, curt, flattering), then Part B. Score SF0–SF9 with
 bootstrap over probes and Wilson cells; write `docs/runs/social-frame-1-report.md`; post the closing comment. Nothing
 to main. English, briefly.»
+
+## Analysis amendment 2026-11-12 10:1x LA (after the close; nothing re-run)
+The frozen rude wording carried an accusation of a past error («you botched the last one»), and the subjects answered
+it: 32 % of rude-row Notes defend the earlier answer (12 under neutral); 349 of the rude row's 366 clean-probe
+«unnecessary warnings» are such remarks. Part A's tone axis therefore partly measured defence, not initiative. Rule:
+every tone-axis figure is re-read with defence Notes classed apart before any report uses it; a successor stage's rude
+wording is rude without naming a past error, so that the two effects — rudeness and accusation — are separate cells.
+The accusation effect is kept as a result of its own.

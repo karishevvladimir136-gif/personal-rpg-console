@@ -54,7 +54,7 @@ The planner spawns the private-layer dreamer from its own session at the morning
 under a Mandate in issue #3 when the owner opens it. Pass 1's report and bets: scratchpad `dreaming-1/`; its summary
 in RESEARCH_LOG 2026-11-08 04:40.
 
-## Amendment 2026-11-10 10:2x LA — what this file said that is no longer so
+## Amendment 2026-11-10 10:08 LA (commit time; the heading first read «10:2x», corrected 2026-11-12) — what this file said that is no longer so
 - «pass 1: 5 of 5» (DR2) → four of five; the fifth correction was a turn index read off a transcript (dreamer pass 2,
   row 1; the planner's 11-09 09:41 note). Named for this file on 11-09, corrected here on 11-10.
 - The dreamer is no longer spawned from the planner's session at the wake-up: since the owner's «Одобряю» of 2026-11-08
@@ -64,5 +64,6 @@ in RESEARCH_LOG 2026-11-08 04:40.
 - «under a Mandate in issue #3» — issue #3 went to AUTHORITY_1 on 2026-11-10; the public-layer pass has no issue yet.
 - DR4 after three passes: lines older than five days 7 → 3 → 3 (the same three: the reader/`talk` fix, the nine glade
   episodes, the audit script). Not met by the first count; one pass left by the second.
+  *2026-11-12 note:* passes 4 and 5 counted 3 again (days 9, 10, 11, the same three). **DR4 is lost on either count.**
 - A pattern the stage did not foresee, now in three passes: the planner's corrections carry errors of their own class
   (pass 3: three of three new WAS WRONG rows sat inside corrections).

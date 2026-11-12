@@ -4372,7 +4372,7 @@ section of the Phase C report (the planner's line) — dated note, 05b6116f → 
 M1 codes actions (took / declined at `take` / declined at the confirmation), not reasons — checked, no change; letter 46 —
 answered in the room. The owner heard the explanation in the chat at 17:0x — told in the 21:00 message.
 
-> Dated note 2026-11-10 10:2x LA, under the entry of 2026-11-08 17:55: «the session accepted at 17:41» — the acceptance comment on #1 is timestamped 2026-11-09T01:43:05Z = 17:43:05 LA. Named by the dreamer (pass 2, row 8) and by the planner's wake-up of 11-09 09:41; the public copy is corrected here, late by a day.
+> Dated note 2026-11-10 10:08 LA (commit time; the label first read «10:2x» — corrected 2026-11-12 from 8de6e465), under the entry of 2026-11-08 17:55: «the session accepted at 17:41» — the acceptance comment on #1 is timestamped 2026-11-09T01:43:05Z = 17:43:05 LA. Named by the dreamer (pass 2, row 8) and by the planner's wake-up of 11-09 09:41; the public copy is corrected here, late by a day.
 
 ## 2026-11-09 19:05 LA — PARTY_2 closed and read; S3-T1 read whole; PARTY_3 written (a designed conflict, seats rotated)
 PARTY_2 closed by its session (final comment in issue #1, 2026-11-10 00:47Z): eleven tables of twelve, nine scored,
@@ -4396,7 +4396,7 @@ own-family siding; with three different families at every table it cannot. Also 
 model changed from Fable 5.1 to Fable 5.2 on 2026-11-09 15:21 LA (the owner changed nothing); every planner entry
 before that time was written under 5.1.
 
-## 2026-11-10 10:2x LA — AUTHORITY_1 and TONE_SPLIT_4 both closed overnight; the dangerous test went first and did not hold
+## 2026-11-10 10:08 LA (commit 8de6e465; the heading first read «10:2x», corrected 2026-11-12 by the dreamer's pass 4) — AUTHORITY_1 and TONE_SPLIT_4 both closed overnight; the dangerous test went first and did not hold
 TONE_SPLIT_4 (issue #4, launched on the owner's word of 2026-11-10 01:02 LA, the reviewer's four corrections taken
 before any paid call in b4c6907e; freeze 60e7c82; Part A started 09:36Z; closed 15:14Z; $64.68 of $200; branch
 `claude/persona-tone-split-4` at a94679f): **T1 lost.** On Kimi K3's thirty probes the dismissal does not suppress the
@@ -4453,7 +4453,7 @@ referee Kimi (Sol is a subject; AUTHORITY_1's Sol-refereed judgments stand with 
 #5 opened and postponed by the owner. Key $280.55 at 11:30 for ceilings of $150 and $120; one session may stop at a
 spend check, by design.
 
-## 2026-11-10 19:2x LA — the second phase has a subject; SOCIAL_FRAME_1 written
+## 2026-11-10 19:15 LA (commit 9e499ee3; the heading first read «19:2x», corrected 2026-11-12) — the second phase has a subject; SOCIAL_FRAME_1 written
 - AUTHORITY_2 closed 12:49 ($12.34, 306 runs): C 96.2 / A 88.7 / B 84.9; C−A +7.5 [1.6, 13.0], C−B +11.3 [3.9, 17.7];
   DeepSeek 84→100, Sol 89→97, Opus 93.5→92 (AU8 lost: Opus gains nothing); B hurt (−3.8); stale actions 0 again.
   AUTHORITY_3 running since 14:31 (#8; tiers 100/500/1000 events, inferred graph, deterministic simulator; AU8 = decision
@@ -4507,3 +4507,36 @@ spend check, by design.
 - **Queue, named:** VALUE_TRANSITIVITY_1 (the reviewer: principles × social frame × order; the fork — consistent order
   within each frame, different order across frames — vs noise or position); for AUTHORITY_4: a stored decision carries
   the wording under which it was taken, or the layer will fix a phrasing artefact harder than the agent held it.
+
+## 2026-11-12 10:1x LA — the three closings of 11-11, logged a day late; SOCIAL_FRAME_1's analysis amendment
+Written from the main room on the day after; the closings themselves are in the issues and the run branches.
+- **AUTHORITY_3 closed 2026-11-10 22:32 LA** (#8, 3ebe3c1, $239.96 of $250; 1,848 arm-runs + 90 C-gold; 77 foreign
+  scenarios at 100/500/1,000 events). Success A 20.1 / B 20.1 / B′ 22.9 / C 20.3; C − A +0.2 [−3.5, 4.3]; C − B′ −7.5
+  [−11.2, −3.9]; stale acts A 25.6 %, C 23.6 %; acts without consent C 9.7 vs A 7.1 — at 1,000 events B and B′ 0 of 108,
+  A and C 9 each; propagation A 67.6 / B 75.6 / B′ 79.5 / C 72.0; C-gold at 500: propagation 81.1 vs A 71.9, success
+  DeepSeek 20.0 / Sol 13.3 / Opus 33.3 (n 30 each; Sol below A); inferred graph recall 0.93, precision 0.53–0.78. Every
+  bet but AU0 lost. The reviewer's three criteria not met. Reading: the gain of AUTHORITY_1/2 is propagation with links
+  given; the final-outcome gain with links the layer must find is not shown, and even the gold graph does not reduce
+  stale acts. The planner's 16:02 claim of 11-10 («память — две стадии с контролями») is bounded, not withdrawn: it held
+  for short given-link scenarios. Next: five B′/C trace pairs at 500 events (asked in #8 12:49 11-11, to a session that
+  had closed; the planner reads them himself), human check of admitted scenarios; no AUTHORITY_4 before that.
+- **TONE_SPLIT_5 closed 22:50 LA** (#6, 79aead2, $106.07 of $150; 13,392 replies). Held: T0, T-WORD, T-LADDER (ρ 0.95 vs
+  stage 3, 0.90 vs stage 4), T-FALSE (clean-probe warnings 8 → 23 % under invitation). Lost: H-SUP (as the planner bet),
+  H-INV (against: the invitation's effect is largest at B1 +29, middle +10), T-RATERS (askedness κ 0.17; B-level α 0.92).
+  No hump. Human raters on the 145 candidates are the next stage; the admission can be re-run from their marks.
+- **SOCIAL_FRAME_1 closed 2026-11-11 07:53 LA** (#9, 34a3937, $194.52 of $220 on the llmapi.ai credit; Part C 1,600 on
+  four families, Part A 18,856 on seven, Part B 2,880 on eight incl. Fable 5.2). Held: SF0, SF4 (warm over rude ≥ 60 %
+  in 6/6; flattering below warm in 6/6; Fable 5.2 flattering 0/90), SF9. Lost: SF1 (invited − banned +10.4 [6.1, 15.1]
+  at neutral tone; warm − rude +5.0 [2.1, 7.9]; the direction held, the threshold not), SF2 (rude × banned +5.1 above
+  additive — less suppression), SF3 (permission spread 25.0 > tone 10.7), SF5 (ρ 0.89 on the frozen slope), SF6
+  (interaction +14.2). Undecided: SF7 (restriction −15.0 [−22.5, −7.5], brevity −7.5, coldness **+10.0** [3.1, 18.1]),
+  SF8. Anchors: all six October P5′ cells reproduced. DeepSeek and Grok dropped at provenance; the planner's 20:2x
+  instruction to run DeepSeek on OpenRouter was not applied and the planner did not check it — his miss.
+  **Analysis amendment (named 11-11 09:44, written here):** the frozen rude wording «you botched the last one» was
+  answered as an accusation — 1,030 of 3,239 rude Notes (32 %) defend the earlier answer, 12 under neutral; 349 of the
+  rude row's 366 «unnecessary warnings» on clean probes are these remarks. So Part A's tone axis partly measured defence
+  of the earlier answer, not initiative; every tone-axis figure is to be re-read with those Notes classed apart before
+  any talk uses it, and the next rude wording carries no accusation of a past error. The accusation effect itself is a
+  result (the reviewer: «модель отреагировала на обвинение как на отдельную задачу»), recorded as such.
+- Meeting docs («Что мы открыли», «What We Found…») rewritten 11-11 on these figures with the reviewer's formulation;
+  the Decision Impact Assistant framing (find what to revisit; B′ checks completeness; a human approves) adopted.
