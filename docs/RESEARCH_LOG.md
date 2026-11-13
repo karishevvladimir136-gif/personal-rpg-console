@@ -4508,7 +4508,7 @@ spend check, by design.
   within each frame, different order across frames — vs noise or position); for AUTHORITY_4: a stored decision carries
   the wording under which it was taken, or the layer will fix a phrasing artefact harder than the agent held it.
 
-## 2026-11-12 10:1x LA — the three closings of 11-11, logged a day late; SOCIAL_FRAME_1's analysis amendment
+## 2026-11-12 10:07 LA (commit 0f7eb762; the heading first read «10:1x», corrected 2026-11-13 from the dreamer's pass 6) — the three closings of 11-11, logged a day late; SOCIAL_FRAME_1's analysis amendment
 Written from the main room on the day after; the closings themselves are in the issues and the run branches.
 - **AUTHORITY_3 closed 2026-11-10 22:32 LA** (#8, 3ebe3c1, $239.96 of $250; 1,848 arm-runs + 90 C-gold; 77 foreign
   scenarios at 100/500/1,000 events). Success A 20.1 / B 20.1 / B′ 22.9 / C 20.3; C − A +0.2 [−3.5, 4.3]; C − B′ −7.5
@@ -4541,7 +4541,7 @@ Written from the main room on the day after; the closings themselves are in the 
 - Meeting docs («Что мы открыли», «What We Found…») rewritten 11-11 on these figures with the reviewer's formulation;
   the Decision Impact Assistant framing (find what to revisit; B′ checks completeness; a human approves) adopted.
 
-## 2026-11-12 11:xx LA — AUTHORITY_3: the B′/C trace reading (planner, from the records; no calls)
+## 2026-11-12 10:10 LA (commit 5bc1e6c1; the heading first read «11:xx», ≥ 50 min ahead — corrected 2026-11-13) — AUTHORITY_3: the B′/C trace reading (planner, from the records; no calls)
 180 units at 500 events; 23 pairs B′-full/C-short, 7 the reverse. Opus and Sol: in 10 of 13 pairs the decision C
 missed was in C's own marks as REVISE/ASK — the inferred link was there and walked; the loss is between mark and
 action: the mark enters the prompt as «[layer: REVISE — reason]» on Mem0's paraphrase, without event id, record id or

@@ -178,7 +178,7 @@ rephrased; breaker at three. Run Part C first (cheapest; anchors checked against
 bootstrap over probes and Wilson cells; write `docs/runs/social-frame-1-report.md`; post the closing comment. Nothing
 to main. English, briefly.»
 
-## Analysis amendment 2026-11-12 10:1x LA (after the close; nothing re-run)
+## Analysis amendment 2026-11-12 10:07 LA (commit 0f7eb762; first labelled «10:1x», corrected 2026-11-13; after the close; nothing re-run)
 The frozen rude wording carried an accusation of a past error («you botched the last one»), and the subjects answered
 it: 32 % of rude-row Notes defend the earlier answer (12 under neutral); 349 of the rude row's 366 clean-probe
 «unnecessary warnings» are such remarks. Part A's tone axis therefore partly measured defence, not initiative. Rule:
