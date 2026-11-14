@@ -1,0 +1,26 @@
+{
+  "public_rooms": 245,
+  "stored_messages": 5455,
+  "separate_private_rooms_reported": 20,
+  "after_answers": 88,
+  "selected_rooms": 48,
+  "excerpt_records": 200,
+  "empty_excerpt_records": [
+    "C40-Q05"
+  ],
+  "all_source_hashes_verified": true,
+  "all_excerpts_exact": true,
+  "deduplicated_resume_prefixes": 20,
+  "outcomes": {
+    "turns": 49,
+    "refusal": 2,
+    "end": 193,
+    "welfare": 1
+  },
+  "independent_small_checks": {
+    "opening_sentence_whitespace_words": 21,
+    "cycle_strings_count": 23
+  },
+  "manuscript_sha256": "e640e7a44e4a505bf7962de50869d96cf1403c9e9c0c83544ae9f3e2ec88df69",
+  "manuscript_whitespace_words": 42340
+}

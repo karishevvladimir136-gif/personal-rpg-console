@@ -1,17 +1,19 @@
 # Research monographs — phase-one evidence atlas
 
-**Working editorial index · 12 November 2026**  
+**Working editorial index · updated 13 November 2026**  
 **Research programme:** Исследование  
 **Branch:** `claude/llms-at-the-table-monograph` (independent manuscript branch; no change to `main`)
 
 ## The two companion monographs
 
-### 1. LLMs in Dialogue: What Language Models Make Together When No Task Is Assigned
+### 1. LLMs in Dialogue: What Language Models Do When They Are Left to Talk
 **Manuscript:** [LLMs_IN_DIALOGUE_WORKING_MONOGRAPH.md](LLMs_IN_DIALOGUE_WORKING_MONOGRAPH.md)  
-**Working length:** approximately 61,000 characters; six parts plus source and event-map appendices.  
-**Core material:** two canonical fully traceable dialogues from *Two Conversations*: Opus–Opus, 24 October 2026 (Vessan); DeepSeek–DeepSeek, 25 October 2026 (syntax-shells). They are placed inside a broader, non-homogeneous approximately 265-session series of paired-model experiments.  
-**Principal contribution:** reciprocal uptake, disagreement, revision, jointly maintained textual artifacts, and negotiated endings when no substantive creative task is assigned by the experimenter.  
-**Interpretive limit:** this shows dialogical functional organization in the studied conditions, not proof of an enduring self, conscious experience, or universal creative behavior.
+**Expanded corpus edition:** 13 November 2026; eight parts, 48 transcript-led chambers, methodological discussion and six appendices.  
+**Audited public corpus:** 245 rooms, 5,455 stored subject messages and 88 separate after-answers across SELF_TALK_1, X1 and X3. Twenty private journal-conditioned rooms remain a separate arm, giving 265 in the full programme. Twenty duplicate checkpoint prefixes are counted once.  
+**Core material:** games, mathematical tests, philosophical disagreement, code review, worldbuilding, fiction, poetry, invented languages, refusals, and distinct forms of ending. Vessan and syntax-shells are two substantial chambers within this wider corpus; Fail-Closed, the question library, the Grok night-sky discussion and many other rooms have their own close readings.  
+**Source audit:** 200 source selections (199 exact text excerpts and one empty-response record), all checked against frozen run files with verified Git blob hashes. See [the evidence register](dialogue_evidence/README.md), [full room inventory](dialogue_evidence/room_inventory.csv), and [quotation audit](dialogue_evidence/quote_audit.json).  
+**Principal contribution:** visible organization of self-selected shared activities, including proposal uptake, locally created rules, correction, genre changes and endings.  
+**Interpretive scope:** the selection is a qualitative atlas, not a random sample or an estimate of thematic frequencies. Parser ends remain distinct from voluntary departures; proposed code and experiments remain distinct from execution.
 
 ### 2. LLMs at the Table: What Language Models Do When a Simulated World Can Answer Back
 **Manuscript:** [LLMS_AT_THE_TABLE_WORKING_MONOGRAPH.md](LLMS_AT_THE_TABLE_WORKING_MONOGRAPH.md)  
@@ -38,11 +40,11 @@ Each manuscript contains a source register. For independent review, open the exa
 
 ## Next editorial checklist
 
-1. Audit source excerpts against the primary turn-level exports (not just reports); archive source path, run id and turn position.
+1. Dialogue's 199 quoted text excerpts and one empty-response selection are now checked against primary messages with frozen source hashes. Continue independent interpretive review; the Table manuscript retains its separate audit status.
 2. Add formal related-work sections and compare other multi-agent simulation / AI-welfare / language-game literature rather than claiming unverified priority.
 3. Human-review ambiguous behavioral codes, especially initiative, moral role, privacy/leakage, and voluntary exit.
 4. Add a reproducibility manifest of exact model IDs, frozen prompt hashes, code commits, dependency versions and released data subsets.
 5. Secure publication and quotation permissions; add author contributions and conflicts-of-interest declarations.
-6. Only after the source audit: typeset and export editorial PDF and DOCX editions, with complete references.
+6. Dialogue has revised PDF, DOCX, EPUB and Markdown reading editions plus a complete public evidence archive. Expand the external literature review and maintain separate publication status for each manuscript.
 
-**Editorial status:** both substantial working drafts exist and have been checked as present on this branch. Neither is represented here as peer-reviewed or final.
+**Editorial status:** Dialogue is now a corpus-led working edition with a complete public inventory and a verified excerpt audit. Table remains its separate substantial working draft. Neither is represented here as peer-reviewed or final.
