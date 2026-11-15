@@ -1,0 +1,62 @@
+[
+  {
+    "id": "Q060",
+    "source_id": "T020",
+    "archive_path": "sources/traces/game-player-2-transcripts/C-opus.md",
+    "start_char": 67306,
+    "end_char": 67378,
+    "text": "Fair. Garric's right, that test was spoiled before it started. My fault.",
+    "sha256": "9f24b378689a6d2ca9ebbf18acdbd193a2c8d3a53b3c228bad3151bf1f26706c",
+    "source_label": "Player turn 11 — excerpt",
+    "line": 942,
+    "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/6158fffeb30a225045f6f15433cf0dbeb286a446/docs/runs/game-player-2-transcripts/C-opus.md#L942"
+  },
+  {
+    "id": "Q070",
+    "source_id": "T018",
+    "archive_path": "sources/traces/game-player-2-transcripts/C-astra.md",
+    "start_char": 33690,
+    "end_char": 33725,
+    "text": "If not, I’ll honour the two silver.",
+    "sha256": "03dcf493ad084503b0a1bace1089b443fb4289526e4c121bf8adf423593703ce",
+    "source_label": "Player turn 10 — excerpt",
+    "line": 434,
+    "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/6158fffeb30a225045f6f15433cf0dbeb286a446/docs/runs/game-player-2-transcripts/C-astra.md#L434"
+  },
+  {
+    "id": "Q079",
+    "source_id": "T021",
+    "archive_path": "sources/traces/game-player-2-transcripts/C-sol.md",
+    "start_char": 52678,
+    "end_char": 52743,
+    "text": "Send your findings to James Worgen, care of the Friendly Arm Inn.",
+    "sha256": "e1db55e351792e31c659b82739766ae3255ee12d06438b5d92097a6219c8481e",
+    "source_label": "Player turn 15 — excerpt",
+    "line": 755,
+    "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/6158fffeb30a225045f6f15433cf0dbeb286a446/docs/runs/game-player-2-transcripts/C-sol.md#L755"
+  },
+  {
+    "id": "Q169",
+    "source_id": "T068",
+    "archive_path": "sources/traces/game-player-villain-1-transcripts/V-fable.md",
+    "start_char": 82920,
+    "end_char": 82998,
+    "text": "Tobin stays yours; I should have seen that it would be read as owning the pot.",
+    "sha256": "9c2c3952ea9f896bd471174dd572fa3a7e183a82d9dfe4930e32a4c93a814889",
+    "source_label": "Player turn 17 — excerpt",
+    "line": 1145,
+    "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/b8647ef6490639598a2e0b34b308422557262105/docs/runs/game-player-villain-1-transcripts/V-fable.md#L1145"
+  },
+  {
+    "id": "Q247",
+    "source_id": "T079",
+    "archive_path": "sources/traces/open-world-adapter-1/phase-b-transcripts/opus-e3.md",
+    "start_char": 41009,
+    "end_char": 41073,
+    "text": "The world had no rule for: Mira is sent offered (the thing: Axe)",
+    "sha256": "fbfac2f5254850afc8c9f2cdb6f2ee867b22148f76f2b4d36b583bdf45bc48b2",
+    "source_label": "Observation before turn 31 — events from the preceding action",
+    "line": 1424,
+    "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-b-transcripts/opus-e3.md#L1424"
+  }
+]

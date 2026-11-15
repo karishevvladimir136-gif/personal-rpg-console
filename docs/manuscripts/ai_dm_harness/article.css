@@ -1,0 +1,9 @@
+body { font-family: serif; line-height: 1.5; margin: 5%; color: #171717; }
+h1,h2,h3 { font-family: sans-serif; line-height: 1.25; break-after: avoid; }
+h1 { font-size: 1.8em; } h2 { font-size: 1.35em; margin-top: 1.6em; } h3 { font-size: 1.1em; }
+p { margin: .7em 0; } a { color: #254d70; }
+blockquote { margin: 1em .8em; padding-left: .6em; border-left: 2px solid #bbcbd6; }
+img { max-width: 100%; height: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88em; }
+th,td { border-bottom: 1px solid #cbd3d9; padding: .6em; text-align: left; vertical-align: top; }
+th { background: #eaf0f4; } code { font-size: .85em; overflow-wrap: anywhere; }

@@ -1,0 +1,150 @@
+[
+  {
+    "id": "L01",
+    "authors": "Côté, M.-A., et al.",
+    "year": "2018; revised 2019",
+    "title": "TextWorld: A Learning Environment for Text-based Games",
+    "url": "https://arxiv.org/abs/1806.11532v2",
+    "version_or_venue": "IJCAI 2018 Computer Games Workshop; arXiv v2",
+    "read_scope": "Primary abstract and official documentation for verbs, objectives, and admissible commands",
+    "supported_subject": "Generated text games, state and controlled variation.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Editorial comparison of published descriptions; no benchmark rerun or head-to-head comparison.",
+    "supporting_urls": [
+      "https://github.com/microsoft/TextWorld",
+      "https://textworld.readthedocs.io/en/stable/textworld.html"
+    ]
+  },
+  {
+    "id": "L02",
+    "authors": "Shridhar, M., Yuan, X., Côté, M.-A., Bisk, Y., Trischler, A., and Hausknecht, M.",
+    "year": "2021",
+    "title": "ALFWorld: Aligning Text and Embodied Environments for Interactive Learning",
+    "url": "https://github.com/alfworld/alfworld",
+    "version_or_venue": "ICLR 2021; official project repository",
+    "read_scope": "Official project README and task description",
+    "supported_subject": "Alignment of text and embodied task environments.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Architectural comparison; no head-to-head experiment."
+  },
+  {
+    "id": "L03",
+    "authors": "Wang, R., Jansen, P., Côté, M.-A., and Ammanabrolu, P.",
+    "year": "2022",
+    "title": "ScienceWorld: Is your Agent Smarter than a 5th Grader?",
+    "url": "https://aclanthology.org/2022.emnlp-main.775/",
+    "version_or_venue": "EMNLP 2022",
+    "read_scope": "Primary abstract and publication record",
+    "supported_subject": "Interactive execution of scientific tasks.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Editorial comparison of published descriptions; no benchmark rerun or head-to-head comparison."
+  },
+  {
+    "id": "L04",
+    "authors": "Paglieri, D., et al.",
+    "year": "2025",
+    "title": "BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games",
+    "url": "https://arxiv.org/abs/2411.13543v2",
+    "version_or_venue": "ICLR 2025; arXiv v2",
+    "read_scope": "Primary abstract and conference publication record",
+    "supported_subject": "Evaluation across game environments and observation modalities.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Editorial comparison of published descriptions; no benchmark rerun or head-to-head comparison."
+  },
+  {
+    "id": "L05",
+    "authors": "Wang, G., et al.",
+    "year": "2023",
+    "title": "Voyager: An Open-Ended Embodied Agent with Large Language Models",
+    "url": "https://arxiv.org/abs/2305.16291v2",
+    "version_or_venue": "arXiv v2",
+    "read_scope": "Primary abstract and authors’ project introduction",
+    "supported_subject": "Automatic curriculum, executable skill library and environmental feedback.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Editorial comparison of published descriptions; no benchmark rerun or head-to-head comparison.",
+    "supporting_urls": [
+      "https://voyager.minedojo.org/"
+    ]
+  },
+  {
+    "id": "L06",
+    "authors": "Vezhnevets, A. S., et al.",
+    "year": "2023",
+    "title": "Generative agent-based modeling with actions grounded in physical, social, or digital space using Concordia",
+    "url": "https://arxiv.org/abs/2312.03664v2",
+    "version_or_venue": "arXiv v2",
+    "read_scope": "Primary full-text architecture and grounded-variable sections",
+    "supported_subject": "A game master mediates natural-language actions and an environment.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Editorial comparison of published descriptions; no benchmark rerun or head-to-head comparison.",
+    "supporting_urls": [
+      "https://arxiv.org/html/2312.03664v2",
+      "https://deepmind.google/research/publications/64717/"
+    ]
+  },
+  {
+    "id": "L07",
+    "authors": "Park, J. S., et al.",
+    "year": "2023",
+    "title": "Generative Agents: Interactive Simulacra of Human Behavior",
+    "url": "https://arxiv.org/abs/2304.03442v2",
+    "version_or_venue": "arXiv v2",
+    "read_scope": "Primary abstract and bibliographic record",
+    "supported_subject": "Memory, reflection and planning in a 25-agent sandbox.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Editorial comparison of published descriptions; no benchmark rerun or head-to-head comparison."
+  },
+  {
+    "id": "L08",
+    "authors": "Zhou, X., et al.",
+    "year": "2024",
+    "title": "SOTOPIA: Interactive Evaluation for Social Intelligence in Language Agents",
+    "url": "https://arxiv.org/abs/2310.11667v2",
+    "version_or_venue": "ICLR 2024; arXiv v2",
+    "read_scope": "Primary full text: interaction environment, information visibility and limitations",
+    "supported_subject": "Role-conditioned social interaction, private goals and multiple evaluation dimensions.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Editorial comparison of published descriptions; no benchmark rerun or head-to-head comparison."
+  },
+  {
+    "id": "L09",
+    "authors": "Zhu, A., Aggarwal, K., Feng, A., Martin, L. J., and Callison-Burch, C.",
+    "year": "2023",
+    "title": "FIREBALL: A Dataset of Dungeons and Dragons Actual-Play with Structured Game State Information",
+    "url": "https://aclanthology.org/2023.acl-long.229/",
+    "version_or_venue": "ACL 2023",
+    "read_scope": "Primary abstract and publication record",
+    "supported_subject": "Human play connected to Avrae commands and structured state.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Editorial comparison of published descriptions; no benchmark rerun or head-to-head comparison."
+  },
+  {
+    "id": "L10",
+    "authors": "Zeng, Z., Li, S., Xi, J., Zhu, A., and Ammanabrolu, P.",
+    "year": "2025",
+    "title": "Setting the DC: Tool-Grounded D&D Simulations to Test LLM Agents",
+    "url": "https://openreview.net/forum?id=3Op7kJOvaD",
+    "version_or_venue": "GenProCC workshop at NeurIPS 2025",
+    "read_scope": "Indexed primary PDF abstract/introduction; official workshop programme",
+    "supported_subject": "Tool-mediated multi-agent combat and a multi-axis evaluation.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Editorial comparison of published descriptions; no benchmark rerun or head-to-head comparison.",
+    "supporting_urls": [
+      "https://openreview.net/pdf/e771f34a21966b17578cd0700e5b66c6950d72f5.pdf",
+      "https://genprocc.github.io/"
+    ],
+    "access_note": "Direct PDF access encountered an OpenReview verification wall. Technical description uses the indexed primary workshop abstract. Author order follows that PDF; the first two authors are marked as equal contributors. Venue confirmed in the official programme."
+  },
+  {
+    "id": "L11",
+    "authors": "Yu, P., et al.",
+    "year": "2025",
+    "title": "RPGBench: Evaluating Large Language Models as Role-Playing Game Engines",
+    "url": "https://arxiv.org/abs/2502.00595v1",
+    "version_or_venue": "arXiv v1",
+    "read_scope": "Primary full-text introduction and evaluation design",
+    "supported_subject": "Game creation, simulation, state consistency and evaluation.",
+    "accessed_date": "2026-11-14",
+    "comparison_status": "Editorial comparison of published descriptions; no benchmark rerun or head-to-head comparison."
+  }
+]

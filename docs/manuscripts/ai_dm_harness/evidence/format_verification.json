@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "main_sections": 11,
+  "docx_exact_quotes": 5,
+  "docx_internal_links": 0,
+  "docx_embedded_images": 1,
+  "epub_internal_links_and_assets": 20,
+  "pdf_pages": 19,
+  "pdf_hyperlinks": 114,
+  "pdf_page_geometry": "US Letter; text within page bounds"
+}

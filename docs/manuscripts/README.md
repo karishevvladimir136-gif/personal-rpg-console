@@ -27,6 +27,16 @@
 **Internal editorial review:** [eighteen consequential claims](table_evidence/evidence/editorial_review.md), each with evidence and an open question for an independent reviewer. The PARTY_2 zero-leak verdict is explicitly scoped to its refined rule; T1’s visible out-of-game asides and a report/export round-number discrepancy are retained. This packet is not an independent review.
 **Reading editions:** PDF, DOCX, EPUB and Markdown, plus a complete archive of this edition's selected primary files and assembly/verifier scripts.
 
+## Standalone methodological article
+
+### AI Dungeon Masters as Open-Ended Research Environments
+**Subtitle:** Action invention, persistent consequences, and interaction among language models.  
+**Article:** [AI_DM_HARNESS_RESEARCH_ARTICLE.md](AI_DM_HARNESS_RESEARCH_ARTICLE.md).  
+**Edition:** 14 November 2026; approximately 6,000 words before references; eleven main sections, a conceptual architecture figure, and eleven primary research references.  
+**Focus:** the relation between action-interface design and observable behaviour; open-ended goal formation; creative interventions; continuing RPG consequences; mixed-model parties; and the distinctive implemented configuration relative to related work, especially Concordia. AI DM and the separate external OpenWorld engine are explicitly distinguished.  
+**Evidence:** [supporting archive and rebuild instructions](ai_dm_harness/README.md), [28 frozen source files](ai_dm_harness/evidence/source_manifest.json), [five exact quotation spans](ai_dm_harness/evidence/quotes.json), [literature register](ai_dm_harness/evidence/literature.json), and [selected claim mappings](ai_dm_harness/evidence/claims.json).  
+**Status:** standalone working research article. The three-arm comparison and proposed metrics are future work, not completed experiments. The contribution claim concerns the implemented configuration and experimental evidence; it does not assert world-first priority or measured superiority. Reading editions: PDF, DOCX, EPUB and Markdown, with a separate evidence archive.
+
 ## How to read the books together
 
 They address different experimental units:
@@ -53,4 +63,5 @@ Each manuscript contains a source register. For independent review, open the exa
 6. Both monographs now have expanded PDF, DOCX, EPUB and Markdown reading editions with evidence archives. Maintain their separate corpus definitions and publication status.
 
 **Editorial status:** Both are substantial corpus-led working editions with verified excerpt audits and frozen source inventories. Table includes the completed OpenWorld player episodes, fourteen-work positioning and an internal review packet. Neither is represented as peer-reviewed or final.
+
 

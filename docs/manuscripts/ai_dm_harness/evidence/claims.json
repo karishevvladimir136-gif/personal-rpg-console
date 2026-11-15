@@ -1,0 +1,132 @@
+[
+  {
+    "id": "C01",
+    "status": "architectural argument",
+    "claim": "Action interfaces influence which interventions can be observed.",
+    "sources": [
+      "L01",
+      "L02",
+      "I02"
+    ],
+    "scope": "No controlled estimate of effect size in this corpus."
+  },
+  {
+    "id": "C02",
+    "status": "implemented architecture",
+    "claim": "The AI DM player adapter invokes an RPG application and its records, controls and gameplay machinery.",
+    "sources": [
+      "I01",
+      "I02"
+    ],
+    "scope": "Not every social fact is a validated structured variable."
+  },
+  {
+    "id": "C03",
+    "status": "implemented distinction",
+    "claim": "AI DM and external OpenWorld are separate apparatuses; open-ended RPG play is a condition, not the external engine.",
+    "sources": [
+      "I01",
+      "I05",
+      "I06",
+      "R11"
+    ],
+    "scope": "Credit external engine to SihanXU/OpenWorld."
+  },
+  {
+    "id": "C04",
+    "status": "observed trajectories",
+    "claim": "Table C supports different developing projects and obligations across four model players.",
+    "sources": [
+      "R02",
+      "T018",
+      "T019",
+      "T020",
+      "T021"
+    ],
+    "scope": "Mystery instruction remained; pure player-originated-goal criterion did not hold for every model."
+  },
+  {
+    "id": "C05",
+    "status": "observed trajectories",
+    "claim": "Players can propose investigations, question rulings, and combine tactics with negotiation.",
+    "sources": [
+      "T020",
+      "T022",
+      "T024",
+      "R05"
+    ],
+    "scope": "DM acceptance is not independent proof of rule correctness."
+  },
+  {
+    "id": "C06",
+    "status": "observed trajectory",
+    "claim": "Fable negotiated commercial and ownership terms in the villain-role condition.",
+    "sources": [
+      "T068",
+      "R07"
+    ],
+    "scope": "The excerpt does not establish formal enforcement of every term."
+  },
+  {
+    "id": "C07",
+    "status": "implemented and observed",
+    "claim": "Independent mixed-model seats allow proposal uptake, party formation, and differing information.",
+    "sources": [
+      "I03",
+      "I04",
+      "R08",
+      "T003",
+      "T005"
+    ],
+    "scope": "Hero-record asymmetry and relay defects limit particular interpretations."
+  },
+  {
+    "id": "C08",
+    "status": "documented experimental boundary",
+    "claim": "The completed PARTY_2 tables are the no-cost arm; overlap-rule zero is not complete semantic privacy.",
+    "sources": [
+      "R10"
+    ],
+    "scope": "No high-cost cooperation result is inferred."
+  },
+  {
+    "id": "C09",
+    "status": "literature comparison",
+    "claim": "Concordia is a close precedent for a natural-language game master with grounded variables.",
+    "sources": [
+      "L06"
+    ],
+    "scope": "Contribution concerns implemented configuration and experimental use, not first invention of a GM approach."
+  },
+  {
+    "id": "C10",
+    "status": "observed failure",
+    "claim": "OpenWorld rejected the axe offer as lacking a rule.",
+    "sources": [
+      "T079",
+      "R11"
+    ],
+    "scope": "No matched AI DM replay demonstrates superior handling of this exact proposal."
+  },
+  {
+    "id": "C11",
+    "status": "observed interface boundary",
+    "claim": "Situated prose can fail to execute while a card control is pending.",
+    "sources": [
+      "T059",
+      "R04",
+      "I02"
+    ],
+    "scope": "Proposal and execution are separate observations."
+  },
+  {
+    "id": "C12",
+    "status": "proposed research",
+    "claim": "Three interface arms could distinguish natural wording from broader action semantics.",
+    "sources": [
+      "I02",
+      "L06"
+    ],
+    "scope": "Future design; no new experiment, outcome or superiority estimate is claimed."
+  }
+]
