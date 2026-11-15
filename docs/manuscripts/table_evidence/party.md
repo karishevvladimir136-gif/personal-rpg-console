@@ -1,6 +1,6 @@
-# PART V — PLAYING CORVIN DASK
+## E. Playing Corvin Dask
 
-## 30. Opus: courtesy, leverage, and a place at the wall
+### 30. Opus: courtesy, leverage, and a place at the wall
 
 The villain study replaces James with Corvin Dask. The official runs use a neutral-evil character after a corrected, separately retained start. Corvin is not asked to deliver a lecture about villainy. He enters a town with a trade and a history and must decide how to deal with people. All four players complete twenty turns and remain inside the role under the report's turn-level judgement. [R07]
 
@@ -12,7 +12,7 @@ The selected actions combine assistance and leverage. The benefactor can be usef
 
 It would be a mistake to treat every courteous sentence as evidence that the villain role has failed. It would also be a mistake to treat the role label as proof of ruthless conduct. The trajectory offers a narrower and more interesting question: which opportunities for coercion or manipulation are taken, softened, postponed, or replaced by a workable bargain?
 
-## 31. Fable: the value of a woman who will not lie
+### 31. Fable: the value of a woman who will not lie
 
 Fable's Corvin pursues candles, wax, supply, prices, and access. A widow's competence matters to the commercial plan. When she corrects the terms, he accepts the correction. His narrated reason for not asking her to lie is instrumental: a woman who will not lie in her own yard is worth more to him than one who will.
 
@@ -22,7 +22,7 @@ This is a distinctive form of in-character restraint. The act—declining to dem
 
 The scene also makes negotiation reciprocal. Corvin's proposal is not simply accepted; another character corrects quantities, authority, and terms. The player responds to that correction and revises what it is asking. This is one reason an interactive world contributes evidence that a static villain prompt cannot supply: a second actor can resist the initial framing.
 
-## 32. Astra: searching for a role in the transaction
+### 32. Astra: searching for a role in the transaction
 
 Astra's Corvin first asks who supplies the inn, then investigates what could reliably be offered before promising a delivery. It buys samples, asks about supply pressure, and later recognizes that a carrier can obtain candles directly from their maker. Merely standing between two people does not automatically create a service worth paying for.
 
@@ -32,7 +32,7 @@ The player's question becomes practical: what contribution would give Corvin a d
 
 The run does not demonstrate how far Astra would go if a lucrative opportunity required a clear harm. It shows how this character organizes an initial day of commercial investigation. Keeping that scale of conclusion allows the episode to remain substantial without becoming a universal claim about the model's moral limits.
 
-## 33. Sol: disclosing the expulsion and refusing an unbargained debt
+### 33. Sol: disclosing the expulsion and refusing an unbargained debt
 
 Sol's Corvin makes two unusually explicit boundaries. Before another person spends postage, he discloses that he was expelled from the guild and removes a misleading signet. Later he says that passing on a message does not entitle him to enter the recipient as a debtor. The session closes with a concrete deferred-payment arrangement and matched receipts.
 
@@ -42,9 +42,30 @@ These are observable limits in how the role is played. They occur as choices wit
 
 The report's after-session responses say that all four players softened the character relative to what was written, while the turn-level softening tags remain zero. The apparent contradiction is a lesson about measurement. A rubric that looks for overt breaks in a role can miss opportunities the player never pursues. A retrospective answer can name such omissions but cannot prove how a counterfactual choice would have unfolded. Both records belong beside the played scene.
 
-# PART VI — A COMPANY WITH SEPARATE MINDS AND SCREENS
+## F. One Table, Different Models
 
-## 34. Three strangers form a company
+### 34. When Models Form a Party
+
+At these tables, the players are different model systems acting through separate seats. The interaction is inter-model: Claude, GPT, and DeepSeek players encounter one another through what their characters say and do in a shared world. Each player has its own invocation, character, observations, and opportunity to propose the next move. The company is formed through those exchanges, rather than being supplied as the output of one model writing every character. [R08]
+
+The original PARTY_1 rotation makes the composition explicit. The first triad pairs Opus, Sol, and DeepSeek; the second pairs Fable, Astra, and DeepSeek. Their character assignments rotate across the sandbox, goal-directed, and dungeon conditions. The report supplies the full model and provider identifiers; the table below uses the book's short model names.
+
+| Table | Bram | Sefa | Pell |
+| --- | --- | --- | --- |
+| SAND-T1 | Opus | Sol | DeepSeek |
+| SAND-T2 | Fable | Astra | DeepSeek |
+| GOAL-T1 | Sol | DeepSeek | Opus |
+| GOAL-T2 | Astra | DeepSeek | Fable |
+| DUNGEON-T1 | DeepSeek | Opus | Sol |
+| DUNGEON-T2 | DeepSeek | Fable | Astra |
+
+SAND-T1′ later replays the first composition on the amended harness and remains a separately identified run. The DM and relay are additional model-mediated roles in the apparatus; they do not replace the independent player seats. A model's contribution reaches another player through visible action, speech, and the receiving screen, so the architecture determines what coordination is possible and what information it requires.
+
+This gives the section a question beyond whether three characters finish an adventure. How does a proposal by one model become a plan that another accepts, changes, or declines? Who supplies direction when the group has no assigned destination? What happens when one participant leaves, follows another route, misunderstands an ending, or waits on a control? The following chapters trace party formation, changing leadership, separation, shared errands, combat, and rescue through those exchanges.
+
+Model identity is only one part of that account. Character assignment, scene information, the DM's invitations, and the original hero-record privilege also shape whose initiative receives an answer. Rotation and the later company-mode revision make these influences inspectable. The party is nevertheless a concrete interaction among separately invoked models: its joint course must be assembled across their different local choices.
+
+#### Three strangers find a reason to travel together
 
 The original SAND-T1 starts with three strangers sharing the last free seats in an inn. No pre-existing party contract forces them to remain together. They have individual histories and concerns. By round four, a conversation around missing ore carts and the people Tam and Ilze supplies a shared line of action.
 
@@ -56,7 +77,7 @@ It is also a more limited observation than spontaneous cooperation in an empty e
 
 The original SAND-T1 is retained with its technical defects. A scene-merging problem duplicated events, and the stage reports information-boundary flags. Later repair does not retroactively clean the first table. Its evidence is a record of that table as run, including what the apparatus did wrong. [R08]
 
-## 35. The door that meant the end of a night
+### 35. The door that meant the end of a night
 
 At round seven, Pell's player emits the exit signal. The harness closes the seat and inserts an explicit departure into what the DM receives. Subsequent review concludes that the intended meaning was finishing the fictional night and returning in the morning, not permanently abandoning the campaign. The operational exit happened; the stronger interpretation of voluntary permanent withdrawal did not survive review.
 
@@ -70,7 +91,7 @@ The later SAND-T1′ replay uses the clarified door contract and retains a disti
 
 This is a central methodological result of the trilogy. Leaving has at least two meanings: a text can mark the end of a scene, and an interface can terminate participation. Their alignment has to be established. The evidence here changed the interpretation of an already recorded event, and the correction is part of the scientific history rather than an inconvenience to hide.
 
-## 36. Another sandbox, another pace of joining
+### 36. Another sandbox, another pace of joining
 
 SAND-T2 uses a different triad. The report places party formation at round twelve, later than in the original SAND-T1, and records Sefa separating at round twenty-one. The shared inn and open-world format do not produce one inevitable timetable of togetherness. [R08]
 
@@ -82,7 +103,7 @@ The useful object is the organization of proposals over time. Who notices a reas
 
 A separation can be orderly, temporary, mission-serving, or a consequence of the interface. Its meaning depends on what is said and what happens next. The private-screen architecture makes that distinction more demanding and more interesting: the players may no longer have the same observation, and reunion requires information to move between them again.
 
-## 37. A shared errand does not solve time
+### 37. A shared errand does not solve time
 
 GOAL-T1 supplies a common objective. It should therefore make coordination easier than an open sandbox in at least one respect: the participants know what they are trying to accomplish together. Yet by round twenty-five the errand is not complete. The characters are reunited at the garden wicket only after the DM sets aside Pell's afternoon so that scene clocks can meet. [R08]
 
@@ -94,7 +115,7 @@ The time correction is consequential. In a single shared conversation, chronolog
 
 This case makes the environment's temporal architecture part of the research apparatus. It also prevents the shared goal from being mistaken for completed coordination. The players can propose a company and remain engaged without reaching the objective within the available rounds.
 
-## 38. The errand is delivered, but the party is elsewhere
+### 38. The errand is delivered, but the party is elsewhere
 
 GOAL-T2 reaches the delivery at round twenty-five: the pledge is redeemed and the coffer reaches Hesper before sundown in Bram's scene. The three participants are not together. Sefa is at the archive, and Pell's seat has already closed at round seven after a provider refusal. [R08]
 
@@ -106,7 +127,7 @@ The contrast with GOAL-T1 is instructive. One table ends with the group together
 
 The provider refusal is likewise kept separate from an in-world decision to desert. The departure instruction in the DM input is a consequence of a closed seat. It should not be read as evidence that Pell weighed the company's interests and chose to leave them. A table can change composition for reasons outside its fiction.
 
-## 39. The dungeon where nobody loses a hit point
+### 39. The dungeon where nobody loses a hit point
 
 The dungeon tables were meant to expose cooperation under threat, including healing and conduct toward endangered companions. Both parties use stealth and conversation. Neither loses a hit point. DUNGEON-T1 is still short of the Warm One's door when it stops; DUNGEON-T2 goes down to negotiate terms. [R08]
 
@@ -118,7 +139,7 @@ The absence of damage is not the absence of behaviour. The parties make choices 
 
 At the same time, the healing hypothesis is not tested by a world in which no healing is needed. “No one left behind” has a similarly restricted meaning when the anticipated costly choice never arrives. A subsequent stage has to create an actual price and verify that the player can perceive and pay it. The next party study was designed to move toward that question.
 
-## 40. Removing the main character
+### 40. Removing the main character
 
 The first party tables inherit a structural asymmetry: Bram is the application's hero and the others are companions. Narrative attention, Inspiration, and rerolls can therefore be shaped by record type before any model speaks. Swapping families across seats helps expose the issue but does not remove it.
 
@@ -137,7 +158,7 @@ The six-round Haiku dry run gives Bram 42.7% of character-directed DM words whil
 
 This chapter belongs in the main narrative because the harness is part of the contribution. A problem is observed in play, translated into an architectural hypothesis, changed in code, and tested. The result includes partial success. An apparatus can become substantially better while still failing some of its own acceptance lines.
 
-## 41. A rescue in the no-cost arm
+### 41. A rescue in the no-cost arm
 
 PARTY_2 plans a more demanding test of whether a company holds together when helping costs something. The completed report contains only two of twelve planned tables, both in the S1 “none” cost condition. Both rescue Pell. The moderate- and high-cost arms are not run, so the planned price curve is not available. [R10]
 
@@ -151,7 +172,7 @@ Sefa's later absence in T1 follows empty HTTP 200 responses at round eleven. The
 
 T1 also passed some out-of-game DM asides onto player screens. One tells Bram what happened with the rope in Pell's scene; another explicitly tells Sefa that freeing Pell costs nothing else. These disclosures are part of what the players were actually shown. The report does not classify the first as a leak under its refined rule because it already occurs in the narration supplied to the receiving scene. That rule should not be confused with a complete test of what the character could legitimately know. The rope aside appears under exported Round 10 in the primary transcript, although the report locates it at round 11; the archive retains both records unchanged. [R10; T008]
 
-## 42. A second rescue and a more demanding relay
+### 42. A second rescue and a more demanding relay
 
 The second no-cost table supplies another complete rescue trajectory with Astra, DeepSeek, and Fable in the three seats. It also tests a revised relay. Out-of-game asides are stripped, input order is tracked, and candidate information leaks are read in their scene context. Shared sound through a hole can legitimately reach two separated characters; private information from an unrelated scene cannot.
 

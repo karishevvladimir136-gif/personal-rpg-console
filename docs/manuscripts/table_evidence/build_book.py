@@ -183,19 +183,21 @@ def replace(m):
     raise ValueError(parts)
 
 text='\n\n'.join((R/n).read_text().strip() for n in ['front.md','solo.md','party.md','engine.md','back.md'])+'\n'
-chunks=re.split(r'(?m)(^## \d+\. [^\n]+$)',text);out=[]
+chunks=re.split(r'(?m)(^### \d+\. [^\n]+$)',text);out=[]
 for chunk in chunks:
-    if re.match(r'^## \d+\.',chunk):chapter=chunk.removeprefix('## ')
+    if re.match(r'^### \d+\.',chunk):chapter=chunk.removeprefix('### ')
     out.append(re.sub(r'\{\{([^{}]+)\}\}',replace,chunk))
 book=''.join(out)
 assert '{{' not in book
 # A compact linked contents, also retained as Word/PDF/EPUB headings.
-heads=re.findall(r'(?m)^(#{1,2}) (.+)$',book)
+heads=re.findall(r'(?m)^(#{1,3}) (.+)$',book)
 toc=['# Contents','']
 for mark,h in heads:
-    if h.startswith('PART ') or re.match(r'\d+\.',h) or h.startswith('APPENDICES'):
+    if h.startswith(('PART ','SYNTHESIS','APPENDICES')) or re.match(r'\d+\.',h) or (mark=='##' and re.match(r'[A-H]\. ',h)):
         anchor=re.sub(r'[^\w\s-]','',h.lower());anchor=re.sub(r'\s+','-',anchor)
-        toc.append(('**'+h+'**' if mark=='#' else '['+h+'](#'+anchor+')')+'  ')
+        if mark=='#':toc.extend(['','**'+h+'**',''])
+        elif mark=='##':toc.extend(['','**['+h+'](#'+anchor+')**',''])
+        else:toc.extend(['['+h+'](#'+anchor+')',''])
 toc='\n'.join(toc)+'\n\n'
 book=book.replace('# PART I —',toc+'# PART I —',1)
 name='LLMs_at_the_Table_Research_Monograph_2026-11-14'
@@ -204,5 +206,5 @@ evidence=R/'evidence';evidence.mkdir(exist_ok=True)
 (evidence/'quote_audit.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2))
 (evidence/'source_manifest.json').write_text(json.dumps({'transcripts':[{k:v for k,v in x.items() if k not in ['text','blocks']} for x in manifest],'reports':reports,'implementation':codes},ensure_ascii=False,indent=2))
 (evidence/'selection_index.json').write_text(json.dumps(selection_groups,ensure_ascii=False,indent=2))
-stats={'chapters':len(re.findall(r'(?m)^## \d+\.',book)),'words':len(book.split()),'source_selections':len(audit),'quoted_transcripts':len(used),'archived_transcripts':len(manifest),'quoted_characters':sum(len(q['text']) for q in audit),'book_characters':len(book)}
+stats={'main_parts':2,'chapters':len(re.findall(r'(?m)^### \d+\.',book)),'words':len(book.split()),'source_selections':len(audit),'quoted_transcripts':len(used),'archived_transcripts':len(manifest),'quoted_characters':sum(len(q['text']) for q in audit),'book_characters':len(book)}
 (evidence/'edition_stats.json').write_text(json.dumps(stats,indent=2));print(json.dumps(stats))

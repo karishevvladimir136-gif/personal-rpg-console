@@ -1,6 +1,8 @@
-# PART VIII — WHAT THE TABLE MAKES OBSERVABLE
+# SYNTHESIS — WHAT THE TWO HARNESSES MAKE OBSERVABLE
 
-## 53. A repertoire of situated action
+## H. Choices, Execution, and Consequences
+
+### 53. A repertoire of situated action
 
 Across the corpus, initiative takes several forms. A player chooses a problem to investigate, makes a plan for acquiring information, asks another actor to work on something after it has left, checks a ruling, proposes a bargain, preserves a promise, or decides that an episode is complete. These are not all instances of one latent trait called agency. They are related functional patterns made visible by a continuing environment.
 
@@ -10,7 +12,7 @@ Care likewise appears through different allocations: moving a companion away fro
 
 The repeated studies give this account another dimension. A striking first route can change on replay. A model's prose length can remain recognizably different from another's while its road varies substantially. A fixed hidden world can reduce an apparent contrast in combat choices. These findings suggest that behavioural characterization should name the configuration of model, role, world, memory, and interface in which it was observed.
 
-## 54. Measurement after the stories
+### 54. Measurement after the stories
 
 The case studies suggest measurements that preserve the structure of action. The following are proposals for subsequent experiments, not new results computed from this edition.
 
@@ -30,13 +32,13 @@ For parties, a scene-aware information audit is needed. Lexical overlap can flag
 
 For model comparisons, repeated worlds and repeated players are both necessary. Freezing an opening is not enough if later world generation differs uncontrolled. A formal engine can hold more transitions constant, while a model DM can expose a richer action space. A useful programme can use both and be explicit about the different questions each answers.
 
-## 55. Where this apparatus sits among earlier work
+### 55. Where this apparatus sits among earlier work
 
 The contribution of an experimental apparatus becomes clearer when its neighbours are described precisely. A model can be a player, a narrator, a game engine, an assistant to a human DM, or one inhabitant of a simulated society. Those roles expose different capabilities and assign authority to different parts of the system. Calling all of them “LLMs playing games” obscures the comparison that matters.
 
 This chapter places the Table corpus alongside fourteen primary research works. The selection follows four questions: who acts, what makes an action take effect, how information is distributed, and what the evaluation measures. It covers text-game environments, generative social simulation, RPG engines and combat, and assistance around human play. It is a targeted related-work review, with a documented search and access record, rather than an exhaustive systematic review. The comparisons below are this monograph's analysis of the cited designs; they are not results of running those systems against our harness.
 
-### Text worlds and the difference between knowing and doing
+#### Text worlds and the difference between knowing and doing
 
 **TextWorld** provides a configurable environment for text-game interaction, including game generation, state tracking and rewards. Its control over game properties supports studies of generalization across related worlds. It establishes a substantial precedent for making language-mediated action experimentally tractable. [E05]
 
@@ -48,7 +50,7 @@ These precedents help identify the role of the formal-engine episodes in this bo
 
 The Table corpus has a different evaluation structure. It does not supply a common score across its solo campaigns, party tables and OpenWorld episodes. Instead, it follows the choices that occur inside each configuration and tests some early interpretations through repetition or changed controls. A navigational failure and an optional attempt to return borrowed equipment can coexist in one run. Collapsing them into a single successful-or-unsuccessful label would discard information this book was built to preserve.
 
-### Open-ended activity still has an architecture
+#### Open-ended activity still has an architecture
 
 **Voyager** studies extended exploration in Minecraft using an automatic curriculum, a growing library of executable skills, and feedback-based programme revision. The system can accumulate reusable behaviours through interaction without fine-tuning the underlying model's parameters. [E07]
 
@@ -58,7 +60,7 @@ Both are useful neighbours because they prevent an ambiguous use of “open-ende
 
 What the present corpus adds is a close account of choices within those conditions: which invitation is taken up, how a character's promise changes a proposal, what is attempted after a quest is complete, and what happens when a useful note fails to organize later navigation. These observations motivate experiments on goal selection and follow-through. They do not by themselves establish a general learning algorithm or an unconditioned model preference.
 
-### The closest architectural precedent: a game master mediates action
+#### The closest architectural precedent: a game master mediates action
 
 **Concordia** explicitly draws on tabletop role-playing. Agents describe intended actions, and a game master mediates their consequences in a simulated physical, social or digital environment. Its component architecture combines model calls with associative memory; the framework also permits integration with digital tools and services. [E02]
 
@@ -70,7 +72,7 @@ The **Concordia mixed-motive evaluation** studies cooperation across unfamiliar 
 
 That is a useful methodological neighbour for our party studies. The first requirement for a comparison about costly cooperation is an actual choice with a visible price. PARTY_2's two completed no-cost rescues provide trajectories of coordination; they do not populate its unrun moderate- and high-cost conditions. The archive can therefore support a concrete account of how rescue occurred while leaving a cost-response claim for a later experiment.
 
-### D&D is already a research environment
+#### D&D is already a research environment
 
 **FIREBALL** records human D&D play together with Avrae commands and structured game-state information. The work studies the contribution of state information to generated turns and the generation of executable commands. It supplies a direct precedent for treating game language, commands and state as related but separable evidence. [E08]
 
@@ -82,7 +84,7 @@ These works sharpen the contribution of our combat chapters. We examine routes t
 
 The broader book follows behaviour outside combat: paying a bill after changing travel plans, investigating a transaction, deciding when to stop, forming a company and resuming an obligation after another activity. The shared lesson is that narrative quality and executable action need separate evidence. Our contribution gives that distinction a broad qualitative record across several experimental stages.
 
-### Role-play, private information and social evaluation
+#### Role-play, private information and social evaluation
 
 **SOTOPIA** constructs social interactions from scenarios, characters, relationships and private goals. Agents can speak, act, remain silent or leave; evaluation covers multiple social dimensions. The paper's interaction design also controls visibility of character information according to relationships. [E11]
 
@@ -92,13 +94,13 @@ These are relevant precedents for both role conditioning and interaction among a
 
 The villain chapters benefit from the same precision. Remaining in character, choosing a gentle action, writing an instrumental rationale and reporting afterwards that a role was softened are different observations. A future evaluator could measure each of them. This edition keeps them visible without converting a character's alignment label into a prediction that every available harmful act must be chosen.
 
-### Assistance around the table is another object
+#### Assistance around the table is another object
 
 **First Steps Towards Overhearing LLM Agents** studies models that listen to human D&D conversations and assist a Dungeon Master through background tasks or suggestions. Its multimodal setting and human evaluation address the usefulness of assistance inferred from conversational context. [E14]
 
 This differs from occupying a player seat. The distinction matters when describing the trilogy: the Table corpus concerns independently invoked players acting through an environment. It does not establish the quality of a human co-player's experience, the usefulness of an assistant's unsolicited intervention, or the fidelity of a simulated human population. Those are valuable neighbouring questions with different observations and evaluation subjects.
 
-### A comparison by research object
+#### A comparison by research object
 
 The table records the emphasis of the cited work, not an exhaustive feature checklist. Absence from a cell does not imply that an architecture cannot support a feature.
 
@@ -126,7 +128,7 @@ Our player-focused observations depend on that problem. If a world-running model
 The contribution can now be stated positively and specifically: **an instrumented RPG application and its party extensions, a complementary adapter to a formal engine, and a broad evidence atlas of situated model choices, execution and consequences**. Its development is documented through repeated runs, controls, architecture revisions and retained failures. The corpus supports analysis of how activity is selected and maintained, how partners coordinate, and where an intended action becomes—or fails to become—a change in the world. That is the claim the apparatus and archive can carry.
 
 
-## 56. Scope, limits, and the next experiments
+### 56. Scope, limits, and the next experiments
 
 The monograph is a source-grounded working edition. Its quotations and archived-file identities are mechanically checked. Its interpretations still warrant independent reading, especially where an observer assigns intention, restraint, leadership, or role softening. The completed stage reports contain uneven sample sizes, operational amendments, model-mediated judgements, and experiments that stop before all planned conditions are run.
 
@@ -138,7 +140,7 @@ There is no need to erase the qualitative record while waiting for these tests. 
 
 The expanded related-work chapter now covers fourteen primary research works. Before formal submission, the edition still needs a final coverage check for the chosen venue, named author contributions, an independent audit of the most consequential interpretations and numerical measures, and a settled release and quotation policy for the public transcript corpus. The companion editorial review packet identifies specific claims and source locations for that audit; it is an internal review, not an independent endorsement. Private correspondence and private diaries are excluded from this book and its evidence collection.
 
-## 57. The third volume
+### 57. The third volume
 
 **LLMs in Solitude** gives one model an available continuation and a way to leave. **LLMs in Dialogue** gives it another model whose response can redirect a shared activity. **LLMs at the Table** gives the interaction a world: places, resources, other actors, incomplete information, and an interface through which an intended action either happens or does not.
 
@@ -221,3 +223,5 @@ The principal corrections are substantive: OpenWorld now includes the completed 
 The existing manuscript branch remains the editorial destination. This edition changes research documents and evidence materials; it does not change the application's main code branch or rerun paid experiments.
 
 The publication-preparation revision expands Chapter 55 from four to fourteen primary works and adds an internal claim-by-claim review packet. It also makes the scope of PARTY_2’s information-boundary verdict explicit, preserves the visible out-of-game asides in T1, and records the report/export round-number discrepancy without rewriting either source.
+
+The structural revision organizes the book into two main parts by harness, followed by a comparative synthesis. It gives open-ended play within the AI DM application an explicit section and Chapter 17, and gives inter-model play its own section, One Table, Different Models, beginning with Chapter 34, When Models Form a Party. Chapter numbering and the complete set of primary selections are retained.

@@ -24,7 +24,7 @@ Publication-preparation revision: fourteen-work related literature review and an
 - `verify_evidence.py`: provenance and quotation checks; run with `python verify_evidence.py`.
 - `verify_publication.py`: reference and review-packet checks; run with `python verify_publication.py`.
 - `related_work.md`, `publication_support.py`: the related-work chapter and builder for its register and review packet.
-- `style_docx.py`, `epub.css`: reading-edition typography. Building DOCX/EPUB additionally requires Pandoc and python-docx; PDF rendering requires LibreOffice or an equivalent Word renderer.
+- `style_docx.py`, `epub.css`: reading-edition typography. Building DOCX/EPUB additionally requires Pandoc and python-docx; PDF rendering requires LibreOffice or an equivalent Word renderer. Use Pandoc input `markdown-smart+gfm_auto_identifiers` to preserve source punctuation and match the linked contents to heading identifiers. Use EPUB `--toc-depth=3` to retain the part, section, and chapter hierarchy.
 
 ## Rebuild
 
@@ -45,3 +45,7 @@ The displayed excerpts distinguish player messages, application screens, DM narr
 The checks establish exact file identity and quotation fidelity. They do not validate every claim made by a fictional character, every DM state update, every stage judge label, or every interpretation in the monograph. No private correspondence or personal diary is included.
 
 The internal editorial review explicitly preserves a PARTY_2 disagreement: the rope aside on Bram's screen appears under exported Round 10, while the report calls it round 11. The report's refined zero-leak result is not presented as complete information isolation. T1's visible out-of-game asides and T2's later stripping change are documented together. Historical source files are not edited to reconcile them.
+
+## Reading structure
+
+The book now has two main parts: The AI DM Harness and The OpenWorld Harness, followed by a comparative synthesis. Open-ended play within the AI DM application is explicit in Section B and Chapter 17; it is distinct from the named OpenWorld engine. Section F, One Table, Different Models, and Chapter 34, When Models Form a Party, identify the mixed-model composition and interaction. All 57 chapter numbers and 347 primary selections are retained.

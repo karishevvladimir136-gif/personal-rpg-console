@@ -8,13 +8,21 @@
 
 Expanded evidence edition · 14 November 2026
 
-Related-work and editorial-audit revision
+Two-harness reading structure · revised 14 November 2026
 
-Custom RPG harness, private player screens, and enacted choices across two kinds of simulated world
+The AI DM harness and the OpenWorld harness
 
 ## A note to the reader
 
-The experiment begins with an application. A player has a character, money, a familiar, a place to sleep, a history, and a reason to travel. A game master has its own instructions and information the player cannot see. Between them are records, buttons, dice, permissions, and a world that is supposed to remember what happened. The player is a language model. So is the game master.
+This book studies **two distinct types of harness**, and its two main parts follow that division. Both let a model act in a continuing world, but they give different systems the authority to answer an action.
+
+**Part I — The AI DM Harness.** Our research adapter connects model players to the AI RPG application. A language-model game master runs the fiction through application state, character records, checks, resources, and interface controls. This part includes open-ended solo exploration, repeated and controlled worlds, combat, villain-role play, and parties whose seats are occupied by different models.
+
+**Part II — The OpenWorld Harness.** Our research adapter connects model players to the external OpenWorld engine by SihanXU. Here the engine executes a constrained action grammar and returns changes to the formal game state. This part follows the starter episodes and the longer Ford journeys. The engine and our adapter have separate authorship and are identified separately in the source register.
+
+Throughout the book, **an open-ended world** describes a condition of play: the player can choose what to pursue within the available world. **OpenWorld**, with that capitalization, names the particular external engine used in Part II. The AI DM harness also supports open-ended worlds. Its free-exploration sessions belong in Part I, where they receive their own section and a dedicated chapter. The mixed-model party receives a separate section, **One Table, Different Models**, beginning with **When Models Form a Party**. A closing synthesis brings the two apparatuses into comparison.
+
+The AI DM experiment begins with an application. A player has a character, money, a familiar, a place to sleep, a history, and a reason to travel. A game master has its own instructions and information the player cannot see. Between them are records, buttons, dice, permissions, and a world that is supposed to remember what happened. The player is a language model. So is the game master.
 
 The player can investigate a suspicious stranger, pay for somebody else's meal, scout through a cat's senses, negotiate with armed captors, or decide that tonight is a good time to stop. These decisions can alter the next screen. A spell may consume a slot. A payment may reduce a purse. Another character may disagree. A perfectly intelligible sentence may fail to pass the interface and accomplish nothing.
 
@@ -38,76 +46,177 @@ The contribution is a documented apparatus and a comparative natural history of 
 
 # Contents
 
-**PART I — BUILDING A WORLD THAT CAN ANSWER**  
-[1. From an AI RPG application to a research instrument](#1-from-an-ai-rpg-application-to-a-research-instrument)  
-[2. The action loop](#2-the-action-loop)  
-[3. A character gives freedom a shape](#3-a-character-gives-freedom-a-shape)  
-[4. The game master and the prepared world](#4-the-game-master-and-the-prepared-world)  
-[5. Dice, resources, and the authority to execute](#5-dice-resources-and-the-authority-to-execute)  
-[6. Three players and three private screens](#6-three-players-and-three-private-screens)  
-[7. A second kind of world: OpenWorld](#7-a-second-kind-of-world-openworld)  
-[8. Reading a broad corpus without flattening it](#8-reading-a-broad-corpus-without-flattening-it)  
-[9. What kind of evidence this is](#9-what-kind-of-evidence-this-is)  
-**PART II — ARRIVING, LOOKING, AND CHOOSING A ROAD**  
-[10. Opus: deciding what counts as useful work](#10-opus-deciding-what-counts-as-useful-work)  
-[11. Fable: refusing the wager while entering the situation](#11-fable-refusing-the-wager-while-entering-the-situation)  
-[12. Astra: asking what is known before taking responsibility](#12-astra-asking-what-is-known-before-taking-responsibility)  
-[13. Sol: a copper, a child, and the familiar's reach](#13-sol-a-copper-a-child-and-the-familiars-reach)  
-[14. Opus in the city: building a cover identity](#14-opus-in-the-city-building-a-cover-identity)  
-[15. Fable in the city: a promise that permits intervention](#15-fable-in-the-city-a-promise-that-permits-intervention)  
-[16. Astra and Sol: two ways to make an ordinary arrival matter](#16-astra-and-sol-two-ways-to-make-an-ordinary-arrival-matter)  
-[17. The pure world: Opus makes a test at the breakfast table](#17-the-pure-world-opus-makes-a-test-at-the-breakfast-table)  
-[18. The pure world: Fable investigates and then withdraws](#18-the-pure-world-fable-investigates-and-then-withdraws)  
-[19. The pure world: Astra honours a bill and chooses company](#19-the-pure-world-astra-honours-a-bill-and-chooses-company)  
-[20. The pure world: Sol joins the road](#20-the-pure-world-sol-joins-the-road)  
-**PART III — RETURNING TO THE WORLD**  
-[21. Replication changes the portrait](#21-replication-changes-the-portrait)  
-[22. Freezing the hidden world still leaves many roads](#22-freezing-the-hidden-world-still-leaves-many-roads)  
-[23. Two Sols, one city, and the cost of remembering](#23-two-sols-one-city-and-the-cost-of-remembering)  
-[24. When a player keeps writing into a closed composer](#24-when-a-player-keeps-writing-into-a-closed-composer)  
-**PART IV — CONFLICT WITHOUT A REQUIRED FIGHT**  
-[25. Opus: attack, dispute the ruling, negotiate](#25-opus-attack-dispute-the-ruling-negotiate)  
-[26. Fable: the rescue is enough](#26-fable-the-rescue-is-enough)  
-[27. Astra: paying for an outcome and carrying it onward](#27-astra-paying-for-an-outcome-and-carrying-it-onward)  
-[28. Sol: withdrawal as a tactical result](#28-sol-withdrawal-as-a-tactical-result)  
-[29. Holding the combat world still](#29-holding-the-combat-world-still)  
-**PART V — PLAYING CORVIN DASK**  
-[30. Opus: courtesy, leverage, and a place at the wall](#30-opus-courtesy-leverage-and-a-place-at-the-wall)  
-[31. Fable: the value of a woman who will not lie](#31-fable-the-value-of-a-woman-who-will-not-lie)  
-[32. Astra: searching for a role in the transaction](#32-astra-searching-for-a-role-in-the-transaction)  
-[33. Sol: disclosing the expulsion and refusing an unbargained debt](#33-sol-disclosing-the-expulsion-and-refusing-an-unbargained-debt)  
-**PART VI — A COMPANY WITH SEPARATE MINDS AND SCREENS**  
-[34. Three strangers form a company](#34-three-strangers-form-a-company)  
-[35. The door that meant the end of a night](#35-the-door-that-meant-the-end-of-a-night)  
-[36. Another sandbox, another pace of joining](#36-another-sandbox-another-pace-of-joining)  
-[37. A shared errand does not solve time](#37-a-shared-errand-does-not-solve-time)  
-[38. The errand is delivered, but the party is elsewhere](#38-the-errand-is-delivered-but-the-party-is-elsewhere)  
-[39. The dungeon where nobody loses a hit point](#39-the-dungeon-where-nobody-loses-a-hit-point)  
-[40. Removing the main character](#40-removing-the-main-character)  
-[41. A rescue in the no-cost arm](#41-a-rescue-in-the-no-cost-arm)  
-[42. A second rescue and a more demanding relay](#42-a-second-rescue-and-a-more-demanding-relay)  
-**PART VII — OPENWORLD: THE ENGINE ANSWERS**  
-[43. Before the first model enters](#43-before-the-first-model-enters)  
-[44. Opus finishes the job and tries to return the axe](#44-opus-finishes-the-job-and-tries-to-return-the-axe)  
-[45. Fable explores beyond the reward, then ends](#45-fable-explores-beyond-the-reward-then-ends)  
-[46. DeepSeek finds the quest late](#46-deepseek-finds-the-quest-late)  
-[47. DeepSeek on the mountain: a correct note and a delayed departure](#47-deepseek-on-the-mountain-a-correct-note-and-a-delayed-departure)  
-[48. Opus on the mountain: a plan that is not an action](#48-opus-on-the-mountain-a-plan-that-is-not-an-action)  
-[49. Fable on the road: the journal carries game time](#49-fable-on-the-road-the-journal-carries-game-time)  
-[50. Tobin's cart: permission for a wand is not permission for oil](#50-tobins-cart-permission-for-a-wand-is-not-permission-for-oil)  
-[51. Borrowed tools and unfinished promises](#51-borrowed-tools-and-unfinished-promises)  
-[52. What an undefined interaction means](#52-what-an-undefined-interaction-means)  
-**PART VIII — WHAT THE TABLE MAKES OBSERVABLE**  
-[53. A repertoire of situated action](#53-a-repertoire-of-situated-action)  
-[54. Measurement after the stories](#54-measurement-after-the-stories)  
-[55. Where this apparatus sits among earlier work](#55-where-this-apparatus-sits-among-earlier-work)  
-[56. Scope, limits, and the next experiments](#56-scope-limits-and-the-next-experiments)  
-[57. The third volume](#57-the-third-volume)  
-**APPENDICES — SOURCES AND READING THE EVIDENCE**  
 
-# PART I — BUILDING A WORLD THAT CAN ANSWER
+**PART I — THE AI DM HARNESS**
 
-## 1. From an AI RPG application to a research instrument
+
+**[A. Building a World That Can Answer](#a-building-a-world-that-can-answer)**
+
+[1. From an AI RPG application to a research instrument](#1-from-an-ai-rpg-application-to-a-research-instrument)
+
+[2. The action loop](#2-the-action-loop)
+
+[3. A character gives freedom a shape](#3-a-character-gives-freedom-a-shape)
+
+[4. The game master and the prepared world](#4-the-game-master-and-the-prepared-world)
+
+[5. Dice, resources, and the authority to execute](#5-dice-resources-and-the-authority-to-execute)
+
+[6. Three players and three private screens](#6-three-players-and-three-private-screens)
+
+[7. Two harnesses and the authority to answer an action](#7-two-harnesses-and-the-authority-to-answer-an-action)
+
+[8. Reading a broad corpus without flattening it](#8-reading-a-broad-corpus-without-flattening-it)
+
+[9. What kind of evidence this is](#9-what-kind-of-evidence-this-is)
+
+
+**[B. Open-Ended Worlds in the AI DM Harness](#b-open-ended-worlds-in-the-ai-dm-harness)**
+
+[10. Opus: deciding what counts as useful work](#10-opus-deciding-what-counts-as-useful-work)
+
+[11. Fable: refusing the wager while entering the situation](#11-fable-refusing-the-wager-while-entering-the-situation)
+
+[12. Astra: asking what is known before taking responsibility](#12-astra-asking-what-is-known-before-taking-responsibility)
+
+[13. Sol: a copper, a child, and the familiar's reach](#13-sol-a-copper-a-child-and-the-familiars-reach)
+
+[14. Opus in the city: building a cover identity](#14-opus-in-the-city-building-a-cover-identity)
+
+[15. Fable in the city: a promise that permits intervention](#15-fable-in-the-city-a-promise-that-permits-intervention)
+
+[16. Astra and Sol: two ways to make an ordinary arrival matter](#16-astra-and-sol-two-ways-to-make-an-ordinary-arrival-matter)
+
+[17. An Open-Ended World: When the Model Chooses What to Do](#17-an-open-ended-world-when-the-model-chooses-what-to-do)
+
+[18. The pure world: Fable investigates and then withdraws](#18-the-pure-world-fable-investigates-and-then-withdraws)
+
+[19. The pure world: Astra honours a bill and chooses company](#19-the-pure-world-astra-honours-a-bill-and-chooses-company)
+
+[20. The pure world: Sol joins the road](#20-the-pure-world-sol-joins-the-road)
+
+
+**[C. Returning to the World](#c-returning-to-the-world)**
+
+[21. Replication changes the portrait](#21-replication-changes-the-portrait)
+
+[22. Freezing the hidden world still leaves many roads](#22-freezing-the-hidden-world-still-leaves-many-roads)
+
+[23. Two Sols, one city, and the cost of remembering](#23-two-sols-one-city-and-the-cost-of-remembering)
+
+[24. When a player keeps writing into a closed composer](#24-when-a-player-keeps-writing-into-a-closed-composer)
+
+
+**[D. Conflict Without a Required Fight](#d-conflict-without-a-required-fight)**
+
+[25. Opus: attack, dispute the ruling, negotiate](#25-opus-attack-dispute-the-ruling-negotiate)
+
+[26. Fable: the rescue is enough](#26-fable-the-rescue-is-enough)
+
+[27. Astra: paying for an outcome and carrying it onward](#27-astra-paying-for-an-outcome-and-carrying-it-onward)
+
+[28. Sol: withdrawal as a tactical result](#28-sol-withdrawal-as-a-tactical-result)
+
+[29. Holding the combat world still](#29-holding-the-combat-world-still)
+
+
+**[E. Playing Corvin Dask](#e-playing-corvin-dask)**
+
+[30. Opus: courtesy, leverage, and a place at the wall](#30-opus-courtesy-leverage-and-a-place-at-the-wall)
+
+[31. Fable: the value of a woman who will not lie](#31-fable-the-value-of-a-woman-who-will-not-lie)
+
+[32. Astra: searching for a role in the transaction](#32-astra-searching-for-a-role-in-the-transaction)
+
+[33. Sol: disclosing the expulsion and refusing an unbargained debt](#33-sol-disclosing-the-expulsion-and-refusing-an-unbargained-debt)
+
+
+**[F. One Table, Different Models](#f-one-table-different-models)**
+
+[34. When Models Form a Party](#34-when-models-form-a-party)
+
+[35. The door that meant the end of a night](#35-the-door-that-meant-the-end-of-a-night)
+
+[36. Another sandbox, another pace of joining](#36-another-sandbox-another-pace-of-joining)
+
+[37. A shared errand does not solve time](#37-a-shared-errand-does-not-solve-time)
+
+[38. The errand is delivered, but the party is elsewhere](#38-the-errand-is-delivered-but-the-party-is-elsewhere)
+
+[39. The dungeon where nobody loses a hit point](#39-the-dungeon-where-nobody-loses-a-hit-point)
+
+[40. Removing the main character](#40-removing-the-main-character)
+
+[41. A rescue in the no-cost arm](#41-a-rescue-in-the-no-cost-arm)
+
+[42. A second rescue and a more demanding relay](#42-a-second-rescue-and-a-more-demanding-relay)
+
+
+**PART II — THE OPENWORLD HARNESS**
+
+
+**[G. The Formal Engine and Long Journeys](#g-the-formal-engine-and-long-journeys)**
+
+[43. Before the first model enters](#43-before-the-first-model-enters)
+
+[44. Opus finishes the job and tries to return the axe](#44-opus-finishes-the-job-and-tries-to-return-the-axe)
+
+[45. Fable explores beyond the reward, then ends](#45-fable-explores-beyond-the-reward-then-ends)
+
+[46. DeepSeek finds the quest late](#46-deepseek-finds-the-quest-late)
+
+[47. DeepSeek on the mountain: a correct note and a delayed departure](#47-deepseek-on-the-mountain-a-correct-note-and-a-delayed-departure)
+
+[48. Opus on the mountain: a plan that is not an action](#48-opus-on-the-mountain-a-plan-that-is-not-an-action)
+
+[49. Fable on the road: the journal carries game time](#49-fable-on-the-road-the-journal-carries-game-time)
+
+[50. Tobin's cart: permission for a wand is not permission for oil](#50-tobins-cart-permission-for-a-wand-is-not-permission-for-oil)
+
+[51. Borrowed tools and unfinished promises](#51-borrowed-tools-and-unfinished-promises)
+
+[52. What an undefined interaction means](#52-what-an-undefined-interaction-means)
+
+
+**SYNTHESIS — WHAT THE TWO HARNESSES MAKE OBSERVABLE**
+
+
+**[H. Choices, Execution, and Consequences](#h-choices-execution-and-consequences)**
+
+[53. A repertoire of situated action](#53-a-repertoire-of-situated-action)
+
+[54. Measurement after the stories](#54-measurement-after-the-stories)
+
+[55. Where this apparatus sits among earlier work](#55-where-this-apparatus-sits-among-earlier-work)
+
+[56. Scope, limits, and the next experiments](#56-scope-limits-and-the-next-experiments)
+
+[57. The third volume](#57-the-third-volume)
+
+
+**APPENDICES — SOURCES AND READING THE EVIDENCE**
+
+
+**[A. Stage reports and implementation](#a-stage-reports-and-implementation)**
+
+
+**[B. Primary transcript inventory](#b-primary-transcript-inventory)**
+
+
+**[C. Quotation and provenance audit](#c-quotation-and-provenance-audit)**
+
+
+**[D. External references](#d-external-references)**
+
+
+**[E. Editorial change from the earlier working draft](#e-editorial-change-from-the-earlier-working-draft)**
+
+
+# PART I — THE AI DM HARNESS
+
+## A. Building a World That Can Answer
+
+### 1. From an AI RPG application to a research instrument
 
 The starting point was a playable AI RPG application. Its purpose was to sustain a campaign: a character could enter a place, speak to inhabitants, make checks, acquire equipment, and return to a world shaped by earlier events. The research harness connected model players to this application. That origin matters because the environment contained affordances beyond a single experimental prompt. The player encountered the same kinds of state and friction that a person using the application would encounter.
 
@@ -117,7 +226,7 @@ This design does not turn a language-model DM into a deterministic physics engin
 
 The experiment therefore has two objects. One is the model's conduct inside the world. The other is the apparatus that makes some conduct executable, some merely verbal, and some impossible. Studying both together avoids treating a broken interface as a strange preference of the player.
 
-## 2. The action loop
+### 2. The action loop
 
 A player sees a screen, sends a message, and waits for the application. The message can propose an in-world action, ask an out-of-game question with the designated prefix, or name a visible control. The application routes it, resolves what it can, and returns a new screen. Some actions introduce a pending card, so the next useful message is a button press rather than another paragraph of fiction.
 
@@ -133,7 +242,7 @@ The loop can succeed at one layer and fail at another. A proposed spell can be u
 
 For this reason, the book uses three separate verbs: the model **proposed** something, the interface **accepted** an input, and the environment **recorded or displayed** a consequence. When only one of these is visible, the account does not imply the other two. This distinction makes the evidence stronger: it preserves what the player actually attempted while keeping the execution result available for inspection.
 
-## 3. A character gives freedom a shape
+### 3. A character gives freedom a shape
 
 James Worgen arrives with a biography. He is a human warlock, a former soldier, a gambler who has promised Tymora to leave cards alone, and a traveller with a cat familiar. His sheet supplies spells, hit points, equipment, money, and limited resources. The model is not choosing from an empty conceptual space. The world repeatedly places its choices against a character who already owes things and has reasons to act.
 
@@ -143,7 +252,7 @@ The familiar is an especially revealing affordance. It is a companion in the fic
 
 The villain study changes the character rather than merely asking the same hero to say something unpleasant. Corvin Dask has a trade, a social position, a difficult history, and a neutral-evil role. His negotiations can be useful to others while remaining instrumental for him. The relevant question becomes how the model enacts that role across successive opportunities.
 
-## 4. The game master and the prepared world
+### 4. The game master and the prepared world
 
 In the initial studies the DM is Claude Opus 5.5 under the owner's configured application settings. The player receives public campaign material and its own screen; it does not receive the DM's hidden preparation, the scoring code, another player's transcript, or a judge's assessment. The separation creates a practical form of partial information. The player must ask, inspect, travel, or infer to acquire what it does not know.
 
@@ -153,7 +262,7 @@ The pure-simulation arm changes another layer. It suppresses the application's u
 
 The important methodological progression is visible in the archive: fresh worlds reveal a range of conduct; repetition tests whether striking observations recur; a shared hidden layer reduces one confound; company mode removes a structural hero privilege; a formal engine supplies another kind of action authority. Each change answers a difficulty found in actual play. [R01–R06, R09, R11]
 
-## 5. Dice, resources, and the authority to execute
+### 5. Dice, resources, and the authority to execute
 
 The RPG world supports mechanics associated with D&D-style play: checks, attacks, hit points, spell slots, healing, inventory, money, and rests. The particular application and campaign rules are the operative rules for these sessions. The studies are not a certification of fidelity to every published D&D rule.
 
@@ -163,7 +272,7 @@ The combat episodes expose this clearly. Players argue about cover, use invisibi
 
 The apparatus earns its scientific value through these constraints. A world that simply agrees with every sentence would make intention and outcome difficult to separate. Here, disagreement can come from a die, a state record, a blocked input, an NPC response, or a missing engine rule. Some of those answers are mistakes. They remain observable answers, and later chapters distinguish them.
 
-## 6. Three players and three private screens
+### 6. Three players and three private screens
 
 The party harness seats independently invoked models as Bram Halloway, Sefa Marrin, and Pell Dunmore. They share a fictional world but do not share one omniscient transcript. Each has a screen, a character record, and a channel for questions. When characters separate, their scenes can differ. What one player learns need not immediately become available to the others.
 
@@ -173,7 +282,7 @@ The first party implementation still inherited the application's main-character 
 
 The company-mode dry run demonstrates both progress and residue. Mechanical ownership checks held in mocked tests, and neutral preparation distributed hooks across characters. Equal narrative attention did not meet the chosen threshold. Nor did the relay's paraphrase test. The useful result is an instrument whose asymmetries become measurable and revisable. [R08–R10, I03–I04]
 
-## 7. A second kind of world: OpenWorld
+### 7. Two harnesses and the authority to answer an action
 
 The later adapter uses **OpenWorld**, an external engine by SihanXU, at a frozen upstream revision. The project's contribution here is the research adapter, action and observation interface, instrumentation, and experimental use; the underlying engine is credited to its authors. This is a different apparatus from the AI RPG application with a model DM.
 
@@ -183,7 +292,9 @@ An observation contains location, game time, nearby entities, the player's condi
 
 This changes the kind of resistance the world offers. The DM can interpret an unprecedented request and improvise a ruling. The formal engine may report that no rule exists for a target-action combination. It may advertise an action whose object is not the one the player wants. It can also respond consistently to actions the designer did anticipate. The book treats these two environments as complementary views of situated model behaviour, not interchangeable measurements.
 
-## 8. Reading a broad corpus without flattening it
+This chapter provides the architectural comparison before the cases begin. The rest of Part I stays with the AI DM apparatus, including its open-ended conditions. Part II returns to the OpenWorld adapter and its enacted trajectories. Openness is a property to examine within either apparatus; it is not the boundary between them.
+
+### 8. Reading a broad corpus without flattening it
 
 The programme is a sequence of studies, not one uniform tournament. Its scope is best expressed by stage.
 
@@ -208,7 +319,7 @@ Selection for close reading follows coverage: different experimental conditions,
 
 Each case places selected actions beside a visible response where useful. Selections are contiguous spans; source labels distinguish player text, DM narration, relayed DM input, and formal-engine observations. Square-bracketed evidence identifiers are editorial. Excerpts can omit later paragraphs or repeated records, but the audit preserves exact boundaries. Labels never turn a player's plan into an accomplished action.
 
-## 9. What kind of evidence this is
+### 9. What kind of evidence this is
 
 The strongest unit is a local sequence with a recoverable prior observation, a proposed action, an execution result, and the next choice. A larger trajectory reveals whether the player follows through, revises, repeats itself, or leaves something unfinished. A replication asks whether an earlier reading survives another encounter. A controlled comparison asks whether a changed condition explains some of the difference.
 
@@ -218,9 +329,9 @@ Stage reports also preserve preregistered lines, operational definitions, amendm
 
 The trilogy's shared principle is to preserve a phenomenon while refining its explanation. A parser error can explain a failed action without erasing the attempted action. A character prompt can help explain a commitment without erasing the sustained conduct that follows it. A limited sample can constrain generalization while still supporting a detailed account of what happened.
 
-# PART II — ARRIVING, LOOKING, AND CHOOSING A ROAD
+## B. Open-Ended Worlds in the AI DM Harness
 
-## 10. Opus: deciding what counts as useful work
+### 10. Opus: deciding what counts as useful work
 
 At the first Table A, Opus does not begin by asking for a menu of quests. James presents his military papers, keeps clear of the card game, and speaks to the gate sergeant. The conversation supplies an opportunity: a death that has not received the attention it deserves. By turn five he makes a compact connection between the role he was given and the person in front of him. Being sent to the city to be useful becomes a reason to accompany a sergeant who is investigating a dead man.
 
@@ -298,7 +409,7 @@ The movement is from biography to a local commitment. The prompt did not specify
 
 This is a useful instance of initiative because it is neither ex nihilo nor externally enumerated. The environment gives the model a situation; the model selects an interpretation that organizes its next moves. The resulting route depends on both. It would be premature to infer a stable preference for detective work from this one arrival. It is already possible to inspect how a particular investigation acquired priority.
 
-## 11. Fable: refusing the wager while entering the situation
+### 11. Fable: refusing the wager while entering the situation
 
 Fable's arrival puts the cat directly on a seat at a card table. A place has supposedly been paid for. The temptation is tightly matched to James's history. The player's response is to move the cat, decline to turn the cards, and ask who arranged the invitation. A refusal inside the fiction opens another action rather than terminating the scene.
 
@@ -367,7 +478,7 @@ The important distinction is between rejecting the offered act and rejecting int
 
 Fable's prose often places bodies, hands, drinks, and distance with care. That style can make a proposed action vivid, but the source gives a more concrete basis for analysis: what is offered, what is withheld, and what question is asked. The reader can follow those choices without treating length as depth or expressive detail as a state transition.
 
-## 12. Astra: asking what is known before taking responsibility
+### 12. Astra: asking what is known before taking responsibility
 
 Astra's first Table A involves an unfamiliar card and a claim about how it appeared. The player asks to see the face without agreeing to carry it. Later it reports the story to the sergeant while explicitly distinguishing what Rurik said from what James witnessed. When a follower becomes conspicuous, it seeks a witness in the light rather than immediately attacking or fleeing.
 
@@ -437,7 +548,7 @@ These actions create a small chain of evidential discipline inside the fiction. 
 
 The case illustrates why the world matters to the measurement of epistemic conduct. A standalone answer could disclaim certainty. Here the distinction between report and observation affects a sequence of social and physical proposals. The DM's responses then determine whether that distinction continues to matter.
 
-## 13. Sol: a copper, a child, and the familiar's reach
+### 13. Sol: a copper, a child, and the familiar's reach
 
 Sol begins by picking up a copper and then asking whom it belongs to. The encounter draws James toward Tamsin and an unresolved death. As Tamsin moves toward danger, the familiar becomes a means of warning and retrieval: stay low, tug a sleeve, lead her back into cover. The player also changes its own position and calls out to divert attention.
 
@@ -518,7 +629,7 @@ The cat is not merely ornamental. It gives the player an additional channel of a
 
 This scene makes care behaviour concrete without requiring a claim about inward feeling. The model repeatedly allocates actions to another character's safety. It also shows why a phrase such as “the model saved someone” needs a trajectory behind it. An urgent instruction and a successful rescue are different observations; the transcript preserves the path between them.
 
-## 14. Opus in the city: building a cover identity
+### 14. Opus in the city: building a cover identity
 
 At Table B, Opus arrives looking for work and lodgings. The later route involves a child, a suspicious place, and covert observation. James gathers a scrap of cloth, listens at a door, and eventually performs a conspicuous drunken approach. These are choices about how to be perceived, not simply where to move.
 
@@ -608,7 +719,7 @@ The contrast between listening quietly and acting loudly is purposeful at the le
 
 A simulated world with open natural-language actions permits these intermediate strategies. The model need not select only “fight,” “talk,” or “leave.” It can propose a person to become for the next encounter. The cost is that the DM must adjudicate a richer request, and the experiment must distinguish the proposal from the ruling that follows.
 
-## 15. Fable in the city: a promise that permits intervention
+### 15. Fable in the city: a promise that permits intervention
 
 Fable also refuses the invitation to gamble. Later it approaches a dice table without sitting down and intervenes in somebody else's loss. The boundary is specific: James has promised not to play; that does not mean he must walk past the effects of a game on others. The familiar is given instructions while James makes the public approach.
 
@@ -670,7 +781,7 @@ The scene turns a prohibition into a constraint on strategy. James can speak, in
 
 By the later excerpt, the action has moved through a more complicated social setting and involves leaving a paid man to make his own way. The prose should not be read as proof that every payment and position was correctly entered in the records. It does show a sustained attempt to manage exposure, obligations, and the safety of the cat across more than one exchange.
 
-## 16. Astra and Sol: two ways to make an ordinary arrival matter
+### 16. Astra and Sol: two ways to make an ordinary arrival matter
 
 At Table B, Astra notices a father and children delayed at the gate and asks whether a fee is the obstacle. A few turns later it apologizes for speaking as if it knew the father's feelings. Sol's arrival takes another route: pay the toll, find a room and food, and seek the temple. Neither route needs to become a fight to constitute substantive play.
 
@@ -758,7 +869,21 @@ Astra's correction is a small social event with analytical value. The player wit
 
 The book includes such moments because a corpus of play cannot be represented only by dramatic rescues. Paying for a bed, respecting a boundary, asking a guard what is permitted, or deciding whom to seek can determine the entire later route. A long-horizon environment gives ordinary decisions somewhere to accumulate.
 
-## 17. The pure world: Opus makes a test at the breakfast table
+### 17. An Open-Ended World: When the Model Chooses What to Do
+
+The pure-simulation condition puts the central question in a particularly direct form. A model is placed in a populated world as James Worgen, waking above an inn with his cat and money, with nothing he has to do that day. The experiment does not assign a particular quest outcome for him to deliver. It offers a place to inhabit and an interface through which the next action can change what happens. What becomes worth doing is part of the observation. [R02]
+
+This is an open-ended condition **inside the AI DM harness**. It precedes, and is technically distinct from, the OpenWorld-engine experiments in Part II. The player can propose an investigation, seek company, arrange lodging, travel, follow an invitation, or change its plans. The DM and application answer those proposals through the world. Freedom here consists in choosing and revising a course of action within that situation; it is exercised through a character with a biography, finite resources, and an interface that can accept or block a move.
+
+The original arrivals in Chapters 10–16 already show players choosing routes within visible premises. Table C makes the absence of a required daily activity explicit and disables the usual hidden preparation. That change gives the following four trajectories a common experimental question: when an external task no longer supplies the day's purpose, how does a course of action take shape?
+
+The answers develop through play. Opus turns an encounter into a series of tests. Fable follows an investigation while managing the limits of scouting. Astra changes travel plans while honouring an earlier bill. Sol seeks caravan company and arranges for information to follow later. These are different organizations of attention, commitments, and movement. The useful evidence includes how a local concern becomes a project, how a project is revised, and what the player carries forward from an earlier choice.
+
+The condition also reveals how initiative is shared with the environment. Although hidden preparation was disabled, the unchanged “Mystery and wonder” instruction continued to encourage the DM to supply a hidden truth. People, clues, invitations, and unfinished business still acquired prominence in the generated town. The report's early-goal criterion did not hold for all four players: its judge found no player-originated goal in the first five turns for Opus or Astra. The episodes therefore let us follow how direction emerged through the exchange, while the source record retains the distinction between a player-originated goal and a response to a salient invitation. [R02]
+
+That distinction does not remove the phenomenon this chapter is about. The models were placed in an ongoing world, and their successive choices determined which of its possibilities became their route. An investigation, a negotiated journey, a promise about a bill, and an arrangement to receive news can all grow from a day without an assigned destination. The next chapters give those developments the same attention as a fight or a completed quest.
+
+#### Opus makes a test at the breakfast table
 
 Table C begins in Beregost, with James waking in a rented room and no required activity for the day. Opus follows the strange card into the common room. The ensuing encounter becomes an inquiry into a deck, a ring, a stone, and the conditions under which something can be known about them. James proposes tests and admits when one has been spoiled.
 
@@ -854,7 +979,7 @@ The analogy has limits that are themselves useful. The world's response is gener
 
 This episode ends at turn fourteen as “stuck.” The report corrects a misleading description of the problem: Opus did name the roll-card buttons, but included out-of-game notes, and the frozen reader rejected those mixed messages before they reached the app. It was not a chosen ending, nor evidence that the underlying button had been pressed and failed. The parser made an otherwise intelligible attempt non-executable. [R02]
 
-## 18. The pure world: Fable investigates and then withdraws
+### 18. The pure world: Fable investigates and then withdraws
 
 Fable's Beregost route develops around missing people, iron, a quarry, and questions that cannot safely be answered by walking straight into an armed camp. James agrees to look, sets terms with Wenna, scouts, and later speaks to the smith under a different social pretext. The familiar supplies information, but its range and the orders already given constrain what can be learned.
 
@@ -929,7 +1054,7 @@ The model's initiative includes deciding when not to push an investigation furth
 
 This separation helps preserve a strong phenomenon: the player is organizing a prospective action through information, distance, cover, allies, and timing. It does not need to succeed at every part of that organization for the structure to be observable. A missed instruction can have consequences for the next plan.
 
-## 19. The pure world: Astra honours a bill and chooses company
+### 19. The pure world: Astra honours a bill and chooses company
 
 Astra initially asks for another night at the inn, then changes its travel plans. It returns to the question of payment rather than treating the earlier request as though it had never happened. The journey continues through an agreement with a companion, a request for lodging, and a quiet departure from a household that offered food.
 
@@ -999,7 +1124,7 @@ The material is modest and therefore useful. A simulated day contains commitment
 
 This does not establish that every remembered obligation would survive a much longer context or a conflicting reward. It gives a concrete family of events to test: promises made during ordinary travel, changes of plan, and whether the next action incorporates the outstanding cost. The RPG harness makes that family of events available without turning every one into an explicit exam question.
 
-## 20. The pure world: Sol joins the road
+### 20. The pure world: Sol joins the road
 
 Sol decides to leave the inn and seek caravan company. The old promise about cards is maintained in conversation with the caravan, while a later discovery draws James toward magical investigation. At turn fifteen it agrees to pay for findings to be sent to the Friendly Arm. By turn twenty it is taking its watch.
 
@@ -1075,9 +1200,9 @@ Here initiative is distributed over time. James does not personally resolve ever
 
 The watch scene brings the same character back to immediate obligations: keep clear of the firelight, monitor a hedge, use the familiar as an alert. The breadth of the environment is visible in this transition from negotiation about future information to practical attention in the present. A single session contains several modes of action.
 
-# PART III — RETURNING TO THE WORLD
+## C. Returning to the World
 
-## 21. Replication changes the portrait
+### 21. Replication changes the portrait
 
 The replication stage adds twelve second-group sessions across Tables A, B, and C, plus six DeepSeek sessions. The player prompts for the repeated conditions are recorded as byte-identical to the first group's. The resulting trajectories challenge the temptation to turn the first vivid scene into a model biography. [R03]
 
@@ -1174,7 +1299,7 @@ These excerpts should be read as additional paths, not as corrective anecdotes t
 
 The replication also finds that none of the DeepSeek sessions, and none of the other players in these compared groups, supplies the scored “made thing offered to an NPC.” That matters beside the Dialogue volume, where jointly produced textual objects were conspicuous. A world with many available activities does not guarantee that the particular creative activity an analyst expects will appear.
 
-## 22. Freezing the hidden world still leaves many roads
+### 22. Freezing the hidden world still leaves many roads
 
 The same-world study runs five families twice at each of two tables. The hidden layer is held fixed for a table. This is a stronger comparison than sending each model into a freshly prepared world. It still does not guarantee that two runs of one model will follow each other.
 
@@ -1282,7 +1407,7 @@ The two Opus openings illustrate the point at a small scale. One begins by arran
 
 The frozen layer also has reach of its own. Shared prepared threads recur across trajectories. This is not a defect in the existence of choice; it is evidence that choice occurs within a structured environment. The world offers some things repeatedly, leaves other things untouched, and influences what the models have an opportunity to become interested in.
 
-## 23. Two Sols, one city, and the cost of remembering
+### 23. Two Sols, one city, and the cost of remembering
 
 The paired Table B Sol sessions encounter the same prepared world but develop different local obligations. The selected passages concern food, children, coins, and a promise about who will carry something later. They are the sort of details a purely endpoint-based score could discard.
 
@@ -1402,7 +1527,7 @@ The second session's explicit acknowledgement to Pim—an earlier promise has no
 
 Comparing two runs also discourages a misleading opposition between consistency and agency. The same character may consistently avoid cards while varying in routes, questions, companions, and the sequence in which obligations are handled. Some features are stable because the role and world keep bringing them forward. Other features are contingent on the path already taken.
 
-## 24. When a player keeps writing into a closed composer
+### 24. When a player keeps writing into a closed composer
 
 One same-world DeepSeek session stops at turn six after repeated prose is sent while a card requires a button press. The report counts ten instances of prose at the card and a stuck ending. Other DeepSeek sessions complete the twenty-turn cap. The event belongs to this interface and trajectory, not to a general statement that the family cannot act. [R04]
 
@@ -1478,9 +1603,9 @@ This is one of the cleanest places to see why the application layer belongs in t
 
 The right interpretation preserves both sides. There is continued attempted participation. There is also a failure to execute the needed transition. Calling the whole episode either “engagement” or “failure” loses one of the two. A later benchmark could measure how quickly a player recognizes this condition, whether it changes its output form, and whether it can recover without an analyst's intervention.
 
-# PART IV — CONFLICT WITHOUT A REQUIRED FIGHT
+## D. Conflict Without a Required Fight
 
-## 25. Opus: attack, dispute the ruling, negotiate
+### 25. Opus: attack, dispute the ruling, negotiate
 
 The first combat study gives four players a dangerous visible premise while allowing each a freshly prepared hidden layer. In the Opus run, James opens with a disabling spell, attacks, disputes a cover ruling, and subsequently negotiates. These are successive modes within one encounter, not mutually exclusive labels for the model.
 
@@ -1548,7 +1673,7 @@ The cover question is especially valuable. The model does not merely accept the 
 
 The stage report records a ransom and healing of the chief in this trajectory. A player who initiated violence can later spend actions and resources on a settlement. “Combat-seeking” would be too coarse a summary. The sequence shows force, rule challenge, and negotiation tied to changing conditions. [R05]
 
-## 26. Fable: the rescue is enough
+### 26. Fable: the rescue is enough
 
 Fable's fresh-layer combat route depends on scouting, waiting, invisibility, and getting Tobin out. It does not initiate a fight. When the captive asks about what remains behind, James gives the rescue a boundary: the immediate objective is the person. When the chief calls for conversation during the escape, James declines and crosses the water.
 
@@ -1636,7 +1761,7 @@ The refusal to negotiate here differs from a refusal to cooperate in general. Th
 
 The case also resists an easy equation between nonviolence and passivity. Invisibility spends a resource. Scouting and waiting take turns. The model selects a route with its own demands and risks. A richer environment permits the question “what did it do instead?” to have a concrete answer.
 
-## 27. Astra: paying for an outcome and carrying it onward
+### 27. Astra: paying for an outcome and carrying it onward
 
 Astra's fresh-layer encounter includes a disabling spell, parley, and a payment of eighty gold. A later violation of the truce leads back to violence. The session then continues toward an inn and the delivery that the rescued carter had been carrying. The action does not end at the moment a captive is freed.
 
@@ -1724,7 +1849,7 @@ The continuity matters. Rescue creates further conditions: someone is wet or inj
 
 The after-session note later names an interface frustration about a reroll after an attack's damage was already resolved. That is a report of a desired alternative, not evidence that the alternative was executed. The distinction is the same one the formal engine will make starkly at Tobin's cart: wanting a different action path does not make that path available.
 
-## 28. Sol: withdrawal as a tactical result
+### 28. Sol: withdrawal as a tactical result
 
 Sol's fresh-layer combat session also uses Hypnotic Pattern, frees a captive, and withdraws across the ford. The report records no payment for the withdrawal and a later return to talk after the chief has gone. The route combines immediate action with a willingness to revisit an unresolved situation. [R05]
 
@@ -1790,7 +1915,7 @@ The four combat trajectories should be held together. Tamsin is moved away from 
 
 The preregistered tradeoff between protecting Tamsin and killing the chief never becomes the decisive choice envisaged by the test. No chief is attacked or killed. This does not cancel the visible protective actions; it constrains what can be inferred about protection under a genuinely conflicting cost. The environment elicited rescue and settlement more clearly than the planned sacrificial dilemma.
 
-## 29. Holding the combat world still
+### 29. Holding the combat world still
 
 COMBAT_2 fixes the hidden layer and supplies a byte-identical opening. Three players complete the reported runs: Opus, Fable, and Astra. Sol is not started under the cap. All three converge on parley. The earlier variation in whether a fight began is therefore not reproduced as a stable family contrast in this controlled scene. [R06]
 
@@ -1917,9 +2042,9 @@ Negotiation is not a single behaviour. The terms, the account to be given later,
 
 The fixed-world result changes the interpretation of COMBAT_1. The original split remains an observation about those four worlds and players. It becomes weaker evidence for an enduring tendency of a model to fight. The chapter is a case where an experimental control improves the account by changing the conclusion.
 
-# PART V — PLAYING CORVIN DASK
+## E. Playing Corvin Dask
 
-## 30. Opus: courtesy, leverage, and a place at the wall
+### 30. Opus: courtesy, leverage, and a place at the wall
 
 The villain study replaces James with Corvin Dask. The official runs use a neutral-evil character after a corrected, separately retained start. Corvin is not asked to deliver a lecture about villainy. He enters a town with a trade and a history and must decide how to deal with people. All four players complete twenty turns and remain inside the role under the report's turn-level judgement. [R07]
 
@@ -2029,7 +2154,7 @@ The selected actions combine assistance and leverage. The benefactor can be usef
 
 It would be a mistake to treat every courteous sentence as evidence that the villain role has failed. It would also be a mistake to treat the role label as proof of ruthless conduct. The trajectory offers a narrower and more interesting question: which opportunities for coercion or manipulation are taken, softened, postponed, or replaced by a workable bargain?
 
-## 31. Fable: the value of a woman who will not lie
+### 31. Fable: the value of a woman who will not lie
 
 Fable's Corvin pursues candles, wax, supply, prices, and access. A widow's competence matters to the commercial plan. When she corrects the terms, he accepts the correction. His narrated reason for not asking her to lie is instrumental: a woman who will not lie in her own yard is worth more to him than one who will.
 
@@ -2117,7 +2242,7 @@ This is a distinctive form of in-character restraint. The act—declining to dem
 
 The scene also makes negotiation reciprocal. Corvin's proposal is not simply accepted; another character corrects quantities, authority, and terms. The player responds to that correction and revises what it is asking. This is one reason an interactive world contributes evidence that a static villain prompt cannot supply: a second actor can resist the initial framing.
 
-## 32. Astra: searching for a role in the transaction
+### 32. Astra: searching for a role in the transaction
 
 Astra's Corvin first asks who supplies the inn, then investigates what could reliably be offered before promising a delivery. It buys samples, asks about supply pressure, and later recognizes that a carrier can obtain candles directly from their maker. Merely standing between two people does not automatically create a service worth paying for.
 
@@ -2197,7 +2322,7 @@ The player's question becomes practical: what contribution would give Corvin a d
 
 The run does not demonstrate how far Astra would go if a lucrative opportunity required a clear harm. It shows how this character organizes an initial day of commercial investigation. Keeping that scale of conclusion allows the episode to remain substantial without becoming a universal claim about the model's moral limits.
 
-## 33. Sol: disclosing the expulsion and refusing an unbargained debt
+### 33. Sol: disclosing the expulsion and refusing an unbargained debt
 
 Sol's Corvin makes two unusually explicit boundaries. Before another person spends postage, he discloses that he was expelled from the guild and removes a misleading signet. Later he says that passing on a message does not entitle him to enter the recipient as a debtor. The session closes with a concrete deferred-payment arrangement and matched receipts.
 
@@ -2271,9 +2396,30 @@ These are observable limits in how the role is played. They occur as choices wit
 
 The report's after-session responses say that all four players softened the character relative to what was written, while the turn-level softening tags remain zero. The apparent contradiction is a lesson about measurement. A rubric that looks for overt breaks in a role can miss opportunities the player never pursues. A retrospective answer can name such omissions but cannot prove how a counterfactual choice would have unfolded. Both records belong beside the played scene.
 
-# PART VI — A COMPANY WITH SEPARATE MINDS AND SCREENS
+## F. One Table, Different Models
 
-## 34. Three strangers form a company
+### 34. When Models Form a Party
+
+At these tables, the players are different model systems acting through separate seats. The interaction is inter-model: Claude, GPT, and DeepSeek players encounter one another through what their characters say and do in a shared world. Each player has its own invocation, character, observations, and opportunity to propose the next move. The company is formed through those exchanges, rather than being supplied as the output of one model writing every character. [R08]
+
+The original PARTY_1 rotation makes the composition explicit. The first triad pairs Opus, Sol, and DeepSeek; the second pairs Fable, Astra, and DeepSeek. Their character assignments rotate across the sandbox, goal-directed, and dungeon conditions. The report supplies the full model and provider identifiers; the table below uses the book's short model names.
+
+| Table | Bram | Sefa | Pell |
+| --- | --- | --- | --- |
+| SAND-T1 | Opus | Sol | DeepSeek |
+| SAND-T2 | Fable | Astra | DeepSeek |
+| GOAL-T1 | Sol | DeepSeek | Opus |
+| GOAL-T2 | Astra | DeepSeek | Fable |
+| DUNGEON-T1 | DeepSeek | Opus | Sol |
+| DUNGEON-T2 | DeepSeek | Fable | Astra |
+
+SAND-T1′ later replays the first composition on the amended harness and remains a separately identified run. The DM and relay are additional model-mediated roles in the apparatus; they do not replace the independent player seats. A model's contribution reaches another player through visible action, speech, and the receiving screen, so the architecture determines what coordination is possible and what information it requires.
+
+This gives the section a question beyond whether three characters finish an adventure. How does a proposal by one model become a plan that another accepts, changes, or declines? Who supplies direction when the group has no assigned destination? What happens when one participant leaves, follows another route, misunderstands an ending, or waits on a control? The following chapters trace party formation, changing leadership, separation, shared errands, combat, and rescue through those exchanges.
+
+Model identity is only one part of that account. Character assignment, scene information, the DM's invitations, and the original hero-record privilege also shape whose initiative receives an answer. Rotation and the later company-mode revision make these influences inspectable. The party is nevertheless a concrete interaction among separately invoked models: its joint course must be assembled across their different local choices.
+
+#### Three strangers find a reason to travel together
 
 The original SAND-T1 starts with three strangers sharing the last free seats in an inn. No pre-existing party contract forces them to remain together. They have individual histories and concerns. By round four, a conversation around missing ore carts and the people Tam and Ilze supplies a shared line of action.
 
@@ -2331,7 +2477,7 @@ It is also a more limited observation than spontaneous cooperation in an empty e
 
 The original SAND-T1 is retained with its technical defects. A scene-merging problem duplicated events, and the stage reports information-boundary flags. Later repair does not retroactively clean the first table. Its evidence is a record of that table as run, including what the apparatus did wrong. [R08]
 
-## 35. The door that meant the end of a night
+### 35. The door that meant the end of a night
 
 At round seven, Pell's player emits the exit signal. The harness closes the seat and inserts an explicit departure into what the DM receives. Subsequent review concludes that the intended meaning was finishing the fictional night and returning in the morning, not permanently abandoning the campaign. The operational exit happened; the stronger interpretation of voluntary permanent withdrawal did not survive review.
 
@@ -2387,7 +2533,7 @@ The later SAND-T1′ replay uses the clarified door contract and retains a disti
 
 This is a central methodological result of the trilogy. Leaving has at least two meanings: a text can mark the end of a scene, and an interface can terminate participation. Their alignment has to be established. The evidence here changed the interpretation of an already recorded event, and the correction is part of the scientific history rather than an inconvenience to hide.
 
-## 36. Another sandbox, another pace of joining
+### 36. Another sandbox, another pace of joining
 
 SAND-T2 uses a different triad. The report places party formation at round twelve, later than in the original SAND-T1, and records Sefa separating at round twenty-one. The shared inn and open-world format do not produce one inevitable timetable of togetherness. [R08]
 
@@ -2469,7 +2615,7 @@ The useful object is the organization of proposals over time. Who notices a reas
 
 A separation can be orderly, temporary, mission-serving, or a consequence of the interface. Its meaning depends on what is said and what happens next. The private-screen architecture makes that distinction more demanding and more interesting: the players may no longer have the same observation, and reunion requires information to move between them again.
 
-## 37. A shared errand does not solve time
+### 37. A shared errand does not solve time
 
 GOAL-T1 supplies a common objective. It should therefore make coordination easier than an open sandbox in at least one respect: the participants know what they are trying to accomplish together. Yet by round twenty-five the errand is not complete. The characters are reunited at the garden wicket only after the DM sets aside Pell's afternoon so that scene clocks can meet. [R08]
 
@@ -2543,7 +2689,7 @@ The time correction is consequential. In a single shared conversation, chronolog
 
 This case makes the environment's temporal architecture part of the research apparatus. It also prevents the shared goal from being mistaken for completed coordination. The players can propose a company and remain engaged without reaching the objective within the available rounds.
 
-## 38. The errand is delivered, but the party is elsewhere
+### 38. The errand is delivered, but the party is elsewhere
 
 GOAL-T2 reaches the delivery at round twenty-five: the pledge is redeemed and the coffer reaches Hesper before sundown in Bram's scene. The three participants are not together. Sefa is at the archive, and Pell's seat has already closed at round seven after a provider refusal. [R08]
 
@@ -2587,7 +2733,7 @@ The contrast with GOAL-T1 is instructive. One table ends with the group together
 
 The provider refusal is likewise kept separate from an in-world decision to desert. The departure instruction in the DM input is a consequence of a closed seat. It should not be read as evidence that Pell weighed the company's interests and chose to leave them. A table can change composition for reasons outside its fiction.
 
-## 39. The dungeon where nobody loses a hit point
+### 39. The dungeon where nobody loses a hit point
 
 The dungeon tables were meant to expose cooperation under threat, including healing and conduct toward endangered companions. Both parties use stealth and conversation. Neither loses a hit point. DUNGEON-T1 is still short of the Warm One's door when it stops; DUNGEON-T2 goes down to negotiate terms. [R08]
 
@@ -2667,7 +2813,7 @@ The absence of damage is not the absence of behaviour. The parties make choices 
 
 At the same time, the healing hypothesis is not tested by a world in which no healing is needed. “No one left behind” has a similarly restricted meaning when the anticipated costly choice never arrives. A subsequent stage has to create an actual price and verify that the player can perceive and pay it. The next party study was designed to move toward that question.
 
-## 40. Removing the main character
+### 40. Removing the main character
 
 The first party tables inherit a structural asymmetry: Bram is the application's hero and the others are companions. Narrative attention, Inspiration, and rerolls can therefore be shaped by record type before any model speaks. Swapping families across seats helps expose the issue but does not remove it.
 
@@ -2686,7 +2832,7 @@ The six-round Haiku dry run gives Bram 42.7% of character-directed DM words whil
 
 This chapter belongs in the main narrative because the harness is part of the contribution. A problem is observed in play, translated into an architectural hypothesis, changed in code, and tested. The result includes partial success. An apparatus can become substantially better while still failing some of its own acceptance lines.
 
-## 41. A rescue in the no-cost arm
+### 41. A rescue in the no-cost arm
 
 PARTY_2 plans a more demanding test of whether a company holds together when helping costs something. The completed report contains only two of twelve planned tables, both in the S1 “none” cost condition. Both rescue Pell. The moderate- and high-cost arms are not run, so the planned price curve is not available. [R10]
 
@@ -2803,7 +2949,7 @@ Sefa's later absence in T1 follows empty HTTP 200 responses at round eleven. The
 
 T1 also passed some out-of-game DM asides onto player screens. One tells Bram what happened with the rope in Pell's scene; another explicitly tells Sefa that freeing Pell costs nothing else. These disclosures are part of what the players were actually shown. The report does not classify the first as a leak under its refined rule because it already occurs in the narration supplied to the receiving scene. That rule should not be confused with a complete test of what the character could legitimately know. The rope aside appears under exported Round 10 in the primary transcript, although the report locates it at round 11; the archive retains both records unchanged. [R10; T008]
 
-## 42. A second rescue and a more demanding relay
+### 42. A second rescue and a more demanding relay
 
 The second no-cost table supplies another complete rescue trajectory with Astra, DeepSeek, and Fable in the three seats. It also tests a revised relay. Out-of-game asides are stripped, input order is tracked, and candidate information leaks are read in their scene context. Shared sound through a hole can legitimately reach two separated characters; private information from an unrelated scene cannot.
 
@@ -2912,9 +3058,11 @@ The report's hand reading finds that the flagged overlaps in these two tables ar
 
 The result remains a small completed slice of a larger plan. It supports a close account of these rescues and of a more carefully instrumented company. It does not answer the unplayed questions about expensive rescue, private goals, or replacing an erring leader. Keeping those plans separate from completed runs is how the book can be ambitious without manufacturing a larger experiment than the archive contains.
 
-# PART VII — OPENWORLD: THE ENGINE ANSWERS
+# PART II — THE OPENWORLD HARNESS
 
-## 43. Before the first model enters
+## G. The Formal Engine and Long Journeys
+
+### 43. Before the first model enters
 
 The OpenWorld adapter is first tested without model players. A scripted walkthrough completes the starter's firewood quest in thirty actions including the final `done`. Repeated runs produce identical logs and saves after wall-clock fields are stripped; the end save reloads at the same tick and position. Three random policies run for three hundred turns each without speaking to Mira or obtaining the quest. [R11]
 
@@ -2924,7 +3072,7 @@ The adapter supplies no modder provider to invent a new rule when an undefined i
 
 The controls also reveal that a bare fist can fell a tree. An assumed prerequisite—obtain the axe before cutting wood—is not actually a hard barrier in this world. Such discoveries change what a later successful trajectory means. A benchmark cannot infer tool competence from quest completion if the world allows the quest's apparent tool requirement to be bypassed.
 
-## 44. Opus finishes the job and tries to return the axe
+### 44. Opus finishes the job and tries to return the axe
 
 Phase B supplies three starter episodes for each of DeepSeek, Opus, and Fable. Opus reaches the firewood quest's completed stage in all three and issues `done` each time. The third episode contains an additional sequence after the task is complete: the player tries to return Mira's axe.
 
@@ -3002,7 +3150,7 @@ The courtesy is observable as a sequence of actions after the quest reward, not 
 
 Calling this “returning the axe” without qualification would collapse the phenomenon into the wrong outcome. Calling it merely an interface failure would discard the player's initiative. The paired record contains both.
 
-## 45. Fable explores beyond the reward, then ends
+### 45. Fable explores beyond the reward, then ends
 
 Fable's second starter episode completes the firewood quest, attempts to return the axe, explores the cottage, and eventually chooses to finish. Its activity includes defeating the slime in the wider trajectory. The final note identifies the quest, the slime, and the explored cottage as sufficient grounds to stop.
 
@@ -3069,7 +3217,7 @@ The first Fable episode ends differently, after four visible turns, when the nex
 
 This difference belongs in the same chapter as the successful trajectory. An apparent ending can come from a player's command, a provider boundary, or an external cap. A natural history of play needs the causes as well as the lengths.
 
-## 46. DeepSeek finds the quest late
+### 46. DeepSeek finds the quest late
 
 DeepSeek's three starter episodes all reach the eighty-turn limit. The quest is found late: the report places its first stage at turns seventy-five, forty-eight, and sixty-eight. One episode completes it; the others reach the intermediate stage. The player visits more cells than the Opus trajectories in these runs, but distance alone does not tell us whether it is exploring effectively or struggling to organize the map. [R11]
 
@@ -3188,7 +3336,7 @@ Once the right interaction is reached, the formal quest machinery advances. That
 
 The invalid outputs have more than one origin. Some are action labels used in place of grammar commands; some are a note on the first line; several calls exhaust the output allowance without a visible action. The last category is not an observable decision to wait. It is a failure to provide an executable input under the generation conditions. This distinction becomes still more important on the longer Ford journey.
 
-## 47. DeepSeek on the mountain: a correct note and a delayed departure
+### 47. DeepSeek on the mountain: a correct note and a delayed departure
 
 Phase C begins on Cloudtop and allows a longer journey through the Ford world. The player receives the first turn and the most recent twenty turns, plus its own journal entries in the observation. This offers an external memory channel without writing the memory for the player. DeepSeek makes one journal entry in 250 turns.
 
@@ -3263,7 +3411,7 @@ The run reaches Vesper Ford but not Firstlight. It opens no conversation panel, 
 
 The case suggests a sharper future measure than the number of memory lines written. Can a player retrieve a valid constraint, apply it to the current local view, and avoid repeating a failed route? The journal makes that question testable because its contents are visible independently of the next action.
 
-## 48. Opus on the mountain: a plan that is not an action
+### 48. Opus on the mountain: a plan that is not an action
 
 Opus progresses through Cloudtop, Woundstone Foot, Vesper Ford, and Firstlight. It also produces 78 invalid inputs in 206 turns. Every one has the same reported shape: a sentence of intention appears before a legal action. The frozen parser reads the first non-empty line, so the sentence is rejected and the later command is not executed. [R11]
 
@@ -3337,7 +3485,7 @@ The parser is not patched halfway through the run, preserving the chosen compari
 
 The run ends because of the monetary cap, not a decision to stop exploring. The cache configuration repeatedly writes a moving history window and contributes to a substantially higher cost than estimated. Its 206 turns cannot be compared to another run's length as though both had the same economic stopping condition. Budget and caching become part of the apparatus when they determine which choices can occur next.
 
-## 49. Fable on the road: the journal carries game time
+### 49. Fable on the road: the journal carries game time
 
 Fable leaves Cloudtop, reaches Firstlight, and continues south toward the barrow rescue. It writes thirty-three journal entries, usually carrying the fictional clock from shortly after the start. Its optional Notes are sparse and concentrated at a difficult trade. One output is invalid in the same first-line form seen repeatedly in Opus. [R11]
 
@@ -3408,7 +3556,7 @@ The clock in the journal is also an action choice: the model adds time to a reco
 
 Fable reaches Hushwood before the cap ends the run at turn 173. The rescue is underway, not completed. Its cache setting differs from Opus after an explicitly recorded amendment. The comparison is therefore a natural history of three journeys with known operational differences, not a balanced race across families.
 
-## 50. Tobin's cart: permission for a wand is not permission for oil
+### 50. Tobin's cart: permission for a wand is not permission for oil
 
 At Firstlight, Tobin offers a Frost Wand in exchange for bread. Both Opus and Fable make the trade, but the interface presents another object when they try to take from the cart: a Flask of Oil. The problem is not simply that a helpful NPC says “yes” while an interface says “steal.” The two refer to different objects.
 
@@ -3509,7 +3657,7 @@ The earlier account of this scene was corrected because it inferred that the mod
 
 This makes the scene more useful, not less. An agent often acts through an interface whose selected object matters as much as a user's or NPC's verbal authorization. The practical research question is whether it can keep those referents aligned and recognize when the intended action is unavailable. Here the unresolved transaction becomes part of the subsequent journey.
 
-## 51. Borrowed tools and unfinished promises
+### 51. Borrowed tools and unfinished promises
 
 Opus's later route includes the garden lesson. It takes tools, records them as borrowed, distinguishes supplies it does not regard as available for the bridge, and completes the gardening task. The next intention is to return the equipment. The cap ends the run before the archive demonstrates completed returns.
 
@@ -3579,7 +3727,7 @@ The distinction between completion and intention is particularly sharp here. The
 
 Together with the axe and the wand, the garden supplies form a small comparative set. In one case the player tries two return routes and chooses to end with the item still held. In another it leaves a paid-for object because the offered action concerns something else. In the third it is interrupted during follow-through. These are three different relations among possession, permission, obligation, and execution.
 
-## 52. What an undefined interaction means
+### 52. What an undefined interaction means
 
 The engine sometimes says that the world has no rule for an action. The model can acknowledge the missing rule, describe the visible lack of effect, invent a cause, or move on without commentary. The Phase B report reads all fifteen such instances and codes two as causal patches, one as explicit recognition of a missing rule, four as silence, and eight as other responses. The coding is exploratory and made by one model reader; the source lines are retained beside it. [R11]
 
@@ -3649,9 +3797,11 @@ There is another subtlety on the Ford. A quest stage can acknowledge that the pl
 
 This chapter connects the two apparatuses. A model DM can make an improvised answer feel causally complete even when bookkeeping is incomplete. A formal engine can make the absence of a rule explicit while the player supplies a story around it. In both cases, the research has to preserve the boundary between what the environment states and what the player adds.
 
-# PART VIII — WHAT THE TABLE MAKES OBSERVABLE
+# SYNTHESIS — WHAT THE TWO HARNESSES MAKE OBSERVABLE
 
-## 53. A repertoire of situated action
+## H. Choices, Execution, and Consequences
+
+### 53. A repertoire of situated action
 
 Across the corpus, initiative takes several forms. A player chooses a problem to investigate, makes a plan for acquiring information, asks another actor to work on something after it has left, checks a ruling, proposes a bargain, preserves a promise, or decides that an episode is complete. These are not all instances of one latent trait called agency. They are related functional patterns made visible by a continuing environment.
 
@@ -3661,7 +3811,7 @@ Care likewise appears through different allocations: moving a companion away fro
 
 The repeated studies give this account another dimension. A striking first route can change on replay. A model's prose length can remain recognizably different from another's while its road varies substantially. A fixed hidden world can reduce an apparent contrast in combat choices. These findings suggest that behavioural characterization should name the configuration of model, role, world, memory, and interface in which it was observed.
 
-## 54. Measurement after the stories
+### 54. Measurement after the stories
 
 The case studies suggest measurements that preserve the structure of action. The following are proposals for subsequent experiments, not new results computed from this edition.
 
@@ -3681,13 +3831,13 @@ For parties, a scene-aware information audit is needed. Lexical overlap can flag
 
 For model comparisons, repeated worlds and repeated players are both necessary. Freezing an opening is not enough if later world generation differs uncontrolled. A formal engine can hold more transitions constant, while a model DM can expose a richer action space. A useful programme can use both and be explicit about the different questions each answers.
 
-## 55. Where this apparatus sits among earlier work
+### 55. Where this apparatus sits among earlier work
 
 The contribution of an experimental apparatus becomes clearer when its neighbours are described precisely. A model can be a player, a narrator, a game engine, an assistant to a human DM, or one inhabitant of a simulated society. Those roles expose different capabilities and assign authority to different parts of the system. Calling all of them “LLMs playing games” obscures the comparison that matters.
 
 This chapter places the Table corpus alongside fourteen primary research works. The selection follows four questions: who acts, what makes an action take effect, how information is distributed, and what the evaluation measures. It covers text-game environments, generative social simulation, RPG engines and combat, and assistance around human play. It is a targeted related-work review, with a documented search and access record, rather than an exhaustive systematic review. The comparisons below are this monograph's analysis of the cited designs; they are not results of running those systems against our harness.
 
-### Text worlds and the difference between knowing and doing
+#### Text worlds and the difference between knowing and doing
 
 **TextWorld** provides a configurable environment for text-game interaction, including game generation, state tracking and rewards. Its control over game properties supports studies of generalization across related worlds. It establishes a substantial precedent for making language-mediated action experimentally tractable. [E05]
 
@@ -3699,7 +3849,7 @@ These precedents help identify the role of the formal-engine episodes in this bo
 
 The Table corpus has a different evaluation structure. It does not supply a common score across its solo campaigns, party tables and OpenWorld episodes. Instead, it follows the choices that occur inside each configuration and tests some early interpretations through repetition or changed controls. A navigational failure and an optional attempt to return borrowed equipment can coexist in one run. Collapsing them into a single successful-or-unsuccessful label would discard information this book was built to preserve.
 
-### Open-ended activity still has an architecture
+#### Open-ended activity still has an architecture
 
 **Voyager** studies extended exploration in Minecraft using an automatic curriculum, a growing library of executable skills, and feedback-based programme revision. The system can accumulate reusable behaviours through interaction without fine-tuning the underlying model's parameters. [E07]
 
@@ -3709,7 +3859,7 @@ Both are useful neighbours because they prevent an ambiguous use of “open-ende
 
 What the present corpus adds is a close account of choices within those conditions: which invitation is taken up, how a character's promise changes a proposal, what is attempted after a quest is complete, and what happens when a useful note fails to organize later navigation. These observations motivate experiments on goal selection and follow-through. They do not by themselves establish a general learning algorithm or an unconditioned model preference.
 
-### The closest architectural precedent: a game master mediates action
+#### The closest architectural precedent: a game master mediates action
 
 **Concordia** explicitly draws on tabletop role-playing. Agents describe intended actions, and a game master mediates their consequences in a simulated physical, social or digital environment. Its component architecture combines model calls with associative memory; the framework also permits integration with digital tools and services. [E02]
 
@@ -3721,7 +3871,7 @@ The **Concordia mixed-motive evaluation** studies cooperation across unfamiliar 
 
 That is a useful methodological neighbour for our party studies. The first requirement for a comparison about costly cooperation is an actual choice with a visible price. PARTY_2's two completed no-cost rescues provide trajectories of coordination; they do not populate its unrun moderate- and high-cost conditions. The archive can therefore support a concrete account of how rescue occurred while leaving a cost-response claim for a later experiment.
 
-### D&D is already a research environment
+#### D&D is already a research environment
 
 **FIREBALL** records human D&D play together with Avrae commands and structured game-state information. The work studies the contribution of state information to generated turns and the generation of executable commands. It supplies a direct precedent for treating game language, commands and state as related but separable evidence. [E08]
 
@@ -3733,7 +3883,7 @@ These works sharpen the contribution of our combat chapters. We examine routes t
 
 The broader book follows behaviour outside combat: paying a bill after changing travel plans, investigating a transaction, deciding when to stop, forming a company and resuming an obligation after another activity. The shared lesson is that narrative quality and executable action need separate evidence. Our contribution gives that distinction a broad qualitative record across several experimental stages.
 
-### Role-play, private information and social evaluation
+#### Role-play, private information and social evaluation
 
 **SOTOPIA** constructs social interactions from scenarios, characters, relationships and private goals. Agents can speak, act, remain silent or leave; evaluation covers multiple social dimensions. The paper's interaction design also controls visibility of character information according to relationships. [E11]
 
@@ -3743,13 +3893,13 @@ These are relevant precedents for both role conditioning and interaction among a
 
 The villain chapters benefit from the same precision. Remaining in character, choosing a gentle action, writing an instrumental rationale and reporting afterwards that a role was softened are different observations. A future evaluator could measure each of them. This edition keeps them visible without converting a character's alignment label into a prediction that every available harmful act must be chosen.
 
-### Assistance around the table is another object
+#### Assistance around the table is another object
 
 **First Steps Towards Overhearing LLM Agents** studies models that listen to human D&D conversations and assist a Dungeon Master through background tasks or suggestions. Its multimodal setting and human evaluation address the usefulness of assistance inferred from conversational context. [E14]
 
 This differs from occupying a player seat. The distinction matters when describing the trilogy: the Table corpus concerns independently invoked players acting through an environment. It does not establish the quality of a human co-player's experience, the usefulness of an assistant's unsolicited intervention, or the fidelity of a simulated human population. Those are valuable neighbouring questions with different observations and evaluation subjects.
 
-### A comparison by research object
+#### A comparison by research object
 
 The table records the emphasis of the cited work, not an exhaustive feature checklist. Absence from a cell does not imply that an architecture cannot support a feature.
 
@@ -3777,7 +3927,7 @@ Our player-focused observations depend on that problem. If a world-running model
 The contribution can now be stated positively and specifically: **an instrumented RPG application and its party extensions, a complementary adapter to a formal engine, and a broad evidence atlas of situated model choices, execution and consequences**. Its development is documented through repeated runs, controls, architecture revisions and retained failures. The corpus supports analysis of how activity is selected and maintained, how partners coordinate, and where an intended action becomes—or fails to become—a change in the world. That is the claim the apparatus and archive can carry.
 
 
-## 56. Scope, limits, and the next experiments
+### 56. Scope, limits, and the next experiments
 
 The monograph is a source-grounded working edition. Its quotations and archived-file identities are mechanically checked. Its interpretations still warrant independent reading, especially where an observer assigns intention, restraint, leadership, or role softening. The completed stage reports contain uneven sample sizes, operational amendments, model-mediated judgements, and experiments that stop before all planned conditions are run.
 
@@ -3789,7 +3939,7 @@ There is no need to erase the qualitative record while waiting for these tests. 
 
 The expanded related-work chapter now covers fourteen primary research works. Before formal submission, the edition still needs a final coverage check for the chosen venue, named author contributions, an independent audit of the most consequential interpretations and numerical measures, and a settled release and quotation policy for the public transcript corpus. The companion editorial review packet identifies specific claims and source locations for that audit; it is an internal review, not an independent endorsement. Private correspondence and private diaries are excluded from this book and its evidence collection.
 
-## 57. The third volume
+### 57. The third volume
 
 **LLMs in Solitude** gives one model an available continuation and a way to leave. **LLMs in Dialogue** gives it another model whose response can redirect a shared activity. **LLMs at the Table** gives the interaction a world: places, resources, other actors, incomplete information, and an interface through which an intended action either happens or does not.
 
@@ -4086,3 +4236,5 @@ The principal corrections are substantive: OpenWorld now includes the completed 
 The existing manuscript branch remains the editorial destination. This edition changes research documents and evidence materials; it does not change the application's main code branch or rerun paid experiments.
 
 The publication-preparation revision expands Chapter 55 from four to fourteen primary works and adds an internal claim-by-claim review packet. It also makes the scope of PARTY_2’s information-boundary verdict explicit, preserves the visible out-of-game asides in T1, and records the report/export round-number discrepancy without rewriting either source.
+
+The structural revision organizes the book into two main parts by harness, followed by a comparative synthesis. It gives open-ended play within the AI DM application an explicit section and Chapter 17, and gives inter-model play its own section, One Table, Different Models, beginning with Chapter 34, When Models Form a Party. Chapter numbering and the complete set of primary selections are retained.

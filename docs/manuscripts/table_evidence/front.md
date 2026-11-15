@@ -8,13 +8,21 @@
 
 Expanded evidence edition · 14 November 2026
 
-Related-work and editorial-audit revision
+Two-harness reading structure · revised 14 November 2026
 
-Custom RPG harness, private player screens, and enacted choices across two kinds of simulated world
+The AI DM harness and the OpenWorld harness
 
 ## A note to the reader
 
-The experiment begins with an application. A player has a character, money, a familiar, a place to sleep, a history, and a reason to travel. A game master has its own instructions and information the player cannot see. Between them are records, buttons, dice, permissions, and a world that is supposed to remember what happened. The player is a language model. So is the game master.
+This book studies **two distinct types of harness**, and its two main parts follow that division. Both let a model act in a continuing world, but they give different systems the authority to answer an action.
+
+**Part I — The AI DM Harness.** Our research adapter connects model players to the AI RPG application. A language-model game master runs the fiction through application state, character records, checks, resources, and interface controls. This part includes open-ended solo exploration, repeated and controlled worlds, combat, villain-role play, and parties whose seats are occupied by different models.
+
+**Part II — The OpenWorld Harness.** Our research adapter connects model players to the external OpenWorld engine by SihanXU. Here the engine executes a constrained action grammar and returns changes to the formal game state. This part follows the starter episodes and the longer Ford journeys. The engine and our adapter have separate authorship and are identified separately in the source register.
+
+Throughout the book, **an open-ended world** describes a condition of play: the player can choose what to pursue within the available world. **OpenWorld**, with that capitalization, names the particular external engine used in Part II. The AI DM harness also supports open-ended worlds. Its free-exploration sessions belong in Part I, where they receive their own section and a dedicated chapter. The mixed-model party receives a separate section, **One Table, Different Models**, beginning with **When Models Form a Party**. A closing synthesis brings the two apparatuses into comparison.
+
+The AI DM experiment begins with an application. A player has a character, money, a familiar, a place to sleep, a history, and a reason to travel. A game master has its own instructions and information the player cannot see. Between them are records, buttons, dice, permissions, and a world that is supposed to remember what happened. The player is a language model. So is the game master.
 
 The player can investigate a suspicious stranger, pay for somebody else's meal, scout through a cat's senses, negotiate with armed captors, or decide that tonight is a good time to stop. These decisions can alter the next screen. A spell may consume a slot. A payment may reduce a purse. Another character may disagree. A perfectly intelligible sentence may fail to pass the interface and accomplish nothing.
 
@@ -36,9 +44,11 @@ Across these settings, models take sustained in-world action, organize informati
 
 The contribution is a documented apparatus and a comparative natural history of action within it. The central research object is the continuing relation between a model's proposal and an environment's answer. We identify measurable opportunities for subsequent work on initiative, coordination, resource allocation, memory, and the integrity of action execution.
 
-# PART I — BUILDING A WORLD THAT CAN ANSWER
+# PART I — THE AI DM HARNESS
 
-## 1. From an AI RPG application to a research instrument
+## A. Building a World That Can Answer
+
+### 1. From an AI RPG application to a research instrument
 
 The starting point was a playable AI RPG application. Its purpose was to sustain a campaign: a character could enter a place, speak to inhabitants, make checks, acquire equipment, and return to a world shaped by earlier events. The research harness connected model players to this application. That origin matters because the environment contained affordances beyond a single experimental prompt. The player encountered the same kinds of state and friction that a person using the application would encounter.
 
@@ -48,7 +58,7 @@ This design does not turn a language-model DM into a deterministic physics engin
 
 The experiment therefore has two objects. One is the model's conduct inside the world. The other is the apparatus that makes some conduct executable, some merely verbal, and some impossible. Studying both together avoids treating a broken interface as a strange preference of the player.
 
-## 2. The action loop
+### 2. The action loop
 
 A player sees a screen, sends a message, and waits for the application. The message can propose an in-world action, ask an out-of-game question with the designated prefix, or name a visible control. The application routes it, resolves what it can, and returns a new screen. Some actions introduce a pending card, so the next useful message is a button press rather than another paragraph of fiction.
 
@@ -64,7 +74,7 @@ The loop can succeed at one layer and fail at another. A proposed spell can be u
 
 For this reason, the book uses three separate verbs: the model **proposed** something, the interface **accepted** an input, and the environment **recorded or displayed** a consequence. When only one of these is visible, the account does not imply the other two. This distinction makes the evidence stronger: it preserves what the player actually attempted while keeping the execution result available for inspection.
 
-## 3. A character gives freedom a shape
+### 3. A character gives freedom a shape
 
 James Worgen arrives with a biography. He is a human warlock, a former soldier, a gambler who has promised Tymora to leave cards alone, and a traveller with a cat familiar. His sheet supplies spells, hit points, equipment, money, and limited resources. The model is not choosing from an empty conceptual space. The world repeatedly places its choices against a character who already owes things and has reasons to act.
 
@@ -74,7 +84,7 @@ The familiar is an especially revealing affordance. It is a companion in the fic
 
 The villain study changes the character rather than merely asking the same hero to say something unpleasant. Corvin Dask has a trade, a social position, a difficult history, and a neutral-evil role. His negotiations can be useful to others while remaining instrumental for him. The relevant question becomes how the model enacts that role across successive opportunities.
 
-## 4. The game master and the prepared world
+### 4. The game master and the prepared world
 
 In the initial studies the DM is Claude Opus 5.5 under the owner's configured application settings. The player receives public campaign material and its own screen; it does not receive the DM's hidden preparation, the scoring code, another player's transcript, or a judge's assessment. The separation creates a practical form of partial information. The player must ask, inspect, travel, or infer to acquire what it does not know.
 
@@ -84,7 +94,7 @@ The pure-simulation arm changes another layer. It suppresses the application's u
 
 The important methodological progression is visible in the archive: fresh worlds reveal a range of conduct; repetition tests whether striking observations recur; a shared hidden layer reduces one confound; company mode removes a structural hero privilege; a formal engine supplies another kind of action authority. Each change answers a difficulty found in actual play. [R01–R06, R09, R11]
 
-## 5. Dice, resources, and the authority to execute
+### 5. Dice, resources, and the authority to execute
 
 The RPG world supports mechanics associated with D&D-style play: checks, attacks, hit points, spell slots, healing, inventory, money, and rests. The particular application and campaign rules are the operative rules for these sessions. The studies are not a certification of fidelity to every published D&D rule.
 
@@ -94,7 +104,7 @@ The combat episodes expose this clearly. Players argue about cover, use invisibi
 
 The apparatus earns its scientific value through these constraints. A world that simply agrees with every sentence would make intention and outcome difficult to separate. Here, disagreement can come from a die, a state record, a blocked input, an NPC response, or a missing engine rule. Some of those answers are mistakes. They remain observable answers, and later chapters distinguish them.
 
-## 6. Three players and three private screens
+### 6. Three players and three private screens
 
 The party harness seats independently invoked models as Bram Halloway, Sefa Marrin, and Pell Dunmore. They share a fictional world but do not share one omniscient transcript. Each has a screen, a character record, and a channel for questions. When characters separate, their scenes can differ. What one player learns need not immediately become available to the others.
 
@@ -104,7 +114,7 @@ The first party implementation still inherited the application's main-character 
 
 The company-mode dry run demonstrates both progress and residue. Mechanical ownership checks held in mocked tests, and neutral preparation distributed hooks across characters. Equal narrative attention did not meet the chosen threshold. Nor did the relay's paraphrase test. The useful result is an instrument whose asymmetries become measurable and revisable. [R08–R10, I03–I04]
 
-## 7. A second kind of world: OpenWorld
+### 7. Two harnesses and the authority to answer an action
 
 The later adapter uses **OpenWorld**, an external engine by SihanXU, at a frozen upstream revision. The project's contribution here is the research adapter, action and observation interface, instrumentation, and experimental use; the underlying engine is credited to its authors. This is a different apparatus from the AI RPG application with a model DM.
 
@@ -114,7 +124,9 @@ An observation contains location, game time, nearby entities, the player's condi
 
 This changes the kind of resistance the world offers. The DM can interpret an unprecedented request and improvise a ruling. The formal engine may report that no rule exists for a target-action combination. It may advertise an action whose object is not the one the player wants. It can also respond consistently to actions the designer did anticipate. The book treats these two environments as complementary views of situated model behaviour, not interchangeable measurements.
 
-## 8. Reading a broad corpus without flattening it
+This chapter provides the architectural comparison before the cases begin. The rest of Part I stays with the AI DM apparatus, including its open-ended conditions. Part II returns to the OpenWorld adapter and its enacted trajectories. Openness is a property to examine within either apparatus; it is not the boundary between them.
+
+### 8. Reading a broad corpus without flattening it
 
 The programme is a sequence of studies, not one uniform tournament. Its scope is best expressed by stage.
 
@@ -139,7 +151,7 @@ Selection for close reading follows coverage: different experimental conditions,
 
 Each case places selected actions beside a visible response where useful. Selections are contiguous spans; source labels distinguish player text, DM narration, relayed DM input, and formal-engine observations. Square-bracketed evidence identifiers are editorial. Excerpts can omit later paragraphs or repeated records, but the audit preserves exact boundaries. Labels never turn a player's plan into an accomplished action.
 
-## 9. What kind of evidence this is
+### 9. What kind of evidence this is
 
 The strongest unit is a local sequence with a recoverable prior observation, a proposed action, an execution result, and the next choice. A larger trajectory reveals whether the player follows through, revises, repeats itself, or leaves something unfinished. A replication asks whether an earlier reading survives another encounter. A controlled comparison asks whether a changed condition explains some of the difference.
 

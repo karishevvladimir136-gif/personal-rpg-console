@@ -25,7 +25,8 @@ assert len({q['id'] for q in quotes})==len(quotes)
 book=next((R/'output').glob('*.md')).read_text()
 labels=re.findall(r'\[(Q\d+)\]',book)
 assert labels==[q['id'] for q in quotes],'Rendered excerpt IDs differ from audit order'
-assert len(re.findall(r'(?m)^## \d+\.',book))==57
+assert len(re.findall(r'(?m)^### \d+\.',book))==57
+assert len(re.findall(r'(?m)^# PART [IVX]+ —',book))==2
 assert '{{' not in book
 result={'status':'passed','verified_source_files':len(checked),'primary_transcripts':len(manifest['transcripts']),'reports':len(manifest['reports']),'implementation_files':len(manifest['implementation']),'exact_source_selections':len(quotes),'distinct_selected_transcripts':len({q['local'] for q in quotes}),'numbered_chapters':57,'scope':'Provenance and exact quotation identity; not an independent reproduction of stage scoring or semantic interpretation.'}
 (E/'verification.json').write_text(json.dumps(result,indent=2)+'\n')

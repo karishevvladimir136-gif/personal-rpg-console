@@ -36,7 +36,7 @@ for name in ['Body Text','First Paragraph','Compact']:
   d.styles[name].paragraph_format.space_after=Pt(7)
   d.styles[name].paragraph_format.line_spacing=1.12
 style_ids={s.style_id:s for s in d.styles}
-for level,size in [(1,25),(2,18),(3,14),(4,12.3)]:
+for level,size in [(1,25),(2,21),(3,18),(4,14)]:
  s=style_ids[f'Heading{level}'];s.font.name='Noto Sans';s.font.size=Pt(size);s.font.bold=True
  s.paragraph_format.space_before=Pt(16);s.paragraph_format.space_after=Pt(10)
  s.paragraph_format.keep_with_next=True
@@ -55,10 +55,26 @@ for s in d.styles:
   s.font.name='DejaVu Sans Mono';s.font.size=Pt(9);s.font.italic=False
 for name in ['Header','Footer']:
  d.styles[name].font.name='Noto Sans';d.styles[name].font.size=Pt(7.5)
+in_contents=False
 for pi,p0 in enumerate(d.paragraphs):
- if re.match(r'^\d+\. ',p0.text) and p0.style.style_id=='Heading2':
+ if p0.text=='Contents' and p0.style.style_id=='Heading1':in_contents=True
+ elif p0.text.startswith('PART I ') and p0.style.style_id=='Heading1':in_contents=False
+ elif in_contents:
+  p0.paragraph_format.keep_together=True
+  p0.paragraph_format.space_before=Pt(0)
+  p0.paragraph_format.space_after=Pt(1)
+  p0.paragraph_format.line_spacing=1.04
+  if re.match(r'^[A-H]\. ',p0.text) or p0.text.startswith(('PART I ','PART II ','SYNTHESIS','APPENDICES')):
+   p0.paragraph_format.space_before=Pt(8)
+   p0.paragraph_format.space_after=Pt(5)
+ if p0.style.style_id not in ['Heading1','Heading2','Heading3'] and (re.match(r'^[A-H]\. ',p0.text) or p0.text.startswith(('PART I ','PART II ','SYNTHESIS','APPENDICES'))):
+  p0.paragraph_format.keep_with_next=True
+ if re.match(r'^[A-H]\. ',p0.text) and p0.style.style_id=='Heading2':
   previous=d.paragraphs[pi-1] if pi else None
   p0.paragraph_format.page_break_before=not(previous and previous.style.style_id=='Heading1')
+ if re.match(r'^\d+\. ',p0.text) and p0.style.style_id=='Heading3':
+  previous=d.paragraphs[pi-1] if pi else None
+  p0.paragraph_format.page_break_before=not(previous and previous.style.style_id in ['Heading1','Heading2'])
  if p0.text.startswith(('Visible screen','Player turn','Next visible','Next card','Observation before','Round ','Turn ')) and re.search(r'Q\d{3}',p0.text):
   p0.paragraph_format.keep_with_next=True
   for r0 in p0.runs:r0.font.name='Noto Sans';r0.font.size=Pt(9);r0.font.bold=True
@@ -102,6 +118,6 @@ for par in paras[2:7]:
 d.core_properties.title='LLMs at the Table'
 d.core_properties.subject='What Language Models Do When a Simulated World Can Answer Back'
 d.core_properties.author='Исследование'
-d.core_properties.comments='Expanded evidence edition, 14 November 2026. 57 chapters; 82 primary transcript files.'
+d.core_properties.comments='Two-harness structure, 14 November 2026. 57 chapters; 82 primary transcript files.'
 d.save(p)
 print('Styled',p)

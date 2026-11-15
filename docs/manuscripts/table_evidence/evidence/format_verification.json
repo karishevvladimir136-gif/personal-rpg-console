@@ -1,14 +1,13 @@
 {
-  "pdf_pages": 279,
+  "pdf_pages": 287,
   "geometry_issues": [],
   "epub_xml": "passed",
-  "visual_review_pages": [
-    200,
-    249,
-    254,
-    257,
-    258,
-    277
-  ],
-  "visual_review": "Passed: revised primary-source interpretation, chapter opening, related-work prose, two-page comparison table, references and access note visually checked."
+  "visual_review": "All revised page bodies visually inspected; remaining bodies matched prior reading-edition geometry and text. Final contents pagination checked separately.",
+  "changed_since_last_render": [
+    7,
+    8,
+    9,
+    10,
+    11
+  ]
 }

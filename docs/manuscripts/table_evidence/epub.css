@@ -1,7 +1,8 @@
 body { font-family: serif; line-height: 1.45; margin: 4%; }
-h1,h2,h3 { font-family: sans-serif; line-height: 1.2; color: #111; }
+h1,h2,h3,h4 { font-family: sans-serif; line-height: 1.2; color: #111; }
 h1 { page-break-before: always; }
 h2 { margin-top: 2em; }
+h3 { margin-top: 1.8em; }
 blockquote { margin-left: .7em; margin-right: 0; padding-left: .6em; border-left: 1px solid #aaa; }
 pre,code { font-family: monospace; font-size: .82em; white-space: pre-wrap; overflow-wrap: anywhere; }
 table { width: 100%; border-collapse: collapse; font-size: .82em; }

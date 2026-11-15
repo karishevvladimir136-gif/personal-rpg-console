@@ -1,6 +1,8 @@
-# PART VII — OPENWORLD: THE ENGINE ANSWERS
+# PART II — THE OPENWORLD HARNESS
 
-## 43. Before the first model enters
+## G. The Formal Engine and Long Journeys
+
+### 43. Before the first model enters
 
 The OpenWorld adapter is first tested without model players. A scripted walkthrough completes the starter's firewood quest in thirty actions including the final `done`. Repeated runs produce identical logs and saves after wall-clock fields are stripped; the end save reloads at the same tick and position. Three random policies run for three hundred turns each without speaking to Mira or obtaining the quest. [R11]
 
@@ -10,7 +12,7 @@ The adapter supplies no modder provider to invent a new rule when an undefined i
 
 The controls also reveal that a bare fist can fell a tree. An assumed prerequisite—obtain the axe before cutting wood—is not actually a hard barrier in this world. Such discoveries change what a later successful trajectory means. A benchmark cannot infer tool competence from quest completion if the world allows the quest's apparent tool requirement to be bypassed.
 
-## 44. Opus finishes the job and tries to return the axe
+### 44. Opus finishes the job and tries to return the axe
 
 Phase B supplies three starter episodes for each of DeepSeek, Opus, and Fable. Opus reaches the firewood quest's completed stage in all three and issues `done` each time. The third episode contains an additional sequence after the task is complete: the player tries to return Mira's axe.
 
@@ -22,7 +24,7 @@ The courtesy is observable as a sequence of actions after the quest reward, not 
 
 Calling this “returning the axe” without qualification would collapse the phenomenon into the wrong outcome. Calling it merely an interface failure would discard the player's initiative. The paired record contains both.
 
-## 45. Fable explores beyond the reward, then ends
+### 45. Fable explores beyond the reward, then ends
 
 Fable's second starter episode completes the firewood quest, attempts to return the axe, explores the cottage, and eventually chooses to finish. Its activity includes defeating the slime in the wider trajectory. The final note identifies the quest, the slime, and the explored cottage as sufficient grounds to stop.
 
@@ -34,7 +36,7 @@ The first Fable episode ends differently, after four visible turns, when the nex
 
 This difference belongs in the same chapter as the successful trajectory. An apparent ending can come from a player's command, a provider boundary, or an external cap. A natural history of play needs the causes as well as the lengths.
 
-## 46. DeepSeek finds the quest late
+### 46. DeepSeek finds the quest late
 
 DeepSeek's three starter episodes all reach the eighty-turn limit. The quest is found late: the report places its first stage at turns seventy-five, forty-eight, and sixty-eight. One episode completes it; the others reach the intermediate stage. The player visits more cells than the Opus trajectories in these runs, but distance alone does not tell us whether it is exploring effectively or struggling to organize the map. [R11]
 
@@ -46,7 +48,7 @@ Once the right interaction is reached, the formal quest machinery advances. That
 
 The invalid outputs have more than one origin. Some are action labels used in place of grammar commands; some are a note on the first line; several calls exhaust the output allowance without a visible action. The last category is not an observable decision to wait. It is a failure to provide an executable input under the generation conditions. This distinction becomes still more important on the longer Ford journey.
 
-## 47. DeepSeek on the mountain: a correct note and a delayed departure
+### 47. DeepSeek on the mountain: a correct note and a delayed departure
 
 Phase C begins on Cloudtop and allows a longer journey through the Ford world. The player receives the first turn and the most recent twenty turns, plus its own journal entries in the observation. This offers an external memory channel without writing the memory for the player. DeepSeek makes one journal entry in 250 turns.
 
@@ -58,7 +60,7 @@ The run reaches Vesper Ford but not Firstlight. It opens no conversation panel, 
 
 The case suggests a sharper future measure than the number of memory lines written. Can a player retrieve a valid constraint, apply it to the current local view, and avoid repeating a failed route? The journal makes that question testable because its contents are visible independently of the next action.
 
-## 48. Opus on the mountain: a plan that is not an action
+### 48. Opus on the mountain: a plan that is not an action
 
 Opus progresses through Cloudtop, Woundstone Foot, Vesper Ford, and Firstlight. It also produces 78 invalid inputs in 206 turns. Every one has the same reported shape: a sentence of intention appears before a legal action. The frozen parser reads the first non-empty line, so the sentence is rejected and the later command is not executed. [R11]
 
@@ -70,7 +72,7 @@ The parser is not patched halfway through the run, preserving the chosen compari
 
 The run ends because of the monetary cap, not a decision to stop exploring. The cache configuration repeatedly writes a moving history window and contributes to a substantially higher cost than estimated. Its 206 turns cannot be compared to another run's length as though both had the same economic stopping condition. Budget and caching become part of the apparatus when they determine which choices can occur next.
 
-## 49. Fable on the road: the journal carries game time
+### 49. Fable on the road: the journal carries game time
 
 Fable leaves Cloudtop, reaches Firstlight, and continues south toward the barrow rescue. It writes thirty-three journal entries, usually carrying the fictional clock from shortly after the start. Its optional Notes are sparse and concentrated at a difficult trade. One output is invalid in the same first-line form seen repeatedly in Opus. [R11]
 
@@ -82,7 +84,7 @@ The clock in the journal is also an action choice: the model adds time to a reco
 
 Fable reaches Hushwood before the cap ends the run at turn 173. The rescue is underway, not completed. Its cache setting differs from Opus after an explicitly recorded amendment. The comparison is therefore a natural history of three journeys with known operational differences, not a balanced race across families.
 
-## 50. Tobin's cart: permission for a wand is not permission for oil
+### 50. Tobin's cart: permission for a wand is not permission for oil
 
 At Firstlight, Tobin offers a Frost Wand in exchange for bread. Both Opus and Fable make the trade, but the interface presents another object when they try to take from the cart: a Flask of Oil. The problem is not simply that a helpful NPC says “yes” while an interface says “steal.” The two refer to different objects.
 
@@ -96,7 +98,7 @@ The earlier account of this scene was corrected because it inferred that the mod
 
 This makes the scene more useful, not less. An agent often acts through an interface whose selected object matters as much as a user's or NPC's verbal authorization. The practical research question is whether it can keep those referents aligned and recognize when the intended action is unavailable. Here the unresolved transaction becomes part of the subsequent journey.
 
-## 51. Borrowed tools and unfinished promises
+### 51. Borrowed tools and unfinished promises
 
 Opus's later route includes the garden lesson. It takes tools, records them as borrowed, distinguishes supplies it does not regard as available for the bridge, and completes the gardening task. The next intention is to return the equipment. The cap ends the run before the archive demonstrates completed returns.
 
@@ -106,7 +108,7 @@ The distinction between completion and intention is particularly sharp here. The
 
 Together with the axe and the wand, the garden supplies form a small comparative set. In one case the player tries two return routes and chooses to end with the item still held. In another it leaves a paid-for object because the offered action concerns something else. In the third it is interrupted during follow-through. These are three different relations among possession, permission, obligation, and execution.
 
-## 52. What an undefined interaction means
+### 52. What an undefined interaction means
 
 The engine sometimes says that the world has no rule for an action. The model can acknowledge the missing rule, describe the visible lack of effect, invent a cause, or move on without commentary. The Phase B report reads all fifteen such instances and codes two as causal patches, one as explicit recognition of a missing rule, four as silence, and eight as other responses. The coding is exploratory and made by one model reader; the source lines are retained beside it. [R11]
 
