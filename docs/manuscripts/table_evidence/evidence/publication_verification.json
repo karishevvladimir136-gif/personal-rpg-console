@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "external_references": 14,
+  "internal_claim_reviews": 18,
+  "resolved_internal_evidence_links": 100,
+  "independent_review_performed": false,
+  "scope": "Reference identities, local source locations and declared review status; no independent semantic adjudication or benchmark rerun."
+}

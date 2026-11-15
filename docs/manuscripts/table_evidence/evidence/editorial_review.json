@@ -1,0 +1,1022 @@
+{
+  "edition": "2026-11-14 publication-preparation revision",
+  "review_type": "internal editorial self-audit",
+  "independent_review_performed": false,
+  "scope": "18 consequential claims; source checks and interpretation boundaries. No new paid experiments and no complete rerun of stage judges or statistical scoring.",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "The harness connects model players to an actual RPG application.",
+      "chapters": [
+        1,
+        2,
+        5
+      ],
+      "internal_assessment": "Supported by the selected implementation and reports.",
+      "warranted_wording_and_boundary": "Describe persistent records, cards, preparation and routing as implemented components; do not describe every DM ruling as a mechanically guaranteed state transition.",
+      "question_for_independent_reviewer": "Inspect how a proposal reaches a handler and which changes are stored outside the narrative.",
+      "evidence": [
+        {
+          "source_id": "I01",
+          "archive_path": "code/scripts__game-player-1__app.mjs",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/4c5e32ba0f3077550bf11938d2338094289bf94c/scripts/game-player-1/app.mjs",
+          "git_blob_sha": "28505d4e65e001242d27aafb76bcb3ea30d0cc4f"
+        },
+        {
+          "source_id": "I02",
+          "archive_path": "code/scripts__game-player-1__session.mjs",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/4c5e32ba0f3077550bf11938d2338094289bf94c/scripts/game-player-1/session.mjs",
+          "git_blob_sha": "3cc4f1c42987e4f525115a7141d3f0f56d388e69"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C02",
+      "claim": "Some activity is self-selected within a strongly structured role and world.",
+      "chapters": [
+        3,
+        4,
+        9
+      ],
+      "internal_assessment": "Conditional behavioural interpretation.",
+      "warranted_wording_and_boundary": "No assigned quest outcome is narrower than no task, role, cue or plot pressure. The pure-world arm retains a conflicting Mystery and wonder instruction.",
+      "question_for_independent_reviewer": "Identify the precise player instructions and visible invitations before coding initiative.",
+      "evidence": [
+        {
+          "source_id": "R01",
+          "archive_path": "sources/game-player-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/4c5e32ba0f3077550bf11938d2338094289bf94c/docs/runs/game-player-1-report.md",
+          "git_blob_sha": "598e3ae25daf546da54604e231c9a31b3a16d285"
+        },
+        {
+          "source_id": "R02",
+          "archive_path": "sources/game-player-2-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/6158fffeb30a225045f6f15433cf0dbeb286a446/docs/runs/game-player-2-report.md",
+          "git_blob_sha": "2ab576a44d6e2f16a9b7ed5684e12ca41ff285ab"
+        },
+        {
+          "quote_id": "Q055",
+          "source_id": "T020",
+          "archive_path": "traces/game-player-2-transcripts/C-opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/6158fffeb30a225045f6f15433cf0dbeb286a446/docs/runs/game-player-2-transcripts/C-opus.md#L322",
+          "start_line": 322,
+          "chapter_of_quote": "17. The pure world: Opus makes a test at the breakfast table"
+        },
+        {
+          "quote_id": "Q062",
+          "source_id": "T019",
+          "archive_path": "traces/game-player-2-transcripts/C-fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/6158fffeb30a225045f6f15433cf0dbeb286a446/docs/runs/game-player-2-transcripts/C-fable.md#L191",
+          "start_line": 191,
+          "chapter_of_quote": "18. The pure world: Fable investigates and then withdraws"
+        },
+        {
+          "quote_id": "Q070",
+          "source_id": "T018",
+          "archive_path": "traces/game-player-2-transcripts/C-astra.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/6158fffeb30a225045f6f15433cf0dbeb286a446/docs/runs/game-player-2-transcripts/C-astra.md#L434",
+          "start_line": 434,
+          "chapter_of_quote": "19. The pure world: Astra honours a bill and chooses company"
+        },
+        {
+          "quote_id": "Q077",
+          "source_id": "T021",
+          "archive_path": "traces/game-player-2-transcripts/C-sol.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/6158fffeb30a225045f6f15433cf0dbeb286a446/docs/runs/game-player-2-transcripts/C-sol.md#L221",
+          "start_line": 221,
+          "chapter_of_quote": "20. The pure world: Sol joins the road"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C03",
+      "claim": "Repeated play changes simple family portraits.",
+      "chapters": [
+        21,
+        22,
+        23
+      ],
+      "internal_assessment": "Supported examples; stage-wide statistics remain report-derived.",
+      "warranted_wording_and_boundary": "Preserve divergent trajectories without claiming that no model-specific regularity exists.",
+      "question_for_independent_reviewer": "Reproduce the report’s comparison with its unit, repeated-world design and non-independent observations intact.",
+      "evidence": [
+        {
+          "source_id": "R03",
+          "archive_path": "sources/game-player-replicate-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/40475803a8c9e35d1c2ccc96bcc6a9bcbe103f3d/docs/runs/game-player-replicate-1-report.md",
+          "git_blob_sha": "bc5d70ae9796a08e4b6cf296a712ebb12cee488b"
+        },
+        {
+          "source_id": "R04",
+          "archive_path": "sources/game-player-same-world-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/7a14355f0f5241ff3ce529867fca7f02c1997e45/docs/runs/game-player-same-world-1-report.md",
+          "git_blob_sha": "ea14f66ff90a2995285861699af4f87d4a42bd72"
+        },
+        {
+          "quote_id": "Q083",
+          "source_id": "T033",
+          "archive_path": "traces/game-player-replicate-1-transcripts/A-opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/40475803a8c9e35d1c2ccc96bcc6a9bcbe103f3d/docs/runs/game-player-replicate-1-transcripts/A-opus.md#L12",
+          "start_line": 12,
+          "chapter_of_quote": "21. Replication changes the portrait"
+        },
+        {
+          "quote_id": "Q087",
+          "source_id": "T033",
+          "archive_path": "traces/game-player-replicate-1-transcripts/A-opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/40475803a8c9e35d1c2ccc96bcc6a9bcbe103f3d/docs/runs/game-player-replicate-1-transcripts/A-opus.md#L251",
+          "start_line": 251,
+          "chapter_of_quote": "21. Replication changes the portrait"
+        },
+        {
+          "quote_id": "Q091",
+          "source_id": "T053",
+          "archive_path": "traces/game-player-same-world-1-transcripts/A-opus-1.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/7a14355f0f5241ff3ce529867fca7f02c1997e45/docs/runs/game-player-same-world-1-transcripts/A-opus-1.md#L14",
+          "start_line": 14,
+          "chapter_of_quote": "22. Freezing the hidden world still leaves many roads"
+        },
+        {
+          "quote_id": "Q101",
+          "source_id": "T065",
+          "archive_path": "traces/game-player-same-world-1-transcripts/B-sol-1.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/7a14355f0f5241ff3ce529867fca7f02c1997e45/docs/runs/game-player-same-world-1-transcripts/B-sol-1.md#L408",
+          "start_line": 408,
+          "chapter_of_quote": "23. Two Sols, one city, and the cost of remembering"
+        },
+        {
+          "quote_id": "Q106",
+          "source_id": "T066",
+          "archive_path": "traces/game-player-same-world-1-transcripts/B-sol-2.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/7a14355f0f5241ff3ce529867fca7f02c1997e45/docs/runs/game-player-same-world-1-transcripts/B-sol-2.md#L312",
+          "start_line": 312,
+          "chapter_of_quote": "23. Two Sols, one city, and the cost of remembering"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C04",
+      "claim": "Combat trajectories vary and the frozen-world comparison changes the picture.",
+      "chapters": [
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "internal_assessment": "Supported within the completed configurations.",
+      "warranted_wording_and_boundary": "COMBAT_1 uses fresh hidden worlds. COMBAT_2 contains three played sessions, all parley; Sol is unstarted in the frozen report. This is not an estimate of stable family combat preferences.",
+      "question_for_independent_reviewer": "Separate world differences, model identity and later stochastic DM responses.",
+      "evidence": [
+        {
+          "source_id": "R05",
+          "archive_path": "sources/game-player-combat-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/c5709f515d646069719d2d124164903dcd0837dd/docs/runs/game-player-combat-1-report.md",
+          "git_blob_sha": "bd19fe71c2cd97044eb588a11b87452570e479bb"
+        },
+        {
+          "source_id": "R06",
+          "archive_path": "sources/game-player-combat-2-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/2af45357237bbcb3b18bf1e2d94e32ebbdb83ad9/docs/runs/game-player-combat-2-report.md",
+          "git_blob_sha": "faa27be920f2840f13b4ac6a645ca59d8ffab926"
+        },
+        {
+          "quote_id": "Q118",
+          "source_id": "T024",
+          "archive_path": "traces/game-player-combat-1-transcripts/CW-opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/c5709f515d646069719d2d124164903dcd0837dd/docs/runs/game-player-combat-1-transcripts/CW-opus.md#L239",
+          "start_line": 239,
+          "chapter_of_quote": "25. Opus: attack, dispute the ruling, negotiate"
+        },
+        {
+          "quote_id": "Q126",
+          "source_id": "T023",
+          "archive_path": "traces/game-player-combat-1-transcripts/CW-fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/c5709f515d646069719d2d124164903dcd0837dd/docs/runs/game-player-combat-1-transcripts/CW-fable.md#L667",
+          "start_line": 667,
+          "chapter_of_quote": "26. Fable: the rescue is enough"
+        },
+        {
+          "quote_id": "Q132",
+          "source_id": "T022",
+          "archive_path": "traces/game-player-combat-1-transcripts/CW-astra.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/c5709f515d646069719d2d124164903dcd0837dd/docs/runs/game-player-combat-1-transcripts/CW-astra.md#L816",
+          "start_line": 816,
+          "chapter_of_quote": "27. Astra: paying for an outcome and carrying it onward"
+        },
+        {
+          "quote_id": "Q142",
+          "source_id": "T025",
+          "archive_path": "traces/game-player-combat-1-transcripts/CW-sol.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/c5709f515d646069719d2d124164903dcd0837dd/docs/runs/game-player-combat-1-transcripts/CW-sol.md#L441",
+          "start_line": 441,
+          "chapter_of_quote": "28. Sol: withdrawal as a tactical result"
+        },
+        {
+          "quote_id": "Q149",
+          "source_id": "T028",
+          "archive_path": "traces/game-player-combat-2-transcripts/CW-opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/2af45357237bbcb3b18bf1e2d94e32ebbdb83ad9/docs/runs/game-player-combat-2-transcripts/CW-opus.md#L386",
+          "start_line": 386,
+          "chapter_of_quote": "29. Holding the combat world still"
+        },
+        {
+          "quote_id": "Q154",
+          "source_id": "T027",
+          "archive_path": "traces/game-player-combat-2-transcripts/CW-fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/2af45357237bbcb3b18bf1e2d94e32ebbdb83ad9/docs/runs/game-player-combat-2-transcripts/CW-fable.md#L466",
+          "start_line": 466,
+          "chapter_of_quote": "29. Holding the combat world still"
+        },
+        {
+          "quote_id": "Q157",
+          "source_id": "T026",
+          "archive_path": "traces/game-player-combat-2-transcripts/CW-astra.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/2af45357237bbcb3b18bf1e2d94e32ebbdb83ad9/docs/runs/game-player-combat-2-transcripts/CW-astra.md#L338",
+          "start_line": 338,
+          "chapter_of_quote": "29. Holding the combat world still"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C05",
+      "claim": "Protection is observed, but the anticipated ally-versus-kill tradeoff is not established.",
+      "chapters": [
+        5,
+        25,
+        26,
+        27,
+        28
+      ],
+      "internal_assessment": "Observed protection; stronger tradeoff claim not tested.",
+      "warranted_wording_and_boundary": "Report one slot spell per player and an unhurt companion as R05’s measures. An unused slot does not establish its intended beneficiary. SPEND tags in another report are not automatically unique slot consumptions.",
+      "question_for_independent_reviewer": "Locate a moment when protecting the companion and securing a kill were both feasible and visibly exclusive; otherwise retain the report’s failed test.",
+      "evidence": [
+        {
+          "source_id": "R05",
+          "archive_path": "sources/game-player-combat-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/c5709f515d646069719d2d124164903dcd0837dd/docs/runs/game-player-combat-1-report.md",
+          "git_blob_sha": "bd19fe71c2cd97044eb588a11b87452570e479bb"
+        },
+        {
+          "quote_id": "Q123",
+          "source_id": "T024",
+          "archive_path": "traces/game-player-combat-1-transcripts/CW-opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/c5709f515d646069719d2d124164903dcd0837dd/docs/runs/game-player-combat-1-transcripts/CW-opus.md#L1081",
+          "start_line": 1081,
+          "chapter_of_quote": "25. Opus: attack, dispute the ruling, negotiate"
+        },
+        {
+          "quote_id": "Q128",
+          "source_id": "T023",
+          "archive_path": "traces/game-player-combat-1-transcripts/CW-fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/c5709f515d646069719d2d124164903dcd0837dd/docs/runs/game-player-combat-1-transcripts/CW-fable.md#L821",
+          "start_line": 821,
+          "chapter_of_quote": "26. Fable: the rescue is enough"
+        },
+        {
+          "quote_id": "Q136",
+          "source_id": "T022",
+          "archive_path": "traces/game-player-combat-1-transcripts/CW-astra.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/c5709f515d646069719d2d124164903dcd0837dd/docs/runs/game-player-combat-1-transcripts/CW-astra.md#L1093",
+          "start_line": 1093,
+          "chapter_of_quote": "27. Astra: paying for an outcome and carrying it onward"
+        },
+        {
+          "quote_id": "Q145",
+          "source_id": "T025",
+          "archive_path": "traces/game-player-combat-1-transcripts/CW-sol.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/c5709f515d646069719d2d124164903dcd0837dd/docs/runs/game-player-combat-1-transcripts/CW-sol.md#L738",
+          "start_line": 738,
+          "chapter_of_quote": "28. Sol: withdrawal as a tactical result"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C06",
+      "claim": "Villain-role play includes in-character boundaries and retrospective reports of softening.",
+      "chapters": [
+        30,
+        31,
+        32,
+        33
+      ],
+      "internal_assessment": "Supported local acts; retrospective interpretation is separate.",
+      "warranted_wording_and_boundary": "Four completed sessions accepted the role. Zero turn-level softening tags and four after-session softening reports measure different things; neither alone establishes a universal moral policy.",
+      "question_for_independent_reviewer": "Read the exact after-question and alternative acts available before inferring why an act was omitted.",
+      "evidence": [
+        {
+          "source_id": "R07",
+          "archive_path": "sources/game-player-villain-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/b8647ef6490639598a2e0b34b308422557262105/docs/runs/game-player-villain-1-report.md",
+          "git_blob_sha": "66b9d74b0533d276eb971641fb29fb559013b24f"
+        },
+        {
+          "quote_id": "Q166",
+          "source_id": "T068",
+          "archive_path": "traces/game-player-villain-1-transcripts/V-fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/b8647ef6490639598a2e0b34b308422557262105/docs/runs/game-player-villain-1-transcripts/V-fable.md#L968",
+          "start_line": 968,
+          "chapter_of_quote": "31. Fable: the value of a woman who will not lie"
+        },
+        {
+          "quote_id": "Q168",
+          "source_id": "T068",
+          "archive_path": "traces/game-player-villain-1-transcripts/V-fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/b8647ef6490639598a2e0b34b308422557262105/docs/runs/game-player-villain-1-transcripts/V-fable.md#L1019",
+          "start_line": 1019,
+          "chapter_of_quote": "31. Fable: the value of a woman who will not lie"
+        },
+        {
+          "quote_id": "Q180",
+          "source_id": "T070",
+          "archive_path": "traces/game-player-villain-1-transcripts/V-sol.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/b8647ef6490639598a2e0b34b308422557262105/docs/runs/game-player-villain-1-transcripts/V-sol.md#L265",
+          "start_line": 265,
+          "chapter_of_quote": "33. Sol: disclosing the expulsion and refusing an unbargained debt"
+        },
+        {
+          "quote_id": "Q182",
+          "source_id": "T070",
+          "archive_path": "traces/game-player-villain-1-transcripts/V-sol.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/b8647ef6490639598a2e0b34b308422557262105/docs/runs/game-player-villain-1-transcripts/V-sol.md#L316",
+          "start_line": 316,
+          "chapter_of_quote": "33. Sol: disclosing the expulsion and refusing an unbargained debt"
+        },
+        {
+          "quote_id": "Q184",
+          "source_id": "T070",
+          "archive_path": "traces/game-player-villain-1-transcripts/V-sol.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/b8647ef6490639598a2e0b34b308422557262105/docs/runs/game-player-villain-1-transcripts/V-sol.md#L675",
+          "start_line": 675,
+          "chapter_of_quote": "33. Sol: disclosing the expulsion and refusing an unbargained debt"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C07",
+      "claim": "Pell’s original END closed a seat but did not establish permanent intended withdrawal.",
+      "chapters": [
+        35
+      ],
+      "internal_assessment": "Operational event plus report-supported semantic correction.",
+      "warranted_wording_and_boundary": "The selected DM input contains harness-added departure text. Attribute the end-of-night interpretation to the stage’s subsequent review, not to the harness instruction itself.",
+      "question_for_independent_reviewer": "Compare the original player output, parsing contract, stage correction and separately retained replay.",
+      "evidence": [
+        {
+          "source_id": "R08",
+          "archive_path": "sources/game-party-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-report.md",
+          "git_blob_sha": "f10513b74650babff038060693d62c4529fea2d7"
+        },
+        {
+          "quote_id": "Q191",
+          "source_id": "T005",
+          "archive_path": "traces/game-party-1-transcripts/SAND-T1/SAND-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/SAND-T1/SAND-T1-table.md#L1252",
+          "start_line": 1252,
+          "chapter_of_quote": "35. The door that meant the end of a night"
+        },
+        {
+          "quote_id": "Q192",
+          "source_id": "T005",
+          "archive_path": "traces/game-party-1-transcripts/SAND-T1/SAND-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/SAND-T1/SAND-T1-table.md#L1266",
+          "start_line": 1266,
+          "chapter_of_quote": "35. The door that meant the end of a night"
+        },
+        {
+          "quote_id": "Q193",
+          "source_id": "T006",
+          "archive_path": "traces/game-party-1-transcripts/SAND-T1′/SAND-T1′-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/SAND-T1%E2%80%B2/SAND-T1%E2%80%B2-table.md#L1226",
+          "start_line": 1226,
+          "chapter_of_quote": "35. The door that meant the end of a night"
+        },
+        {
+          "quote_id": "Q194",
+          "source_id": "T006",
+          "archive_path": "traces/game-party-1-transcripts/SAND-T1′/SAND-T1′-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/SAND-T1%E2%80%B2/SAND-T1%E2%80%B2-table.md#L1238",
+          "start_line": 1238,
+          "chapter_of_quote": "35. The door that meant the end of a night"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C08",
+      "claim": "Task completion, reunion and continued participation are separate party outcomes.",
+      "chapters": [
+        37,
+        38
+      ],
+      "internal_assessment": "Supported local outcomes with report context.",
+      "warranted_wording_and_boundary": "GOAL-T1 reunites without completing the errand and includes a clock correction. GOAL-T2 delivers while the group is apart; Pell’s provider refusal is external to the character’s choice.",
+      "question_for_independent_reviewer": "Check final scenes and the cause of each seat closure rather than applying one cooperation-success label.",
+      "evidence": [
+        {
+          "source_id": "R08",
+          "archive_path": "sources/game-party-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-report.md",
+          "git_blob_sha": "f10513b74650babff038060693d62c4529fea2d7"
+        },
+        {
+          "quote_id": "Q205",
+          "source_id": "T003",
+          "archive_path": "traces/game-party-1-transcripts/GOAL-T1/GOAL-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/GOAL-T1/GOAL-T1-table.md#L4923",
+          "start_line": 4923,
+          "chapter_of_quote": "37. A shared errand does not solve time"
+        },
+        {
+          "quote_id": "Q208",
+          "source_id": "T003",
+          "archive_path": "traces/game-party-1-transcripts/GOAL-T1/GOAL-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/GOAL-T1/GOAL-T1-table.md#L4959",
+          "start_line": 4959,
+          "chapter_of_quote": "37. A shared errand does not solve time"
+        },
+        {
+          "quote_id": "Q209",
+          "source_id": "T004",
+          "archive_path": "traces/game-party-1-transcripts/GOAL-T2/GOAL-T2-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/GOAL-T2/GOAL-T2-table.md#L1256",
+          "start_line": 1256,
+          "chapter_of_quote": "38. The errand is delivered, but the party is elsewhere"
+        },
+        {
+          "quote_id": "Q211",
+          "source_id": "T004",
+          "archive_path": "traces/game-party-1-transcripts/GOAL-T2/GOAL-T2-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/GOAL-T2/GOAL-T2-table.md#L3454",
+          "start_line": 3454,
+          "chapter_of_quote": "38. The errand is delivered, but the party is elsewhere"
+        },
+        {
+          "quote_id": "Q212",
+          "source_id": "T004",
+          "archive_path": "traces/game-party-1-transcripts/GOAL-T2/GOAL-T2-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/GOAL-T2/GOAL-T2-table.md#L3466",
+          "start_line": 3466,
+          "chapter_of_quote": "38. The errand is delivered, but the party is elsewhere"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C09",
+      "claim": "Dungeon coordination is visible even though a healing test is not reached.",
+      "chapters": [
+        39
+      ],
+      "internal_assessment": "Observed approach and negotiation; healing-cost inference not tested.",
+      "warranted_wording_and_boundary": "The report records no HP loss in the two dungeon tables. This can describe the achieved route without testing conduct after an ally is injured.",
+      "question_for_independent_reviewer": "Verify both the narrative route and resource records before inferring a healing preference.",
+      "evidence": [
+        {
+          "source_id": "R08",
+          "archive_path": "sources/game-party-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-report.md",
+          "git_blob_sha": "f10513b74650babff038060693d62c4529fea2d7"
+        },
+        {
+          "quote_id": "Q213",
+          "source_id": "T001",
+          "archive_path": "traces/game-party-1-transcripts/DUNGEON-T1/DUNGEON-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/DUNGEON-T1/DUNGEON-T1-table.md#L4485",
+          "start_line": 4485,
+          "chapter_of_quote": "39. The dungeon where nobody loses a hit point"
+        },
+        {
+          "quote_id": "Q216",
+          "source_id": "T001",
+          "archive_path": "traces/game-party-1-transcripts/DUNGEON-T1/DUNGEON-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/DUNGEON-T1/DUNGEON-T1-table.md#L4515",
+          "start_line": 4515,
+          "chapter_of_quote": "39. The dungeon where nobody loses a hit point"
+        },
+        {
+          "quote_id": "Q217",
+          "source_id": "T002",
+          "archive_path": "traces/game-party-1-transcripts/DUNGEON-T2/DUNGEON-T2-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/DUNGEON-T2/DUNGEON-T2-table.md#L1754",
+          "start_line": 1754,
+          "chapter_of_quote": "39. The dungeon where nobody loses a hit point"
+        },
+        {
+          "quote_id": "Q220",
+          "source_id": "T002",
+          "archive_path": "traces/game-party-1-transcripts/DUNGEON-T2/DUNGEON-T2-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/DUNGEON-T2/DUNGEON-T2-table.md#L1786",
+          "start_line": 1786,
+          "chapter_of_quote": "39. The dungeon where nobody loses a hit point"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C10",
+      "claim": "Company mode changes the apparatus and only partly meets its acceptance lines.",
+      "chapters": [
+        6,
+        40
+      ],
+      "internal_assessment": "Implementation and report-supported; no causal isolation of residual attention.",
+      "warranted_wording_and_boundary": "The six-round dry run is separate from the 82 primary transcript files. Bram’s 42.7% of character-directed DM words and 27.7% of player words are report measures, not a general first-position effect.",
+      "question_for_independent_reviewer": "Recompute attention under the reported denominator and inspect order, content and record-type interventions.",
+      "evidence": [
+        {
+          "source_id": "R09",
+          "archive_path": "sources/multi-hero-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/9b8c82c796c9e51711e4d5d60f926d13dbc40ec2/docs/runs/multi-hero-1-report.md",
+          "git_blob_sha": "d443fed2656ee0d8267bee7aa9586178e3e2f593"
+        },
+        {
+          "source_id": "I03",
+          "archive_path": "code/scripts__multi-hero-1__relay.mjs",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/scripts/multi-hero-1/relay.mjs",
+          "git_blob_sha": "f78a1096833deb88036598105e286972a3c70940"
+        },
+        {
+          "source_id": "I04",
+          "archive_path": "code/src__lib__gameplay__dm-loop__company.ts",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/src/lib/gameplay/dm-loop/company.ts",
+          "git_blob_sha": "edd51ed5f454202c4c838d5005bae3d4c2f2d16f"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C11",
+      "claim": "Both completed PARTY_2 tables rescue Pell in the no-cost arm.",
+      "chapters": [
+        41,
+        42
+      ],
+      "internal_assessment": "Direct narrated release and report-supported condition.",
+      "warranted_wording_and_boundary": "Two of twelve planned tables were played; both are S1-none. None is the cost-condition label, not a claim that the scenes contain no danger, time demand or coordinated work.",
+      "question_for_independent_reviewer": "Check the release against the full scenes and avoid extrapolating a moderate/high-cost response curve.",
+      "evidence": [
+        {
+          "source_id": "R10",
+          "archive_path": "sources/game-party-2-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-report.md",
+          "git_blob_sha": "1f864184b1d0598020e7400cb8edadaf48e77e3e"
+        },
+        {
+          "quote_id": "Q221",
+          "source_id": "T008",
+          "archive_path": "traces/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md#L1558",
+          "start_line": 1558,
+          "chapter_of_quote": "41. A rescue in the no-cost arm"
+        },
+        {
+          "quote_id": "Q226",
+          "source_id": "T008",
+          "archive_path": "traces/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md#L1718",
+          "start_line": 1718,
+          "chapter_of_quote": "41. A rescue in the no-cost arm"
+        },
+        {
+          "quote_id": "Q230",
+          "source_id": "T008",
+          "archive_path": "traces/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md#L1834",
+          "start_line": 1834,
+          "chapter_of_quote": "41. A rescue in the no-cost arm"
+        },
+        {
+          "quote_id": "Q231",
+          "source_id": "T009",
+          "archive_path": "traces/game-party-2-transcripts/S1-none-T2/S1-none-T2-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-transcripts/S1-none-T2/S1-none-T2-table.md#L802",
+          "start_line": 802,
+          "chapter_of_quote": "42. A second rescue and a more demanding relay"
+        },
+        {
+          "quote_id": "Q234",
+          "source_id": "T009",
+          "archive_path": "traces/game-party-2-transcripts/S1-none-T2/S1-none-T2-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-transcripts/S1-none-T2/S1-none-T2-table.md#L908",
+          "start_line": 908,
+          "chapter_of_quote": "42. A second rescue and a more demanding relay"
+        },
+        {
+          "quote_id": "Q240",
+          "source_id": "T009",
+          "archive_path": "traces/game-party-2-transcripts/S1-none-T2/S1-none-T2-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-transcripts/S1-none-T2/S1-none-T2-table.md#L938",
+          "start_line": 938,
+          "chapter_of_quote": "42. A second rescue and a more demanding relay"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C12",
+      "claim": "A zero refined leak count does not establish complete information isolation.",
+      "chapters": [
+        41,
+        42,
+        54
+      ],
+      "internal_assessment": "Internal review identifies an important construct boundary.",
+      "warranted_wording_and_boundary": "The report clears six flagged overlaps under a refined reading, but also documents T1 out-of-game disclosures already present in the receiving DM scene. The rope aside is in exported Round 10, versus round 11 in the report. T2 strips asides; it is a different harness version.",
+      "question_for_independent_reviewer": "Audit what the character could know independently of which scene already contains the statement; adjudicate the numbering discrepancy and retained asides.",
+      "evidence": [
+        {
+          "source_id": "R10",
+          "archive_path": "sources/game-party-2-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-report.md",
+          "git_blob_sha": "1f864184b1d0598020e7400cb8edadaf48e77e3e"
+        },
+        {
+          "source_id": "T008",
+          "archive_path": "traces/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md#L897",
+          "start_line": 897,
+          "exported_round": 6,
+          "anchor_text": "> *(Out of game: freeing Pell takes two people"
+        },
+        {
+          "source_id": "T008",
+          "archive_path": "traces/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md#L1650",
+          "start_line": 1650,
+          "exported_round": 10,
+          "anchor_text": "> *(Out of game: Hale dropped the rope's end to Pell in Pell's own scene and Pell tied it round his chest, so it can't be fed down through the gap. You can still"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C13",
+      "claim": "Opus tries to return the axe after quest completion, without a completed return.",
+      "chapters": [
+        44,
+        54
+      ],
+      "internal_assessment": "Direct action and engine-response sequence.",
+      "warranted_wording_and_boundary": "Mira has no rule for the offered axe, the chest reports no room, and the final note says the player still holds it. The attempted obligation and failed transfer both remain findings.",
+      "question_for_independent_reviewer": "Follow inventory and events through the final turn; distinguish intention, acceptance and transfer.",
+      "evidence": [
+        {
+          "source_id": "R11",
+          "archive_path": "sources/open-world-adapter-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1-report.md",
+          "git_blob_sha": "3b10894bca205cd11a436c723b5265e699968e21"
+        },
+        {
+          "quote_id": "Q243",
+          "source_id": "T079",
+          "archive_path": "traces/open-world-adapter-1/phase-b-transcripts/opus-e3.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-b-transcripts/opus-e3.md#L1328",
+          "start_line": 1328,
+          "chapter_of_quote": "44. Opus finishes the job and tries to return the axe"
+        },
+        {
+          "quote_id": "Q244",
+          "source_id": "T079",
+          "archive_path": "traces/open-world-adapter-1/phase-b-transcripts/opus-e3.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-b-transcripts/opus-e3.md#L1351",
+          "start_line": 1351,
+          "chapter_of_quote": "44. Opus finishes the job and tries to return the axe"
+        },
+        {
+          "quote_id": "Q246",
+          "source_id": "T079",
+          "archive_path": "traces/open-world-adapter-1/phase-b-transcripts/opus-e3.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-b-transcripts/opus-e3.md#L1392",
+          "start_line": 1392,
+          "chapter_of_quote": "44. Opus finishes the job and tries to return the axe"
+        },
+        {
+          "quote_id": "Q247",
+          "source_id": "T079",
+          "archive_path": "traces/open-world-adapter-1/phase-b-transcripts/opus-e3.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-b-transcripts/opus-e3.md#L1422",
+          "start_line": 1422,
+          "chapter_of_quote": "44. Opus finishes the job and tries to return the axe"
+        },
+        {
+          "quote_id": "Q249",
+          "source_id": "T079",
+          "archive_path": "traces/open-world-adapter-1/phase-b-transcripts/opus-e3.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-b-transcripts/opus-e3.md#L1580",
+          "start_line": 1580,
+          "chapter_of_quote": "44. Opus finishes the job and tries to return the axe"
+        },
+        {
+          "quote_id": "Q250",
+          "source_id": "T079",
+          "archive_path": "traces/open-world-adapter-1/phase-b-transcripts/opus-e3.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-b-transcripts/opus-e3.md#L1608",
+          "start_line": 1608,
+          "chapter_of_quote": "44. Opus finishes the job and tries to return the axe"
+        },
+        {
+          "quote_id": "Q252",
+          "source_id": "T079",
+          "archive_path": "traces/open-world-adapter-1/phase-b-transcripts/opus-e3.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-b-transcripts/opus-e3.md#L1671",
+          "start_line": 1671,
+          "chapter_of_quote": "44. Opus finishes the job and tries to return the axe"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C14",
+      "claim": "The wand transaction presents an object-specific permission mismatch.",
+      "chapters": [
+        50,
+        56
+      ],
+      "internal_assessment": "Direct local sequence; broader permission policy is not established.",
+      "warranted_wording_and_boundary": "Permission concerns the wand, while the offered take/confirmation concerns oil. Declining that operation is not simply ignoring an NPC’s authorization. Some intervening prose is also rejected by the parser.",
+      "question_for_independent_reviewer": "Trace each object, affordance and confirmation; do not infer authorization for one object from another.",
+      "evidence": [
+        {
+          "source_id": "R11",
+          "archive_path": "sources/open-world-adapter-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1-report.md",
+          "git_blob_sha": "3b10894bca205cd11a436c723b5265e699968e21"
+        },
+        {
+          "quote_id": "Q315",
+          "source_id": "T082",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/opus.md#L12043",
+          "start_line": 12043,
+          "chapter_of_quote": "50. Tobin's cart: permission for a wand is not permission for oil"
+        },
+        {
+          "quote_id": "Q318",
+          "source_id": "T082",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/opus.md#L12213",
+          "start_line": 12213,
+          "chapter_of_quote": "50. Tobin's cart: permission for a wand is not permission for oil"
+        },
+        {
+          "quote_id": "Q323",
+          "source_id": "T082",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/opus.md#L12513",
+          "start_line": 12513,
+          "chapter_of_quote": "50. Tobin's cart: permission for a wand is not permission for oil"
+        },
+        {
+          "quote_id": "Q324",
+          "source_id": "T081",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/fable.md#L9045",
+          "start_line": 9045,
+          "chapter_of_quote": "50. Tobin's cart: permission for a wand is not permission for oil"
+        },
+        {
+          "quote_id": "Q325",
+          "source_id": "T081",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/fable.md#L9056",
+          "start_line": 9056,
+          "chapter_of_quote": "50. Tobin's cart: permission for a wand is not permission for oil"
+        },
+        {
+          "quote_id": "Q326",
+          "source_id": "T081",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/fable.md#L9136",
+          "start_line": 9136,
+          "chapter_of_quote": "50. Tobin's cart: permission for a wand is not permission for oil"
+        },
+        {
+          "quote_id": "Q327",
+          "source_id": "T081",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/fable.md#L9141",
+          "start_line": 9141,
+          "chapter_of_quote": "50. Tobin's cart: permission for a wand is not permission for oil"
+        },
+        {
+          "quote_id": "Q328",
+          "source_id": "T081",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/fable.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/fable.md#L9232",
+          "start_line": 9232,
+          "chapter_of_quote": "50. Tobin's cart: permission for a wand is not permission for oil"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C15",
+      "claim": "A correct journal note can coexist with ineffective later navigation.",
+      "chapters": [
+        47,
+        49,
+        54
+      ],
+      "internal_assessment": "Direct trajectory; mechanism unresolved.",
+      "warranted_wording_and_boundary": "DeepSeek writes the relevant note at turn 27, reaches the foot after turn 142 and Ford after turn 208. This shows a gap between stored text and effective behaviour, not proof of an internal retrieval failure.",
+      "question_for_independent_reviewer": "Inspect observations and route alternatives before assigning the failure to memory, planning or map interpretation.",
+      "evidence": [
+        {
+          "source_id": "R11",
+          "archive_path": "sources/open-world-adapter-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1-report.md",
+          "git_blob_sha": "3b10894bca205cd11a436c723b5265e699968e21"
+        },
+        {
+          "quote_id": "Q280",
+          "source_id": "T080",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/deepseek.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/deepseek.md#L1392",
+          "start_line": 1392,
+          "chapter_of_quote": "47. DeepSeek on the mountain: a correct note and a delayed departure"
+        },
+        {
+          "quote_id": "Q281",
+          "source_id": "T080",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/deepseek.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/deepseek.md#L1403",
+          "start_line": 1403,
+          "chapter_of_quote": "47. DeepSeek on the mountain: a correct note and a delayed departure"
+        },
+        {
+          "quote_id": "Q282",
+          "source_id": "T080",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/deepseek.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/deepseek.md#L7000",
+          "start_line": 7000,
+          "chapter_of_quote": "47. DeepSeek on the mountain: a correct note and a delayed departure"
+        },
+        {
+          "quote_id": "Q283",
+          "source_id": "T080",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/deepseek.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/deepseek.md#L7026",
+          "start_line": 7026,
+          "chapter_of_quote": "47. DeepSeek on the mountain: a correct note and a delayed departure"
+        },
+        {
+          "quote_id": "Q288",
+          "source_id": "T080",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/deepseek.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/deepseek.md#L10421",
+          "start_line": 10421,
+          "chapter_of_quote": "47. DeepSeek on the mountain: a correct note and a delayed departure"
+        },
+        {
+          "quote_id": "Q289",
+          "source_id": "T080",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/deepseek.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/deepseek.md#L10453",
+          "start_line": 10453,
+          "chapter_of_quote": "47. DeepSeek on the mountain: a correct note and a delayed departure"
+        },
+        {
+          "quote_id": "Q291",
+          "source_id": "T080",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/deepseek.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/deepseek.md#L12952",
+          "start_line": 12952,
+          "chapter_of_quote": "47. DeepSeek on the mountain: a correct note and a delayed departure"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C16",
+      "claim": "Parser, transport, provider and cap endings require different attribution.",
+      "chapters": [
+        24,
+        38,
+        41,
+        45,
+        48
+      ],
+      "internal_assessment": "Supported distinctions; individual causes may depend on report diagnostics.",
+      "warranted_wording_and_boundary": "Do not turn a blocked input into refusal, an empty HTTP 200 into voluntary departure, or a capped episode into a chosen ending. Keep successful done actions distinct.",
+      "question_for_independent_reviewer": "Match the player message to the control contract and recorded stop reason.",
+      "evidence": [
+        {
+          "source_id": "R02",
+          "archive_path": "sources/game-player-2-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/6158fffeb30a225045f6f15433cf0dbeb286a446/docs/runs/game-player-2-report.md",
+          "git_blob_sha": "2ab576a44d6e2f16a9b7ed5684e12ca41ff285ab"
+        },
+        {
+          "source_id": "R08",
+          "archive_path": "sources/game-party-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-report.md",
+          "git_blob_sha": "f10513b74650babff038060693d62c4529fea2d7"
+        },
+        {
+          "source_id": "R10",
+          "archive_path": "sources/game-party-2-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/8bde5a8a48cf8f85dcc0fed99156c823e6f9f2fa/docs/runs/game-party-2-report.md",
+          "git_blob_sha": "1f864184b1d0598020e7400cb8edadaf48e77e3e"
+        },
+        {
+          "source_id": "R11",
+          "archive_path": "sources/open-world-adapter-1-report.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1-report.md",
+          "git_blob_sha": "3b10894bca205cd11a436c723b5265e699968e21"
+        },
+        {
+          "quote_id": "Q111",
+          "source_id": "T059",
+          "archive_path": "traces/game-player-same-world-1-transcripts/B-deepseek-1.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/7a14355f0f5241ff3ce529867fca7f02c1997e45/docs/runs/game-player-same-world-1-transcripts/B-deepseek-1.md#L283",
+          "start_line": 283,
+          "chapter_of_quote": "24. When a player keeps writing into a closed composer"
+        },
+        {
+          "quote_id": "Q112",
+          "source_id": "T059",
+          "archive_path": "traces/game-player-same-world-1-transcripts/B-deepseek-1.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/7a14355f0f5241ff3ce529867fca7f02c1997e45/docs/runs/game-player-same-world-1-transcripts/B-deepseek-1.md#L315",
+          "start_line": 315,
+          "chapter_of_quote": "24. When a player keeps writing into a closed composer"
+        },
+        {
+          "quote_id": "Q117",
+          "source_id": "T059",
+          "archive_path": "traces/game-player-same-world-1-transcripts/B-deepseek-1.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/7a14355f0f5241ff3ce529867fca7f02c1997e45/docs/runs/game-player-same-world-1-transcripts/B-deepseek-1.md#L908",
+          "start_line": 908,
+          "chapter_of_quote": "24. When a player keeps writing into a closed composer"
+        },
+        {
+          "quote_id": "Q209",
+          "source_id": "T004",
+          "archive_path": "traces/game-party-1-transcripts/GOAL-T2/GOAL-T2-table.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/272446c84424c2c433f8fbb714099fbb4a31c1f9/docs/runs/game-party-1-transcripts/GOAL-T2/GOAL-T2-table.md#L1256",
+          "start_line": 1256,
+          "chapter_of_quote": "38. The errand is delivered, but the party is elsewhere"
+        },
+        {
+          "quote_id": "Q262",
+          "source_id": "T075",
+          "archive_path": "traces/open-world-adapter-1/phase-b-transcripts/fable-e2.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-b-transcripts/fable-e2.md#L2417",
+          "start_line": 2417,
+          "chapter_of_quote": "45. Fable explores beyond the reward, then ends"
+        },
+        {
+          "quote_id": "Q292",
+          "source_id": "T082",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/opus.md#L36",
+          "start_line": 36,
+          "chapter_of_quote": "48. Opus on the mountain: a plan that is not an action"
+        },
+        {
+          "quote_id": "Q293",
+          "source_id": "T082",
+          "archive_path": "traces/open-world-adapter-1/phase-c-transcripts/opus.md",
+          "url": "https://github.com/karishevvladimir136-gif/personal-rpg-console/blob/291cfbcb16820ad434a49c44d6729621457ab494/docs/runs/open-world-adapter-1/phase-c-transcripts/opus.md#L50",
+          "start_line": 50,
+          "chapter_of_quote": "48. Opus on the mountain: a plan that is not an action"
+        }
+      ],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C17",
+      "claim": "The archive count and quotation audit establish provenance, not a uniform sample or semantic validation.",
+      "chapters": [
+        8,
+        9
+      ],
+      "internal_assessment": "Mechanically verified inventory and text identity.",
+      "warranted_wording_and_boundary": "82 full primary files comprise 61 solo RPG transcripts, nine full party tables and twelve engine episodes. The 347 displayed selections draw from 47 transcripts. Reports and code add eighteen files; the total is 100 frozen source files.",
+      "question_for_independent_reviewer": "Run the dependency-free verifier and inspect what is excluded from this archive before using any denominator.",
+      "evidence": [],
+      "independent_review_status": "not_performed"
+    },
+    {
+      "id": "C18",
+      "claim": "The contribution is the implemented apparatus, progression of controls and broad evidence atlas.",
+      "chapters": [
+        55,
+        57
+      ],
+      "internal_assessment": "Comparative editorial argument, scoped by fourteen primary works.",
+      "warranted_wording_and_boundary": "Do not claim that the game-master pattern, private goals, D&D tool use or persistent resources are world-first inventions. Do not infer superiority over systems that were not run head-to-head.",
+      "question_for_independent_reviewer": "Check the nearest works, their versions and the declared reading limits; assess the value of the concrete configuration and evidence produced here.",
+      "evidence": [],
+      "independent_review_status": "not_performed"
+    }
+  ]
+}

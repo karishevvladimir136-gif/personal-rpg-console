@@ -2,6 +2,8 @@
 
 Expanded working monograph, 14 November 2026.
 
+Publication-preparation revision: fourteen-work related literature review and an internal editorial packet covering eighteen consequential claims. Independent review remains open.
+
 57 numbered chapters; 47 primary transcript files selected for close reading; 82 primary transcript files retained in full. The count is an archive inventory, not a pooled number of comparable completed experiments.
 
 ## Contents
@@ -13,10 +15,15 @@ Expanded working monograph, 14 November 2026.
 - `evidence/quote_audit.json`: all 347 displayed source selections, including exact text, source offsets, labels, hashes, and chapter.
 - `evidence/selection_index.json`: turn/round selections by chapter.
 - `evidence/verification.json`: output of the dependency-free verifier.
+- `evidence/literature_register.json`: fourteen primary works, source URLs, reading scope and access limits.
+- `evidence/editorial_review.md` and `.json`: internal claim review with exact source links and open questions for an independent reviewer.
+- `evidence/publication_verification.json`: checks of those source locations and reference identities.
 - `output/`: the assembled Markdown reading edition.
 - `front.md`, `solo.md`, `party.md`, `engine.md`, `back.md`: editorial source with extraction directives.
 - `build_book.py`: deterministic assembly from the archived source files.
 - `verify_evidence.py`: provenance and quotation checks; run with `python verify_evidence.py`.
+- `verify_publication.py`: reference and review-packet checks; run with `python verify_publication.py`.
+- `related_work.md`, `publication_support.py`: the related-work chapter and builder for its register and review packet.
 - `style_docx.py`, `epub.css`: reading-edition typography. Building DOCX/EPUB additionally requires Pandoc and python-docx; PDF rendering requires LibreOffice or an equivalent Word renderer.
 
 ## Rebuild
@@ -36,3 +43,5 @@ The underlying OpenWorld engine belongs to SihanXU/OpenWorld at revision 19629aa
 The displayed excerpts distinguish player messages, application screens, DM narration, relayed DM inputs, and engine observations. A harness-added departure instruction is not attributed to an autonomous player. A next-turn observation reports the preceding action. Attempted returns, completed transfers, provider stops, voluntary endings, and external caps remain separate.
 
 The checks establish exact file identity and quotation fidelity. They do not validate every claim made by a fictional character, every DM state update, every stage judge label, or every interpretation in the monograph. No private correspondence or personal diary is included.
+
+The internal editorial review explicitly preserves a PARTY_2 disagreement: the rope aside on Bram's screen appears under exported Round 10, while the report calls it round 11. The report's refined zero-leak result is not presented as complete information isolation. T1's visible out-of-game asides and T2's later stripping change are documented together. Historical source files are not edited to reconcile them.

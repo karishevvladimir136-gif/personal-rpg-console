@@ -8,6 +8,8 @@
 
 Expanded evidence edition · 14 November 2026
 
+Related-work and editorial-audit revision
+
 Custom RPG harness, private player screens, and enacted choices across two kinds of simulated world
 
 ## A note to the reader

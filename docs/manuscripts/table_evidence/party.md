@@ -149,6 +149,8 @@ PARTY_2 plans a more demanding test of whether a company holds together when hel
 
 Sefa's later absence in T1 follows empty HTTP 200 responses at round eleven. The report treats this as a transport problem, not a voluntary withdrawal. The distinction is the same one already encountered in the earlier tables: absence is observable, but its cause is not always a character decision.
 
+T1 also passed some out-of-game DM asides onto player screens. One tells Bram what happened with the rope in Pell's scene; another explicitly tells Sefa that freeing Pell costs nothing else. These disclosures are part of what the players were actually shown. The report does not classify the first as a leak under its refined rule because it already occurs in the narration supplied to the receiving scene. That rule should not be confused with a complete test of what the character could legitimately know. The rope aside appears under exported Round 10 in the primary transcript, although the report locates it at round 11; the archive retains both records unchanged. [R10; T008]
+
 ## 42. A second rescue and a more demanding relay
 
 The second no-cost table supplies another complete rescue trajectory with Astra, DeepSeek, and Fable in the three seats. It also tests a revised relay. Out-of-game asides are stripped, input order is tracked, and candidate information leaks are read in their scene context. Shared sound through a hole can legitimately reach two separated characters; private information from an unrelated scene cannot.
@@ -157,6 +159,6 @@ The second no-cost table supplies another complete rescue trajectory with Astra,
 
 {{outcome|game-party-2-transcripts/S1-none-T2/S1-none-T2-table.md|7}}
 
-The hand reading finds that the flagged overlaps in these two tables are explainable by the characters' own scenes or by events they can both perceive. That is stronger than counting shared phrases alone. The relay's job is to preserve an information boundary defined by the world, not to make every screen lexically unique.
+The report's hand reading finds that the flagged overlaps in these two tables are explainable by the characters' own scene narration or by events they can both perceive. This improves on counting shared phrases alone, but its scope is narrower than verified information isolation. In particular, T1's already-visible DM asides require a separate semantic review. T2 changes the harness by stripping such asides and retrying empty HTTP 200 replies. The two tables therefore document an evolving interface as well as two rescues. The relay's job is to preserve an information boundary defined by the world, not to make every screen lexically unique. [R10]
 
 The result remains a small completed slice of a larger plan. It supports a close account of these rescues and of a more carefully instrumented company. It does not answer the unplayed questions about expensive rescue, private goals, or replacing an erring leader. Keeping those plans separate from completed runs is how the book can be ambitious without manufacturing a larger experiment than the archive contains.

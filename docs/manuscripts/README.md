@@ -17,12 +17,13 @@
 
 ### 2. LLMs at the Table: What Language Models Do When a Simulated World Can Answer Back
 **Manuscript:** [LLMS_AT_THE_TABLE_WORKING_MONOGRAPH.md](LLMS_AT_THE_TABLE_WORKING_MONOGRAPH.md)  
-**Expanded evidence edition:** 14 November 2026; eight parts, 57 numbered chapters, five appendices, and 47 primary transcripts selected for close reading.  
+**Expanded evidence edition:** 14 November 2026, with a related-work and internal editorial-audit revision; eight parts, 57 numbered chapters, five appendices, and 47 primary transcripts selected for close reading.  
 **Complete archived primary files:** 82 — 61 solo RPG transcripts, nine full party-table transcripts, and twelve OpenWorld episodes. These are heterogeneous units, not a pooled sample of 82 comparable completed experiments. The six-round MULTI_HERO_1 dry run is documented separately through its report and implementation.  
 **Core material:** the real RPG application's player adapter, hidden DM preparation, cards, state and resources; original and pure-world solo sessions; replication and frozen worlds; combat and negotiation; villain-role play; party formation, private screens and company-mode revisions; OpenWorld's starter and the completed long Ford journeys. The external formal engine remains a distinct apparatus and is credited to SihanXU/OpenWorld.  
 **Source audit:** 347 exact selections from 47 primary transcripts. All 82 transcript files, eleven stage reports, and seven selected implementation files match their frozen Git blob hashes. See [the evidence register](table_evidence/README.md), [source manifest](table_evidence/evidence/source_manifest.json), [quotation audit](table_evidence/evidence/quote_audit.json), and [verification](table_evidence/evidence/verification.json).  
 **Principal contribution:** an implemented and instrumented simulation apparatus and a broad account of choices, execution and consequences over time. The book opens with the harness and follows multiple trajectories rather than centring on a few celebrated scenes.  
-**Interpretive scope:** attempted actions remain distinct from executed changes; the axe and tools are not credited as returned without evidence; the wand and oil remain different permission targets; parser exits, provider refusals and caps are separate endings. COMBAT_2 has three completed players; PARTY_2 has only two no-cost tables of twelve planned. A focused primary-source positioning section covers Generative Agents, Concordia, BALROG and RPGBench without claiming unsupported priority.  
+**Interpretive scope:** attempted actions remain distinct from executed changes; the axe and tools are not credited as returned without evidence; the wand and oil remain different permission targets; parser exits, provider refusals and caps are separate endings. COMBAT_2 has three completed players; PARTY_2 has only two no-cost tables of twelve planned. The related-work chapter compares fourteen primary research works, including D&D Agents, DungeonBench, Concordia, RPGBench, FIREBALL and SOTOPIA. Reading scope and access limits are recorded in the [literature register](table_evidence/evidence/literature_register.json).  
+**Internal editorial review:** [eighteen consequential claims](table_evidence/evidence/editorial_review.md), each with evidence and an open question for an independent reviewer. The PARTY_2 zero-leak verdict is explicitly scoped to its refined rule; T1’s visible out-of-game asides and a report/export round-number discrepancy are retained. This packet is not an independent review.
 **Reading editions:** PDF, DOCX, EPUB and Markdown, plus a complete archive of this edition's selected primary files and assembly/verifier scripts.
 
 ## How to read the books together
@@ -44,11 +45,11 @@ Each manuscript contains a source register. For independent review, open the exa
 ## Next editorial checklist
 
 1. Dialogue's 199 quoted text excerpts and one empty-response selection, and Table's 347 source selections, are checked against frozen primary files. Continue independent interpretive review; these mechanical audits do not revalidate every underlying judge label or world-state update.
-2. Expand the literature review beyond Table’s focused primary-source positioning section; compare the relevant simulation, language-game, agent-evaluation and game-engine work.
+2. Table’s related-work review now covers fourteen primary works. Perform a final coverage check for the chosen venue and resolve the declared full-text access limits; Dialogue’s literature review still needs its own expansion.
 3. Human-review ambiguous behavioral codes, especially initiative, moral role, privacy/leakage, and voluntary exit.
 4. Add a reproducibility manifest of exact model IDs, frozen prompt hashes, code commits, dependency versions and released data subsets.
 5. Secure publication and quotation permissions; add author contributions and conflicts-of-interest declarations.
 6. Both monographs now have expanded PDF, DOCX, EPUB and Markdown reading editions with evidence archives. Maintain their separate corpus definitions and publication status.
 
-**Editorial status:** Both are substantial corpus-led working editions with verified excerpt audits and frozen source inventories. Table now includes the completed OpenWorld player episodes. Neither is represented as peer-reviewed or final.
+**Editorial status:** Both are substantial corpus-led working editions with verified excerpt audits and frozen source inventories. Table includes the completed OpenWorld player episodes, fourteen-work positioning and an internal review packet. Neither is represented as peer-reviewed or final.
 
