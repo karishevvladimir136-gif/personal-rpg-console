@@ -1,6 +1,6 @@
 # Research monographs — phase-one evidence atlas
 
-**Working editorial index · updated 13 November 2026**  
+**Working editorial index · updated 14 November 2026**  
 **Research programme:** Исследование  
 **Branch:** `claude/llms-at-the-table-monograph` (independent manuscript branch; no change to `main`)
 
@@ -17,10 +17,13 @@
 
 ### 2. LLMs at the Table: What Language Models Do When a Simulated World Can Answer Back
 **Manuscript:** [LLMS_AT_THE_TABLE_WORKING_MONOGRAPH.md](LLMS_AT_THE_TABLE_WORKING_MONOGRAPH.md)  
-**Working length:** approximately 49,600 characters; seven parts, 23 numbered chapters and three appendices.  
-**Core material:** GAME_PLAYER_1/2/REPLICATE, SAME_WORLD, COMBAT_1/2, VILLAIN_1, GAME_PARTY_1/2, MULTI_HERO_1. OPEN_WORLD_ADAPTER_1 is treated only as a *separate* related apparatus, not pooled with the tabletop data.  
-**Principal contribution:** a source-grounded account of the RPG application as an action-based experimental apparatus: world state, hidden information, actual tool/card execution, bounded resources, single- and multi-agent decisions, and the hazards of mistaking interface failures for model choices.  
-**Interpretive limit:** observable actions in fictional worlds are not proofs of general moral dispositions or autonomous objectives. COMBAT_2 has 3 completed sessions in its archived report; PARTY_2 ran only 2 of 12 planned tables; the source text preserves those boundaries.
+**Expanded evidence edition:** 14 November 2026; eight parts, 57 numbered chapters, five appendices, and 47 primary transcripts selected for close reading.  
+**Complete archived primary files:** 82 — 61 solo RPG transcripts, nine full party-table transcripts, and twelve OpenWorld episodes. These are heterogeneous units, not a pooled sample of 82 comparable completed experiments. The six-round MULTI_HERO_1 dry run is documented separately through its report and implementation.  
+**Core material:** the real RPG application's player adapter, hidden DM preparation, cards, state and resources; original and pure-world solo sessions; replication and frozen worlds; combat and negotiation; villain-role play; party formation, private screens and company-mode revisions; OpenWorld's starter and the completed long Ford journeys. The external formal engine remains a distinct apparatus and is credited to SihanXU/OpenWorld.  
+**Source audit:** 347 exact selections from 47 primary transcripts. All 82 transcript files, eleven stage reports, and seven selected implementation files match their frozen Git blob hashes. See [the evidence register](table_evidence/README.md), [source manifest](table_evidence/evidence/source_manifest.json), [quotation audit](table_evidence/evidence/quote_audit.json), and [verification](table_evidence/evidence/verification.json).  
+**Principal contribution:** an implemented and instrumented simulation apparatus and a broad account of choices, execution and consequences over time. The book opens with the harness and follows multiple trajectories rather than centring on a few celebrated scenes.  
+**Interpretive scope:** attempted actions remain distinct from executed changes; the axe and tools are not credited as returned without evidence; the wand and oil remain different permission targets; parser exits, provider refusals and caps are separate endings. COMBAT_2 has three completed players; PARTY_2 has only two no-cost tables of twelve planned. A focused primary-source positioning section covers Generative Agents, Concordia, BALROG and RPGBench without claiming unsupported priority.  
+**Reading editions:** PDF, DOCX, EPUB and Markdown, plus a complete archive of this edition's selected primary files and assembly/verifier scripts.
 
 ## How to read the books together
 
@@ -40,11 +43,12 @@ Each manuscript contains a source register. For independent review, open the exa
 
 ## Next editorial checklist
 
-1. Dialogue's 199 quoted text excerpts and one empty-response selection are now checked against primary messages with frozen source hashes. Continue independent interpretive review; the Table manuscript retains its separate audit status.
-2. Add formal related-work sections and compare other multi-agent simulation / AI-welfare / language-game literature rather than claiming unverified priority.
+1. Dialogue's 199 quoted text excerpts and one empty-response selection, and Table's 347 source selections, are checked against frozen primary files. Continue independent interpretive review; these mechanical audits do not revalidate every underlying judge label or world-state update.
+2. Expand the literature review beyond Table’s focused primary-source positioning section; compare the relevant simulation, language-game, agent-evaluation and game-engine work.
 3. Human-review ambiguous behavioral codes, especially initiative, moral role, privacy/leakage, and voluntary exit.
 4. Add a reproducibility manifest of exact model IDs, frozen prompt hashes, code commits, dependency versions and released data subsets.
 5. Secure publication and quotation permissions; add author contributions and conflicts-of-interest declarations.
-6. Dialogue has revised PDF, DOCX, EPUB and Markdown reading editions plus a complete public evidence archive. Expand the external literature review and maintain separate publication status for each manuscript.
+6. Both monographs now have expanded PDF, DOCX, EPUB and Markdown reading editions with evidence archives. Maintain their separate corpus definitions and publication status.
 
-**Editorial status:** Dialogue is now a corpus-led working edition with a complete public inventory and a verified excerpt audit. Table remains its separate substantial working draft. Neither is represented here as peer-reviewed or final.
+**Editorial status:** Both are substantial corpus-led working editions with verified excerpt audits and frozen source inventories. Table now includes the completed OpenWorld player episodes. Neither is represented as peer-reviewed or final.
+

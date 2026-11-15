@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "verified_source_files": 100,
+  "primary_transcripts": 82,
+  "reports": 11,
+  "implementation_files": 7,
+  "exact_source_selections": 347,
+  "distinct_selected_transcripts": 47,
+  "numbered_chapters": 57,
+  "scope": "Provenance and exact quotation identity; not an independent reproduction of stage scoring or semantic interpretation."
+}

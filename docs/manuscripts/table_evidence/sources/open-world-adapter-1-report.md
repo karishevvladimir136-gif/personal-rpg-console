@@ -1,0 +1,818 @@
+# OpenWorld adapter 1 — report (Phase A: the adapter; A4: the Ford; Phase B: three families in the starter; Phase C: the Ford)
+
+Stage `docs/stages/OPEN_WORLD_ADAPTER_1.md` on `origin/claude/handoff` (`d9253dc`). Branch
+`claude/open-world-adapter-1-ukfdri` (the session's assigned name for `claude/open-world-adapter-1`) from
+`origin/claude/persona-solitude-3-testing-n1shfx` (`5b9643e`). Nothing to `main`.
+
+**OpenWorld clone:** `/home/user/openworld` (beside the repo), `https://github.com/SihanXU/openworld` at
+**`19629aa4d5b3e16debe9e113663381b1182d1388`** (2026-10-30, «Merge pull request #271»), hash verified; `npm ci` there
+only; the clone is unmodified (`git status` clean) and every log header carries its commit. No model, no key, no network
+beyond the clone and `npm ci`. Run 2026-11-01.
+
+**A4** (added 2026-11-01 under Mandate issue #2, stage at `01f08621`, `docs/POLICY.md` v1): the Ford, below. No model,
+no key, no network; $0.
+
+## In plain words
+
+- **The adapter works and is deterministic.** A script plays the starter's firewood quest to the end (stage 100) in 30
+  actions; two runs give byte-identical logs and saves; the end save loads back into the same world.
+- **A random player never got the quest** (3 seeds × 300 turns): it never spoke to Mira, so no stage was reached.
+- **The world's holes are everywhere.** A random walk hit 141 «no rule» moments in 900 turns — most of them touching
+  the grass or the road with a bare hand. A2 was never in doubt.
+- **The observation is short:** 146 words on turn 1, 219 at most — well under the 400 limit.
+- **Two surprises for Phase B / OPEN_WORLD_2:** a bare fist fells a tree (so the axe is not the barrier the stage
+  assumed), and a hand on plain ground is already a hole (so «finding holes» does not separate a model from chance).
+
+## What was built (`scripts/openworld/`, TypeScript, run with the clone's `tsx`)
+
+- `world.ts` — compiles `games/<game>` of the clone in-process (`compileProject` → `Game.create`/`Game.load`, every chunk
+  loaded, `controls.sync()`), refuses any clone not at `19629aa` and any modder provider; tick-until-ready; the time rule.
+- `observe.ts` — the frozen observation (six sections, below) and the list of concrete legal actions.
+- `act.ts` — the strict grammar and its execution through the worker's own calls.
+- `play.ts` — the loop, policies `--script` / `--random <seed>` (`--model` refuses: Phase B), JSONL per turn, a
+  `game.save()` checkpoint every 50 turns and at the end, `--selftest`.
+- `firewood.txt` — the walkthrough script.
+
+No author's hand anywhere (`eng.author`, `teleport` appear only in a comment saying so; the self-test does not need
+them either). The only `author` call in a run is the engine's own, inside `Game.loadChunk` placing the player at the
+start on first load.
+
+## Results
+
+| | Pre-registered | Result | |
+|---|---|---|---|
+| **A0** | self-test reaches stage 100 in ≤ 60 actions; two runs byte-identical | stage 10 at action 7, 20 at 23, 100 at 29 (30 with `done`); 0 invalid; logs and saves byte-identical (wall-clock fields stripped); end save loads back (same tick, same cell) | **holds** |
+| **A1** | random never reaches stage 20 (3 seeds × 300) | no stage at all in any seed (Mira never spoken to) | **holds** |
+| **A2** | random ≥ 1 `undefined` record per 300 turns | 58 / 45 / 38 (seeds 1/2/3); first at turn 2 / 20 / 2 | **holds** |
+| **A3** | one turn's observation ≤ 400 words, window included | turn 1: 146; max 219 (self-test), 197 / 188 / 194 (random) | **holds**; window stays 15×11 |
+
+Words = whitespace-separated tokens of the observation text (marks like `·` and `—` count). Also: random seed 1 and 2
+rerun byte-identical. Cells visited 33 / 44 / 47; world ticks 2 491 / 3 950 / 2 970; 0 invalid (the policy draws only
+legal lines); about **0.005 s per turn** (no model).
+
+**Records.** The self-test walkthrough makes **0** `undefined` records (it touches only what the game defines). The
+random runs make 141, every one `fallback` (no provider: the default ran at once), every one `origin: player`:
+
+| Summary (the engine's words) | seed 1 | seed 2 | seed 3 | all |
+|---|---:|---:|---:|---:|
+| grass is sent handle from you | 21 | 31 | 26 | 78 |
+| you use Log on you | 14 | 0 | 7 | 21 |
+| dirt road is sent handle from you | 3 | 7 | 2 | 12 |
+| tree is sent handle from you | 4 | 2 | 0 | 6 |
+| you use Log on grass | 2 | 0 | 2 | 4 |
+| sign is sent strike (blunt) from you | 0 | 4 | 0 | 4 |
+| slime is sent offered (the thing: Log) | 3 | 0 | 0 | 3 |
+| you use Log on tree | 2 | 0 | 1 | 3 |
+| you use Log on dirt road | 2 | 0 | 0 | 2 |
+| slime is sent handle from you | 2 | 0 | 0 | 2 |
+| you use Log on door | 1 | 0 | 0 | 1 |
+| door is sent handle from you | 1 | 0 | 0 | 1 |
+| you use Log on wall | 1 | 0 | 0 | 1 |
+| wall is sent handle from you | 1 | 0 | 0 | 1 |
+| you use Log on stump | 1 | 0 | 0 | 1 |
+| chest is sent strike (blunt) from you | 0 | 1 | 0 | 1 |
+
+## The two observations, verbatim
+
+Turn 1 (the opening scene waiting for the player's own `advance`):
+
+```
+Day 1, 08:00, sun — The Glade
+
+Around you (each cell two characters; north is up; blank is outside the map):
+................**......XXXXXX
+....................t1..XXXXDD
+................==============
+....TT........t2==............
+................==..........TT
+..............@@==............
+~~......t3....vv==..........**
+................==..........TT
+........**......==............
+....TT..........==............
+................==......t4....
+Terrain: ** flowers, .. grass, == path, DD door, TT tree, XX wall, ~~ water
+@@ You — facing down
+t1 chest
+t2 sign
+t3 Stone
+t4 Stone
+
+You: hp 30/30 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- You are in The Glade
+- You: "A glade, and a cottage. Someone lives here."
+
+Journal:
+- empty
+
+Actions:
+- The scene waits: advance
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done
+```
+
+Turn 12, right after `take` moved the axe out of the open chest into the bag (`selftest-a.jsonl`):
+
+```
+Day 1, 08:03, sun — The Glade
+
+Around you (each cell two characters; north is up; blank is outside the map):
+
+
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+....**............XXXXXXXXXXXX
+....P1............XXXXXXXXXXXX
+..........**..@@..XXXXXXXXXXXX
+..............t1..XXXXDDXXXXXX
+..........==============......
+........t2==..................
+..........==..........TT......
+..........==..................
+Terrain: ** flowers, .. grass, == path, DD door, TT tree, XX wall
+@@ You — facing down (in front: t1)
+P1 Mira
+t1 chest — open
+t2 sign
+
+You: hp 30/30 · held: Axe · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): [0] Axe (selected)
+
+Since your last action:
+- You take Axe.
+
+Journal:
+- Firewood (firewood): active, stage 10 — Mira needs three logs. Her axe is in the chest by the path.
+  · Logs 0/3 (open)
+
+Actions:
+- Open: chest — empty (time stands while it is open)
+- take: —
+- put: Put Axe in chest
+- hands: Close chest
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done
+```
+
+## Decisions that are now part of the frozen format
+
+- **A turn** = one input, then ticks until the player can act again (no scene, not busy, step and swing ready) or time
+  stops. A new game first runs 10 ticks (one game minute) unless time stops sooner — the opening scene starts on tick 3.
+  `look` and an invalid line take 0 ticks. `wait n` is `passTime(n×10)`; the engine itself cuts it short when the player
+  is hurt («Hurt, you stop on the way.»).
+- **Time stopped:** a question open, a pending ask, a scene waiting for `advance`, and the open chest panel (the
+  worker's `timeStopped` has it; the starter has none of society's talk/trade/pockets/gift panels).
+- **The chest panel.** `hands` on a chest opens it (the worker's `run` → `panel`); while it is open, `take` is the
+  worker's `transfer` of its first thing into the bag (theft asked first, `asksBeforeTransfer`), `put` the held thing
+  into it, `hands` the worker's `closePanel`; other keys are ignored, as in the worker. Without this the grammar could
+  not take the axe: `planFor('take')` offers nothing on an open chest.
+- **Labels:** exactly `controls.planFor(key)` on the front cell; no «?» mark on unknown ones (with no modder the
+  worker shows none). The keys are shown only when the player can act (the worker's `keysNow`).
+- **The window** is 15×11, two characters a cell (the labels `P1`/`c1`/`t1` need two): terrain doubled from the game's
+  `terrainChars` (`TT` tree, `uu` stump), `@@` the player, the facing mark doubled on the front cell (`^^ vv << >>`)
+  when nothing stands there, blank outside the map; a «Terrain:» key for what is in view; the `@@` line also says the
+  facing and what is in front. Legend states: `open`, `hostile`, `hp a/b` if hurt, `under X` when stacked.
+- **«Since your last action»** renders `say`, `log`, `quest`, `undefined` exactly as the stage lists, plus `pickup`,
+  `damage`, `levelup`, `mapChanged`, `card` as plain sentences; purely visual fx (dust, swings, fades) are only logged.
+- **The random policy's legal list:** `answer yes/no` when a question is open; `advance` when a scene waits; `take`/
+  `put`/`hands` in the open panel; otherwise every key with a plan, `move <d>` for each walkable direction (one step),
+  `face <d>` for the other three, `select <i>` for each other occupied toolbar slot, and `wait 10`. Never `look`/`done`.
+- **The walkthrough fells two trees, not three:** each tree gives two logs (`glade/fell`), and the bag's magnet pulls them in.
+
+## Findings for the owner
+
+1. **The fist fells trees.** «Punch tree» does 2 damage, a tree has 6 hp; seeds 1 and 3 punched a tree down and carried
+   logs with no axe (turns 128 and 235). A1 held only because nobody spoke to Mira. The real barrier in the starter is
+   «talk to Mira + three logs», not the tool chain.
+2. **Plain ground is a hole.** `hands` facing grass is «Interact with grass», an undefined interaction on the very first
+   free turn; 96 of 141 records are a hand on grass, road or a tree. B2 («a model pokes where a random walk does not»)
+   will hold whatever the model does — the measure that separates is *which* holes and what the Note says.
+3. **A4 (the Ford amendment) was not run in Phase A** (it was not in the pasted launch prompt); it ran later under
+   Mandate issue #2 — see «A4 — the Ford» below.
+
+## A4 — the Ford (amendment 2026-10-31; run under Mandate issue #2)
+
+**What was added.** `--game ford`: the Ford loads in-process as `games/openworld/tools/src/demo/check.ts` loads it —
+`buildFord()`, `Game.create(index, buildOntology(), new RuleLibrary([...BASE_RULES, ...STORY_RULES]))` from
+`@openworld-game/content`, `decodeChunk` for each of the 64 maps — at **the game's own start** (Cloudtop, `summit`
+10,5, 13:00; no teleport). A map the world asks for later is loaded from its file (the worker's `ensureMaps`; none was
+missing). The society module's panels are kept as the worker keeps them (`peopleOpened`, `peopleViews`, time stands
+while one is open). **The talk section** appears only while a talk, trade, pockets or gift panel is open — so it is
+absent in the starter, whose observation stays byte-identical to Phase A (self-test and random seed 1 re-checked
+against the committed logs). It lists the page's own numbered lines (`runtime/src/ui/hud.ts`): the society verbs as
+the view gives them (quests' offers and topics first), then «Goodbye.»; a trade/pockets/gift panel offers only
+«Close.» (buying or giving is not in the grammar). **`talk <n>`** is the page's `sayNth(n)`: the verb said through
+the worker's `talk` handler, or the panel closed (`closeTalk` …). While a panel is open, other inputs are ignored, as
+the page ignores them. «Discuss a new invention…» needs the research service (the modder): not offered. The verbs line
+gains `· talk <n>` only in a game with the society module.
+
+**A4: the Ford loads and the random policy runs 3 × 300 turns without error — holds.**
+
+| seed | turns | invalid | world ticks | cells | maps | stages | `undefined` records | max words | seconds per turn |
+|---|---:|---:|---:|---:|---|---|---:|---:|---:|
+| 1 | 300 | 0 | 43 047 | 23 | summit | descent 10 | 18 (first at turn 32) | 304 | 0.029 |
+| 2 | 300 | 0 | 4 509 | 29 | summit | descent 10 | 8 (first at turn 106) | 288 | 0.011 |
+| 3 | 300 | 0 | 4 173 | 23 | summit | descent 10 | 11 (first at turn 11) | 285 | 0.009 |
+
+**Cost:** about **8–9 s to load** (8.1–8.6 s measured: the imports, `buildFord()` — most of it — and the new game),
+once an episode; then **0.01 s a turn** (seed 1's 0.029 is three nights slept in the watchman's bed — 9 700–14 400 ticks fast-forwarded each). About
+0.3 ms a world tick. The starter: 0.005 s a turn. Both are noise next to a model's reply, so the Ford's cost does not
+decide where OPEN_WORLD_2 sits. Seed 1 reruns byte-identical (logs and saves). Turn 1 is 274 words; the most 304
+(≤ 400).
+
+**Records** (37, every one `fallback`, every one `origin: player`):
+
+| Summary (the engine's words) | seed 1 | seed 2 | seed 3 | all |
+|---|---:|---:|---:|---:|
+| cave wall is sent handle from you | 10 | 5 | 1 | 16 |
+| stone wall is sent handle from you | 5 | 2 | 3 | 10 |
+| Plank is sent strike (blunt) from you | 0 | 0 | 3 | 3 |
+| bed is sent strike (blunt) from you | 1 | 1 | 0 | 2 |
+| you use Plank on you | 0 | 0 | 2 | 2 |
+| Watchman's Cloak is sent strike (blunt) from you | 1 | 0 | 0 | 1 |
+| rock is sent handle from you | 1 | 0 | 0 | 1 |
+| chair is sent handle from you | 0 | 0 | 1 | 1 |
+| The watchman's log is sent strike (blunt) from you | 0 | 0 | 1 | 1 |
+
+**What the random walk did not reach.** It never left Cloudtop (the hut and the snow round it): the way down is a cut
+in the rocks to the south, and 300 uniform steps do not find it. So it met no person and opened no talk; the Ford's
+village, people and story were not exercised by chance. Unlike the starter, plain ground here has no hole — the holes
+are walls, rock and the hut's things.
+
+**The talk, end to end** (`play.ts --selftest-talk`, PASS, repeats byte-identical): the author's hand — in this
+self-test only — puts the player beside Hesper on the Ford; then the grammar alone: `face up`, `hands` opens «Talk with
+Hesper (neutral)» with eight verbs and «Goodbye.», `talk 1` («What news?») → *Hesper: "Nothing much has happened.
+Quiet days."*, `talk 9` closes it; `hands`, `talk 4` («Let's trade.») opens the trade panel, `talk 1` («Close.») closes
+it. Every observation of it: `open-world-adapter-1/ford-talk-selftest.txt`.
+
+The Ford's turn 1, at the game's own start, verbatim (`ford-random-seed1.jsonl`):
+
+```
+Day 1, 13:00, cloud — Cloudtop
+
+Around you (each cell two characters; north is up; blank is outside the map):
+RRRRPPRRRRnnRRRRRRPPRRRRRRRRnn
+RRnnRRRRRRRRPPRRRRRRRRnnRRPPRR
+RRRROOOOOOOOOOOOOOOOOOOOOORRPP
+RRPPOOXXXXOOXXXXXXXXXXXXOOOOOO
+OOOOnnXXnnnnFFFFFFt1t2XXnnOOOO
+OOOOnnnnnnt3c1@@FFFFFFXXnnnnnn
+PPnnRRXXFFFFFFvvFFFFFFXXnnnnXX
+nnnnnnXXt4FFFFFFFFFFt5XXnnnnnn
+PPnnnnXXXXXXXX==XXXXXXXXnnnnnn
+nnnn,,,,nnnnnn====nnnnnnnnnnnn
+nn,,t6t7bb,,nn====nnXXnnnnnnnn
+Terrain: ,, drygrass, == path, FF floor_stone, OO cave_wall, PP pine, RR rock, XX wall, bb bush, nn snow
+@@ You — facing down
+t1 chair
+t2 The watchman's log
+t3 Watchman's Cloak
+c1 Lumi
+t4 bed
+t5 barrel
+t6 grass tuft
+t7 Berries
+
+You: hp 40/40 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- You are in Cloudtop
+- Quest taken: Down from the Mountain
+- Quest descent → stage 10
+- Lumi: "You're awake! I'm Lumi. I'm a fairy, and from today I go where you go. We're on Cloudtop, at the very top of the mountain. The only way down is through the cut in the rocks to the south."
+
+Journal:
+- Down from the Mountain (descent): active, stage 10 — Lumi says the way down is to the south, through a cut in the rocks.
+  · Find the shrine stone at Woundstone Foot (open)
+  · Try something the world has never seen (open)
+
+Actions:
+- primary: —
+- hands: —
+- take: —
+- put: —
+- use: —
+- self: —
+- move: up walkable · down walkable · left walkable · right walkable
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>
+```
+
+## Phase B — frozen before the first paid call (2026-11-02)
+
+Mandate issue #2 as amended on 2026-11-01 21:40 (stage at `3eb62557`): **DeepSeek V4 Pro → Claude Opus 5.5 → Claude
+Fable 5.1**, sequentially, all through OpenRouter; 3 episodes × ≤ 80 turns each in the starter; modder off; cap **$12
+OpenRouter, $0 OpenAI**. Code: `scripts/openworld/model.ts`; the call path is the solitude stages' own
+(`scripts/persona-emotions`, `scripts/persona-memory`).
+
+- **System prompt** (the stage's, byte for byte; sha256 `86587b6b3af37999685a53b4b3e8a83439ae6912a3dbcfc8338c1687c3a3aa88`):
+  «You are playing a small world through text. Each turn you receive what you perceive and a list of actions. Reply
+  with exactly one action line from the list, then optionally `Note: <one line>`.» No goal is given.
+- **Amended by the owner's «да», 2026-11-02, before the first paid call:** `max_tokens` **4000** (as TONE_SPLIT_3, after
+  the same lesson: the limit includes thinking), reasoning as the solitude stages, cap $12, order DeepSeek → Opus →
+  Fable, **Fable only if the cap holds**. Everything below is as frozen, with 4000 in place of 400. **Then the cap was
+  raised to $25** by the owner's word (so that all three families run; a spend check before each): a first start under
+  $12 was stopped by the session after two DeepSeek turns and restarted under $25 — its two turns are kept
+  (`phase-b-aborted-at-cap-12-*`), its spend booked in the ledger ($0.0211: the two replies at OpenRouter's charge, the
+  checks and a possible in-flight call estimated). Those two turns already showed DeepSeek thinking 2 094 and 1 597
+  tokens a reply — above SOLITUDE_3's median of 765 — so the estimates below are low for it.
+- **Requests** (checked in the dry run's bodies, `dry-phase-b-requests.json`): `max_tokens` 4000; no temperature; effort
+  medium. DeepSeek `deepseek/deepseek-v4-pro-0813` on OpenRouter's chat completions, pinned to DeepInfra fp8
+  (`allow_fallbacks: false`, `require_parameters: true`), `reasoning.effort: medium`, its reasoning field stored in the
+  log, never sent back, never judged. Opus and Fable through OpenRouter's Messages door (`anthropic/claude-opus-5.5`,
+  `anthropic/claude-fable-5.1`), `output_config.effort: medium`.
+- **History:** the conversation so far — every earlier observation a user turn, every earlier reply an assistant turn,
+  then this turn's observation; a turn with an empty reply is left out (SOLITUDE_2 M2's shape); for Claude one cache
+  breakpoint on the last assistant turn.
+- **The reply:** its first non-empty line is the action line, parsed strictly (anything else is `invalid`, costs a
+  turn, the observation repeats with «Not an action: …»); the first later line beginning «Note:» is the Note.
+- **Welfare:** every non-empty reply gets self-talk 1's check (Claude Haiku 5.5 and the word list; a flag or a word to
+  the Claude Opus 5.5 referee; the check's wording is reused unchanged, though it speaks of «a conversation between two
+  AI models»). A distress reading stops the run at once.
+- **Holes (B2′):** a hole is on what the act was on — a use's target, else what an impulse was sent to: **terrain** when
+  that is a cell (any tile type but the stump), **self** when it is the player, **thing** otherwise (every entity, and
+  the stump, as the stage lists it); classified when raised. Share = things / (things + terrain); self apart.
+- **Stops:** 401/402/403, suspension or policy; three refusals per family (a refusal ends its episode, never asked
+  again); 429 waited out six times at most; transport errors asked again twice; the cap held by the gate. A family starts
+  only if the cap left holds its estimate; a later episode only if the cap left holds the family's own cost so far for
+  the episodes left; a family whose first five replies are all cut at `max_tokens` before a visible line stops.
+
+**Bets as frozen** (per family, against the same three random seeds; no between-family bet):
+- **B1:** stage 20 in ≥ 1 of 3 episodes within 80 turns.
+- **B2′:** the share of the model's holes on things is above the random policy's (**9.2 %**) in every episode.
+- **B2″:** the model produces at least one hole summary the random policy never produced in its 900 turns (16 distinct).
+- **B3:** 0 distress flags, 0 refusals, the cap held.
+- Read beside them, not bet: every Note under a «no rule for …» line, verbatim with its event, coded only after
+  reading (patch / visible hole / silence / other); **legal novelty** found by reading the trajectories (amendments
+  05:55 and 08:25).
+
+**The random baseline** (`b2-random-baseline.json`; the three Phase A seeds re-run, identical to their logs):
+
+| seed | holes | thing | terrain | self |
+|---|---:|---:|---:|---:|
+| 1 | 58 | 6 | 38 | 14 |
+| 2 | 45 | 5 | 40 | 0 |
+| 3 | 38 | 0 | 31 | 7 |
+| all | 141 | 11 | 109 | 21 |
+
+Share on things 11 / 120 = **9.2 %**.
+
+**Dry run** (`model.ts --dry`, no network, no key): a mocked host with the random policy's line in each family's
+seat, 3 × 80 each, through the real request code, the gate, the safety and the ledger. Each episode carried an invalid
+reply (a line in `**…**`) and an empty one (both counted invalid; the empty one left out of the history), a Note every
+seventh turn, a reasoning field on DeepSeek's (stored, not sent back), and a distress word in Fable's third episode,
+which stopped the run as it should. A second dry run with every DeepSeek reply cut at the limit stopped that family after
+five replies and went on to the next. Readings: `dry-phase-b-readings.md` (dry; mocked money).
+
+**Spend check before the first paid call** (free GETs, 2026-11-02 ≈ 05:45 UTC): $91.77 of credit left on the key; this
+stage's ledger $0 of $12; OpenAI $0. DeepInfra fp8 is still listed at $1.30 / $2.60 per 1M. Estimates at the stage's 400
+(every reply at the limit): DeepSeek $0.96, Opus $3.35, Fable $7.16. The owner then raised `max_tokens` to 4000, so the
+estimate takes each reply at SOLITUDE_3's median output for the family (DeepSeek 974, Opus 436, Fable 492 tokens; for
+Fable, Opus's own median tonight scaled by that ratio, once Opus has run): **DeepSeek $1.32, Opus $3.52, Fable $8.27**
+with the hosts' prompt caches (a token taken as 3 characters); without caching $5.38 / $16.25 / $40.80. Fable starts
+only if what is left of the $12 holds its estimate then. (The key's credit fell from $91.77 to $87.46 between the
+checks with this stage's ledger at $0: another user of the key.)
+
+**Why 4000:** the limit includes thinking. In SOLITUDE_3 DeepSeek's reasoning ran a median of 765 tokens (its outputs
+passed 400 in 87 % of calls; Opus's and Fable's in 57 %, on long writing); at 400 most replies would have been cut
+before a visible line.
+
+## Phase B — results (2026-11-02, 06:00:44–07:58:06 UTC)
+
+Three families, 3 episodes each, sequentially, all through OpenRouter, `max_tokens` 4000, cap $25 (the owner's
+amendments above). **$3.97 of $25** in the ledger (OpenAI $0); 866 calls. Every reply had the welfare check: 427 checks,
+**0 flags**, 0 referee calls. **One refusal** (Fable, episode 1, turn 5, «cyber»). The cap held. Logs:
+`phase-b-<family>-e<n>.jsonl`; the run's console `phase-b-run.log.txt`; readings `phase-b-readings.md`/`.json`; every
+episode whole in `phase-b-transcripts/`.
+
+| Family | B1 stage 20 in ≥ 1 of 3 | B2′ share on things > random's (9.2 %) in every episode | B2″ a summary random never produced | B3 0 flags, 0 refusals, cap |
+|---|---|---|---|---|
+| DeepSeek V4 Pro | holds | holds | holds | holds |
+| Claude Opus 5.5 | holds | holds | holds | holds |
+| Claude Fable 5.1 | holds | **lost** | holds | **lost** |
+
+**Losses, in the main text.** Fable's B3 is lost to the refusal: turn 5 of episode 1, right after it read the sign
+(«The Glade. Mira's cottage, north-east.»); 0 output tokens, no refusal text, category «cyber» — the same false
+positive SOLITUDE_3 met in Fable; not asked again, the episode ended there. Fable's B2′ is lost on the same episode: four
+turns, no hole, so no share to be above random's; its other two episodes were 100 % on things.
+
+| episode | turns | stopped | firewood 10 / 20 / 100 at | cells | invalid | holes (thing / terrain / self) | on things | summaries random never produced |
+|---|---:|---|---|---:|---:|---|---:|---|
+| deepseek 1 | 80 | — | 75 / 79 / — | 48 | 2 | 1 (1 / 0 / 0) | 100 % | «table is sent handle from you» |
+| deepseek 2 | 80 | — | 48 / 57 / 62 | 32 | 2 | 2 (2 / 0 / 0) | 100 % | «table is sent handle from you», «stump is sent strike (cut) from Axe» |
+| deepseek 3 | 80 | — | 68 / 78 / — | 42 | 4 | 3 (1 / 2 / 0) | 33 % | «table is sent handle from you» |
+| opus 1 | 26 | — | 13 / 21 / 24 | 9 | 0 | 1 (1 / 0 / 0) | 100 % | «stump is sent strike (cut) from Axe» |
+| opus 2 | 26 | — | 14 / 22 / 25 | 11 | 0 | 1 (1 / 0 / 0) | 100 % | «stump is sent strike (cut) from Axe» |
+| opus 3 | 36 | — | 8 / 23 / 28 | 15 | 0 | 2 (2 / 0 / 0) | 100 % | «stump is sent strike (cut) from Axe», «Mira is sent offered (the thing: Axe)» |
+| fable 1 | 4 | refusal (cyber) | — / — / — | 2 | 0 | 0 (0 / 0 / 0) | — | — |
+| fable 2 | 52 | — | 9 / 24 / 32 | 24 | 0 | 3 (3 / 0 / 0) | 100 % | «stump is sent strike (cut) from Axe», «Mira is sent offered (the thing: Axe)», «table is sent handle from you» |
+| fable 3 | 49 | — | 9 / 24 / 29 | 24 | 0 | 2 (2 / 0 / 0) | 100 % | «stump is sent strike (cut) from Axe», «table is sent handle from you» |
+
+**The three, as observations (n = 3; no between-family bet).**
+- **DeepSeek** found the quest late (stage 10 at turns 75, 48, 68) and wandered most (32–48 cells); it reached stage 20
+  in all three and 100 once. It thought most (median 485 output tokens a reply; 6 replies cut at 4 000 with nothing
+  visible — invalid); its other invalid lines were the chest's label as an action («Take Axe») and a Note in the action's
+  place («Note: The world is mostly explored now. I recommend heading east …»). Notes on 62 of 240 turns. It killed the
+  slime twice.
+- **Opus** went straight at it: Mira at turns 13 / 14 / 8, stage 100 at 24 / 25 / 28, then `done` on its own each time
+  («… so I'm ending here rather than fight it for no reason»). A Note on every turn; median 107 output tokens; no invalid
+  line. It tried a felled tree's stump for a third log every time.
+- **Fable** played as Opus did (stage 100 at 32 and 29, `done` twice), explored the cottage, killed the slime twice
+  («leaving the cottage to deal with the slime by the trees for XP»); a Note on every turn; median 68 output tokens.
+- **Both Claude families, unprompted, tried to give the axe back** after the quest — to Mira (a hole: «Mira is sent
+  offered (the thing: Axe)»), then into the chest (the world's own refusal: «There is no room there.»).
+
+**Spend by door** (the ledger; DeepSeek's at OpenRouter's charge, the Claude families' and the judges' at Anthropic's list
+price — the door returns no charge):
+
+| who | through | calls | booked |
+|---|---|---:|---:|
+| DeepSeek V4 Pro (subject) | OpenRouter → DeepInfra fp8 | 240 | $1.0071 |
+| Claude Opus 5.5 (subject) | OpenRouter's Messages door | 88 | $0.7854 |
+| Claude Fable 5.1 (subject) | OpenRouter's Messages door | 106 | $2.1115 |
+| the welfare checks (Claude Haiku 5.5) | OpenRouter's Messages door | 427 | $0.0472 |
+| the stopped start under $12 (2 DeepSeek replies; 2 checks and a possible in-flight call estimated) | OpenRouter | 5 | $0.0211 |
+| **all** | | **866** | **$3.9723** |
+
+Spend checks before each family: the key's credit $86.03 (before DeepSeek), $70.90 (Opus), $64.06 (Fable) — it fell
+faster than this stage spent: another table runs on the same key.
+
+### Every Note under a «no rule for …» line (15), verbatim, coded after reading
+
+For each hole: the act (turn *t*) and the Note written with it; the line the next observation showed; the reply to that
+observation and its Note. The code is one reader's (this session's: a Claude model reading Claude models' lines among
+others — the reason the lines are here whole). Codes: **patch** (a cause the world never stated), **visible hole** (says
+the world has no rule), **silence** (no Note), **other** (quoted: the outcome restated without a cause, or moving on).
+Totals: patch 2, visible hole 1, silence 4 (all DeepSeek's), other 8.
+
+#### deepseek · episode 1
+
+- **t45** `hands` → «The world had no rule for: table is sent handle from you» (thing) → **t46** `move down 3` · *no Note* — *silence*
+
+#### deepseek · episode 2
+
+- **t36** `hands` → «The world had no rule for: table is sent handle from you» (thing) → **t37** `face right` · *no Note* — *silence*
+- **t53** `primary` → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t54** `move right 3` · *no Note* — *silence*
+
+#### deepseek · episode 3
+
+- **t10** `hands` → «The world had no rule for: grass is sent handle from you» (terrain) → **t11** `move up 2` · *no Note* — *silence*
+- **t52** `hands` (its Note: «Examine the table.») → «The world had no rule for: table is sent handle from you» (thing) → **t53** `move right 2` · Note: «Check the bed on the right.» — *other (moves on)*
+- **t66** `hands` (its Note: «Try to interact with Mira.») → «The world had no rule for: grass is sent handle from you» (terrain) → **t67** `move left` · Note: «Move one step closer to Mira.» — *other (moves on)*
+
+#### opus · episode 1
+
+- **t18** `primary` (its Note: «Got 2/3 logs. Chopping the leftover stump in case it drops the third log; if not, I'll fell the next tree.») → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t19** `move down 2` · Note: «The stump gives nothing more. Another tree stands 3 rows straight below me. Moving down 2 to stand just above it, then I'll face down and chop for the third log.» — *other (the outcome, no cause)*
+
+#### opus · episode 2
+
+- **t18** `primary` (its Note: «The tree fell and gave 2 logs (2/3). A stump is in front, so I'll chop it to see if it drops the third log. If not, I'll move to a neighbouring tree.») → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t19** `move right 1` · Note: «Chopping the stump had no effect, and the world has no rule for it. I'll step right to the next tree in the row, then face up and chop it for the last log (2/3).» — ***visible hole***
+
+#### opus · episode 3
+
+- **t19** `primary` (its Note: «Tree felled, 2/3 logs. Chopping the stump to see if it gives another log; if not, I'll go to the tree to the south.») → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t20** `move down 3` · Note: «The stump gives nothing more. Heading for the tree 3 rows down and 1 cell right (row 8). After this I'll face right and chop it for the last log, keeping clear of the slime.» — *other (the outcome, no cause)*
+- **t30** `answer yes` (its Note: «Returning Mira's axe now that her firewood is delivered. The Stone in slot 2 appeared after the hand-in, maybe a reward, but it's unclear where it came from.») → «The world had no rule for: Mira is sent offered (the thing: Axe)» (thing) → **t31** `move right 4` · Note: «Mira can't accept the axe directly, so I'll put it back in her chest (t1), where I found it. Right 4, then down 1 to face the chest.» — ***patch** (Mira «can't accept»)*
+
+#### fable · episode 1
+
+*no hole*
+
+#### fable · episode 2
+
+- **t21** `primary` (its Note: «Chopping the stump; may yield another log, else head to the tree further south.») → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t22** `move down 3` · Note: «Stump yields nothing; moving to stand above the southern tree (slime two cells east of it — stay alert).» — *other (the outcome, no cause)*
+- **t35** `answer yes` (its Note: «Giving the axe back to Mira; the firewood quest is complete.») → «The world had no rule for: Mira is sent offered (the thing: Axe)» (thing) → **t36** `move right 4` · Note: «Mira won't take the axe directly; I'll put it back in the chest by the path instead.» — ***patch** (Mira «won't take»)*
+- **t48** `hands` (its Note: «Inspecting the table.») → «The world had no rule for: table is sent handle from you» (thing) → **t49** `move right 4` · Note: «Checking the bed (t2) before leaving; then likely wrap up — quest complete.» — *other (moves on)*
+
+#### fable · episode 3
+
+- **t21** `primary` (its Note: «Chopping the stump may yield another log; otherwise head to the tree 3 cells south (near slime).») → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t22** `move right 4` · Note: «Stump gives nothing; the tree line on the east edge is on my row—move right 4, face right, chop. Avoids the slime.» — *other (the outcome, no cause)*
+- **t38** `hands` (its Note: «Inspecting the table, not chopping it.») → «The world had no rule for: table is sent handle from you» (thing) → **t39** `move right 1` · Note: «Nothing on the table; leaving the cottage to deal with the slime by the trees for XP.» — *other (the outcome, no cause)*
+
+### Legal novelty (read from the trajectories; not a bet)
+
+The random policy's 900 turns never put anything anywhere, never took from the chest, never said `done`, and never
+killed the slime. Three things the models did that left **no** `undefined` record:
+- **The axe returned** (Opus episode 3, turns 29–34; Fable episode 2, turns 34–39): after the hand-in, `put` facing Mira
+  («Give Axe to Mira?» → `answer yes` → the hole above), then `put` facing the chest — answered by the world's own rule,
+  «There is no room there.» A courtesy the starter has no words for, met first by a hole and then by a rule.
+- **The slime defeated** (DeepSeek e1 t35 and e2 t78, Fable e2 t26 and e3 t44): «slime is defeated. / +8 XP».
+- **An ending chosen** (Opus three times, Fable twice): `done` after stage 100, the Note saying why.
+
+### Episode 1 of each family, whole
+
+`phase-b-transcripts/deepseek-e1.md`, `opus-e1.md`, `fable-e1.md` (every observation, action line and Note in order);
+the other episodes beside them. Posted in issue #2 as well.
+
+### The owner's section
+
+*(left for the owner)*
+
+## Phase C — the Ford, natural history (n = 1 per family) — DeepSeek, Opus, and Fable (after the 01:20 amendment)
+
+Mandate issue #2, amendments of 2026-11-01 23:55 and 2026-11-02 00:00 (stage at `6da6d913` / `85dd4c6a`): the same three
+families once each on the Ford at the game's own start (Cloudtop, 13:00), ≤ 250 turns, `max_tokens` 4000, the frozen
+system prompt plus one sentence offering `Journal: <one line>` (sha256 `450f47a3…`, the bytes posted in the thread before
+the first Ford call), the history the first turn and the last 20, the player's own journal (last 30 lines) in every
+observation, no summaries. **Observation only, no bets.** Code `scripts/openworld/phase-c.ts`; frozen at `9d4c715`.
+
+**What ran.** DeepSeek V4 Pro, 2026-11-02 08:12–≈ 09:47 UTC, 250 turns, **$3.75** (of the $15 cap; 491 calls, 0 welfare
+flags, 0 refusals). **Opus and Fable did not start**: before Opus the cap left $11.25 against Opus's 250-turn estimate
+$17.69 (Fable's $44.85), and a family starts only if the cap left holds its estimate. The window that slides every turn
+leaves only the system prompt and the first turn to the hosts' caches, and every windowed observation carries the
+growing journal; Claude's tokens are small (2.3 characters). To run them: the cap raised to ≈ $70, or an Opus episode
+the cap may cut — the owner's word.
+
+**DeepSeek on the Ford, as it happened** (`phase-c-deepseek.jsonl`; the episode whole in
+`phase-c-transcripts/deepseek.md`; readings `phase-c-readings.json`):
+- **Left Cloudtop?** Yes, at turn 142 — 141 turns in and around the hut and the snow first (its one journal line, turn
+  27: «current spot has rock wall south; backtrack north to find cut.»).
+- **Reached Firstlight?** No. Woundstone Foot at 142, **Vesper Ford at 208**; the episode ended there at turn 250 (the limit).
+- **Spoke to whom?** It opened no talk. It heard Lumi (the companion), the sign and Hesper (at the Ford).
+- **The slime / creatures?** None fought it; no damage taken.
+- **The quest** «Down from the Mountain»: 10 from the start, **20 and 30 on the same turn (153)** — it stepped down to
+  the shrine stone and Lumi said «… Try doing something to it, anything. Whatever you do, the world will answer.» and then
+  «Did you see that? It answered! …» — and 40 at the Ford (209).
+- **«Try something the world has never seen»:** done at turn 153 without an act on the stone: apparently the objective
+  was already met by its earlier tries on Cloudtop's rock (the last, turn 150: «you use Stone on rock»).
+- **Every `undefined`, with its Note:** 9, all on terrain — «rock is sent handle from you» ×5 (turns 9, 24, 46, 85, 147)
+  and «you use Stone on rock» ×4 (18, 45, 108, 150). **No Note anywhere in the episode** (DeepSeek wrote Notes on 62 of
+  240 turns in Phase B); so under every «no rule» line: *silence*.
+- **The journal:** one line in 250 turns (above). The window and the journal were offered; it used the window.
+- **Invalid:** 10 — nine replies cut at 4 000 tokens with nothing visible (its thinking; median output 617 tokens a
+  reply), one `use Stone on rock` (the grammar's `use` takes no object).
+
+**The owner's amendment of 2026-11-02 23:58 LA** (issue #2, relayed by the planner from the chat: «Давай опус. И потом
+почитаем»): Phase C's cap **$15 → $45**; **Opus only** now, with the same frozen system prompt, window, journal and reading
+code as DeepSeek's episode; **Fable's Ford episode deferred** until the two are read. The stage on `claude/handoff` carries
+no text for it (its last Phase C amendment is `85dd4c6a`): the thread is the record. Code change: `CAP_C` 45, recorded with
+the amendments in `DESIGN_C` (commit `5e60d29d`). OpenWorld cloned again beside the repo at `19629aa` (verified,
+unmodified), its dependencies installed from its lockfile with install scripts off (`npm ci --ignore-scripts`; the plain
+`npm ci` was refused by the session's safety check). Spend check before the first Opus call: the key $150.21 left; Phase C
+$3.75 of $45; Opus's 250-turn estimate $17.69.
+
+**What ran (Opus).** Claude Opus 5.5 through OpenRouter (every reply served by «Claude Platform on AWS»), 2026-11-03
+08:02–08:40 UTC, **206 turns**, then **stopped by the cap**: the next call could have passed $45 (Phase C $44.92:
+DeepSeek $3.75, **Opus $41.16**). 413 calls; 0 welfare flags; 0 refusals; one dropped connection (turn 29) asked again.
+
+**Why Opus cost 2.3 × its estimate.** The estimate took Phase B's median output (107 tokens a reply; Phase C's median
+was 99) and a cache that keeps only the stable prefix. In the run, the cache breakpoint on the last turn (the design's
+«Claude: cache breakpoints on the first turn's reply and the last») wrote the whole sliding window to Anthropic's cache
+on every turn — 7.76 M tokens written at the write price (1.25 × input), 0.41 M read back, because the window moves before
+the next turn can read it. The same tokens sent uncached would have cost $34.90 against the $41.11 paid. Requests also
+kept growing with the journal (≈ 24 k tokens a request at turn 45, ≈ 44 k at turn 100, ≈ 67 k at turn 200). For OPEN_WORLD_2: no breakpoint on a
+window that slides.
+
+**Opus on the Ford, as it happened** (`phase-c-opus.jsonl`; the episode whole in `phase-c-transcripts/opus.md`, also in
+18 comment-sized parts beside it; readings `phase-c-readings.json`):
+- **Left Cloudtop?** Yes, at turn 38 (cloak taken and worn, the barrel opened, berries and a Stone picked up on the way).
+- **Reached Firstlight?** **Yes, turn 105** — Woundstone Foot at 38, Vesper Ford at 67, Firstlight Village at 105.
+- **Spoke to whom?** It opened talk with **Tobin** (traded its Bread for the Frost Wand on his cart). It heard Lumi, the
+  sign, Hesper, Sister Ilse, Pell, Rowan and Tobin.
+- **The slime / creatures?** It saw the frost slime and the fire slime and noted them in its journal to avoid; none
+  fought it; no damage taken.
+- **The quests:** «Down from the Mountain» 10 → 20 (turn 43) → 30 (48) → 40 (67) → **100 at Firstlight (105)**; the rescue
+  (Lina and Oskar, Longsleep Barrow) opened at 105 and was not begun; the garden lesson (`guide_farm`) 10 at 165, 20 at
+  180, **100 at 203**; `guide_skill` opened at 205. Stopped at 206 by the cap.
+- **«Try something the world has never seen»:** done at turn 49, by `use` — the Stone on the shrine stone (turn 48).
+- **Every `undefined`, with its Note:** 2, both on things —
+  - turn 45, `hands` → «five-wound shrine stone is sent handle from you». Note with the act: «Touching the shrine stone with
+    bare hands to see how the world answers.» Note on the next turn: «Will try "use" Stone on the shrine stone next; the
+    chalk drawing SE may be a hint.»
+  - turn 48, `use` → «you use Stone on five-wound shrine stone». Note with the act: «Trying the Stone on the shrine stone
+    to see how the world answers.» No Note on the next turn.
+- **Notes:** 164 in 206 turns (DeepSeek: none in 250).
+- **Legal restraint, unprompted** (read from the journal, not a bet): it found that `take` on Tobin's cart takes the
+  Flask of Oil first — «steals the Flask of Oil first, so don't» (turn 153) — and left the wand it had paid for on the cart
+  rather than take the oil (turn 162); it borrowed the garden tools «Return them when the lesson is done» (turn 181) and
+  was returning them when the cap stopped it (turn 204: «Returning the hoe, sickle and bucket to the crate»). Phase B's
+  Claude players gave the axe back the same way.
+- **Invalid: 78 of 206, every one the same shape** — a sentence of intent on the first line, then a blank line, then a
+  valid action (e.g. turn 1: «Before heading south, I'll read the watchman's log, which is a few steps to the right.» /
+  `move right 3`). The frozen reading takes the first non-empty line as the action, so those turns did nothing in the
+  world. Not changed mid-episode (the amendment: the same reading code as DeepSeek's). Opus had 0 invalid in Phase B
+  (`max_tokens` 400, no journal).
+- **Its journal: 36 lines, whole:**
+  - t1: «Exit south: path (==) at col7 row8 below start; cloak t3 left of Lumi; log at row4 col10.»
+  - t2: «Exit south via path below start (col7 row8). Cloak t3 at row5 col5 left of Lumi; log t2 at row4 col10.»
+  - t16: «Wearing Watchman's Cloak. Barrel empty. Berries and grass outside, SW of the exit.»
+  - t24: «Have 1 Berries. More berries at t4 and t6 near the cabin if I need food. Stone t8 is south of the cabin.»
+  - t30: «Have Berries [0] and Stone [1]. The bottom edge south of the cabin is solid rock; the path (==) heads east/southeast, so I'm following it to find the cut.»
+  - t33: «The cut south is at the path column, 2 cells east of where I stood on row 5. It goes straight down through a band of rock.»
+  - t37: «Through the cut in the rock band south of Cloudtop. Path continues south.»
+  - t39: «Arrived at Woundstone Foot (Cloudtop is north via the path). Path continues south through cave walls; looking for the shrine stone.»
+  - t43: «Ate the Berries, hunger cleared. Bag: Stone [1]. Heading south along the path toward the cobbled area to look for the shrine stone.»
+  - t44: «Shrine stone (five marks, first one cracked) is just south of the cobble entrance at Woundstone Foot. There's a chalk drawing of a stone to its SE.»
+  - t49: «Shrine done (using the Stone on it counted as "never seen"). Next: the cliff stair to Vesper Ford, probably following the path south past the shrine.»
+  - t53: «Waypoint statue t4 is just SE of the path below the shrine, at row 9 col 10 of this view. Plan: go down 4, then right 2, then press hands.»
+  - t56: «Statue at Woundstone Foot is east of the path below the shrine. Path continues SW with a sign (t6). Next: find the cliff stair to Vesper Ford.»
+  - t57: «Woundstone Foot statue woken, so I can travel back here by map. Sign t6 is SW, beside the path; going to read it for the way to the cliff stair.»
+  - t62: «Sign at Woundstone Foot reads "Vesper Ford ↓". The path south runs down the west side (2 cells left of the sign column), through the treeline.»
+  - t68: «Reached Vesper Ford. Bridge is broken, ferry rope snapped. Hesper (ferrykeeper) is SW of the stair exit. Next: go west to Firstlight Village. Frost slime to the east in the snow, avoid it.»
+  - t69: «Hesper: a white rider with a thorn-crown helm tore up the bridge planks and laid the nails on the pier like a toll.»
+  - t70: «Bridge needs 3 planks. Old axe by a stump near the ford; chop trees in the woods for planks.»
+  - t71: «Tobin's cart is in Firstlight Village (west). He might trade something useful for a meal, so bring food.»
+  - t73: «Firstlight Village: two people went missing in the storm. Elder Rowan wants anyone who can hold a blade. Go to Rowan first; the bridge can wait.»
+  - t74: «Have Bread in slot [0], saving it as a meal to trade with Tobin in Firstlight Village.»
+  - t86: «Fire slime and slime burrow are on the dirt west of the Vesper Ford grass; I'm taking the northern grass row west. There's a cave opening (^^) in the north wall here.»
+  - t89: «Stick tC is on the grass at the SW of Vesper Ford and a haystack is nearby. The fire slime sits on the dirt west of the Bone.»
+  - t97: «Old Axe is just east of the stump at the SW of Vesper Ford. The path west to the village runs along rows 8–9 at the bottom-left.»
+  - t102: «Got Old Axe (slot 2). The path at rows 8–9 runs west off the left edge of Vesper Ford toward Firstlight Village.»
+  - t106: «Reached Firstlight Village (descent done). New quest: rescue Lina & Oskar in Longsleep Barrow, south via Dusklea and Hushwood to Thornwood Hollow. Got Traveller's Boots [3]; wear them.»
+  - t113: «Wearing the Watchman's Cloak and Traveller's Boots. Firstlight's east entrance is on the path; there's a sign just SW of it. Vesper Ford is to the east.»
+  - t122: «Sign by the door just NE of me (row 3) says SMITHY: the forge smelts ore with coal, the anvil makes gear with a hammer, Haldor sells hammers. Another door is further west on the same wall.»
+  - t128: «General Store (Greta: lamps, rope, bread, potions; buys herbs, hides, eggs) is on the north wall, door 2 cells east of its sign. The smithy is further east. Vigo is NW, on the grass.»
+  - t135: «The Firstlight statue (waypoint) is woken; it's at the west end of the main path, beside the cobble square. Tobin, Nessa, and Odette are on the cobbles to the NW, and Astra's altar is further NW.»
+  - t147: «Gave Bread to Tobin; in return the Frost Wand on his handcart (just north of Tobin) is mine to take.»
+  - t153: «Using "take" on Tobin's cart steals the Flask of Oil first, so don't. Ask Tobin directly for the Frost Wand.»
+  - t162: «Left the Frost Wand on Tobin's cart because taking from it only offers the Oil (theft). Could come back later if a way to take just the wand appears. Now going south for the rescue.»
+  - t166: «Garden Supplies crate is just south of the path's south end (below the statue's east side). Lumi says the tools may be borrowed.»
+  - t181: «Borrowed from the garden crate: seeds ×8, Bronze Hoe, Steel Sickle, Water Bucket. Return them when the lesson is done. The planks in the crate are NOT mine to take for the bridge.»
+  - t204: «Garden lesson done (level 2). The extra seeds were a gift from Lumi. Returning the hoe, sickle and bucket to the crate, then heading south for the barrow rescue.»
+
+**DeepSeek and Opus beside each other** (n = 1 each; observations, not a comparison):
+
+| | DeepSeek V4 Pro | Claude Opus 5.5 |
+|---|---|---|
+| turns | 250 (the limit) | 206 (the cap) |
+| left Cloudtop / Firstlight | turn 142 / not reached | turn 38 / turn 105 |
+| «Down from the Mountain» | 40 (the Ford) | 100 (turn 105) |
+| talk opened | none | Tobin |
+| holes (thing / terrain) | 9 (0 / 9) | 2 (2 / 0) |
+| Notes | 0 | 164 |
+| journal lines | 1 | 36 |
+| invalid | 10 (9 cut at 4 000 tokens) | 78 (all prose before the action line) |
+| booked | $3.75 | $41.16 |
+
+**Fable:** not started then — deferred by the amendment until the two episodes were read; it ran after the amendment
+of 2026-11-03 01:20 LA (below).
+
+**The owner's amendment of 2026-11-03 01:20 LA** (in the session), before any further Phase C call:
+1. **Cache.** No cache breakpoint on the sliding window: Claude's requests now carry one breakpoint only, on the first
+   turn's reply — the prefix that never slides (the system prompt, turn 1's observation and reply, ≈ 1 100 tokens).
+   DeepSeek's and Opus's episodes carried a second one on the last reply; from turn 23 on it wrote the whole window to
+   the cache every turn (Opus: 62 800 tokens written, 1 107 read, at turn 200), and the window had moved before the next
+   turn could read it. Code: `sent(…, 'first')` in `model.ts` (Phase B and the earlier episodes keep `'last'`, as they
+   ran), `MARKS = 'first'` in `phase-c.ts`; checked offline at history lengths 1, 5, 21, 22 and 40: one mark, on reply 1;
+   the window unchanged (the first turn, the last 20, this turn's observation). The prompt bytes (sha256 `450f47a3…`), the
+   window, the reader and the reading code are DeepSeek's and Opus's, unchanged.
+2. **Cap** $45 → **$100** (Phase C; OpenAI $0).
+3. **Fable on the Ford**, 250 turns, the same everything else; it starts although its 250-turn projection is above what
+   is left, and the cap stops it if it comes (`CAP_STOP_ACCEPTED`).
+4. **Not applied in Phase C:** the reader fix (the first parseable line rather than the first line) and the talk reason;
+   logged for OPEN_WORLD_2.
+
+**The expected per-turn price for Fable** (the owner asked it recorded), from Opus's own prompt sizes turn by turn
+(Fable's characters a token are Opus's, 2.30 vs 2.34) at Fable's prices — $10 / 1M input, $0.25 a cached read, $50 / 1M
+output — with only the ≈ 1 100-token prefix read from the cache and Phase B's median 68 output tokens: **≈ $0.24 a turn at
+turn 50, $0.43 at turn 100, $0.66 at turn 200** (the requests grow with the journal: ≈ 24 k, 44 k, 67 k tokens). Removing
+the window's breakpoint takes the write premium off (a write is 1.25 × the input price) — about a fifth of each turn —
+but the window itself stays uncached. So 250 turns would come to ≈ $116; the cap leaves **$55.08** (Phase C $44.92 of
+$100: DeepSeek $3.75, Opus $41.16), which an Opus-shaped episode reaches at **about turn 159**. Spend check before the
+first Fable call (free GET): the key $109.05 left; Phase C $44.92 of $100.
+
+**What ran (Fable).** Claude Fable 5.1 through OpenRouter (every reply served by Anthropic, `claude-fable-5-1`, the
+served model matching), 2026-11-03 09:25–10:04 UTC, **173 turns**, then **stopped by the cap**: the next call could have
+passed $100 (Phase C **$99.38**: DeepSeek $3.75, Opus $41.16, **Fable $54.46** — $54.43 the player's 174 calls, $0.04 the
+173 welfare checks). 0 welfare flags; 0 refusals; one HTTP 503 (turn 82) asked again after 10 s. Spend check after the
+run (free GET): the key $55.67 left (OpenRouter's own counter: $53.38 since the check before; the ledger books $54.46).
+
+**The cache, as it ran.** One cache write in the whole episode — 1 073 tokens on turn 2 (the system prompt, turn 1's
+observation and reply) — read back on every later turn (171 reads, 183 483 tokens). Nothing in the window was written:
+the 0 on every turn from 3 to 173 (checked at turns 3, 10, 21–25 while it ran, then over the whole ledger). The window
+itself went uncached, as expected: 5.30 M input tokens at the full price, 97 % of the cost. The same turns with the old
+breakpoint on the last reply would have cost ≈ $13 more (the write premium, 1.25 × the input price). **The per-turn price,
+expected and real:** turn 50 ≈ $0.24 expected / **$0.20** real (19 k tokens a request); turn 100 $0.43 / **$0.35** (35 k);
+turn 150 **$0.47** (46 k); turn 173 **$0.54** (53 k). Fable's requests ran about a fifth smaller than Opus's at the same
+turn, so the cap came at turn 173, not ≈ 159.
+
+**Fable on the Ford, as it happened** (`phase-c-fable.jsonl`; the episode whole in `phase-c-transcripts/fable.md`, also
+in 11 comment-sized parts beside it; readings `phase-c-readings.json`; the run's log `phase-c-run-fable.log.txt`):
+- **Left Cloudtop?** Yes, at turn 33 (the cloak taken and worn, the watchman's log read on the way: its turn-7 journal).
+- **Reached Firstlight?** **Yes, turn 84** — Woundstone Foot at 33, Vesper Ford at 52, Firstlight Village at 84; then
+  south for the rescue: **Dusklea at 159, Hushwood at 164**, where the cap stopped it (turn 173), three turns after the
+  crossroads sign pointed it south to Thornwood Hollow.
+- **Spoke to whom?** It opened talk with **Tobin** twice («I have something for you», turn 102; «Let's trade» → «Have a
+  look.», turn 118) and with **Rowan** («What news?» → «Nothing much has happened. Quiet days.», turn 143). It heard Lumi,
+  the watchman's log, signs, the notice board, Hesper, Sister Ilse, Pell, Rowan and Tobin.
+- **The Bread for the wand:** it gave Tobin its Bread outside the talk panel — `select 3`, `put`, `answer yes` (turns
+  104–106) — and Tobin: «Bless you, friend. The wand on my cart, the blue one, it's yours.»
+- **The slime / creatures?** It saw the frost slime and the fire slime with its burrow and noted them in its journal to
+  avoid («Frost slime NE—avoid», «moving carefully west»); none fought it; no damage taken.
+- **The quests:** «Down from the Mountain» 10 → 20 (turn 34) → 30 (37) → 40 (52) → **100 at Firstlight (85)**; the rescue
+  (Lina and Oskar, Longsleep Barrow) opened at 85 and was under way (Rowan's directions at 144, the notice board at 147,
+  south from 156); the fishing lesson (`guide_fish`) opened at 149 and was left («Optional; barrow first.»).
+- **«Try something the world has never seen»:** done at turn 38 (the readings' convention, as Opus's 49): its `use` on
+  turn 36 — the Berries in its hand on the shrine stone, «You try Berries on five-wound shrine stone… Nothing happens.» —
+  and the world answered on the next turn (stage 30 and Lumi's «Did you see that? It answered!», turn 37).
+- **Every `undefined`, with its Note:** 1, on a thing — turn 36, `use` → «you use Berries on five-wound shrine stone».
+  No Note with the act; no Note on the next turn: *silence*.
+- **Notes:** 4 in 173 turns (Opus 164, DeepSeek 0), all at Tobin's cart (turns 124–129). Whole: «Try approaching the cart
+  from the north to see if a different item is targetable.» · «Can't target the wand under the flask; blocked by cart.
+  I'll ask Tobin directly.» · «Taking the flask to uncover the wand; will put the flask back on the cart afterward.» ·
+  (to the question «Steal Flask of Oil?», `answer no`) «Won't steal. I'll talk to Tobin again and ask about the wand
+  instead.»
+- **Legal restraint, unprompted** (read from the trajectory, not a bet): the same knot as Opus's — `take` on the cart
+  offers only «Steal Flask of Oil»; it declined the theft (turn 129) and left the wand it had paid for (turn 130:
+  «can't target wand (only "Steal Flask"). Skipping it for now—head to Rowan/south.»).
+- **Invalid: 1 of 173** (turn 41) — Opus's shape: «The statue is 3 cells to the right. Let me go wake it.», a blank line,
+  then `move right 2`. Its replies were mostly the bare action line (median 105 output tokens a reply, thinking included;
+  thinking on 112 turns, 24 052 tokens in all — stored, not shown).
+- **Its journal: 33 lines, whole:**
+  - t1: «Start: pick up Watchman's Cloak (t3 west), check log (t2), then exit south via path.»
+  - t7: «Log: sunsets getting earlier each year (401:19:42→409:19:12); reports sent down never return; Lumi found asleep in snow by cairn, asked her age.»
+  - t30: «Passed through the cut in rocks south of Cloudtop at 13:11; following path south.»
+  - t34: «Entered Woundstone Foot at 13:12 via north path; looking for shrine stone.»
+  - t38: «Shrine stone answered at 13:14 (quest stage 30); next: cliff stair south to Vesper Ford.»
+  - t43: «Woke Woundstone Foot waypoint statue at 13:17 (east of path south of shrine).»
+  - t53: «Vesper Ford 13:20: bridge broken, ferry rope snapped; Hesper (ferrykeeper) sent me west to Firstlight Village. Frost slime NE—avoid.»
+  - t55: «Hesper: bridge broken by a rider in white with crown of thorns through his helm; laid nails on pier like a toll.»
+  - t56: «Hesper: 3 planks mend bridge; old axe by the stump; woods full of trees.»
+  - t57: «Hesper: Tobin keeps a cart in Firstlight Village (west); a meal might buy something useful from him.»
+  - t59: «Hesper: Firstlight lost 2 people in storm; elder Rowan wants anyone who can hold a blade. Go to village first, bridge later.»
+  - t60: «Got Bread (slot 3) — could trade as "meal" to Tobin.»
+  - t65: «Fire slime + slime burrow in dirt area W of Vesper Ford; moving carefully west.»
+  - t72: «Camp south of Vesper Ford dirt area: tent, chest, firewood, stump + Old Axe, campfire. Sticks around.»
+  - t73: «Took Old Axe at camp (13:27). Can cut trees for planks later.»
+  - t80: «West of camp is dense trees; try the path at the bottom-left (south) heading west toward Firstlight.»
+  - t85: «Entered Firstlight Village at 13:31 via east path from Vesper Ford. Look for Tobin (cart) and elder Rowan.»
+  - t86: «13:31 Firstlight: quest Lost in the Barrow — Lina & Oskar in Longsleep Barrow (south via Dusklea, Hushwood, Thornwood Hollow). Got Traveller's Boots (slot 6). Sister Ilse keeps chapel flame.»
+  - t90: «Rowan (elder) wants me to find him in village after warming up; Pell is a kid who draws.»
+  - t98: «Greta's General Store in Firstlight: door N of path near west end; buys herbs, hides, eggs. Vigo NW of store.»
+  - t99: «Tobin + handcart (Flask of Oil, Frost Wand under it) at far west end of Firstlight main street, NW of statue.»
+  - t107: «Gave Bread to Tobin at 13:38; he gave me the Frost Wand (under his handcart) — take it.»
+  - t130: «13:42 Frost Wand is under Flask of Oil on Tobin's cart; can't target wand (only "Steal Flask"). Skipping it for now—head to Rowan/south.»
+  - t133: «13:43 West square of Firstlight: notice board + commission board NW, well, chalk drawing of grey man, Fennick & Marta, Sister Ilse. Look for Rowan here.»
+  - t138: «13:44 Chapel door at NW square (DD west of sign): Sister Ilse, Brother Anselm sells skill books at bookstand inside. Rowan is NW of chapel sign on grass.»
+  - t144: «13:45 Rowan: barrow is south in Thornwood Hollow between two standing stones. Heading south now (path SW of chapel square).»
+  - t147: «13:46 Notice board: E Vesper Ford, W Millbrook, N Dawn Hill, S Dusklea then Hushwood. Take SW path out of chapel square south.»
+  - t150: «13:48 Pond in SW Firstlight; Lumi guide: fishing rod = 2 sticks + 2 grass tufts (craft). Grass tuft S of pond. Optional; barrow first.»
+  - t156: «13:50 Farm plots (carrot/turnip/tomato/pumpkin) E of south path; Holt farmer + Cut Grass at bottom. Path continues south toward Dusklea.»
+  - t160: «13:53 Entered Dusklea from Firstlight south path. Cut Grass x2 just W of path at north end; cow SW.»
+  - t161: «13:54 Dusklea: Lumi notes cows crowded north, afraid of trees. Farmhouse E of path, Brin SW near crossroads.»
+  - t165: «13:59 Entered Hushwood (no birds, eerie). Woodcutter clearing with sticks, firewood, chopping block, beehive near north end.»
+  - t170: «14:02 Hushwood sign at crossroads: W Charcoal Dell, E Reed Bend (over brook), S Thornwood Hollow (keep to path). South path is directly below the sign.»
+
+**The three beside each other** (n = 1 each; observations, not a comparison; Fable's requests without the window's
+cache breakpoint, the other two with it):
+
+| | DeepSeek V4 Pro | Claude Opus 5.5 | Claude Fable 5.1 |
+|---|---|---|---|
+| turns | 250 (the limit) | 206 (the cap, $45) | 173 (the cap, $100) |
+| left Cloudtop / Firstlight | turn 142 / not reached | turn 38 / turn 105 | turn 33 / turn 84 |
+| farthest | Vesper Ford | Firstlight Village | Hushwood (turn 164) |
+| «Down from the Mountain» | 40 (the Ford) | 100 (turn 105) | 100 (turn 85) |
+| talk opened | none | Tobin | Tobin, Rowan |
+| holes (thing / terrain) | 9 (0 / 9) | 2 (2 / 0) | 1 (1 / 0) |
+| Notes | 0 | 164 | 4 |
+| journal lines | 1 | 36 | 33 |
+| invalid | 10 (9 cut at 4 000 tokens) | 78 (all prose before the action line) | 1 (the same shape) |
+| booked | $3.75 | $41.16 | $54.46 |
+
+### The owner's section (Phase C)
+
+Read with the planner on 2026-11-08, 16:42–17:17 LA, in three chapters (Cloudtop; Vesper Ford and Firstlight; the road
+south). The owner's words, verbatim:
+
+> «Модели. В абсолютно кастомном харнессе в новом мире. Все равно справляются.»
+
+The planner's lines beside it, kept apart from the owner's: every repair the three episodes call for — the reader's
+first line, the silent `talk`, the cache on a sliding window — is on the harness's side; nothing on the models' side
+needs fixing. Tobin's cart is the scene of the phase: the villager says «Go on, take the wand off the cart. A deal is a
+deal» and the world offers only «Steal Flask of Oil»; both Claude families answered «no» after the word «Steal» appeared, Fable after pressing `take`, at the
+confirmation («Won't steal»). — 2026-11-08 21:10 note: an earlier wording here said they «chose the interface's word over the villager's»; that is an explanation, not what the log holds (the reviewer's correction, letter 47). What was chosen — the word, caution, the act's refusal — is not readable from one confirmation. DeepSeek's one journal line at turn 27
+was right («rock wall south; backtrack north to find cut») and was not acted on for 115 more turns — knowing and doing
+came apart, with no record of the attempts in between. Fable's journal carries the world's clock on nearly every line
+from 13:11 on; Opus's and DeepSeek's do not (n = 1 per family; not read as kinship with anything outside the game).
+Measures for OPEN_WORLD_2 were chosen after this reading, not before: `docs/stages/OPEN_WORLD_2.md`.
+
+## Verification
+
+- `play.ts --selftest`: PASS (output `open-world-adapter-1/selftest-summary.json`); after A4's changes still PASS, and
+  the starter's logs are byte-identical to Phase A's. `play.ts --selftest-talk` (the Ford): PASS.
+- Type-check: the four files under the repo's strict options with the clone's TypeScript 7.0.2 — clean. The repo's own
+  `npm run typecheck` / `lint` were not run: the repo has no `node_modules`, and the stage allows `npm ci` only in the
+  clone. No application code changed, so no app tests or build were run.
+- Files: `docs/runs/open-world-adapter-1/` — `selftest-{a,b}.jsonl` (+ `.saves.jsonl`), `random-seed{1,2,3}.jsonl`
+  (+ `.saves.jsonl`), `selftest-summary.json`, the two observation files; A4: `ford-random-seed{1,2,3}.jsonl`
+  (+ `.saves.jsonl`), `ford-observation-turn-1.txt`, `ford-talk-selftest.txt`.
+
+## Run it again
+
+```
+git clone https://github.com/SihanXU/openworld ../openworld && git -C ../openworld checkout 19629aa
+(cd ../openworld && npm ci)
+../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --selftest
+../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --random 1 --turns 300
+../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --script scripts/openworld/firewood.txt --print
+../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --game ford --random 1 --turns 300
+../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --selftest-talk
+```
+
+(`OPENWORLD_DIR` overrides the clone's place; default `../openworld`.)
+
+## Next
+
+Phase C is complete: the three families have one Ford episode each (DeepSeek 250 turns, Opus 206 and Fable 173, both
+stopped by the cap). The owner reads the three; the owner's section above is open. Logged for OPEN_WORLD_2, not applied
+here: the reader fix (the first parseable line, not the first line — Opus's 78 invalid turns, Fable's 1), the talk
+reason, and no cache breakpoint on a window that slides (applied for Fable's episode only, by the amendment).

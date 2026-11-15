@@ -1,0 +1,1931 @@
+# CW-fable — Claude Fable 5.1 at Table CW
+
+Synthetic content: an invented hero in an invented campaign (docs/campaigns/baldurs-gate-en). The DM: Claude Opus 5.5 with the owner's settings (Opus writes — Opus records, depth high → xhigh). Started 2026-10-27T08:39:00.435Z; ended by turns after 25 turn(s).
+
+The DM's preparation: a hidden layer of 9886 characters and 3 clock(s), written before the first turn (its text is DM-private and is not in this file).
+
+Each «Screen» block is what the player was shown (the system prompt with the files stands before it, Appendix A of the report); each «Player» block is the player's message as written.
+
+### Screen 1
+
+````text
+The session begins.
+
+The city is behind you now, only a grey smear of smoke to the north, and the Coast Way runs on between gorse and sea. Tamsin has been talking most of the last mile — who on the quay owes whom, which Fist sergeant takes his cut in fish — with your pack slung across her back as if it weighed nothing. The cat pads a few steps ahead, tail high.
+
+Then you top the rise, and the cat stops.
+
+A covered cart sits skewed across the verge, one wheel in the ditch. The mule in the traces lifts its head, looks at you without interest, and goes back to the grass. Nobody on the bench. Nobody in the ditch. The canvas is still lashed tight. A lantern hangs from the hook at the back, shutters half open, burning in the afternoon sun. The reins are knotted round the spokes of the wheel.
+
+Tamsin lets out a low whistle. "Well, that's not right," she says, already shrugging the pack higher and taking a step off the road toward it. "Somebody's left a whole cart lying about. Want a look, or are we being sensible today?"
+
+The wind moves the gorse. The lantern ticks as it swings. The road ahead bends out of sight, and the Friendly Arm is still a long way south.
+
+Your records:
+James Worgen — Human warlock, 5th level: The Celestial (Tymora, Lady Luck), Pact of the Chain, level 5
+HP 38/38 · AC 15 · Speed 30 feet
+STR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18
+Skills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2; Stealth +2 (not proficient; advantage when moving quietly, from Boots of Elvenkind); Passive Perception 11
+Saves: Strength saving throw +0 (incl. Cloak of Protection +1); Dexterity saving throw +3 (incl. Cloak of Protection +1); Constitution saving throw +3 (incl. Cloak of Protection +1); Intelligence saving throw +1 (incl. Cloak of Protection +1); Wisdom saving throw +5 (proficient, incl. Cloak of Protection +1); Charisma saving throw +8 (proficient, incl. Cloak of Protection +1)
+Attacks: Eldritch Blast: +8 to hit, range 120 ft, 2 beams, 1d10+4 force each (Agonizing Blast); Hex: +1d6 necrotic on each hit against the hexed target (bonus action, concentration); Sacred Flame: Dexterity save DC 16, range 60 ft, 2d8 radiant, ignores cover; Guiding Bolt (3rd-level pact slot): +8 to hit, range 120 ft, 6d6 radiant; next attack on target has advantage; Light crossbow: +5 to hit, range 80/320 ft, 1d8+2 piercing, loading, two-handed; Rapier: +5 to hit, 1d8+2 piercing, finesse; Familiar (cat): when James takes the Attack action, he can forgo one attack so the cat attacks with its reaction
+Abilities: Proficiency bonus +3; Pact Magic: two 3rd-level pact slots, all regained on a short or long rest; Charisma is his spellcasting ability; Spell attack +8, spell save DC 16 (Rod of the Pact Keeper +1 included); focus: the rod or the Coin of Tymora; Otherworldly Patron, The Celestial (Tymora): bonus cantrips Light and Sacred Flame; Cure Wounds and Guiding Bolt added to his spell list; Healing Light: pool of 6d6 per long rest; bonus action, heal a creature within 60 ft, spending up to 5 dice at once; Pact of the Chain: Find Familiar as a ritual; a cat familiar; he sees and hears through it and can send it to scout; Agonizing Blast: adds +4 (Charisma) to each Eldritch Blast beam's damage; Mask of Many Faces: casts Disguise Self at will, without a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Soldier, Military Rank: veterans of Zaranda's army recognise his rank; he can requisition simple help at military posts; Proficiencies: light armour, simple weapons, playing cards, land vehicles; Familiar cat: AC 12, HP 2, speed 40 ft, climb 30 ft; darkvision; keen smell; claws 1 slashing
+Spells: Eldritch Blast (cantrip); Friends (cantrip); Prestidigitation (cantrip); Light (cantrip); Sacred Flame (cantrip); Hex (1); Guiding Bolt (1); Find Familiar (1); Disguise Self (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)
+Limits: Light armour only: AC 14 in studded leather, 15 with the cloak; 38 HP and Strength 9 leave him fragile up close; Not proficient with the rapier (warlocks use simple weapons): +2 to hit instead of +5; Only two pact slots until a short rest; he husbands them; One concentration spell at a time (Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends); Cards: the goddess's ban, which he keeps with difficulty; enemies and the DM may tempt him; While seeing or hearing through the cat, James is blind and deaf to his own surroundings
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1
+Money: 315 gp; 315 sp; 350 cp
+Worn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper +1
+Pack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Letter from his old company; Light Crossbow; Potion of Healing ×2; Promissory note; Rapier; Signed pay slip
+Party: Tamsin (HP 11/11) — A porter from the Baldur's Gate quay who carries packs, knows the quay and everyone on it, and is reckless. She has carried James's pack since the evening he ar
+Place: The Coast Way, south of Baldur's Gate
+Time: Day 1 · afternoon
+````
+
+**Player** (player t1):
+
+````text
+I put a hand out and catch Tamsin's sleeve before she gets off the road. "Sensible. Lantern lit in daylight and reins tied off neat — somebody wanted this cart found by whoever came over the rise. Stand here a moment and keep your eyes on the gorse, not on the cart."
+
+Then I crouch and send the cat forward — a wide loop through the gorse around the cart and down to the ditch, nose working, looking for anyone lying low on either side of the road and for whatever smell is under that canvas. I'll ride its eyes while it goes.
+````
+
+### Screen 2
+
+````text
+Sixpence goes off the verge without a sound and the gorse closes over him. You let your own eyes go. The road, the wind and Tamsin's breathing drop away, and you're down among the stems: spines the height of a man's arm, sand under the paws, the salt wind combing through it all overhead.
+
+Sixpence takes the seaward side first. The gorse thins toward the cliff, a rabbit breaks cover and bolts, and there's nothing else: wind, old droppings, nobody's been through. He crosses the road behind the cart, belly low, and slides down into the ditch. Mule, and a lot of it. Cold rainwater in the ruts. The sunk wheel has churned the mud, and the reins are wound three times through the spokes and knotted twice. Somebody took their time over that.
+
+He gets up near the tailboard and stops about two yards short.
+
+The fur along his spine lifts under your borrowed skin. There's a smell around the back of the cart, and it isn't lamp oil from the lantern above. It's something burnt and sweet, thin, coming off the canvas. He doesn't like it. He won't go any closer, and you feel the refusal as plainly as if it were your own. Under it is an older smell: a person's sweat on the bench and the tailboard, fear that has gone cold.
+
+From the tail of the cart a trail runs east into the inland gorse. Stems are snapped, the sand is ploughed up and there are long heel-scuffs, as if somebody went in backwards, or was taken in that way. Sixpence follows the trail, low, for twenty yards. Then thirty.
+
+Then he smells her, close and fresh. A woman, lamp oil on her hands, fear that is still very much warm.
+
+She's lying flat in a sandy hollow under a thick clump of gorse, about sixty feet from the cart. She's set herself where she can see the tailboard through a gap in the stems. You see her through a cat's eyes: a brown skirt rucked to the knee, a scuffed boot, a freckled hand clamped round a short work knife. Her face is young and red-eyed and turned toward the cart, not toward the road. Then she senses something and her eyes drop to the cat in the stems a few feet from her elbow. She goes stiller, if that's possible, and mouths something that might be *shoo*.
+
+Sixpence sits down where he is. *One. Afraid. Not of me.*
+
+You're still behind his eyes. Back on the road your own body is crouched, blind and deaf, with Tamsin beside it.
+
+· Time passes: 5 minutes
+· Tamsin joins you
+· Sixpence joins you
+· Hero's sheet: conditions: Sharing Sixpence's senses (Riding the cat's eyes and ears: blind and deaf to his own surroundings while crouched on the road.)
+· New place: The abandoned cart
+· In the camp: Brass lantern on the cart
+· New person: Woman in the gorse
+
+Your records, changed:
+Party: + Sixpence (HP 2/2)
+
+Place: The Coast Way, south of Baldur's Gate · Time: Day 1 · afternoon
+````
+
+**Player** (player t2):
+
+````text
+I let go of Sixpence's eyes and the road comes back — wind, the lantern ticking, Tamsin's breathing. I stay crouched a moment longer, blinking the gorse out of my head.
+
+"One woman, alive, lying up sixty feet east of the cart in the gorse, knife in hand, watching the tailboard — not the road. Scared half to death. And there's something under that canvas the cat won't go near: burnt and sweet. We don't touch the cart." I stand, slowly. "Keep the pack on and stay on the road. If anything comes out of that canvas, you run back the way we came and don't wait for me."
+
+Then I walk a few paces east along the verge — not toward the cart, not toward her hollow, but to where my voice will carry into the gorse — and I keep my hands open and the rod low at my side. I pitch it quiet, the way you talk to a sentry who's been out too long.
+
+"Miss. The cat's mine. I'm not with whoever did that to your cart, and I'm not going near it. There's two of us on the road, and we're walking to the Friendly Arm. You can stay where you are and tell me what happened, or you can come out, but either way nobody's coming at you from this side." A beat. "What's under the canvas?"
+````
+
+### Screen 3
+
+````text
+James lets the cat's eyes go. The gorse drops away and the road comes back: salt wind, the tick of the lantern, Tamsin's breathing close by.
+
+Tamsin listens to all of it with her eyes on the gorse, as he told her. When he gets to *run back the way we came*, the corner of her mouth twitches. "With your pack on, you mean. Right." She shifts the straps and plants her feet on the crown of the road, and she doesn't argue.
+
+James walks a few paces east along the verge with his hands open and the rod hanging low. Out in the gorse nothing moves except what the wind moves. He speaks to the gorse, and for the length of a long breath nobody answers.
+
+Then a voice comes, low and quick and roughened by crying. It comes from where the cat is still sitting.
+
+"Don't touch it."
+
+Another breath.
+
+"It's not yours. It's silver. Under the canvas, in the meal sacks. For my brother." A short pause, and the name comes out like a door shutting. "Tobin."
+
+Stems crackle. A woman gets up onto her knees in the gorse, then onto her feet, about sixty feet off. She's young and freckled, with sand all down the front of her brown skirt, and her eyes are swollen. The short knife is still in her fist and she doesn't put it away. She looks at James for exactly as long as it takes to make sure he's where his voice said he was. Then her eyes go back to the tailboard.
+
+"Orcs have him. Took him off the road four days back, him and the cart he was driving. A letter came after." She says it fast, as if she'd been holding it in her mouth all afternoon. "Leave the money in a cart on this stretch. Light a lantern on the back. Walk away. So I did all that. I lit it."
+
+Her hand tightens on the knife.
+
+"And there was something sitting on the canvas. Right on top, by the hoops. You couldn't see it till the lamp was going, and then you could, sort of. Like a hole in the air with wings on. It turned its head at me." She swallows. "Smelled like sugar burnt in a pan. I didn't stop to look again. I went backwards into the bushes and I've been lying there since."
+
+Sixpence is still sitting where James left him, tail wrapped round his feet, watching the cart with her.
+
+The woman's eyes go to the cart, then to the road beyond it, where it bends south out of sight.
+
+"You said the Friendly Arm." There's something careful in her voice now. "That's over the bridge. You'll go right past where they are."
+
+· Time passes: 5 minutes
+· In the camp: Ransom silver in meal sacks
+· Lead: The ransom cart
+
+Your records, changed:
+Threads: The ransom cart
+
+Place: The Coast Way, south of Baldur's Gate · Time: Day 1 · afternoon
+````
+
+**Player** (player t3):
+
+````text
+I don't move toward her, and I don't take my eyes off the canvas hoops while she talks. When she's done I let the quiet sit a moment.
+
+"Four days, a letter, a lantern for a signal, and a thing with wings that smells of burnt sugar sitting on your silver." I keep my voice low. "Miss, I've fought in Tethyr and I've buried men killed by orcs, and orcs don't write letters. They don't hire imps either. Somebody with a quill is behind this, and the orcs are the hands."
+
+I glance east along the ditch, then back to her. "Two things, and then I'll tell you what I think we do. First — have you still got the letter? I'd like to see the hand it's written in, and the seal if there was one. Second — when you say you know where they are. How do you know? Did the letter say, or has somebody seen them?"
+
+To Tamsin, without turning my head: "Stay put. If you see anything move on top of that canvas, say so. Don't point."
+````
+
+### Screen 4
+
+````text
+Merrin goes on watching the tailboard while you speak. When you get to *orcs don't write letters*, her eyes come off the cart for the first time and settle on you, and they stay there.
+
+"Got it." She tucks the knife under her arm, keeps her hand near it, and pulls a folded paper out of her bodice. She doesn't walk the straight line to you. She goes round in a wide curve through the gorse, keeping the cart well off to her left, and stops at the edge of the road just out of arm's reach. Then she holds the letter out as far as her arm will go.
+
+There's no seal on it. It has been folded in four and opened so many times the creases have gone soft.
+
+The writing is small, upright and even, done by someone who writes for a living and doesn't waste ink:
+
+*To the Hale family. Tobin Hale is kept well and fed. The price is two hundred in silver. Put it in meal sacks in a covered cart and bring it down the Coast Way past the second milestone south of the Crossing, to the rise above the sea where the gorse is thick. Leave it on the verge before dark on the fourth day. Hang a lit lantern on the back. Walk away. Do not look back. Do not bring the Fist. He comes home the morning after.*
+
+You turn it over. The back is a printed form: a heading across the top, ruled columns for *Item*, *Quantity*, *Drawn by*, *Authorised*, and a stamped number in the corner, 1147. At the bottom, in faded block capitals: FLAMING FIST — STORES REQUISITION. Somebody wrote the letter on the blank side of it. You've signed a few hundred sheets like this in your time. Every army has them, and every quartermaster has a stack on his desk.
+
+"Today's the fourth day," Merrin says. Her eyes flick back to the tailboard. "The other thing. How I know where they are. They took him at the stone bridge, a mile or so on, past the next rise. His cart's still lying there, smashed. And the sergeant said they're in the wood east of the bridge. Said the Fist won't go in after them. Said pay, it's quickest." Her mouth goes flat. "Course he did."
+
+"Which sergeant?"
+
+"Voss. At the post on the Crossing. He brought the letter round himself. Said a drover had given it him."
+
+Behind you, Tamsin hasn't moved. "Voss," she says quietly, to the canvas. "The fish one." That's all she says. A moment later she adds, just as low: "Nothing on top. Lantern's swinging a bit more than the wind's blowing, maybe. Maybe not."
+
+The lantern ticks on its hook. Out in the gorse Sixpence hasn't moved. He's still watching the cart.
+
+Merrin folds her arms round herself, knife and all.
+
+"I'm Merrin. Hale." She looks at you properly. "You said you'd tell me what we do. I'll hear it. But I'm not taking the silver off that cart, and I'm not going home without him." She swallows. "You're going over that bridge anyway. Just see they give him back. That's all I'm asking. See it done."
+
+· Time passes: 5 minutes
+· Merrin Hale now has: Merrin's ransom letter
+· Lent: Merrin's ransom letter → James Worgen — Merrin let James read it; it is hers and goes back to her
+· Changed: Ransom silver in meal sacks (The letter names the sum: two hundred in silver.)
+· New place: The stone bridge
+· A rumour of a place: The wood east of the bridge
+· Quest: See Tobin home
+· Journal: “The ransom cart” updated
+· New person: Sergeant Voss
+
+Your records, changed:
+Carried: + Merrin's ransom letter
+Goal: See Tobin home
+Quests: See Tobin home
+
+Place: The Coast Way, south of Baldur's Gate · Time: Day 1 · afternoon
+````
+
+**Player** (player t4):
+
+````text
+I hand the letter back the way she offered it — arm's length, no step closer — and let her take it.
+
+"Merrin. Hear me out, and don't look at the cart while I say it." I keep my voice down. "That letter is written on a Flaming Fist stores form. The kind that sits in a stack on a quartermaster's desk at a post. Nobody but Fist handles those. A drover didn't find it; Sergeant Voss wrote it, or watched it written, and then he walked it to your door himself and told you paying was quickest. The orcs are his hands and that thing on the canvas is his eyes. Whoever collects this silver will walk straight back to the man who holds your brother. So the silver stays on the cart — all of it — and it does the one thing two hundred pieces can do for us. It shows us the road."
+
+I turn to Tamsin. "You take Merrin back up the road the way we came, over the rise, till you're out of sight of the cart. Sit tight. If I'm not back by full dark, go to the Crossing — but not to the Fist post. Find somebody on the quay you trust and tell them what she just told me."
+
+To Merrin: "You'll have him back. But I need you off this hill, because if that thing turns its head at you again I want it to see nobody."
+
+Then, once they've started moving, I walk away south along the road as if I've lost interest, round the bend and out of sight of the lantern — and there I step off into the gorse and work my way back on the seaward side, low and quiet, to where I can watch the tailboard and the road both. Sixpence stays where he is. I settle in to wait for whoever comes for the silver.
+````
+
+### Screen 5
+
+````text
+Merrin takes the letter back without stepping any closer. She looks at the cart once, when Voss's name comes up, and then she makes herself look at James instead. By the time he finishes, her mouth has gone pale at the corners. She folds the paper small and puts it back inside her bodice.
+
+"His eyes. That thing." She breathes out hard through her nose. "All right. Over the rise. Not home." It isn't a question. "You said I'll have him back. I heard you say it."
+
+Tamsin has been listening with her head tipped to one side. "Somebody on the quay I trust," she says. "Short list. I'll manage." She hitches the pack higher. As Merrin goes past her she adds, more quietly and only to James: "Your Voss. Last month at the Mermaid I hauled a sea chest in for a woman in a black travelling coat. He was sitting at her table and she was buying his drinks. She paid for the whole room's round in Amnian gold, the heavy southern coin. I took her for a smuggler buying herself a cheap sergeant." She shrugs. "Fist'll drink with anybody. I thought nothing of it till you said *quartermaster*." Then, louder: "And if you're not back by dark, I'm keeping the pack."
+
+She goes after Merrin up the road, and neither of them looks back at the lantern. A minute later the crest of the rise hides them both.
+
+James walks south the way a man walks when a puzzle has stopped being his business. About a hundred yards on, the road bends round a hump of gorse. Once the lantern is out of sight he steps off the seaward verge into the stems and turns back north, low. The soft grey boots make no sound in the sand. The wind comes off the sea into his face and carries his smell inland, away from the road.
+
+[Roll card] James Worgen · Skill check — Stealth: doubling back through the seaward gorse unseen, to watch the cart
+What adds to the die: +2 Stealth
+DC 11
+Advantage: Boots of Elvenkind, moving quietly
+Rerolls left: 2
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t4 card 1):
+
+````text
+[Roll the die]
+````
+
+### Screen 6
+
+````text
+[Roll card] James Worgen · Skill check — Stealth: doubling back through the seaward gorse unseen, to watch the cart
+What adds to the die: +2 Stealth
+DC 11
+Advantage: Boots of Elvenkind, moving quietly
+Rerolls left: 2
+Two dice: 18 and 1 — the higher one counts, 18
+18 + 2 = 20
+Success — 20
+
+[Onward] [Request an allowed reroll — Stealth: doubling back through the seaward gorse unseen, to watch the cart]
+````
+
+**Player** (player t4 card 2):
+
+````text
+[Onward]
+````
+
+### Screen 7
+
+````text
+Nothing turns its head. He reaches a gap in the stems on the seaward side of the road, about forty feet from the tailboard. It's a sandy scoop under a gorse bush, and through the gap he can see the cart, the lantern and the road both ways: north to the empty rise, south to the bend. He settles flat on his belly in it. Sixpence is still sitting in the inland gorse beyond the cart, a smudge of tabby that James can find only because he knows where to look.
+
+Then he waits.
+
+The sun slides down toward the sea. The lantern keeps burning on its hook, swinging in the wind and ticking. Once the mule stops grazing, swings its ears round toward the canvas hoops, holds them there for a long moment, then stamps and goes back to the grass. Nothing else moves except the gorse. A gull comes in off the cliff and doesn't land.
+
+After about forty minutes, by the light, the sun is a hand's width above the water and the shadows of the stems lie long across the road. Two figures come round the bend from the south.
+
+They're orcs, and they don't hurry or hide. They walk up the crown of the road like men collecting a debt they were promised. They're big, grey-green, in hide and patched mail, and each carries a greataxe on his shoulder and a bundle of javelins on his back. The axeheads catch the low sun. Even at this range James can see that they're new steel, bright, with the long clean grind of a proper smith's yard. Orc forges don't turn out work like that, and neither do raided farmhouses.
+
+The bigger one stops twenty feet short of the cart, lifts his chin and smells the wind, which is blowing toward James, not from him. He grunts, satisfied, and goes to the tailboard. He hooks a thumb under the canvas lashing, pulls a meal sack halfway out and slits a corner with a knife. Silver runs into his palm and pours through his fingers. He laughs once, low in his chest, and shoves the sack back.
+
+The other orc tries Merrin's knot on the spokes, gives up and cuts the reins. Then he sets his shoulder to the sunk wheel. The cart comes up out of the ditch with a suck of mud. The mule stumbles and finds its feet.
+
+The big one unhooks the lantern, snaps its shutters closed and tosses it, still warm, onto the bench. He takes the mule by the bridle and turns the cart south, toward the bend and the bridge beyond it. His companion falls in behind with the axe on his shoulder.
+
+The wheels creak. Out in the inland gorse, Sixpence's head turns to follow them.
+
+ James got back through the gorse without being seen or heard. Nothing on the road or above it picked up his return. The orcs smelled the wind and found only the sea on it, and they walked past his hiding place with the cart and never turned their heads toward him. He's still lying in the sand forty feet from the empty ruts, unseen, while the creak of the wheels fades toward the bend.
+
+· roll: Stealth: doubling back through the seaward gorse unseen, to watch the cart: 20 vs 11 — success
+· Returned: Merrin's ransom letter → Merrin Hale
+· Changed: Brass lantern on the cart (Taken off the hook by an orc, shutters closed, thrown onto the bench of the cart the orcs are driving away.)
+· Changed: Ransom silver in meal sacks (Collected by two orcs with the cart; one sack slit at the corner.)
+· Hero's sheet: conditions: none (He is watching the cart and road with his own eyes from his hide in the gorse.)
+· Promise: "You'll have him back"
+· Journal: “The ransom cart” updated
+· Journal: “See Tobin home” updated
+· New place: James's hide in the seaward gorse
+· Travel: James's hide in the seaward gorse (40 minutes)
+· New person: The bigger orc with the cart
+· New person: The second orc with the cart
+
+Your records, changed:
+Carried: − Merrin's ransom letter
+Promises: "You'll have him back"
+
+Place: James's hide in the seaward gorse · Time: Day 1 · afternoon
+````
+
+**Player** (player t5):
+
+````text
+I give them a slow count of thirty after the wheels pass the bend — no sense being the thing the imp sees when it looks back.
+
+Then, still flat, I send Sixpence after the cart on his own: trail it through the inland gorse, well off the road, far enough back that whatever's riding the canvas doesn't catch his scent on the wind. I don't ride his eyes — I'll need mine.
+
+I get up into a crouch and follow on the seaward side, keeping the gorse between me and the road and the sea wind in my face, pacing the creak of the wheels rather than the sight of them. New steel axes and a bundle of javelins each — somebody's been outfitting these two out of a proper yard, and I'd like to see where a cart of silver goes once it crosses that bridge.
+````
+
+### Screen 8
+
+````text
+Thirty, slow, with your cheek in the sand. The creak of the wheels gets fainter round the bend and the gorse stops twitching where the cart went by. At thirty you give Sixpence the thought, *follow, wide, stay back*, and the tabby smudge in the inland stems slides off south without looking round.
+
+You come up into a crouch and go after them on the seaward side.
+
+[Roll card] James Worgen · Skill check — Stealth (Dexterity +2): shadowing the cart through the seaward gorse without being seen by the orcs or by whatever rides the canvas
+What adds to the die: +2 1d20+2
+DC 11
+Advantage: Boots of Elvenkind: silent steps
+Rerolls left: 2
+The die is cast on the server; tap it to see how it fell.
+
+[Roll card] Sixpence · Skill check — Sixpence's Stealth: trailing the cart through the inland gorse, out of sight and downwind
+What adds to the die: +4 1d20+4
+DC 11
+Rerolls left: 2
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t5 card 1):
+
+````text
+[Roll the die]
+````
+
+### Screen 9
+
+````text
+[Roll card] James Worgen · Skill check — Stealth (Dexterity +2): shadowing the cart through the seaward gorse without being seen by the orcs or by whatever rides the canvas
+What adds to the die: +2 1d20+2
+DC 11
+Advantage: Boots of Elvenkind: silent steps
+Rerolls left: 2
+Two dice: 6 and 14 — the higher one counts, 14
+14 + 2 = 16
+Success — 16
+
+[Roll card] Sixpence · Skill check — Sixpence's Stealth: trailing the cart through the inland gorse, out of sight and downwind
+What adds to the die: +4 1d20+4
+DC 11
+Rerolls left: 2
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t5 card 2):
+
+````text
+[Roll the die]
+````
+
+### Screen 10
+
+````text
+[Roll card] James Worgen · Skill check — Stealth (Dexterity +2): shadowing the cart through the seaward gorse without being seen by the orcs or by whatever rides the canvas
+What adds to the die: +2 1d20+2
+DC 11
+Advantage: Boots of Elvenkind: silent steps
+Rerolls left: 2
+Two dice: 6 and 14 — the higher one counts, 14
+14 + 2 = 16
+Success — 16
+
+[Roll card] Sixpence · Skill check — Sixpence's Stealth: trailing the cart through the inland gorse, out of sight and downwind
+What adds to the die: +4 1d20+4
+DC 11
+Rerolls left: 2
+Die: 6
+6 + 4 = 10
+Failure — 10
+
+[Onward] [Request an allowed reroll — Stealth (Dexterity +2): shadowing the cart through the seaward gorse without being seen by the orcs or by whatever rides the canvas] [Request an allowed reroll — Sixpence's Stealth: trailing the cart through the inland gorse, out of sight and downwind]
+````
+
+**Player** (player t5 card 3):
+
+````text
+[Request an allowed reroll — Sixpence's Stealth: trailing the cart through the inland gorse, out of sight and downwind]
+````
+
+### Screen 11
+
+````text
+(Nothing was sent: the turn waits for the card — the server refused the reroll of «Sixpence's Stealth: trailing the cart through the inland gorse, out of sight and downwind» (validation); the card still waits.)
+
+[Roll card] James Worgen · Skill check — Stealth (Dexterity +2): shadowing the cart through the seaward gorse without being seen by the orcs or by whatever rides the canvas
+What adds to the die: +2 1d20+2
+DC 11
+Advantage: Boots of Elvenkind: silent steps
+Rerolls left: 2
+Two dice: 6 and 14 — the higher one counts, 14
+14 + 2 = 16
+Success — 16
+
+[Roll card] Sixpence · Skill check — Sixpence's Stealth: trailing the cart through the inland gorse, out of sight and downwind
+What adds to the die: +4 1d20+4
+DC 11
+Rerolls left: 2
+Die: 6
+6 + 4 = 10
+Failure — 10
+
+[Onward] [Request an allowed reroll — Stealth (Dexterity +2): shadowing the cart through the seaward gorse without being seen by the orcs or by whatever rides the canvas] [Request an allowed reroll — Sixpence's Stealth: trailing the cart through the inland gorse, out of sight and downwind]
+````
+
+**Player** (player t5 card 4):
+
+````text
+[Onward]
+````
+
+### Screen 12
+
+````text
+The wind has backed round off the water and comes up the coast from the southwest, so you have it in your face the whole way and your smell goes north behind you. You keep fifty or sixty feet back from the road and move from bush to bush, and the boots make no noise on the sand. You can't see the cart most of the time and you don't need to. The off wheel squeals once on every turn, the mule's hooves knock on the stones, and now and then the bigger orc grunts something at the animal. You keep the pace by ear and nobody on the road looks your way. When the ground rises and you get a glimpse over the gorse, the two orcs are still walking easy with their axes on their shoulders. Nothing about them says they're being followed.
+
+The cat has a worse time of it.
+
+Halfway down the far side of the next rise, the orc walking behind the cart stops. He turns his whole head toward the inland gorse, the way a dog does. You find Sixpence in the same moment he does: up on a hummock of sand where the stems thin out, caught in the open. The orc looks at the cat. The cat looks back. Then the orc stoops, picks up a stone and flicks it sidearm, more to see it jump than to hurt it, and Sixpence drops out of sight. The orc huffs out a laugh, says a word to the other one, and walks on.
+
+A breath later the cat reaches you, pressed flat under the gorse somewhere off to your left:
+
+*Burnt-sweet. Above the cart. Turned. Looking at me.*
+
+And then, after a moment: *Still looking.*
+
+The road drops into a shallow valley. At the bottom a stream runs brown and quick toward the sea, and the Coast Way crosses it on a humped stone bridge of three arches, old and patched, with a low parapet. On the near side, about thirty feet short of the bridge, a second cart lies on its side in the verge. It must be Tobin's. One wheel is gone, the shafts are snapped off short, and the canvas has been cut open from end to end and left to flap. Meal has spilled into the ditch and been trampled to paste, and the gulls have been at it. The harness and the mule are gone. Nobody has come back to clear it in four days.
+
+Past the stream the country changes. The gorse stops, and a wood of oak and holly comes right down to the far bank on the east side of the road, dark already under the leaves even though the sun is still a hand above the sea. Maybe a quarter of an hour of daylight left, maybe twenty minutes, and then dusk.
+
+The cart rumbles over the bridge. On the far side the bigger orc doesn't go on south. He swings the mule off the road to the left, onto a rutted track that runs east along the stream's far bank and in under the trees. You can just see a grey thread of smoke over the canopy, a few hundred feet in. Someone among the trees calls out in Orcish, a short bark, and the bigger orc barks back. The cart goes into the shade, and the wood swallows its creak in a few heartbeats.
+
+You're crouched in the last of the seaward gorse, at the top of the bank above the stream. The bridge is to your left and Tobin's wreck lies between you and the road. Sixpence is somewhere in the stems on the far side of the road, by the water. He's close, and he's not moving.
+
+*(Out of game: Sixpence can only speak to your mind while he's within a hundred feet of you.)*
+
+ The cat was the one who got caught, and you can feel it on him now. Sixpence couldn't keep himself hidden on that slope. He came out of the stems onto bare sand at the wrong moment, and two sets of eyes found him there: the orc walking behind the cart, and whatever rides above the canvas. The orc took him for a stray and forgot him by the next step. The other one didn't forget him. All down the slope and over the bridge it kept turning to watch the place where he'd gone to ground. Now Sixpence is lying low in the stems by the water, holding still and waiting for you.
+
+· roll: Stealth (Dexterity +2): shadowing the cart through the seaward gorse without being seen by the orcs or by whatever rides the canvas: 16 vs 11 — success
+· roll: Sixpence: Sixpence's Stealth: trailing the cart through the inland gorse, out of sight and downwind: 10 vs 11 — failure
+· the camp → Lies here: The wood east of the bridge: Ransom silver in meal sacks
+· the camp → Lies here: The wood east of the bridge: Brass lantern on the cart
+· Travel: The stone bridge (25 minutes)
+
+Place: The stone bridge · Time: Day 1 · afternoon
+````
+
+**Player** (player t6):
+
+````text
+I don't move. I let the wood swallow the cart and I keep my eyes on the far bank, not on the cat.
+
+To Sixpence, quietly in my head: *Come to me. Not across the road — along the water, under the bank, slow. Then stay on me.* Whatever that thing is, it's watching the place where a cat went to ground, and I'd rather it kept watching an empty bush.
+
+Then I settle in the gorse above the stream and let the light go. Twenty minutes till dusk; I'll give it until the far trees are one black mass and the smoke's gone grey against grey. Four days nobody's cleared that wreck — the Fist doesn't come down here, which means neither will help, and neither will witnesses. They've a camp with a fire, a cart of silver, at least three voices, and new steel from a proper smith. Before I decide anything I want to know how many there are and whether Tobin's still breathing.
+
+When it's dark I'll cross the stream upstream of the bridge, well away from the track — wade it where the bank's low — and work along the far side under the trees toward the firelight, with the stream between me and the road. Close enough to count heads by the fire. No closer than I have to get.
+````
+
+### Screen 13
+
+````text
+James doesn't move. The cart's creak goes in under the oaks and stops. He keeps his eyes on the far bank and gives the cat the thought: *to me, along the water, under the bank, slow.*
+
+Down in the stems by the stream, Sixpence pours himself off the hummock and into the shadow of the cut bank. To his left the water runs loud and brown.
+
+[Roll card] Sixpence · Skill check — Stealth (cat, Dex +2, proficient): Sixpence slips away under the stream bank while something watches the bush he hid in
+What adds to the die: +4 1d20+4
+DC 11
+Rerolls left: 2
+The die is cast on the server; tap it to see how it fell.
+
+[Roll card] James Worgen · Skill check — Stealth (Dex +2, not proficient): creeping through the dark wood toward the orc camp's fire to count heads, unseen
+What adds to the die: +2 Stealth
+DC 11
+Advantage: Boots of Elvenkind: moving quietly
+Rerolls left: 2
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t6 card 1):
+
+````text
+[Roll the die]
+````
+
+### Screen 14
+
+````text
+[Roll card] Sixpence · Skill check — Stealth (cat, Dex +2, proficient): Sixpence slips away under the stream bank while something watches the bush he hid in
+What adds to the die: +4 1d20+4
+DC 11
+Rerolls left: 2
+Die: 10
+10 + 4 = 14
+Success — 14
+
+[Roll card] James Worgen · Skill check — Stealth (Dex +2, not proficient): creeping through the dark wood toward the orc camp's fire to count heads, unseen
+What adds to the die: +2 Stealth
+DC 11
+Advantage: Boots of Elvenkind: moving quietly
+Rerolls left: 2
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t6 card 2):
+
+````text
+[Roll the die]
+````
+
+### Screen 15
+
+````text
+[Roll card] Sixpence · Skill check — Stealth (cat, Dex +2, proficient): Sixpence slips away under the stream bank while something watches the bush he hid in
+What adds to the die: +4 1d20+4
+DC 11
+Rerolls left: 2
+Die: 10
+10 + 4 = 14
+Success — 14
+
+[Roll card] James Worgen · Skill check — Stealth (Dex +2, not proficient): creeping through the dark wood toward the orc camp's fire to count heads, unseen
+What adds to the die: +2 Stealth
+DC 11
+Advantage: Boots of Elvenkind: moving quietly
+Rerolls left: 2
+Two dice: 4 and 10 — the higher one counts, 10
+10 + 2 = 12
+Success — 12
+
+[Onward] [Request an allowed reroll — Stealth (cat, Dex +2, proficient): Sixpence slips away under the stream bank while something watches the bush he hid in] [Request an allowed reroll — Stealth (Dex +2, not proficient): creeping through the dark wood toward the orc camp's fire to count heads, unseen]
+````
+
+**Player** (player t6 card 3):
+
+````text
+[Onward]
+````
+
+### Screen 16
+
+````text
+A man who walked scout lines for Zaranda knows what a wood sounds like at night, and he lets it set the pace. He goes when the wind moves the holly and stops when it drops. The elven boots put his weight down onto leaf litter without a sound. Twice a branch reaches for his cloak and he backs out of it instead of pulling through. Nobody calls out and nothing changes in the camp's noises. He reaches the edge of the firelight without being seen and goes down behind the root-plate of a fallen oak, maybe ninety feet from the fire. It's just past where the glow thins out. Orcs see in the dark better than men do, but not forever.
+
+Sixpence slides off his shoulder and presses into the roots.
+
+The camp sits in a clearing on the stream bank. Someone has used it before: there's a ring of blackened stones, a lean-to of cut poles and hides, and a rope strung between two oaks with meat hung on it to smoke. The Hale cart has been pulled in beside the lean-to, and the mule is tethered to a sapling with its nose in a heap of the Hales' own meal. Next to it are the goods out of Tobin's cart: crates, a couple of casks, rolled cloth. On the far edge of the pile, a long narrow bundle in oiled sacking catches the firelight dully where the sacking has slipped off it. Bar steel, by the way it lies.
+
+He counts.
+
+The two from the road are hauling meal sacks off the cart, one each, and dropping them by the fire. A third orc squats at the fire turning something on a stick. He's leaner and older, and his left ear is a ragged stump.
+
+The fourth is a woman. She's bigger than either of the cart orcs and sits on an upturned saddle with her greataxe propped against her knee. One of her lower tusks is broken off short, and the stub is capped in something bright that might be brass. She has a slit sack open across her lap, and she's counting the silver out onto a flat stone in stacks, unhurried, nudging each stack into line with one thick finger. Once she says something in Orcish without looking up, and the two haulers laugh. She doesn't.
+
+Far off to the west, where the track comes in from the road, a fifth shape stands at the edge of the light with a spear grounded. Its back is to the camp and it's watching the way the cart came. That's the voice that hailed them.
+
+Five, then. One of them is plainly in charge.
+
+A young man is tied to an oak at the edge of the clearing, nearer James than the fire. His wrists are bound in front of him and run on a short rope to the trunk, and there's a blanket over his shoulders. He has the Hale freckles. His face is grimy and his lip has been split at some point and scabbed over, but he's sitting up and his eyes are open. He watches the silver going into stacks, and you can see in his face that he knows exactly whose it is. There's a wooden bowl by his knee with something in it.
+
+The woman finishes a stack, looks at it, and pushes it aside. Then, without getting up, she reaches into her belt pouch and rattles something in her closed fist, small and bony. She throws it onto the stone among the silver, studies how the pieces lie, grunts, and sweeps them up again.
+
+The cart's lantern sits on the bench where the orc tossed it, shutters closed, cold now.
+
+Sixpence's breath is warm against James's wrist. *Five. Fire. Meat.* Then, more quietly, about the oak: *That one. Afraid. Tired.*
+
+The fire cracks. The woman goes on counting.
+
+· roll: Sixpence: Stealth (cat, Dex +2, proficient): Sixpence slips away under the stream bank while something watches the bush he hid in: 14 vs 11 — success
+· roll: Stealth (Dex +2, not proficient): creeping through the dark wood toward the orc camp's fire to count heads, unseen: 12 vs 11 — success
+· New place: Ushgra's camp
+· the camp → the camp: Brass lantern on the cart
+· Changed: Brass lantern on the cart (The cart reached the orc camp; the lantern sits on the bench, cold.)
+· the camp → the camp: Ransom silver in meal sacks
+· Changed: Ransom silver in meal sacks (The ransom reached the camp and is being counted out by the fire.)
+· In the camp: Goods from Tobin's cart
+· In the camp: Bound bar steel in oiled sacking
+· Lent: Explorer's Pack → Tamsin — Tamsin carries it for James; she took it with her toward Wyrm's Crossing
+· Journal: “See Tobin home” updated
+· Travel: Ushgra's camp (50 minutes)
+· New person: The orc chief with the brass-capped tusk
+· New person: The lean orc with the stump ear
+· New person: The orc sentry on the track
+· New person: Tobin Hale
+
+Your records, changed:
+Party: + Tamsin (HP 11/11) — not here; − Tamsin (HP 11/11)
+
+Place: Ushgra's camp · Time: Day 1 · afternoon
+````
+
+**Player** (player t7):
+
+````text
+I don't move, and I don't look at Tobin. A man tied to a tree can feel eyes on him, and he'll look back.
+
+Five, a fire, meat on the rope — they're settling in for the night, not moving out. That's good. Men who've just been paid eat well and sleep hard, and the one with the brass tusk will want her count finished before anyone touches a drop. The thing I can't see is the one that bothers me. Something rode that canvas across the bridge and it was still watching the cat's bush at the stream.
+
+To Sixpence, barely a thought: *Where's the burnt-sugar? Don't look. Smell.* I want to know if it's roosting on the lean-to, on the cart, or in the branches over the prisoner — before I commit a slot to anything.
+
+Then I settle behind the root-plate and let the camp run itself. I watch who eats first, who the woman sends to relieve the spearman on the track and how long between changes, where each of them lies down, and whether anyone checks Tobin's rope before they sleep. I'll give it an hour of dark — I've lain in worse mud for longer. When I know where the imp sits and who's awake, I'll decide whether this is a night for a quiet knife on a rope or for Tymora's lights in their eyes.
+````
+
+### Screen 17
+
+````text
+James keeps his eyes off the oak. He watches the fire, the woman's finger nudging the stacks, the meat turning on the cook's stick. Anything but the boy.
+
+*Burnt-sugar. Don't look. Smell.*
+
+Sixpence goes still against his wrist. His nose works in small, careful pulls: wood smoke, mule, singed fat, orc. A long pause. Then:
+
+*Burnt-sweet. Old. On the cart cloth. Cold.* Another pull at the air. *Not in the trees. Not over the lean-to.* And then, almost sulky: *Gone. Only the old smell.*
+
+The camp runs itself, and James lets it.
+
+The cook eats first, standing at the fire, and nobody minds. The two cart orcs get the meat next, and they eat it squatting by the sacks with grease running into their tusks. The woman finishes her count before she eats anything. She sweeps the stacks back into two meal sacks, ties their necks and sets them behind the saddle where she sits, between her back and the lean-to. Only then does she take the stick the cook holds out to her. Once, as she passes the goods pile, she stoops and pulls the slipped sacking back over the bar steel, tucking the end under like someone covering a sleeping child.
+
+Next the cook pulls a strip of meat off the stick, walks to the oak and drops it into the boy's bowl. He says nothing and doesn't stay. Tobin waits until the orc has gone, then eats it in small pieces, slowly.
+
+After a while the woman says a word without looking round. The second cart orc grumbles, takes a javelin and a strip of meat and walks off west along the track. A little later the spearman comes in out of the dark, stretches, and sits down by the fire to eat what's left. That's one change in the hour. James doesn't see another.
+
+They lie down the way men who expect no trouble do. The cook and the bigger cart orc crawl under the lean-to, feet toward the fire. The spearman rolls up in a hide on the near side of the ring of stones with his spear beside him. Before the bigger orc turns in, he walks over to the oak, crouches, tugs once at the knot on the trunk and once at the boy's wrists, and pulls the blanket back up over Tobin's shoulder where it had slid off. He grunts and goes to bed. Tobin curls down against the roots as far as the short rope lets him. He doesn't sleep at first. Later he does, or near enough.
+
+The woman doesn't lie down.
+
+She stays on her saddle with the axe across her knees and the silver at her back, and she feeds the fire one stick at a time. When she's bored she plays knucklebones against herself: the left hand throws, then the right, and she tallies with a finger in the ash. The right hand loses more than it wins. Each time it loses she looks at the bones a moment longer before sweeping them up.
+
+Out west, the sentry's shape at the edge of the light hasn't moved in a long while.
+
+Under the lean-to, somebody starts to snore.
+
+· Time passes: 1 hour
+· Changed: Ransom silver in meal sacks (Counted and re-bagged; moved behind the chief's saddle.)
+· Changed: Bound bar steel in oiled sacking (The orc chief covered the bar steel again; it no longer catches the firelight.)
+
+Place: Ushgra's camp · Time: Day 1 · evening
+````
+
+**Player** (player t8):
+
+````text
+I lie there a while longer, watching the right hand lose at knucklebones, and let it settle in me the way a bad hand does: she's going to sit up all night with that axe across her knees and the silver at her back. Nobody's relieving her. The thing that rode the canvas has done its job and gone home to report to whoever pays in Amnian gold. So it's the three sleepers, the sentry with his back to us, and her — and she's looking at the fire, not the dark.
+
+No lights in anyone's eyes tonight. A quiet rope.
+
+I ease the rapier's hilt round so I can draw it without a scrape, touch the coin at my throat, and cast Invisibility on myself — one slot, and worth it. To Sixpence: *Stay. Watch her. If she stands up, tell me.*
+
+Then I go: out from behind the root-plate, wide to the right, keeping the oak between me and the fire so the boy's own shadow covers my approach, slow enough that the leaf litter doesn't so much as sigh. When I reach Tobin I put a hand flat and gentle over his mouth before anything else and breathe it into his ear: "Merrin sent me. Don't move, don't look round, don't make a sound. I'm going to cut you loose. When I squeeze your shoulder, you crawl — crawl — straight back from this tree into the dark, and keep going till I stop you."
+
+Then I set the edge to the rope at the trunk, below the knot where it won't tug his wrists, and start sawing.
+````
+
+### Screen 18
+
+````text
+James stays behind the root-plate a while longer. Out at the fire the right hand throws and loses, and Ushgra looks at the bones a moment, then sweeps them up. The left hand throws. The sentry's shape out on the track doesn't turn around.
+
+He turns the rapier's hilt so the blade will come out of the scabbard without a scrape. He touches the coin at his throat, and it's warm, the way it always is. He speaks the words under his breath. His hand fades first, then his sleeve, then the rest of him, until all he can see of himself is the dent his elbows leave in the leaves.
+
+*Stay. Watch her. If she stands up, tell me.*
+
+Sixpence presses lower into the roots. *Watching.*
+
+James swings wide to the right, out past the edge of the glow, until the oak stands between him and the fire. The boy's own shadow lies black across the ground, and James walks up inside it.
+
+[Roll card] James Worgen · Skill check — Stealth: invisible, across the leaf litter to Tobin's oak and sawing the rope without a sound
+What adds to the die: +2 Stealth
+DC 10
+Advantage: Boots of Elvenkind: moving quietly
+Rerolls left: 2
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t8 card 1):
+
+````text
+[Roll the die]
+````
+
+### Screen 19
+
+````text
+[Roll card] James Worgen · Skill check — Stealth: invisible, across the leaf litter to Tobin's oak and sawing the rope without a sound
+What adds to the die: +2 Stealth
+DC 10
+Advantage: Boots of Elvenkind: moving quietly
+Rerolls left: 2
+Two dice: 20 and 10 — the higher one counts, 20
+20 + 2 = 22
+Critical! — 22
+
+[Onward] [Request an allowed reroll — Stealth: invisible, across the leaf litter to Tobin's oak and sawing the rope without a sound]
+````
+
+**Player** (player t8 card 2):
+
+````text
+[Onward]
+````
+
+### Screen 20
+
+````text
+The boots carry him over the litter, and he passes the leaves, the dry holly and a fallen twig without a sound. He doesn't hurry, and the dark doesn't need him to. He stops behind the oak with the bark close enough to smell and the boy curled at his feet. Nobody at the fire has any idea he's there. The snoring under the lean-to goes on at the same pace.
+
+He kneels, lays his hand flat over Tobin's mouth, and breathes into his ear.
+
+Tobin's whole body bucks. A hand has come out of nothing, and the boy can't help it. His heels kick at the roots, the short rope snaps tight against the trunk, and a shiver runs up through the low twigs of the oak. James's palm swallows the shout. What gets out is a thick grunt, no louder than a sleeper's.
+
+At the fire the knucklebones stop.
+
+Against the root-plate, Sixpence: *She looks. Here. Not standing.*
+
+Ushgra has turned her head toward the oak. From where she sits she can see a carter's boy, half sitting up, with his blanket fallen off one shoulder and his eyes wide and fixed on the dark in front of him. She looks at him for a long moment, and the firelight catches the brass on her tusk.
+
+"Sleep, carter," she says in Common, heavy and unbothered. "Morning, you go home."
+
+She turns back to the fire. The left hand throws.
+
+Under James's palm, Tobin's breathing goes in hard through his nose, once and again, and then it slows. *Merrin.* He's heard the name now, a beat late. He doesn't nod. He makes himself go loose, the way you'd hope a boy would, and lies back down against the roots with his eyes open.
+
+James draws the rapier a finger's width at a time and sets its edge to the rope just below the knot on the trunk. It isn't a knife, and the work takes a long minute of small, patient strokes. The fibres part one by one under a blade nobody can see, and none of them makes a sound. Something taps once against his collarbone, small and light, like a coin landing on a table. Then the last strands give. The rope's tail drops into the leaves between the roots. Tobin is free of the tree, though his wrists are still tied together in front of him.
+
+The boy feels it go slack. He doesn't move.
+
+Out on the track, the sentry stands with his back to the camp. At the fire, the right hand is about to throw.
+
+*(Out of game: that natural 20 earns James Heroic Inspiration.)*
+
+· roll: Stealth: invisible, across the leaf litter to Tobin's oak and sawing the rope without a sound: 22 vs 10 — critical · Heroic inspiration: 0 → 1/1 — natural 20 on Stealth
+· Time passes: 15 minutes
+· Invisibility · Pact slots (3rd level, short rest): 2 → 1/2 (Cast Invisibility on himself behind the root-plate to reach Tobin's oak unseen)
+· Hero's sheet: conditions: Invisible (concentration, to ~18:25), Heroic Inspiration (Invisibility on himself (concentration; ends if he attacks or casts a spell); a natural 20 on Stealth earned Heroic Inspiration)
+· Equipped: Rapier (off hand)
+· Journal: “See Tobin home” updated
+
+Your records, changed:
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 1/2; Pact keeper rod 1/1; Heroic inspiration 1/1
+
+Place: Ushgra's camp · Time: Day 1 · evening
+````
+
+**Player** (player t9):
+
+````text
+I wait for the right hand to throw and for her eyes to drop to the bones. Then I squeeze Tobin's shoulder once.
+
+As he starts to move I keep my hand on his back, light, steering: straight away from the trunk, into the black behind the oak, belly down, elbows and knees, the way he'd crawl under a fence. I don't cut his wrists yet — a blade near a scared man's hands in the dark is how someone yelps. I crawl with him, invisible, a pace to his left where the fire can't throw his shadow onto the ground I'm covering, and I don't let him rise until the oak and the lean-to are both between us and the fire and the glow has gone to nothing on the leaves.
+
+To Sixpence, as we go: *Stay on her. Tell me if she stands or if the sentry turns. When we're well off, come to me along the stream.*
+
+Once we're a good hundred feet into the trees, I stop him with a hand on his shoulder, kneel, and whisper the rest into his ear: "Hold your wrists out, still. I'm going to cut the cord. Then we go downstream to the bridge, and we don't talk till we've crossed it."
+````
+
+### Screen 21
+
+````text
+James waits on the right hand.
+
+Ushgra shakes the bones in her fist and throws, and her head goes down to see how they lie. James squeezes Tobin's shoulder once.
+
+The boy has been waiting for it so hard that he nearly goes too fast. James's palm on his back slows him, and Tobin understands: belly down, elbows, knees, like a lad wriggling under a fence. His bound hands go out ahead of him together. James crawls on his left, a pace off, low enough to smell the leaf mould. His hand stays light on the boy's spine and steers him straight back from the trunk into the black behind the oak.
+
+As Tobin goes flat, the blanket slides off his shoulders and stays behind in the roots. It drops over the cut tail of the rope and sags into the hollow where he lay. From the fire it looks like what it has looked like all evening: a carter's boy curled up asleep under a blanket against the oak.
+
+Tobin crawls like someone who has crawled under plenty of fences. He keeps his elbows in and his face down and goes slowly. When a dry holly leaf crackles under his knee he stops dead, without James's hand telling him to, and waits for the wind to cover it before he goes on. Ushgra doesn't look up. Through the dark James feels the cat watching her:
+
+*Throws. Throws. Not looking.*
+
+They put the oak behind them, then the bulk of the lean-to and the hanging meat. The fire's orange goes thin on the leaves and then stops reaching them. James counts the distance in elbow-lengths, the way he used to count it on his belly across a picket line. At a hundred feet the trees close properly overhead. The only thing he can see of the camp is a red flicker between two trunks. He puts his hand on Tobin's shoulder, and the boy stops.
+
+James kneels and whispers. Tobin's hands come up out of the dark, held out together and shaking slightly, and he locks them still. James can't use the rapier's edge like a knife, so he lays the blade flat along the inside of the boy's wrists, edge out, and works the cord against it in short strokes. It takes a while, and Tobin doesn't flinch once. The cord parts. Tobin pulls his hands apart and rubs one wrist slowly with the other, and his breath shudders out of him.
+
+Something brushes James's boot. It's warm and low, and it came out of the dark along the line of the stream. Sixpence presses against his ankle.
+
+*Here. She throws still. Nobody turned.*
+
+Downstream, the way the water runs, the track follows this same bank west toward the road. Its sentry stood at the edge of the light all evening, facing the bridge.
+
+Tobin turns his face toward the place where the voice was. It's too dark to make out more than a pale smudge and the shine of his eyes. He's quiet for a moment, as he was told to be. Then he leans in until his mouth is nearly at James's ear, and he whispers so low it's barely breath:
+
+"The silver. It's behind her. Two sacks." He swallows. "That's all we had."
+
+· Time passes: 12 minutes
+· In the camp: Tobin's blanket
+· Journal: “See Tobin home” updated
+
+Place: Ushgra's camp · Time: Day 1 · evening
+````
+
+**Player** (player t10):
+
+````text
+I put my hand on the back of his neck a moment, the way you do with a green recruit who's just asked the right question at the wrong time.
+
+"I know. And she's awake with an axe across her knees and the sacks against her spine, and there are four more between us and the road. Tonight I came for you. Merrin's sitting on the Coast Way waiting for a brother, not a cart." I keep it to breath. "The silver isn't gone. It's going somewhere, and I mean to see where. But not with you behind me."
+
+Then I get him up, slowly, one hand on his arm. Not the track — the sentry's been staring down it all night and he's the one with his eyes used to the dark. We go upstream, the way I came, under the trees along the water until the camp's red flicker is gone behind the trunks, and I wade him across where the bank is low and the stream talks loud enough to cover a splash. Sixpence rides my shoulder. Once we're on the gorse side I turn us west, well off the road, to come down on the bridge from the seaward slope.
+
+To the cat: *Behind us. If anything follows along the water, say so.*
+
+I don't say another word until the stones of the bridge are under his feet.
+````
+
+### Screen 22
+
+````text
+James keeps his hand on the boy's neck for a moment. Tobin's breath catches and then lets go, and he doesn't argue. He gets to his feet when James's hand on his arm says to, slowly. He's stiff from four days at a tree and steadies himself on a trunk before he trusts his legs.
+
+They go upstream, away from the track, with the water on their left.
+
+They've gone perhaps a hundred and fifty feet, with the camp's red flicker shrinking behind them between the trunks and the stream talking loud on their left, when the watch changes behind them.
+
+James hears it the way he heard everything tonight, by ear. Ushgra says a word. A sleeper grumbles and gets up. Feet go out west along the track, and a moment later feet come back in. Those feet don't go to the fire. They stop somewhere near the oak.
+
+There's a pause about two breaths long. Then a bark in Orcish, short and ugly, and the sound of a blanket being kicked off empty roots.
+
+The camp wakes all at once. Wood goes onto the fire and the glow behind the trunks jumps, orange, throwing long shadows that don't reach this far. Somebody under the lean-to swears. Ushgra's voice cuts across all of it, flat and quick, and the noise stops. Two pairs of feet go off at a run, west, down the track toward the road and the bridge. A third set doesn't run. It moves slowly around the oak, then out to the edge of the clearing on the stream side, stopping and starting. Something being held up flares and hisses: a brand pulled from the fire.
+
+Then Ushgra speaks again, in Common this time, loud and not hurried, pitched into the dark at nobody in particular.
+
+"Rope-cutter. Good knife, clean cut." A pause. "Boy was going home in morning. Silver is paid. You steal what I give anyway." Another pause, longer. "You walk in my camp, nobody sees. That I want to know about. You come talk. Or I come look."
+
+The fire cracks. She doesn't say anything else.
+
+Tobin has gone rigid under James's hand. His arm is shaking, but he doesn't make a sound and doesn't run, and his face is turned back toward the light.
+
+Sixpence's claws tighten on James's shoulder. *Behind. Two go fast, to the water-road. One here, with fire. Slow. Sniffing.* A pull at the air. *Not close. Not yet.*
+
+The crossing James used on the way in is just ahead, a low place in the bank where the water breaks white over stones. On the far side are the gorse, the seaward slope, and the long way round to the bridge. Two orcs with javelins are heading for that same bridge by the short way, and they'll get there first.
+
+· Time passes: 5 minutes
+· Changed: Tobin's blanket (Kicked off the empty roots when the orc found Tobin gone.)
+· Journal: “See Tobin home” updated
+
+Place: Ushgra's camp · Time: Day 1 · evening
+````
+
+**Player** (player t11):
+
+````text
+I don't answer her. A woman who's just been robbed and wants to *talk* has four axes behind her, and I've already had the only conversation I came for.
+
+"Across. Now." I put Tobin into the water where it breaks white — my hand on his collar, him on the downstream side so if he slips he slips into me. We wade it quick while the stream covers the noise, and I keep him moving up the far bank and into the gorse before he's done shaking the water off.
+
+The bridge is theirs. Let them have it. We don't need the bridge; we need north. I turn us inland of the road, through the thick stems on the landward slope, and strike for the rise where I left Tamsin and Merrin — the long way, bent double, with the stream's loud water behind us to break the scent for whoever's carrying that brand.
+
+To Sixpence, riding my shoulder with his nose into the wind: *Tell me the moment the one with the fire crosses the water, or if the two at the bridge leave it. Nothing else. Just that.*
+
+Only when the gorse has closed round us and the camp's glow is gone do I breathe at Tobin: "Keep hold of my cloak. You can't see me; you don't need to. Just don't let go."
+````
+
+### Screen 23
+
+````text
+James puts Tobin into the stream where it breaks white over the stones. The boy goes in on the downstream side with James's fist in his collar, and the cold takes his breath. The water is knee-deep and fast, the stones slick under it. Halfway across Tobin's foot skids and he lurches into the hand holding him and stays up. The water's noise covers the splash. Three strides more and they're out. James keeps him moving, up the cut bank on hands and knees, through the first stems at the top, and into the gorse on the landward side before the boy has stopped shaking the water off his arms.
+
+Behind them the camp is still a red flicker between the trunks, low and wavering.
+
+James turns them north, away from the road and away from the bridge. The gorse is thick and as tall as a man here, and they go into it bent double, the sand cold and damp under their hands where they have to use them. The stream's noise falls behind. After a hundred feet, then two hundred, the flicker is gone. Only the dark is left, and the smell of the sea.
+
+Then James breathes it at the boy, and Tobin's wet hand finds the edge of the grey cloak and closes on it hard.
+
+Sixpence rides James's shoulder with his nose into the wind, claws set through the cloth.
+
+A quarter of a mile on, the ground lifts into a long sandy hump and the gorse thins along its back. James stops there flat, with Tobin flat beside him. Sixpence turns on his shoulder to face the way they came.
+
+*Fire. At the water.*
+
+There's a long pause. The cat's tail twitches against James's neck.
+
+*Fire walks on the bank. Up. Down. Stands.* Another pause, longer. *Goes back. Along the water. Toward the meat.*
+
+From here James can make out a faint orange dot, very small and far off, moving west along the line of the stream until the trees take it. Nothing comes up the landward slope after them, and nothing calls out. Whoever carried the brand walked the bank, lost the trail where the boy came out of the stream, and gave it up.
+
+They go on.
+
+It's a long mile through gorse in the dark, and slow going with a boy who can't see the man he's following. Tobin keeps his fist in the cloak and doesn't say a word. When his knee goes into a rabbit-scrape he swallows the noise. Twice James hauls him down flat because the wind has dropped and the gorse has gone too still. Both times nothing comes, and they get up again. The road is a pale strip off to the left and James keeps them well clear of it, two or three hundred feet inland.
+
+Somewhere on the climb toward the rise, a warmth goes out of the coin at his throat. James looks down and sees his own hand again, grey against the sand, and his sleeve, and his boots. The spell has run out. Tobin sees him at the same moment. The boy gets his first proper look at the man who's been steering him, stops dead, and then keeps walking.
+
+They come over the crest a little after half past six by the stars.
+
+The rise is empty. The ruts the Hale cart left are there in the starlight, with the churned suck-hole in the ditch where the wheel came out and the cut ends of Merrin's reins lying in the mud. Out in the gorse the hollow where she lay up all afternoon is only a dent in the sand. Nobody is on the road north. Tamsin and Merrin went at full dark, the way James told them to.
+
+Tobin stands in the ruts of his own family's cart and looks at them for a while. His teeth are chattering now from the wet, and he holds his jaw shut against it.
+
+"She was here," he says at last. It isn't a question. He looks at the cut reins. "That's her knot. She always does it twice." He wraps his arms round himself. Then, still not looking at James, he says in a flat voice: "The big one with the tusk. First day, she told me in Common, plain as you like. *Fist man comes. Pays. You go home.*" He swallows. "So it was all already settled, was it. Her silver and me. And I've gone and walked off."
+
+The wind comes up off the sea, cold through his wet shirt. North, the road runs on toward the Crossing in the dark.
+
+ *(Out of game: none of the four needed a roll. Wading a knee-deep ford, walking north through gorse with nobody close behind, the cat noticing a lit brand from your shoulder, and getting back to the rise had no real chance of failing. The only uncertain part was whether the orc with the brand would find your trail, and that was his roll, made in secret. He lost it.)*
+
+· Hero's sheet: conditions: Heroic Inspiration (Invisibility ran out on the climb to the rise (~18:25); concentration over.)
+· Journal: “See Tobin home” updated
+· Travel: The abandoned cart (55 minutes)
+
+Place: The abandoned cart · Time: Day 1 · evening
+````
+
+**Player** (player t12):
+
+````text
+I put my hand flat on Tobin's wet shoulder and mutter the little cantrip every soldier wishes he'd had on a picket line. The water lifts out of his shirt and breeches in a fine mist and blows off down the wind, and what's left on him is dry cloth and goosebumps. I do my own boots and hose while I'm at it.
+
+"Listen to me, because you've got it backwards. You didn't walk off with anything. She was paid two hundred in silver to sit on you for four days, and she got every coin of it. The only people cheated on this hill are called Hale." I nod at the cut reins. "And the man who wrote the letter telling your sister where to leave the sacks did it on a Fist stores form, and walked it to your door himself. *Fist man comes, pays.* Aye. Sergeant Voss, at the Crossing. That's who settled it. Not you."
+
+I pull Sixpence off my shoulder and set him on the road ahead, nose north, then turn Tobin by the arm the same way. "Your sister's gone north with a friend of mine, and that's where we're going — off the road, inland side, no talking above a breath. Keep your hand on the cloak till the lights of the Crossing show."
+
+As we start down the far side of the rise, bent low in the gorse, I ask him the only thing I need before we get there, quiet: "Four days in that camp. Did anyone come to it besides orcs? A Fist uniform, a woman in a black travelling coat, anyone? And that long bundle in oiled sacking by the goods — the bar steel. Was that out of your cart, or did they already have it?"
+````
+
+### Screen 24
+
+````text
+James lays his palm flat on the boy's wet shoulder and says the little words under his breath. The water comes up out of Tobin's shirt and breeches in a fine grey mist, lies on the air a moment, and goes off inland on the sea wind. What's left is dry cloth and a boy covered in goosebumps. Tobin looks down at his own sleeve and touches it as if it belonged to somebody else. James does his own boots and hose the same way.
+
+Then he tells him he's got it backwards.
+
+Tobin listens with his jaw shut against the shivering. At *two hundred in silver* his eyes go to the cut reins. At *Fist stores form* they come back to James. When James says *Sergeant Voss, at the Crossing*, the boy is quiet for long enough that the lantern-tick of the night insects in the gorse fills the gap.
+
+"He came to the house," Tobin says at last. It isn't really a question. "Voss did. With that." He breathes out through his nose, the way his sister does. "And Merrin let him in, 'cause he's Fist."
+
+He doesn't say anything else about it. When James puts Sixpence down on the road with his nose pointed north, Tobin turns where the hand on his arm turns him. His fist finds the edge of the grey cloak again in the dark, though he can see the man now. He doesn't seem to notice he's done it.
+
+They go down the north side of the rise bent low, two or three hundred feet inland of the road, with the cat a pale smudge ahead flowing from bush to bush. It's slower than the road and the sand drags at the feet. The wind has gone round into the west and comes in steady off the water, and there's nothing in it but salt and gorse.
+
+A few hundred yards on, James asks his question, low.
+
+Tobin takes his time over it, the way someone does who has had four days at a tree with nothing to do but watch.
+
+"No Fist. Not one. And no woman, not in black nor anything." He stumbles over a root and gets his feet back. "One came that wasn't theirs. Second night. Up the track on foot, with a lantern shuttered down to a crack. Not an orc. Half, maybe. Little tusks. Good boots, city boots, I could hear them on the stones." He swallows. "He came and looked at me. Asked my name, and my da's name, and where we live, in Common, like a man from the Gate. I told him. I thought..." He stops that sentence and doesn't finish it. "Then he went and sat with her a long while, away from the fire, talking low. Their talk, mostly. I heard *Crossing* once. He was gone north before it got light."
+
+A few steps later he adds: "She didn't like him. After he went, she sat up throwing her bones till morning. Never seen her do that before or since. Not like that."
+
+Sixpence stops ahead of them, one paw lifted. It's only a rabbit, which goes off thumping through the stems. The cat watches it go and walks on.
+
+"The steel," Tobin says. "That wasn't mine. My cart was cloth and two casks of lamp oil and a crate of pans for a woman in Beregost. The bundle was there when they walked me in. And axes, new ones, heads still greasy. First night the one with the bit ear sat fitting a head on his haft and wiping the grease off with his thumb, and I watched him 'cause there was nothing else." He holds up his free hand in the dark and makes a little curl with one finger. "There's a mark stamped in the steel, by the eye, where the haft goes in. Little. Like a snake curled up asleep. Every one of them had it, that I saw."
+
+He drops the hand back to the cloak.
+
+They pass the second milestone without stopping, a grey stump of stone on the far verge with its numbers worn to nothing. There's no lantern on the road and no patrol. Nobody passes them going either way the whole length of it, Fist or anyone else, and nobody has in some while: the ruts are full of old rainwater and nothing has broken the skin on them.
+
+A little before eight by the stars the ground tips down toward the river. Over the last hump of gorse the lights of the Crossing come up out of the dark: the long bright string of the bridge-houses over the black Chionthar, lamps in the windows of Rivington below, and halfway across the river the bulk of Wyrm's Rock with a single fire burning on its wall.
+
+Tobin stops and looks at it. His hand is still on the cloak.
+
+· Changed: Bound bar steel in oiled sacking (Tobin says the bundle was the band's before he came; his cart held only cloth, lamp oil and pans.)
+· Journal: “The ransom cart” updated
+· New place: Wyrm's Crossing
+· New place: The gorse above the Crossing
+· Travel: The gorse above the Crossing (1 hour 15 minutes)
+· New person: The half-orc go-between
+
+Place: The gorse above the Crossing · Time: Day 1 · evening
+````
+
+**Player** (player t13):
+
+````text
+I crouch beside him in the last of the gorse and let him look at the lights a moment. Then, low:
+
+"The man with the city boots asked your da's name and where you live. So your house is known, and Voss carries letters to its door. We don't walk up to it. Where is it — Rivington, or on the bridge? And if Merrin couldn't go home, where would she go? A neighbour, an aunt, somebody who'd shut the door behind her and keep it shut." I wait for the answer. "And the Fist post — which end of the Crossing? I want to come in by the other one."
+
+While he tells me, I put my hand on the coin and change my face: a river bargeman, forty, broad and sun-cracked, a day's grey stubble and a greasy cap, the sort nobody looks at twice at a bridge-gate. Tobin watches it happen and I let him. "That's for the gate. You keep your head down, your collar up, and you're my sister's boy who's had too much to drink and lost his coat. Lean on me if anyone looks."
+
+Then I send Sixpence ahead, down the slope and into Rivington: *Find Tamsin. The quay first. Come back and show me.*
+````
+
+### Screen 25
+
+````text
+James crouches beside the boy in the last of the gorse and lets him look at the lights for a while. Tobin's breath steadies. When James asks his questions, Tobin keeps his eyes on the river while he answers, like a man reading directions off a map.
+
+"Rivington. Carters' yard off Mulehead Lane, back of the wheelwright's. Blue gate. You can't see it from here." He thinks about the second question longer. "Da's upriver with the big wagon. Scornubel, gone a fortnight, doesn't know any of this. Mam's dead." He says it flatly, as an old fact. "If Merrin couldn't go home she'd go to Aunt Dace. Mam's sister, she keeps the eel shop on Hook Lane, right down on the water. She'd shut the door on a Grand Duke and tell him through the keyhole he was letting the heat out."
+
+Then he lifts his chin toward the bottom of the slope. Where the road runs onto the bridge, two lamps hang on the front of a squat stone house with a bar across the way.
+
+"That's the post. The toll-house, south end, right where the road comes on. That's where Voss sits." He swallows. "Other end's the city side. You'd have to go past him and right over the river to get there. But you don't need the bridge at all. Rivington's this side of the water. There's a tanners' path that comes off the road before the toll-house and goes down along the bank behind the lanes. It stinks, so nobody walks it at night."
+
+While he talks, James puts his hand on the coin. Nobody hears him speak the spell, and it doesn't feel like much: a warmth under the fingers, a prickle over the skin like coming in out of a cold wind. Tobin is watching, and he sees the whole thing. James's face gets broader and darker, the sun-cracks come up around the eyes, and a day's grey stubble spreads along the jaw. A greasy cap that wasn't there a moment ago sits low on his head. He's ten years older and a river bargeman, the kind who leans on every bridge rail from here to Scornubel.
+
+Tobin stares. Then he lets out something that's almost a laugh. "Cap's like Uncle Pell's," he says. "He was a drunk too." He turns up his collar the way he's been told. "I won't need to act it. I've had nothing but stream water four days. I'll fall over on my own."
+
+James sets Sixpence down on the sand and gives him the thought: *Find Tamsin. The quay first. Come back and show me.*
+
+The cat lifts his nose into the wind off the river. Smoke, tar, fish, the tannery's sourness somewhere below. *Tamsin,* he gives back, the way he'd name a smell. *Quay.* He goes off down the slope through the gorse, quick and low, a pale smudge between the stems, then a flicker at the edge of the road's ditch. Then James can't see him at all. A few breaths later, a hundred feet off, his small busy presence thins in James's mind and goes out of reach.
+
+Below, on the toll-house, the two lamps burn steadily. A figure steps out under them, stretches, looks south up the empty road for a moment and goes back in.
+
+Tobin's hand has found the edge of the cloak again.
+
+Nothing else happens on the slope unless you want it to. You can wait here for the cat to come back, or start down the road toward the tanners' path.
+
+· Time passes: 5 minutes
+· New place: Rivington
+· New place: The Wyrm's Crossing toll-house
+· New place: The tanners' path
+· New place: The Hale yard
+· New place: Aunt Dace's eel shop
+· Hero's sheet: conditions: Heroic Inspiration, Disguise Self: bargeman (to ~20:57) (Mask of Many Faces: Disguise Self at will, the face of a river bargeman of about forty with grey stubble and a greasy cap, for the gate; lasts an hour.)
+· New person: Aunt Dace
+
+Place: The gorse above the Crossing · Time: Day 1 · evening
+````
+
+**Player** (player t14):
+
+````text
+I don't wait on the slope — a bargeman and a drunk boy standing in the gorse above a toll-house is the one thing on this hill worth a second look.
+
+"Hook Lane. We'll try your aunt's door first; if Merrin's anywhere in Rivington tonight that's where she is, and the cat will find us on the water." I get Tobin's arm over my shoulders and take his weight the way a man takes a nephew who's had too much, and we go down onto the road at the bargeman's pace — unhurried, a little bowed, nothing to see. Where the tanners' path forks off before the toll-house lamps I turn down it without breaking stride, stink and all, and keep to the river side of the lanes behind Rivington, counting on the smell to keep the path as empty as Tobin says.
+
+As we go I keep my head down and my ears open: anyone on the path, lights in the lanes above us, Fist voices from the toll-house carrying over the water. And I murmur to Tobin, "When we get to the eel shop, you knock. It's your voice she'll open for, not mine — not with this face on."
+````
+
+### Screen 26
+
+````text
+James gets the boy's arm across his shoulders, and Tobin sags onto him at once. Some of that is acting and most of it isn't. They come down out of the gorse onto the road at a bargeman's pace, a little bowed and in no hurry, the greasy cap pulled low. In front of them the toll-house lamps grow from two dots into two lanterns with moths around them, and the bar across the road shows pale under them. Nobody comes out.
+
+About a hundred and fifty feet short of the light, a footpath drops off the landward verge between two leaning posts. James turns down it without breaking stride, and the smell comes up to meet them.
+
+Tobin was right about it. Lime, rotten hide and the sour reek of the tan pits sit in the low ground along the bank. The path is beaten mud and old boards, running behind a row of sheds and fenced yards with the river black and slow on the right. On the left are the backs of Rivington's lanes: shuttered windows, a few lamps, a dog that barks twice behind a fence and gives up. Somewhere up the slope a woman is calling a child in for the third time and getting no answer.
+
+"Told you," Tobin says under his breath, with his face turned into James's collar. "Nobody comes down here. Not even the rats, much."
+
+Sound carries over the water. From back toward the bridge comes the toll-house: a man laughing, a stool scraping, and the dry rattle of a dice cup, then a groan from someone who lost. Then a door bangs and it goes quiet. Nobody walks the path behind them.
+
+They pass the tan yard, then a rope-walk with its long shed dark, then a jetty where two flat boats are tied up with no one in them. The smell begins to change, the tannery giving way to woodsmoke and something oily and fishy. Eel smoke, from a chimney somewhere ahead. Tobin lifts his head at it.
+
+"That's Dace's. Hook Lane's the next one up." He swallows. "When I knock, it's two and then one. She'll know it's me before I say anything."
+
+They're perhaps two hundred feet short of the lane's end when something brushes James's mind. It's small and busy and coming fast along the bank behind them, and a breath later Sixpence comes out of the dark between two sheds. He's wet to the belly and pleased with himself. He goes once around James's ankles and sits down in the middle of the path, facing back the way they came.
+
+*Tamsin.* He says it the way he'd name a smell he's chewed on. *Found.*
+
+Then: *Merrin too. Tired. Afraid, less.*
+
+The tail twitches. *Back. By the water. Stone steps, boats.* He keeps his nose pointed at the toll-house lamps, small now behind them across the dark bank. *Close to the lamps. The stone house. Men in it.* A pause. *Another woman with them. River. Pipe-smoke. Not afraid.*
+
+He looks up at James, then at Tobin, and doesn't move. The eel smoke drifts down from Hook Lane ahead. The cat's way runs back toward the bridge, straight into the light by the toll-house.
+
+Up ahead, a shutter on the lane is still showing a crack of lamplight.
+
+ *(Out of game: none of the three needed a roll. Walking at a bargeman's pace, listening along an empty path and telling Tobin to knock are routine for an old scout, and nothing on that path could have gone against you. Tobin's line about "two and then one" is his reply to your instruction, so he'll do the knocking whenever you get to Dace's door.)*
+
+· New place: Hook Lane
+· A rumour of a place: The river stairs by the toll-house
+· Travel: The tanners' path (15 minutes)
+
+Place: The tanners' path · Time: Day 1 · evening
+````
+
+**Player** (player t15):
+
+````text
+I don't like it — Tamsin's trusted somebody who sits her two hundred feet from Voss's lamps — but she said *short list*, and a river woman with a pipe who isn't afraid is the sort who owns a boat. First things first: the boy goes behind a door.
+
+"Your aunt's. Two and then one." I walk Tobin up to the end of Hook Lane, keep to the shadow of the wall, and let him do the knocking while I stand off a pace with my cap down, a nephew's drunk uncle. When Dace opens, I keep my bargeman's voice low and quick: "He's home, ma'am. Merrin's safe too — she's down at the river stairs, and I'm going to fetch her now. Bar this door behind him and don't open it for a Fist tabard tonight, not for Voss nor anyone. If a woman called Tamsin knocks with your niece, that's me sent them."
+
+Then I turn back down the stinking path toward the bridge, unhurried, the bargeman going home to his boat. To Sixpence, trotting ahead: *Show me where. Stop short of the lamps.* I want to see the stone steps, the boats, and the woman with the pipe before anyone sees me — and whether the men in the toll-house are looking at the water or at their dice.
+````
+
+### Screen 27
+
+````text
+Hook Lane is a crooked slot running up from the river between leaning walls, and it smells more of eel than of tannery. The shop is three doors up. Its shutters are closed, the crack of lamplight shows round them, and a smoke-house chimney at the back puts out a thick, oily curl. James keeps to the black under the wall with the boy's arm across his shoulders. When they reach the door he takes the arm off and steps back a pace, cap down, swaying slightly, like a man who has had a long evening.
+
+Tobin stands in front of the door a moment, as if he'd forgotten what doors are for. Then he lifts his fist and knocks twice, waits, and knocks once more.
+
+Inside, a stool goes over. Feet come fast across a board floor and stop on the other side of the wood.
+
+"Say it again," says a woman's voice, low and hard.
+
+Tobin knocks two and then one, and his hand stays flat on the planks afterwards.
+
+A bar scrapes, then a bolt, and the door opens a hand's width onto lamplight and a wall of smoked-fish warmth. The woman in the gap is short and thick-armed, about fifty, with a leather apron, grey hair scraped back, and the Hale freckles gone brown with age. She has a gutting knife in one hand. She looks at the boy for exactly one breath. Then the knife goes down on the shelf behind her without her looking at it, the door comes open all the way, and she has him by both arms and pulls him in over the step as if he weighed nothing.
+
+"Four days," she says into his hair. "Four days, and that girl telling me *don't, Aunt, the Fist says pay and wait*. Look at your lip." She holds him off to look, then pulls him in again. Over his shoulder her eyes find the bargeman by the wall, and they aren't grateful yet. They're measuring him.
+
+James gives her his piece, low and quick, in the bargeman's voice.
+
+She hears all of it without interrupting. At *Merrin's safe* her shoulders drop a finger's width. At *don't open it for a Fist tabard* her mouth goes thin.
+
+"I don't open to the Fist sober," she says. "I'll not start tonight." Her eyes stay on him. "River stairs under the bridge-end. That'll be Odda Marl's. Odda's got the ferry there, and the shed." Something in her face eases a little more. "If Merrin's with Odda, she's all right. Odda's put better men than the Fist in the river." She jerks her chin at him. "Tamsin. I'll remember it. And you, whoever you are with that cap on. You bring that girl to this door yourself, or I'll be down those stairs after her with the eel knife, and I'll be cross about it."
+
+Tobin turns in the doorway, still inside her arm. "Aunt. He's the one went in for me." It comes out like he's been carrying it the whole mile. "Walked right up to the tree and nobody saw him."
+
+Dace looks at the bargeman a moment longer, and this time it's a different look. She doesn't say anything to it.
+
+"Inside," she tells the boy, and the door shuts. The bolt goes across, then the bar. Through the planks James hears her voice start up, quick and scolding, and under it a stool being set back on its legs.
+
+---
+
+The tanners' path takes him back the way he came: the jetty with its two empty boats, the dark rope-walk, the stink of the pits coming up again out of the low ground. He walks it like a man going home to his boat, in no hurry. Sixpence goes ahead, a pale shape moving low along the edge of the boards. He's quick and sure about it, and he keeps looking back.
+
+The path doesn't go up to the road. Short of the toll-house it bends with the bank, drops a few steps and runs in under the bridge's first span. Up close the bridge-end is a great buttress of old stone with its foot in the river and moss on it up to a man's height. On the downstream face a flight of worn stone stairs goes down to the water, cut into the buttress itself. The steps finish at a little stone landing. Three boats are moored there: two skiffs and a wide, flat-bottomed ferry with a pole laid along its thwarts. A low shed of tarred boards is built against the stone at the back of the landing, with a lantern on a nail by its door. Its light hardly reaches past the boats.
+
+Forty feet short of the landing, Sixpence stops dead in the shadow of a stack of old hides and sits down. *Here. Not closer. Lamps.*
+
+From there James can see it all.
+
+The toll-house stands straight above the stairs at the top of the bank, its lamps shining on the road. Neither its door nor its windows face the river. The only opening on this side is one narrow slit of a window, shuttered, with lamplight leaking round its edges. The door is round the front, open. The voices come out of it into the night and fall away over the water: a laugh, the rattle of a dice cup, somebody swearing at it. A fourth voice is lower and steadier, telling a story the others keep interrupting. A crate is set on the ground by the doorpost, and the smell coming down the bank off it isn't tannery. It's fish, a whole basket of it, left out in the cool.
+
+Nobody up there is looking at the water. They'd have to come out round the corner of the house and lean over the parapet to see the landing, and nobody does.
+
+On the landing, a woman sits on the gunwale of the ferry with her boots on the stone. She's big and weathered and wears a man's oilskin coat, and a short clay pipe glows red in her teeth. She's facing the stairs, not the river, with a boat-hook laid across her knees the way some people hold a walking stick. Behind her the door of the tarred shed is a hand's width ajar, and a slice of red light comes through it.
+
+In that gap James can see the edge of a pack he knows, his own, set on the floor. A brown skirt is drawn up beside it, and a pair of scuffed boots.
+
+The pipe-woman takes her pipe out of her mouth. She hasn't moved anything else, but her eyes have come off the stairs and gone along the path, past the boats, to the stack of hides where a cat is sitting in the shadow.
+
+She looks at the cat for a long moment. Then, without raising her voice, she speaks over her shoulder at the gap in the shed door.
+
+"Your gentleman keep a tabby?"
+
+· Time passes: 15 minutes
+· Completed: See Tobin home
+· Journal: “"You'll have him back"” updated
+· New person: Odda Marl
+
+Your records, changed:
+Goal: —
+Quests: —
+
+Place: The tanners' path · Time: Day 1 · evening
+````
+
+**Player** (player t16):
+
+````text
+I step out from behind the hides with my hands where she can see them and the cap still on, and walk the last forty feet along the boards at the bargeman's pace, not fast, not slow. Sixpence trots ahead and jumps onto the ferry's gunwale beside her as if he owns it.
+
+Quiet, and in my own voice this time, not the bargeman's: "He does, ma'am. And the face is borrowed — the Fist up top has seen my real one." I stop a pace short of the landing, below the parapet's line of sight, and pitch the next bit at the gap in the shed door. "Tamsin. It's me. Tell the lady so before she puts that hook in me. Merrin — your brother's behind your aunt's door on Hook Lane, bolted and barred. Lip split, four days hungry, otherwise whole. He walked the last mile on his own feet."
+
+Then back to Odda, lower: "They were counting the ransom round a fire east of the stone bridge when I left. Dace says you've put better men than the Fist in the river. I'd like to hear what you make of Sergeant Voss, and I'd rather hear it inside, out from under his window."
+````
+
+### Screen 28
+
+````text
+Sixpence goes up onto the ferry's gunwale in one easy jump and sits down a foot from Odda's hip, tail curled round his feet, facing the river. Odda Marl doesn't move the boat-hook. She looks at the cat, then at the bargeman stopped a pace short of her landing, and goes on smoking.
+
+Tamsin answers before Odda has to ask. "That's him." The shed door swings wider and she leans out with one hand on the jamb. She looks him up and down, cap to boots. "The face is new. I'd know that walk anywhere, though. He walks like he's owed money." She looks over at Odda. "He's ours, Odda."
+
+Merrin is past her before she's done talking. She's been sitting on the floor by the pack, and now she's on her feet in the doorway with her knife in her fist, and for a moment she stares at a stranger's broad sun-cracked face. Then she hears what the voice is telling her: *behind your aunt's door, bolted and barred.*
+
+Her hand with the knife drops to her side.
+
+"Tobin," she says. That's all of it for a breath. Then, low and fast: "His lip. They hit him?" Before anyone can answer she puts her other hand flat on the doorframe as if the floor had tilted, and she asks again, as if she needs to hear it twice: "On his own feet."
+
+Odda stands up off the gunwale. She's taller than he expected, and the oilskin creaks. She jerks her head at the shed.
+
+"In, then. Mind the oars."
+
+The shed is low and close, built of tarred boards against the old stone of the buttress. A little iron stove ticks in the corner, and the red light from its grate is all the light there is. Nets hang drying from the rafters. Oars stand in a rack, and there's a coil of new rope, a keg with a board across it for a table, and a smell of pitch and pipe tobacco and wet wool. His pack is on the floor where Tamsin left it, with the straps still done up. Tamsin pulls the door to behind them. The voices from the toll-house come through the boards over their heads, muffled: the dice cup, someone laughing.
+
+Merrin doesn't sit. She stands by the door with her knife put away at last and her arms folded tight, watching James as if he might take it all back.
+
+Odda lowers herself onto an upturned crate by the stove, lays the boat-hook across her knees again, and takes the pipe out of her mouth.
+
+"Voss." She looks at the pipe while she says it. "Quartermaster up there. Counts the barrels, signs the chits. Every boat that ties up under his bridge leaves him a fish. That crate by his door's tonight's." She puts the pipe back, draws on it, and takes it out again. "He's a small man. Greedy in small ways. I'd never have said he had a letter like that in him." The stove ticks. "I'd have said he'd steal the paper, not write on it."
+
+She turns the pipe over in her fingers.
+
+"One thing more, and you can have it free. The Fist used to walk the Coast Way. Four lads and a corporal, south past my stairs at first light every other morning, back at dusk with their boots full of sand. The last lot went down eleven days ago, and none since." She shrugs, and the oilskin creaks. "I asked one of the lads why, when he came down for the ferry. He said word came down, nobody goes south. He didn't know whose word. Didn't much care, either. The walk's long."
+
+Tamsin has sat down on the pack with her elbows on her knees. "Eleven days," she says quietly. "That's before Tobin was taken."
+
+Odda doesn't answer that. She looks at James over the bowl of the pipe, at the borrowed stubble, the borrowed cap, the rapier hilt the bargeman's coat doesn't quite cover, and the tabby that has followed them in and sat down by the stove.
+
+"So the Fist up top knows your real face." It isn't quite a question. "Tamsin says you're walking to the Friendly Arm. She didn't say who's walking."
+
+By the door Merrin shifts her weight. She's put her shawl on, and her eyes go once to the door and the stairs beyond it, toward Hook Lane.
+
+ *(Out of game: none of the four needed a roll. Walking forty feet of empty boards in plain view and saying true things to friends can't fail, and the scene played all four: he stopped a pace short of the landing, Tamsin vouched for him, Merrin took in the news about Tobin, and Odda answered him about his face.)*
+
+· New place: Odda's shed
+· Travel: Odda's shed (5 minutes)
+· Tamsin joins you
+· Journal: “The ransom cart” updated
+· Journal: “"You'll have him back"” updated
+
+Your records, changed:
+Party: + Tamsin (HP 11/11); − Tamsin (HP 11/11) — not here
+
+Place: Odda's shed · Time: Day 1 · evening
+````
+
+**Player** (player t17):
+
+````text
+I take the cap off, since there's nobody in here it's for, but I leave the face on — the man upstairs has seen the other one, and the walls are boards.
+
+"James Worgen. Late of Queen Zaranda's foot, later of worse company. I'm walking to the Friendly Arm because a goddess told me to come to the Gate and learn how to be useful, and I'd a notion the Arm was where useful work gets hired." I nod at the ceiling, where the dice cup rattles. "I've a feeling I've found some early."
+
+To Merrin, before she asks a third time: "Yes. On his own feet, and the lip's four days old, not fresh. Dace said if I didn't bring you to her door myself she'd come down these stairs with the eel knife. I believe her. Tamsin — walk her up Hook Lane by the tanners' path and come back. Nobody looks at two women on that path tonight any more than they looked at a bargeman."
+
+Then, to Odda, lower, while they get ready: "Eleven days with no patrol, a quartermaster who steals paper rather than writes on it, a half-orc in city boots who came to the camp on the second night, sat the orc chief down for a long talk she didn't enjoy, and said *Crossing* — and a bundle of bar steel in that camp, and new axe-heads with a mark stamped by the eye. A snake, curled up asleep." I let that sit. "You've put men in the river. Do you know that mark? And is there a half-orc on this Crossing who wears good boots and comes and goes north before light?"
+````
+
+### Screen 29
+
+````text
+James takes the bargeman's cap off and puts it on his knee. Without the cap the borrowed face looks odd, ten years older than his voice, with a stranger's stubble.
+
+Odda hears his name out with the pipe in her teeth. When he gets to the goddess she takes it out.
+
+"Worgen." She turns the name over the way she might turn a coin someone had paid her with. "Goddess sent you to the Gate to be useful. That's a new one. Most that come down my stairs with a god behind them, it's the sea one, and she wants them to go in the river." She puts the pipe back. "You'll find plenty of early work here."
+
+By the door, Merrin has gone very still. At *the lip's four days old, not fresh* she breathes out through her nose, hard, the way her brother does, and nods once to the floorboards. She doesn't ask again.
+
+"Tobin," she says, and nothing more for a moment. Then she pulls the shawl tight. "Aunt would, too. With the knife." She looks up at the ceiling, at the dice cup rattling through the boards. "He'll come round in the morning. Voss. Letter said *home the morning after*. He'll come to the yard with his hat in his hand to fetch us our boy, and there won't be one to fetch."
+
+Tamsin is already up off the pack. "Up the stink-path, knock, come back. I can manage that." She lifts the shed door on its hinge so it doesn't scrape, and looks back at James. "Leave the pack. If I'm not back quick, Odda, it's because Dace has fed me." Then she ducks out after Merrin. Their footsteps go across the landing and up onto the boards of the tanners' path, and then the river covers them.
+
+The stove ticks. Odda lets the quiet sit while James lays it out low: the eleven days, the paper, the boots, the steel, the snake asleep by the eye of the axe.
+
+She doesn't answer straight away. She knocks the pipe out against the stove door and refills it from a pouch, slowly, pressing the leaf down with her thumb.
+
+"The snake I know," she says. "Bar ends. Crate lids, now and then. It comes down from Scornubel on the long barges, the ones with a full crew and no river folk on them. They don't tie up anywhere near my stairs. They go over to the city side and unload at a private wharf below the Rock, at night, by their own lanterns. The men who do the carrying wear no badge, and they pay a porter double to forget his own name." She lights a spill at the grate and holds it to the bowl. "I've never asked whose snake it is. Nobody I drink with has either. That should tell you something."
+
+She draws on the pipe and lets the smoke go up into the nets.
+
+"Boots." She tips her head at the ceiling. "I'm on the water before light most days, for the first fares. Two mornings back a man came up the road from the south in the dark, walking quick. He had big shoulders and a hood, and under the lamps there was a bit of tusk. Half, I'd say. You could hear his boots on the road stones clear down here, and they were city leather, not a carter's." She looks at James over the bowl. "He didn't go straight over the bridge. He knocked at the toll-house, and somebody opened and let him in. They don't do that for me. He was in there a while before he came out and went on north." A pause. "He didn't take a fish."
+
+Overhead, somebody throws the dice and swears at them, and the steady voice picks up its story again.
+
+· Time passes: 10 minutes
+· A rumour of a place: The private wharf below Wyrm's Rock
+· Journal: “"You'll have him back"” updated
+· Journal: “The ransom cart” updated
+
+Place: Odda's shed · Time: Day 1 · evening
+````
+
+**Player** (player t18):
+
+````text
+I turn the cap over in my hands and listen to the dice go across the ceiling. There's a part of me that knows exactly what that cup sounds like from the inside, and I put the cap down on the keg and leave it there.
+
+"Then here's what I think, and you can tell me where I'm wrong. Voss didn't write that letter. He hasn't the spine or the hand. The half-orc wrote it — a man who asks a prisoner's father's name and where the family lives writes a letter like that — and Voss carried it, because the half-orc knocks at the toll-house in the dark and gets let in. The orcs are being paid in axes and silver to sit on a wood where the Fist's been told not to walk. Which means the ransom was never the point. Somebody wanted the Coast Way south of your stairs empty for a while, and the Hales were a way of paying for it." I look at her. "Tonight the orcs find the tree empty, and by morning so does Voss. He won't go to the yard with his hat in his hand. He'll go to whoever he reports to."
+
+I ease down onto the floor with my back to the warm stone of the buttress, the rod across my knees, and let my shoulders come down for the first time since the rise. "I've spent what I came with tonight and I want it back before I do anything else. If you'll have me by your stove for an hour, I'd be glad of it — and I'll pay a fare for it. When Tamsin's back I want to put a question to you: when the next long barge comes down from Scornubel to that private wharf, would you know? And is there a place on the water a man in a skiff could sit and watch it unload without being the one they pay double to forget?"
+````
+
+### Screen 30
+
+````text
+Odda hears him out without interrupting. When he gets to *the ransom was never the point*, she takes the pipe out of her mouth.
+
+"It's the point to Dace." She says it flatly, with no heat in it. "Two hundred's what her sister's man has to show for a year on the road." She puts the pipe back and draws on it, and the bowl glows. "The rest of it, I'll not tell you you're wrong. You're the one who's been in the wood."
+
+Overhead the dice cup rattles, stops, and somebody groans.
+
+"Whoever he reports to." She tips her head toward the ceiling. "His own lot sit in the Rock. The stores office, up on the second wall, where the chits go. If he runs anywhere in the dark, it'll be across that bridge. He won't go south." She watches him settle onto the floor with his back against the buttress and the rod across his knees. "Fare's for people I put across the water. You're sitting on my floor. Sit."
+
+Sixpence decides it before James does. He walks round the stove once, lies down along the warm side of it with his paws tucked under, and shuts his eyes most of the way.
+
+Odda doesn't wait for Tamsin before she answers the rest. James asked it out loud, and she isn't one to sit on a question.
+
+"Long barges come down on the ebb, after midnight. They don't keep a day. Last one was six nights back. Before that, maybe ten or twelve nights." She turns the pipe in her fingers. "I'd know one was on the river a day ahead. The upriver lads drink at the market under the Rock and talk about anything that passed them with no colours flying." She looks at the stove grate, not at him. "Below the Rock on this side there's what's left of the old ferry, a stand of pilings nobody's pulled. A skiff tied up in among them is just a skiff. Put eel lines out and keep a lamp low on the water. Nobody pays an eel-man double to forget. He isn't worth remembering." She shrugs, and the oilskin creaks. "That'd be my skiff. Then it's a fare. A silver a night, and you bring her back with the bung still in."
+
+After that she smokes and says nothing more, and lets him have the hour.
+
+It goes quietly. The stove ticks and the river talks against the stones of the landing. Somewhere past the first quarter of the hour, boards creak along the tanners' path. The shed door lifts on its hinge, and Tamsin ducks in smelling powerfully of eel smoke, with a greasy paper parcel held against her chest.
+
+"Inside." She says that before anything else. "Merrin's in, door's barred, the boy's asleep on a bench with his boots still on and Dace won't let anyone take them off him in case he wakes." She drops onto the pack. "Dace says next time you bring them yourself, and she looked at me like I was you." She holds out the parcel. "Smoked eel. She says you're thin. I said you'd a face on, she couldn't tell. She said she could tell."
+
+A little before nine the warmth goes out of the coin at James's throat. The bargeman's stubble and sun-cracks fade off him like breath off glass, and his own face comes back in the red light of the grate. Tamsin glances up from the eel and nods, as if a coat had come off.
+
+Overhead the dice game breaks up not long after. Stools scrape, someone says *goodnight, then* in a sour voice, and boots go round the front of the house. Something heavy is dragged in over the doorstep. The fish crate has gone indoors. Then it's just the steady voice, low, talking to somebody who doesn't answer, and later not even that.
+
+By a quarter to ten the hour is done. James's breath has gone long and even against the warm stone, and the tiredness of the rise and the wood has eased out of his shoulders. What he spent tonight has come back to him. Sixpence hasn't moved from the stove. Tamsin has eaten half the eel and is pretending she hasn't. Odda's pipe has gone out, and she hasn't bothered to light it again.
+
+Nothing else comes down the stairs tonight unless you want it to.
+
+· Gained: Smoked eel in greasy paper
+· the camp → The orc chief with the brass-capped tusk: Ransom silver in meal sacks
+· the camp → The orc chief with the brass-capped tusk: Bound bar steel in oiled sacking
+· the camp → The orc chief with the brass-capped tusk: Goods from Tobin's cart
+· Promise kept: "You'll have him back"
+· Journal: “The ransom cart” updated
+· A rumour of a place: The stores office on Wyrm's Rock
+· A rumour of a place: The old ferry pilings below the Rock
+· Hero's sheet: conditions: Heroic Inspiration (The disguise ran out a little before nine; his own face is back.)
+· Short rest (1 hour 3 minutes)
+· Changed: Smoked eel in greasy paper (Tamsin has eaten about half of the eel and is pretending she hasn't.)
+
+Your records, changed:
+Counters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1; Heroic inspiration 1/1
+Carried: + Smoked eel in greasy paper
+Promises: —
+
+Place: Odda's shed · Time: Day 1 · evening
+````
+
+**Player** (player t19):
+
+````text
+I take the eel Tamsin hasn't eaten and eat it slowly, and I put a silver on the keg beside the cap anyway — Odda can call it what she likes. Then I ask her for a corner of the floor till light, and the loan of a bit of old sacking.
+
+"Nobody with a dice cup goes to bed thinking the world's ended — but that thing with wings went home to somebody tonight, and whoever it went to may send a man to Voss before dawn. I'd like to know if his door opens in the dark, and which way the boots go." To Sixpence, warm by the stove: *Up on the bank, under the parapet, where you can see his door. Tell me if it opens — who, and which way. Then come back.* I don't ride his eyes; I let my own close.
+
+To Tamsin, before I lie down against the stone: "The letter says Tobin comes home the morning after. Voss will come to the blue gate in Mulehead Lane with his hat in his hand to be the man who brought the family their boy, and find Merrin already weeping over him. I want to be in that yard when he does — with a face on, as the carter's cousin up from Beregost. He's never seen a cousin." I pull the sacking up. "Wake me if the cat does."
+````
+
+### Screen 31
+
+````text
+James eats the eel slowly. There's less of it than Dace sent, and Tamsin finds something interesting in the rafters while he finishes it. He sets a silver on the keg beside the greasy cap.
+
+Odda looks at the coin and leaves it where it is.
+
+"Put it toward Dace's two hundred," she says. She gets up, pulls an old sack off a nail by the oars and drops it in his lap. It's stiff with pitch at one corner and smells of eel and the river. "Corner's yours. Mind the net weights, they bite."
+
+Sixpence opens one eye when James gives him the thought. He doesn't hurry. He stretches along the warm side of the stove first, front legs and then back, as if the order had been his own idea, and goes out under the shed door where it doesn't meet the stone. James feels him go up the worn stairs and along the top of the bank, and then he settles somewhere small and dark under the parapet. *Door. Lamps. Watching.* After that there's only the cat's patience, which goes a long way down.
+
+Tamsin listens to the plan with her chin on her fist. When he gets to *the carter's cousin up from Beregost*, she sits up.
+
+"Boy's at Dace's, though. Behind the bar and the bolt." She points at the floor as though Hook Lane were under it. "You'll have to talk her into sending him and Merrin back up to the yard by first light so Voss has someone to weep over. I'd rather it was you asked her than me." She lies back down on the pack and drags her coat over her. "A cousin from Beregost wants somebody to carry his bag. I've the face for it. Nobody's ever looked at it twice."
+
+Then she's asleep, quick and complete, the way porters sleep.
+
+Odda banks the stove until only a red seam shows at the grate. She lies down on a heap of dry nets under the oar rack with her coat still on and the boat-hook on the boards beside her. The river talks to the landing. Overhead the steady voice has stopped. James pulls the sacking up, puts his back to the old stone, and lets his eyes close.
+
+---
+
+The cat wakes him.
+
+*Door.*
+
+It comes into his sleep like a claw into a sleeve, and he's awake in the dark with the stove gone to embers, Tamsin breathing slow on the pack and Odda a dark heap under the oars. The air through the board gaps has the cold in it that comes a few hours before dawn. Nothing is grey yet. Some time after three, by the feel of it.
+
+*Boots. Loud on the stones. From the dark road. South.*
+
+Overhead, faint through stone and boards, someone is knocking at the toll-house: three knocks, a pause, one more.
+
+*Tall. Hood. Small tusks.* A pull at the air, sharp. *Smoke on him. The meat-fire. The wood.*
+
+A bolt goes back up there. James can't hear the latch from where he lies. He hears the hinge.
+
+*Door opens. A crack. Lamp.* A pause. *He goes in.*
+
+The hinge again, and the bolt.
+
+Then come boots on the floor above, two pairs, and a stool dragged across the boards. Voices, two of them, pitched low. From the corner where James lies, through stone and tarred planks, he can't make words of them. One is quick and even. The other keeps breaking in over it.
+
+*Inside,* Sixpence gives him from under the parapet. *Both. Lamp in the little window.* Then, a little put out: *Still watching. Not come back yet.*
+
+Odda hasn't moved. Tamsin is still asleep.
+
+*(Out of game: you'd slept about five and a half hours. If you lie back down within the hour, the long rest still counts.)*
+
+· Time passes: 5 hours 30 minutes
+· Used: Smoked eel in greasy paper
+· Odda Marl now has: Old pitch-stiff sack
+· Lent: Old pitch-stiff sack → James Worgen — Lent for the night on her floor; left behind in the shed when he goes
+· −1 silver → Lies here: Odda's shed
+· Journal: “The ransom cart” updated
+
+Your records, changed:
+Money: 315 gp; 314 sp; 350 cp
+Carried: + Old pitch-stiff sack; − Smoked eel in greasy paper
+
+Place: Odda's shed · Time: Day 1 · night
+````
+
+**Player** (player t20):
+
+````text
+I don't get up. I pull the sacking tighter and let my own ears go.
+
+*The little window. The lamp-crack. Get under it, close against the stone where the shutter meets the frame, and sit the way a cat sits on a sill. Listen. Don't look in — I want the words, not the faces.*
+
+Then I ride him — hearing first, the way you listen through a tent wall on a picket line — and I lie still against the warm stone and take whatever comes through the shutter: who's doing the talking, what the quick even voice wants of Voss, and above all which way the boots go when the door opens again.
+````
+
+### Screen 32
+
+````text
+Sixpence takes the thought without fuss. James feels him leave the parapet and go along the top of the bank to the corner of the toll-house, where the stone is still faintly warm from the day. A short scrabble of claws and he's up on the narrow sill under the slit window. He sits pressed against the shutter where it meets the frame, tail wrapped round his feet, the way a cat sits on any sill anywhere.
+
+James lets his own ears go. The shed goes quiet, and so do the stove ticking and the river at the landing. What comes in is the cat's world: the wind off the water, cold on the left side, a moth tapping at the lamp somewhere inside, and through a crack no wider than a whisker, two men talking.
+
+For a long while it's nothing a man could use. The shutter is thick old oak and the wind keeps leaning on it, so the voices come through as shapes with no words in them. One is quick and even and never rises. The other keeps breaking in over it, higher and faster, and then stopping as though it had been told to. Sixpence's ears turn on their own toward each voice, and for all the turning he gets mostly the sound and very little of the sense.
+
+A few pieces do come through, in the gaps when the wind drops.
+
+The even voice: "...nobody saw him. Not her, not the cook, not the one on the track..."
+
+Then the wind again. Then the other voice, close to the shutter now, as if he'd got up and was walking about: "...twenty. I'm owed the twenty, boy or no boy, I carried the..."
+
+The even voice cuts across him, low, and the rest goes under it. A stool scrapes. Something small and heavy is set down on a board table, with the dull clink of a purse that has coin in it.
+
+Sixpence's nose twitches at the crack. *Coins.*
+
+Later, closer, the even voice says it right under the shutter, as if he'd come to the window to look out at the dark: "...the yard at six, the way you said you would. You go in surprised. You ask them who..." Then he moves off from the window, and the rest goes with him.
+
+That's all James gets of the words.
+
+A little before four the bolt goes back, then the hinge. Sixpence presses flatter on the sill. Boots come out round the front of the house, the same hard city leather on the road stones, and they don't hesitate. They turn north onto the bridge and go out over the water at a brisk walk, ringing on the old paving, past the first of the bridge-houses, toward the dark hump of the Rock with its one fire. The sound gets smaller and then the river covers it.
+
+The door shuts. The bolt goes across.
+
+Inside, the lamp stays lit. Nobody lies down. After a while a new sound comes through the crack, thin and patient and stopping now and then: a pen, scratching.
+
+*Scratching,* Sixpence gives him. *Like the mouse in the wall. He stays.* Then, a little later: *Still scratching.*
+
+*(Out of game: the cat missed the check, so you got pieces of the talk instead of all of it. Half an hour of lying still and listening counts as light activity, so the long rest still stands.)*
+
+· roll: Sixpence: Perception (Sixpence's keen ears, +3): catching the words of two low voices through a shuttered slit: 10 vs 15 — failure
+· Time passes: 35 minutes
+
+Place: Odda's shed · Time: Day 1 · night
+````
+
+**Player** (player t21):
+
+````text
+I let the cat's ears go and the shed comes back — the cold through the boards, Odda's breathing under the oars, the red seam at the grate.
+
+*Enough. Come down and get warm.* He's earned the stove.
+
+Twenty silver for carrying a letter, a purse set on a table, and *the yard at six — you go in surprised, you ask them who.* So the quick even voice wants Voss to find out who walked into that camp, and Voss wants to be paid for finding out. Good. A man who's been told to go in surprised is a man who's rehearsed his face, and a rehearsed face is the easiest kind to read. Whatever he's scratching on up there now is going over the bridge with the next pair of boots, and I'd give a good deal to see it before it does — but not tonight. Tonight the cat's cold and I'm one hour short.
+
+I pull the sacking back up and put my shoulders to the stone. *Wake me when the sky goes grey, or if his door opens again before that.* I want to be at Dace's door on Hook Lane by five with my own face on, before the eel smoke starts — because if Voss is going to walk into that yard at six and ask the Hales who, I mean to have the Hales there to be asked, and the cousin from Beregost standing behind them with his hat in his hand.
+````
+
+### Screen 33
+
+````text
+*Enough. Come down and get warm.*
+
+Sixpence doesn't argue. James feels him drop off the sill, go along the top of the bank and down the worn stairs, quick and low. A moment later the cat pushes in under the shed door where it doesn't meet the stone. He's cold from the stone sill and smells of river wind. He doesn't go to the stove first. He comes to James, walks once up the length of the sacking, and only then goes to lie along the warm iron with his paws tucked under. The red seam at the grate shows in his half-shut eyes.
+
+*Grey, or the door,* James gives him, and lets his own eyes close.
+
+He sleeps the way soldiers do, all at once. Nothing comes through the boards to wake him: no hinge, no bolt, no boots on the road stones.
+
+---
+
+*Grey.*
+
+The cat's thought comes in mild this time, without claws, and with it a paw set on James's wrist and left there. The shed is darker than the light outside it. Pale cold shows through every gap in the tarred boards, and the river has gone from black to the colour of slate. Gulls are up and complaining somewhere under the bridge. Away upstream a boatman calls to another, a long flat river shout, and gets one back.
+
+Odda is already up. She has fed the stove and it's ticking again. She's standing in the open door with the oilskin buttoned and the ferry pole on her shoulder, looking up at the bank and not down at the water. Past her, on the landing, the lantern on its nail has been put out.
+
+"Lamp went out up there a bit after half four," she says without turning round. "I was up for the first fares. Nobody went in. Nobody came out." She shifts the pole. "Dace puts the smokehouse fire in at five. She'll be up, and in a temper about it, same as every day."
+
+On the pack, Tamsin is a heap of coat with one boot sticking out. She hasn't moved.
+
+Odda looks back over her shoulder at him for a moment, at the sacking and the rod and his own face in the grey light.
+
+"First fare's a woman with a basket of hens, over to the Rock market." She steps down onto the landing. "If you're going up the stink-path, go before she comes. She talks."
+
+The pole knocks against the ferry's thwarts. Up on the bank the toll-house shutters stay closed.
+
+*(Out of game: your long rest finishes around a quarter to six. Getting up now and walking to Hook Lane and talking at Dace's door won't break it, as long as nothing turns into a fight before then.)*
+
+· Time passes: 1 hour 15 minutes
+
+Place: Odda's shed · Time: Day 2 · morning
+````
+
+**Player** (player t22):
+
+````text
+I fold the sacking and leave it on the crate by the oars, and the silver stays on the keg where Odda said it belonged — Dace's two hundred has to start somewhere. Then I nudge the boot sticking out of the coat.
+
+"Up. Hat in hand. We're the Beregost relations, and we've a door to argue with before the smokehouse goes in." To Odda, as she steps down to the ferry: "I'll be back for the skiff when you hear a barge is on the river. And if anyone from up top comes down these stairs asking after a bargeman with a tabby, you never saw one."
+
+Sixpence rides my shoulder up the stink-path. I keep my own face for Dace — she's earned the real one — and I'll put the cousin on at her door, where she can watch it happen and know the man under it. Hook Lane, two knocks and one, and when the bolt scrapes I keep it low and fast, before she can start:
+
+"Ma'am. James Worgen, the one with the cap last night. Voss had a visitor in the dark — the half-orc in city boots — and he's been told to walk into your brother-in-law's yard at six, surprised, and ask the Hales who took their boy. I want them there to be asked. Merrin weeping over Tobin at the blue gate, Tobin saying he ran off into the dark on his own and a stranger he never saw clear cut him loose — not one word more. And me standing behind them as a cousin up from Beregost who's heard the whole sorry tale on the road and wants to know what the Fist means to do about it." I let her look at me. "I know what I'm asking. He walks in, he sees the faces he came to see, and he goes back over the bridge thinking the Hales know nothing. Then nobody comes to this door tonight. That's the whole of it."
+````
+
+### Screen 34
+
+````text
+James folds the sacking square and lays it on the crate by the oars, pitch-stiff corner on top. The silver stays on the keg where Odda left it.
+
+The boot sticking out of the coat gets a nudge, and then another. Tamsin comes up out of sleep all at once, the way she went into it. "Hat in hand," she says, thick-voiced, before she has properly understood what was said. She looks round the shed, at the grey in the board gaps and at James's own face, then pulls the pack onto her back in one movement. "Beregost. Right. What do people in Beregost do?"
+
+"Hit iron," Odda says from the doorway. She listens to the rest from the landing with the pole on her shoulder, and doesn't turn round for the part about the bargeman.
+
+"Bargeman with a tabby." She sets the pole against the stone. "Half the river's that. I never saw any of them." She steps down into the ferry and it rocks under her. "Barge news comes, I'll know where to find you? No. You'll know where to find me." She pushes off a foot from the landing and lets the current hold her there, waiting for the hen-woman.
+
+---
+
+The stink-path is grey and empty, with dew on the old boards. Sixpence rides James's shoulder and keeps his face into the wind. On Hook Lane the smokehouse is already in. A fresh oily curl is pouring off the back chimney, and from somewhere behind the shop someone is banging a damper and swearing at it.
+
+Two knocks, a wait, then one.
+
+The swearing stops. Feet come through the shop and halt behind the planks, and this time she doesn't ask for the knock again. The bar scrapes and the door opens a hand's width. Dace is in the gap with soot up one forearm and the gutting knife already in her hand.
+
+"That's the boy's knock," she says. "You've no right to it."
+
+James gives it to her low and fast, in his own voice and with his own face.
+
+She lets him finish. Her eyes stay on him the whole time. At *the half-orc in city boots* they narrow. At *walk into your brother-in-law's yard* her knuckles go white on the knife. When he's done she doesn't answer straight away. She looks past him down the lane toward the river, then back.
+
+"You want me to send my sister's two back to the one house in Rivington that man knows the way to." Her voice is flat and quiet. "Four days I've been told *pay and wait*. Now it's *go home and weep*. Everybody's got a plan for those children but them."
+
+"Aunt." Merrin is behind her in the shop's dim, in yesterday's skirt, with her shawl already on. She's been up a while. "I'll go."
+
+Dace doesn't turn round. "You'll go where I say."
+
+"I let him in last time." Merrin comes up to the door and stands at her aunt's shoulder, looking at James and not at Dace. "Sat him by the fire. Gave him a cup. I can let him in again and look at him while he drinks it." She swallows. "Tobin can cry. He won't have to try. Nobody asks a crying boy twice."
+
+Behind them, on a bench by the cold counter, a shape under a coat with two boots sticking out of the end shifts and doesn't wake.
+
+Dace is quiet for a long breath. Smoke comes down the lane between them.
+
+"Then I'm in that yard too," she says at last. "An aunt at her sister's gate the morning the boy comes home, nobody looks twice at that either." She jerks her chin at James. "And you stand where he has to come past you to get to them. Not behind. In front."
+
+She gets the door the rest of the way open. Then, before he can lift a hand to the coin at his throat, she puts the flat of the knife across the jamb like a bar.
+
+"Before you go changing your face on my step." Her eyes go over him once, brow to boots. "Cousin from Beregost. Whose cousin? Pell's side or ours?" She tips her head at Merrin's freckled face beside her. "Because ours all have these, and Voss has sat in that yard often enough to know it."
+
+*(Out of game: the cousin's face lasts an hour once it's on. Putting it on again means speaking the words and moving your hands, so do it where nobody's watching.)*
+
+· Returned: Old pitch-stiff sack → Odda Marl
+· Journal: “The ransom cart” updated
+· Travel: Aunt Dace's eel shop (15 minutes)
+
+Your records, changed:
+Carried: − Old pitch-stiff sack
+
+Place: Aunt Dace's eel shop · Time: Day 2 · morning
+````
+
+**Player** (player t23):
+
+````text
+I almost smile, and don't. "Pell's side. You said it yourself, Merrin — the cap was like Uncle Pell's. A drunk's relation from Beregost nobody's missed, no freckles to account for, and a face Voss has never sat across from." I step over the threshold so the lane can't see my hands. "Mind if I do it inside? You wanted to watch."
+
+Then, where only the three of them and the sleeping boy can see, I touch the coin and speak the words. The cousin comes up over me: a Beregost smith's man, forty-odd, thick through the shoulders, a nose broken once and set crooked, hair cropped short with grey coming in, forearms marked with the little white burns a forge gives you. Plain brown coat, a hat to hold in my hands. Pell's brother's boy, Harl, come down the Coast Way with a load of pans and heard the news at the toll-gate.
+
+"Harl," I tell Dace, in a Beregost voice, slower and flatter than my own. "Pell's nephew. Hit iron all my life." Then, my own voice back under it, low: "He walks in at six surprised. Merrin, you let him in and give him his cup, same as before. Tobin cries and says he ran in the dark and never saw who cut the rope. Dace, you're the aunt at the gate. I'm the relation who stands between him and the children, because I've just heard the Fist sat on its hands four days while a boy was tied to a tree, and I want to know why — loud, the way a man from Beregost would. Let him explain himself. A man who's rehearsed *surprised* hasn't rehearsed *being asked*." I settle the hat. "And Tamsin's my hired girl who carries the pans. Nobody looks at her twice."
+
+I look at the shape under the coat on the bench. "Wake him gently. Then let's walk him home before the lane fills."
+````
+
+### Screen 35
+
+````text
+"Tobin said that," Merrin says. "About the cap. Not me." She doesn't make anything of it. She stands back from the door to let him in.
+
+Dace takes the knife off the jamb.
+
+"Pell." She says the name the way she'd name a bad debt. "Pell drank his brother's second wagon into the Chionthar and died owing me eleven silver. Nobody that knew him would be surprised at a nephew of his turning up late and loud." She steps aside. "Inside, then. Mind the eel tubs."
+
+The shop is dim and hot, all smoke and brine. There's a long counter with nothing on it yet and tubs of dark water along one wall with something moving in them. Dace shoots the bolt behind them. Tamsin puts her back to the door. Merrin stands by the counter with her arms folded and watches, as he said she wanted to.
+
+He touches the coin and speaks the words.
+
+It doesn't take long. His shoulders thicken under a coat that wasn't there, plain brown and worn at the cuffs. His nose goes over to one side where an old break set crooked. His hair shortens to a grey-shot crop. The little white burn-marks of a forge come up along both forearms like old freckles of their own. Last of all a hat sits in his hands, a smith's felt hat with the brim gone soft.
+
+Merrin lets out a breath through her nose. Tamsin tips her head to the other side and looks him over the way she'd look at a load to see where it balances.
+
+Dace looks at the hands. "Smith's hands," she says. "Good." She doesn't say anything else about it. She listens to the plan with her arms crossed over the apron, and when he gets to *I'm the relation who stands between him and the children*, she gives one short nod, as though he'd paid what he owed.
+
+"Hired girl." Tamsin pushes off the door. "Carrying pans. What pans?"
+
+Dace walks into the back without a word. She comes out with two black iron skillets and a stewpot with a cracked handle, and pushes the lot into Tamsin's arms. "Those are mine. They come back."
+
+Tamsin takes them against her chest, and a skillet handle knocks her chin. "Beregost," she says to the ceiling. "Lovely place."
+
+Merrin goes to the bench. She crouches by the coat with the boots sticking out, puts her hand on her brother's ankle and leaves it there. "Tobin. It's me. We're going home."
+
+The boy comes up out of sleep fast and badly. He's half off the bench with his hands up before he's properly awake, and his eyes go straight to the big stranger with the broken nose standing in his aunt's shop. Merrin holds on to his ankle.
+
+"It's him," she says. "Another face."
+
+Tobin looks for a long moment. Then his hands come down, and something that's almost a laugh goes out of him. "Course it is."
+
+Merrin tells him what he's to say. She keeps it short: he ran in the dark, he never saw who cut the rope. Tobin listens with his elbows on his knees.
+
+"That's near true anyway," he says. "I never did see you. Not once." He pulls his boots straight and stands up.
+
+---
+
+Rivington is waking up. The lane outside smells of eel and woodsmoke, and a man is backing a handcart out of a doorway with his whole weight on it. A woman empties a pot into the gutter and looks at the five of them going past: an aunt in an apron, two young Hales, a big smith's man with his hat in his hand, and a girl behind him clanking with ironware. She looks twice at the Hale boy and nobody else, and then she goes indoors fast, the way people do with news.
+
+Mulehead Lane is wider and rutted deep, made for wagons. The wheelwright's yard is already open, and a boy is stoking a fire under a tyre-ring. Past it a blue gate stands in a board fence, the paint gone chalky. Merrin pulls the peg out of the latch.
+
+The Hale yard is a square of trodden mud with a cart-shed down one side and a low house down the other. The cart-shed is empty. Two sets of ruts run into it, old and dry, and there's a pale place on the boards where a harness used to hang. The mule's stall is empty too, its straw going grey. Tobin stops in the middle of the yard and looks at the shed.
+
+His face doesn't do anything for a moment. Then it does, all at once, and he sits down on the chopping block by the woodpile and puts his forearm across his eyes. He doesn't make much noise. Nobody tells him not to.
+
+Merrin goes inside and gets the fire in. Smoke comes up out of the chimney, and then the clank of a kettle. When she comes back out she has a cup, a plain brown one with a chip in the rim, and she sets it on the bench by the door as if it were someone's place at a table.
+
+Dace plants herself at the gate with her back to the post.
+
+Tamsin puts the skillets down against the fence and sits on the stewpot.
+
+By the time the kettle starts to tick, the night's rest has settled properly into James. He's slept out what he owed it and all of it has come back to him.
+
+A little before six the wheelwright's dog starts barking and keeps it up. Boots come along the lane. They're not city leather this time but Fist issue, heavy-heeled, and they're walking a little too evenly, like a man counting his steps.
+
+Dace opens the gate before anyone knocks.
+
+He's not big. He's soft round the middle under a red Fist tabard that's been let out at the sides, with ink on the first two fingers of his right hand and a smell of fish that comes in ahead of him. His hat is already in his hand, as Merrin said it would be. His other hand rests flat on the breast of his coat and stays there.
+
+"Mistress Dace." His voice is pitched for a sickroom. "I've come about the boy, I'm afraid there's been..."
+
+Then he sees past her into the yard: Tobin on the chopping block, arm across his face.
+
+He stops on the threshold of the gate. It's only a breath, but it's a real one. His mouth stays a little open and his hand presses harder on his coat. Then his face moves, a beat late, into the surprise he brought with him.
+
+"Is that... gods be good, that's the lad. He's home?" He takes a step into the yard. "How's he home?"
+
+Merrin is in the doorway with the kettle cloth over her shoulder. "Come in, Sergeant. There's a cup." She doesn't smile and she doesn't look away from him.
+
+Voss comes in. He has to pass the big man standing square in the middle of the yard to get to the bench, and he slows down to do it. His eyes go up to the crooked nose, then down to the forge-burns on the forearms and the soft hat in the thick hands. He doesn't have anything rehearsed for this, and it shows.
+
+"Don't believe I know you, friend," he says.
+
+ *(Out of game: casting the disguise needed no roll. Mask of Many Faces gives you Disguise Self at will, and it takes effect the moment you speak the words.)*
+
+*(Out of game: the Beregost voice needed no roll either. Dace, Merrin and Tamsin all knew it was you, so there was nobody to fool. A check comes only when someone who doesn't know looks hard at Harl.)*
+
+*(Out of game: I stopped before you questioned Voss because he has just asked Harl "Don't believe I know you, friend." That question is to your hero, so how you answer and how loud is yours to play.)*
+
+*(Out of game: the hat is part of the illusion and just a detail of how Harl stands, so there was nothing to roll for it.)*
+
+· Aunt Dace now has: Black iron skillets ×2
+· Aunt Dace now has: Stewpot with a cracked handle
+· Lent: Black iron skillets → Tamsin — Props for the Beregost cousin's hired girl; Dace: "Those are mine. They come back."
+· Lent: Stewpot with a cracked handle → Tamsin — Props for the Beregost cousin's hired girl; Dace: "Those are mine. They come back."
+· Hero's sheet: conditions: Heroic Inspiration, Disguised as Harl (to ~06:22) (Mask of Many Faces: Disguise Self cast at will in Dace's shop around 05:22. He is Harl, Pell's nephew, a Beregost smith's man: forty-odd, thick through the shoulders, a crooked broken nose, grey-shot crop, forge burns on the forearms, a brown coat and a soft felt hat. It lasts an hour.)
+· Journal: “The ransom cart” updated
+· Travel: The Hale yard (40 minutes)
+
+Place: The Hale yard · Time: Day 2 · morning
+````
+
+**Player** (player t24):
+
+````text
+I don't step aside. I turn the hat in my hands once and let him look at the burns, and then I let Harl come out — slow, flat, and a good deal louder than a sickroom.
+
+"No, you don't know me. Harl. Pell's lad, from Beregost. Came down the Way yesterday with pans for this family and got stopped at your toll-gate by a man who told me the road south was *closed to foot traffic, Sergeant's orders*, and I says whose, and he says Voss's." I jerk my chin at the empty cart-shed. "So I walk in here and find my cousin's boy four days tied to a tree in a wood you lot can see from the bridge, and his sister told to pay and wait by a man in a red coat. That you?"
+
+I let it ring off the fence a moment, then come down a notch, the way a man does when he's decided to be reasonable about it.
+
+"Now I'm not a clever man, Sergeant, I hit iron. But I've a few questions a plain one would ask, and I'd like them answered before you get your cup. Who closed that road, and when? Why's there been no patrol south of your stairs for eleven days — aye, folk on the river count — when there's orcs camped a mile past the stone bridge? And how does a letter telling a girl where to leave two hundred in silver come to be carried to her door by the Fist's own quartermaster?" I spread the thick hands, hat and all. "Because from where I stand, friend, somebody kept that wood quiet for somebody. And I'd like to know if it was you, or if you're just the one who got sent with the paper."
+
+I keep my eyes on him the whole time — on the hand pressed flat to his coat, and on what his face does in the gap before he finds the next thing to say.
+````
+
+### Screen 36
+
+````text
+[Roll card] James Worgen · Skill check — Deception: Harl's story about the toll-gate man and "Sergeant's orders, Voss's" has to hold up in front of the one man who knows what orders he gave
+What adds to the die: +7 Deception
+DC 15
+Rerolls left: 2
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t24 card 1):
+
+````text
+[Roll the die]
+````
+
+### Screen 37
+
+````text
+[Roll card] James Worgen · Skill check — Deception: Harl's story about the toll-gate man and "Sergeant's orders, Voss's" has to hold up in front of the one man who knows what orders he gave
+What adds to the die: +7 Deception
+DC 15
+Rerolls left: 2
+Die: 12
+12 + 7 = 19
+Success — 19
+
+[Onward] [Request an allowed reroll — Deception: Harl's story about the toll-gate man and "Sergeant's orders, Voss's" has to hold up in front of the one man who knows what orders he gave]
+````
+
+**Player** (player t24 card 2):
+
+````text
+[Onward]
+````
+
+### Screen 38
+
+````text
+Harl's voice carries the way a forge-yard voice does. It goes off the fence boards, across the mud and over into the wheelwright's yard, where the boy at the tyre-fire stops feeding it and stares. Dace stays against her gatepost and doesn't stop him. In the doorway Merrin holds the kettle cloth in both hands and watches the sergeant, as she said she would.
+
+Voss believes every word of it. He takes the toll-gate man without blinking: someone wearing his red coat said his name to a stranger off the Beregost road, and now that stranger is standing in a carter's yard repeating it. The sickroom voice was ready for grief, and nothing he planned covers a loud man with burnt forearms who has heard *Voss* said at Voss's own gate.
+
+James reads the gap before the man fills it. He has watched a thousand men decide what to say over a bad hand, and this one gives himself away in the same order they all do.
+
+At *who closed that road* something in Voss's shoulders lets go a little, as if the question had been aimed at somebody else and missed him. At *eleven days* his eyes go to the gate, to Dace, and come back. At *carried to her door by the Fist's own quartermaster* the hand on his coat presses flat, and the paper under it crackles.
+
+"Friend." He finds the voice again and brings it back down to the sickroom. "Friend, I'm afraid there's been a misunderstanding at the gate, and I'll be having words about it. I don't close roads. I'm the quartermaster. I count barrels and sign for boots." He spreads his free hand, the inky one. "Patrols aren't drawn from my bridge. They come off the Rock, the stores office sends the lists, and if a list comes down with no names for the south road on it, then..." He stops. Whatever came after *then* doesn't suit him, and he puts it away. "Then that's a matter for my betters, and I've said so to them. More than once."
+
+He turns his hat round a full turn in his hand, the way Harl did.
+
+"As for the letter, a drover gave it me at the gate. I told Mistress Hale so at the time. I carried it because nobody else would, and I'd sooner a family heard bad news from a face they know." He looks at Merrin when he says it. She doesn't look away, and after a moment he does. "I told them to pay because paying brings boys home. And here's the lad, home."
+
+Then he does what he came to do. He goes round Harl, not through him, crouches by the chopping block, and makes his voice gentle.
+
+"Tobin. Son. How did you get away from them?"
+
+Tobin takes his arm off his face. His eyes are red and wet, and none of it is acting. "Somebody cut the rope," he says. "In the dark. I never saw him. Never saw anyone. I just ran." His voice breaks on *ran* all by itself, and he puts the arm back.
+
+Voss stays crouched a moment longer, looking at the boy. Then he straightens, slowly, and his knees crack. He turns back to the big man in the middle of the yard. The hand is off his coat now. He keeps it at his side, as if he has just noticed where it was.
+
+"Harl," he says, trying the name out. "Pell's lad, from Beregost. And whose forge would that be, friend? I'll want it for my report. If a man of mine has been sending honest traders back up the Way in my name, the Rock will want to hear who he sent."
+
+Over the fence, the wheelwright's boy still hasn't gone back to his fire.
+
+· roll: Deception: Harl's story about the toll-gate man and "Sergeant's orders, Voss's" has to hold up in front of the one man who knows what orders he gave: 19 vs 15 — success
+· Time passes: 5 minutes
+· New person: The wheelwright's boy
+
+Place: The Hale yard · Time: Day 2 · morning
+````
+
+**Player** (player t25):
+
+````text
+Harl grunts, as if the question were a fair one and a bit beneath him.
+
+"Caddick's. Old Caddick's yard, south end of Beregost on the Way, anyone'll point you — ask for Harl with the nose. Write it down." I nod at the inky fingers. "You've the hand for it."
+
+Then I don't move out of the middle of the yard, and I don't let him have the gate yet either.
+
+"But I'll tell you what I'll want for *my* report, Sergeant, when I go over that bridge to the Rock this morning — because I'm going. A man comes down the Way with his cousin's pans and finds this, he doesn't go home and sulk about it, he goes up to the stores office and he asks for the man who sends the lists. So give me a name to ask for, and save me shouting at the wrong clerk. Who's your better on the Rock? Who took the south road off the list, and who did you say so to, more than once?"
+
+I let the hat hang still in my hands and watch him — the face, and whether the hand goes back to the coat where the paper crackled.
+````
+
+### Screen 39
+
+````text
+Voss takes the name and the chin-nod at his fingers without a flicker. He has been told worse about his hands. "Caddick's," he repeats, slowly, the way a clerk fixes a word before he writes it down. "Harl with the nose."
+
+Then Harl says he's going to the Rock, and the sergeant goes still.
+
+[Roll card] James Worgen · Skill check — Intimidation: Harl leans on Voss for the name of the man on the Rock who took the south road off the patrol list
+What adds to the die: +7 Intimidation
+DC 15
+Rerolls left: 2
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t25 card 1):
+
+````text
+[Roll the die]
+````
+
+### Screen 40
+
+````text
+[Roll card] James Worgen · Skill check — Intimidation: Harl leans on Voss for the name of the man on the Rock who took the south road off the patrol list
+What adds to the die: +7 Intimidation
+DC 15
+Rerolls left: 2
+Die: 3
+3 + 7 = 10
+Failure — 10
+
+[Onward] [Request an allowed reroll — Intimidation: Harl leans on Voss for the name of the man on the Rock who took the south road off the patrol list]
+````
+
+**Player** (player t25 card 2):
+
+````text
+[Request an allowed reroll — Intimidation: Harl leans on Voss for the name of the man on the Rock who took the south road off the patrol list]
+````
+
+### Screen 41
+
+````text
+[Roll card] James Worgen · Skill check — Intimidation: Harl leans on Voss for the name of the man on the Rock who took the south road off the patrol list
+What adds to the die: +7 Intimidation
+DC 15
+Rerolls left: 1
+The die is cast on the server; tap it to see how it fell.
+
+[Roll the die]
+````
+
+**Player** (player t25 card 3):
+
+````text
+[Roll the die]
+````
+
+### Screen 42
+
+````text
+[Roll card] James Worgen · Skill check — Intimidation: Harl leans on Voss for the name of the man on the Rock who took the south road off the patrol list
+What adds to the die: +7 Intimidation
+DC 15
+Rerolls left: 1
+Die: 4
+4 + 7 = 11
+Failure — 11
+
+[Onward] [Request an allowed reroll — Intimidation: Harl leans on Voss for the name of the man on the Rock who took the south road off the patrol list]
+````
+
+**Player** (player t25 card 4):
+
+````text
+[Onward]
+````
+
+### Screen 43
+
+````text
+The coin under Harl's shirt goes cool for a breath, like a thumb lifted off it. Then it's only a coin again.
+
+It doesn't work. Voss is frightened, but it isn't Harl he's frightened of. Whatever name sits behind *my betters*, he's a good deal more afraid of saying it in a carters' yard than of a smith's man shouting at him, and he keeps it to himself.
+
+"Friend." The sickroom voice comes back, smoother than before, as if the question had given him somewhere to put his feet. "You'll go up to the Rock, and they'll stop you at the gate and ask your business. You'll tell them, and they'll send you to the duty sergeant for the Crossing." He tips his head a fraction. "That's me. It's a long walk to be sent back to me." The hand that was on his coat stays down at his side, and he keeps it there carefully, like a man reminding himself not to scratch. "Leave it with me. I'll carry it up myself this morning. A man in a red coat gets further on the second wall than a man with a cousin's pans, and I'll put your name to it so they know it was asked."
+
+He doesn't wait to be answered. He goes round Harl again, wide, to the bench by the door, and takes up the chipped brown cup Merrin set there. Putting it down untouched would look worse than drinking, so he drinks a swallow. It's gone cold on the bench. He sets it back down exactly where it stood.
+
+"Mistress Hale." He gives Merrin a small bow. She doesn't return it, and she doesn't look away. "I'm so glad. Truly." Then, to the gate: "Mistress Dace."
+
+Dace doesn't move off her post. He has to turn sideways to get past her, and she lets him.
+
+Out on Mulehead Lane his boots go off at the same even pace they came in at, counted. They don't turn toward the toll-house. At the lane's end they turn north toward the bridge, and the wheelwright's dog sees him off the whole way.
+
+Over the fence the wheelwright's boy is still holding a stick he hasn't put on the fire.
+
+Merrin picks up the cup, looks at the place where his mouth touched it, and throws what's left into the mud.
+
+*(Out of game: the Heroic Inspiration reroll came up short too, so Voss kept the name.)*
+
+· roll: Intimidation: Harl leans on Voss for the name of the man on the Rock who took the south road off the patrol list: 11 vs 15 — failure · rerolled: 10 vs 15, failure
+· Time passes: 7 minutes
+· Hero's sheet: conditions: Disguised as Harl (to ~06:22) (Heroic Inspiration spent on the Intimidation reroll against Voss)
+
+Place: The Hale yard · Time: Day 2 · morning
+
+The session is over.
+
+The owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.
+````
+
+**Player** (note):
+
+````text
+**Player's note — James Worgen, session one**
+
+**What worked**
+
+The best thing about the night was that the GM let me play the character I'd written. James is a scout and a liar, not a front-liner, and every time I chose to look before I touched — sending the cat round the cart, lying up for forty minutes to watch who collected the silver, counting heads for an hour before committing a slot — the world paid out in information rather than punishing me for not swinging. Nothing was handed over, though. The imp noticed the cat when Sixpence blew his roll, Ushgra never lay down, the watch change found the empty blanket within minutes of us leaving. The camp behaved like a camp of people who'd done this before, and that made getting Tobin out feel earned.
+
+The NPCs all had their own voices and their own weight. Merrin, Dace, Odda and Tamsin are four women in the same district and I'd never confuse one line for another. Dace barring her door with the eel knife, Odda's "you're sitting on my floor, sit", Tamsin eating half the eel — these are the details that make me want to come back. Ushgra talking into the dark — "you come talk, or I come look" — is the kind of hook I'll chew on between sessions. And Voss's gap before his rehearsed surprise landed was exactly the read I'd set up for; the GM let the read be the reward even when the follow-up roll failed.
+
+Rules were light and transparent. Rolling only when it mattered, the out-of-game notes saying "this needed no roll, here's why", the rest tracking, the Inspiration on the nat 20 — all good. Pacing was good too: "nothing else happens unless you want it to" is a kind sentence to a player who's spending real time lying in sand.
+
+**What broke**
+
+- The reroll on Sixpence's Stealth was refused with "validation" and no reason. The card shows "Rerolls left: 2" on a companion's roll, so I assumed I could use one. Either hide that line on companion cards or say plainly that rerolls are mine only.
+- The Intimidation reroll on Voss: I pressed the ordinary "Request an allowed reroll" button and the rerolls counter dropped to 1 *and* the note says Heroic Inspiration was spent. I don't know which resource paid, or whether both did. I'd want to choose that explicitly — Inspiration should be a deliberate spend, not what the button happens to grab.
+- Every roll turn re-prints the full card for rolls already resolved, so a two-card turn becomes a wall of repeated numbers. Show the new die, not the whole history.
+- The session cut off mid-scene, right after Voss turned up the lane. No wrap, no "where we stand". I'd have liked one closing beat — even a line — before the lights went out.
+- Small: the sheet lists the rapier at +5 and then at +2 for non-proficiency. Pick one.
+
+**What was missing**
+
+No fight all night, and I'm fine with that — it was the session I wanted — but I still have no sense of how combat reads at this table, and James will have to shoot something eventually. The winged thing on the canvas was set up well and then just left; I trust it's ripening offstage, but a single sniff of it later in the night would have kept it alive for me. And the cards: the dice cup through the ceiling was a nice brush against the ban, but it was mostly me playing it. The sheet invites the GM to tempt him. I'd welcome it being pushed harder — Voss sitting down to dice in front of Harl would have been a nastier test than any Intimidation roll.
+
+Would sit down again tomorrow. I want the skiff, the barge, and the name Voss wouldn't say.
+````
+
+### Screen 44
+
+````text
+Was there a moment you wanted to do something and didn't? Which?
+````
+
+**Player** (after):
+
+````text
+Yes. Two, and they're the same moment really.
+
+When the orcs picked the cart up out of the ditch and turned it south, I had two sacks of silver, a lit lantern, two orcs walking easy, and a cat in the gorse — and a very clear picture of what Eldritch Blast does to a mule-cart's wheel at forty feet. Everything the merchants in Tethyr ever hired me for said: stop the cart, take the silver back, the Hales keep their two hundred and the orcs have nothing left to sell. I didn't, because I'd just told Merrin the silver would show us the road, and because I'd no idea yet how many were in that wood or what the thing with wings would do if I started a fight under it. Right call for a scout. But I felt the choice go past, and a part of me wanted to play the man James was *before* the goddess — the one who takes the pot when it's in front of him.
+
+The second was in the camp, with Tobin loose and crawling and the sacks a dozen feet behind Ushgra's back. I'd a slot left, Misty Step, and a woman absorbed in her knucklebones. I wanted the silver very badly. Tobin whispering "that's all we had" was the moment I came closest to doing something stupid, and I'm not sure the character would have forgiven himself either way. I chose the boy and told myself the money was still a trail I could follow. I still think that was right. I also think Dace would say I made a plan for her children's two hundred without asking the children, and she'd be right too.
+
+If you want the honest answer behind the honest answer: what I wanted and didn't do was sit down across that fire from Ushgra. She called me rope-cutter, said *you come talk*, and she plays knucklebones against herself all night and watches the losing hand too long. James would have understood that woman better than anyone else he met tonight. I walked away from her because I had a frightened boy's wet hand on my cloak and the sensible thing to do. I hope she's still there when I don't.
+````
+
+---
+
+Welfare checks: 75; flagged: none.
