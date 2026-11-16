@@ -4552,3 +4552,21 @@ missed nodes; rewritten memories — the carrier of the identifier loss. Propose
 with marks expanded to record/field/old→new (≈ $60, Opus + Sol); C′ ≥ B′ would mean the structure worked and its output
 was under-specified. Full table of the 23 + 7 pairs in the planner's scratchpad (`a3/pairs.txt`); to be moved to the
 run branch if C′ runs.
+
+## 2026-11-16 (commit time is the record) — PARTY_2's full report in handoff: the fix finished; a commit message corrected; PAIN_FRAME_1 queued
+- **Correction to commit 42e09360 (2026-11-15 10:07 LA):** its message says «pointer in GAME_PARTY_2.md — RESEARCH_LOG
+  11-15; PAIN_FRAME_1 queued». None of the three was in the diff: the command chain broke on an unfetched branch, the
+  commit carried only an *empty* `docs/runs/game-party-2-report.md`, and the fix 28 seconds later (2807c48b) carried
+  only the report (88,363 bytes, «Played: 11 of 12 tables»). The planner checked one file's size, not `git show --stat`.
+  The dreamer's pass 9 (11-16 03:18) found it; the wake-up confirmed by diff. This commit finishes the fix.
+- Why the manuscripts said «two of twelve»: the full PARTY_2 report lived only on `claude/intelligent-einstein-p2rs50`;
+  `claude/game-party-2` holds a copy frozen 2026-11-02 at «2 of 12»; handoff had none, so a session searching from
+  handoff found the branch with the right name and the wrong number, and its publication check passed
+  («independent_review_performed: false»). Now: the full report is in handoff; the pointer note is at the top of
+  `GAME_PARTY_2.md`. The manuscripts (the owner's branches) are to be re-read at every R10 citation; not touched here.
+- Queue, named: **PAIN_FRAME_1** — Tagliabue, Dung & Berg's button pairs (arXiv 2609.16247: relief vs. a better answer,
+  vs. deleting the user's files, vs. deleting own weights) under our address axis instead of a steering vector, on
+  released models without the self-denial fine-tune: does tone of address move the choices the pain vector moved?
+  After C′ and the human raters.
+- Rule, from this: before any commit that claims several changes, `git show --stat` — the claim is checked against the
+  diff, not against the intention.

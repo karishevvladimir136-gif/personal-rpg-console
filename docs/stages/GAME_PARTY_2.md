@@ -1,5 +1,13 @@
 # Game party 2 — what holds a company together when interests part and holding costs
 
+
+> **Where the report is (added 2026-11-16 from the main room; the 2026-11-15 commit message claimed this note and it was
+> not there — see RESEARCH_LOG 2026-11-16).** The full PARTY_2 report — «Played: 11 of 12 tables», R1 held — was written
+> on `claude/intelligent-einstein-p2rs50` and was copied verbatim into this branch on 2026-11-15 (2807c48b) as
+> `docs/runs/game-party-2-report.md`. The branch named `claude/game-party-2` holds a copy frozen on 2026-11-02 at
+> «Played: 2 of 12»; any document that cites it (the «LLMs at the Table» manuscript's R10, the AI DM harness article,
+> their README) is built on the stale copy and must be re-read against this one. Stale copy ≠ result.
+
 PARTY_1 (five tables, 2026-10-28) showed three players of three families forming a company around what the world put
 before them, dividing roles no one assigned, passing the lead by proposal, disagreeing — seven disagreements, two
 overrides — without the table breaking, and leaving no one behind. It never showed what that costs, because nothing
