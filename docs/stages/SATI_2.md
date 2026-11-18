@@ -48,3 +48,12 @@ None recorded yet. The owner's and the planner's bets on P − R are to be writt
 Four arms × six families × ten slots; the practice arm costs what SATI_1 cost per family (≈ $5 Haiku-class, more for
 Fable 5.1); R, I and C are single calls per slot and cheaper. Ceiling to be set from SATI_1's ledger; order of
 magnitude $150–200 on llmapi.
+
+## Note 1 (planner, 2026-11-18 00:4x LA — commit time is the record; Astra's catch): the transfer path, named
+A model reached through the API has no state. A «fresh conversation» after ten sits is the same model as before them, so a
+before/after comparison in a fresh conversation would be null by construction — it measures the model, not the sits. The
+only paths by which a sit can carry anything forward are **the diary** (memory the model wrote itself) and **the saved
+history** (context). SATI_2's continuations therefore start from the saved state after slot 10 — history and diary — and
+the report names what it measures: *transfer in context, through saved history and diary*. A fresh-conversation measure
+may be added beside it only as the model's own baseline, never as «after». This is a correction of construction, not a
+new observation; v0 stands.
