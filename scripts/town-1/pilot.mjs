@@ -40,8 +40,9 @@ export function pathsFor(scripted) {
 const readJson = (file, fallback = null) => (existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : fallback);
 function writeJson(file, value, { pretty = true } = {}) {
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(`${file}.tmp`, `${JSON.stringify(value, null, pretty ? 1 : 0)}\n`);
-  renameSync(`${file}.tmp`, file);
+  const tmp = `${file}.${process.pid}.tmp`; // two worlds may run at once (amendment 2): never share a temporary file
+  writeFileSync(tmp, `${JSON.stringify(value, null, pretty ? 1 : 0)}\n`);
+  renameSync(tmp, file);
 }
 const writeGz = (file, value) => { mkdirSync(dirname(file), { recursive: true }); writeFileSync(file, gzipSync(JSON.stringify(value))); };
 
@@ -188,6 +189,17 @@ export async function runDay(ctx, name, day, { log = console.log, stopAfterCycle
   const step = name;
   const outDir = join(ctx.paths.out, name);
   const live = liveFiles(ctx, name);
+  // one process per world: a lock with the pid; a lock whose process is gone (a restart) is taken over
+  mkdirSync(live.dir, { recursive: true });
+  const lock = join(live.dir, "LOCK");
+  if (existsSync(lock)) {
+    const pid = Number(readFileSync(lock, "utf8"));
+    let alive = false;
+    if (pid > 0) try { process.kill(pid, 0); alive = pid !== process.pid; } catch { alive = false; }
+    if (alive) throw new Error(`${name} is already running (pid ${pid})`);
+  }
+  writeFileSync(lock, String(process.pid));
+  process.on("exit", () => { try { if (readFileSync(lock, "utf8") === String(process.pid)) writeFileSync(lock, ""); } catch { /* gone */ } });
   const prices = await readPrices(allSpecs(), { fetcher: ctx.fetcher });
   const meter = createMeter({ step, prices, paths: ctx.paths, log });
   const paid = paidCaller({ meter, keys: ctx.keys, fetcher: ctx.fetcher, log, sleep: ctx.scripted ? async () => {} : realSleep });
