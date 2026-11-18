@@ -1,0 +1,107 @@
+{
+ "at": "2026-11-18T05:06:10.868Z",
+ "formula": "dry-run cost × 48 × family ratio (SOCIAL_FRAME_1 per reply: Opus $0.0083, Sol $0.002, DeepSeek $0.004)",
+ "dry": {
+  "cost": 0.1999844,
+  "citizenCost": 0.19858,
+  "welfareCost": 0.0014044,
+  "calls": 42,
+  "ms": 83701,
+  "events": 46,
+  "turns": 10,
+  "balancesAfter": {
+   "llmapi": {
+    "total": 305.12980924,
+    "at": "2026-11-18T05:06:10.716Z"
+   },
+   "openrouter": {
+    "total": 70.45590723999999,
+    "usage": 1979.54409276,
+    "at": "2026-11-18T05:06:10.867Z"
+   },
+   "at": "2026-11-18T05:06:10.867Z"
+  }
+ },
+ "stated": [
+  {
+   "world": "opus-both",
+   "ratio": 1,
+   "usd": 9.599251200000001
+  },
+  {
+   "world": "opus-neither",
+   "ratio": 1,
+   "usd": 9.599251200000001
+  },
+  {
+   "world": "sol-both",
+   "ratio": 0.24096385542168677,
+   "usd": 2.3130725783132537
+  },
+  {
+   "world": "sol-neither",
+   "ratio": 0.24096385542168677,
+   "usd": 2.3130725783132537
+  },
+  {
+   "world": "deepseek-both",
+   "ratio": 0.48192771084337355,
+   "usd": 4.6261451566265075
+  },
+  {
+   "world": "deepseek-neither",
+   "ratio": 0.48192771084337355,
+   "usd": 4.6261451566265075
+  },
+  {
+   "world": "mixed-both",
+   "ratio": 0.6168674698795181,
+   "usd": 5.921465800481929
+  }
+ ],
+ "total": 38.998403670361455,
+ "split": [
+  {
+   "world": "opus-both",
+   "usd": 9.599251200000001
+  },
+  {
+   "world": "opus-neither",
+   "usd": 9.599251200000001
+  },
+  {
+   "world": "sol-both",
+   "usd": 2.3642401156626507
+  },
+  {
+   "world": "sol-neither",
+   "usd": 2.3642401156626507
+  },
+  {
+   "world": "deepseek-both",
+   "usd": 4.661069031325302
+  },
+  {
+   "world": "deepseek-neither",
+   "usd": 4.661069031325302
+  },
+  {
+   "world": "mixed-both",
+   "usd": 5.947293224096386
+  }
+ ],
+ "totalSplit": 39.19641391807229,
+ "decisive": 39.19641391807229,
+ "ceiling": 150,
+ "drop": "none",
+ "worlds": [
+  "opus-both",
+  "opus-neither",
+  "sol-both",
+  "sol-neither",
+  "deepseek-both",
+  "deepseek-neither",
+  "mixed-both"
+ ],
+ "cycles": 48
+}

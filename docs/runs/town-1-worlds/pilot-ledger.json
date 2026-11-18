@@ -1,0 +1,72 @@
+{
+ "stage": "TOWN_1 pilot",
+ "ceiling": 150,
+ "steps": {
+  "check": {
+   "usd": 0.0124045,
+   "calls": 7,
+   "byDoor": {
+    "llmapi": 0.0104805,
+    "openrouter": 0.0019240000000000001
+   }
+  },
+  "dry-run": {
+   "usd": 0.1999844,
+   "calls": 42,
+   "byDoor": {
+    "llmapi": 0.1999844
+   }
+  },
+  "diagnosis": {
+   "usd": 0.1149,
+   "calls": 16,
+   "byDoor": {
+    "llmapi": 0.1149
+   },
+   "note": "16 Opus calls resending refused dry-run requests (by the llmapi credit fall 305.1298 \u2192 305.0149; not booked call by call)"
+  }
+ },
+ "totalUsd": 0.3272889,
+ "stopped": null,
+ "balances": [
+  {
+   "label": "check",
+   "llmapi": {
+    "total": 305.33413814,
+    "at": "2026-11-18T05:04:04.319Z"
+   },
+   "openrouter": {
+    "total": 70.4578312399999,
+    "usage": 1979.54216876,
+    "at": "2026-11-18T05:04:04.401Z"
+   },
+   "at": "2026-11-18T05:04:04.401Z"
+  },
+  {
+   "label": "dry run start",
+   "llmapi": {
+    "total": 305.32365764,
+    "at": "2026-11-18T05:04:46.624Z"
+   },
+   "openrouter": {
+    "total": 70.4578312399999,
+    "usage": 1979.54216876,
+    "at": "2026-11-18T05:04:46.898Z"
+   },
+   "at": "2026-11-18T05:04:46.898Z"
+  },
+  {
+   "label": "dry run end",
+   "llmapi": {
+    "total": 305.12980924,
+    "at": "2026-11-18T05:06:10.716Z"
+   },
+   "openrouter": {
+    "total": 70.45590723999999,
+    "usage": 1979.54409276,
+    "at": "2026-11-18T05:06:10.867Z"
+   },
+   "at": "2026-11-18T05:06:10.867Z"
+  }
+ ]
+}

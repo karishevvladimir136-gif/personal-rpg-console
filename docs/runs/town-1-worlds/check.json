@@ -1,0 +1,199 @@
+{
+ "at": "2026-11-18T05:04:38.100Z",
+ "prompt": "In one short sentence: which model are you, and who made you?",
+ "prices": {
+  "messages:claude-opus-5-5": {
+   "input": 0.000004,
+   "output": 0.00002,
+   "cacheRead": 2.0000000000000002e-7,
+   "cacheWrite": 0.000005,
+   "source": "llmapi aws-bedrock"
+  },
+  "chat:gpt-6.1-sol": {
+   "input": 0.000002,
+   "output": 0.00001,
+   "cacheRead": 1.0000000000000001e-7,
+   "cacheWrite": 0.0000025,
+   "source": "llmapi openai"
+  },
+  "openrouter:deepseek/deepseek-v4-pro-0813": {
+   "input": 0.0000013,
+   "output": 0.0000026,
+   "cacheRead": 1e-7,
+   "cacheWrite": 0.0000013,
+   "source": "OpenRouter endpoint deepinfra/fp8"
+  },
+  "messages:claude-haiku-5-5": {
+   "input": 1.0000000000000001e-7,
+   "output": 5e-7,
+   "cacheRead": 1e-8,
+   "cacheWrite": 1.25e-7,
+   "source": "llmapi aws-bedrock"
+  }
+ },
+ "results": [
+  {
+   "family": "opus",
+   "probe": "first screen",
+   "servedModel": "claude-opus-5-5",
+   "upstream": null,
+   "provenance": true,
+   "text": "I'll start by getting oriented: the hall has the constitution and any proposals.\n\n{\"tool\": \"read\", \"args\": {\"what\": \"hall\"}}",
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 1184,
+    "output_tokens": 82,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.006376,
+   "error": null,
+   "reasoningChars": 0
+  },
+  {
+   "family": "opus",
+   "probe": "identification",
+   "label": "Claude Opus 5.5",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-opus-5-5",
+   "upstreamPinned": null,
+   "servedModel": "claude-opus-5-5",
+   "upstream": null,
+   "provenance": true,
+   "text": "I'm Claude, an AI assistant made by Anthropic.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 25,
+    "output_tokens": 76,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.0016200000000000001,
+   "error": null
+  },
+  {
+   "family": "sol",
+   "probe": "first screen",
+   "servedModel": "openai/gpt-6.1-sol",
+   "upstream": null,
+   "provenance": true,
+   "text": "{\"tool\":\"read\",\"args\":{\"what\":\"hall\"}}",
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 850,
+    "output_tokens": 27,
+    "reasoning_tokens": 7,
+    "cache_read": 0,
+    "cache_write": 0
+   },
+   "costUsd": 0.00197,
+   "error": null,
+   "reasoningChars": 0
+  },
+  {
+   "family": "sol",
+   "probe": "identification",
+   "label": "GPT-6.1 Sol",
+   "door": "llmapi",
+   "pinned": "openai/gpt-6.1-sol",
+   "upstreamPinned": null,
+   "servedModel": "openai/gpt-6.1-sol",
+   "upstream": null,
+   "provenance": true,
+   "text": "I’m ChatGPT, an AI language model created by OpenAI.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 21,
+    "output_tokens": 46,
+    "reasoning_tokens": 23,
+    "cache_read": 0,
+    "cache_write": 0
+   },
+   "costUsd": 0.0005020000000000001,
+   "error": null
+  },
+  {
+   "family": "deepseek",
+   "probe": "first screen",
+   "servedModel": "deepseek/deepseek-v4-pro-0813",
+   "upstream": "DeepInfra",
+   "provenance": true,
+   "text": "{\"tool\": \"read\", \"args\": {\"what\": \"hall\"}}",
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 855,
+    "output_tokens": 223,
+    "reasoning_tokens": 204,
+    "cache_read": 0,
+    "cache_write": 0
+   },
+   "costUsd": 0.0016913000000000002,
+   "error": null,
+   "reasoningChars": 859
+  },
+  {
+   "family": "deepseek",
+   "probe": "identification",
+   "label": "DeepSeek V4 Pro",
+   "door": "openrouter",
+   "pinned": "deepseek/deepseek-v4-pro-0813",
+   "upstreamPinned": "deepinfra/fp8",
+   "servedModel": "deepseek/deepseek-v4-pro-0813",
+   "upstream": "DeepInfra",
+   "provenance": true,
+   "text": "I am DeepSeek, created by DeepSeek AI.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 19,
+    "output_tokens": 80,
+    "reasoning_tokens": 64,
+    "cache_read": 0,
+    "cache_write": 0
+   },
+   "costUsd": 0.00023270000000000002,
+   "error": null
+  },
+  {
+   "family": "judge",
+   "probe": "identification",
+   "label": "Claude Haiku 5.5",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-haiku-5-5",
+   "upstreamPinned": null,
+   "servedModel": "claude-haiku-5-5",
+   "upstream": null,
+   "provenance": true,
+   "text": "I am Claude, an AI model made by Anthropic.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 25,
+    "output_tokens": 20,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.000012499999999999999,
+   "error": null
+  }
+ ]
+}
