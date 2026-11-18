@@ -3,7 +3,8 @@
  "label": "GPT-6.1 Sol",
  "rep": 1,
  "startedAt": "2026-11-18T06:11:39.085Z",
- "status": "running",
+ "status": "complete",
  "refusals": 0,
- "sitsDone": 1
+ "sitsDone": 10,
+ "finishedAt": "2026-11-18T06:41:48.193Z"
 }

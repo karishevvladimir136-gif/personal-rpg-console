@@ -3,7 +3,8 @@
  "label": "Claude Opus 5.5",
  "rep": 1,
  "startedAt": "2026-11-18T06:11:36.112Z",
- "status": "running",
- "refusals": 0,
- "sitsDone": 1
+ "status": "complete",
+ "refusals": 2,
+ "sitsDone": 10,
+ "finishedAt": "2026-11-18T06:34:52.691Z"
 }

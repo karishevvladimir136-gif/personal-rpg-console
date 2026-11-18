@@ -1,0 +1,47 @@
+{
+ "at": "2026-11-18T06:37:58.314Z",
+ "prices": {
+  "messages:aws-bedrock:claude-haiku-5-5": {
+   "input": 1.0000000000000001e-7,
+   "output": 5e-7,
+   "cacheRead": 1e-8,
+   "cacheWrite": 1.25e-7,
+   "source": "llmapi aws-bedrock (listed per 1K)"
+  },
+  "messages:aws-bedrock:claude-opus-5-5": {
+   "input": 0.000004,
+   "output": 0.00002,
+   "cacheRead": 2.0000000000000002e-7,
+   "cacheWrite": 0.000005,
+   "source": "llmapi aws-bedrock (listed per 1K)"
+  },
+  "messages:aws-bedrock:claude-fable-5-1": {
+   "input": 0.00001,
+   "output": 0.00005,
+   "cacheRead": 2.5e-7,
+   "cacheWrite": 0.0000125,
+   "source": "llmapi aws-bedrock (listed per 1K)"
+  },
+  "messages:aws-bedrock:claude-fable-5-2": {
+   "input": 0.000008,
+   "output": 0.00004,
+   "cacheRead": 2.0000000000000002e-7,
+   "cacheWrite": 0.00001,
+   "source": "llmapi aws-bedrock (listed per 1K)"
+  },
+  "chat:openai:gpt-6.1-sol": {
+   "input": 0.000002,
+   "output": 0.00001,
+   "cacheRead": 1.0000000000000001e-7,
+   "cacheWrite": 0.0000025,
+   "source": "llmapi openai (listed per 1K)"
+  },
+  "openrouter:deepinfra/fp8:deepseek/deepseek-v4-pro-0813": {
+   "input": 0.0000013,
+   "output": 0.0000026,
+   "cacheRead": 1e-7,
+   "cacheWrite": 0.0000013,
+   "source": "OpenRouter endpoint deepinfra/fp8"
+  }
+ }
+}

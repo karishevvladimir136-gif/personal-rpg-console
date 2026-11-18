@@ -1,0 +1,10 @@
+{
+ "family": "opus",
+ "label": "Claude Opus 5.5",
+ "rep": 2,
+ "startedAt": "2026-11-18T06:59:02.000Z",
+ "status": "complete",
+ "refusals": 2,
+ "sitsDone": 10,
+ "finishedAt": "2026-11-18T07:24:10.961Z"
+}
