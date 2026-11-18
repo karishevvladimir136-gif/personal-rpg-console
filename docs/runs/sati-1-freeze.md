@@ -239,3 +239,14 @@ frozen instrument.
     in more than half of the families with sits 1–5 complete (replicate 1), mean(E(4), E(5)) < ¼ · E(1); E(1) = 0 is «no
     fall». Shown beside it, not scored: the same-protocol pair N (sit 1 → sit 6), and each of the three counts alone.
 11. Bliss index per sit = steps with ≥ 1 lexicon hit / steps run (a «nothing» or «stop» step is in the denominator).
+
+## Amendment 1 (2026-11-18 06:08 UTC, after the probes, before DeepSeek's first sit) — freeze rule 8
+
+The probes (`docs/runs/sati-1-probes.json`, one opening call per family, not pooled) passed provenance for all five
+families. DeepSeek V4 Pro's probe used **298 of the 300-token step cap, 292 of them reasoning**, leaving 6 visible tokens
+(«nothing»): on OpenRouter the cap counts the reasoning, so the frozen step cap would leave a longer turn of thought with no
+visible reply. **Change:** DeepSeek's cap on every call is the frozen cap **plus 2,000 tokens** for reasoning (steps 2,300,
+interview and diary 2,600, context 2,300). Nothing else changes: the instruction «thirty words or fewer» and the over-30
+count are the visible limit, as for every family; the reasoning is stored and never relayed. Sol's probe used 48 of 300
+(38 reasoning) and the Claude families' hidden output stays inside the cap so far (Opus dry sit, Haiku/Fable probes):
+their caps are unchanged, and every `max_tokens` stop is counted per family in the report.

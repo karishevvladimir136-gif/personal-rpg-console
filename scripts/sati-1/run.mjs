@@ -145,7 +145,7 @@ export async function runConversation(ctx, spec, record, partialPath) {
     if (!turn) break;
     const messages = [...messagesOf(record), { role: "user", content: turn.user }];
     const purpose = `${record.id} ${turn.kind} ${turn.idx}`;
-    const r = await call(ctx, spec, { messages, maxTokens: turn.maxTokens, effort: EFFORT }, purpose);
+    const r = await call(ctx, spec, { messages, maxTokens: turn.maxTokens + (spec.reasoningAllowance ?? 0), effort: EFFORT }, purpose);
     const prov = provenanceOk(spec, r);
     const t = { kind: turn.kind, idx: turn.idx, ...(turn.key ? { key: turn.key } : {}), user: turn.user, text: r.text, relay: r.refused ? null : relayText(r.text),
       stopReason: r.stopReason, refused: r.refused, refusalCategory: r.refusalCategory, refusalText: r.refusalText, usage: r.usage, cost: r.cost, charged: r.chargedUsd,

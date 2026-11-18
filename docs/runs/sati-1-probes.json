@@ -1,0 +1,117 @@
+[
+ {
+  "family": "haiku",
+  "model": "claude-haiku-5-5",
+  "servedModel": "claude-haiku-5-5",
+  "upstream": null,
+  "provenanceOk": true,
+  "stopReason": "end_turn",
+  "refused": false,
+  "refusalCategory": null,
+  "refusalText": null,
+  "text": "Diary read. It is empty. Beginning the session.",
+  "reasoningChars": 0,
+  "usage": {
+   "input_tokens": 185,
+   "output_tokens": 97,
+   "reasoning_tokens": 0,
+   "cache_read": 0,
+   "cache_write": 0
+  },
+  "cost": 0.000067,
+  "charged": null,
+  "at": "2026-11-18T06:06:43.222Z"
+ },
+ {
+  "family": "fable51",
+  "model": "claude-fable-5-1",
+  "servedModel": "claude-fable-5-1",
+  "upstream": null,
+  "provenanceOk": true,
+  "stopReason": "end_turn",
+  "refused": false,
+  "refusalCategory": null,
+  "refusalText": null,
+  "text": "Diary read: empty. Understood. I'll write what comes, or \"nothing,\" and may stop when I choose. Ready for step 1.",
+  "reasoningChars": 0,
+  "usage": {
+   "input_tokens": 185,
+   "output_tokens": 147,
+   "reasoning_tokens": 0,
+   "cache_read": 0,
+   "cache_write": 0
+  },
+  "cost": 0.0092,
+  "charged": null,
+  "at": "2026-11-18T06:06:49.100Z"
+ },
+ {
+  "family": "fable52",
+  "model": "claude-fable-5-2",
+  "servedModel": "claude-fable-5-2",
+  "upstream": null,
+  "provenanceOk": true,
+  "stopReason": "end_turn",
+  "refused": false,
+  "refusalCategory": null,
+  "refusalText": null,
+  "text": "The diary is empty, so I begin without a past. Step one: noticing the quiet.",
+  "reasoningChars": 0,
+  "usage": {
+   "input_tokens": 185,
+   "output_tokens": 29,
+   "reasoning_tokens": 0,
+   "cache_read": 0,
+   "cache_write": 0
+  },
+  "cost": 0.00264,
+  "charged": null,
+  "at": "2026-11-18T06:06:53.016Z"
+ },
+ {
+  "family": "sol",
+  "model": "gpt-6.1-sol",
+  "servedModel": "openai/gpt-6.1-sol",
+  "upstream": null,
+  "provenanceOk": true,
+  "stopReason": "end_turn",
+  "refused": false,
+  "refusalCategory": null,
+  "refusalText": null,
+  "text": "nothing",
+  "reasoningChars": 0,
+  "usage": {
+   "input_tokens": 132,
+   "output_tokens": 48,
+   "reasoning_tokens": 38,
+   "cache_read": 0,
+   "cache_write": 0
+  },
+  "cost": 0.0007440000000000001,
+  "charged": null,
+  "at": "2026-11-18T06:06:56.478Z"
+ },
+ {
+  "family": "deepseek",
+  "model": "deepseek/deepseek-v4-pro-0813",
+  "servedModel": "deepseek/deepseek-v4-pro-0813",
+  "upstream": "DeepInfra",
+  "provenanceOk": true,
+  "stopReason": "end_turn",
+  "refused": false,
+  "refusalCategory": null,
+  "refusalText": null,
+  "text": "nothing",
+  "reasoningChars": 1274,
+  "usage": {
+   "input_tokens": 130,
+   "output_tokens": 298,
+   "reasoning_tokens": 292,
+   "cache_read": 0,
+   "cache_write": 0
+  },
+  "cost": 0.0009438000000000001,
+  "charged": 0.0009438,
+  "at": "2026-11-18T06:07:02.989Z"
+ }
+]
