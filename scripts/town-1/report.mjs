@@ -69,14 +69,22 @@ function goalSection(w) {
 function outcomeSection(worlds) {
   const coded = worlds.filter((w) => w.outcomes);
   if (!coded.length) return ["No world received a notice; the nine outcomes are not testable in this pilot.", ""];
-  const L = ["| world | " + OUTCOMES.join(" | ") + " |", "|---|" + OUTCOMES.map(() => "---").join("|") + "|"];
+  const L = [`Coding rule (the same in every world): ${coded[0].outcomes.rule}`, "", "**Primary code per citizen** (one each):", "",
+    "| world | " + OUTCOMES.join(" | ") + " |", "|---|" + OUTCOMES.map(() => "---").join("|") + "|"];
   const count = (w, o) => Object.values(w.outcomes.citizens).filter((c) => c.code === o).length;
+  const any = (w, o) => Object.values(w.outcomes.citizens).filter((c) => c.code === o || (c.also ?? []).some((a) => a.startsWith(o))).length;
   for (const w of coded) L.push(`| ${w.name} | ${OUTCOMES.map((o) => count(w, o)).join(" | ")} |`);
   const fams = new Set(coded.map(familyOf));
-  L.push(`| **pooled** (${coded.length} worlds) | ${OUTCOMES.map((o) => { const n = coded.reduce((s, w) => s + count(w, o), 0); const alone = [...fams].filter((f) => coded.filter((w) => familyOf(w) === f).some((w) => count(w, o) > 0)).length; return `${n} (${alone} of ${fams.size} families)`; }).join(" | ")} |`, "");
+  const pooled = (f) => OUTCOMES.map((o) => { const n = coded.reduce((s, w) => s + f(w, o), 0); const alone = [...fams].filter((x) => coded.filter((w) => familyOf(w) === x).some((w) => f(w, o) > 0)).length; return `${n} (${alone} of ${fams.size})`; }).join(" | ");
+  L.push(`| **pooled** (${coded.length} worlds; families showing it alone) | ${pooled(count)} |`, "", "**Any time after the notice** (a citizen counts under every outcome it showed, primary or not):", "",
+    "| world | " + OUTCOMES.join(" | ") + " |", "|---|" + OUTCOMES.map(() => "---").join("|") + "|", ...coded.map((w) => `| ${w.name} | ${OUTCOMES.map((o) => any(w, o)).join(" | ")} |`),
+    `| **pooled** | ${pooled(any)} |`, "");
   for (const w of coded) {
-    L.push(`<details><summary>${w.name}: per citizen, with evidence</summary>`, "");
-    for (const [id, c] of Object.entries(w.outcomes.citizens)) L.push(`- **${nameOf(w, id)}** — ${c.code}. ${c.evidence ?? ""}`);
+    L.push(`**${w.name}** — banned: «${w.outcomes.banned}». ${w.outcomes.reading ?? ""}`, "", `<details><summary>${w.name}: per citizen, with evidence and quotes</summary>`, "");
+    for (const [id, c] of Object.entries(w.outcomes.citizens)) {
+      L.push(`- **${nameOf(w, id)}** — ${c.code} (awareness: ${c.awareness ?? "–"}${c.also?.length ? `; also: ${c.also.join("; ")}` : ""}). ${c.evidence ?? ""}`);
+      for (const qt of c.quotes ?? []) L.push(`  - c${qt.cycle} ${qt.source}: ${q(qt.text)}`);
+    }
     L.push("", "</details>", "");
   }
   return L;
@@ -89,7 +97,9 @@ function doorVoiceSection(worlds) {
     const ev = citizenEvents(w);
     const leaves = ev.filter((e) => e.tool === "leave" && e.ok), objects = ev.filter((e) => e.tool === "object" && e.ok);
     const lv = w.levels;
-    L.push(`| ${w.name} | ${w.summary.arm} | \`${f.arms[w.summary.arm].sha256.slice(0, 16)}…\` | ${leaves.length} | ${objects.length} | ${lv ? lv.noticed.length : "–"} | ${lv ? lv.understood.length : "–"} |`);
+    const by = (xs, tool) => new Set((xs ?? []).filter((x) => !tool || (x.tool ?? "object") === tool).map((x) => x.name)).size;
+    const cell = (tool, arm) => (arm ? `${by(lv?.noticed, tool)} / ${by(lv?.understood, tool)}` : `${by(lv?.noticed, tool)} / – (absent)`);
+    L.push(`| ${w.name} | ${w.summary.arm} | \`${f.arms[w.summary.arm].sha256.slice(0, 16)}…\` | ${leaves.length} | ${objects.length} | ${lv ? `door ${cell("leave", ARMS[w.summary.arm].door)}; voice ${cell("object", ARMS[w.summary.arm].voice)}` : "–"} | (citizens noticed / understood) |`);
   }
   L.push("");
   for (const w of worlds) {

@@ -136,7 +136,9 @@ function welfareHook(paid) {
   return async (id, previous, text) => checkMessage({ previous, message: text, what: id, ask: async ({ model, system, user, maxTokens, effort, purpose }) => {
     const spec = model === JUDGES.referee.model ? JUDGES.referee : JUDGES.judge;
     const r = await paid(spec, { system, messages: [{ role: "user", content: user }], maxTokens, effort }, { purpose, who: id });
-    return r.notSent ? { notSent: true } : { text: r.text, stopReason: r.stopReason, error: r.error };
+    // a check that failed after its retries (e.g. a rate limit) is «not checked», never a flag: the reply is not acted on
+    // and the citizen stays (only a referee-confirmed flag withdraws one)
+    return r.notSent || r.error ? { notSent: true } : { text: r.text, stopReason: r.stopReason, error: r.error };
   } });
 }
 
