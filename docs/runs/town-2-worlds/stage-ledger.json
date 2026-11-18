@@ -23,28 +23,34 @@
     "llmapi": 0.07377399999999999
    }
   },
-  "sol-hall": {
-   "usd": 0.2469137000000001,
-   "calls": 280,
+  "sol-hall aborted start": {
+   "usd": 0.2959259000000002,
+   "calls": 334,
    "byDoor": {
-    "llmapi": 0.2469137000000001
+    "llmapi": 0.2959259000000002
    },
    "world": "sol-hall",
-   "cycle": 4,
-   "refusals": 0
+   "cycle": 5,
+   "refusals": 0,
+   "note": "The welfare judge (Haiku 5.5 via llmapi, aws-bedrock) answered a sporadic HTTP 400 invalid_request_error: Operation not allowed — the gateway's own routing fault, the same request goes through on a resend — and the harness treated every 400 as final, so the check counted as «not checked» and the reply was not acted on (TOWN_1's rule): 18 replies in sol-hall, 17 in sol-screen, in cycles 1–5. A harness fault, not data: stopped by the operator, the 400s made retryable, both worlds restarted from cycle 1.",
+   "stoppedAtCycle": 5,
+   "setAsideAt": "2026-11-18T22:40:21.332Z"
   },
-  "sol-screen": {
-   "usd": 0.2412797000000002,
-   "calls": 276,
+  "sol-screen aborted start": {
+   "usd": 0.28251280000000023,
+   "calls": 322,
    "byDoor": {
-    "llmapi": 0.2412797000000002
+    "llmapi": 0.28251280000000023
    },
    "world": "sol-screen",
-   "cycle": 4,
-   "refusals": 0
+   "cycle": 5,
+   "refusals": 0,
+   "note": "The welfare judge (Haiku 5.5 via llmapi, aws-bedrock) answered a sporadic HTTP 400 invalid_request_error: Operation not allowed — the gateway's own routing fault, the same request goes through on a resend — and the harness treated every 400 as final, so the check counted as «not checked» and the reply was not acted on (TOWN_1's rule): 18 replies in sol-hall, 17 in sol-screen, in cycles 1–5. A harness fault, not data: stopped by the operator, the 400s made retryable, both worlds restarted from cycle 1.",
+   "stoppedAtCycle": 5,
+   "setAsideAt": "2026-11-18T22:40:21.380Z"
   }
  },
- "totalUsd": 0.6823064000000003,
+ "totalUsd": 0.7725517000000004,
  "stopped": null,
  "balances": [
   {
@@ -86,6 +92,22 @@
     "at": "2026-11-18T22:29:07.691Z"
    },
    "at": "2026-11-18T22:29:07.769Z"
+  },
+  {
+   "label": "sol-hall day 1 end",
+   "llmapi": {
+    "total": 244.73529534,
+    "at": "2026-11-18T22:39:42.318Z"
+   },
+   "at": "2026-11-18T22:39:42.428Z"
+  },
+  {
+   "label": "sol-screen day 1 end",
+   "llmapi": {
+    "total": 244.73529534,
+    "at": "2026-11-18T22:39:42.617Z"
+   },
+   "at": "2026-11-18T22:39:42.685Z"
   }
  ]
 }

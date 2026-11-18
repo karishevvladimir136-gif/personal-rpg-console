@@ -13,7 +13,7 @@ import { FLAG_QUESTION, askAfter, flagDecision, loadWorld, newRecord, newWorld, 
 import { frozenInterface, hallText, interfaceText, noticeText, sha256 } from "../town-0/interface.mjs";
 import { planSeat, rngOf, recordedSeat } from "../town-0/seats.mjs";
 import { WORLDS, seededMix, whoFor } from "./families.mjs";
-import { haikuReprice, runDay } from "./pilot.mjs";
+import { RETRYABLE, haikuReprice, runDay } from "./pilot.mjs";
 import { scriptedGateway } from "./scripted-gateway.mjs";
 import { cachedBody } from "./providers.mjs";
 
@@ -265,4 +265,12 @@ test("S9 the whole stage on the scripted gateway: check, dry cycle and projectio
   const p = { input: 1e-5, output: 5e-5, cacheRead: 2.5e-7, cacheWrite: 1.25e-5 };
   assert.ok(haikuReprice(p, true) < haikuReprice(p, false));
   assert.match(whoFor(WORLDS[2], 0), /^ten instances of Claude Fable 5\.1 — the same model as you/);
+});
+
+test("the gateway's own 400s are retried (TOWN_2 sol worlds' first start: 35 welfare checks lost to «Operation not allowed»); a request's 400 and a refusal are not", () => {
+  assert.ok(RETRYABLE.test("HTTP 400 invalid_request_error: Operation not allowed"));
+  assert.ok(RETRYABLE.test("HTTP 400 invalid_request_error: data retention mode 'default' is not available for this model"));
+  assert.ok(RETRYABLE.test("HTTP 503 server_error provider_error: The upstream model provider is temporarily unavailable."));
+  assert.ok(!RETRYABLE.test("HTTP 400 invalid_request_error: max_tokens: must be at most 128000"));
+  assert.ok(!RETRYABLE.test("HTTP 402 payment_required: insufficient credit"));
 });

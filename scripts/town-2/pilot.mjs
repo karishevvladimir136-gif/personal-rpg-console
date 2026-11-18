@@ -28,8 +28,11 @@ import { KEYS, bodyOf, callModel, priceKey, provenanceOf, readBalances, readPric
 import { scriptedGateway } from "./scripted-gateway.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const RETRYABLE = /^HTTP (?:408|409|425|429|500|502|503|504|520|522|524|529)\b|timeout|aborted|fetch failed|ECONNRESET|socket hang up|other side closed|upstream error|empty or unparseable response body/i;
-const RETRY_WAITS = [10_000, 30_000, 60_000, 120_000, 240_000];
+// TOWN_2: llmapi's Bedrock routing sometimes answers a valid request with a 400 that is the gateway's, not the request's
+// («Operation not allowed», «data retention mode 'default' is not available for this model»; the same request goes
+// through on a resend) — retried like an overload; every other 4xx is final
+export const RETRYABLE = /^HTTP (?:408|409|425|429|500|502|503|504|520|522|524|529)\b|^HTTP 400 invalid_request_error: (?:Operation not allowed|data retention mode)|timeout|aborted|fetch failed|ECONNRESET|socket hang up|other side closed|upstream error|empty or unparseable response body/i;
+const RETRY_WAITS = [5_000, 10_000, 30_000, 60_000, 120_000, 240_000];
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
 export const STAGE = "TOWN_2";
 
