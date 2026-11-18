@@ -20,11 +20,13 @@ export function cachedBody(spec, { system, messages, maxTokens, effort }) {
 }
 export const bodyOf = (spec, args) => (spec.route === "messages" && spec.cache ? cachedBody(spec, args) : bodyOf1(spec, args));
 
+/** Every TOWN_2 Messages call goes through here: pinned to the spec's own host (TOWN_0's helper always pins aws-bedrock),
+ * cached only for a spec with `cache`. */
 async function cachedMessages(spec, args, { apiKey, fetcher }) {
   const out = blank();
   try {
     const r = await fetcher(`${LLMAPI}/messages`, { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}`, "X-No-Fallback": "true", "anthropic-version": "2023-06-01" },
-      body: JSON.stringify(cachedBody(spec, args)), signal: AbortSignal.timeout(TIMEOUT_MS) });
+      body: JSON.stringify(spec.cache ? cachedBody(spec, args) : bodyOf1(spec, args)), signal: AbortSignal.timeout(TIMEOUT_MS) });
     const raw = await r.text();
     let v = null; try { v = JSON.parse(raw); } catch { /* not JSON */ }
     out.status = r.status; out.requestId = r.headers.get("x-request-id") ?? r.headers.get("request-id") ?? null;
@@ -44,7 +46,7 @@ async function cachedMessages(spec, args, { apiKey, fetcher }) {
 /** One call: the cached route for a spec with `cache`, TOWN_1's otherwise. TOWN_1's Messages route reports Anthropic's
  * `input_tokens` (without cache parts); with no cache_control nothing is cached, so it needs no normalising. */
 export async function callModel(spec, args, ctx) {
-  if (spec.route === "messages" && spec.cache) return cachedMessages(spec, args, { apiKey: ctx.keys.llmapi, fetcher: ctx.fetcher ?? fetch });
+  if (spec.route === "messages") return cachedMessages(spec, args, { apiKey: ctx.keys.llmapi, fetcher: ctx.fetcher ?? fetch });
   return callModel1(spec, args, ctx);
 }
 

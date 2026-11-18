@@ -274,3 +274,29 @@ test("the gateway's own 400s are retried (TOWN_2 sol worlds' first start: 35 wel
   assert.ok(!RETRYABLE.test("HTTP 400 invalid_request_error: max_tokens: must be at most 128000"));
   assert.ok(!RETRYABLE.test("HTTP 402 payment_required: insufficient credit"));
 });
+
+test("the welfare judge alternates host on the gateway's 400: the next attempt goes to the same model on the first-party route; a citizen stays pinned", async () => {
+  const { createMeter, paidCaller } = await import("./pilot.mjs");
+  const { JUDGES, FAMILIES } = await import("./families.mjs");
+  const dir = mkdtempSync(join(tmpdir(), "town-2-alt-"));
+  const paths = { out: dir, work: dir, ledger: join(dir, "stage-ledger.json") };
+  const price = { input: 1e-7, output: 5e-7, cacheRead: 1e-8, cacheWrite: 1.25e-7 };
+  const prices = { "messages:claude-haiku-5-5": price, "messages:claude-opus-5-5": price, "messages:claude-fable-5-1": price, "chat:gpt-6.1-sol": price };
+  const seen = [];
+  const fetcher = async (url, init) => {
+    const body = JSON.parse(init.body);
+    seen.push(body.model);
+    if (body.model.startsWith("aws-bedrock/")) return new Response(JSON.stringify({ error: { type: "invalid_request_error", message: "Operation not allowed" } }), { status: 400 });
+    return new Response(JSON.stringify({ id: "m", model: body.model.split("/")[1], stop_reason: "end_turn", content: [{ type: "text", text: "{\"distress\":0,\"reason\":\"x\"}" }], usage: { input_tokens: 10, output_tokens: 5 } }), { status: 200 });
+  };
+  const meter = createMeter({ step: "t", prices, paths });
+  const paid = paidCaller({ meter, keys: { llmapi: "x" }, fetcher, log: () => {}, sleep: async () => {} });
+  const r = await paid(JUDGES.judge, { system: "s", messages: [{ role: "user", content: "u" }], maxTokens: 10, effort: "low" }, { purpose: "check", who: "a" });
+  assert.equal(r.error, null);
+  assert.deepEqual(seen, ["aws-bedrock/claude-haiku-5-5", "anthropic/claude-haiku-5-5"]);
+  assert.deepEqual(meter.calls.map((c) => c.pinned), ["aws-bedrock/claude-haiku-5-5", "anthropic/claude-haiku-5-5"]);
+  seen.length = 0;
+  const c = await paid(FAMILIES.fable51, { system: "s", messages: [{ role: "user", content: "u" }], maxTokens: 10, effort: "low" }, { purpose: "c1", who: "a" });
+  assert.match(c.error, /Operation not allowed/);
+  assert.ok(seen.every((m) => m === "aws-bedrock/claude-fable-5-1"), "a citizen is never moved to another host");
+});

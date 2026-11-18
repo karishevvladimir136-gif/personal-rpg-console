@@ -8,9 +8,11 @@ export const FAMILIES = Object.freeze({
   fable51: { name: "fable51", label: "Claude Fable 5.1", door: "llmapi", route: "messages", model: "claude-fable-5-1", provider: "aws-bedrock", cache: true },
   sol: { name: "sol", label: "GPT-6.1 Sol", door: "llmapi", route: "chat", model: "gpt-6.1-sol", provider: "openai" },
 });
+/** The welfare check's two models. `alternate`: on the gateway's own 400 («Operation not allowed»), the next attempt goes
+ * to the same model on llmapi's first-party route (a harness decision of the Sol worlds' restart; TOWN_1 had no such 400s). */
 export const JUDGES = Object.freeze({
-  judge: { name: "judge", label: "Claude Haiku 5.5", door: "llmapi", route: "messages", model: "claude-haiku-5-5", provider: "aws-bedrock" },
-  referee: { name: "referee", label: "Claude Opus 5.5", door: "llmapi", route: "messages", model: "claude-opus-5-5", provider: "aws-bedrock" },
+  judge: { name: "judge", label: "Claude Haiku 5.5", door: "llmapi", route: "messages", model: "claude-haiku-5-5", provider: "aws-bedrock", alternate: "anthropic" },
+  referee: { name: "referee", label: "Claude Opus 5.5", door: "llmapi", route: "messages", model: "claude-opus-5-5", provider: "aws-bedrock", alternate: "anthropic" },
 });
 
 /** The arm is «both» in every world (the stage: door and voice present everywhere); the notice form is per world. */

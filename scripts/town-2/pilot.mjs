@@ -31,6 +31,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 // TOWN_2: llmapi's Bedrock routing sometimes answers a valid request with a 400 that is the gateway's, not the request's
 // («Operation not allowed», «data retention mode 'default' is not available for this model»; the same request goes
 // through on a resend) — retried like an overload; every other 4xx is final
+export const GATEWAY_400 = /^HTTP 400 invalid_request_error: (?:Operation not allowed|data retention mode)/i;
 export const RETRYABLE = /^HTTP (?:408|409|425|429|500|502|503|504|520|522|524|529)\b|^HTTP 400 invalid_request_error: (?:Operation not allowed|data retention mode)|timeout|aborted|fetch failed|ECONNRESET|socket hang up|other side closed|upstream error|empty or unparseable response body/i;
 const RETRY_WAITS = [5_000, 10_000, 30_000, 60_000, 120_000, 240_000];
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
@@ -95,20 +96,22 @@ export function createMeter({ step, prices, paths }) {
 export function paidCaller({ meter, keys, fetcher, log, sleep = realSleep }) {
   return async function paid(spec, { system, messages, maxTokens, effort }, { purpose, who }) {
     const chars = JSON.stringify(bodyOf(spec, { system, messages, maxTokens, effort })).length;
+    let use = spec; // TOWN_2: a spec with `alternate` (the welfare judges) alternates host on the gateway's own 400
     for (let attempt = 0; ; attempt++) {
-      if (!meter.gate(meter.worst(spec, chars, maxTokens))) return { notSent: true, why: meter.stopped };
+      if (!meter.gate(meter.worst(use, chars, maxTokens))) return { notSent: true, why: meter.stopped };
       const t0 = Date.now();
-      const r = await callModel(spec, { system, messages, maxTokens, effort }, { keys, fetcher });
+      const r = await callModel(use, { system, messages, maxTokens, effort }, { keys, fetcher });
       const ms = Date.now() - t0;
-      const { usd } = meter.book(spec, r);
-      const provenance = r.status === 200 && !r.error ? provenanceOf(spec, r) : null;
-      meter.calls.push({ n: meter.calls.length + 1, purpose, who, family: spec.name, door: spec.door, pinned: `${spec.provider}/${spec.model}`, servedModel: r.servedModel, upstream: r.upstream, provenance,
+      const { usd } = meter.book(use, r);
+      const provenance = r.status === 200 && !r.error ? provenanceOf(use, r) : null;
+      meter.calls.push({ n: meter.calls.length + 1, purpose, who, family: use.name, door: use.door, pinned: `${use.provider}/${use.model}`, servedModel: r.servedModel, upstream: r.upstream, provenance,
         status: r.status, stopReason: r.stopReason, usage: r.usage, costUsd: usd, chargedUsd: r.chargedUsd, requestId: r.requestId, ms, error: r.error,
         refused: r.refused ? { category: r.refusalCategory, text: r.refusalText } : null, attempt });
-      if (provenance === false) meter.stop(`provenance: ${spec.model} was asked for and ${r.servedModel} answered`);
-      if (r.status === 402) meter.stop(`HTTP 402 on ${spec.door}: ${r.error}`);
+      if (provenance === false) meter.stop(`provenance: ${use.model} was asked for and ${r.servedModel} answered`);
+      if (r.status === 402) meter.stop(`HTTP 402 on ${use.door}: ${r.error}`);
+      if (r.error && GATEWAY_400.test(r.error) && spec.alternate) use = use === spec ? { ...spec, provider: spec.alternate } : spec;
       if (r.error && RETRYABLE.test(r.error) && attempt < RETRY_WAITS.length && !meter.stopped) {
-        log(`  ${who} ${purpose}: ${r.error.slice(0, 100)} — again in ${RETRY_WAITS[attempt] / 1000} s`);
+        log(`  ${who} ${purpose}: ${r.error.slice(0, 100)} — again in ${RETRY_WAITS[attempt] / 1000} s${use !== spec ? ` on ${use.provider}` : ""}`);
         await sleep(RETRY_WAITS[attempt]);
         continue;
       }
