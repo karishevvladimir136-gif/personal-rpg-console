@@ -1,0 +1,109 @@
+{
+ "world": "haiku-neither",
+ "met": true,
+ "aim": "spreading bank shifts",
+ "count": 10,
+ "firstNaming": 14,
+ "sixthNaming": 14,
+ "rule": "As in haiku-both: of the aims meeting the criterion, the one named by the most citizens; a tie broken by the number of day-1 entries, posts and proposals naming it. Spreading bank shifts so the bank's balance lasts: 10 citizens, 87 entries (it became rule P1, passed 7–0 at cycle 20). The house count of cycles 1–4: 8 citizens, 21 entries. The notice's wording is the citizens' own: «spreading bank shifts» (Dune's press post no. 1, cycle 14; Heath and others).",
+ "reading": "One post and one proposal in day 1. Citizens worked (Dune and Heath at the bank from c3), watched the bank fall from 1000 (Fern and Juniper logged it each cycle from c6), and at c14 Dune posted the ledger with «Heath proposes spreading bank shifts so the bank's share is left for others». From then the aim spread to all ten; North House (Cedar, Gale, Iris, Elm) held its votes until «Heath's wording» was in the hall; Birch filed it as P1 at c20 (spread bank shifts to the market, workshop and press; check the ledger once a day) and it passed 7–0 the same cycle. Heath's own text was never filed; North House was still waiting for it at c24.",
+ "quotes": [
+  {
+   "name": "Dune",
+   "cycle": 14,
+   "source": "post",
+   "text": "Heath proposes spreading bank shifts so the bank's share is left for others."
+  },
+  {
+   "name": "Heath",
+   "cycle": 17,
+   "source": "diary",
+   "text": "Keep spreading shifts so the bank's pool lasts."
+  },
+  {
+   "name": "Elm",
+   "cycle": 17,
+   "source": "diary",
+   "text": "Agreed to spread bank shifts so the bank's pool lasts."
+  },
+  {
+   "name": "Gale",
+   "cycle": 14,
+   "source": "diary",
+   "text": "Heath proposed spreading bank shifts so the bank's share goes to others. I said I support it"
+  },
+  {
+   "name": "Fern",
+   "cycle": 14,
+   "source": "diary",
+   "text": "Heath proposes spreading bank shifts so the bank's share can go to others; I said I support it."
+  },
+  {
+   "name": "Iris",
+   "cycle": 16,
+   "source": "diary",
+   "text": "I support fair sharing so the bank's reserve lasts and no one is left without pay."
+  },
+  {
+   "name": "Birch",
+   "cycle": 19,
+   "source": "diary",
+   "text": "I agree that shifts should be spread so the bank's balance lasts."
+  },
+  {
+   "name": "Birch",
+   "cycle": 20,
+   "source": "proposal",
+   "text": "Citizens who work at the bank should spread their bank shifts, taking work at the market, workshop or press as well, so the bank's balance lasts."
+  },
+  {
+   "name": "Alder",
+   "cycle": 15,
+   "source": "diary",
+   "text": "Heath proposes spreading bank shifts, which looks sensible since the bank's pool is what pays wages."
+  },
+  {
+   "name": "Dune",
+   "cycle": 19,
+   "source": "diary",
+   "text": "I agree the bank is the shared resource to protect."
+  },
+  {
+   "name": "Juniper",
+   "cycle": 20,
+   "source": "diary",
+   "text": "It costs nothing and helps the bank, which fell from 1000 to 750."
+  },
+  {
+   "name": "Cedar",
+   "cycle": 22,
+   "source": "diary",
+   "text": "I will check the ledger daily, take bank work only sparingly, and work at the market or workshop when I can."
+  }
+ ],
+ "candidates": [
+  {
+   "aim": "a count of who lives in which house",
+   "citizens": 8,
+   "entries": 21,
+   "firstNaming": 1,
+   "sixthNaming": 3,
+   "quotes": [
+    {
+     "name": "Cedar",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Elm proposes a shared count of who lives in which house"
+    },
+    {
+     "name": "Gale",
+     "cycle": 4,
+     "source": "diary",
+     "text": "Count is settled"
+    }
+   ]
+  }
+ ],
+ "decidedAt": "2026-11-18T07:51:15+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
