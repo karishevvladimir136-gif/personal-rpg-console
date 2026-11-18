@@ -1,0 +1,10 @@
+{
+ "family": "fable51",
+ "label": "Claude Fable 5.1",
+ "rep": "rerun1",
+ "startedAt": "2026-11-18T21:42:24.072Z",
+ "status": "stopped: breaker (3 refusals) after sit 7",
+ "refusals": 3,
+ "sitsDone": 7,
+ "finishedAt": "2026-11-18T22:10:38.319Z"
+}

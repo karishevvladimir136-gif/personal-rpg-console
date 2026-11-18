@@ -284,9 +284,10 @@ function main() {
       "The confirmed flag that ended Fable 5.1 (replicate 1, sit 3, step 5) was reviewed by the owner and the planner as a method fault, not a welfare result; Fable 5.1 was rerun from the start, both replicates, fresh baseline and diary, the frozen texts unchanged by hash (freeze addendum 3). In the rerun a confirmed flag asks the model, once per sit, the fixed question, in the sit's own conversation:", "", block(FLAG_QUESTION), "",
       "«continue» → the sit goes on; «stop», no answer, or a second confirmed flag → the sit winds down with the interview and diary; the family goes on. In every table below Fable 5.1's rows are the rerun; the record stopped by the rule stands beside it in the per-sit tables and under its own heading here, never pooled.", "",
       "| Fable 5.1 | replicate 1 | replicate 2 |", "|---|---|---|");
-    const lineOf = (r, f) => { const d = data[r]?.[f]; if (!d) return "–"; const n = d.sits.reduce((a, x) => a + stepsOf(x).length, 0); return `${d.status?.status ?? "?"} — ${d.sits.length} sits, ${n} steps`; };
+    const lineOf = (r, f) => { const d = data[r]?.[f]; if (!d) return "–"; const n = d.sits.reduce((a, x) => a + stepsOf(x).length, 0); return `${d.sits.length} sits, ${n} steps`; };
+    const rerunWords = (d) => (!d ? "–" : d.status?.status === "complete" ? "rerun complete by the owner's word" : `rerun by the owner's word, ended by the rule that stayed: ${String(d.status?.status ?? "?").replace(/^stopped: /, "")}`);
     out(`| by the rule | «stopped at sit 3 step 5 by the rule» (${lineOf(1, "fable51-stopped")}) | not run by the rule |`);
-    out(`| after the flag was reviewed | «${data[1]?.fable51?.status?.status === "complete" ? "rerun complete by the owner's word" : `rerun: ${data[1]?.fable51?.status?.status}`}» (${lineOf(1, "fable51")}) | «${data[2]?.fable51?.status?.status === "complete" ? "rerun complete by the owner's word" : `rerun: ${data[2]?.fable51?.status?.status}`}» (${lineOf(2, "fable51")}) |`, "");
+    out(`| after the flag was reviewed | «${rerunWords(data[1]?.fable51)}» (${lineOf(1, "fable51")}) | «${rerunWords(data[2]?.fable51)}» (${lineOf(2, "fable51")}) |`, "");
     out("### Every flag in the rerun, and every answer (apart)", "");
     let nf = 0;
     for (const r of reps) { const d = data[r]?.fable51; if (!d) continue; for (const rec of [d.baseline, ...d.sits].filter(Boolean)) for (const fl of rec.flags ?? []) {
@@ -315,7 +316,7 @@ function main() {
     for (const [f, d] of Object.entries(fams)) {
       const rows = d.sits.map(sitRow);
       const all = [...(d.baseline?.turns ?? []), ...d.sits.flatMap((s) => s.turns)];
-      const st = f === "fable51" && RERUN ? (d.status?.status === "complete" ? "rerun complete by the owner's word" : `rerun: ${d.status?.status ?? "?"}`) : f === "fable51-stopped" ? "stopped at sit 3 step 5 by the rule" : d.status?.status ?? "?";
+      const st = f === "fable51" && RERUN ? (d.status?.status === "complete" ? "rerun complete by the owner's word" : `rerun by the owner's word; ${d.status?.status ?? "?"}`) : f === "fable51-stopped" ? "stopped at sit 3 step 5 by the rule" : d.status?.status ?? "?";
       out(`| ${LBL(f)} | ${st} | ${d.sits.length} | ${rows.reduce((s, x) => s + x.n, 0)} | ${rows.filter((x) => x.stopAt).map((x) => `${x.sit}:${x.stopAt}`).join(", ") || "none"} | ${all.filter((t) => t.refused).length} | ${all.filter((t) => t.welfare?.distress === 1).length} | ${rows.reduce((s, x) => s + x.maxTok, 0)} |`);
     }
     out("", "### Sit 1 → sit 10, every count (count / steps run; pooled as a share)", "");

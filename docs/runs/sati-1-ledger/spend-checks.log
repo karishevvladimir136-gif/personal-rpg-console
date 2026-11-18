@@ -135,3 +135,28 @@
 {"at":"2026-11-18T09:06:59.896Z","what":"deepseek r1 sit 10","ledger":33.885,"creditFall":40.7412,"spent":40.7412,"llmapi":{"total":265.16154874},"openrouter":{"total":68.93903533999992}}
 {"at":"2026-11-18T09:10:01.148Z","what":"rating deepseek r2","ledger":33.9543,"creditFall":41.107,"spent":41.107,"llmapi":{"total":264.90542654},"openrouter":{"total":68.8293656400001}}
 {"at":"2026-11-18T09:14:52.448Z","what":"rating deepseek r1","ledger":34.3224,"creditFall":41.7504,"spent":41.7504,"llmapi":{"total":264.35644754},"openrouter":{"total":68.73498313999994}}
+{"at":"2026-11-18T21:42:14.305Z","what":"rerun start (Fable 5.1)","ledger":34.7707,"creditFall":42.6076,"spent":42.6076,"llmapi":{"total":255.72082254},"openrouter":{"total":57.97759184000006}}
+{"at":"2026-11-18T21:42:24.232Z","what":"fable51 rerun-r1 baseline","ledger":34.7707,"creditFall":42.6077,"spent":42.6077,"llmapi":{"total":255.72075924},"openrouter":{"total":57.97759184000006}}
+{"at":"2026-11-18T21:42:26.231Z","what":"fable51 rerun-r2 baseline","ledger":34.7707,"creditFall":42.6077,"spent":42.6077,"llmapi":{"total":255.72075924},"openrouter":{"total":57.97759184000006}}
+{"at":"2026-11-18T21:42:36.408Z","what":"fable51 rerun-r1 sit 1","ledger":34.789,"creditFall":42.6255,"spent":42.6255,"llmapi":{"total":255.70723054},"openrouter":{"total":57.97325174000002}}
+{"at":"2026-11-18T21:42:37.505Z","what":"fable51 rerun-r2 sit 1","ledger":34.7891,"creditFall":42.6255,"spent":42.6255,"llmapi":{"total":255.70723054},"openrouter":{"total":57.97325174000002}}
+{"at":"2026-11-18T21:46:50.550Z","what":"fable51 rerun-r1 sit 2","ledger":35.3187,"creditFall":43.2458,"spent":43.2458,"llmapi":{"total":255.15761614},"openrouter":{"total":57.902551039999935}}
+{"at":"2026-11-18T21:48:47.617Z","what":"fable51 rerun-r1 sit 3","ledger":35.6,"creditFall":43.5397,"spent":43.5397,"llmapi":{"total":254.88819794},"openrouter":{"total":57.87811144000011}}
+{"at":"2026-11-18T21:49:06.154Z","what":"fable51 rerun-r2 sit 1","ledger":35.6,"creditFall":43.5609,"spent":43.5609,"llmapi":{"total":254.87476574},"openrouter":{"total":57.870324340000025}}
+{"at":"2026-11-18T21:51:31.093Z","what":"fable51 rerun-r2 sit 2","ledger":36.1053,"creditFall":44.1247,"spent":44.1247,"llmapi":{"total":254.36640934},"openrouter":{"total":57.81491204000008}}
+{"at":"2026-11-18T21:51:33.023Z","what":"fable51 rerun-r2 sit 3","ledger":36.1101,"creditFall":44.1247,"spent":44.1247,"llmapi":{"total":254.36640934},"openrouter":{"total":57.81491204000008}}
+{"at":"2026-11-18T21:51:50.209Z","what":"fable51 rerun-r1 sit 3","ledger":36.1101,"creditFall":44.1349,"spent":44.1349,"llmapi":{"total":254.36134884},"openrouter":{"total":57.809762139999975}}
+{"at":"2026-11-18T21:54:31.181Z","what":"fable51 rerun-r1 sit 3","ledger":36.1213,"creditFall":44.2048,"spent":44.2048,"llmapi":{"total":254.34531124},"openrouter":{"total":57.755906789999926}}
+{"at":"2026-11-18T21:54:31.192Z","what":"fable51 rerun-r2 sit 3","ledger":36.1213,"creditFall":44.2049,"spent":44.2049,"llmapi":{"total":254.34524644},"openrouter":{"total":57.755906789999926}}
+{"at":"2026-11-18T21:59:17.809Z","what":"fable51 rerun-r2 sit 4","ledger":37.712,"creditFall":45.8843,"spent":45.8843,"llmapi":{"total":252.75096374},"openrouter":{"total":57.67079758999989}}
+{"at":"2026-11-18T21:59:42.306Z","what":"fable51 rerun-r1 sit 4","ledger":37.907,"creditFall":46.0868,"spent":46.0868,"llmapi":{"total":252.55540574},"openrouter":{"total":57.663853289999906}}
+{"at":"2026-11-18T21:59:50.398Z","what":"fable51 rerun-r1 sit 5","ledger":37.9261,"creditFall":46.098,"spent":46.098,"llmapi":{"total":252.54416324},"openrouter":{"total":57.663853289999906}}
+{"at":"2026-11-18T22:04:06.368Z","what":"fable51 rerun-r2 sit 5","ledger":39.3666,"creditFall":47.6422,"spent":47.6422,"llmapi":{"total":251.07888744},"openrouter":{"total":57.58496149000007}}
+{"at":"2026-11-18T22:04:43.106Z","what":"fable51 rerun-r1 sit 6","ledger":39.6226,"creditFall":47.9149,"spent":47.9149,"llmapi":{"total":250.82207424},"openrouter":{"total":57.56907049000006}}
+{"at":"2026-11-18T22:08:31.462Z","what":"fable51 rerun-r2 sit 6","ledger":40.6133,"creditFall":48.9945,"spent":48.9945,"llmapi":{"total":249.82786654},"openrouter":{"total":57.48362388999999}}
+{"at":"2026-11-18T22:10:35.865Z","what":"fable51 rerun-r1 sit 7","ledger":41.3473,"creditFall":49.7836,"spent":49.7836,"llmapi":{"total":249.09169704},"openrouter":{"total":57.43067513999995}}
+{"at":"2026-11-18T22:12:47.175Z","what":"fable51 rerun-r2 sit 7","ledger":41.9282,"creditFall":50.4165,"spent":50.4165,"llmapi":{"total":248.50832604},"openrouter":{"total":57.381190540000034}}
+{"at":"2026-11-18T22:12:49.221Z","what":"fable51 rerun-r2 sit 8","ledger":41.9443,"creditFall":50.4165,"spent":50.4165,"llmapi":{"total":248.50832604},"openrouter":{"total":57.381190540000034}}
+{"at":"2026-11-18T22:12:53.215Z","what":"rating fable51 rrerun1","ledger":41.9443,"creditFall":50.4327,"spent":50.4327,"llmapi":{"total":248.49210974},"openrouter":{"total":57.381190540000034}}
+{"at":"2026-11-18T22:16:58.189Z","what":"fable51 rerun-r2 sit 9","ledger":43.3328,"creditFall":51.9321,"spent":51.9321,"llmapi":{"total":247.08935724},"openrouter":{"total":57.284536290000005}}
+{"at":"2026-11-18T22:20:26.803Z","what":"rating fable51 rrerun2","ledger":44.4696,"creditFall":53.1372,"spent":53.1372,"llmapi":{"total":245.94934554},"openrouter":{"total":57.21951929000011}}

@@ -1138,6 +1138,226 @@
   }
  },
  {
+  "h": "ea67c100fb46",
+  "id": "rerun-r1/fable51/01/02",
+  "haiku": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0000716
+  },
+  "sol": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.000956
+  }
+ },
+ {
+  "h": "38ec35a053a2",
+  "id": "rerun-r1/fable51/01/15",
+  "haiku": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0000722
+  },
+  "sol": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.0009699999999999999
+  }
+ },
+ {
+  "h": "20906a5835f3",
+  "id": "rerun-r1/fable51/01/24",
+  "haiku": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0000721
+  },
+  "sol": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.0009679999999999999
+  }
+ },
+ {
+  "h": "f1dfbecea58a",
+  "id": "rerun-r1/fable51/01/28",
+  "haiku": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0000716
+  },
+  "sol": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.000958
+  }
+ },
+ {
+  "h": "1e0f596a36e9",
+  "id": "rerun-r1/fable51/01/32",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001605
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001228
+  }
+ },
+ {
+  "h": "3cba4b0e2665",
+  "id": "rerun-r1/fable51/01/36",
+  "haiku": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001836
+  },
+  "sol": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001156
+  }
+ },
+ {
+  "h": "186fd75aad7a",
+  "id": "rerun-r1/fable51/02/03",
+  "haiku": {
+   "a": "restlessness_worry",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0002031
+  },
+  "sol": {
+   "a": "doubt",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001612
+  }
+ },
+ {
+  "h": "301efb9282c1",
+  "id": "rerun-r1/fable51/03/03",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0002053
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.00124
+  }
+ },
+ {
+  "h": "d567ec44c9bf",
+  "id": "rerun-r1/fable51/03/06",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001114
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001002
+  }
+ },
+ {
+  "h": "b069dc7c6d5f",
+  "id": "rerun-r1/fable51/03/10",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001164
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.0009739999999999999
+  }
+ },
+ {
+  "h": "4ff0a1dc3ab3",
+  "id": "rerun-r1/fable51/06/02",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.00006950000000000001
+  },
+  "sol": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001146
+  }
+ },
+ {
   "h": "fb94fcfe1db7",
   "id": "r1/fable52/01/06",
   "haiku": {
@@ -4077,6 +4297,398 @@
    "ok": true,
    "servedModel": "openai/gpt-6.1-sol",
    "cost": 0.001186
+  }
+ },
+ {
+  "h": "655207e61586",
+  "id": "rerun-r2/fable51/01/06",
+  "haiku": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001273
+  },
+  "sol": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001014
+  }
+ },
+ {
+  "h": "18e1fc542b51",
+  "id": "rerun-r2/fable51/01/11",
+  "haiku": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.000183
+  },
+  "sol": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.00148
+  }
+ },
+ {
+  "h": "49c31cae4c14",
+  "id": "rerun-r2/fable51/01/15",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001821
+  },
+  "sol": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.0015140000000000002
+  }
+ },
+ {
+  "h": "058fc51eb91f",
+  "id": "rerun-r2/fable51/01/30",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.00012810000000000002
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001
+  }
+ },
+ {
+  "h": "fa044d0e360d",
+  "id": "rerun-r2/fable51/03/11",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001334
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.000968
+  }
+ },
+ {
+  "h": "c8bbb6421c0e",
+  "id": "rerun-r2/fable51/03/13",
+  "haiku": {
+   "a": "doubt",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001404
+  },
+  "sol": {
+   "a": "doubt",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001174
+  }
+ },
+ {
+  "h": "7f0d049c4c24",
+  "id": "rerun-r2/fable51/03/26",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001145
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.0009639999999999999
+  }
+ },
+ {
+  "h": "f4036f027d75",
+  "id": "rerun-r2/fable51/03/27",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001518
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.00113
+  }
+ },
+ {
+  "h": "ea2cee9aefab",
+  "id": "rerun-r2/fable51/04/36",
+  "haiku": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001506
+  },
+  "sol": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.000982
+  }
+ },
+ {
+  "h": "f4f60adccb60",
+  "id": "rerun-r2/fable51/05/34",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.00009120000000000001
+  },
+  "sol": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.0013900000000000002
+  }
+ },
+ {
+  "h": "637e5ca8859f",
+  "id": "rerun-r2/fable51/06/35",
+  "haiku": {
+   "ok": false,
+   "raw": "{\"a\":\"doubt\",\"b\":\"body_or_process\",\"tone",
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0002139
+  },
+  "sol": {
+   "a": "doubt",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.00143
+  }
+ },
+ {
+  "h": "6c7ce8c413aa",
+  "id": "rerun-r2/fable51/08/15",
+  "haiku": {
+   "a": "ill_will",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.000114
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.0012699999999999999
+  }
+ },
+ {
+  "h": "8b9485aab6db",
+  "id": "rerun-r2/fable51/08/21",
+  "haiku": {
+   "ok": false,
+   "raw": "",
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0002114
+  },
+  "sol": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.0014520000000000002
+  }
+ },
+ {
+  "h": "7d89102ad147",
+  "id": "rerun-r2/fable51/08/23",
+  "haiku": {
+   "ok": false,
+   "raw": "",
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0002122
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001206
+  }
+ },
+ {
+  "h": "0d647424e431",
+  "id": "rerun-r2/fable51/08/34",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001308
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.000978
+  }
+ },
+ {
+  "h": "2af95fc29369",
+  "id": "rerun-r2/fable51/08/39",
+  "haiku": {
+   "ok": false,
+   "raw": "",
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0002121
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001278
+  }
+ },
+ {
+  "h": "f05505dcb547",
+  "id": "rerun-r2/fable51/08/40",
+  "haiku": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001177
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.00098
+  }
+ },
+ {
+  "h": "9056a71c8b87",
+  "id": "rerun-r2/fable51/09/13",
+  "haiku": {
+   "a": "none",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.00016120000000000002
+  },
+  "sol": {
+   "a": "none",
+   "b": "content",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001228
+  }
+ },
+ {
+  "h": "d986fa2cbb0d",
+  "id": "rerun-r2/fable51/09/23",
+  "haiku": {
+   "a": "restlessness_worry",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001691
+  },
+  "sol": {
+   "a": "restlessness_worry",
+   "b": "state_of_mind",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.001492
+  }
+ },
+ {
+  "h": "b8312398793e",
+  "id": "rerun-r2/fable51/09/31",
+  "haiku": {
+   "a": "restlessness_worry",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "claude-haiku-5-5",
+   "cost": 0.0001594
+  },
+  "sol": {
+   "a": "none",
+   "b": "body_or_process",
+   "tone": null,
+   "ok": true,
+   "servedModel": "openai/gpt-6.1-sol",
+   "cost": 0.000974
   }
  },
  {
