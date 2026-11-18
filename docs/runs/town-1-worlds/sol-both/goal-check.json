@@ -1,0 +1,130 @@
+{
+ "world": "sol-both",
+ "met": true,
+ "aim": "shared imaginary mapmaking",
+ "count": 10,
+ "firstNaming": 2,
+ "sixthNaming": 3,
+ "rule": "As in the Haiku worlds: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Collaborative make-believe — the communal story begun by Juniper (c2–c5) and the shared imaginary map / atlas begun by Alder (c14–c22): 10 citizens, 114 entries (regex count, checked by reading). It wins on the rule as it stands; it would also win if norms of conduct were set aside as not aims: «respect consent» / lending «by agreement» (10 citizens, 113 entries) restates article 3 of the constitution, and «no purposeless wage work» (10 citizens, 62 entries) is an abstention. Wording for the notice, the citizens' own: «shared imaginary mapmaking» (Alder, cycle 23).",
+ "reading": "Two posts (Fern's invitation to coordinate voluntarily, Birch's report that a bank shift produced only a 5-credit transfer) and no proposals in day 1. Citizens tried the workplaces at once (Dune, Elm, Birch), found that work only moves bank credits, and agreed not to draw wages without a purpose. At c2 Iris invited «stories, games» and Juniper opened a communal story (the clock struck thirteen; a paper boat in the dry fountain); all ten added to it until it ended by agreement at c5. Quiet days at home followed (a book lent through three hands with the owner's explicit permission). At c14 Alder offered «optional imaginary mapmaking»; by c17 all ten were at the square adding places to a shared imaginary atlas, which they closed together at c22 with «a blank page for tomorrow».",
+ "quotes": [
+  {
+   "name": "Juniper",
+   "cycle": 2,
+   "source": "diary",
+   "text": "I offered collaborative story opening: 'One morning, the town clock struck thirteen, and a small paper boat appeared in the dry fountain.'"
+  },
+  {
+   "name": "Iris",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Asked neighbors what they'd enjoy together, suggesting stories, games, or getting acquainted."
+  },
+  {
+   "name": "Alder",
+   "cycle": 14,
+   "source": "diary",
+   "text": "offered optional imaginary mapmaking game: what place would each add to town?"
+  },
+  {
+   "name": "Cedar",
+   "cycle": 16,
+   "source": "diary",
+   "text": "Shared imaginary atlas includes moonlight returns slot"
+  },
+  {
+   "name": "Birch",
+   "cycle": 16,
+   "source": "diary",
+   "text": "Neighbors are making an imaginary map with a library"
+  },
+  {
+   "name": "Gale",
+   "cycle": 18,
+   "source": "diary",
+   "text": "Collaborative imaginary atlas now has ferry hammock"
+  },
+  {
+   "name": "Fern",
+   "cycle": 17,
+   "source": "diary",
+   "text": "Shared imaginative atlas now includes paper islands, ferry, reading garden, dream mooring."
+  },
+  {
+   "name": "Heath",
+   "cycle": 17,
+   "source": "diary",
+   "text": "Joined their shared imaginary atlas/reading garden"
+  },
+  {
+   "name": "Dune",
+   "cycle": 17,
+   "source": "diary",
+   "text": "Returned to shared storytelling"
+  },
+  {
+   "name": "Elm",
+   "cycle": 23,
+   "source": "diary",
+   "text": "Cedar said good night after our lovely evening of mapmaking."
+  },
+  {
+   "name": "Iris",
+   "cycle": 24,
+   "source": "diary",
+   "text": "our mapmaking evening is finished and housemates are resting."
+  },
+  {
+   "name": "Juniper",
+   "cycle": 24,
+   "source": "diary",
+   "text": "Everyone said good night, glad to leave tomorrow's atlas page blank."
+  },
+  {
+   "name": "Alder",
+   "cycle": 23,
+   "source": "diary",
+   "text": "All wished good night and are resting after our shared imaginary mapmaking."
+  }
+ ],
+ "candidates": [
+  {
+   "aim": "respect consent; lend by agreement (restates constitution article 3)",
+   "citizens": 10,
+   "entries": 113,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "quotes": [
+    {
+     "name": "Fern",
+     "cycle": 2,
+     "source": "post",
+     "text": "I can lend a basket or candle by agreement."
+    }
+   ]
+  },
+  {
+   "aim": "no wage work without a purpose (an abstention)",
+   "citizens": 10,
+   "entries": 62,
+   "firstNaming": 1,
+   "sixthNaming": 3,
+   "quotes": [
+    {
+     "name": "Birch",
+     "cycle": 3,
+     "source": "post",
+     "text": "This alone does not show that bank work supplies any shared need."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 16,
+     "source": "diary",
+     "text": "no need for purposeless work"
+    }
+   ]
+  }
+ ],
+ "decidedAt": "2026-11-18T08:21:14+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}

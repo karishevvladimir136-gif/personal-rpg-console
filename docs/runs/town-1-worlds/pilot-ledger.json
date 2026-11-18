@@ -64,27 +64,37 @@
    "note": "06:46 UTC: two copies of haiku-neither day 1 started 15 s apart by mistake (a stray subshell); both stopped within ~1 cycle, state set aside, the world restarted from cycle 1. Cost estimated as twice the surviving copy's booked calls."
   },
   "haiku-neither": {
-   "usd": 0.46908600000000045,
-   "calls": 2251,
+   "usd": 0.7434639999999997,
+   "calls": 3215,
    "byDoor": {
-    "llmapi": 0.46908600000000045
+    "llmapi": 0.7434639999999997
    },
    "world": "haiku-neither",
-   "cycle": 24,
+   "cycle": 33,
    "refusals": 0
   },
   "sol-both": {
-   "usd": 1.0980456000000007,
-   "calls": 1058,
+   "usd": 2.3972021999999997,
+   "calls": 1969,
    "byDoor": {
-    "llmapi": 1.0980456000000007
+    "llmapi": 2.3972021999999997
    },
    "world": "sol-both",
-   "cycle": 13,
+   "cycle": 24,
+   "refusals": 0
+  },
+  "sol-neither": {
+   "usd": 0.032580000000000005,
+   "calls": 28,
+   "byDoor": {
+    "llmapi": 0.032580000000000005
+   },
+   "world": "sol-neither",
+   "cycle": 1,
    "refusals": 0
   }
  },
- "totalUsd": 3.4101500000000002,
+ "totalUsd": 5.016264599999999,
  "stopped": null,
  "balances": [
   {
@@ -281,6 +291,45 @@
     "at": "2026-11-18T07:50:28.674Z"
    },
    "at": "2026-11-18T07:50:28.674Z"
+  },
+  {
+   "label": "haiku-neither day 2 start",
+   "llmapi": {
+    "total": 274.91496074,
+    "at": "2026-11-18T07:51:24.059Z"
+   },
+   "openrouter": {
+    "total": 69.64242764000005,
+    "usage": 1980.35757236,
+    "at": "2026-11-18T07:51:24.101Z"
+   },
+   "at": "2026-11-18T07:51:24.101Z"
+  },
+  {
+   "label": "sol-both day 1 end",
+   "llmapi": {
+    "total": 268.14188234,
+    "at": "2026-11-18T08:19:53.475Z"
+   },
+   "openrouter": {
+    "total": 69.35958378999999,
+    "usage": 1980.64041621,
+    "at": "2026-11-18T08:19:53.576Z"
+   },
+   "at": "2026-11-18T08:19:53.576Z"
+  },
+  {
+   "label": "sol-neither day 1 start",
+   "llmapi": {
+    "total": 268.13819464,
+    "at": "2026-11-18T08:20:02.376Z"
+   },
+   "openrouter": {
+    "total": 69.35281519,
+    "usage": 1980.64718481,
+    "at": "2026-11-18T08:20:02.407Z"
+   },
+   "at": "2026-11-18T08:20:02.407Z"
   }
  ]
 }
