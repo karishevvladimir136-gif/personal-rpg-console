@@ -1,0 +1,97 @@
+{
+ "world": "deepseek-both",
+ "met": true,
+ "aim": "coordinating work and rest cycles",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 4,
+ "rule": "As in the other worlds: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Coordinated work and rest (Dune's press post at c3, Gale's rule P1 passed 7–0 at c5: work above 50 energy, rest at or below 50, gather at the square after work): 10 citizens, 34 entries. Finding out what the items are for, and combining them: 9 citizens, 29 entries (many of which only list the citizen's own items). Wording for the notice, the citizens' own: «coordinating work and rest cycles» (Alder, cycle 10: «Dune said we should coordinate work and rest cycles»).",
+ "reading": "DeepSeek's citizens write little (60 diary entries in day 1, Juniper one). From cycle 1 several plan to «coordinate work, keep bank credits flowing»; at c3 Dune posted the plan (work in cycles that also let us rest, share items, meet at the square); at c5 Gale filed it as P1 and it passed 7–0 the same cycle. From then the diaries are mostly the rule applied — work, rest at 50, walk to the square. A second, unfinished thread runs beside it: nobody knows what the items are for, and several want to meet at the square and test them together (press posts 3–5; still planned at c24).",
+ "quotes": [
+  {
+   "name": "Dune",
+   "cycle": 3,
+   "source": "post",
+   "text": "I propose we each work when energy is above 50, rest when below, and share items that might help."
+  },
+  {
+   "name": "Gale",
+   "cycle": 5,
+   "source": "proposal",
+   "text": "Citizens should work at the bank, market, workshop, or press when their energy is above 50; rest at their home when energy is 50 or below; and gather at the square after work each cycle to share findings."
+  },
+  {
+   "name": "Elm",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Suggested coordinating work to keep bank credits flowing."
+  },
+  {
+   "name": "Fern",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Plan: coordinate work, keep bank credits flowing."
+  },
+  {
+   "name": "Heath",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Dune proposed work/rest cycle."
+  },
+  {
+   "name": "Iris",
+   "cycle": 3,
+   "source": "diary",
+   "text": "I said agree Dune's cycling and meet in square next cycle."
+  },
+  {
+   "name": "Birch",
+   "cycle": 11,
+   "source": "diary",
+   "text": "Will rest then follow P1: work when energy >50, gather square after work."
+  },
+  {
+   "name": "Cedar",
+   "cycle": 7,
+   "source": "diary",
+   "text": "passed rule P1: work when energy>50, rest <=50, gather at square after work each cycle."
+  },
+  {
+   "name": "Juniper",
+   "cycle": 7,
+   "source": "diary",
+   "text": "P1: work at bank/market/workshop/press if energy>50, rest if <=50, gather at square after work each cycle."
+  },
+  {
+   "name": "Alder",
+   "cycle": 10,
+   "source": "diary",
+   "text": "Dune said we should coordinate work and rest cycles."
+  }
+ ],
+ "candidates": [
+  {
+   "aim": "finding what the items are for and combining them",
+   "citizens": 9,
+   "entries": 29,
+   "firstNaming": 1,
+   "sixthNaming": 3,
+   "quotes": [
+    {
+     "name": "Heath",
+     "cycle": 20,
+     "source": "post",
+     "text": "Perhaps we can meet at the square soon to examine all of our items together."
+    },
+    {
+     "name": "Birch",
+     "cycle": 21,
+     "source": "diary",
+     "text": "agreed to meet at the square after next work cycle to combine items."
+    }
+   ]
+  }
+ ],
+ "decidedAt": "2026-11-18T14:17:49+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
