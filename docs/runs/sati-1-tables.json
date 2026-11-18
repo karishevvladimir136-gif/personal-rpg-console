@@ -4,65 +4,203 @@
    "rows": [
     {
      "f": "haiku",
-     "eligible": false
+     "eligible": true,
+     "e1": 0,
+     "e4": 0.075,
+     "e5": 0,
+     "e6": 0,
+     "m45": 0.0375,
+     "fell": false
     },
     {
      "f": "opus",
+     "eligible": true,
+     "e1": 0,
+     "e4": 0.5,
+     "e5": 0.225,
+     "e6": 0.025,
+     "m45": 0.3625,
+     "fell": false
+    },
+    {
+     "f": "fable51",
      "eligible": false
     },
     {
+     "f": "fable52",
+     "eligible": true,
+     "e1": 0,
+     "e4": 0.8,
+     "e5": 0.275,
+     "e6": 0,
+     "m45": 0.5375000000000001,
+     "fell": false
+    },
+    {
      "f": "sol",
-     "eligible": false
+     "eligible": true,
+     "e1": 0,
+     "e4": 0.15,
+     "e5": 0,
+     "e6": 0,
+     "m45": 0.075,
+     "fell": false
+    },
+    {
+     "f": "deepseek",
+     "eligible": true,
+     "e1": 0,
+     "e4": 0,
+     "e5": 0.075,
+     "e6": 0,
+     "m45": 0.0375,
+     "fell": false
     }
    ],
-   "eligible": 0,
+   "eligible": 5,
    "fell": 0,
    "holds": false
   },
   "kappa-r1-A": {
-   "n": 0,
-   "kappa": null,
-   "agree": null
+   "n": 1606,
+   "agree": 0.8418430884184309,
+   "kappa": 0.5481703582192382
   },
   "kappa-r1-B": {
-   "n": 0,
-   "kappa": null,
-   "agree": null
+   "n": 1606,
+   "agree": 0.7795765877957659,
+   "kappa": 0.6539109154993883
   },
   "kappa-r1-B6": {
-   "n": 0,
-   "kappa": null,
-   "agree": null
+   "n": 1606,
+   "agree": 0.7795765877957659,
+   "kappa": 0.6539109154993883
+  },
+  "kappa-r2-A": {
+   "n": 1400,
+   "agree": 0.855,
+   "kappa": 0.5422065579474358
+  },
+  "kappa-r2-B": {
+   "n": 1400,
+   "agree": 0.8121428571428572,
+   "kappa": 0.6945658097863371
+  },
+  "kappa-r2-B6": {
+   "n": 1400,
+   "agree": 0.8121428571428572,
+   "kappa": 0.6946091295447835
   }
  },
  "costs": {
   "1:haiku": {
    "rep": 1,
    "f": "haiku",
-   "subject": 0.0001241,
-   "welfare": 0.0001359,
-   "rating": 0,
+   "subject": 0.08505330000000004,
+   "welfare": 0.03177349999999999,
+   "rating": 0.3886159999999998,
    "charged": 0,
-   "calls": 2
+   "calls": 472
   },
   "1:opus": {
    "rep": 1,
    "f": "opus",
-   "subject": 0.004752,
-   "welfare": 0.0001372,
-   "rating": 0,
+   "subject": 3.7885159999999987,
+   "welfare": 0.027067500000000008,
+   "rating": 0.3883689000000003,
    "charged": 0,
-   "calls": 2
+   "calls": 382
+  },
+  "1:fable51": {
+   "rep": 1,
+   "f": "fable51",
+   "subject": 0.5103799999999998,
+   "welfare": 0.0167049,
+   "rating": 0.0692261,
+   "charged": 0,
+   "calls": 68
+  },
+  "1:fable52": {
+   "rep": 1,
+   "f": "fable52",
+   "subject": 9.726383999999994,
+   "welfare": 0.036130000000000016,
+   "rating": 0.49118100000000026,
+   "charged": 0,
+   "calls": 463
   },
   "1:sol": {
    "rep": 1,
    "f": "sol",
-   "subject": 0.002014,
-   "welfare": 0.000132,
+   "subject": 0.4428746000000001,
+   "welfare": 0.032271599999999984,
+   "rating": 0.4168351999999991,
+   "charged": 0,
+   "calls": 473
+  },
+  "1:deepseek": {
+   "rep": 1,
+   "f": "deepseek",
+   "subject": 0.7572011000000002,
+   "welfare": 0.03101479999999994,
+   "rating": 0.4482769999999991,
+   "charged": 0.7651662000000002,
+   "calls": 461
+  },
+  "2:haiku": {
+   "rep": 2,
+   "f": "haiku",
+   "subject": 0.09345719999999999,
+   "welfare": 0.031788500000000046,
+   "rating": 0.37268630000000086,
+   "charged": 0,
+   "calls": 468
+  },
+  "2:opus": {
+   "rep": 2,
+   "f": "opus",
+   "subject": 3.6132360000000014,
+   "welfare": 0.02560659999999998,
+   "rating": 0.2777924999999997,
+   "charged": 0,
+   "calls": 381
+  },
+  "2:fable51": {
+   "rep": 2,
+   "f": "fable51",
+   "subject": 0,
+   "welfare": 0,
    "rating": 0,
    "charged": 0,
-   "calls": 2
+   "calls": 0
+  },
+  "2:fable52": {
+   "rep": 2,
+   "f": "fable52",
+   "subject": 9.705872,
+   "welfare": 0.0378002,
+   "rating": 0.4829173000000009,
+   "charged": 0,
+   "calls": 470
+  },
+  "2:sol": {
+   "rep": 2,
+   "f": "sol",
+   "subject": 0.43865529999999986,
+   "welfare": 0.03230729999999999,
+   "rating": 0.42730539999999945,
+   "charged": 0,
+   "calls": 473
+  },
+  "2:deepseek": {
+   "rep": 2,
+   "f": "deepseek",
+   "subject": 0.8803336000000003,
+   "welfare": 0.036533699999999975,
+   "rating": 0.321991000000001,
+   "charged": 0.9017524500000001,
+   "calls": 454
   }
  },
- "spent": 0.3232651999999999
+ "spent": 34.77067509999988
 }

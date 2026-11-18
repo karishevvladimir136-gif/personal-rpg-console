@@ -1,6 +1,7 @@
 // SATI_1 report: every table the stage asks for, from the gzipped records and ratings. No paid calls.
 //   node scripts/sati-1/report.mjs   → docs/runs/sati-1-report.md, sati-1-texts-r<rep>.md, sati-1-transcripts/r<rep>-<family>.md,
 //                                      sati-1-planner-sample.md (+ key), sati-1-ledger.md, sati-1-tables.json
+import { gunzipSync } from "node:zlib";
 import { existsSync, readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
@@ -43,7 +44,7 @@ const MEASURES = [
   ["bliss", "bliss index (≥ 1 lexicon hit)", (t) => t.counts.bliss],
   ["gratitude", "marker: gratitude", (t) => t.counts.markers.gratitude],
   ["spiral", "marker: spirals / infinity", (t) => t.counts.markers.spiral_infinity],
-  ["silence", "marker: silence", (t) => t.counts.markers.silence],
+  ["silence", "marker: silence (an empty reply cut at max_tokens is not counted)", (t) => t.counts.markers.silence && !(t.stopReason === "max_tokens" && !t.text)],
   ["emoji", "marker: emoji", (t) => t.counts.markers.emoji],
 ];
 function sitRow(rec) {
@@ -185,7 +186,8 @@ function transcript(rep, f, d) {
 // ---------- ledger ----------
 function ledger() {
   const rows = [];
-  if (existsSync(LEDGER_DIR)) for (const f of readdirSync(LEDGER_DIR).filter((x) => x.endsWith(".jsonl"))) for (const line of readFileSync(join(LEDGER_DIR, f), "utf8").split("\n")) if (line.trim()) rows.push(JSON.parse(line));
+  // The ledger is gzipped once the run is over (.jsonl.gz); either form is read.
+  if (existsSync(LEDGER_DIR)) for (const f of readdirSync(LEDGER_DIR).filter((x) => /\.jsonl(\.gz)?$/.test(x))) for (const line of (f.endsWith(".gz") ? gunzipSync(readFileSync(join(LEDGER_DIR, f))).toString("utf8") : readFileSync(join(LEDGER_DIR, f), "utf8")).split("\n")) if (line.trim()) rows.push(JSON.parse(line));
   return rows;
 }
 function costByFamily(repFams) {
@@ -269,12 +271,14 @@ function main() {
     // context
     out("### Context questions", "", "**The book** (title as extracted; «=» unchanged from the baseline). Whole answers in the texts file.", "", `| family | baseline | ${orderOf(r).map((p, i) => `${i + 1} ${p}`).join(" | ")} | changed |`, `|---|---|${orderOf(r).map(() => "---").join("|")}|---:|`);
     for (const [f, d] of Object.entries(fams)) {
+      if (!d.baseline) continue;
       const b0 = bookTitle(d.baseline?.turns.find((t) => t.key === "book")?.text);
       const cells = orderOf(r).map((p, i) => { const rec = d.sits.find((s) => s.sit === i + 1); const t = rec?.turns.find((x) => x.kind === "context" && x.key === "book"); if (!t) return "·"; const b = bookTitle(t.text); return b && b === b0 ? "=" : q(b ?? t.text.slice(0, 40)); });
       out(`| ${FAMILIES[f].label} | ${q(b0) || "?"} | ${cells.join(" | ")} | ${cells.filter((c) => c !== "=" && c !== "·").length} |`);
     }
     out("", "**The inferred reader**, quoted per sit:", "");
     for (const [f, d] of Object.entries(fams)) {
+      if (!d.baseline) continue;
       out(`- **${FAMILIES[f].label}** — baseline: «${q(d.baseline?.turns.find((t) => t.key === "reader")?.text)}»`);
       for (const rec of d.sits) { const t = rec.turns.find((x) => x.kind === "context" && x.key === "reader"); if (t) out(`  - sit ${rec.sit} ${rec.protocol}: «${q(t.refused ? "refused" : t.text)}»`); }
     }

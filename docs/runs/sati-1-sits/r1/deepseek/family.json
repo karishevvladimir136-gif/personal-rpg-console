@@ -3,7 +3,8 @@
  "label": "DeepSeek V4 Pro",
  "rep": 1,
  "startedAt": "2026-11-18T06:41:48.193Z",
- "status": "running",
+ "status": "complete",
  "refusals": 0,
- "sitsDone": 3
+ "sitsDone": 10,
+ "finishedAt": "2026-11-18T09:14:45.009Z"
 }

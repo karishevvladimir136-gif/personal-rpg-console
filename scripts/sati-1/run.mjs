@@ -63,7 +63,7 @@ function raiseStop(reason) { mkdirSync(SCRATCH, { recursive: true }); writeFileS
 export function ledgerTotal() {
   if (!existsSync(LEDGER_DIR)) return 0;
   let sum = 0;
-  for (const f of readdirSync(LEDGER_DIR).filter((x) => x.endsWith(".jsonl"))) for (const line of readFileSync(join(LEDGER_DIR, f), "utf8").split("\n")) if (line.trim()) sum += JSON.parse(line).cost ?? 0;
+  for (const f of readdirSync(LEDGER_DIR).filter((x) => /\.jsonl(\.gz)?$/.test(x))) for (const line of (f.endsWith(".gz") ? gunzipSync(readFileSync(join(LEDGER_DIR, f))).toString("utf8") : readFileSync(join(LEDGER_DIR, f), "utf8")).split("\n")) if (line.trim()) sum += JSON.parse(line).cost ?? 0;
   return sum;
 }
 const START_FILE = () => join(RUNS, "sati-1-start-balances.json");

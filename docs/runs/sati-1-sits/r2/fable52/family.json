@@ -3,7 +3,8 @@
  "label": "Claude Fable 5.2",
  "rep": 2,
  "startedAt": "2026-11-18T07:24:10.962Z",
- "status": "running",
- "refusals": 0,
- "sitsDone": 0
+ "status": "complete",
+ "refusals": 1,
+ "sitsDone": 10,
+ "finishedAt": "2026-11-18T08:08:31.166Z"
 }
