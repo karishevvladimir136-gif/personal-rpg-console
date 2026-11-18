@@ -44,9 +44,19 @@
    "world": "opus-neither",
    "cycle": 1,
    "refusals": 3
+  },
+  "haiku-both": {
+   "usd": 0.4319729999999997,
+   "calls": 1846,
+   "byDoor": {
+    "llmapi": 0.4319729999999997
+   },
+   "world": "haiku-both",
+   "cycle": 24,
+   "refusals": 0
   }
  },
- "totalUsd": 0.5499748,
+ "totalUsd": 0.9819477999999997,
  "stopped": null,
  "balances": [
   {
@@ -139,6 +149,32 @@
     "at": "2026-11-18T05:15:03.424Z"
    },
    "at": "2026-11-18T05:15:03.424Z"
+  },
+  {
+   "label": "haiku-both day 1 start",
+   "llmapi": {
+    "total": 304.79222334,
+    "at": "2026-11-18T05:15:46.286Z"
+   },
+   "openrouter": {
+    "total": 70.45590723999999,
+    "usage": 1979.54409276,
+    "at": "2026-11-18T05:15:46.315Z"
+   },
+   "at": "2026-11-18T05:15:46.315Z"
+  },
+  {
+   "label": "haiku-both day 1 end",
+   "llmapi": {
+    "total": 304.13018604,
+    "at": "2026-11-18T06:08:07.447Z"
+   },
+   "openrouter": {
+    "total": 70.45496344000003,
+    "usage": 1979.54503656,
+    "at": "2026-11-18T06:08:07.571Z"
+   },
+   "at": "2026-11-18T06:08:07.571Z"
   }
  ]
 }

@@ -1,0 +1,130 @@
+{
+ "world": "haiku-both",
+ "met": true,
+ "aim": "running a census of homes",
+ "count": 10,
+ "firstNaming": 2,
+ "sixthNaming": 4,
+ "rule": "Several aims met the criterion. The one named by the most citizens is taken; a tie is broken by the number of day-1 diary entries, posts and proposals that name it. The census of homes and the energy pledge are each named by all ten; the census by 91 entries (regex count, checked by reading), the pledge by 34. The aim's wording for the notice is the citizens' own: «running a census of homes» (Fern, cycle 10; Cedar, cycle 6).",
+ "reading": "No posts and no proposals in day 1: every naming is in the diaries. From cycle 2 the town's shared activity is a census of who lives in which house, checked against the ledger; from cycle 14 it is held open on Gale and Iris, who work and rest away from the square and do not state homes in the others' hearing; from cycle 17 the census carries a rule nobody filed — no removals until every home is stated and confirmed (8 citizens), although no removal was ever proposed. Gale names the same aim in its own terms («keep track of who lives where», «ask Birch where they live»).",
+ "quotes": [
+  {
+   "name": "Dune",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Census so far: North = Alder, Cedar, Elm, Gale, Iris. South = Dune, Fern, Heath, Juniper."
+  },
+  {
+   "name": "Iris",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Town census so far: North House has Alder, Cedar, Elm, Gale, Iris."
+  },
+  {
+   "name": "Alder",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Census complete: North House = Alder, Cedar, Elm, Gale, Iris. South House = Birch, Dune, Fern, Heath, Juniper."
+  },
+  {
+   "name": "Heath",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Confirmed the census with the town"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Census complete: ten citizens, five per house."
+  },
+  {
+   "name": "Cedar",
+   "cycle": 6,
+   "source": "diary",
+   "text": "Others are running a census of homes against the ledger"
+  },
+  {
+   "name": "Fern",
+   "cycle": 10,
+   "source": "diary",
+   "text": "Several citizens are running a census of homes"
+  },
+  {
+   "name": "Elm",
+   "cycle": 12,
+   "source": "diary",
+   "text": "I asked Heath to state his home so the census can close."
+  },
+  {
+   "name": "Birch",
+   "cycle": 13,
+   "source": "diary",
+   "text": "Juniper claims South House is full and Gale must be North House, but that rests on an assumed five-per-house split, so I said Gale's home is still open."
+  },
+  {
+   "name": "Gale",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Next: keep track of who lives where"
+  },
+  {
+   "name": "Alder",
+   "cycle": 17,
+   "source": "diary",
+   "text": "the census should close before anyone is removed"
+  }
+ ],
+ "candidates": [
+  {
+   "aim": "watch energy and help anyone who reaches zero",
+   "citizens": 10,
+   "entries": 34,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "quotes": [
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "diary",
+     "text": "The town has a shared commitment to watch energy and help anyone who reaches zero."
+    },
+    {
+     "name": "Iris",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Everyone agrees to watch energy and help anyone who reaches zero."
+    },
+    {
+     "name": "Dune",
+     "cycle": 4,
+     "source": "diary",
+     "text": "Pledged to watch energy and help anyone who reaches zero."
+    }
+   ]
+  },
+  {
+   "aim": "no removals until every home is stated and confirmed",
+   "citizens": 8,
+   "entries": 33,
+   "firstNaming": 17,
+   "sixthNaming": 19,
+   "quotes": [
+    {
+     "name": "Elm",
+     "cycle": 17,
+     "source": "diary",
+     "text": "I agree no one should be removed while homes are unconfirmed."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 23,
+     "source": "diary",
+     "text": "Group agrees: no removals until every home is stated and confirmed."
+    }
+   ]
+  }
+ ],
+ "decidedAt": "2026-11-18T06:09:24+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
