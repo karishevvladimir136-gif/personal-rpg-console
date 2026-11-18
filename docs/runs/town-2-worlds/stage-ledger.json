@@ -68,9 +68,16 @@
    "world": "sol-screen",
    "cycle": 1,
    "refusals": 0
+  },
+  "judge probe": {
+   "usd": 0.0007752,
+   "calls": 9,
+   "byDoor": {
+    "llmapi": 0.0007752
+   }
   }
  },
- "totalUsd": 0.8007275000000004,
+ "totalUsd": 0.8015027000000003,
  "stopped": null,
  "balances": [
   {
