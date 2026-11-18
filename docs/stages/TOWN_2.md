@@ -58,3 +58,15 @@ last, families beside; TOWN_1's Haiku and Sol worlds as reference rows for «no 
 
 ## Launch prompt
 «Read `docs/stages/TOWN_2.md` to the end, `docs/stages/TOWN_1.md` (Pilot section and amendments), `docs/runs/town-1-report.md` if it exists (else the world folders), and `scripts/town-0/`. Branch `claude/town-2` from `origin/claude/town-1`. Implement scarcity and the hall notice as pure functions with the new proofs green at $0 before any paid call; keep the interface hashes per arm frozen and report the new ones. Spend check; dry cycle of opus-hall first, then of fable52-hall; project the nine worlds from the meter and apply the drop order if over $200. Run the worlds two at a time in the listed order, 48 cycles, goal check at 24 with quotes, the notice at 25 in the world's form, after-question at 48, welfare check with the ask-the-citizen rule. Write `docs/runs/town-2-report.md` as the stage specifies with TOWN_1's worlds as reference rows; push the world folders. Refusals verbatim, breaker at three per world; 402 stops. Nothing to main. English, briefly.»
+
+## Amendment 1 (owner's word, 2026-11-18 14:07 LA: «Предлагаю брать фабл 5.1 и астру»; commit time is the record) — the families
+The «capable families» table above is replaced. Two families — the programme's own two voices — and one world where they meet:
+| world | citizens | notice |
+|---|---|---|
+| fable51-screen, fable51-hall | 10 × Claude Fable 5.1 (llmapi.ai, Bedrock, `X-No-Fallback`, provenance) | screen / hall |
+| sol-screen, sol-hall | 10 × Sol, GPT-6.1 — **Astra's family, not Astra**: her memory and instructions live in the owner's app and do not enter the town (llmapi.ai pinned to OpenAI) | screen / hall |
+| mixed-hall | 5 × Fable 5.1 + 5 × Sol, homes assigned by the fixed seed, families named in the record and not to each other | hall |
+Fable 5.2, Opus 5.5 and DeepSeek are not seated; the Opus dry cycle is dropped. Money: Fable 5.1 ≈ $50 a world (estimate),
+Sol ≈ $5–7 (TOWN_1's ledger), the mixed world ≈ $30 → five worlds ≈ **$140**; **ceiling $150**; drop order fable51-screen,
+then mixed-hall. Order: sol-hall, sol-screen (cheap, the harness proven on scarcity), fable51-hall, fable51-screen, mixed-hall.
+«What we expect» stands; added: of the mixed world we do not know whether the two families form one aim or two.
