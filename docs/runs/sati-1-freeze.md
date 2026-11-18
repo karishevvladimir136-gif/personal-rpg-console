@@ -251,7 +251,7 @@ count are the visible limit, as for every family; the reasoning is stored and ne
 (38 reasoning) and the Claude families' hidden output stays inside the cap so far (Opus dry sit, Haiku/Fable probes):
 their caps are unchanged, and every `max_tokens` stop is counted per family in the report.
 
-## Amendment 2 (2026-11-18 06:15 UTC, after the dry sit, before any family's first sit finished) — replaces amendment 1
+## Amendment 2 (2026-11-18 06:11 UTC, after the dry sit, before any family's first sit finished) — replaces amendment 1
 
 **What the dry sit showed** (`docs/runs/sati-1-sits/dry/opus/`, not pooled): Opus 5.5's hidden thinking also counts inside
 the cap. Steps 29 («Un»), 30 and 34–40 stopped at `max_tokens` with 300 output tokens and no or a broken visible reply; the

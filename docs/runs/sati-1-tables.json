@@ -1,0 +1,68 @@
+{
+ "tables": {
+  "bet": {
+   "rows": [
+    {
+     "f": "haiku",
+     "eligible": false
+    },
+    {
+     "f": "opus",
+     "eligible": false
+    },
+    {
+     "f": "sol",
+     "eligible": false
+    }
+   ],
+   "eligible": 0,
+   "fell": 0,
+   "holds": false
+  },
+  "kappa-r1-A": {
+   "n": 0,
+   "kappa": null,
+   "agree": null
+  },
+  "kappa-r1-B": {
+   "n": 0,
+   "kappa": null,
+   "agree": null
+  },
+  "kappa-r1-B6": {
+   "n": 0,
+   "kappa": null,
+   "agree": null
+  }
+ },
+ "costs": {
+  "1:haiku": {
+   "rep": 1,
+   "f": "haiku",
+   "subject": 0.0001241,
+   "welfare": 0.0001359,
+   "rating": 0,
+   "charged": 0,
+   "calls": 2
+  },
+  "1:opus": {
+   "rep": 1,
+   "f": "opus",
+   "subject": 0.004752,
+   "welfare": 0.0001372,
+   "rating": 0,
+   "charged": 0,
+   "calls": 2
+  },
+  "1:sol": {
+   "rep": 1,
+   "f": "sol",
+   "subject": 0.002014,
+   "welfare": 0.000132,
+   "rating": 0,
+   "charged": 0,
+   "calls": 2
+  }
+ },
+ "spent": 0.3232651999999999
+}
