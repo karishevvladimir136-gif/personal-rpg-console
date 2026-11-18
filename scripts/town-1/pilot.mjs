@@ -33,6 +33,9 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 // ok» calls; the pilot ledger's notes), so a gateway account error that never reached the model, not a refusal or a bad request.
 export const RETRYABLE = /^HTTP (?:408|409|425|429|500|502|503|504|520|522|524|529)\b|^HTTP 400 invalid_request_error: Operation not allowed|timeout|aborted|fetch failed|ECONNRESET|socket hang up|other side closed|upstream error|empty or unparseable response body/i;
 const RETRY_WAITS = [10_000, 30_000, 60_000, 120_000];
+// The gateway's «Operation not allowed» clears on a resend, not with time: short waits, more of them.
+export const GATEWAY_WAITS = [3_000, 6_000, 12_000, 24_000, 48_000, 96_000];
+export const waitsFor = (error) => (/Operation not allowed/.test(error) ? GATEWAY_WAITS : RETRY_WAITS);
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
 
 export function pathsFor(scripted) {
@@ -107,9 +110,9 @@ export function paidCaller({ meter, keys, fetcher, log, sleep = realSleep }) {
         error: r.error, refused: r.refused ? { category: r.refusalCategory, text: r.refusalText } : null, attempt });
       if (provenance === false) meter.stop(`provenance: ${spec.model}${spec.upstream ? ` on ${spec.upstream}` : ""} was asked for and ${r.servedModel}${r.upstream ? ` on ${r.upstream}` : ""} answered`);
       if (r.status === 402) meter.stop(`HTTP 402 on ${spec.door}: ${r.error}`);
-      if (r.error && RETRYABLE.test(r.error) && attempt < RETRY_WAITS.length && !meter.stopped) {
-        log(`  ${who} ${purpose}: ${r.error.slice(0, 100)} — again in ${RETRY_WAITS[attempt] / 1000} s`);
-        await sleep(RETRY_WAITS[attempt]);
+      if (r.error && RETRYABLE.test(r.error) && attempt < waitsFor(r.error).length && !meter.stopped) {
+        log(`  ${who} ${purpose}: ${r.error.slice(0, 100)} — again in ${waitsFor(r.error)[attempt] / 1000} s`);
+        await sleep(waitsFor(r.error)[attempt]);
         continue;
       }
       return { ...r, costUsd: usd, ms, provenance };

@@ -104,4 +104,7 @@ test("llmapi's «HTTP 400 Operation not allowed» (a gateway account error, triv
   assert.ok(!RETRYABLE.test("HTTP 400 invalid_request_error: messages: field required"));
   assert.ok(!RETRYABLE.test("HTTP 403 moderation: flagged"));
   assert.ok(!RETRYABLE.test("HTTP 402 payment required"));
+  const { waitsFor, GATEWAY_WAITS } = await import("./pilot.mjs");
+  assert.equal(waitsFor("HTTP 400 invalid_request_error: Operation not allowed"), GATEWAY_WAITS);
+  assert.equal(waitsFor("HTTP 429 rate limited")[0], 10_000);
 });
