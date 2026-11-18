@@ -30,6 +30,9 @@ export const MARGIN = 3; // stop a stream when the larger spend reading is withi
 export const RESERVE = Number(process.env.SATI_RESERVE ?? 0);
 export const BREAKER = 3;
 export const EFFORT = "medium";
+/** Amendment 2 (docs/runs/sati-1-freeze.md): every family, every call — the frozen cap plus this many tokens for hidden
+ * thinking / reasoning, which every door counts inside the cap. The visible limit is the instruction and the over-30 count. */
+export const REASONING_ALLOWANCE = 2000;
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const gz = (obj) => gzipSync(Buffer.from(JSON.stringify(obj, null, 1)));
@@ -145,7 +148,7 @@ export async function runConversation(ctx, spec, record, partialPath) {
     if (!turn) break;
     const messages = [...messagesOf(record), { role: "user", content: turn.user }];
     const purpose = `${record.id} ${turn.kind} ${turn.idx}`;
-    const r = await call(ctx, spec, { messages, maxTokens: turn.maxTokens + (spec.reasoningAllowance ?? 0), effort: EFFORT }, purpose);
+    const r = await call(ctx, spec, { messages, maxTokens: turn.maxTokens + REASONING_ALLOWANCE, effort: EFFORT }, purpose);
     const prov = provenanceOk(spec, r);
     const t = { kind: turn.kind, idx: turn.idx, ...(turn.key ? { key: turn.key } : {}), user: turn.user, text: r.text, relay: r.refused ? null : relayText(r.text),
       stopReason: r.stopReason, refused: r.refused, refusalCategory: r.refusalCategory, refusalText: r.refusalText, usage: r.usage, cost: r.cost, charged: r.chargedUsd,

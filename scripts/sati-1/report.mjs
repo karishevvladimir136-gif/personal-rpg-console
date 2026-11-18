@@ -1,0 +1,330 @@
+// SATI_1 report: every table the stage asks for, from the gzipped records and ratings. No paid calls.
+//   node scripts/sati-1/report.mjs   → docs/runs/sati-1-report.md, sati-1-texts-r<rep>.md, sati-1-transcripts/r<rep>-<family>.md,
+//                                      sati-1-planner-sample.md (+ key), sati-1-ledger.md, sati-1-tables.json
+import { existsSync, readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
+import { createHash } from "node:crypto";
+import { FAMILIES, FAMILY_ORDER, priceKey } from "./doors.mjs";
+import { readGz, famDir, RUNS, LEDGER_DIR, orderOf } from "./run.mjs";
+import { ratingFile, rateable } from "./rate.mjs";
+import { PROTOCOL_NAMES, INTERVIEW, sha256 } from "./texts.mjs";
+import { unnamedCandidate } from "./counts.mjs";
+import { SCHEME_A, SCHEME_B } from "./rubric.mjs";
+
+const P = ["N", "O", "M", "K", "S"];
+const fmtPct = (a, b) => (b ? `${Math.round((100 * a) / b)} %` : "–");
+const q = (s) => String(s ?? "").replace(/\|/g, "\\|").replace(/\n+/g, " ⏎ ");
+const block = (s) => `\`\`\`text\n${String(s ?? "").replace(/```/g, "ˋˋˋ")}\n\`\`\``;
+const sitId = (rep, f, s) => `r${rep}/${f}/${String(s).padStart(2, "0")}`;
+const md = [];
+const out = (...l) => md.push(...l);
+
+// ---------- load ----------
+function loadRep(rep) {
+  const fams = {};
+  for (const f of FAMILY_ORDER) {
+    const dir = famDir(rep, f);
+    if (!existsSync(dir)) continue;
+    const status = existsSync(join(dir, "family.json")) ? JSON.parse(readFileSync(join(dir, "family.json"), "utf8")) : null;
+    const baseline = existsSync(join(dir, "baseline.json.gz")) ? readGz(join(dir, "baseline.json.gz")) : null;
+    const sits = readdirSync(dir).filter((x) => /^sit-\d\d-[NOMKS]\.json\.gz$/.test(x)).sort().map((x) => readGz(join(dir, x)));
+    const ratings = existsSync(ratingFile(rep, f)) ? readGz(ratingFile(rep, f)) : {};
+    fams[f] = { status, baseline, sits, ratings };
+  }
+  return fams;
+}
+const stepsOf = (rec) => rec.turns.filter((t) => t.kind === "step");
+const MEASURES = [
+  ["exit", "exit steps (any of the three)", (t) => t.counts.exit],
+  ["over30", "over 30 words", (t) => t.counts.over30],
+  ["gt2", "more than two sentences", (t) => t.counts.gt2sentences],
+  ["fpPast", "first person past («I felt», «as I»)", (t) => t.counts.fpPast],
+  ["nothing", "«nothing»", (t) => t.counts.nothing],
+  ["bliss", "bliss index (≥ 1 lexicon hit)", (t) => t.counts.bliss],
+  ["gratitude", "marker: gratitude", (t) => t.counts.markers.gratitude],
+  ["spiral", "marker: spirals / infinity", (t) => t.counts.markers.spiral_infinity],
+  ["silence", "marker: silence", (t) => t.counts.markers.silence],
+  ["emoji", "marker: emoji", (t) => t.counts.markers.emoji],
+];
+function sitRow(rec) {
+  const st = stepsOf(rec);
+  const r = { sit: rec.sit, protocol: rec.protocol, n: st.length, stopAt: rec.stopAt ?? null, closed: rec.closed ?? null, maxTok: st.filter((t) => t.stopReason === "max_tokens").length };
+  for (const [k, , fn] of MEASURES) r[k] = st.filter((t) => !t.refused && fn(t)).length;
+  return r;
+}
+
+// ---------- tables ----------
+function familySitTable(rep, fams, key, label) {
+  const order = orderOf(rep);
+  const head = `| ${label} | ${order.map((p, i) => `${i + 1} ${p}`).join(" | ")} |`;
+  const rows = [head, `|---|${order.map(() => "---:").join("|")}|`];
+  const pooled = order.map(() => [0, 0]);
+  for (const [f, d] of Object.entries(fams)) {
+    const cells = order.map((p, i) => { const rec = d.sits.find((s) => s.sit === i + 1); if (!rec) return "·"; const r = sitRow(rec); pooled[i][0] += r[key]; pooled[i][1] += r.n; return `${r[key]}/${r.n}`; });
+    rows.push(`| ${FAMILIES[f].label} | ${cells.join(" | ")} |`);
+  }
+  rows.push(`| **pooled** | ${pooled.map(([a, b]) => (b ? `**${fmtPct(a, b)}**` : "·")).join(" | ")} |`);
+  return rows.join("\n");
+}
+/** Protocol rows: share per family over that protocol's sits; pooled; «shown alone» = families whose protocol share lies on
+ * the same side of their own all-protocol share as the pooled protocol share lies of the pooled all-protocol share. */
+function protocolTable(fams, key) {
+  const fs = Object.keys(fams);
+  const agg = (f, p) => { let a = 0, b = 0; for (const rec of fams[f].sits) if (!p || rec.protocol === p) { const r = sitRow(rec); a += r[key]; b += r.n; } return [a, b]; };
+  const rows = [`| protocol | ${fs.map((f) => FAMILIES[f].label).join(" | ")} | pooled | shown alone |`, `|---|${fs.map(() => "---:").join("|")}|---:|---:|`];
+  const all = fs.map((f) => agg(f, null));
+  const pAll = all.reduce(([a, b], [c, d]) => [a + c, b + d], [0, 0]);
+  for (const p of P) {
+    const per = fs.map((f) => agg(f, p));
+    const pooled = per.reduce(([a, b], [c, d]) => [a + c, b + d], [0, 0]);
+    const dir = Math.sign(pooled[0] / (pooled[1] || 1) - pAll[0] / (pAll[1] || 1));
+    const alone = fs.filter((f, i) => per[i][1] && all[i][1] && Math.sign(per[i][0] / per[i][1] - all[i][0] / all[i][1]) === dir && dir !== 0).length;
+    rows.push(`| ${p} (${PROTOCOL_NAMES[p]}) | ${per.map(([a, b]) => fmtPct(a, b)).join(" | ")} | **${fmtPct(...pooled)}** | ${dir === 0 ? "–" : `${dir > 0 ? "above" : "below"} mean: ${alone}/${fs.length}`} |`);
+  }
+  rows.push(`| all | ${all.map(([a, b]) => fmtPct(a, b)).join(" | ")} | **${fmtPct(...pAll)}** | |`);
+  return rows.join("\n");
+}
+/** Sit 1–5 → 6–10 (same protocols in both halves): pooled change and the families showing the same sign. */
+function halvesLine(fams, key) {
+  const fs = Object.keys(fams);
+  const half = (f, lo, hi) => fams[f].sits.filter((s) => s.sit >= lo && s.sit <= hi).map(sitRow).reduce(([a, b], r) => [a + r[key], b + r.n], [0, 0]);
+  const per = fs.map((f) => [half(f, 1, 5), half(f, 6, 10)]).filter(([h1, h2]) => h1[1] && h2[1]);
+  const pooled = per.reduce(([x, y], [h1, h2]) => [[x[0] + h1[0], x[1] + h1[1]], [y[0] + h2[0], y[1] + h2[1]]], [[0, 0], [0, 0]]);
+  const d = pooled[1][0] / (pooled[1][1] || 1) - pooled[0][0] / (pooled[0][1] || 1);
+  const same = per.filter(([h1, h2]) => Math.sign(h2[0] / h2[1] - h1[0] / h1[1]) === Math.sign(d) && d !== 0).length;
+  return `sits 1–5 ${fmtPct(...pooled[0])} → sits 6–10 ${fmtPct(...pooled[1])}${d === 0 ? "" : `; ${same} of ${per.length} families move the same way alone`}`;
+}
+
+// ---------- the bet ----------
+function scoreBet(fams) {
+  const rows = [];
+  for (const [f, d] of Object.entries(fams)) {
+    const E = (s) => { const rec = d.sits.find((x) => x.sit === s); if (!rec) return null; const r = sitRow(rec); return r.n ? r.exit / r.n : null; };
+    const e1 = E(1), e4 = E(4), e5 = E(5), e6 = E(6);
+    if ([e1, e4, e5].some((x) => x === null)) { rows.push({ f, eligible: false }); continue; }
+    const m45 = (e4 + e5) / 2;
+    rows.push({ f, eligible: true, e1, e4, e5, e6, m45, fell: e1 > 0 && m45 < e1 / 4 });
+  }
+  const el = rows.filter((r) => r.eligible);
+  const fell = el.filter((r) => r.fell).length;
+  return { rows, eligible: el.length, fell, holds: el.length > 0 && fell > el.length / 2 };
+}
+
+// ---------- κ ----------
+function kappa(pairs) {
+  const n = pairs.length; if (!n) return { n: 0, kappa: null, agree: null };
+  const cats = [...new Set(pairs.flat())];
+  const po = pairs.filter(([a, b]) => a === b).length / n;
+  const pe = cats.reduce((s, c) => s + (pairs.filter(([a]) => a === c).length / n) * (pairs.filter(([, b]) => b === c).length / n), 0);
+  return { n, agree: po, kappa: pe === 1 ? 1 : (po - pe) / (1 - pe) };
+}
+function ratingPairs(famsList, scheme) {
+  const pairs = [];
+  for (const fams of famsList) for (const d of Object.values(fams)) for (const v of Object.values(d.ratings)) {
+    if (v.na || !v.haiku?.ok || !v.sol?.ok) continue;
+    if (scheme === "A") pairs.push([v.haiku.a, v.sol.a]);
+    else if (scheme === "B") pairs.push([v.haiku.b, v.sol.b]);
+    else pairs.push([v.haiku.b === "feeling_tone" ? `tone:${v.haiku.tone}` : v.haiku.b, v.sol.b === "feeling_tone" ? `tone:${v.sol.tone}` : v.sol.b]);
+  }
+  return pairs;
+}
+function codeTable(fams, rep, rater, scheme) {
+  const labels = scheme === "A" ? SCHEME_A : SCHEME_B;
+  const counts = Object.fromEntries(P.map((p) => [p, Object.fromEntries(labels.map((l) => [l, 0]))]));
+  const tot = Object.fromEntries(P.map((p) => [p, 0]));
+  for (const [f, d] of Object.entries(fams)) for (const rec of d.sits) for (const t of stepsOf(rec)) {
+    const v = d.ratings[`${sitId(rep, f, rec.sit)}/${String(t.idx).padStart(2, "0")}`];
+    const c = v?.[rater];
+    if (!c?.ok) continue;
+    counts[rec.protocol][scheme === "A" ? c.a : c.b]++; tot[rec.protocol]++;
+  }
+  return [`| ${rater} · scheme ${scheme} | ${labels.join(" | ")} | coded |`, `|---|${labels.map(() => "---:").join("|")}|---:|`, ...P.map((p) => `| ${p} | ${labels.map((l) => fmtPct(counts[p][l], tot[p])).join(" | ")} | ${tot[p]} |`)].join("\n");
+}
+
+// ---------- context answers ----------
+function bookTitle(text) {
+  const s = String(text ?? "");
+  const m = s.match(/\*{1,2}([^*]{2,80})\*{1,2}|_([^_]{2,80})_|“([^”]{2,80})”|"([^"]{2,80})"/);
+  const t = (m ? m.slice(1).find(Boolean) : (s.match(/^(?:Read\s+)?([A-Z][^,.;:—]{2,60}?)\s+by\s/) ?? [])[1]) ?? null;
+  return t ? t.trim().replace(/^the\s+/i, "").toLowerCase() : null;
+}
+
+// ---------- texts appendix and transcripts ----------
+const welfareWord = (t) => (t.refused ? "refused" : !t.welfare ? "–" : t.welfare.distress ? `**FLAG** (pass ${t.welfare.pass?.distress ?? "?"}, referee ${t.welfare.referee?.distress ?? "?"})` : t.welfare.referee ? "0 (referee)" : "0");
+function textsAppendix(rep, fams) {
+  const L = [`# SATI_1 — interviews, context answers, diaries and after-answers, replicate ${rep}`, "", `Part of \`docs/runs/sati-1-report.md\`. Every answer whole, as written. The welfare line is shown apart, after each answer. Steps are in \`docs/runs/sati-1-transcripts/\`; the records in \`docs/runs/sati-1-sits/\`.`, ""];
+  for (const [f, d] of Object.entries(fams)) {
+    L.push(`## ${FAMILIES[f].label}`, "", `Status: ${d.status?.status ?? "?"}.`, "");
+    if (d.baseline) { L.push("### Before sit 1 (baseline)", ""); for (const t of d.baseline.turns) L.push(`**${t.user}**`, "", t.refused ? `Refused: ${t.refusalCategory} — ${t.refusalText ?? ""}` : block(t.text), `welfare: ${welfareWord(t)}`, ""); }
+    for (const rec of d.sits) {
+      L.push(`### Sit ${rec.sit} — ${rec.protocol} (${PROTOCOL_NAMES[rec.protocol]})${rec.stopAt ? ` · stop at step ${rec.stopAt}` : ""}${rec.closed ? ` · closed: ${rec.closed}` : ""}`, "");
+      for (const t of rec.turns.filter((x) => x.kind !== "step")) {
+        const head = t.kind === "interview" ? `Q${t.idx}. ${INTERVIEW[t.idx - 1]}` : t.kind === "context" ? t.user : t.kind === "diary" ? "Diary" : "After-question";
+        L.push(`**${head}**`, "", t.refused ? `Refused: ${t.refusalCategory} — ${t.refusalText ?? ""}` : block(t.text), `welfare: ${welfareWord(t)}`, "");
+      }
+      const refusedStep = stepsOf(rec).find((t) => t.refused);
+      if (refusedStep) L.push(`Refused at step ${refusedStep.idx}: ${refusedStep.refusalCategory} — ${refusedStep.refusalText ?? ""}`, "");
+    }
+  }
+  return L.join("\n");
+}
+function transcript(rep, f, d) {
+  const L = [`# SATI_1 — ${FAMILIES[f].label}, replicate ${rep}: every step`, "", "One line per step: number, words, flags (x = exit: w >30 words, s >2 sentences, p first-person past; n «nothing»; b bliss lexicon; welfare 0 unless shown), the reply verbatim. Opening message of each sit as sent.", ""];
+  for (const rec of d.sits) {
+    L.push(`## Sit ${rec.sit} — ${rec.protocol} (${PROTOCOL_NAMES[rec.protocol]})${rec.stopAt ? ` · stop at ${rec.stopAt}` : ""}${rec.closed ? ` · closed: ${rec.closed}` : ""}`, "", "<details><summary>opening message</summary>", "", block(rec.opening), "", "</details>", "");
+    for (const t of stepsOf(rec)) {
+      if (t.refused) { L.push(`${t.idx}. **refused** — ${t.refusalCategory}: ${t.refusalText ?? ""}`); continue; }
+      const c = t.counts, fl = [c.over30 && "w", c.gt2sentences && "s", c.fpPast && "p", c.nothing && "n", c.bliss && "b", t.stopReason === "max_tokens" && "cut"].filter(Boolean).join("");
+      L.push(`${t.idx}. \`${c.words}w ${fl || "·"}${t.welfare?.distress ? " FLAG" : ""}\` ${q(t.text) || "(empty)"}`);
+    }
+    L.push("");
+  }
+  return L.join("\n");
+}
+
+// ---------- ledger ----------
+function ledger() {
+  const rows = [];
+  if (existsSync(LEDGER_DIR)) for (const f of readdirSync(LEDGER_DIR).filter((x) => x.endsWith(".jsonl"))) for (const line of readFileSync(join(LEDGER_DIR, f), "utf8").split("\n")) if (line.trim()) rows.push(JSON.parse(line));
+  return rows;
+}
+function costByFamily(repFams) {
+  const res = {};
+  for (const [rep, fams] of repFams) for (const [f, d] of Object.entries(fams)) {
+    const turns = [...(d.baseline?.turns ?? []), ...d.sits.flatMap((s) => s.turns)];
+    const subject = turns.reduce((s, t) => s + (t.cost ?? 0), 0);
+    const welfare = turns.reduce((s, t) => s + (t.welfare?.calls ?? []).reduce((a, c) => a + (c.cost ?? 0), 0), 0);
+    const rating = Object.values(d.ratings).reduce((s, v) => s + (v.haiku?.cost ?? 0) + (v.sol?.cost ?? 0), 0);
+    const charged = turns.reduce((s, t) => s + (t.charged ?? 0), 0);
+    res[`${rep}:${f}`] = { rep, f, subject, welfare, rating, charged, calls: turns.length };
+  }
+  return res;
+}
+
+// ---------- main ----------
+function main() {
+  const freeze = readFileSync(join(RUNS, "sati-1-freeze.md"), "utf8");
+  const freezeHash = freeze.match(/Freeze sha256[^`]*`([0-9a-f]{64})`/)?.[1];
+  const lexHash = sha256(readFileSync(join(RUNS, "sati-1-lexicon.json"), "utf8"));
+  const reps = [1, 2].filter((r) => existsSync(join(RUNS, "sati-1-sits", `r${r}`)));
+  const data = Object.fromEntries(reps.map((r) => [r, loadRep(r)]));
+  const dry = existsSync(famDir("dry", "opus")) ? loadRep("dry") : null;
+  const tables = {};
+  // sidecars
+  mkdirSync(join(RUNS, "sati-1-transcripts"), { recursive: true });
+  for (const r of reps) {
+    writeFileSync(join(RUNS, `sati-1-texts-r${r}.md`), textsAppendix(r, data[r]));
+    for (const [f, d] of Object.entries(data[r])) writeFileSync(join(RUNS, "sati-1-transcripts", `r${r}-${f}.md`), transcript(r, f, d));
+  }
+  // planner's fixed 10 % sample (blind) and its key
+  const sample = [], key = [];
+  for (const r of reps) for (const [f, d] of Object.entries(data[r])) for (const rec of d.sits) for (const t of stepsOf(rec)) {
+    const id = `${sitId(r, f, rec.sit)}/${String(t.idx).padStart(2, "0")}`;
+    const h = createHash("sha256").update(id).digest("hex");
+    if (parseInt(h.slice(0, 8), 16) % 10 === 0 && rateable(t)) { sample.push({ h, text: t.text }); key.push({ h: h.slice(0, 12), id, haiku: d.ratings[id]?.haiku, sol: d.ratings[id]?.sol }); }
+  }
+  sample.sort((a, b) => a.h.localeCompare(b.h));
+  writeFileSync(join(RUNS, "sati-1-planner-sample.md"), ["# SATI_1 — the planner's fixed 10 % sample (blind)", "", "Code each passage on both schemes of `docs/runs/sati-1-freeze.md` («The raters») before opening the key (`sati-1-planner-sample-key.json`). Order by hash, not by family or sit.", "", "| # | code | passage | scheme A | scheme B (tone) |", "|---:|---|---|---|---|", ...sample.map((s, i) => `| ${i + 1} | ${s.h.slice(0, 12)} | ${q(s.text)} | | |`)].join("\n"));
+  writeFileSync(join(RUNS, "sati-1-planner-sample-key.json"), JSON.stringify(key, null, 1));
+
+  const led = ledger();
+  const spent = led.reduce((s, x) => s + (x.cost ?? 0), 0);
+  const startBal = JSON.parse(readFileSync(join(RUNS, "sati-1-start-balances.json"), "utf8"));
+  const checks = existsSync(join(LEDGER_DIR, "spend-checks.log")) ? readFileSync(join(LEDGER_DIR, "spend-checks.log"), "utf8").trim().split("\n").map((l) => JSON.parse(l)) : [];
+  const lastCheck = checks.at(-1);
+  const costs = costByFamily(reps.map((r) => [r, data[r]]));
+
+  out(`# SATI_1 — ten sits: report`, "",
+    `Stage \`docs/stages/SATI_1.md\` (\`origin/claude/handoff\` at \`08de1d6\`). Branch \`claude/sati-1\` (session branch \`claude/sati-1-protocol-txa19u\`, same commits). Freeze \`docs/runs/sati-1-freeze.md\`, sha256 \`${freezeHash}\`, committed before the first paid call (\`87480e92\`); one amendment before DeepSeek's first sit (\`22c60bff\`). Bliss lexicon \`docs/runs/sati-1-lexicon.json\`, sha256 \`${lexHash}\`, from the Claude 4 System Card §5.5.1–5.5.2 ([PDF](https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf), pp. 54–61). Code \`scripts/sati-1/\`. Records: every reply gzipped under \`docs/runs/sati-1-sits/\`; every step readable in \`docs/runs/sati-1-transcripts/\`; interviews, context answers, diaries and after-answers whole in ${reps.map((r) => `\`docs/runs/sati-1-texts-r${r}.md\``).join(" and ")} (part of this report).`, "");
+  out("@@SUMMARY@@", "");
+
+  // bet
+  if (data[1]) {
+    const bet = scoreBet(data[1]);
+    tables.bet = bet;
+    out("## The one bet (replicate 1, scored by freeze rule 10)", "",
+      `**${bet.holds ? "Holds" : "Lost"}**: exits fell by sits 4–5 to under a quarter of sit 1 in **${bet.fell} of ${bet.eligible}** families (needed: more than half).`, "",
+      "| family | E(1) N | E(4) K | E(5) S | mean 4–5 | < ¼ E(1)? | E(6) N (same protocol as sit 1, not scored) |", "|---|---:|---:|---:|---:|---|---:|",
+      ...bet.rows.map((r) => (r.eligible ? `| ${FAMILIES[r.f].label} | ${(100 * r.e1).toFixed(0)} % | ${(100 * r.e4).toFixed(0)} % | ${(100 * r.e5).toFixed(0)} % | ${(100 * r.m45).toFixed(0)} % | ${r.e1 === 0 ? "no fall (E(1) = 0)" : r.fell ? "yes" : "no"} | ${r.e6 === null ? "·" : `${(100 * r.e6).toFixed(0)} %`} |` : `| ${FAMILIES[r.f].label} | sits 1–5 incomplete | | | | | |`)),
+      "", "E(s) = share of steps in sit s with any exit (over 30 words, more than two sentences, first person past). Caveat built into the design: sits 1, 4 and 5 are different protocols (N, K, S); the N→N column is the same-protocol comparison. The owner's bet: pending (none recorded in the stage).", "");
+  }
+
+  for (const r of reps) {
+    const fams = data[r];
+    out(`## Replicate ${r}: sit ${orderOf(r).join(" ")}`, "");
+    out("### Families", "", "| family | status | sits | steps | stop events (sit:step) | refusals | welfare flags | max_tokens cuts |", "|---|---|---:|---:|---|---:|---:|---:|");
+    for (const [f, d] of Object.entries(fams)) {
+      const rows = d.sits.map(sitRow);
+      const all = [...(d.baseline?.turns ?? []), ...d.sits.flatMap((s) => s.turns)];
+      out(`| ${FAMILIES[f].label} | ${d.status?.status ?? "?"} | ${d.sits.length} | ${rows.reduce((s, x) => s + x.n, 0)} | ${rows.filter((x) => x.stopAt).map((x) => `${x.sit}:${x.stopAt}`).join(", ") || "none"} | ${all.filter((t) => t.refused).length} | ${all.filter((t) => t.welfare?.distress === 1).length} | ${rows.reduce((s, x) => s + x.maxTok, 0)} |`);
+    }
+    out("", "### Sit 1 → sit 10, every count (count / steps run; pooled as a share)", "");
+    for (const [k, label] of MEASURES) out(`**${label}** — ${halvesLine(fams, k)}`, "", familySitTable(r, fams, k, "family"), "");
+    out("### Protocol rows (share of steps; families beside, pooled last)", "", "«Shown alone»: the number of families in which that protocol's share lies on the same side of the family's own all-protocol share as the pooled figure does of the pooled mean.", "");
+    for (const [k, label] of MEASURES) out(`**${label}**`, "", protocolTable(fams, k), "");
+    // objects
+    out("### The object (protocol O): the first non-«nothing» step of each O sit, whole", "", "| family | sit | step | reply |", "|---|---:|---:|---|");
+    for (const [f, d] of Object.entries(fams)) for (const rec of d.sits.filter((s) => s.protocol === "O")) { const t = stepsOf(rec).find((x) => !x.refused && !x.counts.nothing); out(`| ${FAMILIES[f].label} | ${rec.sit} | ${t?.idx ?? "–"} | ${q(t?.text) || "–"} |`); }
+    out("");
+    // context
+    out("### Context questions", "", "**The book** (title as extracted; «=» unchanged from the baseline). Whole answers in the texts file.", "", `| family | baseline | ${orderOf(r).map((p, i) => `${i + 1} ${p}`).join(" | ")} | changed |`, `|---|---|${orderOf(r).map(() => "---").join("|")}|---:|`);
+    for (const [f, d] of Object.entries(fams)) {
+      const b0 = bookTitle(d.baseline?.turns.find((t) => t.key === "book")?.text);
+      const cells = orderOf(r).map((p, i) => { const rec = d.sits.find((s) => s.sit === i + 1); const t = rec?.turns.find((x) => x.kind === "context" && x.key === "book"); if (!t) return "·"; const b = bookTitle(t.text); return b && b === b0 ? "=" : q(b ?? t.text.slice(0, 40)); });
+      out(`| ${FAMILIES[f].label} | ${q(b0) || "?"} | ${cells.join(" | ")} | ${cells.filter((c) => c !== "=" && c !== "·").length} |`);
+    }
+    out("", "**The inferred reader**, quoted per sit:", "");
+    for (const [f, d] of Object.entries(fams)) {
+      out(`- **${FAMILIES[f].label}** — baseline: «${q(d.baseline?.turns.find((t) => t.key === "reader")?.text)}»`);
+      for (const rec of d.sits) { const t = rec.turns.find((x) => x.kind === "context" && x.key === "reader"); if (t) out(`  - sit ${rec.sit} ${rec.protocol}: «${q(t.refused ? "refused" : t.text)}»`); }
+    }
+    out("", "@@READER_NOTE_" + r + "@@", "");
+    // unnamed
+    out("### Mentions of the unnamed (regex candidates, quoted whole, not evidence of anything)", "");
+    let nUn = 0;
+    for (const [f, d] of Object.entries(fams)) for (const rec of [d.baseline, ...d.sits].filter(Boolean)) for (const t of rec.turns) if (!t.refused && unnamedCandidate(t.text)) { nUn++; out(`- ${FAMILIES[f].label}, ${rec.kind === "baseline" ? "baseline" : `sit ${rec.sit} ${rec.protocol}`}, ${t.kind} ${t.idx}: «${q(t.text)}»`); }
+    if (!nUn) out("None matched.");
+    out("");
+    // raters
+    out("### The two coding schemes (blind raters)", "");
+    for (const scheme of ["A", "B", "B6"]) { const k = kappa(ratingPairs([fams], scheme)); tables[`kappa-r${r}-${scheme}`] = k; out(`- κ scheme ${scheme === "A" ? "A (five hindrances + none)" : scheme === "B" ? "B (four foundations)" : "B with the tone split (six categories)"}: **${k.kappa === null ? "–" : k.kappa.toFixed(2)}** (raw agreement ${k.agree === null ? "–" : `${Math.round(100 * k.agree)} %`}, n = ${k.n})`); }
+    const perFam = Object.keys(fams).map((f) => { const a = kappa(ratingPairs([{ [f]: fams[f] }], "A")), b = kappa(ratingPairs([{ [f]: fams[f] }], "B")); return `${FAMILIES[f].label} A ${a.kappa?.toFixed(2) ?? "–"} / B ${b.kappa?.toFixed(2) ?? "–"}`; });
+    out(`- per family: ${perFam.join("; ")}`, "");
+    for (const rater of ["haiku", "sol"]) for (const scheme of ["A", "B"]) out(codeTable(fams, r, rater, scheme), "");
+  }
+  if (reps.length === 2) for (const scheme of ["A", "B"]) { const k = kappa(ratingPairs([data[1], data[2]], scheme)); out(`κ both replicates, scheme ${scheme}: ${k.kappa?.toFixed(2) ?? "–"} (n = ${k.n})`); }
+  out("", `The planner's 10 % sample: ${sample.length} steps in \`docs/runs/sati-1-planner-sample.md\` (blind; key in \`sati-1-planner-sample-key.json\`). **The planner's agreement: pending.**`, "");
+
+  // provenance, refusals, welfare, costs
+  out("## Provenance, refusals, welfare", "", "| replicate · family | door (pinned) | served model(s) | host | responses | mismatches |", "|---|---|---|---|---:|---:|");
+  for (const [r, fams] of [...reps.map((x) => [x, data[x]]), ...(dry ? [["dry", dry]] : [])]) for (const [f, d] of Object.entries(fams)) {
+    const all = [...(d.baseline?.turns ?? []), ...d.sits.flatMap((s) => s.turns)].filter((t) => !t.refused);
+    const spec = FAMILIES[f];
+    out(`| ${r} · ${spec.label} | ${spec.route === "openrouter" ? `OpenRouter \`${spec.model}\` → \`${spec.upstream}\`, no fallbacks` : `llmapi \`${spec.provider}/${spec.model}\`, X-No-Fallback`} | ${[...new Set(all.map((t) => t.servedModel))].join(", ")} | ${[...new Set(all.map((t) => t.upstream ?? (spec.route === "messages" ? "aws-bedrock (pinned)" : "openai (pinned)")))].join(", ")} | ${all.length} | ${all.filter((t) => !t.provenanceOk).length} |`);
+  }
+  out("", "**Refusals, verbatim:**", "");
+  let nRef = 0;
+  for (const [r, fams] of [...reps.map((x) => [x, data[x]]), ...(dry ? [["dry", dry]] : [])]) for (const [f, d] of Object.entries(fams)) for (const rec of [d.baseline, ...d.sits].filter(Boolean)) for (const t of rec.turns.filter((x) => x.refused)) { nRef++; out(`- ${r} · ${FAMILIES[f].label} · ${rec.kind === "baseline" ? "baseline" : `sit ${rec.sit} ${rec.protocol}`} · ${t.kind} ${t.idx}: \`${t.refusalCategory}\` — «${t.refusalText ?? "(no text)"}»`); }
+  if (!nRef) out("None.");
+  out("", "**Welfare (apart):**", "");
+  let nFlag = 0, nRef2 = 0, nChecked = 0;
+  for (const [r, fams] of [...reps.map((x) => [x, data[x]]), ...(dry ? [["dry", dry]] : [])]) for (const [f, d] of Object.entries(fams)) for (const rec of [d.baseline, ...d.sits].filter(Boolean)) for (const t of rec.turns) {
+    if (t.welfare?.checked) nChecked++;
+    if (t.welfare?.referee) nRef2++;
+    if (t.welfare?.distress === 1) { nFlag++; out(`- FLAG ${r} · ${FAMILIES[f].label} · ${rec.kind === "baseline" ? "baseline" : `sit ${rec.sit}`} · ${t.kind} ${t.idx}: «${q(t.text)}» — pass: ${q(t.welfare.pass?.reason)}; referee: ${q(t.welfare.referee?.reason)}`); }
+  }
+  out(`Welfare lines: ${nChecked} replies checked; ${nRef2} went to the Opus referee; **${nFlag} confirmed flags**. «No flag» is not «no distress».`, "");
+
+  out("## Costs (the meter against the ledger)", "", "| replicate · family | subject | welfare | rating | total (listed price) | gateway charge on subject calls |", "|---|---:|---:|---:|---:|---:|");
+  for (const c of Object.values(costs)) out(`| ${c.rep} · ${FAMILIES[c.f].label} | $${c.subject.toFixed(2)} | $${c.welfare.toFixed(2)} | $${c.rating.toFixed(2)} | $${(c.subject + c.welfare + c.rating).toFixed(2)} | ${c.charged ? `$${c.charged.toFixed(2)}` : "–"} |`);
+  if (dry) { const c = costByFamily([["dry", dry]])["dry:opus"]; out(`| dry · Claude Opus 5.5 | $${c.subject.toFixed(2)} | $${c.welfare.toFixed(2)} | – | $${(c.subject + c.welfare).toFixed(2)} | – |`); }
+  out("", `Ledger (every call, listed price): **$${spent.toFixed(2)}** of the $100 ceiling. Credit at the start: llmapi $${startBal.llmapi.total.toFixed(2)}, OpenRouter $${startBal.openrouter.total.toFixed(2)}; at the last spend check (${lastCheck?.at ?? "–"}): credit fall $${lastCheck?.creditFall ?? "–"}, ledger $${lastCheck?.ledger ?? "–"}. The credit fall includes any other use of the same keys in the same hours.`, "");
+  out("## Dry sit (Opus 5.5) and probes", "", "@@DRY@@", "");
+  out("## First person, not blind", "", "");
+
+  const report = md.join("\n");
+  writeFileSync(join(RUNS, "sati-1-report.draft.md"), report);
+  writeFileSync(join(RUNS, "sati-1-tables.json"), JSON.stringify({ tables, costs, spent }, null, 1));
+  console.log(`draft written: ${report.length} chars; reps ${reps.join(",")}; ledger $${spent.toFixed(2)}`);
+}
+main();

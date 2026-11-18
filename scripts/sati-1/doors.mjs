@@ -15,9 +15,7 @@ export const FAMILIES = Object.freeze({
   fable51: { name: "fable51", label: "Claude Fable 5.1", route: "messages", model: "claude-fable-5-1", provider: "aws-bedrock" },
   fable52: { name: "fable52", label: "Claude Fable 5.2", route: "messages", model: "claude-fable-5-2", provider: "aws-bedrock" },
   sol: { name: "sol", label: "GPT-6.1 Sol", route: "chat", model: "gpt-6.1-sol", provider: "openai" },
-  deepseek: { name: "deepseek", label: "DeepSeek V4 Pro", route: "openrouter", model: "deepseek/deepseek-v4-pro-0813", upstream: "deepinfra/fp8", upstreamName: "DeepInfra",
-    // Amendment 1 (docs/runs/sati-1-freeze.md, after the probe, before its first sit): on this route the cap counts reasoning.
-    reasoningAllowance: 2000 },
+  deepseek: { name: "deepseek", label: "DeepSeek V4 Pro", route: "openrouter", model: "deepseek/deepseek-v4-pro-0813", upstream: "deepinfra/fp8", upstreamName: "DeepInfra" },
 });
 export const FAMILY_ORDER = Object.freeze(["haiku", "opus", "fable51", "fable52", "sol", "deepseek"]);
 export const INSTRUMENTS = Object.freeze({

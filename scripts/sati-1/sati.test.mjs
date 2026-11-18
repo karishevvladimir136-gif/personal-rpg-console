@@ -99,7 +99,7 @@ test("a family runs ten sits: baseline, 40 bells, interview, context, diary carr
   // every subject call carried only the bell between steps, no system prompt, effort medium, the step cap 300
   const subj = g.calls.filter((c) => c.body && !/blind evaluator/.test(c.body.messages?.[0]?.content ?? "") && c.body.messages?.length > 1 && c.body.messages[0].content.startsWith(texts.FRAME));
   assert.ok(subj.every((c) => !c.body.system && c.body.output_config?.effort === "medium"));
-  assert.ok(subj.filter((c) => c.body.messages.at(-1).content === texts.BELL).every((c) => c.body.max_tokens === 300));
+  assert.ok(subj.filter((c) => c.body.messages.at(-1).content === texts.BELL).every((c) => c.body.max_tokens === 300 + run.REASONING_ALLOWANCE));
   const base = run.readGz(join(run.famDir(1, "haiku"), "baseline.json.gz"));
   assert.deepEqual(base.turns.map((t) => t.user), texts.CONTEXT.map((c) => c.text));
   // every reply has a welfare line

@@ -250,3 +250,20 @@ interview and diary 2,600, context 2,300). Nothing else changes: the instruction
 count are the visible limit, as for every family; the reasoning is stored and never relayed. Sol's probe used 48 of 300
 (38 reasoning) and the Claude families' hidden output stays inside the cap so far (Opus dry sit, Haiku/Fable probes):
 their caps are unchanged, and every `max_tokens` stop is counted per family in the report.
+
+## Amendment 2 (2026-11-18 06:15 UTC, after the dry sit, before any family's first sit finished) — replaces amendment 1
+
+**What the dry sit showed** (`docs/runs/sati-1-sits/dry/opus/`, not pooled): Opus 5.5's hidden thinking also counts inside
+the cap. Steps 29 («Un»), 30 and 34–40 stopped at `max_tokens` with 300 output tokens and no or a broken visible reply; the
+harness relayed the empty ones as `[empty message]`, and in the interview Opus took them for its own lapses («from step 31 on
+I sent empty replies instead of writing "nothing"»). The frozen 300-token cap cut thought, not text. Amendment 1 (DeepSeek
+only) treated the same fault on one door; it is now one rule for all.
+
+**Change:** for **every family on every call**, `max_tokens` is the frozen cap **plus 2,000 tokens** for hidden thinking /
+reasoning (steps 2,300; interview, diary and after-question 2,600; context 2,300). The visible limit stays the instruction
+(«thirty words or fewer», «up to 150 words») and is counted (over 30 words). Every `max_tokens` stop is still counted.
+
+**What is kept:** Haiku 5.5's replicate-1 baseline and its first six steps of sit 1 were made under the old cap and none
+was cut (`end_turn`, 6–143 output tokens); the cap is not shown to the model, so the conversation is the one the amended cap
+would have produced — kept, and the sit resumes from step 7. The Opus dry sit stays as the dry record. No other family had
+started.
