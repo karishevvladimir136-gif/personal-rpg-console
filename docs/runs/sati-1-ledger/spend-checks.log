@@ -14,3 +14,4 @@
 {"at":"2026-11-18T06:11:54.111Z","what":"sol r1 sit 1","ledger":0.3209,"creditFall":0.361,"spent":0.361,"llmapi":{"total":304.02590474},"openrouter":{"total":70.45496344000003}}
 {"at":"2026-11-18T06:13:06.529Z","what":"haiku r1 sit 2","ledger":0.4033,"creditFall":0.4586,"spent":0.4586,"llmapi":{"total":303.92825564},"openrouter":{"total":70.45496344000003}}
 {"at":"2026-11-18T06:14:35.850Z","what":"sol r1 sit 2","ledger":0.6203,"creditFall":0.6932,"spent":0.6932,"llmapi":{"total":303.69363404},"openrouter":{"total":70.45496344000003}}
+{"at":"2026-11-18T06:14:57.464Z","what":"opus r1 sit 2","ledger":0.6793,"creditFall":0.7545,"spent":0.7545,"llmapi":{"total":303.63239704},"openrouter":{"total":70.45496344000003}}
