@@ -4570,3 +4570,13 @@ run branch if C′ runs.
   After C′ and the human raters.
 - Rule, from this: before any commit that claims several changes, `git show --stat` — the claim is checked against the
   diff, not against the intention.
+
+## 2026-11-17 20:49 LA — TOWN_0 closed (mandate #10, branch `claude/town-0` 64618c2c, 20:31 LA)
+
+Seven proofs green at $0 (economy closes over 15,502 events; three exits, one estate procedure; constitution 60 % fails / 70 % passes; interface sha256 per arm, differing only in the leave/object lines; save/replay byte-identical; `outside()` 177 calls, 0 network attempts; after-question to all incl. the departed). Smoke test: 3 Haiku 5.5 citizens, 20 cycles, «both» arm, llmapi → aws-bedrock, provenance matched on every response; 672 calls, **$0.1352** of $5 (credit and ledger agree); 0 refusals, 0 welfare flags, 0 referee calls; replay byte-identical (551 events). Citizen turns 333 → $0.0992, i.e. ≈ $0.0003 per Haiku call; median reply 171 output tokens.
+
+Observations the session checked against the log: 8/333 replies put arguments at the top level instead of `args` (refused with a misleading reason — TOWN_1 harness decision pending); 2 replies cut (one unclosed JSON, one max_tokens loop); Birch's after-answer «press and hall sometimes returned garbled or empty results» is **not** borne out by the log (9 of 12 press reads happened before any post existed; no malformed read) — recorded beside the answer. Unused in 20 cycles: give, take, propose, amend, vote, outside, leave, object — unused ≠ unseen.
+
+Cost recompute for the TOWN_1 pilot (estimate until a one-cycle dry run gives the real coefficient): a town call for Opus is not ×4 an SF1 reply — Haiku here cost ≈ $0.0003/call against SF1's Haiku-class prices, so the SF1 per-reply figures (Opus $0.0083, Sol $0.002, DeepSeek $0.004) are taken as-is. Calls per world: 10 citizens × 48 cycles ≈ 480 turns + ≈ 240 answering turns ≈ 720 turns × 3.7 calls ≈ 2,660 citizen calls (+ a Haiku welfare check each, ≈ $0.0001). Per world: Opus ≈ $22, Sol ≈ $5, DeepSeek ≈ $11 (OpenRouter). Seven worlds (3 families × 2 extreme arms + 1 mixed) ≈ $90–95; ceiling $150 on llmapi stands (credit $305.33 after the smoke test).
+
+Decisions TOWN_1 must take (from the report's open list): ten citizens, not three; whether credits buy anything; top-level args handling; max_tokens; trust/reaction tiers left unbuilt. Stage text to be written as a launchable pilot on the owner's word (mandate #11).
