@@ -110,10 +110,11 @@ export async function call(ctx, spec, args, purpose) {
       return { ...r, cost, latencyMs, attempts: attempt + 1, errors };
     }
     // A 200 with no usable body (an empty or cut response from the gateway) is transient, like a 5xx; so is the gateway's
-    // 400 «data retention mode … not available for this model» (seen once in the rerun; the next calls went through).
+    // 400 «data retention mode … not available for this model» (seen in the rerun for a few minutes after each
+    // reasoning_extraction refusal; the same request went through later) — retried on the 429 schedule.
     errors.push({ at: new Date().toISOString(), error: r.error, status: r.status });
     const transient = r.status === 429 || r.status === 200 || r.status === null || r.status >= 500 || r.status === 408 || /timeout|aborted|fetch failed|ECONN|socket|data retention mode/i.test(r.error);
-    const limit = r.status === 429 ? 6 : 4;
+    const limit = r.status === 429 || /data retention mode/i.test(r.error) ? 6 : 4; // the 400 clears a few minutes after a refusal
     if (!transient || attempt + 1 >= limit) throw new Stop(`call failed (${spec.label}, ${purpose}) after ${attempt + 1}: ${r.error}`);
     ctx.log(`retry ${attempt + 1} ${spec.label} ${purpose}: ${r.error}`);
     await sleep(waits[attempt]);
