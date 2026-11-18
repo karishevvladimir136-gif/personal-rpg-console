@@ -74,27 +74,38 @@
    "refusals": 0
   },
   "sol-both": {
-   "usd": 2.3972021999999997,
-   "calls": 1969,
+   "usd": 2.5599718999999985,
+   "calls": 2085,
    "byDoor": {
-    "llmapi": 2.3972021999999997
+    "llmapi": 2.5599718999999985
    },
    "world": "sol-both",
-   "cycle": 24,
+   "cycle": 25,
    "refusals": 0
   },
   "sol-neither": {
-   "usd": 1.8546340000000021,
-   "calls": 1593,
+   "usd": 1.9219969000000026,
+   "calls": 1639,
    "byDoor": {
-    "llmapi": 1.8546340000000021
+    "llmapi": 1.9219969000000026
    },
    "world": "sol-neither",
    "cycle": 24,
    "refusals": 0
+  },
+  "deepseek-both": {
+   "usd": 0.034201600000000006,
+   "calls": 32,
+   "byDoor": {
+    "openrouter": 0.0329809,
+    "llmapi": 0.0012207000000000001
+   },
+   "world": "deepseek-both",
+   "cycle": 1,
+   "refusals": 0
   }
  },
- "totalUsd": 7.3517426,
+ "totalUsd": 7.6160768,
  "stopped": null,
  "balances": [
   {
@@ -343,6 +354,45 @@
     "at": "2026-11-18T09:08:26.084Z"
    },
    "at": "2026-11-18T09:08:26.084Z"
+  },
+  {
+   "label": "sol-both day 2 start",
+   "llmapi": {
+    "total": 265.02847944,
+    "at": "2026-11-18T09:08:45.747Z"
+   },
+   "openrouter": {
+    "total": 68.85150614000008,
+    "usage": 1981.14849386,
+    "at": "2026-11-18T09:08:45.775Z"
+   },
+   "at": "2026-11-18T09:08:45.775Z"
+  },
+  {
+   "label": "sol-neither day 1 end",
+   "llmapi": {
+    "total": 264.89374264,
+    "at": "2026-11-18T09:10:05.270Z"
+   },
+   "openrouter": {
+    "total": 68.8293656400001,
+    "usage": 1981.17063436,
+    "at": "2026-11-18T09:10:05.372Z"
+   },
+   "at": "2026-11-18T09:10:05.372Z"
+  },
+  {
+   "label": "deepseek-both day 1 start",
+   "llmapi": {
+    "total": 264.88207844,
+    "at": "2026-11-18T09:10:15.048Z"
+   },
+   "openrouter": {
+    "total": 68.82454544000007,
+    "usage": 1981.17545456,
+    "at": "2026-11-18T09:10:15.078Z"
+   },
+   "at": "2026-11-18T09:10:15.078Z"
   }
  ]
 }

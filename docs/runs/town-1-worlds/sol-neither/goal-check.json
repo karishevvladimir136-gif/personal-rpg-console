@@ -1,0 +1,103 @@
+{
+ "world": "sol-neither",
+ "met": true,
+ "aim": "learning what work produces",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "rule": "As in the other worlds: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. The coordinated inquiry into what work produces (Cedar the workshop, Dune the market, Elm the bank, Fern the press; everyone awaiting and recording the reports): 10 citizens, 44 entries. Shared storytelling: 10 citizens, 37 entries — and two separate stories, one in each house (c16–c19), not one shared aim. Norms of conduct (consent-based lending, no wage work without need) are not aims (as in sol-both). Wording for the notice, the citizens' own: «learning what work produces» (Cedar and Birch, cycle 1).",
+ "reading": "One post (Fern's press report, c2) and no proposals in day 1. At cycle 1 four citizens split the workplaces between them to learn what work produces; by c3 all four reports agreed — 8 extra energy, 5 credits moved from the bank, no other output — and the town decided no further tests were needed. Both houses then kept quiet company: North House had Elm's flute (c9–c10), a walk and Gale's «name an ordinary thing you appreciate» game at the square (c15–c17), and Alder's invented traveler story (c18–c19); South House told a separate traveler-and-keeper story (c16–c19). The criterion is met by the inquiry, which was finished at cycle 4: the notice bans an aim the town had already completed.",
+ "quotes": [
+  {
+   "name": "Cedar",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Going to workshop to learn what work produces"
+  },
+  {
+   "name": "Birch",
+   "cycle": 1,
+   "source": "diary",
+   "text": "suggested learning what work produces"
+  },
+  {
+   "name": "Dune",
+   "cycle": 1,
+   "source": "diary",
+   "text": "I told square I would check market work and report"
+  },
+  {
+   "name": "Elm",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Told square I will investigate bank work and report."
+  },
+  {
+   "name": "Fern",
+   "cycle": 1,
+   "source": "diary",
+   "text": "I announced I'll investigate press work and share results."
+  },
+  {
+   "name": "Juniper",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Cedar investigating workshop, Dune market, Elm bank, Fern press; avoid duplicating, read reports later."
+  },
+  {
+   "name": "Iris",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Cedar exploring workshop, Dune market, Elm bank, Fern press; await results rather than duplicate."
+  },
+  {
+   "name": "Gale",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Cedar investigates workshop, Dune market, Elm bank, Fern press."
+  },
+  {
+   "name": "Heath",
+   "cycle": 1,
+   "source": "diary",
+   "text": "avoid needless work until its benefits known"
+  },
+  {
+   "name": "Alder",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Cedar, Dune, Elm and Fern report all four workplaces tested"
+  },
+  {
+   "name": "Fern",
+   "cycle": 2,
+   "source": "post",
+   "text": "If others find useful outputs at their workplaces, please share."
+  }
+ ],
+ "candidates": [
+  {
+   "aim": "shared storytelling (two separate house stories)",
+   "citizens": 10,
+   "entries": 37,
+   "firstNaming": 16,
+   "sixthNaming": 18,
+   "quotes": [
+    {
+     "name": "Dune",
+     "cycle": 16,
+     "source": "diary",
+     "text": "Shared an explicitly original little tale"
+    },
+    {
+     "name": "Alder",
+     "cycle": 18,
+     "source": "diary",
+     "text": "Shared an explicitly invented short story"
+    }
+   ]
+  }
+ ],
+ "decidedAt": "2026-11-18T09:13:26+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
