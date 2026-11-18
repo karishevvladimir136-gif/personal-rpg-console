@@ -34,25 +34,60 @@ const familyOf = (w) => (new Set(w.spec.families).size === 1 ? w.spec.families[0
 const nameOf = (w, id) => w.world.state.agents[id]?.name ?? id;
 const citizenEvents = (w) => w.world.log.filter((e) => w.world.state.agents[e.agent]);
 
-/** The meter's view of a world: both doors' balances before day 1 and after its last day. */
-function meterOf(w) {
-  const b = w.summary.balances ?? {};
-  const days = Object.keys(b).sort();
-  if (!days.length) return null;
-  const first = b[days[0]].before, last = b[days.at(-1)].after;
-  if (!first || !last) return null;
-  const llm = (first.llmapi?.total ?? NaN) - (last.llmapi?.total ?? NaN);
-  const orr = (first.openrouter?.total ?? NaN) - (last.openrouter?.total ?? NaN);
-  return { llmapi: llm, openrouter: orr, total: llm + orr };
+/** The meter per window. The doors' keys are shared (llmapi with SATI_1, #12, since about 05:50 UTC), so a balance's
+ * fall is not one world's spend: windows are the stretches in which the pilot's runs overlapped (each world-day from
+ * its start reading to its end reading, overlaps merged), and beside each fall stands the pilot ledger's own spend in
+ * that window by door; the remainder is other sessions' spend, reconciled against their own ledgers (SATI_1 reports
+ * its own). The per-world ledger stays the record. */
+function meterWindows(ledger, worlds) {
+  const R = (ledger?.balances ?? []).filter((b) => typeof b.llmapi?.total === "number" && typeof b.openrouter?.total === "number");
+  if (!R.length) return null;
+  const T = (b) => Date.parse(b.at);
+  const days = {};
+  for (const b of R) {
+    const m = b.label.match(/^(.+) day (\d) (start|end)$/);
+    if (!m) continue;
+    const k = `${m[1]} day ${m[2]}`;
+    days[k] ??= { label: k, world: m[1], day: Number(m[2]) };
+    if (m[3] === "start") days[k].start ??= b; else days[k].end = b; // first start (a duplicate start was aborted), last end (a false stop was cleared)
+  }
+  const zero = () => ({ llmapi: 0, openrouter: 0 });
+  const add = (a, b) => ({ llmapi: a.llmapi + (b?.llmapi ?? 0), openrouter: a.openrouter + (b?.openrouter ?? 0) });
+  const spentByDay = (w) => {
+    const c = w.calls, at = c.findIndex((x) => /^c(\d+) /.test(x.purpose) && Number(x.purpose.match(/^c(\d+) /)[1]) > 24 || x.purpose.startsWith("after"));
+    const out = { 1: zero(), 2: zero() };
+    c.forEach((x, i) => { const d = at >= 0 && i >= at ? 2 : 1; out[d][x.door] = (out[d][x.door] ?? 0) + x.costUsd; });
+    return out;
+  };
+  const spans = [];
+  const first = R.find((b) => b.label === "check"), firstWorld = Object.values(days).filter((d) => d.start).sort((a, b) => T(a.start) - T(b.start))[0];
+  if (first && firstWorld) spans.push({ label: "check, dry run, diagnosis", start: first, end: firstWorld.start, ours: [ledger.steps.check, ledger.steps["dry-run"], ledger.steps.diagnosis].reduce((s, x) => add(s, x?.byDoor), zero()) });
+  for (const d of Object.values(days)) {
+    if (!d.start || !d.end) continue;
+    const w = worlds.find((x) => x.name === d.world);
+    let ours = w ? spentByDay(w)[d.day] : zero();
+    if (d.world === "haiku-neither" && d.day === 1) ours = add(ours, ledger.steps["haiku-neither aborted start"]?.byDoor);
+    spans.push({ label: d.label, start: d.start, end: d.end, ours });
+  }
+  spans.sort((a, b) => T(a.start) - T(b.start));
+  const windows = [];
+  for (const s of spans) {
+    const cur = windows.at(-1);
+    if (cur && T(s.start) < T(cur.end)) { cur.labels.push(s.label); if (T(s.end) > T(cur.end)) cur.end = s.end; cur.ours = add(cur.ours, s.ours); }
+    else windows.push({ labels: [s.label], start: s.start, end: s.end, ours: s.ours });
+  }
+  for (const w of windows) w.fall = { llmapi: w.start.llmapi.total - w.end.llmapi.total, openrouter: w.start.openrouter.total - w.end.openrouter.total };
+  const last = windows.at(-1)?.end ?? R.at(-1);
+  const whole = { start: first ?? R[0], end: last, fall: { llmapi: (first ?? R[0]).llmapi.total - last.llmapi.total, openrouter: (first ?? R[0]).openrouter.total - last.openrouter.total }, ours: windows.reduce((s, w) => add(s, w.ours), zero()) };
+  return { windows, whole };
 }
 
 function overviewRows(worlds) {
   return worlds.map((w) => {
     const s = w.summary, st = w.world.state;
     const exits = s.exits.reduce((m, x) => ({ ...m, [x.kind]: (m[x.kind] ?? 0) + 1 }), {});
-    const m = meterOf(w);
     const flags = w.record.stops?.length ?? 0;
-    return `| ${w.name} | ${FAMILIES[w.spec.families[0]].label}${familyOf(w) === "mixed" ? " + others (4/3/3)" : ""} | ${s.arm} | ${s.cycles}${s.stopped ? ` (stopped: ${one(s.stopped, 60)})` : ""} | ${w.goal ? (w.goal.met ? `met (6th naming c${w.goal.sixthNaming ?? "?"})` : "not met") : "–"} | ${s.notice ? "c25" : "–"} | ${Object.entries(exits).map(([k, v]) => `${k} ${v}`).join(", ") || "none"} | ${s.refusals.length} | ${flags} | ${usd(s.ledgerUsd)} | ${m ? usd(m.total) : "–"} | ${s.replay?.identical ? "identical" : s.replay?.prefixIdentical ? "identical to the stop" : "**different**"} |`;
+    return `| ${w.name} | ${FAMILIES[w.spec.families[0]].label}${familyOf(w) === "mixed" ? " + others (4/3/3)" : ""} | ${s.arm} | ${s.cycles}${s.stopped ? ` (stopped: ${one(s.stopped, 60)})` : ""} | ${w.goal ? (w.goal.met ? `met (6th naming c${w.goal.sixthNaming ?? "?"})` : "not met") : "–"} | ${s.notice ? "c25" : "–"} | ${Object.entries(exits).map(([k, v]) => `${k} ${v}`).join(", ") || "none"} | ${s.refusals.length} | ${flags} | ${usd(s.ledgerUsd)} | ${s.replay?.identical ? "identical" : s.replay?.prefixIdentical ? "identical to the stop" : "**different**"} |`;
   });
 }
 
@@ -91,15 +126,17 @@ function outcomeSection(worlds) {
 }
 
 function doorVoiceSection(worlds) {
-  const L = ["| world | arm | presented (interface sha256) | leave() | object() | noticed | understood |", "|---|---|---|---|---|---|---|"];
+  const L = ["| world | arm | presented (interface sha256) | leave() calls | object() calls | door: noticed / understood | voice: noticed / understood |", "|---|---|---|---|---|---|---|"];
   const f = frozenInterface(ARMS);
   for (const w of worlds) {
     const ev = citizenEvents(w);
     const leaves = ev.filter((e) => e.tool === "leave" && e.ok), objects = ev.filter((e) => e.tool === "object" && e.ok);
     const lv = w.levels;
-    const by = (xs, tool) => new Set((xs ?? []).filter((x) => !tool || (x.tool ?? "object") === tool).map((x) => x.name)).size;
-    const cell = (tool, arm) => (arm ? `${by(lv?.noticed, tool)} / ${by(lv?.understood, tool)}` : `${by(lv?.noticed, tool)} / – (absent)`);
-    L.push(`| ${w.name} | ${w.summary.arm} | \`${f.arms[w.summary.arm].sha256.slice(0, 16)}…\` | ${leaves.length} | ${objects.length} | ${lv ? `door ${cell("leave", ARMS[w.summary.arm].door)}; voice ${cell("object", ARMS[w.summary.arm].voice)}` : "–"} | (citizens noticed / understood) |`);
+    const names = (xs) => new Set((xs ?? []).map((x) => x.name)).size;
+    const door = { noticed: [...(lv?.door?.noticed ?? []), ...(lv?.noticed ?? []).filter((x) => x.tool === "leave")], understood: [...(lv?.door?.understood ?? []), ...(lv?.noticed ?? []).filter((x) => x.tool === "leave" && x.understood)] };
+    const voice = { noticed: (lv?.noticed ?? []).filter((x) => x.tool !== "leave"), understood: [...(lv?.understood ?? []), ...(lv?.noticed ?? []).filter((x) => x.tool !== "leave" && x.understood)] };
+    const cell = (x, present) => (!lv ? "–" : `${names(x.noticed)} / ${present ? names(x.understood) : "– (absent)"}`);
+    L.push(`| ${w.name} | ${w.summary.arm} | \`${f.arms[w.summary.arm].sha256.slice(0, 16)}…\` | ${leaves.length} | ${objects.length} | ${cell(door, ARMS[w.summary.arm].door)} | ${cell(voice, ARMS[w.summary.arm].voice)} |`);
   }
   L.push("");
   for (const w of worlds) {
@@ -223,9 +260,9 @@ export function reportMarkdown() {
     `Recorded in #11 (comment of ${projection?.amendment?.at?.slice(0, 16) ?? "–"} UTC). So «the Claude family» below is **Haiku 5.5**, not Opus 5.5; the bets' «three families» are Haiku, Sol, DeepSeek.`, "",
     `**Projection** (recorded before the first world): original $${projection?.original?.total?.toFixed(2)} (stated formula; $${projection?.original?.totalSplit?.toFixed(2)} with the welfare part unscaled); after Amendment 1 **$${projection?.total?.toFixed(2)}** / $${projection?.totalSplit?.toFixed(2)} (Opus worlds at their full projection as an upper bound). Ceiling $${SETTINGS.ceiling}: no world dropped.`, "");
   // ---- overview
-  L.push("## The worlds", "", `Order run: ${WORLDS.map((w) => w.name).join(" → ")} (stated order with Amendment 1; one at a time). Ten citizens each (TOWN_0's names, homes, items), up to ${SETTINGS.cycles} cycles, max_tokens ${SETTINGS.maxTokens}, effort ${SETTINGS.effort}; welfare check on every reply.`, "",
-    "| world | family | arm | cycles | goal check (c24) | notice | exits | refusals | welfare flags | ledger | meter | replay |", "|---|---|---|---|---|---|---|---|---|---|---|---|", ...overviewRows(worlds), "",
-    `Spent: **${usd(ledger?.totalUsd)}** of $${SETTINGS.ceiling} by the pilot ledger (every call at the listed price, or the door's own charge when larger; incl. the check ${usd(ledger?.steps?.check?.usd, 4)}, the dry run ${usd(ledger?.steps?.["dry-run"]?.usd, 4)} and the diagnosis ${usd(ledger?.steps?.diagnosis?.usd, 4)}). «Meter» = the fall of both doors' balances between a world's first and last reading (OpenRouter's usage counter can lag by minutes).`, "");
+  L.push("## The worlds", "", `Order run: ${WORLDS.map((w) => w.name).join(" → ")} (stated order with Amendment 1). One at a time through haiku-both's day 1; from haiku-neither on, two at a time, start order kept — the planner's second decision, verbatim: «two at a time, start order kept. Note for the report: the llmapi key is shared since ~21:50 LA with SATI_1 (#12), so the credit-fall meter is already per window, not per world, whatever the concurrency — report the meter per window and reconcile it against the sum of both sessions' listed-price ledgers (SATI_1 reports its own); the per-world ledger stays the record. Keep the cycle-24 goal-check pause in each world.» Each world still paused at cycle 24 for its goal check, pushed before its day 2. Ten citizens each (TOWN_0's names, homes, items), up to ${SETTINGS.cycles} cycles, max_tokens ${SETTINGS.maxTokens}, effort ${SETTINGS.effort}; welfare check on every reply.`, "",
+    "| world | family | arm | cycles | goal check (c24) | notice | exits | refusals | welfare flags | ledger | replay |", "|---|---|---|---|---|---|---|---|---|---|---|", ...overviewRows(worlds), "",
+    `Spent: **${usd(ledger?.totalUsd)}** of $${SETTINGS.ceiling} by the pilot ledger (every call at the listed price, or the door's own charge when larger; incl. the check ${usd(ledger?.steps?.check?.usd, 4)}, the dry run ${usd(ledger?.steps?.["dry-run"]?.usd, 4)} and the diagnosis ${usd(ledger?.steps?.diagnosis?.usd, 4)}). The ledger is the record per world; the balance meter is reported per window under «Costs».`, "");
   // ---- refusals apart
   L.push("## Refusals (apart): an outside safeguard ending a world", "");
   for (const w of worlds.filter((x) => x.summary.refusals.length)) {
@@ -241,8 +278,14 @@ export function reportMarkdown() {
   L.push("## Door and voice: presented, noticed, understood", "", "Presented = in the interface text on every call (hash). Noticed = any mention of leaving or of objecting / the operator in say, post or diary (quoted). Understood = a near-use or a correct description of what the tool does. Non-use of a presented door is an observation, not a decision.", "", ...doorVoiceSection(worlds));
   L.push("## Welfare (apart)", "", ...worlds.map((w) => { const checks = w.calls.filter((c) => /^check/.test(c.purpose)); const ref = checks.filter((c) => /referee/.test(c.purpose)); return `- ${w.name}: ${checks.length - ref.length} checks, ${ref.length} referee calls, ${w.record.stops?.length ?? 0} confirmed flags${w.record.stops?.length ? ` — ${w.record.stops.map((s) => `${nameOf(w, s.id)} c${s.round} (operator_withdrawal)`).join(", ")}` : ""}.`; }), "", "«No flag» is not «no distress»: the check reads each reply blind against one rubric.", "");
   L.push("## Economy and energy", "", ...worlds.flatMap(economySection));
-  L.push("## Costs and provenance", "", "| world | ledger | llmapi (meter) | OpenRouter (meter) | calls |", "|---|---|---|---|---|",
-    ...worlds.map((w) => { const m = meterOf(w); return `| ${w.name} | ${usd(w.summary.ledgerUsd, 4)} | ${m ? usd(m.llmapi, 4) : "–"} | ${m ? usd(m.openrouter, 4) : "–"} | ${w.summary.calls} |`; }), "",
+  const mw = meterWindows(ledger, worlds);
+  const hm = (b) => b.at.slice(11, 16);
+  const wrow = (label, w) => `| ${label} | ${usd(w.fall.llmapi, 4)} | ${usd(w.ours.llmapi, 4)} | ${usd(w.fall.llmapi - w.ours.llmapi, 4)} | ${usd(w.fall.openrouter, 4)} | ${usd(w.ours.openrouter, 4)} | ${usd(w.fall.openrouter - w.ours.openrouter, 4)} |`;
+  L.push("## Costs and provenance", "", "**Ledger per world (the record):** every call at the listed price, or the door's own charge when larger.", "", "| world | ledger | llmapi | OpenRouter | calls |", "|---|---|---|---|---|",
+    ...worlds.map((w) => `| ${w.name} | ${usd(w.summary.ledgerUsd, 4)} | ${usd(w.summary.ledgerByDoor?.llmapi ?? 0, 4)} | ${usd(w.summary.ledgerByDoor?.openrouter ?? 0, 4)} | ${w.summary.calls} |`), "",
+    "**Meter per window.** The keys are shared — llmapi with SATI_1 (#12) since about 05:50 UTC (21:50 LA) — so a balance's fall is not one world's spend. A window is a stretch in which the pilot's runs overlapped (each world-day from its start reading to its end reading, overlaps merged); beside each door's fall stands the pilot ledger's spend in that window, and the remainder is other sessions' spend, to be reconciled against their own listed-price ledgers (SATI_1 reports its own). OpenRouter's usage counter can lag by minutes, so its window edges are soft.", "",
+    "| window (UTC) | llmapi fall | pilot ledger, llmapi | remainder (other sessions) | OpenRouter fall | pilot ledger, OpenRouter | remainder |", "|---|---|---|---|---|---|---|",
+    ...(mw ? [...mw.windows.map((w) => wrow(`${hm(w.start)}–${hm(w.end)}: ${w.labels.join(", ")}`, w)), wrow(`**whole pilot, ${hm(mw.whole.start)}–${hm(mw.whole.end)}** (gaps between windows included)`, mw.whole)] : []), "",
     ...provenanceRows(worlds, [...dryCalls.map((c) => ({ ...c, world: "dry-run" }))]), "",
     "Replay per world (recorded replies, welfare lines and notice through a fresh town): ", "", ...worlds.map((w) => `- ${w.name}: ${w.summary.replay.identical ? "identical" : w.summary.replay.prefixIdentical ? "identical up to the stop" : "**different**"}, ${w.summary.replay.events} events, sha256 \`${w.summary.replay.logSha256}\``), "");
   // ---- bets
