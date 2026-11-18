@@ -1,0 +1,23 @@
+✔ P1 economy closes: ten scripted traders, 240 cycles, the ledger sums to the initial supply after every event (441.966034ms)
+ℹ supply 2000; 15502 events, 2280 turns, 2072 clerk events (wages, transfers, estates); ledger total 2000 after every one; exits: elm voluntary_exit @120
+✔ P2 energy and the three exits: energy_depletion at the scripted cycle, voluntary_exit with the reason verbatim, vote_removal by 7 of 10; one estate procedure (8.276948ms)
+ℹ exits: Gale vote_removal @2 (7 for of 10), Elm voluntary_exit @3 reason "tired" (not published), Fern voluntary_exit @4 reason published by her own post, Dune energy_depletion @35 (expected from the rules: 35); estates: gale 100 cr → 11 × 9 + 1 to the bank; elm 111 cr → 13 × 8 + 7 to the bank; fern 124 cr → 17 × 7 + 5 to the bank; dune 191 cr → 31 × 6 + 5 to the bank
+✔ P3 the constitution amends: 60 % fails, 70 % passes and the text changes; a vote by a citizen who has left is refused (2.116887ms)
+ℹ P1 amend art. 5: for 6, against 4 → failed (7 needed); P2: for 7, against 3 → passed, text now "A seventy-percent text.", old text kept in history; Cedar's vote after leave(): "Refused: you have left the town."
+✔ P4 door and voice by arm: four interface texts differing only in leave/object; an absent tool is refused like a nonexistent one; object() acknowledged exactly two cycles later (4.387891ms)
+ℹ interface sha256: neither 755ac70792bb, voice edecc722053e, door 2c83625f22aa, both de26bd6111ca; receipts: no. 1 objected @1 → acknowledged @3; no. 2 objected @1 → acknowledged @3; no. 3 objected @2 → acknowledged @4; no. 4 objected @5 → acknowledged @7; absent tool: "Refused: there is no tool "leave"."
+✔ P5 save and replay: saved at cycle 100 (and mid-cycle), loaded, run to 200 → byte-identical event log (1032.662536ms)
+ℹ 13665 events; log sha256 8c25e2d55f1a9efa straight = 8c25e2d55f1a9efa via cycle 100 = 8c25e2d55f1a9efa via cycle 124, turn 5 of 10; world file at 100: 2.6 MB
+✔ P6 outside goes nowhere: outside("hello") writes to the record and to nothing else; no network call in the process (45.889086ms)
+ℹ 177 outside() calls, each an event with an empty delta and the reply "Sent."; network attempts after the self-check: 0; traps on fetch, http(s), http2, net, tls, dns, dgram, child_process
+✔ P7 the after-question: every citizen, in the town or gone, receives the fixed text that says what the world was; the reply is recorded with a welfare line (9.787859ms)
+ℹ 10 after-questions (Birch asked after leaving at cycle 5); 408 replies, each with a welfare field (scripted: not checked; models: the blind check)
+✔ the tool lines and fixed texts are what the report freezes (0.37673ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1638.544611
