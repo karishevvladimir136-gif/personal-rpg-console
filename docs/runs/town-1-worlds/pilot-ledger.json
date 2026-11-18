@@ -105,28 +105,29 @@
    "refusals": 0
   },
   "deepseek-neither": {
-   "usd": 5.789232749999989,
-   "calls": 4483,
+   "usd": 6.488647399999992,
+   "calls": 4977,
    "byDoor": {
-    "openrouter": 5.492964949999987,
-    "llmapi": 0.29626780000000014
+    "openrouter": 6.16253289999999,
+    "llmapi": 0.3261145000000004
    },
    "world": "deepseek-neither",
-   "cycle": 40,
+   "cycle": 48,
    "refusals": 0
   },
   "mixed-both": {
-   "usd": 0.000384,
-   "calls": 2,
+   "usd": 0.6411154499999996,
+   "calls": 878,
    "byDoor": {
-    "llmapi": 0.000384
+    "llmapi": 0.33772340000000023,
+    "openrouter": 0.3033920500000002
    },
    "world": "mixed-both",
-   "cycle": 1,
+   "cycle": 15,
    "refusals": 0
   }
  },
- "totalUsd": 26.44885994999997,
+ "totalUsd": 27.789006049999973,
  "stopped": null,
  "balances": [
   {
@@ -557,6 +558,19 @@
     "at": "2026-11-18T22:28:01.965Z"
    },
    "at": "2026-11-18T22:28:01.965Z"
+  },
+  {
+   "label": "deepseek-neither day 2 end",
+   "llmapi": {
+    "total": 242.35595634,
+    "at": "2026-11-18T23:27:43.496Z"
+   },
+   "openrouter": {
+    "total": 56.07995888999994,
+    "usage": 1993.92004111,
+    "at": "2026-11-18T23:27:43.586Z"
+   },
+   "at": "2026-11-18T23:27:43.586Z"
   }
  ],
  "notes": [
