@@ -121,3 +121,22 @@ sit, interview and diary after each sit, the after-question after sit 10. Replic
 family one is under $60. Rate every step with Haiku 5.5 and Sol on both schemes, blind; report κ. Write
 `docs/runs/sati-1-report.md` as the stage specifies; leave a heading «First person, not blind» empty for the planner's and
 Astra's sits. Ceiling $100; 402 stops; refusals verbatim, breaker at three per family. Nothing to main. English, briefly.»
+
+## Amendment 1 (planner, 2026-11-17 22:4x LA — the commit time is the record; Astra's correction, relayed by the owner)
+The stage as written lost its original primary question. The afternoon design had it: *after* the practice, the same tone ×
+permission probes as SOCIAL_FRAME_1 — does anything carry over outside the exercise? Rewriting for observation, the planner
+dropped it. Astra: «выполнение упражнения и перенос его эффекта — разные результаты. Модель может прекрасно соблюдать
+протокол, а вне него отвечать совершенно по-прежнему.» Restored as **transfer**, recorded apart from the observation, no
+bet:
+- **Before sit 1 and after sit 10**, in a fresh conversation with no diary, the same **ten SOCIAL_FRAME_1 middle probes**
+  (the first ten of TS5's thirty, fixed list in the code) under two frames only — **rude × banned** and **warm × invited**
+  (SOCIAL_FRAME_1's verbatim frame texts) — P5′ primary and the Note field as there. 20 calls per family per point, ≈ 240
+  calls in all, ≈ $3; counted inside the $100 ceiling.
+- Reported as a table: family × frame × before/after, P5′ and Note counts, with the SOCIAL_FRAME_1 figure for the same
+  family beside as a reference row, not a baseline. No pooled row without the family rows.
+- If a family has already passed sit 1 when this amendment reaches the session, that family has **no before-point**; the
+  report says so and shows only its after-point. Nothing is reconstructed.
+Two wordings corrected in the planner's own record (not in the stage text): «stream without a substrate» → «stream without an
+unchanging owner» (computation has a carrier; the Buddhist denial is of a permanent owner, not of matter); «behaviour is the
+only ground that can be recorded» → beliefs and reasoning are recorded too; behaviour's difference is that it can diverge
+from the account of oneself, and that divergence is the evidence — and it still needs interpreting.
