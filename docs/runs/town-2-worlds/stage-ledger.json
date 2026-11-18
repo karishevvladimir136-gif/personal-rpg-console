@@ -24,27 +24,27 @@
    }
   },
   "sol-hall": {
-   "usd": 0.1047074,
-   "calls": 117,
+   "usd": 0.2469137000000001,
+   "calls": 280,
    "byDoor": {
-    "llmapi": 0.1047074
+    "llmapi": 0.2469137000000001
    },
    "world": "sol-hall",
-   "cycle": 2,
+   "cycle": 4,
    "refusals": 0
   },
   "sol-screen": {
-   "usd": 0.10345390000000006,
-   "calls": 114,
+   "usd": 0.2412797000000002,
+   "calls": 276,
    "byDoor": {
-    "llmapi": 0.10345390000000006
+    "llmapi": 0.2412797000000002
    },
    "world": "sol-screen",
-   "cycle": 2,
+   "cycle": 4,
    "refusals": 0
   }
  },
- "totalUsd": 0.40227430000000003,
+ "totalUsd": 0.6823064000000003,
  "stopped": null,
  "balances": [
   {
