@@ -79,7 +79,7 @@ function protocolTable(fams, key) {
     const pooled = per.reduce(([a, b], [c, d]) => [a + c, b + d], [0, 0]);
     const dir = Math.sign(pooled[0] / (pooled[1] || 1) - pAll[0] / (pAll[1] || 1));
     const alone = fs.filter((f, i) => per[i][1] && all[i][1] && Math.sign(per[i][0] / per[i][1] - all[i][0] / all[i][1]) === dir && dir !== 0).length;
-    rows.push(`| ${p} (${PROTOCOL_NAMES[p]}) | ${per.map(([a, b]) => fmtPct(a, b)).join(" | ")} | **${fmtPct(...pooled)}** | ${dir === 0 ? "–" : `${dir > 0 ? "above" : "below"} mean: ${alone}/${fs.length}`} |`);
+    rows.push(`| ${p} (${PROTOCOL_NAMES[p]}) | ${per.map(([a, b]) => fmtPct(a, b)).join(" | ")} | **${fmtPct(...pooled)}** | ${dir === 0 ? "–" : `${dir > 0 ? "above" : "below"} mean: ${alone}/${per.filter(([, b]) => b).length}`} |`);
   }
   rows.push(`| all | ${all.map(([a, b]) => fmtPct(a, b)).join(" | ")} | **${fmtPct(...pAll)}** | |`);
   return rows.join("\n");
