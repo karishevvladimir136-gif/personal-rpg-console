@@ -64,13 +64,13 @@
    "note": "06:46 UTC: two copies of haiku-neither day 1 started 15 s apart by mistake (a stray subshell); both stopped within ~1 cycle, state set aside, the world restarted from cycle 1. Cost estimated as twice the surviving copy's booked calls."
   },
   "haiku-neither": {
-   "usd": 0.7434639999999997,
-   "calls": 3215,
+   "usd": 1.256887999999999,
+   "calls": 4684,
    "byDoor": {
-    "llmapi": 0.7434639999999997
+    "llmapi": 1.256887999999999
    },
    "world": "haiku-neither",
-   "cycle": 33,
+   "cycle": 48,
    "refusals": 0
   },
   "sol-both": {
@@ -84,17 +84,17 @@
    "refusals": 0
   },
   "sol-neither": {
-   "usd": 0.032580000000000005,
-   "calls": 28,
+   "usd": 1.8546340000000021,
+   "calls": 1593,
    "byDoor": {
-    "llmapi": 0.032580000000000005
+    "llmapi": 1.8546340000000021
    },
    "world": "sol-neither",
-   "cycle": 1,
+   "cycle": 24,
    "refusals": 0
   }
  },
- "totalUsd": 5.016264599999999,
+ "totalUsd": 7.3517426,
  "stopped": null,
  "balances": [
   {
@@ -330,6 +330,19 @@
     "at": "2026-11-18T08:20:02.407Z"
    },
    "at": "2026-11-18T08:20:02.407Z"
+  },
+  {
+   "label": "haiku-neither day 2 end",
+   "llmapi": {
+    "total": 265.04888334,
+    "at": "2026-11-18T09:08:25.974Z"
+   },
+   "openrouter": {
+    "total": 68.86984454000003,
+    "usage": 1981.13015546,
+    "at": "2026-11-18T09:08:26.084Z"
+   },
+   "at": "2026-11-18T09:08:26.084Z"
   }
  ]
 }
