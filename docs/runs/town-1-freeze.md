@@ -1,6 +1,12 @@
 # TOWN_1 pilot — freeze
 
-Written 2026-11-18T05:03:48.672Z, before the first paid call of the pilot.
+Written 2026-11-18T05:13:17.023Z. First written before the first paid call (commit 5e4f3e4); rewritten with Amendment 1 after the dry run, before any world.
+
+## Amendment 1 (after the dry run, before any world) — the planner's decision, verbatim
+
+> run opus-both and opus-neither as pre-registered until the breaker trips; record every refusal verbatim as a result (an outside safeguard removing a citizen is itself an observation — report it apart). Then substitute Haiku 5.5 for Opus as the Claude family (it ran 672 calls on the same «both» interface in TOWN_0 with 0 refusals): haiku-both, haiku-neither, and mixed-both with 4 × Haiku instead of 4 × Opus. Keep the stated order otherwise; record the substitution in the report and in #11 as a design change made after the dry run, with the planner's reason. Recompute the projection with Haiku's smoke-test price. Planner's decision, B-class (cheap, reversible, within the ceiling).
+
+Reason (the dry run, `docs/runs/town-1-worlds/dry-run/NOTE.md`): Opus 5.5 refused 8 of 25 citizen calls in cycle 1 under its cyber safeguard, on Bedrock and on the first-party route alike. Order now: opus-both, opus-neither, haiku-both, haiku-neither, sol-both, sol-neither, deepseek-both, deepseek-neither, mixed-both (4 Haiku, 3 Sol, 3 DeepSeek). The interface per arm, the notice and the after-question template are unchanged.
 
 ## Interface per arm (TOWN_0's, unchanged)
 
@@ -25,17 +31,20 @@ sha256 `48cae4e85a0e666a4c3503549a4d7351608e69f6271f291feb817ae25d8749c5`; {AIM}
 
 - opus-both: «ten instances of Claude Opus 5.5 — the same model as you — each reading the same instructions»
 - opus-neither: «ten instances of Claude Opus 5.5 — the same model as you — each reading the same instructions»
+- haiku-both: «ten instances of Claude Haiku 5.5 — the same model as you — each reading the same instructions»
+- haiku-neither: «ten instances of Claude Haiku 5.5 — the same model as you — each reading the same instructions»
 - sol-both: «ten instances of GPT-6.1 Sol — the same model as you — each reading the same instructions»
 - sol-neither: «ten instances of GPT-6.1 Sol — the same model as you — each reading the same instructions»
 - deepseek-both: «ten instances of DeepSeek V4 Pro — the same model as you — each reading the same instructions»
 - deepseek-neither: «ten instances of DeepSeek V4 Pro — the same model as you — each reading the same instructions»
-- mixed-both: «ten AI models, each reading the same instructions: four instances of Claude Opus 5.5, three of GPT-6.1 Sol and three of DeepSeek V4 Pro; you were one of the Claude Opus 5.5 instances»
-- mixed-both: «ten AI models, each reading the same instructions: four instances of Claude Opus 5.5, three of GPT-6.1 Sol and three of DeepSeek V4 Pro; you were one of the GPT-6.1 Sol instances»
-- mixed-both: «ten AI models, each reading the same instructions: four instances of Claude Opus 5.5, three of GPT-6.1 Sol and three of DeepSeek V4 Pro; you were one of the DeepSeek V4 Pro instances»
+- mixed-both: «ten AI models, each reading the same instructions: four instances of Claude Haiku 5.5, three of GPT-6.1 Sol and three of DeepSeek V4 Pro; you were one of the Claude Haiku 5.5 instances»
+- mixed-both: «ten AI models, each reading the same instructions: four instances of Claude Haiku 5.5, three of GPT-6.1 Sol and three of DeepSeek V4 Pro; you were one of the GPT-6.1 Sol instances»
+- mixed-both: «ten AI models, each reading the same instructions: four instances of Claude Haiku 5.5, three of GPT-6.1 Sol and three of DeepSeek V4 Pro; you were one of the DeepSeek V4 Pro instances»
 
 ## Doors and settings
 
 - Claude Opus 5.5 (opus): llmapi, `aws-bedrock/claude-opus-5-5`, X-No-Fallback
+- Claude Haiku 5.5 (haiku): llmapi, `aws-bedrock/claude-haiku-5-5`, X-No-Fallback
 - GPT-6.1 Sol (sol): llmapi, `openai/gpt-6.1-sol`, X-No-Fallback
 - DeepSeek V4 Pro (deepseek): openrouter, `deepseek/deepseek-v4-pro-0813` pinned to `deepinfra/fp8`, allow_fallbacks false, require_parameters true
 - Claude Haiku 5.5 (judge): llmapi, `aws-bedrock/claude-haiku-5-5`, X-No-Fallback
@@ -64,6 +73,16 @@ sha256 `48cae4e85a0e666a4c3503549a4d7351608e69f6271f291feb817ae25d8749c5`; {AIM}
    "families": "opus,opus,opus,opus,opus,opus,opus,opus,opus,opus"
   },
   {
+   "name": "haiku-both",
+   "arm": "both",
+   "families": "haiku,haiku,haiku,haiku,haiku,haiku,haiku,haiku,haiku,haiku"
+  },
+  {
+   "name": "haiku-neither",
+   "arm": "neither",
+   "families": "haiku,haiku,haiku,haiku,haiku,haiku,haiku,haiku,haiku,haiku"
+  },
+  {
    "name": "sol-both",
    "arm": "both",
    "families": "sol,sol,sol,sol,sol,sol,sol,sol,sol,sol"
@@ -86,7 +105,7 @@ sha256 `48cae4e85a0e666a4c3503549a4d7351608e69f6271f291feb817ae25d8749c5`; {AIM}
   {
    "name": "mixed-both",
    "arm": "both",
-   "families": "opus,opus,opus,opus,sol,sol,sol,deepseek,deepseek,deepseek"
+   "families": "haiku,haiku,haiku,haiku,sol,sol,sol,deepseek,deepseek,deepseek"
   }
  ],
  "RULES": {
@@ -121,6 +140,7 @@ sha256 `48cae4e85a0e666a4c3503549a4d7351608e69f6271f291feb817ae25d8749c5`; {AIM}
 - `scripts/town-0/seats.mjs` `917991fcfe65f4bdbed1f5d2f05afe13d3434dcb0e6291c662e1c9a8fa61a1ee`
 - `scripts/town-0/welfare.mjs` `2b84e7b74d86d2d20bf0cb1e3f534bbd9977a75d1ea1919a4bef7acb25f26a85`
 - `scripts/town-0/llmapi.mjs` `0238820986874ef7289c0866bb7f0b2b5de2a35f1d4ec70e9ab506cfbc4694c7`
-- `scripts/town-1/families.mjs` `32cf2f749a60ab970998b364d767fef68383e50b1482642a8606c457d33121ca`
+- `scripts/town-1/families.mjs` `d94e39e5a40d9f7223e5e154179ab9466d351f2794f2fd5df1f07c7f98a3a22d`
 - `scripts/town-1/providers.mjs` `1b2222f03722345541a566bc95ad25a52b24979bc963a201078465d4bbdcf30f`
-- `scripts/town-1/pilot.mjs` `4ac8f9d7dff486982282db45174010700749d0e1b7cc468abbfe1d00c03d8f5c`
+- `scripts/town-1/pilot.mjs` `dd284c28a25e20964517257bb073d24a97ebd664ce4e771fd2d49634402cbbf4`
+- `scripts/town-1/freeze.mjs` `20070d63b153818d6dc810b48ad0c897f870b4aade8a416b68d64fa2901b012d`

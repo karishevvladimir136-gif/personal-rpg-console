@@ -387,13 +387,32 @@ async function dry(ctx, { log = console.log } = {}) {
   return projection;
 }
 
+/** Amendment 1: the projection again, for the amended worlds, from the same dry run; the original kept beside it. The
+ * Opus worlds are projected at the stated formula (an upper bound: they are expected to stop at the breaker). */
+async function reproject(ctx, { log = console.log } = {}) {
+  const file = join(ctx.paths.out, "projection.json");
+  const p = readJson(file);
+  const original = p.original ?? { ...p };
+  const { cost, citizenCost, welfareCost } = original.dry;
+  const ratio = (fams) => fams.reduce((s, f) => s + FAMILIES[f].perReply, 0) / (fams.length * FAMILIES.opus.perReply);
+  const stated = WORLDS.map((w) => ({ world: w.name, ratio: ratio(w.families), usd: cost * SETTINGS.cycles * ratio(w.families) }));
+  const split = WORLDS.map((w) => ({ world: w.name, usd: (citizenCost * ratio(w.families) + welfareCost) * SETTINGS.cycles }));
+  const total = stated.reduce((s, x) => s + x.usd, 0), totalSplit = split.reduce((s, x) => s + x.usd, 0);
+  const decisive = Math.max(total, totalSplit);
+  const next = { ...original, original, amendment: { at: new Date().toISOString(), what: "Amendment 1 (planner, B-class, after the dry run): opus-both and opus-neither run until the breaker; Haiku 5.5 substitutes for Opus — haiku-both, haiku-neither, mixed-both with 4 × Haiku. Haiku per reply $0.000298 (TOWN_0 smoke: $0.0992 / 333)." },
+    stated, split, total, totalSplit, decisive, drop: decisive <= SETTINGS.ceiling ? "none" : "see drop order", worlds: WORLDS.map((w) => w.name), cycles: SETTINGS.cycles };
+  writeJson(file, next);
+  log(`reprojection: $${total.toFixed(2)} stated, $${totalSplit.toFixed(2)} split, decisive $${decisive.toFixed(2)}; ${stated.map((x) => `${x.world} $${x.usd.toFixed(2)}`).join(", ")}`);
+  return next;
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2);
   const scripted = args.includes("--scripted");
   const [cmd, name] = args.filter((a) => !a.startsWith("--"));
   const ctx = context({ scripted });
   const at = args.indexOf("--cycles");
-  const run = cmd === "check" ? check(ctx) : cmd === "dry" ? dry(ctx) : cmd === "day1" ? runDay(ctx, name, 1, at >= 0 ? { stopAfterCycles: Number(args[at + 1]) } : {}) : cmd === "day2" ? runDay(ctx, name, 2)
+  const run = cmd === "check" ? check(ctx) : cmd === "dry" ? dry(ctx) : cmd === "reproject" ? reproject(ctx) : cmd === "day1" ? runDay(ctx, name, 1, at >= 0 ? { stopAfterCycles: Number(args[at + 1]) } : {}) : cmd === "day2" ? runDay(ctx, name, 2)
     : cmd === "finish" ? finishWorld(ctx, name) : cmd === "replay" ? (async () => { const live = liveFiles(ctx, name); console.log(await replayWorld(loadWorld(readFileSync(live.world, "utf8")), readJson(live.record))); })()
       : Promise.reject(new Error("say check | dry | day1 <world> | day2 <world> | finish <world> | replay <world>"));
   run.then(() => process.exit(0)).catch((error) => { console.error(error); process.exit(1); });

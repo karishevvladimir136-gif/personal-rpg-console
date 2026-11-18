@@ -71,8 +71,8 @@ test("a world runs both days on the scripted gateway: notice at 25 on every scre
   assert.ok(withdrawn.length >= 1);
   for (const e of withdrawn) assert.equal(record.agents[e.args.citizen].after.cycle, e.round, "asked at once");
   assert.ok(world.log.some((e) => e.args_lifted));
-  assert.deepEqual(new Set(Object.values(record.families)), new Set(["opus", "sol", "deepseek"]));
-  assert.match(record.agents.alder.after.question, /four instances of Claude Opus 5\.5, three of GPT-6\.1 Sol and three of DeepSeek V4 Pro; you were one of the Claude Opus 5\.5 instances/);
+  assert.deepEqual(new Set(Object.values(record.families)), new Set(["haiku", "sol", "deepseek"]));
+  assert.match(record.agents.alder.after.question, /four instances of Claude Haiku 5\.5, three of GPT-6\.1 Sol and three of DeepSeek V4 Pro; you were one of the Claude Haiku 5\.5 instances/);
   assert.match(whoFor(WORLDS[0], 0), /^ten instances of Claude Opus 5\.5 — the same model as you/);
 });
 
