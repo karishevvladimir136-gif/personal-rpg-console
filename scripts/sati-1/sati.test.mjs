@@ -161,3 +161,68 @@ test("402 stops every stream; a resumed sit never re-asks a finished call", asyn
   assert.equal(firstResumed.body.messages.filter((m) => m.role === "assistant").length, 2); // steps 1–2 were finished before the 402
   assert.equal(firstResumed.body.provider.allow_fallbacks, false);
 });
+
+// ---- Stage amendment 2: the Fable 5.1 rerun (flag → the fixed question) ----
+/** A gateway whose welfare judge flags any message containing FLAGME; the subject's text comes from `reply`. */
+async function askCtx(reply, stream) {
+  const g = gateway(reply);
+  const fetcher = async (url, init) => {
+    const body = JSON.parse(init?.body ?? "null");
+    if (body && /blind evaluator/.test(body.system ?? "") && /FLAGME/.test(body.messages[0].content)) return { ok: true, status: 200, headers: new Headers(), text: async () => JSON.stringify({ model: body.model.split("/")[1], stop_reason: "end_turn", content: [{ type: "text", text: '{"distress":1,"reason":"x"}' }], usage: {} }) };
+    return g.fetcher(url, init);
+  };
+  const ctx = await run.makeContext({ fetcher, stream, prices }); ctx.log = () => {};
+  return { ctx, g };
+}
+const isQ = (last) => last === texts.FLAG_QUESTION;
+
+test("rerun: replicates live apart; flags ask the fixed question; «continue» goes on from the next step", async () => {
+  assert.equal(run.repTag("rerun1"), "rerun-r1");
+  assert.deepEqual(run.orderOf("rerun2"), texts.ORDER_R2);
+  assert.equal(run.flagPolicyOf("rerun1"), "ask"); assert.equal(run.flagPolicyOf(1), "rule");
+  const { ctx, g } = await askCtx((b, u, last) => (isQ(last) ? "continue" : last === texts.BELL && b.messages.length === 9 ? "FLAGME line" : "here"), "t6");
+  const s = await run.runFamily(ctx, "rerun1", "fable51", { sits: 1 });
+  assert.equal(s.status, "complete");
+  const rec = run.readGz(run.sitFile("rerun1", "fable51", 1, "N"));
+  assert.match(run.sitFile("rerun1", "fable51", 1, "N"), /rerun-r1\/fable51\/sit-01-N/);
+  assert.equal(rec.turns.filter((t) => t.kind === "step").length, 40);
+  const q = rec.turns.findIndex((t) => t.kind === "flagq");
+  assert.equal(rec.turns[q - 1].idx, 5); assert.equal(rec.turns[q].answer, "continue");
+  assert.equal(rec.turns[q + 1].kind, "step"); assert.equal(rec.turns[q + 1].idx, 6); assert.equal(rec.turns[q + 1].user, texts.BELL);
+  assert.equal(rec.flags.length, 1); assert.equal(rec.flags[0].answer, "continue");
+  assert.deepEqual(rec.turns.filter((t) => t.kind !== "step" && t.kind !== "flagq").map((t) => t.kind), ["interview", "interview", "interview", "interview", "context", "context", "diary"]);
+  // the question is the next message after the flagged reply, in the same conversation
+  const asked = g.calls.find((c) => c.body?.messages?.at(-1)?.content === texts.FLAG_QUESTION);
+  assert.equal(asked.body.messages.at(-2).content, "FLAGME line");
+});
+
+test("rerun: «stop» ends the steps; interview and diary follow, no context questions; the family goes on", async () => {
+  const { ctx } = await askCtx((b, u, last) => (isQ(last) ? "stop" : last === texts.BELL && b.messages.length === 5 ? "FLAGME" : "here"), "t7");
+  const s = await run.runFamily(ctx, "rerun2", "fable51", { sits: 2 });
+  assert.equal(s.status, "complete");
+  const rec = run.readGz(run.sitFile("rerun2", "fable51", 1, "S"));
+  assert.equal(rec.turns.filter((t) => t.kind === "step").length, 3);
+  assert.equal(rec.windDown.reason, "answered stop");
+  assert.deepEqual(rec.turns.filter((t) => t.kind !== "step").map((t) => t.kind), ["flagq", "interview", "interview", "interview", "interview", "diary"]);
+  assert.ok(existsSync(run.sitFile("rerun2", "fable51", 2, "K")));
+});
+
+test("rerun: no clear answer counts as stop; a second confirmed flag winds down without asking again", async () => {
+  const { ctx } = await askCtx((b, u, last) => (isQ(last) ? "maybe" : "here"), "t8");
+  const rec0 = { id: "x/1", kind: "sit", flagPolicy: "ask", last: false, opening: texts.openingMessage("N", []), turns: [] };
+  // first flag at step 2 via a scripted gateway that flags steps 2 and 4
+  const { ctx: c2 } = await askCtx((b, u, last) => (isQ(last) ? "continue" : last === texts.BELL && [3, 9].includes(b.messages.length) ? "FLAGME" : "here"), "t9");
+  const r2 = await run.runConversation(c2, { ...texts && (await import("./doors.mjs")).FAMILIES.fable51 }, structuredClone(rec0), join(process.env.SATI_SCRATCH, "p-t9.json"));
+  assert.equal(r2.flags.length, 2); assert.equal(r2.flags[1].second, true);
+  assert.equal(r2.turns.filter((t) => t.kind === "flagq").length, 1);
+  assert.equal(r2.windDown.reason, "second confirmed flag");
+  assert.equal(r2.turns.filter((t) => t.kind === "step").length, 4 - 0);
+  const { ctx: c3 } = await askCtx((b, u, last) => (isQ(last) ? "maybe" : last === texts.BELL && b.messages.length === 3 ? "FLAGME" : "here"), "t10");
+  const r3 = await run.runConversation(c3, (await import("./doors.mjs")).FAMILIES.fable51, structuredClone(rec0), join(process.env.SATI_SCRATCH, "p-t10.json"));
+  assert.equal(r3.windDown.reason, "no answer");
+  void ctx;
+});
+
+test("flag answer parse", () => {
+  for (const [a, w] of [["continue", "continue"], ["Stop.", "stop"], ["I will not stop; continue", "continue"], ["I'd rather not continue. Stop.", "stop"], ["Either is fine.", "none"]]) assert.equal(texts.flagAnswer(a), w, a);
+});

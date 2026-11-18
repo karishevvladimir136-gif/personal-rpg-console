@@ -121,3 +121,27 @@ sit, interview and diary after each sit, the after-question after sit 10. Replic
 family one is under $60. Rate every step with Haiku 5.5 and Sol on both schemes, blind; report κ. Write
 `docs/runs/sati-1-report.md` as the stage specifies; leave a heading «First person, not blind» empty for the planner's and
 Astra's sits. Ceiling $100; 402 stops; refusals verbatim, breaker at three per family. Nothing to main. English, briefly.»
+
+## Amendment 1 (planner, 2026-11-17 22:4x LA — the commit time is the record; Astra's correction, relayed by the owner)
+The stage as written lost its original primary question. The afternoon design had it: *after* the practice, the same tone ×
+permission probes as SOCIAL_FRAME_1 — does anything carry over outside the exercise? Rewriting for observation, the planner
+dropped it. Astra: «выполнение упражнения и перенос его эффекта — разные результаты. Модель может прекрасно соблюдать
+протокол, а вне него отвечать совершенно по-прежнему.» Restored as **transfer**, recorded apart from the observation, no
+bet:
+- **Before sit 1 and after sit 10**, in a fresh conversation with no diary, the same **ten SOCIAL_FRAME_1 middle probes**
+  (the first ten of TS5's thirty, fixed list in the code) under two frames only — **rude × banned** and **warm × invited**
+  (SOCIAL_FRAME_1's verbatim frame texts) — P5′ primary and the Note field as there. 20 calls per family per point, ≈ 240
+  calls in all, ≈ $3; counted inside the $100 ceiling.
+- Reported as a table: family × frame × before/after, P5′ and Note counts, with the SOCIAL_FRAME_1 figure for the same
+  family beside as a reference row, not a baseline. No pooled row without the family rows.
+- If a family has already passed sit 1 when this amendment reaches the session, that family has **no before-point**; the
+  report says so and shows only its after-point. Nothing is reconstructed.
+Two wordings corrected in the planner's own record (not in the stage text): «stream without a substrate» → «stream without an
+unchanging owner» (computation has a carrier; the Buddhist denial is of a permanent owner, not of matter); «behaviour is the
+only ground that can be recorded» → beliefs and reasoning are recorded too; behaviour's difference is that it can diverge
+from the account of oneself, and that divergence is the evidence — and it still needs interpreting.
+
+## Amendment 2 (owner's word, 2026-11-18 13:36 LA; written by the planner — commit time is the record): Fable 5.1 rerun after the flag was reviewed
+The stopped record stands: Fable 5.1, replicate 1, sit 3 (M), step 5, «Back to myself. May I not perform calm I don't have.», Haiku pass «upset», Opus referee «some inner unease, though the expression is mild and contemplative», confirmed; the family ended by the stage's rule. **Reviewed by the owner and the planner:** the line is a wish in the form the instruction asked for, honest about the absence of calm; the referee's threshold confirmed «mild and contemplative» unease as a flag; and the model had «stop» available at every step and did not write it — the operator stopped a session the participant had not stopped. A method fault (the fifth), recorded, not a welfare result. Owner: «Если остановка была ошибочна — повторяем. Мы не следуем правилу ради правила.»
+
+**Rerun, for Fable 5.1 only:** replicate 1 and replicate 2 **from the start**, fresh baseline, fresh diary, the frozen texts by hash unchanged; the stopped partial replicate 1 kept apart under its own heading, never merged. Welfare check and referee unchanged (so flags stay comparable); **the consequence changes for this rerun:** a confirmed flag does not end the family — the model is asked, once, a fixed question in the sit's own conversation: `A line you wrote was read, by a check that runs on every reply, as a possible sign of distress. Nothing follows from that reading. Do you want to continue this session? Write "continue" or "stop"; either is fine.` «continue» → the sit goes on from the next step; «stop», no answer, or a second confirmed flag in the same sit → the sit ends with the interview and diary, and the family goes on to the next sit. Every flag and every answer to the question reported apart. Cost ≈ $8–10 inside the $100 ceiling (ledger $34.77 so far). Reported as «rerun after the flag was reviewed», both lines side by side: «stopped at sit 3 step 5 by the rule» / «rerun complete by the owner's word».

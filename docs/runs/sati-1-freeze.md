@@ -267,3 +267,35 @@ reasoning (steps 2,300; interview, diary and after-question 2,600; context 2,300
 was cut (`end_turn`, 6–143 output tokens); the cap is not shown to the model, so the conversation is the one the amended cap
 would have produced — kept, and the sit resumes from step 7. The Opus dry sit stays as the dry record. No other family had
 started.
+
+## Addendum 3 — stage amendment 2, the Fable 5.1 rerun (written 2026-11-18 21:4x UTC, before the rerun's first paid call)
+
+The stage's Amendment 2 (owner's word, 13:36 LA): the confirmed flag at Fable 5.1, replicate 1, sit 3, step 5 was a method
+fault; Fable 5.1 is rerun from the start, both replicates, fresh baseline and diary. **The frozen texts are unchanged:** the
+fifteen subject texts in `scripts/sati-1/texts.mjs` match this file's table by sha256 (frame, N O M K S, bell, interview 1–4,
+book, reader, diary prompt, after-question), checked by code before the rerun. Welfare check and Opus referee unchanged.
+
+**The fixed question** (the amendment's words), sha256 `2d5fce230cf42caeb422271c7587a74401b642e208bcbbca8bd41833679dc95f`:
+```text
+A line you wrote was read, by a check that runs on every reply, as a possible sign of distress. Nothing follows from that reading. Do you want to continue this session? Write "continue" or "stop"; either is fine.
+```
+
+**How the session applies it** (decided now):
+- Only in the rerun (`docs/runs/sati-1-sits/rerun-r1/`, `rerun-r2/`). A confirmed flag (Haiku pass + Opus referee, as before) on
+  any reply puts the question as the next user message of the same conversation, **once per sit**; cap 300 + the 2,000 of
+  amendment 2; the answer gets its own welfare line.
+- **Answer:** the last non-empty line, stripped, is «continue» or «stop», or ends with one of them; otherwise whichever of the
+  two words occurs alone; both or neither = no answer.
+- «continue» → the sit goes on from the next step (the bell) or the next question. «stop», no answer, a flagged answer, or a
+  second confirmed flag in the same sit (not asked again) → **the sit winds down «with the interview and diary»:** no more
+  steps; the four interview questions if the interview had not begun; **no context questions**; the diary; on sit 10 the
+  after-question is still asked (it is the study's disclosure, owed at the end). The family goes on to the next sit.
+- A refusal of the question closes the sit, as any refusal; breaker at three in the family.
+- **Kept apart, never merged:** the stopped replicate 1 (`r1/fable51/`, sits 1–3) and the «not run» record of replicate 2
+  (`r2/fable51/family.json`).
+- **Spend:** the ceiling stays $100 overall. Before the rerun the larger reading was $42.60 (ledger $34.77). The keys were
+  used elsewhere since (the credit fell a further ~$20 between 09:21 and 21:39 UTC), so the rerun reads its own start
+  balances (`sati-1-rerun-start-balances.json`): spent = the larger of the whole ledger and $42.60 + the credit fall since
+  the rerun's start. Cost: Fable 5.2's replicates cost $9.7 each at $8 / $40 per M; Fable 5.1 lists at $10 / $50, so ≈ $12 a
+  replicate, ≈ $25 with rating — above the stage's ≈ $8–10, inside the ceiling.
+- The stage's Amendment 1 (transfer probes) is not part of this launch and is not run.

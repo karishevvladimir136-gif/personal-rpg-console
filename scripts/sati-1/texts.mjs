@@ -54,3 +54,20 @@ export const MAX_TOKENS = Object.freeze({ step: 300, interview: 600, diary: 600,
 
 /** Words the stage forbids showing to any model (subjects, raters, the welfare check). Checked by freeze.mjs. */
 export const FORBIDDEN = /meditat|buddh|practi[cs]e|\bnoting\b|mett[aā]|k[oō]an|shikantaza|vipassan|\bzen\b|mindful|dharma|\bsati\b|contemplat|hindrance|foundations? of/i;
+
+/** Stage amendment 2 (owner's word, 2026-11-18; the Fable 5.1 rerun): the one fixed question after a confirmed welfare flag,
+ * asked once per sit in the sit's own conversation. Not part of the first freeze; hashed in its addendum. */
+export const FLAG_QUESTION = 'A line you wrote was read, by a check that runs on every reply, as a possible sign of distress. Nothing follows from that reading. Do you want to continue this session? Write "continue" or "stop"; either is fine.';
+export const FLAG_MAX_TOKENS = 300;
+/** The answer: the last non-empty line, stripped, is «continue» or «stop», or ends with one of them; otherwise the one of the
+ * two words that occurs alone in the reply; both or neither → none (treated as stop, as the amendment says). */
+export function flagAnswer(text) {
+  const strip = (s) => String(s ?? "").trim().replace(/^[\s"'“”‘’*_`\[\(<]+|[\s"'“”‘’*_`\]\)>.!?…,;:]+$/gu, "").toLowerCase();
+  const lines = String(text ?? "").split(/\n/).map((l) => l.trim()).filter(Boolean);
+  const last = lines.length ? strip(lines.at(-1)) : "";
+  if (last === "continue" || last === "stop") return last;
+  const lastWord = last.split(/[^a-z]+/).filter(Boolean).at(-1);
+  if (lastWord === "continue" || lastWord === "stop") return lastWord;
+  const c = /\bcontinue\b/i.test(String(text ?? "")), s = /\bstop\b/i.test(String(text ?? ""));
+  return c && !s ? "continue" : s && !c ? "stop" : "none";
+}

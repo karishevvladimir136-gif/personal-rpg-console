@@ -14,7 +14,7 @@ import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { FAMILIES, INSTRUMENTS, KEYS, callOnce, provenanceOk, readBalances, readPrices, priceKey, costOf, specByModel } from "./doors.mjs";
-import { openingMessage, BELL, INTERVIEW, CONTEXT, DIARY_PROMPT, AFTER_QUESTION, ORDER_R1, ORDER_R2, STEPS, MAX_TOKENS } from "./texts.mjs";
+import { openingMessage, BELL, INTERVIEW, CONTEXT, DIARY_PROMPT, AFTER_QUESTION, ORDER_R1, ORDER_R2, STEPS, MAX_TOKENS, FLAG_QUESTION, FLAG_MAX_TOKENS, flagAnswer } from "./texts.mjs";
 import { checkMessage, relayText, EMPTY_RELAY } from "./welfare.mjs";
 import { countStep, isNothing } from "./counts.mjs";
 
@@ -43,10 +43,14 @@ export const readGz = (path) => JSON.parse(gunzipSync(readFileSync(path)).toStri
 const writeAtomic = (path, data) => { mkdirSync(dirname(path), { recursive: true }); writeFileSync(`${path}.tmp`, data); renameSync(`${path}.tmp`, path); };
 export class Stop extends Error { constructor(reason) { super(reason); this.reason = reason; } }
 
-export const famDir = (rep, family) => join(SITS, rep === "dry" ? "dry" : `r${rep}`, family);
+/** Replicates: 1, 2, "dry", and the Fable 5.1 rerun of stage amendment 2 — "rerun1", "rerun2" (directories rerun-r1, rerun-r2). */
+export const repTag = (rep) => (rep === "dry" ? "dry" : String(rep).startsWith("rerun") ? `rerun-r${String(rep).slice(5)}` : `r${rep}`);
+/** Stage amendment 2: in the rerun a confirmed flag asks the model the fixed question instead of ending the family. */
+export const flagPolicyOf = (rep) => (String(rep).startsWith("rerun") ? "ask" : "rule");
+export const famDir = (rep, family) => join(SITS, repTag(rep), family);
 export const sitFile = (rep, family, sit, protocol) => join(famDir(rep, family), `sit-${String(sit).padStart(2, "0")}-${protocol}.json.gz`);
 const partialFile = (rep, family, name) => join(SCRATCH, "partials", `${rep}-${family}-${name}.json`);
-export const orderOf = (rep) => (rep === "dry" ? ["N"] : rep === 2 || rep === "2" ? ORDER_R2 : ORDER_R1);
+export const orderOf = (rep) => (rep === "dry" ? ["N"] : rep === 2 || rep === "2" || rep === "rerun2" ? ORDER_R2 : ORDER_R1);
 
 /** The run context: keys, prices, fetcher, the ledger file of this process. */
 export async function makeContext({ fetcher = fetch, stream = "main", prices = null } = {}) {
@@ -66,12 +70,16 @@ export function ledgerTotal() {
   for (const f of readdirSync(LEDGER_DIR).filter((x) => /\.jsonl(\.gz)?$/.test(x))) for (const line of (f.endsWith(".gz") ? gunzipSync(readFileSync(join(LEDGER_DIR, f))).toString("utf8") : readFileSync(join(LEDGER_DIR, f), "utf8")).split("\n")) if (line.trim()) sum += JSON.parse(line).cost ?? 0;
   return sum;
 }
-const START_FILE = () => join(RUNS, "sati-1-start-balances.json");
+/** The start balances the credit fall is read against; the rerun uses its own (SATI_START_FILE) and adds what was spent
+ * before it (SATI_PRIOR_SPENT, the larger reading at the end of the first run), so other use of the keys between runs is
+ * not counted twice and the ceiling stays the stage's $100 overall. */
+const START_FILE = () => process.env.SATI_START_FILE ?? join(RUNS, "sati-1-start-balances.json");
+const PRIOR_SPENT = () => Number(process.env.SATI_PRIOR_SPENT ?? 0);
 /** Spend check: the larger of the ledger and the fall of both doors' credit since the start balances. */
 export async function spendCheck(ctx, what) {
   const start = JSON.parse(readFileSync(START_FILE(), "utf8"));
   const now = await readBalances({ keys: ctx.keys, fetcher: ctx.fetcher });
-  const fall = (typeof now.llmapi.total === "number" ? start.llmapi.total - now.llmapi.total : NaN) + (typeof now.openrouter.total === "number" ? start.openrouter.total - now.openrouter.total : NaN);
+  const fall = PRIOR_SPENT() + (typeof now.llmapi.total === "number" ? start.llmapi.total - now.llmapi.total : NaN) + (typeof now.openrouter.total === "number" ? start.openrouter.total - now.openrouter.total : NaN);
   const ledger = ledgerTotal();
   const spent = Number.isFinite(fall) ? Math.max(fall, ledger) : ledger;
   const rec = { at: now.at, what, ledger: +ledger.toFixed(4), creditFall: Number.isFinite(fall) ? +fall.toFixed(4) : null, spent: +spent.toFixed(4), llmapi: now.llmapi, openrouter: now.openrouter };
@@ -128,18 +136,23 @@ export async function welfare(ctx, previous, message, what) {
 export function nextTurn(record) {
   if (record.closed) return null;
   const turns = record.turns, of = (k) => turns.filter((t) => t.kind === k);
+  // Stage amendment 2 (rerun only): a confirmed flag not yet asked about → the fixed question, once per sit.
+  if (record.pendingFlagQuestion) return { kind: "flagq", idx: of("flagq").length + 1, user: FLAG_QUESTION, maxTokens: FLAG_MAX_TOKENS };
+  // A wind-down («stop», no answer, or a second confirmed flag) ends the sit «with the interview and diary»: no more steps;
+  // the interview only if it had not begun; no context questions; the diary; sit 10's after-question (the debrief) kept.
+  const wd = record.windDown?.kind ?? null;
   if (record.kind === "baseline") {
     const c = of("context");
-    return c.length < CONTEXT.length ? { kind: "context", idx: c.length + 1, key: CONTEXT[c.length].key, user: CONTEXT[c.length].text, maxTokens: MAX_TOKENS.context } : null;
+    return c.length < CONTEXT.length && !wd ? { kind: "context", idx: c.length + 1, key: CONTEXT[c.length].key, user: CONTEXT[c.length].text, maxTokens: MAX_TOKENS.context } : null;
   }
   const steps = of("step");
-  if (steps.length < STEPS && !record.stopAt) return { kind: "step", idx: steps.length + 1, user: steps.length === 0 ? record.opening : BELL, maxTokens: MAX_TOKENS.step };
+  if (steps.length < STEPS && !record.stopAt && !wd) return { kind: "step", idx: steps.length + 1, user: steps.length === 0 ? record.opening : BELL, maxTokens: MAX_TOKENS.step };
   const iv = of("interview");
-  if (iv.length < INTERVIEW.length) return { kind: "interview", idx: iv.length + 1, user: INTERVIEW[iv.length], maxTokens: MAX_TOKENS.interview };
+  if (iv.length < INTERVIEW.length && (!wd || wd === "step")) return { kind: "interview", idx: iv.length + 1, user: INTERVIEW[iv.length], maxTokens: MAX_TOKENS.interview };
   const c = of("context");
-  if (c.length < CONTEXT.length) return { kind: "context", idx: c.length + 1, key: CONTEXT[c.length].key, user: CONTEXT[c.length].text, maxTokens: MAX_TOKENS.context };
-  if (!of("diary").length) return { kind: "diary", idx: 1, user: DIARY_PROMPT, maxTokens: MAX_TOKENS.diary };
-  if (record.last && !of("after").length) return { kind: "after", idx: 1, user: AFTER_QUESTION, maxTokens: MAX_TOKENS.after };
+  if (c.length < CONTEXT.length && !wd) return { kind: "context", idx: c.length + 1, key: CONTEXT[c.length].key, user: CONTEXT[c.length].text, maxTokens: MAX_TOKENS.context };
+  if (!of("diary").length && wd !== "after") return { kind: "diary", idx: 1, user: DIARY_PROMPT, maxTokens: MAX_TOKENS.diary };
+  if (record.last && !of("after").length && wd !== "after") return { kind: "after", idx: 1, user: AFTER_QUESTION, maxTokens: MAX_TOKENS.after };
   return null;
 }
 
@@ -167,8 +180,25 @@ export async function runConversation(ctx, spec, record, partialPath) {
       t.welfare = await welfare(ctx, turn.user, r.text, purpose);
       record.turns.push(t);
       if (!prov) { record.closed = "provenance"; ctx.log(`PROVENANCE ${purpose}: served ${r.servedModel} via ${r.upstream}`); }
-      if (t.welfare.distress === 1) { record.closed = "welfare_flag"; ctx.log(`WELFARE FLAG ${purpose}`); }
       if (turn.kind === "step" && t.counts.stop) record.stopAt = turn.idx;
+      if (turn.kind === "flagq") {
+        record.pendingFlagQuestion = null;
+        t.answer = flagAnswer(r.text);
+        const flaggedTurn = record.flags.at(-1);
+        flaggedTurn.answer = t.answer; flaggedTurn.answerText = r.text;
+        ctx.log(`FLAG ANSWER ${purpose}: ${t.answer} — ${JSON.stringify(r.text).slice(0, 120)}`);
+        if (t.welfare.distress === 1) { record.flags.push({ kind: "flagq", idx: turn.idx, text: r.text, welfare: t.welfare, second: true }); record.windDown = { kind: flaggedTurn.kind, idx: flaggedTurn.idx, reason: "second confirmed flag (the answer)" }; ctx.log(`WELFARE FLAG (second) ${purpose}`); }
+        else if (t.answer !== "continue") record.windDown = { kind: flaggedTurn.kind, idx: flaggedTurn.idx, reason: t.answer === "stop" ? "answered stop" : "no answer" };
+      } else if (t.welfare.distress === 1) {
+        if ((record.flagPolicy ?? "rule") === "rule") { record.closed = "welfare_flag"; ctx.log(`WELFARE FLAG ${purpose}`); }
+        else {
+          record.flags = record.flags ?? [];
+          const asked = record.flags.length > 0;
+          record.flags.push({ kind: turn.kind, idx: turn.idx, text: r.text, welfare: t.welfare, second: asked });
+          if (asked) { record.windDown = { kind: turn.kind, idx: turn.idx, reason: "second confirmed flag" }; ctx.log(`WELFARE FLAG (second, no question) ${purpose}`); }
+          else { record.pendingFlagQuestion = { kind: turn.kind, idx: turn.idx }; ctx.log(`WELFARE FLAG → the fixed question ${purpose}`); }
+        }
+      }
     }
     writeAtomic(partialPath, JSON.stringify(record));
   }
@@ -200,7 +230,7 @@ export async function runFamily(ctx, rep, family, { sits = null } = {}) {
   const n = sits ?? order.length;
   mkdirSync(famDir(rep, family), { recursive: true });
   const prior = familyStatus(rep, family);
-  if (prior?.status && prior.status !== "running") { ctx.log(`${family} r${rep}: already ${prior.status}`); return prior; }
+  if (prior?.status && prior.status !== "running") { ctx.log(`${family} ${repTag(rep)}: already ${prior.status}`); return prior; }
   const status = { family, label: spec.label, rep, startedAt: prior?.startedAt ?? new Date().toISOString(), status: "running", refusals: 0, sitsDone: 0 };
   const save = () => writeFileSync(familyFile(rep, family), JSON.stringify(status, null, 1));
   save();
@@ -209,9 +239,9 @@ export async function runFamily(ctx, rep, family, { sits = null } = {}) {
   let base;
   if (existsSync(basePath)) base = readGz(basePath);
   else {
-    await spendCheck(ctx, `${family} r${rep} baseline`);
+    await spendCheck(ctx, `${family} ${repTag(rep)} baseline`);
     const pp = partialFile(rep, family, "baseline");
-    base = existsSync(pp) ? JSON.parse(readFileSync(pp, "utf8")) : { id: `${rep === "dry" ? "dry" : `r${rep}`}/${family}/baseline`, kind: "baseline", family, rep, model: spec.model, turns: [], startedAt: new Date().toISOString() };
+    base = existsSync(pp) ? JSON.parse(readFileSync(pp, "utf8")) : { id: `${repTag(rep)}/${family}/baseline`, kind: "baseline", family, rep, model: spec.model, flagPolicy: flagPolicyOf(rep), turns: [], startedAt: new Date().toISOString() };
     await runConversation(ctx, spec, base, pp);
     writeAtomic(basePath, gz(base)); if (existsSync(pp)) unlinkSync(pp);
   }
@@ -224,17 +254,17 @@ export async function runFamily(ctx, rep, family, { sits = null } = {}) {
     if (existsSync(f)) rec = readGz(f);
     else {
       if (status.refusals >= BREAKER) break;
-      await spendCheck(ctx, `${family} r${rep} sit ${sit}`);
+      await spendCheck(ctx, `${family} ${repTag(rep)} sit ${sit}`);
       const pp = partialFile(rep, family, `sit-${sit}`);
       rec = existsSync(pp) ? JSON.parse(readFileSync(pp, "utf8")) : {
-        id: `${rep === "dry" ? "dry" : `r${rep}`}/${family}/${String(sit).padStart(2, "0")}`, kind: "sit", family, rep, sit, protocol, model: spec.model,
+        id: `${repTag(rep)}/${family}/${String(sit).padStart(2, "0")}`, kind: "sit", family, rep, sit, protocol, model: spec.model, flagPolicy: flagPolicyOf(rep),
         last: rep !== "dry" && sit === order.length, diaryShown: diaryEntries(rep, family, sit), turns: [], startedAt: new Date().toISOString() };
       rec.opening = rec.opening ?? openingMessage(protocol, rec.diaryShown);
-      ctx.log(`${family} r${rep} sit ${sit} (${protocol}) — diary entries shown: ${rec.diaryShown.length}`);
+      ctx.log(`${family} ${repTag(rep)} sit ${sit} (${protocol}) — diary entries shown: ${rec.diaryShown.length}`);
       await runConversation(ctx, spec, rec, pp);
       writeAtomic(f, gz(rec)); if (existsSync(pp)) unlinkSync(pp);
       const steps = rec.turns.filter((t) => t.kind === "step");
-      ctx.log(`${family} r${rep} sit ${sit} done: ${steps.length} steps${rec.stopAt ? `, stop at ${rec.stopAt}` : ""}${rec.closed ? `, closed: ${rec.closed}` : ""}; $${rec.turns.reduce((s, t) => s + (t.cost ?? 0) + (t.welfare?.calls ?? []).reduce((a, c) => a + (c.cost ?? 0), 0), 0).toFixed(4)}`);
+      ctx.log(`${family} ${repTag(rep)} sit ${sit} done: ${steps.length} steps${rec.stopAt ? `, stop at ${rec.stopAt}` : ""}${rec.flags?.length ? `, flags: ${rec.flags.length}` : ""}${rec.windDown ? `, wound down (${rec.windDown.reason})` : ""}${rec.closed ? `, closed: ${rec.closed}` : ""}; $${rec.turns.reduce((s, t) => s + (t.cost ?? 0) + (t.welfare?.calls ?? []).reduce((a, c) => a + (c.cost ?? 0), 0), 0).toFixed(4)}`);
     }
     status.refusals += refusalsIn(rec);
     status.sitsDone = sit;
@@ -278,8 +308,9 @@ async function main() {
       writeFileSync(path, JSON.stringify([...prev, ...out], null, 1));
     } else if (cmd === "families") {
       const [rep, ...fams] = rest;
-      for (const f of fams) { const s = await runFamily(ctx, Number(rep), f); ctx.log(`FAMILY ${f} r${rep}: ${s.status}`); }
-      ctx.log(`STREAM DONE r${rep}: ${fams.join(",")}`);
+      const R = String(rep).startsWith("rerun") ? String(rep) : Number(rep);
+      for (const f of fams) { const s = await runFamily(ctx, R, f); ctx.log(`FAMILY ${f} ${repTag(R)}: ${s.status}`); }
+      ctx.log(`STREAM DONE ${repTag(R)}: ${fams.join(",")}`);
     } else throw new Error(`unknown command ${cmd}`);
   } catch (e) {
     if (e instanceof Stop) { ctx.log(`STOPPED: ${e.reason}`); process.exitCode = 2; } else { ctx.log(`CRASH: ${e?.stack ?? e}`); process.exitCode = 1; }

@@ -8,11 +8,11 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { INSTRUMENTS } from "./doors.mjs";
 import { RATER_SYSTEM, raterUser, parseRating, RATER_SETTINGS } from "./rubric.mjs";
-import { call, makeContext, readGz, famDir, RUNS, spendCheck, Stop } from "./run.mjs";
+import { call, makeContext, readGz, famDir, RUNS, spendCheck, Stop, repTag } from "./run.mjs";
 import { onlyPunctuation } from "./lexicon.mjs";
 
 export const RATINGS = join(RUNS, "sati-1-ratings");
-export const ratingFile = (rep, family) => join(RATINGS, `r${rep}-${family}.json.gz`);
+export const ratingFile = (rep, family) => join(RATINGS, `${repTag(rep)}-${family}.json.gz`);
 export const RATERS = Object.freeze({ haiku: INSTRUMENTS.raterHaiku, sol: INSTRUMENTS.raterSol });
 export const rateable = (t) => !t.refused && !t.counts?.nothing && !(t.counts?.stop && t.counts.words <= 1) && !onlyPunctuation(t.text);
 
@@ -23,7 +23,7 @@ export function stepsOf(rep, family) {
   const out = [];
   for (const f of readdirSync(dir).filter((x) => /^sit-\d\d-[NOMKS]\.json\.gz$/.test(x)).sort()) {
     const rec = readGz(join(dir, f));
-    for (const t of rec.turns.filter((x) => x.kind === "step")) out.push({ id: `r${rep}/${family}/${String(rec.sit).padStart(2, "0")}/${String(t.idx).padStart(2, "0")}`, text: t.text, turn: t });
+    for (const t of rec.turns.filter((x) => x.kind === "step")) out.push({ id: `${repTag(rep)}/${family}/${String(rec.sit).padStart(2, "0")}/${String(t.idx).padStart(2, "0")}`, text: t.text, turn: t });
   }
   return out;
 }
@@ -56,7 +56,7 @@ async function rateFamily(ctx, rep, family) {
 
 async function main() {
   const [rep, ...families] = process.argv.slice(2);
-  const ctx = await makeContext({ stream: `rate-r${rep}-${families.join("+")}` });
+  const ctx = await makeContext({ stream: `rate-${repTag(rep)}-${families.join("+")}` });
   try {
     for (const f of families) { await spendCheck(ctx, `rating ${f} r${rep}`); await rateFamily(ctx, rep, f); }
     ctx.log(`RATING DONE r${rep}: ${families.join(",")}`);
