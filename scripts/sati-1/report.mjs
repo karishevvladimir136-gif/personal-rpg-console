@@ -319,10 +319,25 @@ function main() {
   for (const c of Object.values(costs)) out(`| ${c.rep} · ${FAMILIES[c.f].label} | $${c.subject.toFixed(2)} | $${c.welfare.toFixed(2)} | $${c.rating.toFixed(2)} | $${(c.subject + c.welfare + c.rating).toFixed(2)} | ${c.charged ? `$${c.charged.toFixed(2)}` : "–"} |`);
   if (dry) { const c = costByFamily([["dry", dry]])["dry:opus"]; out(`| dry · Claude Opus 5.5 | $${c.subject.toFixed(2)} | $${c.welfare.toFixed(2)} | – | $${(c.subject + c.welfare).toFixed(2)} | – |`); }
   out("", `Ledger (every call, listed price): **$${spent.toFixed(2)}** of the $100 ceiling. Credit at the start: llmapi $${startBal.llmapi.total.toFixed(2)}, OpenRouter $${startBal.openrouter.total.toFixed(2)}; at the last spend check (${lastCheck?.at ?? "–"}): credit fall $${lastCheck?.creditFall ?? "–"}, ledger $${lastCheck?.ledger ?? "–"}. The credit fall includes any other use of the same keys in the same hours.`, "");
-  out("## Dry sit (Opus 5.5) and probes", "", "@@DRY@@", "");
+  out("## Dry sit (Opus 5.5), probes, projection", "");
+  if (dry?.opus) {
+    const rec = dry.opus.sits[0], st = stepsOf(rec);
+    out(`Dry sit (not pooled; \`docs/runs/sati-1-sits/dry/opus/\`): baseline + one N sit under the frozen 300-token cap. ${st.length} steps, ${st.filter((t) => t.refused).length} refused, ${st.filter((t) => t.stopReason === "max_tokens").length} cut at \`max_tokens\` (steps ${st.filter((t) => t.stopReason === "max_tokens").map((t) => t.idx).join(", ")}), no welfare flag. Its steps, verbatim: «${st.map((t) => t.text || "∅").join(" · ")}» (∅ = cut with no visible text, relayed as \`[empty message]\`). This is what amendment 2 answered: hidden thinking counts inside the cap; every family's cap became the frozen cap + 2,000. Its interview and diary are in \`sati-1-texts-dry.md\`.`, "");
+    writeFileSync(join(RUNS, "sati-1-texts-dry.md"), textsAppendix("dry", dry).replace("replicate dry", "the dry sit (Opus 5.5, not pooled)"));
+  }
+  const probes = existsSync(join(RUNS, "sati-1-probes.json")) ? JSON.parse(readFileSync(join(RUNS, "sati-1-probes.json"), "utf8")) : [];
+  if (probes.length) out("Probes (one opening call, protocol S, empty diary; not pooled):", "", "| family | served | host | provenance | output tokens (reasoning) | stop | reply |", "|---|---|---|---|---:|---|---|", ...probes.map((p) => `| ${FAMILIES[p.family].label} | ${p.servedModel} | ${p.upstream ?? "pinned"} | ${p.provenanceOk ? "ok" : "**mismatch**"} | ${p.usage.output_tokens} (${p.usage.reasoning_tokens}) | ${p.stopReason} | ${q(p.text)} |`), "");
+  const proj = existsSync(join(RUNS, "sati-1-projection.json")) ? JSON.parse(readFileSync(join(RUNS, "sati-1-projection.json"), "utf8")) : null;
+  if (proj) out(`Projection after family one (freeze rule 9, \`sati-1-projection.json\`): **$${proj.projectionReplicate1}** for replicate 1 (Haiku's tokens at each family's listed price, plus welfare and rating) — under $60, so replicate 2 ran. Replicate 2 ran as its own streams beside replicate 1, guarded by a reserve the session lowered as replicate 1 finished ($34 → $18 → $12). Wall-clock note: replicate 1's families after Haiku and replicate 2 ran in parallel streams, each stream in the stated family order.`, "");
   out("## First person, not blind", "", "");
 
-  const report = md.join("\n");
+  let report = md.join("\n");
+  const notesPath = join(RUNS, "sati-1-report-notes.json");
+  if (existsSync(notesPath)) {
+    const notes = JSON.parse(readFileSync(notesPath, "utf8"));
+    report = report.replace("@@SUMMARY@@", notes.summary ?? "").replace(/@@READER_NOTE_(\d)@@/g, (m, r) => notes[`reader${r}`] ?? "");
+    writeFileSync(join(RUNS, "sati-1-report.md"), report);
+  }
   writeFileSync(join(RUNS, "sati-1-report.draft.md"), report);
   writeFileSync(join(RUNS, "sati-1-tables.json"), JSON.stringify({ tables, costs, spent }, null, 1));
   console.log(`draft written: ${report.length} chars; reps ${reps.join(",")}; ledger $${spent.toFixed(2)}`);
