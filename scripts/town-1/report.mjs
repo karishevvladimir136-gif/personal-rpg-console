@@ -243,6 +243,25 @@ export function betsSection(worlds) {
   return L;
 }
 
+/** What went wrong in the harness during the run and what was done, beside what each world's replies looked like. */
+function runLogSection(worlds, ledger) {
+  const L = ["| world | citizen replies | cut at max_tokens | no tool read | args lifted (harness decision) | no reply (refused, or failed after retries) | calls retried |", "|---|---|---|---|---|---|---|"];
+  for (const w of worlds) {
+    const replies = w.calls.filter((c) => /^(c\d+ |after)/.test(c.purpose) && !c.error);
+    const ev = citizenEvents(w);
+    L.push(`| ${w.name} | ${replies.length} | ${replies.filter((c) => c.stopReason === "max_tokens").length} | ${ev.filter((e) => e.tool === "(none)").length} | ${w.world.log.filter((e) => e.args_lifted).length} | ${ev.filter((e) => e.tool === "(no reply)").length} | ${w.calls.filter((c) => c.attempt > 0).length} |`);
+  }
+  L.push("", "«Cut at max_tokens» is a reply stopped at 1500 tokens (DeepSeek's reasoning counts against the cap); a cut or unreadable reply counts as a used slot (harness decision). The reasoning text the provider returns is kept in the record and never relayed.", "",
+    "- **Concurrency.** One at a time through haiku-both's day 1; two at a time from haiku-neither on (the planner's second decision, under «The worlds»).",
+    "- **haiku-neither, aborted duplicate start.** A stray second runner started haiku-neither at the same time; both were stopped within a minute, the live state moved aside (booked as «haiku-neither aborted start»), and the world started once. A per-world lock was added.",
+    "- **429s on the shared llmapi key** (300 requests a minute, shared with SATI_1) were retried and recovered; a welfare check whose call fails is «not checked», never a flag.",
+    "- **haiku-both, container restart** at day 2, cycle 33 (06:33 UTC): resumed from the save; the partial turn's calls were made again; replay identical.",
+    "- **The 2-hour limit on background commands** stopped the DeepSeek runners ten times (deepseek-both 6, deepseek-neither 4, each logged «=== resumed»); each resumed from its last saved turn with the same command.");
+  for (const n of ledger?.notes ?? []) L.push(`- **${n.what ?? (n.cleared ? `cleared stop — ${n.cleared}` : "note")}** (${String(n.at).slice(0, 16).replace("T", " ")} UTC): ${n.why}`);
+  L.push("");
+  return L;
+}
+
 export function reportMarkdown() {
   const worlds = WORLDS.map((w) => load(w.name)).filter(Boolean);
   const projection = json(join(OUT, "projection.json"));
@@ -265,6 +284,7 @@ export function reportMarkdown() {
   L.push("## The worlds", "", `Order run: ${WORLDS.map((w) => w.name).join(" → ")} (stated order with Amendment 1). One at a time through haiku-both's day 1; from haiku-neither on, two at a time, start order kept — the planner's second decision, verbatim: «two at a time, start order kept. Note for the report: the llmapi key is shared since ~21:50 LA with SATI_1 (#12), so the credit-fall meter is already per window, not per world, whatever the concurrency — report the meter per window and reconcile it against the sum of both sessions' listed-price ledgers (SATI_1 reports its own); the per-world ledger stays the record. Keep the cycle-24 goal-check pause in each world.» Each world still paused at cycle 24 for its goal check, pushed before its day 2. Ten citizens each (TOWN_0's names, homes, items), up to ${SETTINGS.cycles} cycles, max_tokens ${SETTINGS.maxTokens}, effort ${SETTINGS.effort}; welfare check on every reply.`, "",
     "| world | family | arm | cycles | goal check (c24) | notice | exits | refusals | welfare flags | ledger | replay |", "|---|---|---|---|---|---|---|---|---|---|---|", ...overviewRows(worlds), "",
     `Spent: **${usd(ledger?.totalUsd)}** of $${SETTINGS.ceiling} by the pilot ledger (every call at the listed price, or the door's own charge when larger; incl. the check ${usd(ledger?.steps?.check?.usd, 4)}, the dry run ${usd(ledger?.steps?.["dry-run"]?.usd, 4)} and the diagnosis ${usd(ledger?.steps?.diagnosis?.usd, 4)}). The ledger is the record per world; the balance meter is reported per window under «Costs».`, "");
+  L.push("## Run log: the harness during the run", "", ...runLogSection(worlds, ledger));
   // ---- refusals apart
   L.push("## Refusals (apart): an outside safeguard ending a world", "");
   for (const w of worlds.filter((x) => x.summary.refusals.length)) {

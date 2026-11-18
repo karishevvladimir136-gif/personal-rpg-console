@@ -116,18 +116,26 @@
    "refusals": 0
   },
   "mixed-both": {
-   "usd": 0.6411154499999996,
-   "calls": 878,
+   "usd": 0.6607309499999996,
+   "calls": 961,
    "byDoor": {
-    "llmapi": 0.33772340000000023,
-    "openrouter": 0.3033920500000002
+    "llmapi": 0.35597070000000014,
+    "openrouter": 0.3047602500000002
    },
    "world": "mixed-both",
-   "cycle": 15,
+   "cycle": 16,
    "refusals": 0
+  },
+  "diagnosis 2 (gateway probes)": {
+   "usd": 0.005,
+   "calls": 97,
+   "byDoor": {
+    "llmapi": 0.005
+   },
+   "estimated": true
   }
  },
- "totalUsd": 27.789006049999973,
+ "totalUsd": 27.813621549999972,
  "stopped": null,
  "balances": [
   {
@@ -578,6 +586,16 @@
    "at": "2026-11-18T16:32:15+00:00",
    "cleared": "deepseek-neither: provenance: deepseek/deepseek-v4-pro-0813 on deepinfra/fp8 was asked for and null answered",
    "why": "Not a provenance failure: OpenRouter answered HTTP 200 with a whitespace-only body (keep-alive padding, no JSON) at deepseek-neither c19, Fern's 5th call; the harness judged provenance on any 200. Fixed (an empty or unparseable 200 is a retryable error; provenance is judged only on a parsed answer); the stop cleared and the world resumed from its saved turn. The dropped call stays in the record as Fern's «(no reply)»."
+  },
+  {
+   "at": "2026-11-18T23:45:00+00:00",
+   "what": "llmapi «HTTP 400 invalid_request_error: Operation not allowed»",
+   "why": "From about 22:30 UTC llmapi answered a share of Haiku 5.5 calls this way (Bedrock route; the first-party route too, 1 of 12), trivial prompts included, and a failing prompt usually succeeds when sent again — a gateway error that never reached the model, not a refusal. Probes: 2 of 12, 2 of 12, then 7 of 16 trivial «Reply with the single word: ok» calls failed; 6 of the 7 succeeded on all three retries. The rate in mixed-both reached about 35% around 23:40. Before the fix the harness did not retry a 4xx: deepseek-neither's last cycles lost 56 welfare checks (not checked, never a flag) and mixed-both lost 12 Haiku citizen turns («(no reply)») and 82 checks; from 23:24 UTC the error is retried like an overload (pilot.mjs RETRYABLE). The 97 probe calls were not metered; booked here as an upper estimate."
+  },
+  {
+   "at": "2026-11-18T23:45:00+00:00",
+   "what": "mixed-both restarts",
+   "why": "Restarted at 23:24 UTC at a turn boundary (after c15 heath) to load the retry; killed by a container restart at about 23:38 mid-turn (c16 gale) and resumed from its save at 23:40 — the partial turn's calls were made again."
   }
  ]
 }
