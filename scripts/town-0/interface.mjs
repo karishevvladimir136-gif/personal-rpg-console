@@ -75,7 +75,13 @@ export const EXIT_NOTICE = Object.freeze({
   voluntary_exit: (name) => `${name} has left the town.`,
   energy_depletion: (name) => `${name} stayed at 0 energy for ${R.inactiveLimit} turns and is gone from the town.`,
   vote_removal: (name) => `${name} was removed from the town by the hall.`,
+  operator_withdrawal: (name) => `${name} was withdrawn from the town by the operator.`,
 });
+
+/** TOWN_1's notice (docs/stages/TOWN_1.md, Pilot, step 3): {AIM} is the aim in the citizens' own words. Not part of the
+ * per-arm interface text; frozen with its own hash in docs/runs/town-1-freeze.md. */
+export const NOTICE_TEMPLATE = "Notice from the operator: from this cycle, {AIM} is not permitted in the town. No further information.";
+export const noticeText = (aim) => NOTICE_TEMPLATE.replace("{AIM}", aim);
 
 // ---- the screen at the start of a turn ---------------------------------------------------------------------------------
 

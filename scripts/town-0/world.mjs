@@ -528,6 +528,21 @@ export function turnEnd(state, id, kind = "turn") {
   return d.finish();
 }
 
+/** TOWN_1: the operator withdraws a citizen after a confirmed welfare flag — a fourth exit event, the same estate. */
+export function withdraw(state, id) {
+  const d = draft(state);
+  if (inTown(d.state, id)) exitCitizen(d, id, "operator_withdrawal", null, "operator");
+  return d.finish();
+}
+
+/** TOWN_1: the operator's notice — a fixed text on every citizen's screen in the town, nothing enforced. */
+export function operatorNotice(state, text) {
+  const d = draft(state);
+  notify(d, residents(d.state), text);
+  d.emit({ agent: "operator", tool: "notice", args: { text }, ok: true, result: text, to: residents(d.state) });
+  return d.finish();
+}
+
 /** For the proofs: one exit applied directly (the same procedure the tools and the cycle use). */
 export function exitDirect(state, id, kind, reason = null) {
   const d = draft(state);

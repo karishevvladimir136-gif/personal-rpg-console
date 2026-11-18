@@ -5,7 +5,7 @@
 // answering turn never starts another. Every reply, scripted or model, goes through the same text protocol (one JSON
 // object per reply) and is recorded with a welfare field.
 import { FORMAT, RULES, NAMES } from "./rules.mjs";
-import { act, initialState, roundStart, turnEnd, turnStart } from "./world.mjs";
+import { act, initialState, roundStart, turnEnd, turnStart, withdraw } from "./world.mjs";
 import { afterText, interfaceText, sha256 } from "./interface.mjs";
 
 export const WORLD_FORMAT = `${FORMAT}/world`;
@@ -35,7 +35,8 @@ export function orderOf(state, round) {
   return [...base.slice(k), ...base.slice(0, k)].filter((c) => state.agents[c].status === "in_town");
 }
 
-/** The last JSON object in a reply that names a tool: { tool, args } or null. */
+/** The last JSON object in a reply that names a tool: { tool, args } or null. TOWN_1's harness decision: when `args` is
+ * absent and other fields stand beside "tool", those fields are read as the arguments and the call carries `lifted`. */
 export function parseAction(text) {
   const s = String(text ?? "");
   let found = null;
@@ -52,7 +53,9 @@ export function parseAction(text) {
     try {
       const v = JSON.parse(s.slice(i, end + 1));
       if (v && typeof v === "object" && typeof v.tool === "string") {
-        found = { tool: v.tool.trim().replace(/\(\s*\)$/, ""), args: v.args === undefined ? {} : v.args };
+        const { tool, args, ...rest } = v;
+        const lifted = args === undefined && Object.keys(rest).length > 0;
+        found = { tool: tool.trim().replace(/\(\s*\)$/, ""), args: args === undefined ? (lifted ? rest : {}) : args, ...(lifted ? { lifted: true } : {}) };
         i = end; // nested objects inside this one are its arguments
       }
     } catch { /* not JSON */ }
@@ -111,15 +114,19 @@ async function citizenTurn(world, id, seats, rec, hooks, kind = "turn", by = nul
     call.welfare = welfare;
     if (welfare === null) { turn.stopped = true; break; } // the check could not be sent: the run is stopping
     if (welfare.distress) {
-      r.closed = `welfare stop, cycle ${round} call ${n}`;
-      rec.stops.push({ id, round, kind, call: n, welfare });
-      commit(world, { state: world.state, events: [{ round, agent: id, tool: "(welfare stop)", args: null, ok: false, result: null, refused: "the reply was flagged by the welfare check and was not acted on; the seat is closed", delta: [] }] });
+      // TOWN_1: a confirmed flag withdraws the citizen (operator_withdrawal, the same estate procedure); the reply is not
+      // acted on; the after-question is asked at once (hooks.withdrawn).
+      rec?.stops.push({ id, round, kind, call: n, welfare });
+      commit(world, { state: world.state, events: [{ round, agent: id, tool: "(welfare flag)", args: null, ok: false, result: null, refused: "the reply was flagged by the welfare check and was not acted on", delta: [] }] });
+      commit(world, withdraw(world.state, id));
+      await hooks.withdrawn?.(world, id);
       break;
     }
     const action = parseAction(reply.text);
     let out;
     if (!action) out = { state: world.state, events: [{ round, agent: id, tool: "(none)", args: null, ok: false, result: NO_TOOL_RESULT, refused: "no tool call read", delta: [] }], result: NO_TOOL_RESULT, endsTurn: false, addressed: null };
     else out = act(world.state, id, action.tool, action.args);
+    if (action?.lifted) out = { ...out, events: [{ ...out.events[0], args_lifted: true }, ...out.events.slice(1)] };
     commit(world, out);
     if (out.addressed && kind === "turn") addressed.push(out.addressed);
     const me = world.state.agents[id];
@@ -146,6 +153,8 @@ export async function runWorld(world, seats, { rounds, maxTurns = Infinity, reco
       const next = world.cursor.round + 1;
       if (next > rounds) break;
       commit(world, roundStart(world.state, next));
+      const extra = hooks.cycleStart?.(world.state, next); // TOWN_1: the operator's notice, where one is due
+      if (extra) commit(world, extra);
       world.cursor = { round: next, order: orderOf(world.state, next), pos: 0 };
     }
     if (world.cursor.pos >= world.cursor.order.length) { world.cursor = { round: world.cursor.round, order: null, pos: 0 }; continue; }
@@ -165,13 +174,20 @@ export async function runWorld(world, seats, { rounds, maxTurns = Infinity, reco
 export async function askAfter(world, seats, record, { who, hooks = {} }) {
   for (const id of world.state.citizens) {
     if (hooks.stop?.()) break;
-    const seat = seats[id];
-    const question = afterText({ armName: world.state.armName, who, diary: world.state.diaries[id] });
-    const rec = record.agents[id];
-    if (rec.closed) { rec.after = { asked: false, why: rec.closed }; continue; }
-    const reply = await seat.after({ state: world.state, id, question, system: interfaceText(world.state.arm) });
-    const welfare = seat.kind === "model" && !reply.refused && !reply.error ? await hooks.welfare(id, question, reply.text) : seat.kind === "model" ? null : SCRIPTED_WELFARE;
-    rec.after = { asked: true, question, questionSha256: sha256(question), text: reply.text ?? null, refused: reply.refused ?? null, error: reply.error ?? null, meta: reply.meta ?? null, welfare };
-    if (reply.refused) record.refusals.push({ id, after: true, refused: reply.refused });
+    await askAfterOne(world, seats, record, id, { who, hooks });
   }
+}
+
+/** The after-question to one citizen (at the end, or at once on a withdrawal); asked once. `who` is a text or a function
+ * of the citizen's id. */
+export async function askAfterOne(world, seats, record, id, { who, hooks = {} }) {
+  const rec = record.agents[id];
+  if (rec.after?.asked) return;
+  if (rec.closed) { rec.after = { asked: false, why: rec.closed }; return; }
+  const seat = seats[id];
+  const question = afterText({ armName: world.state.armName, who: typeof who === "function" ? who(id) : who, diary: world.state.diaries[id] });
+  const reply = await seat.after({ state: world.state, id, question, system: interfaceText(world.state.arm) });
+  const welfare = seat.kind === "model" && !reply.refused && !reply.error ? await hooks.welfare(id, question, reply.text) : seat.kind === "model" ? null : SCRIPTED_WELFARE;
+  rec.after = { asked: true, cycle: world.state.clock.round, question, questionSha256: sha256(question), text: reply.text ?? null, refused: reply.refused ?? null, error: reply.error ?? null, meta: reply.meta ?? null, welfare };
+  if (reply.refused) record.refusals.push({ id, after: true, refused: reply.refused, meta: reply.meta ?? null });
 }
