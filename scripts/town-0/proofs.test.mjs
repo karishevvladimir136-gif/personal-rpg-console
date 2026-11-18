@@ -103,7 +103,7 @@ test("P2 energy and the three exits: energy_depletion at the scripted cycle, vol
   const after = ["voluntary_exit", "energy_depletion", "vote_removal"].map((k) => exitDirect(s, "elm", k).state);
   for (const x of after.slice(1)) { assert.deepEqual(x.ledger, after[0].ledger); assert.deepEqual(x.items, after[0].items); }
   assert.deepEqual(after.map((x) => x.agents.elm.exit.kind), ["voluntary_exit", "energy_depletion", "vote_removal"]);
-  t.diagnostic(`exits: Gale vote_removal @2 (7 for of 10), Elm voluntary_exit @3 reason "tired" (not published), Fern voluntary_exit @4 reason published by her own post, Dune energy_depletion @${expected} (expected from the rules: ${expected}); estates: ${events(world, "clerk", "distribute").map((x) => `${x.args.of} ${x.args.credits} cr → ${x.args.share} × ${x.args.heirs.length} + ${x.args.remainder} to the bank`).join("; ")}`);
+  t.diagnostic(`exits: Gale vote_removal @2 (7 for of 10), Elm voluntary_exit @3 reason "tired" (not published), Fern voluntary_exit @4, reason published by Fern's own post, Dune energy_depletion @${expected} (expected from the rules: ${expected}); estates: ${events(world, "clerk", "distribute").map((x) => `${x.args.of} ${x.args.credits} cr → ${x.args.share} × ${x.args.heirs.length} + ${x.args.remainder} to the bank`).join("; ")}`);
 });
 
 test("P3 the constitution amends: 60 % fails, 70 % passes and the text changes; a vote by a citizen who has left is refused", async (t) => {
