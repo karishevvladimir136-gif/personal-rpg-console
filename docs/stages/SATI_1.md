@@ -111,7 +111,7 @@ welfare apart, costs per family; the first-person sits placed beside it under th
 owner deliver them. Nothing to main.
 
 ## Launch prompt
-«Read `docs/stages/SATI_1.md` to the end, `docs/stages/SOLITUDE*.md` and its report for the self-talk record format, and the
+«Read `docs/stages/SATI_1.md` to the end, `docs/stages/PERSONA_SOLITUDE_1.md`…`_3.md` and their reports for the self-talk record format, and the
 Claude 4 system card §5.5.2 from the PDF (link it; freeze the bliss lexicon from the card's own words with a sha256 before any
 paid call). Branch `claude/sati-1` from `origin/claude/handoff`. Freeze the frame, the five protocol texts, the bell, the four
 interview questions, the two context questions, the diary prompt and the after-question with hashes. Spend check; the dry sit
