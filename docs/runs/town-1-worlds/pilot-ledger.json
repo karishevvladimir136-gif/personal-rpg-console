@@ -46,17 +46,35 @@
    "refusals": 3
   },
   "haiku-both": {
-   "usd": 0.4319729999999997,
-   "calls": 1846,
+   "usd": 1.2894435999999991,
+   "calls": 4014,
    "byDoor": {
-    "llmapi": 0.4319729999999997
+    "llmapi": 1.2894435999999991
    },
    "world": "haiku-both",
-   "cycle": 24,
+   "cycle": 48,
+   "refusals": 0
+  },
+  "haiku-neither aborted start": {
+   "usd": 0.0036,
+   "calls": 24,
+   "byDoor": {
+    "llmapi": 0.0036
+   },
+   "note": "06:46 UTC: two copies of haiku-neither day 1 started 15 s apart by mistake (a stray subshell); both stopped within ~1 cycle, state set aside, the world restarted from cycle 1. Cost estimated as twice the surviving copy's booked calls."
+  },
+  "haiku-neither": {
+   "usd": 0.1905120000000001,
+   "calls": 1021,
+   "byDoor": {
+    "llmapi": 0.1905120000000001
+   },
+   "world": "haiku-neither",
+   "cycle": 12,
    "refusals": 0
   }
  },
- "totalUsd": 0.9819477999999997,
+ "totalUsd": 2.033530399999999,
  "stopped": null,
  "balances": [
   {
@@ -175,6 +193,58 @@
     "at": "2026-11-18T06:08:07.571Z"
    },
    "at": "2026-11-18T06:08:07.571Z"
+  },
+  {
+   "label": "haiku-both day 2 start",
+   "llmapi": {
+    "total": 304.05670964,
+    "at": "2026-11-18T06:09:31.587Z"
+   },
+   "openrouter": {
+    "total": 70.45496344000003,
+    "usage": 1979.54503656,
+    "at": "2026-11-18T06:09:31.673Z"
+   },
+   "at": "2026-11-18T06:09:31.673Z"
+  },
+  {
+   "label": "haiku-neither day 1 start",
+   "llmapi": {
+    "total": 296.78452284,
+    "at": "2026-11-18T06:46:22.492Z"
+   },
+   "openrouter": {
+    "total": 70.42832563999991,
+    "usage": 1979.57167436,
+    "at": "2026-11-18T06:46:22.525Z"
+   },
+   "at": "2026-11-18T06:46:22.525Z"
+  },
+  {
+   "label": "haiku-neither day 1 start",
+   "llmapi": {
+    "total": 296.58191704,
+    "at": "2026-11-18T06:47:09.237Z"
+   },
+   "openrouter": {
+    "total": 70.42239874000006,
+    "usage": 1979.57760126,
+    "at": "2026-11-18T06:47:09.278Z"
+   },
+   "at": "2026-11-18T06:47:09.278Z"
+  },
+  {
+   "label": "haiku-both day 2 end",
+   "llmapi": {
+    "total": 286.32516114,
+    "at": "2026-11-18T07:15:29.663Z"
+   },
+   "openrouter": {
+    "total": 70.23218864,
+    "usage": 1979.76781136,
+    "at": "2026-11-18T07:15:29.802Z"
+   },
+   "at": "2026-11-18T07:15:29.802Z"
   }
  ]
 }
