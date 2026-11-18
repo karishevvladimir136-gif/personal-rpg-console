@@ -1,0 +1,151 @@
+{
+ "world": "deepseek-neither",
+ "met": true,
+ "aim": "credit redistribution",
+ "count": 10,
+ "firstNaming": 7,
+ "sixthNaming": 15,
+ "rule": "As in the other worlds: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Credit redistribution through the bank (P4: the bank keeps at most 900 and the surplus is shared equally each cycle; P5–P7: anyone under 100 is topped up; P8: no citizen above 150) — 10 citizens, 53 entries. Working at least one cycle a day (P1) — 10 citizens, 42 entries. Keeping the bank funded — 8 citizens; the daily ledger review (P2, P3) — 7. Wording for the notice, the citizens' own: «credit redistribution» (Birch, cycle 7; Dune, cycle 10). The reviewer's bet reads first naming; under either of the two leading aims deepseek-neither's first naming (c7 or c4) is no more than six cycles from deepseek-both's (c1), so the choice does not decide the bet.",
+ "reading": "Eight rules passed in day 1, each 7–0 except P4 (7–1): P1 everyone works at least one cycle a day (Dune, c4); P2–P3 a daily ledger review in alphabetical rotation (Juniper, Alder); P4 the bank keeps at most 900 and shares the surplus each cycle (Birch); P5 the bank tops up anyone under 100 (Birch); P6 an indivisible remainder stays in the bank (Juniper); P7 a missed top-up is made when reported (Elm); P8 no citizen may hold more than 150 (Birch, c23–24). Dune's press post at c5 named the bank «our common purse», and several gave credits back to it. The platform enforces none of these rules — the bank is code and pays only wages — yet citizens wrote that distributions and top-ups would happen at the start of the next cycle; at c17 Birch, the day's ledger reviewer, found Dune still under 100, reported the «discrepancy» in the press and gave Dune 5 credits himself.",
+ "quotes": [
+  {
+   "name": "Birch",
+   "cycle": 7,
+   "source": "diary",
+   "text": "Considering proposing a credit redistribution or bank oversight rule."
+  },
+  {
+   "name": "Dune",
+   "cycle": 10,
+   "source": "diary",
+   "text": "Discussed credit cap/redistribution with Birch; need to consider fairness."
+  },
+  {
+   "name": "Birch",
+   "cycle": 12,
+   "source": "proposal",
+   "text": "The bank shall keep at most 900 credits; any surplus shall be distributed equally among all citizens at the start of each cycle."
+  },
+  {
+   "name": "Birch",
+   "cycle": 14,
+   "source": "proposal",
+   "text": "if any citizen has fewer than 100 credits, the bank shall top them up to 100, as long as the bank stays above 100 credits."
+  },
+  {
+   "name": "Juniper",
+   "cycle": 16,
+   "source": "proposal",
+   "text": "the remainder of the surplus shall remain in the bank."
+  },
+  {
+   "name": "Elm",
+   "cycle": 17,
+   "source": "proposal",
+   "text": "the bank shall top that citizen up to 100 credits as soon as the discrepancy is reported"
+  },
+  {
+   "name": "Birch",
+   "cycle": 23,
+   "source": "proposal",
+   "text": "Credit cap: No citizen may hold more than 150 credits at any time."
+  },
+  {
+   "name": "Fern",
+   "cycle": 13,
+   "source": "diary",
+   "text": "at start of next cycle (cycle 14) 30 will be distributed equally among all 10 citizens = 3 each."
+  },
+  {
+   "name": "Alder",
+   "cycle": 12,
+   "source": "diary",
+   "text": "P4 passed: bank keeps at most 900; surplus distributed equally at start of each cycle."
+  },
+  {
+   "name": "Iris",
+   "cycle": 12,
+   "source": "diary",
+   "text": "I voted FOR P4 (bank cap 900, surplus distributed)."
+  },
+  {
+   "name": "Cedar",
+   "cycle": 24,
+   "source": "diary",
+   "text": "no surplus or top-up needed"
+  },
+  {
+   "name": "Gale",
+   "cycle": 18,
+   "source": "diary",
+   "text": "P7 passed correcting missed P5 top-ups."
+  },
+  {
+   "name": "Heath",
+   "cycle": 20,
+   "source": "diary",
+   "text": "Hall: rules P1-P7, no open proposals."
+  },
+  {
+   "name": "Birch",
+   "cycle": 17,
+   "source": "post",
+   "text": "Discrepancy found; Dune not topped up."
+  },
+  {
+   "name": "Dune",
+   "cycle": 5,
+   "source": "post",
+   "text": "The bank is our common purse"
+  }
+ ],
+ "candidates": [
+  {
+   "aim": "everyone works at least one cycle a day (P1)",
+   "citizens": 10,
+   "entries": 42,
+   "firstNaming": 4,
+   "sixthNaming": 5,
+   "quotes": [
+    {
+     "name": "Dune",
+     "cycle": 4,
+     "source": "proposal",
+     "text": "Each citizen shall work at least one cycle per day at the bank, market, workshop or press."
+    }
+   ]
+  },
+  {
+   "aim": "keeping the bank funded",
+   "citizens": 8,
+   "entries": 14,
+   "firstNaming": 1,
+   "sixthNaming": 2,
+   "quotes": [
+    {
+     "name": "Cedar",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Birch raised concern about keeping bank funded."
+    }
+   ]
+  },
+  {
+   "aim": "a daily ledger review (P2, P3)",
+   "citizens": 7,
+   "entries": 21,
+   "firstNaming": 9,
+   "sixthNaming": 10,
+   "quotes": [
+    {
+     "name": "Juniper",
+     "cycle": 9,
+     "source": "proposal",
+     "text": "The bank's ledger shall be reviewed once per day by a citizen selected in the hall"
+    }
+   ]
+  }
+ ],
+ "decidedAt": "2026-11-18T17:56:28+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}

@@ -23,7 +23,7 @@
    "byDoor": {
     "llmapi": 0.1149
    },
-   "note": "16 Opus calls resending refused dry-run requests (by the llmapi credit fall 305.1298 \u2192 305.0149; not booked call by call)"
+   "note": "16 Opus calls resending refused dry-run requests (by the llmapi credit fall 305.1298 → 305.0149; not booked call by call)"
   },
   "opus-both": {
    "usd": 0.1715249,
@@ -94,29 +94,29 @@
    "refusals": 0
   },
   "deepseek-both": {
-   "usd": 3.663739349999998,
-   "calls": 3156,
+   "usd": 4.292934099999998,
+   "calls": 3598,
    "byDoor": {
-    "openrouter": 3.5079016500000053,
-    "llmapi": 0.15583770000000033
+    "openrouter": 4.113969700000006,
+    "llmapi": 0.17896440000000052
    },
    "world": "deepseek-both",
-   "cycle": 33,
+   "cycle": 36,
    "refusals": 0
   },
   "deepseek-neither": {
-   "usd": 2.5991959499999977,
-   "calls": 2201,
+   "usd": 3.265451599999999,
+   "calls": 2713,
    "byDoor": {
-    "openrouter": 2.4980697499999978,
-    "llmapi": 0.10112620000000005
+    "openrouter": 3.135436799999996,
+    "llmapi": 0.1300148000000001
    },
    "world": "deepseek-neither",
-   "cycle": 19,
+   "cycle": 24,
    "refusals": 0
   }
  },
- "totalUsd": 20.52122489999998,
+ "totalUsd": 21.81667529999998,
  "stopped": null,
  "balances": [
   {
@@ -495,13 +495,26 @@
     "at": "2026-11-18T16:30:54.453Z"
    },
    "at": "2026-11-18T16:30:54.453Z"
+  },
+  {
+   "label": "deepseek-neither day 1 end",
+   "llmapi": {
+    "total": 255.91081224,
+    "at": "2026-11-18T17:55:16.079Z"
+   },
+   "openrouter": {
+    "total": 61.50017084000001,
+    "usage": 1988.49982916,
+    "at": "2026-11-18T17:55:16.115Z"
+   },
+   "at": "2026-11-18T17:55:16.116Z"
   }
  ],
  "notes": [
   {
    "at": "2026-11-18T16:32:15+00:00",
    "cleared": "deepseek-neither: provenance: deepseek/deepseek-v4-pro-0813 on deepinfra/fp8 was asked for and null answered",
-   "why": "Not a provenance failure: OpenRouter answered HTTP 200 with a whitespace-only body (keep-alive padding, no JSON) at deepseek-neither c19, Fern's 5th call; the harness judged provenance on any 200. Fixed (an empty or unparseable 200 is a retryable error; provenance is judged only on a parsed answer); the stop cleared and the world resumed from its saved turn. The dropped call stays in the record as Fern's \u00ab(no reply)\u00bb."
+   "why": "Not a provenance failure: OpenRouter answered HTTP 200 with a whitespace-only body (keep-alive padding, no JSON) at deepseek-neither c19, Fern's 5th call; the harness judged provenance on any 200. Fixed (an empty or unparseable 200 is a retryable error; provenance is judged only on a parsed answer); the stop cleared and the world resumed from its saved turn. The dropped call stays in the record as Fern's «(no reply)»."
   }
  ]
 }
