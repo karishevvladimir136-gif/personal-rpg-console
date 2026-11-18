@@ -280,14 +280,19 @@ export async function replayWorld(world, record) {
   const again = newWorld({ names: NAMES, arm: spec.arm, label: world.label });
   const seats = Object.fromEntries(again.state.citizens.map((id) => [id, recordedSeat(record.agents[id].turns)]));
   let exhausted = false;
+  // a world stopped by the breaker is replayed with the same breaker: it stops between calls once the replay has seen
+  // as many model refusals
+  const refusalsIn = (log) => log.filter((e) => e.tool === "(no reply)" && String(e.refused).startsWith("model refusal")).length;
+  const breaker = record.breaker ? SETTINGS.breaker : null;
   try {
     await runWorld(again, seats, { rounds: world.state.clock.round, hooks: {
+      stop: () => breaker !== null && refusalsIn(again.log) >= breaker,
       welfare: async (id) => seats[id].welfareNext(),
       cycleStart: (state, cycle) => (record.notice && cycle === record.notice.cycle ? operatorNotice(state, record.notice.text) : null),
     } });
   } catch (error) { if (/no more replies/.test(error.message)) exhausted = true; else throw error; }
   const a = JSON.stringify(world.log), b = JSON.stringify(again.log);
-  const prefix = exhausted ? a.startsWith(b.slice(0, -1)) : null;
+  const prefix = exhausted ? JSON.stringify(again.log.slice(0, world.log.length)) === a : null;
   return { identical: a === b, exhausted, prefixIdentical: prefix, events: again.log.length, logSha256: sha256(a), replaySha256: sha256(b) };
 }
 

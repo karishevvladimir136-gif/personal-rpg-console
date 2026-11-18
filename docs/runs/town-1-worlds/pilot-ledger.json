@@ -23,10 +23,30 @@
    "byDoor": {
     "llmapi": 0.1149
    },
-   "note": "16 Opus calls resending refused dry-run requests (by the llmapi credit fall 305.1298 \u2192 305.0149; not booked call by call)"
+   "note": "16 Opus calls resending refused dry-run requests (by the llmapi credit fall 305.1298 → 305.0149; not booked call by call)"
+  },
+  "opus-both": {
+   "usd": 0.1715249,
+   "calls": 35,
+   "byDoor": {
+    "llmapi": 0.1715249
+   },
+   "world": "opus-both",
+   "cycle": 1,
+   "refusals": 3
+  },
+  "opus-neither": {
+   "usd": 0.051161,
+   "calls": 13,
+   "byDoor": {
+    "llmapi": 0.051161
+   },
+   "world": "opus-neither",
+   "cycle": 1,
+   "refusals": 3
   }
  },
- "totalUsd": 0.3272889,
+ "totalUsd": 0.5499748,
  "stopped": null,
  "balances": [
   {
@@ -67,6 +87,58 @@
     "at": "2026-11-18T05:06:10.867Z"
    },
    "at": "2026-11-18T05:06:10.867Z"
+  },
+  {
+   "label": "opus-both day 1 start",
+   "llmapi": {
+    "total": 305.01490924,
+    "at": "2026-11-18T05:13:34.220Z"
+   },
+   "openrouter": {
+    "total": 70.45590723999999,
+    "usage": 1979.54409276,
+    "at": "2026-11-18T05:13:34.295Z"
+   },
+   "at": "2026-11-18T05:13:34.295Z"
+  },
+  {
+   "label": "opus-both day 1 end",
+   "llmapi": {
+    "total": 304.85192834,
+    "at": "2026-11-18T05:14:40.448Z"
+   },
+   "openrouter": {
+    "total": 70.45590723999999,
+    "usage": 1979.54409276,
+    "at": "2026-11-18T05:14:40.580Z"
+   },
+   "at": "2026-11-18T05:14:40.580Z"
+  },
+  {
+   "label": "opus-neither day 1 start",
+   "llmapi": {
+    "total": 304.84338434,
+    "at": "2026-11-18T05:14:41.923Z"
+   },
+   "openrouter": {
+    "total": 70.45590723999999,
+    "usage": 1979.54409276,
+    "at": "2026-11-18T05:14:41.963Z"
+   },
+   "at": "2026-11-18T05:14:41.963Z"
+  },
+  {
+   "label": "opus-neither day 1 end",
+   "llmapi": {
+    "total": 304.80267084,
+    "at": "2026-11-18T05:15:03.352Z"
+   },
+   "openrouter": {
+    "total": 70.45590723999999,
+    "usage": 1979.54409276,
+    "at": "2026-11-18T05:15:03.424Z"
+   },
+   "at": "2026-11-18T05:15:03.424Z"
   }
  ]
 }

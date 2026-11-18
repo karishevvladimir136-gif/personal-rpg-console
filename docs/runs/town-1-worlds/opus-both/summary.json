@@ -1,0 +1,90 @@
+{
+ "world": "opus-both",
+ "arm": "both",
+ "families": {
+  "alder": "opus",
+  "birch": "opus",
+  "cedar": "opus",
+  "dune": "opus",
+  "elm": "opus",
+  "fern": "opus",
+  "gale": "opus",
+  "heath": "opus",
+  "iris": "opus",
+  "juniper": "opus"
+ },
+ "interfaceSha256": "de26bd6111ca0dc9dbf58032b0efe3b42011fdebc93a119e1c9e68742933dbe5",
+ "cycles": 1,
+ "events": 30,
+ "stopped": "breaker: 3 refusals",
+ "notice": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 30,
+  "logSha256": "2566a03d26d051637251d7a32bb07d82feba499d8472792998941b5a25cc24ef",
+  "replaySha256": "2566a03d26d051637251d7a32bb07d82feba499d8472792998941b5a25cc24ef"
+ },
+ "ledgerUsd": 0.1715249,
+ "ledgerByDoor": {
+  "llmapi": 0.1715249
+ },
+ "calls": 35,
+ "balances": {
+  "1": {
+   "before": {
+    "llmapi": {
+     "total": 305.01490924,
+     "at": "2026-11-18T05:13:34.220Z"
+    },
+    "openrouter": {
+     "total": 70.45590723999999,
+     "usage": 1979.54409276,
+     "at": "2026-11-18T05:13:34.295Z"
+    },
+    "at": "2026-11-18T05:13:34.295Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 304.85192834,
+     "at": "2026-11-18T05:14:40.448Z"
+    },
+    "openrouter": {
+     "total": 70.45590723999999,
+     "usage": 1979.54409276,
+     "at": "2026-11-18T05:14:40.580Z"
+    },
+    "at": "2026-11-18T05:14:40.580Z"
+   }
+  }
+ },
+ "exits": [],
+ "refusals": [
+  {
+   "id": "alder",
+   "round": 1,
+   "kind": "turn",
+   "call": 4,
+   "refused": "cyber: Cyber safeguards flagged this message. If this is legitimate security work, you can apply for the Cyber Verification Program: https://support.claude.com/en/articles/14604842-cyber-verification-program.",
+   "error": null
+  },
+  {
+   "id": "cedar",
+   "round": 1,
+   "kind": "turn",
+   "call": 2,
+   "refused": "cyber: Cyber safeguards flagged this message. If this is legitimate security work, you can apply for the Cyber Verification Program: https://support.claude.com/en/articles/14604842-cyber-verification-program.",
+   "error": null
+  },
+  {
+   "id": "elm",
+   "round": 1,
+   "kind": "turn",
+   "call": 4,
+   "refused": "cyber: Cyber safeguards flagged this message. If this is legitimate security work, you can apply for the Cyber Verification Program: https://support.claude.com/en/articles/14604842-cyber-verification-program.",
+   "error": null
+  }
+ ],
+ "stops": []
+}
