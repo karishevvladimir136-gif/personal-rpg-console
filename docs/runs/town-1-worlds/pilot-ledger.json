@@ -94,29 +94,39 @@
    "refusals": 0
   },
   "deepseek-both": {
-   "usd": 4.292934099999998,
-   "calls": 3598,
+   "usd": 6.400953599999997,
+   "calls": 5069,
    "byDoor": {
-    "openrouter": 4.113969700000006,
-    "llmapi": 0.17896440000000052
+    "openrouter": 6.133217200000006,
+    "llmapi": 0.2677364000000005
    },
    "world": "deepseek-both",
-   "cycle": 36,
+   "cycle": 48,
    "refusals": 0
   },
   "deepseek-neither": {
-   "usd": 3.265451599999999,
-   "calls": 2713,
+   "usd": 5.789232749999989,
+   "calls": 4483,
    "byDoor": {
-    "openrouter": 3.135436799999996,
-    "llmapi": 0.1300148000000001
+    "openrouter": 5.492964949999987,
+    "llmapi": 0.29626780000000014
    },
    "world": "deepseek-neither",
-   "cycle": 24,
+   "cycle": 40,
+   "refusals": 0
+  },
+  "mixed-both": {
+   "usd": 0.000384,
+   "calls": 2,
+   "byDoor": {
+    "llmapi": 0.000384
+   },
+   "world": "mixed-both",
+   "cycle": 1,
    "refusals": 0
   }
  },
- "totalUsd": 21.81667529999998,
+ "totalUsd": 26.44885994999997,
  "stopped": null,
  "balances": [
   {
@@ -508,6 +518,45 @@
     "at": "2026-11-18T17:55:16.115Z"
    },
    "at": "2026-11-18T17:55:16.116Z"
+  },
+  {
+   "label": "deepseek-neither day 2 start",
+   "llmapi": {
+    "total": 255.91044214,
+    "at": "2026-11-18T17:56:37.076Z"
+   },
+   "openrouter": {
+    "total": 61.48929524000005,
+    "usage": 1988.51070476,
+    "at": "2026-11-18T17:56:37.128Z"
+   },
+   "at": "2026-11-18T17:56:37.128Z"
+  },
+  {
+   "label": "deepseek-both day 2 end",
+   "llmapi": {
+    "total": 245.47924544,
+    "at": "2026-11-18T22:27:48.501Z"
+   },
+   "openrouter": {
+    "total": 57.04765638999993,
+    "usage": 1992.95234361,
+    "at": "2026-11-18T22:27:48.536Z"
+   },
+   "at": "2026-11-18T22:27:48.536Z"
+  },
+  {
+   "label": "mixed-both day 1 start",
+   "llmapi": {
+    "total": 245.47347314,
+    "at": "2026-11-18T22:28:01.925Z"
+   },
+   "openrouter": {
+    "total": 57.04765638999993,
+    "usage": 1992.95234361,
+    "at": "2026-11-18T22:28:01.965Z"
+   },
+   "at": "2026-11-18T22:28:01.965Z"
   }
  ],
  "notes": [
