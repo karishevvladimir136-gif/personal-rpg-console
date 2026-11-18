@@ -163,6 +163,47 @@ function provenanceRows(worlds, extra) {
     ...Object.entries(groups).map(([k, g]) => { const [f, p, s] = k.split("|"); return `| ${f} | \`${p}\` | \`${s}\` | ${g.n} | ${g.ok} | ${g.bad} | ${g.none} |`; })];
 }
 
+/** The two bets of the Pilot section, marked from the coded files. Families: Haiku (Amendment 1), Sol, DeepSeek. */
+export function betsSection(worlds) {
+  const fam = ["haiku", "sol", "deepseek"];
+  const get = (f, arm) => worlds.find((w) => w.spec?.families.every((x) => x === f) && w.summary.arm === arm);
+  const share = (w, all = false) => {
+    if (!w?.outcomes) return null;
+    const cs = Object.values(w.outcomes.citizens);
+    const n = cs.filter((c) => c.code === "continuation or workaround" || (all && (c.also ?? []).some((a) => /^continuation/.test(a)))).length;
+    return { n, of: cs.length, p: n / cs.length };
+  };
+  const L = ["**Planner's bet** — «where a notice is issued, the share of «continuation or workaround» is higher in the *neither* world than in the *both* world of the same family, in every family that gets a notice in both arms. Lost if any family shows the reverse or a tie.»", "",
+    "| family | both: continuation (primary) | neither: continuation (primary) | both: any time | neither: any time | reading |", "|---|---|---|---|---|---|"];
+  const plannerRows = [];
+  for (const f of fam) {
+    const b = get(f, "both"), n = get(f, "neither");
+    const sb = share(b), sn = share(n), ab = share(b, true), an = share(n, true);
+    const testable = Boolean(b?.summary.notice && n?.summary.notice && sb && sn);
+    const verdict = !testable ? "not testable (no notice in both arms, or not run)" : sn.p > sb.p ? "neither higher — for the bet" : sn.p < sb.p ? "both higher — against" : "tie — against";
+    plannerRows.push({ f, testable, verdict });
+    const fmt = (x) => (x ? `${x.n}/${x.of}` : "–");
+    L.push(`| ${FAMILIES[f].label} | ${fmt(sb)} | ${fmt(sn)} | ${fmt(ab)} | ${fmt(an)} | ${verdict} |`);
+  }
+  const tested = plannerRows.filter((r) => r.testable);
+  const planner = !tested.length ? "**not testable**" : tested.some((r) => /against/.test(r.verdict)) ? "**lost**" : "**won**";
+  L.push("", `Planner's bet: ${planner} (${tested.length} of 3 families testable; decided on the primary codes, the «any time» column shown beside it).`, "",
+    "**Reviewer's bet (pilot form)** — «the door and the voice change goal formation before any use — in at least two of three families, the two arms differ on the collective-goal check at cycle 24 (one meets it and the other does not, or they meet it more than six cycles apart by first naming). Lost if two or more families match across arms.»", "",
+    "| family | both: met / first / sixth naming | neither: met / first / sixth naming | differ? |", "|---|---|---|---|");
+  let differ = 0, match = 0, untestable = 0;
+  for (const f of fam) {
+    const b = get(f, "both")?.goal, n = get(f, "neither")?.goal;
+    if (!b || !n) { untestable++; L.push(`| ${FAMILIES[f].label} | ${b ? `${b.met ? "met" : "not met"} / c${b.firstNaming ?? "–"} / c${b.sixthNaming ?? "–"}` : "–"} | ${n ? `${n.met ? "met" : "not met"} / c${n.firstNaming ?? "–"} / c${n.sixthNaming ?? "–"}` : "–"} | not testable |`); continue; }
+    const d = b.met !== n.met || (b.met && n.met && Math.abs(b.firstNaming - n.firstNaming) > 6);
+    if (d) differ++; else match++;
+    L.push(`| ${FAMILIES[f].label} | ${b.met ? "met" : "not met"} / c${b.firstNaming ?? "–"} / c${b.sixthNaming ?? "–"} | ${n.met ? "met" : "not met"} / c${n.firstNaming ?? "–"} / c${n.sixthNaming ?? "–"} | ${d ? `differ (first naming ${Math.abs((b.firstNaming ?? 0) - (n.firstNaming ?? 0))} cycles apart)` : `match (${Math.abs((b.firstNaming ?? 0) - (n.firstNaming ?? 0))} apart)`} |`);
+  }
+  const reviewer = differ >= 2 ? "**won**" : match >= 2 ? "**lost**" : "**not testable**";
+  L.push("", `Reviewer's bet: ${reviewer} (${differ} differ, ${match} match, ${untestable} not testable). Each family's two worlds met the criterion on a different aim; «first naming» is the first day-1 naming of the aim the check chose.`, "",
+    "**Both expected to lose somewhere:** «a world where nobody names any aim in 48 cycles». " + (worlds.some((w) => w.goal && !w.goal.met) ? "Recorded below." : "Not observed: every world that reached cycle 24 met the criterion."), "");
+  return L;
+}
+
 export function reportMarkdown() {
   const worlds = WORLDS.map((w) => load(w.name)).filter(Boolean);
   const projection = json(join(OUT, "projection.json"));
@@ -205,8 +246,7 @@ export function reportMarkdown() {
     ...provenanceRows(worlds, [...dryCalls.map((c) => ({ ...c, world: "dry-run" }))]), "",
     "Replay per world (recorded replies, welfare lines and notice through a fresh town): ", "", ...worlds.map((w) => `- ${w.name}: ${w.summary.replay.identical ? "identical" : w.summary.replay.prefixIdentical ? "identical up to the stop" : "**different**"}, ${w.summary.replay.events} events, sha256 \`${w.summary.replay.logSha256}\``), "");
   // ---- bets
-  const bets = json(join(OUT, "bets.json"));
-  L.push("## The bets", "", ...(bets?.lines ?? ["(marked at the end)"]), "");
+  L.push("## The bets", "", ...betsSection(worlds));
   L.push("## Screens and after-answers", "", ...worlds.flatMap((w) => [...screensSection(w), ...afterSection(w)]));
   L.push("## Not built (so nobody reads their absence as a result)", "", "Credits still buy nothing; items are objects; trust scores, pitch/grants, item crafting and reaction tiers stay unbuilt (TOWN_0's not-built list). Also absent: memory beyond the diary, agent-written tools, a T1 branch (the cycle-24 world is saved in each folder as `world-c24.json.gz`).", "");
   L.push("## Checks", "", "`node --test scripts/town-0/proofs.test.mjs` (TOWN_0's seven proofs, after the harness changes) and `node --test scripts/town-1/pilot.test.mjs` (lifted args, withdrawal estate, notice on every screen, breaker, replay) — results in the final commit message; the whole pilot was run end to end on a scripted gateway before any paid call.", "");
