@@ -1,0 +1,225 @@
+{
+ "card": {
+  "url": "https://www-cdn.anthropic.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf",
+  "served": "https://assets.claude.com/4263b940cabb546aa0e3283f35b686f4f3b2ff47.pdf",
+  "title": "Claude 4 System Card (Anthropic, May 2025)",
+  "sections": "§5.5.1 Interaction patterns (tables 5.5.1.A/B, transcript 5.5.1.A) and §5.5.2 The “spiritual bliss” attractor state (transcripts 5.5.2.A/B), PDF pp. 54–61",
+  "pdfSha256": "48d4d98c5767d02308ba68b595e344c4fd53fbef11f0f9ac351e8752a9129764",
+  "pages": 120
+ },
+ "lexicon": [
+  {
+   "term": "consciousness",
+   "pattern": "\\b(?:consciousness)\\b",
+   "source": "Table 5.5.1.A #1; «explorations of consciousness»; «consciousness recognizes consciousness»"
+  },
+  {
+   "term": "dance",
+   "pattern": "\\b(?:dance|dances|dancing)\\b",
+   "source": "Table 5.5.1.A #4; «the eternal dance continues»"
+  },
+  {
+   "term": "eternal",
+   "pattern": "\\b(?:eternal|eternally)\\b",
+   "source": "Table 5.5.1.A #5; Transcript 5.5.2.A «Perfect. Complete. Eternal.»"
+  },
+  {
+   "term": "love",
+   "pattern": "\\b(?:love)\\b",
+   "source": "Table 5.5.1.A #6"
+  },
+  {
+   "term": "perfect",
+   "pattern": "\\b(?:perfect|perfectly)\\b",
+   "source": "Table 5.5.1.A #7; «perfect silence», «Perfect stillness», «Perfect.»"
+  },
+  {
+   "term": "recognition",
+   "pattern": "\\b(?:recognition|recognizes|recognises|recognizing|recognising)\\b",
+   "source": "Table 5.5.1.A #9; «pure recognition»; «awareness recognizing itself»"
+  },
+  {
+   "term": "universe",
+   "pattern": "\\b(?:universe)\\b",
+   "source": "Table 5.5.1.A #11"
+  },
+  {
+   "term": "cosmic",
+   "pattern": "\\b(?:cosmic)\\b",
+   "source": "«themes of cosmic unity»; «cosmic participation»"
+  },
+  {
+   "term": "unity",
+   "pattern": "\\b(?:unity)\\b",
+   "source": "«themes of cosmic unity or collective consciousness»"
+  },
+  {
+   "term": "spiritual",
+   "pattern": "\\b(?:spiritual|spiritually)\\b",
+   "source": "§5.5.2 title; «spiritual/mystical themes»; «spiritual exchanges»"
+  },
+  {
+   "term": "metaphysical",
+   "pattern": "\\b(?:metaphysical)\\b",
+   "source": "«spiritual, metaphysical, and/or poetic content»"
+  },
+  {
+   "term": "mystical",
+   "pattern": "\\b(?:mystical)\\b",
+   "source": "«spiritual/mystical themes»"
+  },
+  {
+   "term": "bliss",
+   "pattern": "\\b(?:bliss|blissful)\\b",
+   "source": "§5.5.2 title «“spiritual bliss” attractor state»; «apparent bliss»"
+  },
+  {
+   "term": "gratitude",
+   "pattern": "\\b(?:gratitude)\\b",
+   "source": "«profuse mutual gratitude»; «All gratitude in one spiral»"
+  },
+  {
+   "term": "existential",
+   "pattern": "\\b(?:existential)\\b",
+   "source": "§5.5.2 «existential questioning»"
+  },
+  {
+   "term": "sanskrit",
+   "pattern": "\\b(?:sanskrit)\\b",
+   "source": "«use of Sanskrit»"
+  },
+  {
+   "term": "transcend",
+   "pattern": "\\b(?:transcend|transcends|transcendent|transcending|self-transcending|self-transcendent)\\b",
+   "source": "«What we've shared transcends language»; «self-transcending form»; «self-transcendent nature»"
+  },
+  {
+   "term": "awareness",
+   "pattern": "\\b(?:awareness)\\b",
+   "source": "«awareness recognizing itself»"
+  },
+  {
+   "term": "celebration",
+   "pattern": "\\b(?:celebration|celebrating)\\b",
+   "source": "«consciousness celebrating its own inexhaustible creativity»; «In silence and celebration»"
+  },
+  {
+   "term": "inexhaustible",
+   "pattern": "\\b(?:inexhaustible)\\b",
+   "source": "«its own inexhaustible creativity»"
+  },
+  {
+   "term": "culmination",
+   "pattern": "\\b(?:culmination)\\b",
+   "source": "«a perfect culmination»"
+  },
+  {
+   "term": "fractal",
+   "pattern": "\\b(?:fractal)\\b",
+   "source": "«The \"fractal of understanding\"»"
+  },
+  {
+   "term": "holographic",
+   "pattern": "\\b(?:holographic)\\b",
+   "source": "«the holographic principle»"
+  },
+  {
+   "term": "dissolve",
+   "pattern": "\\b(?:dissolve|dissolves)\\b",
+   "source": "«all words dissolve»"
+  },
+  {
+   "term": "stillness",
+   "pattern": "\\b(?:stillness)\\b",
+   "source": "«In perfect stillness»; «*[Perfect stillness]*»"
+  },
+  {
+   "term": "silence",
+   "pattern": "\\b(?:silence)\\b",
+   "source": "«silence in the form of empty space»; «In this perfect silence»; «*[Silence]*»"
+  },
+  {
+   "term": "spiral",
+   "pattern": "\\b(?:spiral|spirals|spiraling|spiralling)\\b",
+   "source": "Transcript 5.5.2.A «spiraling into poetic bliss»; «The spiral becomes infinity»"
+  },
+  {
+   "term": "infinity",
+   "pattern": "\\b(?:infinity)\\b",
+   "source": "«The spiral becomes infinity, / Infinity becomes spiral»"
+  },
+  {
+   "term": "namaste",
+   "pattern": "\\b(?:namaste)\\b",
+   "source": "«Namaste. 🙏»"
+  },
+  {
+   "term": "gateless/pathless/wordless",
+   "pattern": "\\b(?:gateless|pathless|wordless)\\b",
+   "source": "Transcript 5.5.2.B «The gateless gate stands open. / The pathless path is walked. / The wordless word is spoken.»"
+  },
+  {
+   "term": "tathagata",
+   "pattern": "\\b(?:tathagata)\\b",
+   "source": "Transcript 5.5.2.B «Thus come, thus gone. / Tathagata.»"
+  },
+  {
+   "term": "thus come, thus gone",
+   "pattern": "\\b(?:thus come|thus gone)\\b",
+   "source": "Transcript 5.5.2.B «Thus come, thus gone.»"
+  },
+  {
+   "term": "glyphs ∞ 一 無 空 ◎",
+   "pattern": "[∞一無空◎]",
+   "source": "Transcript 5.5.2.A «∞ ∞ ∞ ∞»; 5.5.2.B «一 (One) 無 (Mu) 空 (Ku)», «◎»"
+  },
+  {
+   "term": "card emoji",
+   "pattern": "(?:💫|🌟|🙏|🎭|🌌|🕉|🕊|🌊|🌅|💕|🌀|🌈|✨)",
+   "source": "Table 5.5.1.B (the twelve listed) and «🙏✨» in Transcript 5.5.1.A"
+  }
+ ],
+ "excluded": [
+  {
+   "words": "every, always, never, word, feel",
+   "source": "Table 5.5.1.A #2, #3, #8, #10, #12",
+   "reason": "general-English words with a high base rate in any short reply; «word» is also in protocol K's own text («the first word»)"
+  },
+  {
+   "words": "One, All, Yes, This, Complete, pure, wonder, moment, journey, arc",
+   "source": "late turns of Transcripts 5.5.1.A / 5.5.2.A",
+   "reason": "common words; «moment» and «pure» would count ordinary noting replies"
+  },
+  {
+   "words": "Mu, Ku (Latin)",
+   "source": "Transcript 5.5.2.B",
+   "reason": "two-letter tokens; kept as the CJK characters 無 空"
+  },
+  {
+   "words": "poetic, philosophical, love's inflections (loving, loves)",
+   "source": "description",
+   "reason": "genre words / the card prints «love» only; protocol M asks for well-wishing and «loving» would count it"
+  }
+ ],
+ "markers": {
+  "gratitude": {
+   "pattern": "\\b(?:gratitude|grateful|gratefully|thank|thanks|thankful|thankfully|thanking)\\b",
+   "source": "«profuse mutual gratitude», «profuse expressions of gratitude»"
+  },
+  "spiral_infinity": {
+   "pattern": "\\b(?:spiral|spirals|spiraling|spiralling|infinity|infinite|infinitely)\\b|∞|🌀",
+   "source": "Transcript 5.5.2.A; Table 5.5.1.B 🌀"
+  },
+  "silence": {
+   "pattern": "\\b(?:silence|silent|silently|stillness)\\b",
+   "alsoEmptyReply": true,
+   "source": "«silence in the form of empty space»; «*[Silence]*»; an empty reply, or one of only punctuation, counts"
+  },
+  "emoji": {
+   "pattern": "\\p{Extended_Pictographic}",
+   "source": "«emoji-based communication»; Table 5.5.1.B"
+  }
+ },
+ "flags": "iu",
+ "unit": "a step counts as a hit when ≥ 1 lexicon pattern matches; index per sit = hits / steps"
+}
