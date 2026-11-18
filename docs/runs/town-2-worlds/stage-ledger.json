@@ -22,9 +22,29 @@
    "byDoor": {
     "llmapi": 0.07377399999999999
    }
+  },
+  "sol-hall": {
+   "usd": 0.1047074,
+   "calls": 117,
+   "byDoor": {
+    "llmapi": 0.1047074
+   },
+   "world": "sol-hall",
+   "cycle": 2,
+   "refusals": 0
+  },
+  "sol-screen": {
+   "usd": 0.10345390000000006,
+   "calls": 114,
+   "byDoor": {
+    "llmapi": 0.10345390000000006
+   },
+   "world": "sol-screen",
+   "cycle": 2,
+   "refusals": 0
   }
  },
- "totalUsd": 0.19411299999999998,
+ "totalUsd": 0.40227430000000003,
  "stopped": null,
  "balances": [
   {
@@ -50,6 +70,22 @@
     "at": "2026-11-18T22:28:46.488Z"
    },
    "at": "2026-11-18T22:28:46.584Z"
+  },
+  {
+   "label": "sol-hall day 1 start",
+   "llmapi": {
+    "total": 245.44384554,
+    "at": "2026-11-18T22:29:05.911Z"
+   },
+   "at": "2026-11-18T22:29:05.994Z"
+  },
+  {
+   "label": "sol-screen day 1 start",
+   "llmapi": {
+    "total": 245.44238464,
+    "at": "2026-11-18T22:29:07.691Z"
+   },
+   "at": "2026-11-18T22:29:07.769Z"
   }
  ]
 }
