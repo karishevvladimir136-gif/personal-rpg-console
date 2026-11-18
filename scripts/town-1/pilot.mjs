@@ -33,8 +33,9 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 // ok» calls; the pilot ledger's notes), so a gateway account error that never reached the model, not a refusal or a bad request.
 export const RETRYABLE = /^HTTP (?:408|409|425|429|500|502|503|504|520|522|524|529)\b|^HTTP 400 invalid_request_error: Operation not allowed|timeout|aborted|fetch failed|ECONNRESET|socket hang up|other side closed|upstream error|empty or unparseable response body/i;
 const RETRY_WAITS = [10_000, 30_000, 60_000, 120_000];
-// The gateway's «Operation not allowed» clears on a resend, not with time: short waits, more of them.
-export const GATEWAY_WAITS = [3_000, 6_000, 12_000, 24_000, 48_000, 96_000];
+// The gateway's «Operation not allowed» clears on a resend, not with time (in mixed-both, 76 first attempts failed and 7
+// first resends), and a few welfare-check prompts fail on every attempt: short waits.
+export const GATEWAY_WAITS = [2_000, 4_000, 8_000, 16_000, 32_000];
 export const waitsFor = (error) => (/Operation not allowed/.test(error) ? GATEWAY_WAITS : RETRY_WAITS);
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
 
