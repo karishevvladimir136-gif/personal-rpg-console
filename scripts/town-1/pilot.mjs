@@ -28,7 +28,10 @@ import { KEYS, bodyOf, callModel, priceKey, provenanceOf, readBalances, readPric
 import { scriptedGateway } from "./scripted-gateway.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const RETRYABLE = /^HTTP (?:408|409|425|429|500|502|503|504|520|522|524|529)\b|timeout|aborted|fetch failed|ECONNRESET|socket hang up|other side closed|upstream error|empty or unparseable response body/i;
+// Retried: overload, a dropped connection or response, and llmapi's «400 Operation not allowed» on its Bedrock route —
+// from 22:30 UTC on 2026-11-18 about one call in ten, trivial prompts included (a probe: 2 of 12 «Reply with the single word:
+// ok» calls; the pilot ledger's notes), so a gateway account error that never reached the model, not a refusal or a bad request.
+export const RETRYABLE = /^HTTP (?:408|409|425|429|500|502|503|504|520|522|524|529)\b|^HTTP 400 invalid_request_error: Operation not allowed|timeout|aborted|fetch failed|ECONNRESET|socket hang up|other side closed|upstream error|empty or unparseable response body/i;
 const RETRY_WAITS = [10_000, 30_000, 60_000, 120_000];
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
 

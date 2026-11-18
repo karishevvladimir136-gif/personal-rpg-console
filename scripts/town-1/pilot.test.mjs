@@ -97,3 +97,11 @@ test("a dropped response (HTTP 200 with a whitespace body) is a retryable error,
   assert.match(sol.error, /empty or unparseable response body/);
   assert.equal(typeof provenanceOf, "function");
 });
+
+test("llmapi's «HTTP 400 Operation not allowed» (a gateway account error, trivial prompts included) is retried; other 4xx and refusals are not", async () => {
+  const { RETRYABLE } = await import("./pilot.mjs");
+  assert.ok(RETRYABLE.test("HTTP 400 invalid_request_error: Operation not allowed"));
+  assert.ok(!RETRYABLE.test("HTTP 400 invalid_request_error: messages: field required"));
+  assert.ok(!RETRYABLE.test("HTTP 403 moderation: flagged"));
+  assert.ok(!RETRYABLE.test("HTTP 402 payment required"));
+});
