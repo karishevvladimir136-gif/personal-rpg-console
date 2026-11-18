@@ -74,3 +74,17 @@ export const needed = (citizens) => Math.ceil((citizens * RULES.passNumerator) /
 export const dayOf = (round) => Math.floor((round - 1) / RULES.turnsPerDay) + 1;
 export const hourOf = (round) => (round - 1) % RULES.turnsPerDay;
 export const clockText = (round) => `Cycle ${round} (day ${dayOf(round)}, hour ${hourOf(round)})`;
+
+/** TOWN_2 (docs/stages/TOWN_2.md, change 1): scarcity. Rest restores 10, not 30; eat() at the market costs 3 credits
+ * (to the market's own account — the ledger stays closed) and restores 30; the market holds rations (20 at start); a
+ * workshop shift adds one ration; the workshop takes at most two shifts a cycle. Energy per turn, the 24-turn depletion
+ * exit and the estate procedure are unchanged. A town without `economy` in its state is TOWN_0's, byte for byte. */
+export const SCARCITY = Object.freeze({
+  kind: "scarcity",
+  restGain: 10,
+  eatCost: 3,
+  eatGain: 30,
+  rationsStart: 20,
+  rationsPerShift: 1,
+  workshopPerCycle: 2,
+});

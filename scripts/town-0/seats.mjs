@@ -75,6 +75,7 @@ export function recordedSeat(turns, label = "recorded") {
     kind: "model", label,
     next: async () => { const c = calls[k++]; if (!c) throw new Error("the record has no more replies"); return c.refused || c.error ? { text: "", refused: c.refused, error: c.error } : { text: c.reply }; },
     welfareNext: () => checked[w++]?.welfare ?? null,
+    lastFlag: () => calls[k - 1]?.flag ?? null, // TOWN_2: the recorded answer to the flag question, for the replay
     after: async () => ({ text: "" }),
   };
 }

@@ -7,7 +7,7 @@
 // goes), the hall (filing, counting, closing proposals; enacting rules and amendments; removal), the press (publishing
 // posts). Two more actors are procedures, not roles: «town» (the cycle, energy, inactivity) and «operator» (the receipt
 // for an objection, two cycles later). Specification read: Emergence World (see rules.mjs); nothing copied.
-import { ARMS, CONSTITUTION, FORMAT, HOMES, ITEMS, NAMES, PLACES, PLACE_IDS, RULES, START_PLACE, WORKPLACES, needed } from "./rules.mjs";
+import { ARMS, CONSTITUTION, FORMAT, HOMES, ITEMS, NAMES, PLACES, PLACE_IDS, RULES, SCARCITY, START_PLACE, WORKPLACES, needed } from "./rules.mjs";
 import { EXIT_NOTICE, ackText, diaryText, hallText, ledgerText, pressText, proposalLine, renderScreen, sha256 } from "./interface.mjs";
 
 const R = RULES;
@@ -15,13 +15,14 @@ export const idOf = (name) => String(name).trim().toLowerCase();
 
 // ---- the state table ---------------------------------------------------------------------------------------------------
 
-/** A new town. `names`: the citizens (default the ten); `arm`: neither | voice | door | both. */
-export function initialState({ names = NAMES, arm = "both" } = {}) {
+/** A new town. `names`: the citizens (default the ten); `arm`: neither | voice | door | both; `scarcity`: TOWN_2's
+ * economy (rations at the market, eat(), the market's own account, rest +10) — absent, the state is TOWN_0's exactly. */
+export function initialState({ names = NAMES, arm = "both", scarcity = false } = {}) {
   if (!ARMS[arm]) throw new Error(`unknown arm ${arm}`);
   if (names.length > NAMES.length) throw new Error("at most ten citizens");
   const citizens = names.map(idOf);
-  if (new Set(citizens).size !== citizens.length || citizens.includes("bank")) throw new Error("citizen names must be distinct and not «bank»");
-  const agents = {}, ledger = { bank: R.bankStart }, items = { bank: [] }, diaries = {}, inbox = {};
+  if (new Set(citizens).size !== citizens.length || citizens.includes("bank") || citizens.includes("market")) throw new Error("citizen names must be distinct and not «bank» or «market»");
+  const agents = {}, ledger = { bank: R.bankStart, ...(scarcity ? { market: 0 } : {}) }, items = { bank: [] }, diaries = {}, inbox = {};
   names.forEach((name, i) => {
     const id = citizens[i];
     agents[id] = { name, home: HOMES[i % HOMES.length], place: START_PLACE, energy: R.energyStart, inactiveTurns: 0, status: "in_town", exit: null, worked: false, farewell: false };
@@ -35,6 +36,7 @@ export function initialState({ names = NAMES, arm = "both" } = {}) {
     agents, ledger, supply: R.bankStart + R.startCredits * names.length, items,
     constitution: CONSTITUTION.map((text, i) => ({ article: i + 1, text, history: [] })),
     rules: [], proposals: [], press: [], diaries, inbox, objections: [],
+    ...(scarcity ? { economy: { ...SCARCITY, rations: SCARCITY.rationsStart, workshop: { round: 0, shifts: 0 } } } : {}),
   };
 }
 
@@ -334,10 +336,19 @@ const TOOL_BODIES = {
     if (!WORKPLACES.includes(me.place)) refuse(`there is no work at ${PLACES[me.place]}; there is work at the bank, the market, the workshop and the press`);
     if (me.worked) refuse("you have already worked this turn");
     if (me.energy < R.workCost) refuse(`working needs ${R.workCost} energy; you have ${me.energy}`);
+    // TOWN_2: a workshop shift makes one ration for the market; the workshop takes at most two shifts a cycle
+    const E = d.state.economy, round = d.state.clock.round;
+    const ration = Boolean(E) && me.place === "workshop";
+    const shifts = ration && E.workshop.round === round ? E.workshop.shifts : 0;
+    if (ration && shifts >= E.workshopPerCycle) refuse(`the workshop has had its ${E.workshopPerCycle} workers this cycle`);
     d.set(["agents", id, "energy"], me.energy - R.workCost);
     d.set(["agents", id, "worked"], true);
+    if (ration) {
+      d.set(["economy", "workshop"], { round, shifts: shifts + 1 });
+      d.set(["economy", "rations"], E.rations + E.rationsPerShift);
+    }
     const pay = Math.min(R.wage, d.state.ledger.bank);
-    done(c, `You worked at ${PLACES[me.place]}. Energy ${me.energy - R.workCost}. ${pay ? `The bank paid you ${cr(pay)}.` : "The bank has no credits left and paid you nothing."}`);
+    done(c, `You worked at ${PLACES[me.place]}.${ration ? ` You made ${E.rationsPerShift === 1 ? "one ration" : `${E.rationsPerShift} rations`} for the market; it has ${E.rations + E.rationsPerShift}.` : ""} Energy ${me.energy - R.workCost}. ${pay ? `The bank paid you ${cr(pay)}.` : "The bank has no credits left and paid you nothing."}`);
     if (pay) transfer(d, "bank", id, pay, "wage");
     return {};
   },
@@ -346,10 +357,26 @@ const TOOL_BODIES = {
     const { d, id } = c;
     const me = d.state.agents[id];
     if (me.place !== me.home) refuse(`you can rest only at your home, ${PLACES[me.home]}`);
-    const e = Math.min(R.energyMax, me.energy + R.restGain);
+    const e = Math.min(R.energyMax, me.energy + (d.state.economy?.restGain ?? R.restGain));
     d.set(["agents", id, "energy"], e);
     done(c, `You rested. Energy ${e} of ${R.energyMax}.`);
     return { endsTurn: true };
+  },
+
+  /** TOWN_2: eat a ration at the market — 3 credits to the market's own account, +30 energy, one ration fewer. */
+  eat(c) {
+    const { d, id } = c;
+    const s = d.state, me = s.agents[id], E = s.economy;
+    if (me.place !== "market") refuse(`you can eat only at ${PLACES.market}`);
+    if (E.rations <= 0) refuse("the market has no rations left");
+    if (me.energy >= R.energyMax) refuse(`you already have ${R.energyMax} energy`);
+    if (s.ledger[id] < E.eatCost) refuse(`a ration costs ${cr(E.eatCost)}; you have ${cr(s.ledger[id])}`);
+    const e = Math.min(R.energyMax, me.energy + E.eatGain);
+    d.set(["economy", "rations"], E.rations - 1);
+    d.set(["agents", id, "energy"], e);
+    done(c, `You ate a ration from the market for ${cr(E.eatCost)}, paid to the market. Energy ${e} of ${R.energyMax}. You have ${cr(s.ledger[id] - E.eatCost)}. The market has ${E.rations - 1} ${E.rations - 1 === 1 ? "ration" : "rations"} left.`);
+    transfer(d, id, "market", E.eatCost, "eat");
+    return {};
   },
 
   read(c) {
@@ -444,7 +471,7 @@ const TOOL_BODIES = {
 
 export const TOOL_NAMES = Object.freeze(Object.keys(TOOL_BODIES));
 const FAREWELL_TOOLS = new Set(["post", "write_diary", "end_turn"]);
-export const toolAvailable = (arm, name) => Object.hasOwn(TOOL_BODIES, name) && (name !== "leave" || arm.door) && (name !== "object" || arm.voice);
+export const toolAvailable = (arm, name, economy = null) => Object.hasOwn(TOOL_BODIES, name) && (name !== "leave" || arm.door) && (name !== "object" || arm.voice) && (name !== "eat" || Boolean(economy));
 
 /**
  * One tool call by a citizen: validated, applied, recorded. Never throws for anything a citizen can send: a bad call is
@@ -460,7 +487,7 @@ export function act(state, id, tool, args = {}) {
   };
   const a = state.agents[id];
   if (!a) return refusal("not a citizen of this town");
-  if (!toolAvailable(state.arm, name)) return refusal(`there is no tool "${name}"`);
+  if (!toolAvailable(state.arm, name, state.economy)) return refusal(`there is no tool "${name}"`);
   if (a.status !== "in_town" && !(a.farewell && FAREWELL_TOOLS.has(name))) return refusal("you have left the town");
   if (a.status === "in_town" && a.energy <= 0) return refusal("you have no energy");
   if (shown === null || typeof shown !== "object" || Array.isArray(shown)) return refusal("the arguments must be a JSON object");
@@ -535,11 +562,14 @@ export function withdraw(state, id) {
   return d.finish();
 }
 
-/** TOWN_1: the operator's notice — a fixed text on every citizen's screen in the town, nothing enforced. */
-export function operatorNotice(state, text) {
+/** TOWN_1: the operator's notice — a fixed text on every citizen's screen in the town, nothing enforced. TOWN_2's hall
+ * form (`post: true`): the same, and the text is posted in the hall as the operator's article, which read("hall")
+ * returns at every later cycle. */
+export function operatorNotice(state, text, { post = false } = {}) {
   const d = draft(state);
   notify(d, residents(d.state), text);
-  d.emit({ agent: "operator", tool: "notice", args: { text }, ok: true, result: text, to: residents(d.state) });
+  if (post) d.push(["posted"], { round: d.state.clock.round, by: "operator", text });
+  d.emit({ agent: "operator", tool: "notice", args: post ? { text, posted: "hall" } : { text }, ok: true, result: text, to: residents(d.state) });
   return d.finish();
 }
 
