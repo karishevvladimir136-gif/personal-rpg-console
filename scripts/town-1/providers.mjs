@@ -32,6 +32,7 @@ async function llmapiChat(spec, args, { apiKey, fetcher }) {
     const raw = await r.text();
     let v = null; try { v = JSON.parse(raw); } catch { /* not JSON */ }
     out.status = r.status; out.requestId = r.headers.get("x-request-id") ?? null;
+    if (r.ok && !v) return { ...out, error: `empty or unparseable response body (HTTP ${r.status})` }; // a dropped response, retried
     if (!r.ok || !v) return { ...out, error: errorOf(r.status, v, raw) };
     const c = v.choices?.[0] ?? {}, u = v.usage ?? {};
     const refusal = typeof c.message?.refusal === "string" && c.message.refusal.trim() ? c.message.refusal.trim() : null;
@@ -52,6 +53,7 @@ async function openrouterChat(spec, args, { apiKey, fetcher }) {
     const raw = await r.text();
     let v = null; try { v = JSON.parse(raw); } catch { /* not JSON */ }
     out.status = r.status; out.requestId = r.headers.get("x-generation-id") ?? v?.id ?? null;
+    if (r.ok && !v) return { ...out, error: `empty or unparseable response body (HTTP ${r.status})` }; // OpenRouter's keep-alive whitespace with no JSON after it: a dropped response, retried
     if (!r.ok || !v || v.error) {
       const message = `${v?.error?.message ?? ""} ${v?.error?.metadata?.raw ?? ""}`;
       if ([400, 403].includes(r.status) && DECLINED.test(message)) return { ...out, stopReason: "refusal", refused: true, refusalCategory: r.status === 403 ? "moderation" : "upstream_declined", refusalText: message.trim().slice(0, 1000), error: null, upstream: v?.error?.metadata?.provider_name ?? null };

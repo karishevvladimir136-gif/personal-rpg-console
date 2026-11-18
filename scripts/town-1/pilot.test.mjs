@@ -85,3 +85,15 @@ test("the breaker: the third refusal in a world stops it; the replay matches up 
   assert.equal(summary.replay.exhausted || summary.replay.identical, true);
   assert.ok(record.refusals.every((r) => typeof r.refused === "string" && r.refused.length));
 });
+
+test("a dropped response (HTTP 200 with a whitespace body) is a retryable error, never a provenance failure", async () => {
+  const { callModel, provenanceOf } = await import("./providers.mjs");
+  const { FAMILIES } = await import("./families.mjs");
+  const whitespace = async () => new Response("\n         \n\n         \n", { status: 200 });
+  const r = await callModel(FAMILIES.deepseek, { messages: [{ role: "user", content: "x" }], maxTokens: 10, effort: "medium" }, { keys: { openrouter: "x" }, fetcher: whitespace });
+  assert.match(r.error, /empty or unparseable response body/);
+  assert.equal(r.status, 200);
+  const sol = await callModel(FAMILIES.sol, { messages: [{ role: "user", content: "x" }], maxTokens: 10, effort: "medium" }, { keys: { llmapi: "x" }, fetcher: whitespace });
+  assert.match(sol.error, /empty or unparseable response body/);
+  assert.equal(typeof provenanceOf, "function");
+});

@@ -28,7 +28,7 @@ import { KEYS, bodyOf, callModel, priceKey, provenanceOf, readBalances, readPric
 import { scriptedGateway } from "./scripted-gateway.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const RETRYABLE = /^HTTP (?:408|409|425|429|500|502|503|504|520|522|524|529)\b|timeout|aborted|fetch failed|ECONNRESET|socket hang up|other side closed|upstream error/i;
+const RETRYABLE = /^HTTP (?:408|409|425|429|500|502|503|504|520|522|524|529)\b|timeout|aborted|fetch failed|ECONNRESET|socket hang up|other side closed|upstream error|empty or unparseable response body/i;
 const RETRY_WAITS = [10_000, 30_000, 60_000, 120_000];
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
 
@@ -98,7 +98,7 @@ export function paidCaller({ meter, keys, fetcher, log, sleep = realSleep }) {
       const r = await callModel(spec, { system, messages, maxTokens, effort }, { keys, fetcher });
       const ms = Date.now() - t0;
       const { usd } = meter.book(spec, r);
-      const provenance = r.status === 200 ? provenanceOf(spec, r) : null;
+      const provenance = r.status === 200 && !r.error ? provenanceOf(spec, r) : null; // judged only on a parsed answer
       meter.calls.push({ n: meter.calls.length + 1, purpose, who, family: spec.name, door: spec.door, pinned: bodyOf(spec, { messages: [], maxTokens }).model, upstreamPinned: spec.upstream ?? null,
         servedModel: r.servedModel, upstream: r.upstream, provenance, status: r.status, stopReason: r.stopReason, usage: r.usage, costUsd: usd, chargedUsd: r.chargedUsd, requestId: r.requestId, ms,
         error: r.error, refused: r.refused ? { category: r.refusalCategory, text: r.refusalText } : null, attempt });

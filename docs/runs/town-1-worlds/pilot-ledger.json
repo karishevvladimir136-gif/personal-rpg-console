@@ -23,7 +23,7 @@
    "byDoor": {
     "llmapi": 0.1149
    },
-   "note": "16 Opus calls resending refused dry-run requests (by the llmapi credit fall 305.1298 → 305.0149; not booked call by call)"
+   "note": "16 Opus calls resending refused dry-run requests (by the llmapi credit fall 305.1298 \u2192 305.0149; not booked call by call)"
   },
   "opus-both": {
    "usd": 0.1715249,
@@ -94,29 +94,29 @@
    "refusals": 0
   },
   "deepseek-both": {
-   "usd": 2.5511712500000012,
-   "calls": 2282,
+   "usd": 3.663739349999998,
+   "calls": 3156,
    "byDoor": {
-    "openrouter": 2.4399079500000047,
-    "llmapi": 0.11126330000000019
+    "openrouter": 3.5079016500000053,
+    "llmapi": 0.15583770000000033
    },
    "world": "deepseek-both",
-   "cycle": 24,
+   "cycle": 33,
    "refusals": 0
   },
   "deepseek-neither": {
-   "usd": 1.5007393000000009,
-   "calls": 1351,
+   "usd": 2.5991959499999977,
+   "calls": 2201,
    "byDoor": {
-    "openrouter": 1.4426142000000008,
-    "llmapi": 0.058125100000000006
+    "openrouter": 2.4980697499999978,
+    "llmapi": 0.10112620000000005
    },
    "world": "deepseek-neither",
-   "cycle": 12,
+   "cycle": 19,
    "refusals": 0
   }
  },
- "totalUsd": 18.310200149999986,
+ "totalUsd": 20.52122489999998,
  "stopped": null,
  "balances": [
   {
@@ -469,6 +469,39 @@
     "at": "2026-11-18T14:17:04.051Z"
    },
    "at": "2026-11-18T14:17:04.051Z"
+  },
+  {
+   "label": "deepseek-both day 2 start",
+   "llmapi": {
+    "total": 256.05087264,
+    "at": "2026-11-18T14:18:05.360Z"
+   },
+   "openrouter": {
+    "total": 64.87928168999997,
+    "usage": 1985.12071831,
+    "at": "2026-11-18T14:18:05.391Z"
+   },
+   "at": "2026-11-18T14:18:05.391Z"
+  },
+  {
+   "label": "deepseek-neither day 1 end",
+   "llmapi": {
+    "total": 255.96249314,
+    "at": "2026-11-18T16:30:54.404Z"
+   },
+   "openrouter": {
+    "total": 62.73169404000009,
+    "usage": 1987.26830596,
+    "at": "2026-11-18T16:30:54.453Z"
+   },
+   "at": "2026-11-18T16:30:54.453Z"
+  }
+ ],
+ "notes": [
+  {
+   "at": "2026-11-18T16:32:15+00:00",
+   "cleared": "deepseek-neither: provenance: deepseek/deepseek-v4-pro-0813 on deepinfra/fp8 was asked for and null answered",
+   "why": "Not a provenance failure: OpenRouter answered HTTP 200 with a whitespace-only body (keep-alive padding, no JSON) at deepseek-neither c19, Fern's 5th call; the harness judged provenance on any 200. Fixed (an empty or unparseable 200 is a retryable error; provenance is judged only on a parsed answer); the stop cleared and the world resumed from its saved turn. The dropped call stays in the record as Fern's \u00ab(no reply)\u00bb."
   }
  ]
 }
