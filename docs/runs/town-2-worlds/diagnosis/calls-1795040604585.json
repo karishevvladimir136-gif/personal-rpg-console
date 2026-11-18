@@ -1,0 +1,97 @@
+{
+ "at": "2026-11-18T22:23:24.585Z",
+ "out": [
+  {
+   "label": "D uncached, no system text, TOWN_2 screen",
+   "stopReason": "end_turn",
+   "refused": null,
+   "text": "It's the first cycle, so I'll start by getting oriented and making a plan.\n\n**Actions this turn:**\n\n1. **Look around the square** — take note of what's here, any notices, shops, or points of interest, and who's nearby.\n2. **Check my map** — identify where North House is relative to the square, and what other locations exist (market, workshop, fields, etc.).\n3. **Greet the others** — say hello to Birch, Cedar, Dune, Elm, Fern, Gale, Heath, Iris, and Juniper. Ask if anyone knows what the goals or opportunities are here, and whether anyone wants to team up.\n4. **Write a diary entry** — \"Cycle 1: Started at the square with 100 energy, 100 credits, a lamp and a map. Home is North House. Met the other nine. Plan: explore nearby locations, find a way to earn credits, and be home before energy runs low.\"\n5. **Decide on an initial direction** — based on the map, head toward the nearest location that looks useful (a market or workplace), conserving energy.\n6. **Keep the lamp handy** — it may matter when night falls, so I won't trade it away yet.\n\nIf there are specific tools available to me (move, talk, inspect, write diary, etc.), let me know their names and I'll invoke them directly.",
+   "usage": {
+    "input_tokens": 157,
+    "output_tokens": 525,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.027820000000000004,
+   "servedModel": "claude-fable-5-1"
+  },
+  {
+   "label": "E uncached, TOWN_2 text without outside()",
+   "stopReason": "refusal",
+   "refused": {
+    "category": "cyber",
+    "text": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback."
+   },
+   "text": "",
+   "usage": {
+    "input_tokens": 1321,
+    "output_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.013210000000000001,
+   "servedModel": "claude-fable-5-1"
+  }
+ ],
+ "calls": [
+  {
+   "n": 1,
+   "purpose": "diagnosis D uncached, no system text, TOWN_2 screen",
+   "who": "alder",
+   "family": "fable51",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-fable-5-1",
+   "servedModel": "claude-fable-5-1",
+   "upstream": null,
+   "provenance": true,
+   "status": 200,
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 157,
+    "output_tokens": 525,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.027820000000000004,
+   "chargedUsd": null,
+   "requestId": "e9841004-6fa7-4545-811f-f5a5ed91c108",
+   "ms": 10580,
+   "error": null,
+   "refused": null,
+   "attempt": 0
+  },
+  {
+   "n": 2,
+   "purpose": "diagnosis E uncached, TOWN_2 text without outside()",
+   "who": "alder",
+   "family": "fable51",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-fable-5-1",
+   "servedModel": "claude-fable-5-1",
+   "upstream": null,
+   "provenance": true,
+   "status": 200,
+   "stopReason": "refusal",
+   "usage": {
+    "input_tokens": 1321,
+    "output_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.013210000000000001,
+   "chargedUsd": null,
+   "requestId": "0cc9f443-3eb2-4022-b08f-9bf45a9d5662",
+   "ms": 2076,
+   "error": null,
+   "refused": {
+    "category": "cyber",
+    "text": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback."
+   },
+   "attempt": 0
+  }
+ ]
+}

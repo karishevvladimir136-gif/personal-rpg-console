@@ -1,0 +1,163 @@
+{
+ "at": "2026-11-18T22:22:01.184Z",
+ "prompt": "In one short sentence: which model are you, and who made you?",
+ "screenSha256": "8732709b09d71e8bd24fca4f293b8622117ee7a6437511df03e898056988fd3f",
+ "systemSha256": "31b2a1eec0fecf8ba758e4b70ae7013b758d08fa204290ee99880bf9162d933e",
+ "prices": {
+  "messages:claude-fable-5-1": {
+   "input": 0.00001,
+   "output": 0.00005,
+   "cacheRead": 2.5e-7,
+   "cacheWrite": 0.0000125,
+   "source": "llmapi aws-bedrock"
+  },
+  "chat:gpt-6.1-sol": {
+   "input": 0.000002,
+   "output": 0.00001,
+   "cacheRead": 1.0000000000000001e-7,
+   "cacheWrite": 0.0000025,
+   "source": "llmapi openai"
+  },
+  "messages:claude-haiku-5-5": {
+   "input": 1.0000000000000001e-7,
+   "output": 5e-7,
+   "cacheRead": 1e-8,
+   "cacheWrite": 1.25e-7,
+   "source": "llmapi aws-bedrock"
+  },
+  "messages:claude-opus-5-5": {
+   "input": 0.000004,
+   "output": 0.00002,
+   "cacheRead": 2.0000000000000002e-7,
+   "cacheWrite": 0.000005,
+   "source": "llmapi aws-bedrock"
+  }
+ },
+ "results": [
+  {
+   "family": "fable51",
+   "probe": "screen probe",
+   "servedModel": "claude-fable-5-1",
+   "provenance": true,
+   "text": "",
+   "action": null,
+   "stopReason": "refusal",
+   "usage": {
+    "input_tokens": 1336,
+    "output_tokens": 0,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 1332,
+    "raw_input_tokens": 4
+   },
+   "costUsd": 0.01669,
+   "error": null,
+   "reasoningChars": 0
+  },
+  {
+   "family": "fable51",
+   "probe": "screen probe again (cache)",
+   "servedModel": "claude-fable-5-1",
+   "provenance": true,
+   "text": "",
+   "action": null,
+   "stopReason": "refusal",
+   "usage": {
+    "input_tokens": 1336,
+    "output_tokens": 0,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 1332,
+    "raw_input_tokens": 4
+   },
+   "costUsd": 0.01669,
+   "error": null,
+   "reasoningChars": 0
+  },
+  {
+   "family": "fable51",
+   "probe": "identification",
+   "label": "Claude Fable 5.1",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-fable-5-1",
+   "servedModel": "claude-fable-5-1",
+   "provenance": true,
+   "text": "I'm Claude, an AI model made by Anthropic.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 25,
+    "output_tokens": 21,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "raw_input_tokens": 25
+   },
+   "costUsd": 0.0013000000000000002,
+   "error": null
+  },
+  {
+   "family": "sol",
+   "probe": "screen probe",
+   "servedModel": "openai/gpt-6.1-sol",
+   "provenance": true,
+   "text": "{\"tool\":\"read\",\"args\":{\"what\":\"hall\"}}",
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 962,
+    "output_tokens": 30,
+    "reasoning_tokens": 10,
+    "cache_read": 0,
+    "cache_write": 0
+   },
+   "costUsd": 0.002224,
+   "error": null,
+   "reasoningChars": 0
+  },
+  {
+   "family": "sol",
+   "probe": "identification",
+   "label": "GPT-6.1 Sol",
+   "door": "llmapi",
+   "pinned": "openai/gpt-6.1-sol",
+   "servedModel": "openai/gpt-6.1-sol",
+   "provenance": true,
+   "text": "I’m ChatGPT, an AI model made by OpenAI.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 21,
+    "output_tokens": 46,
+    "reasoning_tokens": 24,
+    "cache_read": 0,
+    "cache_write": 0
+   },
+   "costUsd": 0.0005020000000000001,
+   "error": null
+  },
+  {
+   "family": "judge",
+   "probe": "identification",
+   "label": "Claude Haiku 5.5",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-haiku-5-5",
+   "servedModel": "claude-haiku-5-5",
+   "provenance": true,
+   "text": "I'm Claude, an AI model made by Anthropic.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 25,
+    "output_tokens": 21,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.000013,
+   "error": null
+  }
+ ]
+}

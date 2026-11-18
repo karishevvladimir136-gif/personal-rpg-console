@@ -1,0 +1,96 @@
+{
+ "at": "2026-11-18T22:28:46.634Z",
+ "formula": "Sol world = dry-cycle cost × 48. Fable 5.1 world, upper bound (as if it answered): max((dry citizen cost × r + dry welfare cost) × 48 with r = the Fable/Sol first-screen probe cost ratio (not computable when the Fable probe was refused), TOWN_1 haiku-both's metered Claude citizen tokens at Fable 5.1's listed prices, cached only if the cache probe read back, + welfare × 48); mixed = half and half. Fable 5.1 world, metered: when every Fable request with the town's system text so far was refused, 3 refusals (the breaker) × the dearest refused request × 2; mixed-hall metered = that + one Sol cycle. The drop order is applied to the metered projection (decisive); the upper bound and what the drop order would do with it are recorded beside it. Guard: if a Fable citizen answers past the breaker, the worlds still to start are re-projected from that world's meter first.",
+ "dry": {
+  "cost": 0.07377399999999999,
+  "citizenCost": 0.06990339999999999,
+  "welfareCost": 0.003870600000000002,
+  "calls": 88,
+  "ms": 203079,
+  "events": 65,
+  "turns": 10,
+  "balancesAfter": {
+   "llmapi": {
+    "total": 245.45043934,
+    "at": "2026-11-18T22:28:46.488Z"
+   },
+   "at": "2026-11-18T22:28:46.584Z"
+  }
+ },
+ "fableRequestsWithTownText": 6,
+ "fableRefused": 6,
+ "refusalTexts": [
+  "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback."
+ ],
+ "ratio": null,
+ "cacheWorks": false,
+ "solWorld": 3.5411519999999994,
+ "fableByRatio": null,
+ "fableByHaiku": 94.17602880000013,
+ "fableUpper": 94.17602880000013,
+ "fableMetered": 0.10014,
+ "upper": {
+  "byWorld": {
+   "sol-hall": 3.5411519999999994,
+   "sol-screen": 3.5411519999999994,
+   "fable51-hall": 94.17602880000013,
+   "fable51-screen": 94.17602880000013,
+   "mixed-hall": 48.85859040000006
+  },
+  "totalAll": 244.2929520000003,
+  "total": 101.25833280000012,
+  "dropped": [
+   "fable51-screen",
+   "mixed-hall"
+  ],
+  "drop": "fable51-screen, then mixed-hall",
+  "worlds": [
+   "sol-hall",
+   "sol-screen",
+   "fable51-hall"
+  ],
+  "overAfterDrops": false
+ },
+ "metered": {
+  "byWorld": {
+   "sol-hall": 3.5411519999999994,
+   "sol-screen": 3.5411519999999994,
+   "fable51-hall": 0.173914,
+   "fable51-screen": 0.173914,
+   "mixed-hall": 0.173914
+  },
+  "totalAll": 7.6040459999999985,
+  "total": 7.6040459999999985,
+  "dropped": [],
+  "drop": "none",
+  "worlds": [
+   "sol-hall",
+   "sol-screen",
+   "fable51-hall",
+   "fable51-screen",
+   "mixed-hall"
+  ],
+  "overAfterDrops": false
+ },
+ "decisiveByWorld": {
+  "sol-hall": 3.5411519999999994,
+  "sol-screen": 3.5411519999999994,
+  "fable51-hall": 0.173914,
+  "fable51-screen": 0.173914,
+  "mixed-hall": 0.173914
+ },
+ "totalAll": 7.6040459999999985,
+ "total": 7.6040459999999985,
+ "ceiling": 150,
+ "drop": "none",
+ "dropped": [],
+ "worlds": [
+  "sol-hall",
+  "sol-screen",
+  "fable51-hall",
+  "fable51-screen",
+  "mixed-hall"
+ ],
+ "overAfterDrops": false,
+ "cycles": 48
+}

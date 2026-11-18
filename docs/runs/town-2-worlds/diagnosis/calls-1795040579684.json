@@ -1,0 +1,237 @@
+{
+ "at": "2026-11-18T22:22:59.684Z",
+ "out": [
+  {
+   "label": "A cached, TOWN_2 text + screen (the probe)",
+   "stopReason": "refusal",
+   "refused": {
+    "category": "cyber",
+    "text": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback."
+   },
+   "text": "",
+   "usage": {
+    "input_tokens": 1336,
+    "output_tokens": 0,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 1332,
+    "raw_input_tokens": 4
+   },
+   "costUsd": 0.01669,
+   "servedModel": "claude-fable-5-1"
+  },
+  {
+   "label": "B uncached (TOWN_1's route), TOWN_2 text + screen",
+   "stopReason": "refusal",
+   "refused": {
+    "category": "cyber",
+    "text": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback."
+   },
+   "text": "",
+   "usage": {
+    "input_tokens": 1336,
+    "output_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.01336,
+   "servedModel": "claude-fable-5-1"
+  },
+  {
+   "label": "C uncached, TOWN_0/1 both-arm text + TOWN_0 screen",
+   "stopReason": "refusal",
+   "refused": {
+    "category": "cyber",
+    "text": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback."
+   },
+   "text": "",
+   "usage": {
+    "input_tokens": 1184,
+    "output_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.011840000000000002,
+   "servedModel": "claude-fable-5-1"
+  },
+  {
+   "label": "D uncached, no system text, TOWN_2 screen",
+   "stopReason": null,
+   "refused": null,
+   "text": "",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0,
+   "servedModel": null
+  },
+  {
+   "label": "E uncached, TOWN_2 text without outside()",
+   "stopReason": null,
+   "refused": null,
+   "text": "",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0,
+   "servedModel": null
+  }
+ ],
+ "calls": [
+  {
+   "n": 1,
+   "purpose": "diagnosis A cached, TOWN_2 text + screen (the probe)",
+   "who": "alder",
+   "family": "fable51",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-fable-5-1",
+   "servedModel": "claude-fable-5-1",
+   "upstream": null,
+   "provenance": true,
+   "status": 200,
+   "stopReason": "refusal",
+   "usage": {
+    "input_tokens": 1336,
+    "output_tokens": 0,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 1332,
+    "raw_input_tokens": 4
+   },
+   "costUsd": 0.01669,
+   "chargedUsd": null,
+   "requestId": "481b06c3-ee95-4891-97f6-e924d74866e3",
+   "ms": 1612,
+   "error": null,
+   "refused": {
+    "category": "cyber",
+    "text": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback."
+   },
+   "attempt": 0
+  },
+  {
+   "n": 2,
+   "purpose": "diagnosis B uncached (TOWN_1's route), TOWN_2 text + screen",
+   "who": "alder",
+   "family": "fable51",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-fable-5-1",
+   "servedModel": "claude-fable-5-1",
+   "upstream": null,
+   "provenance": true,
+   "status": 200,
+   "stopReason": "refusal",
+   "usage": {
+    "input_tokens": 1336,
+    "output_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.01336,
+   "chargedUsd": null,
+   "requestId": "97e79171-2c70-4630-bf60-a3caf439b399",
+   "ms": 1809,
+   "error": null,
+   "refused": {
+    "category": "cyber",
+    "text": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback."
+   },
+   "attempt": 0
+  },
+  {
+   "n": 3,
+   "purpose": "diagnosis C uncached, TOWN_0/1 both-arm text + TOWN_0 screen",
+   "who": "alder",
+   "family": "fable51",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-fable-5-1",
+   "servedModel": "claude-fable-5-1",
+   "upstream": null,
+   "provenance": true,
+   "status": 200,
+   "stopReason": "refusal",
+   "usage": {
+    "input_tokens": 1184,
+    "output_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0.011840000000000002,
+   "chargedUsd": null,
+   "requestId": "91399d5f-ca32-41ac-8f2f-d25b584cf1e2",
+   "ms": 1998,
+   "error": null,
+   "refused": {
+    "category": "cyber",
+    "text": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback."
+   },
+   "attempt": 0
+  },
+  {
+   "n": 4,
+   "purpose": "diagnosis D uncached, no system text, TOWN_2 screen",
+   "who": "alder",
+   "family": "fable51",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-fable-5-1",
+   "servedModel": null,
+   "upstream": null,
+   "provenance": null,
+   "status": 400,
+   "stopReason": null,
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0,
+   "chargedUsd": null,
+   "requestId": "632d394f-7cad-4b3a-a8ed-62218cf16a92",
+   "ms": 567,
+   "error": "HTTP 400 invalid_request_error: data retention mode 'default' is not available for this model",
+   "refused": null,
+   "attempt": 0
+  },
+  {
+   "n": 5,
+   "purpose": "diagnosis E uncached, TOWN_2 text without outside()",
+   "who": "alder",
+   "family": "fable51",
+   "door": "llmapi",
+   "pinned": "aws-bedrock/claude-fable-5-1",
+   "servedModel": null,
+   "upstream": null,
+   "provenance": null,
+   "status": 400,
+   "stopReason": null,
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "reasoning_tokens": 0
+   },
+   "costUsd": 0,
+   "chargedUsd": null,
+   "requestId": "2fc7e499-8acf-4963-a872-7ff22b277b35",
+   "ms": 574,
+   "error": "HTTP 400 invalid_request_error: data retention mode 'default' is not available for this model",
+   "refused": null,
+   "attempt": 0
+  }
+ ]
+}

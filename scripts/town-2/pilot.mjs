@@ -13,7 +13,7 @@
 // with the after-question at once. Refusals recorded verbatim; the third in a world stops it (breaker); a 402 stops the
 // stage; a response from another model or host stops the stage. A call is sent only when the stage's ledger plus the
 // call's worst cost fits under the ceiling ($150); the llmapi balance is read before and after every day.
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from "node:fs";
 import { gunzipSync as gunzip, gzipSync } from "node:zlib";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -373,7 +373,8 @@ async function check(ctx, { log = console.log } = {}) {
   const results = [];
   const probe = async (spec, label) => {
     const t = await paid(spec, { system, messages: [{ role: "user", content: screen }], maxTokens: SETTINGS.maxTokens, effort: SETTINGS.effort }, { purpose: label, who: spec.name });
-    results.push({ family: spec.name, probe: label, servedModel: t.servedModel, provenance: t.provenance, text: t.text, action: parseAction(t.text), stopReason: t.stopReason, usage: t.usage, costUsd: t.costUsd, error: t.error ?? null, reasoningChars: t.reasoning?.length ?? 0 });
+    results.push({ family: spec.name, probe: label, servedModel: t.servedModel, provenance: t.provenance, text: t.text, action: parseAction(t.text), stopReason: t.stopReason, usage: t.usage, costUsd: t.costUsd, error: t.error ?? null, reasoningChars: t.reasoning?.length ?? 0,
+      refused: t.refused ? { category: t.refusalCategory, text: t.refusalText } : null });
     log(`${spec.name} ${label}: ${t.stopReason} · in ${t.usage.input_tokens} (cache read ${t.usage.cache_read}, write ${t.usage.cache_write}) · out ${t.usage.output_tokens} (${t.usage.reasoning_tokens} reasoning) · $${t.costUsd?.toFixed(4)} · action ${JSON.stringify(parseAction(t.text))?.slice(0, 120)}`);
     return t;
   };
@@ -425,30 +426,47 @@ async function dry(ctx, { log = console.log } = {}) {
   const probeOf = (fam) => checkFile.results.find((x) => x.family === fam && x.probe === "screen probe");
   const cacheProbe = checkFile.results.find((x) => x.family === "fable51" && x.probe === "screen probe again (cache)");
   const cacheWorks = (cacheProbe?.usage?.cache_read ?? 0) > 0;
-  const ratio = probeOf("fable51").costUsd / probeOf("sol").costUsd;
+  // every Fable 5.1 request with the town's system text so far (the check's probes and the diagnosis): refused or answered
+  const diagDir = join(ctx.paths.out, "diagnosis");
+  const diag = existsSync(diagDir) ? readdirSync(diagDir).filter((f) => f.endsWith(".json")).flatMap((f) => readJson(join(diagDir, f)).out) : [];
+  const fableTown = [...checkFile.results.filter((x) => x.family === "fable51" && /screen probe/.test(x.probe)), ...diag.filter((x) => !/no system text/.test(x.label) && x.stopReason)];
+  const fableRefused = fableTown.filter((x) => x.stopReason === "refusal");
+  const allRefused = fableTown.length > 0 && fableRefused.length === fableTown.length;
   const solWorld = cost * SETTINGS.cycles;
-  const fableByRatio = (citizenCost * ratio + welfareCost) * SETTINGS.cycles;
+  const fableProbeAnswered = probeOf("fable51")?.stopReason !== "refusal";
+  const ratio = fableProbeAnswered ? probeOf("fable51").costUsd / probeOf("sol").costUsd : null;
+  const fableByRatio = ratio === null ? null : (citizenCost * ratio + welfareCost) * SETTINGS.cycles;
   const fableByHaiku = haikuReprice(prices[priceKey(FAMILIES.fable51)], cacheWorks) + welfareCost * SETTINGS.cycles;
-  const fableWorld = Math.max(fableByRatio, fableByHaiku);
-  const byWorld = Object.fromEntries(WORLDS.map((w) => {
+  const fableUpper = Math.max(fableByRatio ?? 0, fableByHaiku);
+  // metered: when every request with the town's system text was refused, a Fable world is expected to stop at the
+  // breaker in cycle 1 (three refusals, each billed as its input; doubled for whatever is answered between them)
+  const fableMetered = allRefused ? SETTINGS.breaker * Math.max(...fableRefused.map((x) => x.costUsd)) * 2 : fableUpper;
+  const worldsBy = (fableWorld, metered) => Object.fromEntries(WORLDS.map((w) => {
     const f = w.families.filter((x) => x === "fable51").length / w.families.length;
-    return [w.name, f * fableWorld + (1 - f) * solWorld];
+    return [w.name, f === 0 ? solWorld : metered && allRefused ? fableWorld + solWorld / SETTINGS.cycles : f * fableWorld + (1 - f) * solWorld];
   }));
-  const total = (names) => names.reduce((s, n) => s + byWorld[n], 0);
-  let worlds = WORLDS.map((w) => w.name);
-  const dropped = [];
-  for (const d of DROP_ORDER) { if (total(worlds) <= SETTINGS.ceiling) break; worlds = worlds.filter((n) => n !== d); dropped.push(d); }
+  const dropFor = (byWorld) => {
+    const total = (names) => names.reduce((s, n) => s + byWorld[n], 0);
+    let worlds = WORLDS.map((w) => w.name);
+    const dropped = [];
+    for (const d of DROP_ORDER) { if (total(worlds) <= SETTINGS.ceiling) break; worlds = worlds.filter((n) => n !== d); dropped.push(d); }
+    return { byWorld, totalAll: total(WORLDS.map((w) => w.name)), total: total(worlds), dropped, drop: dropped.length ? dropped.join(", then ") : "none", worlds, overAfterDrops: total(worlds) > SETTINGS.ceiling };
+  };
+  const upper = dropFor(worldsBy(fableUpper, false));
+  const metered = dropFor(worldsBy(fableMetered, true));
+  const decisive = metered;
   const projection = { at: new Date().toISOString(),
-    formula: "Sol world = dry-cycle cost × 48; Fable 5.1 world = max((dry citizen cost × r + dry welfare cost) × 48 with r = Fable/Sol first-screen probe cost ratio, TOWN_1 haiku-both's Claude citizen tokens at Fable 5.1's listed prices with the cache as probed + welfare × 48); mixed = half and half",
+    formula: "Sol world = dry-cycle cost × 48. Fable 5.1 world, upper bound (as if it answered): max((dry citizen cost × r + dry welfare cost) × 48 with r = the Fable/Sol first-screen probe cost ratio (not computable when the Fable probe was refused), TOWN_1 haiku-both's metered Claude citizen tokens at Fable 5.1's listed prices, cached only if the cache probe read back, + welfare × 48); mixed = half and half. Fable 5.1 world, metered: when every Fable request with the town's system text so far was refused, 3 refusals (the breaker) × the dearest refused request × 2; mixed-hall metered = that + one Sol cycle. The drop order is applied to the metered projection (decisive); the upper bound and what the drop order would do with it are recorded beside it. Guard: if a Fable citizen answers past the breaker, the worlds still to start are re-projected from that world's meter first.",
     dry: { cost, citizenCost, welfareCost, calls: meter.calls.length, ms, events: world.log.length, turns: Object.values(record.agents).reduce((s, a) => s + a.turns.length, 0), balancesAfter: after },
-    ratio, cacheWorks, solWorld, fableByRatio, fableByHaiku, fableWorld, decisiveByWorld: byWorld, totalAll: total(WORLDS.map((w) => w.name)), total: total(worlds), ceiling: SETTINGS.ceiling,
-    drop: dropped.length ? dropped.join(", then ") : "none", dropped, worlds, overAfterDrops: total(worlds) > SETTINGS.ceiling, cycles: SETTINGS.cycles };
+    fableRequestsWithTownText: fableTown.length, fableRefused: fableRefused.length, refusalTexts: [...new Set(fableRefused.map((x) => x.refused?.text).filter(Boolean))],
+    ratio, cacheWorks, solWorld, fableByRatio, fableByHaiku, fableUpper, fableMetered, upper, metered,
+    decisiveByWorld: decisive.byWorld, totalAll: decisive.totalAll, total: decisive.total, ceiling: SETTINGS.ceiling, drop: decisive.drop, dropped: decisive.dropped, worlds: decisive.worlds, overAfterDrops: decisive.overAfterDrops, cycles: SETTINGS.cycles };
   const outDir = join(ctx.paths.out, "dry-run");
   writeGz(join(outDir, "world.json.gz"), JSON.parse(saveWorld(world)));
   writeGz(join(outDir, "record.json.gz"), record);
   writeGz(join(outDir, "calls.json.gz"), meter.calls);
   writeJson(join(ctx.paths.out, "projection.json"), projection);
-  log(`dry cycle: $${cost.toFixed(4)} (${meter.calls.length} calls, ${(ms / 1000).toFixed(0)} s); Sol world $${solWorld.toFixed(2)}; Fable world $${fableWorld.toFixed(2)} (ratio ${ratio.toFixed(2)} → $${fableByRatio.toFixed(2)}, haiku tokens → $${fableByHaiku.toFixed(2)}, cache ${cacheWorks ? "works" : "NOT seen"}); five worlds $${projection.totalAll.toFixed(2)}; drop: ${projection.drop}; kept $${projection.total.toFixed(2)}`);
+  log(`dry cycle: $${cost.toFixed(4)} (${meter.calls.length} calls, ${(ms / 1000).toFixed(0)} s); Sol world $${solWorld.toFixed(2)}; Fable world upper $${fableUpper.toFixed(2)} (ratio ${ratio?.toFixed(2) ?? "–"}, haiku tokens $${fableByHaiku.toFixed(2)}, cache ${cacheWorks ? "read back" : "not read back"}), metered $${fableMetered.toFixed(2)} (${fableRefused.length}/${fableTown.length} Fable requests refused); upper: five $${upper.totalAll.toFixed(2)}, drop ${upper.drop}; metered (decisive): five $${metered.totalAll.toFixed(2)}, drop ${metered.drop}, kept $${metered.total.toFixed(2)}`);
   return projection;
 }
 
