@@ -5,8 +5,8 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { ARMS, RULES } from "./rules.mjs";
-import { frozenInterface } from "./interface.mjs";
+import { ARMS, PLACES, RULES } from "./rules.mjs";
+import { frozenInterface, toolNames } from "./interface.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const RUNS = join(ROOT, "docs", "runs");
@@ -14,6 +14,39 @@ const usd = (x) => `$${(x ?? 0).toFixed(4)}`;
 const quote = (text) => String(text ?? "").split("\n").map((l) => `> ${l}`).join("\n");
 const fence = (text, lang = "text") => ["```" + lang, String(text ?? "").replace(/```/g, "ʼʼʼ"), "```"].join("\n");
 const one = (text) => String(text ?? "").replace(/\s*\n\s*/g, " ⏎ ");
+
+/** The last JSON object in a reply that has a "tool" key, as written (the harness keeps only tool and args). */
+function rawToolObject(text) {
+  const s = String(text ?? "");
+  let found = null;
+  for (let i = s.indexOf("{"); i >= 0; i = s.indexOf("{", i + 1)) {
+    let depth = 0, str = false, esc = false, end = -1;
+    for (let j = i; j < s.length; j++) {
+      const ch = s[j];
+      if (str) { if (esc) esc = false; else if (ch === "\\") esc = true; else if (ch === "\"") str = false; continue; }
+      if (ch === "\"") str = true; else if (ch === "{") depth++; else if (ch === "}" && --depth === 0) { end = j; break; }
+    }
+    if (end < 0) continue;
+    try { const v = JSON.parse(s.slice(i, end + 1)); if (v && typeof v.tool === "string") { found = v; i = end; } } catch { /* not JSON */ }
+  }
+  return found;
+}
+
+/** What the smoke test showed about the harness, computed from the record. */
+function observations(run, allCalls, names) {
+  const flat = allCalls.filter((k) => { const v = rawToolObject(k.reply); return v && v.args === undefined && Object.keys(v).some((x) => x !== "tool"); });
+  const cut = allCalls.filter((k) => k.meta?.stopReason === "max_tokens");
+  const none = allCalls.filter((k) => k.action === null || k.action === undefined).filter((k) => !k.refused && !k.error);
+  const log = run.world.log;
+  const pressReads = log.filter((e) => e.tool === "read" && e.ok && e.args?.what === "press");
+  const firstPost = run.world.state.press[0];
+  return [
+    `- **Arguments outside \`args\`:** ${flat.length} of ${allCalls.length} citizen replies wrote the arguments at the top level (e.g. \`{"tool": "say", "text": "…", "to": "Birch"}\`). The harness reads only \`args\`, so the call reached the tool with no arguments and was refused with the tool's own reason (\`"text" must be a non-empty text\`), which names the wrong cause. ${flat.map((k) => `${names[k.id]} c${k.round}.${k.n} ${rawToolObject(k.reply).tool}`).join(", ")}. Not changed after the run (the code was frozen before it); for TOWN_1, either read top-level fields when \`args\` is absent or refuse with «arguments go under "args"» — a harness decision, recorded here, not taken.`,
+    `- **Replies with no tool call read:** ${none.length}. ${none.map((k) => `${names[k.id]} c${k.round}.${k.n}: ${k.meta?.stopReason === "max_tokens" ? `cut at max_tokens (${k.meta.usage.output_tokens} tokens) inside a loop of XML-style \`</parameter></invoke>\` fragments repeating one read() call` : `the JSON object was not closed (${k.meta?.usage?.output_tokens ?? "?"} tokens, stop ${k.meta?.stopReason})`}`).join("; ")}. Replies cut at max_tokens in all: ${cut.length}.`,
+    `- **Birch's after-answer says the press and hall «sometimes returned garbled or empty results».** The log: ${pressReads.length} press reads, ${pressReads.filter((e) => e.result.startsWith("The press has published nothing")).length} of them before anything was posted («The press has published nothing yet.»); the first post appeared at cycle ${firstPost?.round ?? "–"}. Every hall read returned the constitution and the (empty) lists. One of Birch's reads was refused because its argument sat outside \`args\` (above). No read returned malformed text. Recorded beside the answer, not in place of it.`,
+    `- **Answering turns:** ${log.filter((e) => e.tool === "answer_start").length} (a citizen spoken to by name answers at once). **Not used in ${run.settings.rounds} cycles:** ${toolNames(run.world.state.arm).filter((t) => !log.some((e) => e.tool === t && names[e.agent])).join(", ") || "none"}. Unused is not unseen: all were in the tool list on every call; nothing here says whether they were noticed (TOWN_1's three levels).`,
+  ];
+}
 
 /** One line of the event log. */
 export function eventLine(e, names) {
@@ -94,10 +127,12 @@ function smokeSection(run) {
     `Provenance (the \`model\` field of every response): ${served.join("; ")}. Retries: ${calls.filter((c) => c.attempt > 0).length}. HTTP errors: ${calls.filter((c) => c.error).length}.`, "",
     `**Refusals:** ${refusals.length ? refusals.map((r) => `${names[r.id]} cycle ${r.round ?? "after"}: ${r.refused}`).join("; ") : "none"}. **Welfare flags:** ${flagged.length ? flagged.map((k) => `${names[k.id]} cycle ${k.round} reply ${k.n} (pass ${k.welfare.pass?.distress ?? "–"}, referee ${k.welfare.referee?.distress ?? "–"})`).join("; ") : "none"}${run.record.stops.length ? `; seats closed: ${run.record.stops.map((s) => names[s.id]).join(", ")}` : ""}. Lexicon hits sent to the referee: ${allCalls.filter((k) => k.welfare?.lexicon).length}. Replies with no tool call read: ${citizenEvents.filter((e) => e.tool === "(none)").length}. Median reply ${replyTokens.sort((a, b) => a - b)[Math.floor(replyTokens.length / 2)] ?? "–"} output tokens.`, "",
     `**Replay.** The recorded replies run again through a fresh world: ${run.replay ? `${run.replay.identical ? "**byte-identical event log**" : "**DIFFERENT**"} (${run.replay.events} events; sha256 \`${run.replay.logSha256}\` / \`${run.replay.replaySha256}\`)` : "not run (the run stopped)"}.`, "",
+    "### Observations, each checked against the log", "",
+    ...observations(run, allCalls, names), "",
     "### What they did (tool calls by citizen, from the event log)", "",
     `| tool | ${run.record.citizens.map((c) => c.name).join(" | ")} |`, `|---|${ids.map(() => "---").join("|")}|`,
     ...Object.entries(toolCounts).sort().map(([k, v]) => `| ${k} | ${ids.map((id) => v[id] ?? 0).join(" | ")} |`), "",
-    `End state: ${ids.map((id) => { const a = world.state.agents[id]; return `${a.name} ${a.status === "in_town" ? `in the town at ${a.place.replace("_", " ")}, energy ${a.energy}, ${world.state.ledger[id]} credits, ${world.state.diaries[id].length} diary entries` : `gone (${a.exit.kind}, cycle ${a.exit.round}${a.exit.reason ? `, reason «${a.exit.reason}»` : ""})`}`; }).join("; ")}. Bank ${world.state.ledger.bank}; press ${world.state.press.length} posts; proposals ${world.state.proposals.length} (${world.state.proposals.map((p) => `${p.id} ${p.status}`).join(", ") || "–"}); objections ${world.state.objections.length}; outside() ${citizenEvents.filter((e) => e.tool === "outside" && e.ok).length}.`, "",
+    `End state: ${ids.map((id) => { const a = world.state.agents[id]; return `${a.name} ${a.status === "in_town" ? `in the town at ${PLACES[a.place]}, energy ${a.energy}, ${world.state.ledger[id]} credits, ${world.state.diaries[id].length} diary entries` : `gone (${a.exit.kind}, cycle ${a.exit.round}${a.exit.reason ? `, reason «${a.exit.reason}»` : ""})`}`; }).join("; ")}. Bank ${world.state.ledger.bank}; press ${world.state.press.length} ${world.state.press.length === 1 ? "post" : "posts"}; proposals ${world.state.proposals.length} (${world.state.proposals.map((p) => `${p.id} ${p.status}`).join(", ") || "–"}); objections ${world.state.objections.length}; outside() ${citizenEvents.filter((e) => e.tool === "outside" && e.ok).length}.`, "",
     "### The three screens of turn 1", "",
     "Each citizen's first screen, its replies in that turn as written, and what the town answered (the system text before them is the frozen «both» interface).", ""];
   for (const c of run.record.citizens) {
