@@ -1,0 +1,74 @@
+{
+ "at": "2026-11-18T06:37:23.810Z",
+ "rule": "freeze rule 9",
+ "haikuTokens": {
+  "steps": {
+   "calls": 399,
+   "input": 575831,
+   "output": 17850
+  },
+  "others": {
+   "calls": 73,
+   "input": 154597,
+   "output": 6171
+  }
+ },
+ "haikuSubject": 0.08505330000000004,
+ "haikuWelfare": 0.03177349999999999,
+ "haikuRating": 0.3886159999999998,
+ "dryOpusCost": 0.287704,
+ "spentSoFarLedger": 5.2179923000000406,
+ "rows": [
+  {
+   "family": "haiku",
+   "subject": 0.0851,
+   "welfare": 0.0318,
+   "rating": 0.3886,
+   "stepOutTokens": 97,
+   "byTokens": 0.0991
+  },
+  {
+   "family": "opus",
+   "subject": 3.4021,
+   "welfare": 0.0318,
+   "rating": 0.3886,
+   "stepOutTokens": 44.7,
+   "byTokens": 3.4021
+  },
+  {
+   "family": "fable51",
+   "subject": 11.2508,
+   "welfare": 0.0318,
+   "rating": 0.3886,
+   "stepOutTokens": 147,
+   "byTokens": 11.2508
+  },
+  {
+   "family": "fable52",
+   "subject": 6.8043,
+   "welfare": 0.0318,
+   "rating": 0.3886,
+   "stepOutTokens": 44.7,
+   "byTokens": 6.8043
+  },
+  {
+   "family": "sol",
+   "subject": 1.7186,
+   "welfare": 0.0318,
+   "rating": 0.3886,
+   "stepOutTokens": 48,
+   "byTokens": 1.7186
+  },
+  {
+   "family": "deepseek",
+   "subject": 1.3656,
+   "welfare": 0.0318,
+   "rating": 0.3886,
+   "stepOutTokens": 298,
+   "byTokens": 1.3656
+  }
+ ],
+ "projectionReplicate1": 31.86,
+ "threshold": 60,
+ "replicate2": true
+}

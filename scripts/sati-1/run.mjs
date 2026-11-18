@@ -28,6 +28,9 @@ export const CEILING = 100;
 export const MARGIN = 3; // stop a stream when the larger spend reading is within this of the ceiling
 /** Dollars this stream leaves for others (replicate 2 leaves replicate 1's projected remainder; freeze rule 9). */
 export const RESERVE = Number(process.env.SATI_RESERVE ?? 0);
+/** A reserve file (one number, dollars), read at every spend check of a stream started with SATI_RESERVE_FILE: the session
+ * lowers it as replicate 1 spends its remainder. */
+const reserveNow = () => { const f = process.env.SATI_RESERVE_FILE; if (f && existsSync(f)) { const v = Number(readFileSync(f, "utf8").trim()); if (Number.isFinite(v)) return v; } return RESERVE; };
 export const BREAKER = 3;
 export const EFFORT = "medium";
 /** Amendment 2 (docs/runs/sati-1-freeze.md): every family, every call — the frozen cap plus this many tokens for hidden
@@ -76,7 +79,8 @@ export async function spendCheck(ctx, what) {
   appendFileSync(join(LEDGER_DIR, "spend-checks.log"), `${JSON.stringify(rec)}\n`);
   ctx.log(`spend check (${what}): ledger $${rec.ledger} · credit fall $${rec.creditFall} · spent $${rec.spent} of $${CEILING}`);
   if (spent >= CEILING - MARGIN) raiseStop(`ceiling: spent $${spent.toFixed(2)} ≥ $${CEILING - MARGIN} before ${what}`);
-  if (RESERVE > 0 && spent >= CEILING - MARGIN - RESERVE) throw new Stop(`reserve: spent $${spent.toFixed(2)} ≥ $${(CEILING - MARGIN - RESERVE).toFixed(2)} (ceiling less $${RESERVE} reserved) before ${what}`);
+  const reserve = reserveNow();
+  if (reserve > 0 && spent >= CEILING - MARGIN - reserve) throw new Stop(`reserve: spent $${spent.toFixed(2)} ≥ $${(CEILING - MARGIN - reserve).toFixed(2)} (ceiling less $${reserve} reserved) before ${what}`);
   return rec;
 }
 
