@@ -48,9 +48,29 @@
    "note": "The welfare judge (Haiku 5.5 via llmapi, aws-bedrock) answered a sporadic HTTP 400 invalid_request_error: Operation not allowed — the gateway's own routing fault, the same request goes through on a resend — and the harness treated every 400 as final, so the check counted as «not checked» and the reply was not acted on (TOWN_1's rule): 18 replies in sol-hall, 17 in sol-screen, in cycles 1–5. A harness fault, not data: stopped by the operator, the 400s made retryable, both worlds restarted from cycle 1.",
    "stoppedAtCycle": 5,
    "setAsideAt": "2026-11-18T22:40:21.380Z"
+  },
+  "sol-hall": {
+   "usd": 0.013835700000000001,
+   "calls": 19,
+   "byDoor": {
+    "llmapi": 0.013835700000000001
+   },
+   "world": "sol-hall",
+   "cycle": 1,
+   "refusals": 0
+  },
+  "sol-screen": {
+   "usd": 0.0143401,
+   "calls": 19,
+   "byDoor": {
+    "llmapi": 0.0143401
+   },
+   "world": "sol-screen",
+   "cycle": 1,
+   "refusals": 0
   }
  },
- "totalUsd": 0.7725517000000004,
+ "totalUsd": 0.8007275000000004,
  "stopped": null,
  "balances": [
   {
