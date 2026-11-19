@@ -1,4 +1,12 @@
 {
  "family": "fable52",
- "precheck": "complete"
+ "precheck": "complete",
+ "pilot": {
+  "P": "complete",
+  "R": "complete",
+  "I": "complete",
+  "C": "complete"
+ },
+ "refusals": 1,
+ "finishedAt": "2026-11-19T04:01:01.084Z"
 }

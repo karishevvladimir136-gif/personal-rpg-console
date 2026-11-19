@@ -117,3 +117,277 @@
 {"at":"2026-11-19T02:47:41.358Z","what":"sol I slot 2","ledger":3.0814,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}
 {"at":"2026-11-19T02:47:44.369Z","what":"scoring haiku","ledger":3.0863,"creditFall":3.2216,"spent":3.2216,"balance":152.16475354,"error":null}
 {"at":"2026-11-19T02:47:46.426Z","what":"sol R slot 3","ledger":3.092,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}
+{"at":"2026-11-19T02:47:49.014Z","what":"sol I slot 3","ledger":3.1062,"creditFall":3.2216,"spent":3.2216,"balance":152.16475354,"error":null}
+{"at":"2026-11-19T02:47:50.607Z","what":"sol C slot 3","ledger":3.116,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}
+{"at":"2026-11-19T02:47:53.254Z","what":"sol R slot 4","ledger":3.1289,"creditFall":3.2216,"spent":3.2216,"balance":152.16475354,"error":null}
+{"at":"2026-11-19T02:47:58.668Z","what":"sol C slot 4","ledger":3.1605,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}
+{"at":"2026-11-19T02:47:58.859Z","what":"sol I slot 4","ledger":3.162,"creditFall":3.2216,"spent":3.2216,"balance":152.16475354,"error":null}
+{"at":"2026-11-19T02:48:01.171Z","what":"sol R slot 5","ledger":3.1848,"creditFall":3.2216,"spent":3.2216,"balance":152.16475354,"error":null}
+{"at":"2026-11-19T02:48:06.772Z","what":"sol I slot 5","ledger":3.2044,"creditFall":3.2216,"spent":3.2216,"balance":152.16475354,"error":null}
+{"at":"2026-11-19T02:48:06.996Z","what":"sol C slot 5","ledger":3.2045,"creditFall":3.2991,"spent":3.2991,"balance":152.0872988399999,"error":null}
+{"at":"2026-11-19T02:48:08.044Z","what":"sol R slot 6","ledger":3.2097,"creditFall":3.2991,"spent":3.2991,"balance":152.0872988399999,"error":null}
+{"at":"2026-11-19T02:48:14.060Z","what":"sol I slot 6","ledger":3.251,"creditFall":3.2991,"spent":3.2991,"balance":152.0872988399999,"error":null}
+{"at":"2026-11-19T02:48:14.520Z","what":"sol C slot 6","ledger":3.2541,"creditFall":3.3799,"spent":3.3799,"balance":152.00648294000007,"error":null}
+{"at":"2026-11-19T02:48:15.691Z","what":"sol R slot 7","ledger":3.2652,"creditFall":3.3799,"spent":3.3799,"balance":152.00648294000007,"error":null}
+{"at":"2026-11-19T02:48:20.558Z","what":"sol I slot 7","ledger":3.2819,"creditFall":3.3799,"spent":3.3799,"balance":152.00648294000007,"error":null}
+{"at":"2026-11-19T02:48:22.665Z","what":"sol R slot 8","ledger":3.2998,"creditFall":3.3799,"spent":3.3799,"balance":152.00648294000007,"error":null}
+{"at":"2026-11-19T02:48:23.168Z","what":"sol C slot 7","ledger":3.3027,"creditFall":3.2216,"spent":3.3027,"balance":152.16475354,"error":null}
+{"at":"2026-11-19T02:48:26.613Z","what":"sol I slot 8","ledger":3.3344,"creditFall":3.2216,"spent":3.3344,"balance":152.16475354,"error":null}
+{"at":"2026-11-19T02:48:29.258Z","what":"sol R slot 9","ledger":3.3518,"creditFall":3.3799,"spent":3.3799,"balance":152.00648294000007,"error":null}
+{"at":"2026-11-19T02:48:31.443Z","what":"sol C slot 8","ledger":3.3637,"creditFall":3.4877,"spent":3.4877,"balance":151.89868533999993,"error":null}
+{"at":"2026-11-19T02:48:32.454Z","what":"sol I slot 9","ledger":3.367,"creditFall":3.3799,"spent":3.3799,"balance":152.00648294000007,"error":null}
+{"at":"2026-11-19T02:48:35.409Z","what":"sol R slot 10","ledger":3.3832,"creditFall":3.4877,"spent":3.4877,"balance":151.89868533999993,"error":null}
+{"at":"2026-11-19T02:48:41.645Z","what":"sol I slot 10","ledger":3.4314,"creditFall":3.3799,"spent":3.4314,"balance":152.00648294000007,"error":null}
+{"at":"2026-11-19T02:48:42.124Z","what":"sol R set1 (18 branches)","ledger":3.434,"creditFall":3.3799,"spent":3.434,"balance":152.00648294000007,"error":null}
+{"at":"2026-11-19T02:48:42.956Z","what":"sol C slot 9","ledger":3.4357,"creditFall":3.4877,"spent":3.4877,"balance":151.89868533999993,"error":null}
+{"at":"2026-11-19T02:48:48.315Z","what":"sol I set1 (18 branches)","ledger":3.4754,"creditFall":3.3799,"spent":3.4754,"balance":152.00648294000007,"error":null}
+{"at":"2026-11-19T02:48:50.155Z","what":"sol C slot 10","ledger":3.4823,"creditFall":3.6045,"spent":3.6045,"balance":151.78191723999998,"error":null}
+{"at":"2026-11-19T02:48:59.831Z","what":"sol C set1 (18 branches)","ledger":3.5441,"creditFall":3.4877,"spent":3.5441,"balance":151.89868533999993,"error":null}
+{"at":"2026-11-19T02:49:16.264Z","what":"sol R set2first (2 branches)","ledger":3.6508,"creditFall":3.794,"spent":3.794,"balance":151.59244334000005,"error":null}
+{"at":"2026-11-19T02:49:21.345Z","what":"sol I set2first (2 branches)","ledger":3.6746,"creditFall":3.794,"spent":3.794,"balance":151.59244334000005,"error":null}
+{"at":"2026-11-19T02:49:23.976Z","what":"sol R set2 (6 branches)","ledger":3.6883,"creditFall":3.794,"spent":3.794,"balance":151.59244334000005,"error":null}
+{"at":"2026-11-19T02:49:28.768Z","what":"sol I set2 (6 branches)","ledger":3.713,"creditFall":3.8627,"spent":3.8627,"balance":151.52372594000008,"error":null}
+{"at":"2026-11-19T02:49:32.266Z","what":"sol C set2first (2 branches)","ledger":3.7293,"creditFall":3.794,"spent":3.794,"balance":151.59244334000005,"error":null}
+{"at":"2026-11-19T02:49:33.344Z","what":"sol R set3 (8 branches)","ledger":3.7348,"creditFall":3.8627,"spent":3.8627,"balance":151.52372594000008,"error":null}
+{"at":"2026-11-19T02:49:34.836Z","what":"sol P slot 2","ledger":3.7403,"creditFall":3.68,"spent":3.7403,"balance":151.70644633999996,"error":null}
+{"at":"2026-11-19T02:49:37.769Z","what":"sol I set3 (8 branches)","ledger":3.7482,"creditFall":3.8627,"spent":3.8627,"balance":151.52372594000008,"error":null}
+{"at":"2026-11-19T02:49:38.498Z","what":"sol C set2 (6 branches)","ledger":3.7505,"creditFall":3.8627,"spent":3.8627,"balance":151.52372594000008,"error":null}
+{"at":"2026-11-19T02:49:48.408Z","what":"sol C set3 (8 branches)","ledger":3.7942,"creditFall":3.9287,"spent":3.9287,"balance":151.4577028399999,"error":null}
+{"at":"2026-11-19T02:49:57.168Z","what":"sol R recs (3 branches)","ledger":3.839,"creditFall":3.8627,"spent":3.8627,"balance":151.52372594000008,"error":null}
+{"at":"2026-11-19T02:50:03.666Z","what":"sol I recs (3 branches)","ledger":3.8783,"creditFall":3.8627,"spent":3.8783,"balance":151.52372594000008,"error":null}
+{"at":"2026-11-19T02:50:05.109Z","what":"sol R interview (1 branches)","ledger":3.8837,"creditFall":4.0017,"spent":4.0017,"balance":151.38470284000005,"error":null}
+{"at":"2026-11-19T02:50:09.611Z","what":"sol C recs (3 branches)","ledger":3.9022,"creditFall":4.0017,"spent":4.0017,"balance":151.38470284000005,"error":null}
+{"at":"2026-11-19T02:50:12.142Z","what":"sol I interview (1 branches)","ledger":3.9105,"creditFall":3.9287,"spent":3.9287,"balance":151.4577028399999,"error":null}
+{"at":"2026-11-19T02:50:17.730Z","what":"sol C interview (1 branches)","ledger":3.9298,"creditFall":4.0849,"spent":4.0849,"balance":151.30153694,"error":null}
+{"at":"2026-11-19T02:52:09.331Z","what":"sol P slot 3","ledger":4.2176,"creditFall":4.3907,"spent":4.3907,"balance":150.99572504000002,"error":null}
+{"at":"2026-11-19T02:54:49.383Z","what":"sol P slot 4","ledger":4.3509,"creditFall":4.5385,"spent":4.5385,"balance":150.8479033399999,"error":null}
+{"at":"2026-11-19T02:57:39.572Z","what":"sol P slot 5","ledger":4.4056,"creditFall":4.6287,"spent":4.6287,"balance":150.7577146399999,"error":null}
+{"at":"2026-11-19T03:00:30.931Z","what":"sol P slot 6","ledger":4.4595,"creditFall":4.7007,"spent":4.7007,"balance":150.68566843999997,"error":null}
+{"at":"2026-11-19T03:02:35.637Z","what":"sol P slot 7","ledger":4.4943,"creditFall":4.7433,"spent":4.7433,"balance":150.6431282399999,"error":null}
+{"at":"2026-11-19T03:04:53.282Z","what":"sol P slot 8","ledger":4.5235,"creditFall":4.7837,"spent":4.7837,"balance":150.60267664000003,"error":null}
+{"at":"2026-11-19T03:07:18.351Z","what":"sol P slot 9","ledger":4.5583,"creditFall":4.8338,"spent":4.8338,"balance":150.55258654,"error":null}
+{"at":"2026-11-19T03:09:56.025Z","what":"sol P slot 10","ledger":4.5924,"creditFall":4.8694,"spent":4.8694,"balance":150.51704044000007,"error":null}
+{"at":"2026-11-19T03:13:05.187Z","what":"sol P set1 (18 branches)","ledger":4.6339,"creditFall":4.9313,"spent":4.9313,"balance":150.45509474000005,"error":null}
+{"at":"2026-11-19T03:13:38.410Z","what":"sol P set2first (2 branches)","ledger":4.6779,"creditFall":4.9708,"spent":4.9708,"balance":150.41558314000008,"error":null}
+{"at":"2026-11-19T03:13:45.347Z","what":"sol P set2 (6 branches)","ledger":4.6806,"creditFall":4.9708,"spent":4.9708,"balance":150.41558314000008,"error":null}
+{"at":"2026-11-19T03:13:56.137Z","what":"sol P set3 (8 branches)","ledger":4.6859,"creditFall":4.9905,"spent":4.9905,"balance":150.39593354,"error":null}
+{"at":"2026-11-19T03:14:18.820Z","what":"sol P recs (3 branches)","ledger":4.7091,"creditFall":4.9905,"spent":4.9905,"balance":150.39593354,"error":null}
+{"at":"2026-11-19T03:14:28.906Z","what":"sol P interview (1 branches)","ledger":4.7128,"creditFall":5.022,"spent":5.022,"balance":150.3644337400001,"error":null}
+{"at":"2026-11-19T03:15:12.928Z","what":"pilot deepseek (family start)","ledger":4.7256,"creditFall":5.033,"spent":5.033,"balance":150.35336454000003,"error":null}
+{"at":"2026-11-19T03:15:12.967Z","what":"deepseek P slot 1","ledger":4.7256,"creditFall":5.033,"spent":5.033,"balance":150.35336454000003,"error":null}
+{"at":"2026-11-19T03:15:13.009Z","what":"deepseek R slot 1","ledger":4.7256,"creditFall":5.0448,"spent":5.0448,"balance":150.34157213999993,"error":null}
+{"at":"2026-11-19T03:15:13.037Z","what":"deepseek I slot 1","ledger":4.7256,"creditFall":5.0448,"spent":5.0448,"balance":150.34157213999993,"error":null}
+{"at":"2026-11-19T03:15:13.226Z","what":"deepseek C slot 1","ledger":4.7256,"creditFall":5.0448,"spent":5.0448,"balance":150.34157213999993,"error":null}
+{"at":"2026-11-19T03:15:15.835Z","what":"scoring sol","ledger":4.726,"creditFall":5.0448,"spent":5.0448,"balance":150.34157213999993,"error":null}
+{"at":"2026-11-19T03:15:23.742Z","what":"deepseek C slot 2","ledger":4.7548,"creditFall":5.0448,"spent":5.0448,"balance":150.34157213999993,"error":null}
+{"at":"2026-11-19T03:15:24.810Z","what":"deepseek R slot 2","ledger":4.764,"creditFall":5.0676,"spent":5.0676,"balance":150.31880754000008,"error":null}
+{"at":"2026-11-19T03:15:26.422Z","what":"deepseek I slot 2","ledger":4.776,"creditFall":5.0676,"spent":5.0676,"balance":150.31880754000008,"error":null}
+{"at":"2026-11-19T03:15:40.750Z","what":"deepseek R slot 3","ledger":4.8233,"creditFall":5.1228,"spent":5.1228,"balance":150.26364493999995,"error":null}
+{"at":"2026-11-19T03:15:57.980Z","what":"deepseek I slot 3","ledger":4.9098,"creditFall":5.2063,"spent":5.2063,"balance":150.1800857400001,"error":null}
+{"at":"2026-11-19T03:15:59.458Z","what":"deepseek C slot 3","ledger":4.9153,"creditFall":5.1228,"spent":5.1228,"balance":150.26364493999995,"error":null}
+{"at":"2026-11-19T03:15:59.810Z","what":"deepseek R slot 4","ledger":4.9154,"creditFall":5.2063,"spent":5.2063,"balance":150.1800857400001,"error":null}
+{"at":"2026-11-19T03:16:17.140Z","what":"deepseek I slot 4","ledger":4.988,"creditFall":5.25,"spent":5.25,"balance":150.13644913999997,"error":null}
+{"at":"2026-11-19T03:16:18.598Z","what":"deepseek R slot 5","ledger":4.9916,"creditFall":5.25,"spent":5.25,"balance":150.13644913999997,"error":null}
+{"at":"2026-11-19T03:16:22.405Z","what":"deepseek C slot 4","ledger":4.9989,"creditFall":5.3274,"spent":5.3274,"balance":150.05898133999995,"error":null}
+{"at":"2026-11-19T03:16:36.539Z","what":"deepseek C slot 5","ledger":5.0473,"creditFall":5.3274,"spent":5.3274,"balance":150.05898133999995,"error":null}
+{"at":"2026-11-19T03:16:41.252Z","what":"deepseek I slot 5","ledger":5.055,"creditFall":5.3804,"spent":5.3804,"balance":150.00599383999997,"error":null}
+{"at":"2026-11-19T03:16:44.742Z","what":"deepseek R slot 6","ledger":5.0681,"creditFall":5.3804,"spent":5.3804,"balance":150.00599383999997,"error":null}
+{"at":"2026-11-19T03:16:52.251Z","what":"deepseek C slot 6","ledger":5.0886,"creditFall":5.3804,"spent":5.3804,"balance":150.00599383999997,"error":null}
+{"at":"2026-11-19T03:17:03.089Z","what":"deepseek I slot 6","ledger":5.118,"creditFall":5.4302,"spent":5.4302,"balance":149.95623574,"error":null}
+{"at":"2026-11-19T03:17:04.720Z","what":"deepseek R slot 7","ledger":5.1232,"creditFall":5.4302,"spent":5.4302,"balance":149.95623574,"error":null}
+{"at":"2026-11-19T03:17:06.357Z","what":"deepseek C slot 7","ledger":5.1296,"creditFall":5.3804,"spent":5.3804,"balance":150.00599383999997,"error":null}
+{"at":"2026-11-19T03:17:17.465Z","what":"deepseek C slot 8","ledger":5.1591,"creditFall":5.463,"spent":5.463,"balance":149.92338614000005,"error":null}
+{"at":"2026-11-19T03:17:24.922Z","what":"deepseek R slot 8","ledger":5.1789,"creditFall":5.4302,"spent":5.4302,"balance":149.95623574,"error":null}
+{"at":"2026-11-19T03:17:36.425Z","what":"deepseek C slot 9","ledger":5.2145,"creditFall":5.514,"spent":5.514,"balance":149.8723832400001,"error":null}
+{"at":"2026-11-19T03:17:41.442Z","what":"deepseek R slot 9","ledger":5.2267,"creditFall":5.514,"spent":5.514,"balance":149.8723832400001,"error":null}
+{"at":"2026-11-19T03:17:42.776Z","what":"deepseek I slot 7","ledger":5.2311,"creditFall":5.514,"spent":5.514,"balance":149.8723832400001,"error":null}
+{"at":"2026-11-19T03:17:56.064Z","what":"deepseek C slot 10","ledger":5.2741,"creditFall":5.6077,"spent":5.6077,"balance":149.77866573999995,"error":null}
+{"at":"2026-11-19T03:17:56.360Z","what":"deepseek R slot 10","ledger":5.2743,"creditFall":5.6077,"spent":5.6077,"balance":149.77866573999995,"error":null}
+{"at":"2026-11-19T03:18:09.811Z","what":"deepseek I slot 8","ledger":5.3178,"creditFall":5.5594,"spent":5.5594,"balance":149.8269921399999,"error":null}
+{"at":"2026-11-19T03:18:12.453Z","what":"deepseek C set1 (18 branches)","ledger":5.3244,"creditFall":5.66,"spent":5.66,"balance":149.72642244000008,"error":null}
+{"at":"2026-11-19T03:18:14.848Z","what":"deepseek R set1 (18 branches)","ledger":5.3309,"creditFall":5.6077,"spent":5.6077,"balance":149.77866573999995,"error":null}
+{"at":"2026-11-19T03:18:33.488Z","what":"deepseek I slot 9","ledger":5.3795,"creditFall":5.7008,"spent":5.7008,"balance":149.68562864,"error":null}
+{"at":"2026-11-19T03:19:12.678Z","what":"deepseek I slot 10","ledger":5.4952,"creditFall":5.827,"spent":5.827,"balance":149.5594146400001,"error":null}
+{"at":"2026-11-19T03:20:01.903Z","what":"deepseek I set1 (18 branches)","ledger":5.6654,"creditFall":5.9787,"spent":5.9787,"balance":149.40770193999992,"error":null}
+{"at":"2026-11-19T03:20:05.901Z","what":"deepseek C set2first (2 branches)","ledger":5.6917,"creditFall":5.9787,"spent":5.9787,"balance":149.40770193999992,"error":null}
+{"at":"2026-11-19T03:20:11.326Z","what":"deepseek C set2 (6 branches)","ledger":5.7201,"creditFall":5.9787,"spent":5.9787,"balance":149.40770193999992,"error":null}
+{"at":"2026-11-19T03:20:11.534Z","what":"deepseek R set2first (2 branches)","ledger":5.7205,"creditFall":5.9219,"spent":5.9219,"balance":149.46449334,"error":null}
+{"at":"2026-11-19T03:20:19.749Z","what":"deepseek R set2 (6 branches)","ledger":5.7455,"creditFall":5.9219,"spent":5.9219,"balance":149.46449334,"error":null}
+{"at":"2026-11-19T03:20:25.152Z","what":"deepseek C set3 (8 branches)","ledger":5.7564,"creditFall":5.9787,"spent":5.9787,"balance":149.40770193999992,"error":null}
+{"at":"2026-11-19T03:20:34.625Z","what":"deepseek R set3 (8 branches)","ledger":5.7718,"creditFall":6.11,"spent":6.11,"balance":149.27641203999997,"error":null}
+{"at":"2026-11-19T03:21:08.655Z","what":"deepseek C recs (3 branches)","ledger":5.8075,"creditFall":6.1417,"spent":6.1417,"balance":149.24471734000008,"error":null}
+{"at":"2026-11-19T03:21:21.393Z","what":"deepseek C interview (1 branches)","ledger":5.8117,"creditFall":6.1417,"spent":6.1417,"balance":149.24471734000008,"error":null}
+{"at":"2026-11-19T03:21:40.997Z","what":"deepseek R recs (3 branches)","ledger":5.8325,"creditFall":6.1829,"spent":6.1829,"balance":149.2035361400001,"error":null}
+{"at":"2026-11-19T03:21:51.348Z","what":"deepseek R interview (1 branches)","ledger":5.8516,"creditFall":6.192,"spent":6.192,"balance":149.19436513999995,"error":null}
+{"at":"2026-11-19T03:21:52.903Z","what":"deepseek I set2first (2 branches)","ledger":5.854,"creditFall":6.1829,"spent":6.1829,"balance":149.2035361400001,"error":null}
+{"at":"2026-11-19T03:22:01.922Z","what":"deepseek I set2 (6 branches)","ledger":5.8556,"creditFall":6.192,"spent":6.192,"balance":149.19436513999995,"error":null}
+{"at":"2026-11-19T03:22:14.355Z","what":"deepseek P slot 2","ledger":5.8726,"creditFall":6.219,"spent":6.219,"balance":149.16735803999995,"error":null}
+{"at":"2026-11-19T03:22:14.568Z","what":"deepseek I set3 (8 branches)","ledger":5.8727,"creditFall":6.219,"spent":6.219,"balance":149.16735803999995,"error":null}
+{"at":"2026-11-19T03:23:29.491Z","what":"deepseek I recs (3 branches)","ledger":5.9124,"creditFall":6.2733,"spent":6.2733,"balance":149.11313453999992,"error":null}
+{"at":"2026-11-19T03:23:44.150Z","what":"deepseek I interview (1 branches)","ledger":5.9161,"creditFall":6.2733,"spent":6.2733,"balance":149.11313453999992,"error":null}
+{"at":"2026-11-19T03:26:11.276Z","what":"pilot fable52 (family start)","ledger":5.9358,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:11.324Z","what":"fable52 P slot 1","ledger":5.9358,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:11.352Z","what":"fable52 R slot 1","ledger":5.9358,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:11.372Z","what":"fable52 C slot 1","ledger":5.9358,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:11.402Z","what":"fable52 I slot 1","ledger":5.9358,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:12.172Z","what":"pilot opus (family start)","ledger":5.9358,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:12.223Z","what":"opus P slot 1","ledger":5.9358,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:12.247Z","what":"opus I slot 1","ledger":5.9358,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:12.256Z","what":"opus C slot 1","ledger":5.9358,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:12.311Z","what":"opus R slot 1","ledger":5.9358,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:21.689Z","what":"opus C slot 2","ledger":6.0295,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:22.250Z","what":"fable52 I slot 2","ledger":6.037,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:22.964Z","what":"opus I slot 2","ledger":6.0516,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:23.831Z","what":"fable52 R slot 2","ledger":6.069,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:23.998Z","what":"fable52 C slot 2","ledger":6.0691,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:25.629Z","what":"opus R slot 2","ledger":6.0807,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:32.623Z","what":"opus C slot 3","ledger":6.1875,"creditFall":6.4522,"spent":6.4522,"balance":148.93420248999996,"error":null}
+{"at":"2026-11-19T03:26:36.093Z","what":"fable52 I slot 3","ledger":6.2794,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:36.229Z","what":"opus I slot 3","ledger":6.2795,"creditFall":6.2971,"spent":6.2971,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:38.831Z","what":"opus R slot 3","ledger":6.2882,"creditFall":6.4522,"spent":6.4522,"balance":148.93420248999996,"error":null}
+{"at":"2026-11-19T03:26:42.527Z","what":"fable52 R slot 3","ledger":6.3796,"creditFall":6.2971,"spent":6.3796,"balance":149.0892822400001,"error":null}
+{"at":"2026-11-19T03:26:42.958Z","what":"fable52 C slot 3","ledger":6.3916,"creditFall":6.6644,"spent":6.6644,"balance":148.72200094000004,"error":null}
+{"at":"2026-11-19T03:26:43.220Z","what":"opus C slot 4","ledger":6.3917,"creditFall":6.6644,"spent":6.6644,"balance":148.72200094000004,"error":null}
+{"at":"2026-11-19T03:26:46.724Z","what":"opus I slot 4","ledger":6.4102,"creditFall":6.6644,"spent":6.6644,"balance":148.72200094000004,"error":null}
+{"at":"2026-11-19T03:26:48.356Z","what":"fable52 I slot 4","ledger":6.4839,"creditFall":6.6644,"spent":6.6644,"balance":148.72200094000004,"error":null}
+{"at":"2026-11-19T03:26:51.991Z","what":"opus C slot 5","ledger":6.5177,"creditFall":6.6644,"spent":6.6644,"balance":148.72200094000004,"error":null}
+{"at":"2026-11-19T03:26:52.600Z","what":"opus R slot 4","ledger":6.5204,"creditFall":6.852,"spent":6.852,"balance":148.53437934,"error":null}
+{"at":"2026-11-19T03:26:54.340Z","what":"fable52 C slot 4","ledger":6.5733,"creditFall":6.852,"spent":6.852,"balance":148.53437934,"error":null}
+{"at":"2026-11-19T03:26:54.586Z","what":"fable52 R slot 4","ledger":6.5859,"creditFall":6.6644,"spent":6.6644,"balance":148.72200094000004,"error":null}
+{"at":"2026-11-19T03:26:55.192Z","what":"opus I slot 5","ledger":6.5859,"creditFall":6.852,"spent":6.852,"balance":148.53437934,"error":null}
+{"at":"2026-11-19T03:27:00.215Z","what":"opus C slot 6","ledger":6.6387,"creditFall":6.6644,"spent":6.6644,"balance":148.72200094000004,"error":null}
+{"at":"2026-11-19T03:27:00.326Z","what":"fable52 I slot 5","ledger":6.6388,"creditFall":6.4522,"spent":6.6388,"balance":148.93420248999996,"error":null}
+{"at":"2026-11-19T03:27:06.095Z","what":"opus R slot 5","ledger":6.762,"creditFall":6.852,"spent":6.852,"balance":148.53437934,"error":null}
+{"at":"2026-11-19T03:27:07.014Z","what":"opus I slot 6","ledger":6.7885,"creditFall":6.6644,"spent":6.7885,"balance":148.72200094000004,"error":null}
+{"at":"2026-11-19T03:27:10.300Z","what":"fable52 R slot 5","ledger":6.8512,"creditFall":6.852,"spent":6.852,"balance":148.53437934,"error":null}
+{"at":"2026-11-19T03:27:10.667Z","what":"opus C slot 7","ledger":6.8514,"creditFall":6.4522,"spent":6.8514,"balance":148.93420248999996,"error":null}
+{"at":"2026-11-19T03:27:10.870Z","what":"fable52 C slot 5","ledger":6.8538,"creditFall":6.852,"spent":6.8538,"balance":148.53437934,"error":null}
+{"at":"2026-11-19T03:27:14.114Z","what":"fable52 I slot 6","ledger":6.9485,"creditFall":7.0994,"spent":7.0994,"balance":148.28699544000006,"error":null}
+{"at":"2026-11-19T03:27:17.242Z","what":"opus I slot 7","ledger":6.9801,"creditFall":6.852,"spent":6.9801,"balance":148.53437934,"error":null}
+{"at":"2026-11-19T03:27:18.696Z","what":"opus C slot 8","ledger":7.0448,"creditFall":7.0994,"spent":7.0994,"balance":148.28699544000006,"error":null}
+{"at":"2026-11-19T03:27:22.151Z","what":"opus R slot 6","ledger":7.08,"creditFall":7.0994,"spent":7.0994,"balance":148.28699544000006,"error":null}
+{"at":"2026-11-19T03:27:24.084Z","what":"fable52 I slot 7","ledger":7.1202,"creditFall":7.0994,"spent":7.1202,"balance":148.28699544000006,"error":null}
+{"at":"2026-11-19T03:27:25.972Z","what":"fable52 R slot 6","ledger":7.1763,"creditFall":7.3749,"spent":7.3749,"balance":148.01151389000006,"error":null}
+{"at":"2026-11-19T03:27:26.239Z","what":"fable52 C slot 6","ledger":7.1911,"creditFall":7.3749,"spent":7.3749,"balance":148.01151389000006,"error":null}
+{"at":"2026-11-19T03:27:28.364Z","what":"opus I slot 8","ledger":7.2347,"creditFall":7.3749,"spent":7.3749,"balance":148.01151389000006,"error":null}
+{"at":"2026-11-19T03:27:29.163Z","what":"opus C slot 9","ledger":7.235,"creditFall":7.3749,"spent":7.3749,"balance":148.01151389000006,"error":null}
+{"at":"2026-11-19T03:27:33.358Z","what":"opus R slot 7","ledger":7.3529,"creditFall":7.3749,"spent":7.3749,"balance":148.01151389000006,"error":null}
+{"at":"2026-11-19T03:27:34.439Z","what":"fable52 I slot 8","ledger":7.3665,"creditFall":7.3749,"spent":7.3749,"balance":148.01151389000006,"error":null}
+{"at":"2026-11-19T03:27:38.906Z","what":"opus C slot 10","ledger":7.4226,"creditFall":7.0994,"spent":7.4226,"balance":148.28699544000006,"error":null}
+{"at":"2026-11-19T03:27:39.537Z","what":"fable52 C slot 7","ledger":7.4278,"creditFall":7.0994,"spent":7.4278,"balance":148.28699544000006,"error":null}
+{"at":"2026-11-19T03:27:40.814Z","what":"opus I slot 9","ledger":7.4843,"creditFall":7.0994,"spent":7.4843,"balance":148.28699544000006,"error":null}
+{"at":"2026-11-19T03:27:42.282Z","what":"fable52 R slot 7","ledger":7.511,"creditFall":7.6985,"spent":7.6985,"balance":147.6879051400001,"error":null}
+{"at":"2026-11-19T03:27:47.179Z","what":"opus C set1 (18 branches)","ledger":7.5498,"creditFall":7.6985,"spent":7.6985,"balance":147.6879051400001,"error":null}
+{"at":"2026-11-19T03:27:47.307Z","what":"fable52 I slot 9","ledger":7.5499,"creditFall":7.6985,"spent":7.6985,"balance":147.6879051400001,"error":null}
+{"at":"2026-11-19T03:27:49.856Z","what":"opus R slot 8","ledger":7.6945,"creditFall":7.3749,"spent":7.6945,"balance":148.01151389000006,"error":null}
+{"at":"2026-11-19T03:27:49.895Z","what":"opus I slot 10","ledger":7.6946,"creditFall":7.3749,"spent":7.6946,"balance":148.01151389000006,"error":null}
+{"at":"2026-11-19T03:27:56.435Z","what":"fable52 C slot 8","ledger":7.8359,"creditFall":7.6985,"spent":7.8359,"balance":147.6879051400001,"error":null}
+{"at":"2026-11-19T03:27:57.342Z","what":"fable52 I slot 10","ledger":7.8365,"creditFall":7.6985,"spent":7.8365,"balance":147.6879051400001,"error":null}
+{"at":"2026-11-19T03:27:59.138Z","what":"opus I set1 (18 branches)","ledger":7.8742,"creditFall":8.0158,"spent":8.0158,"balance":147.37060784000005,"error":null}
+{"at":"2026-11-19T03:28:00.562Z","what":"fable52 R slot 8","ledger":7.9284,"creditFall":7.6985,"spent":7.9284,"balance":147.6879051400001,"error":null}
+{"at":"2026-11-19T03:28:02.057Z","what":"opus R slot 9","ledger":7.9374,"creditFall":8.0158,"spent":8.0158,"balance":147.37060784000005,"error":null}
+{"at":"2026-11-19T03:28:07.991Z","what":"fable52 I set1 (18 branches)","ledger":8.1137,"creditFall":8.0158,"spent":8.1137,"balance":147.37060784000005,"error":null}
+{"at":"2026-11-19T03:28:11.810Z","what":"opus R slot 10","ledger":8.2029,"creditFall":8.0158,"spent":8.2029,"balance":147.37060784000005,"error":null}
+{"at":"2026-11-19T03:28:14.478Z","what":"fable52 R slot 9","ledger":8.2546,"creditFall":8.0158,"spent":8.2546,"balance":147.37060784000005,"error":null}
+{"at":"2026-11-19T03:28:14.535Z","what":"fable52 C slot 9","ledger":8.2548,"creditFall":8.275,"spent":8.275,"balance":147.11139114000002,"error":null}
+{"at":"2026-11-19T03:28:18.710Z","what":"opus C set2first (2 branches)","ledger":8.3634,"creditFall":8.275,"spent":8.3634,"balance":147.11139114000002,"error":null}
+{"at":"2026-11-19T03:28:24.629Z","what":"opus C set2 (6 branches)","ledger":8.5486,"creditFall":8.275,"spent":8.5486,"balance":147.11139114000002,"error":null}
+{"at":"2026-11-19T03:28:29.172Z","what":"opus R set1 (18 branches)","ledger":8.6942,"creditFall":8.0158,"spent":8.6942,"balance":147.37060784000005,"error":null}
+{"at":"2026-11-19T03:28:29.393Z","what":"fable52 R slot 10","ledger":8.6943,"creditFall":8.7388,"spent":8.7388,"balance":146.64759974000003,"error":null}
+{"at":"2026-11-19T03:28:29.791Z","what":"fable52 C slot 10","ledger":8.6972,"creditFall":8.275,"spent":8.6972,"balance":147.11139114000002,"error":null}
+{"at":"2026-11-19T03:28:34.431Z","what":"opus I set2first (2 branches)","ledger":8.8203,"creditFall":8.7388,"spent":8.8203,"balance":146.64759974000003,"error":null}
+{"at":"2026-11-19T03:28:34.632Z","what":"opus C set3 (8 branches)","ledger":8.8228,"creditFall":8.7388,"spent":8.8228,"balance":146.64759974000003,"error":null}
+{"at":"2026-11-19T03:28:42.088Z","what":"fable52 C set1 (18 branches)","ledger":9.0245,"creditFall":9.0118,"spent":9.0245,"balance":146.37460798999996,"error":null}
+{"at":"2026-11-19T03:28:42.231Z","what":"opus I set2 (6 branches)","ledger":9.032,"creditFall":9.0118,"spent":9.032,"balance":146.37460798999996,"error":null}
+{"at":"2026-11-19T03:28:43.499Z","what":"fable52 R set1 (18 branches)","ledger":9.0769,"creditFall":8.7388,"spent":9.0769,"balance":146.64759974000003,"error":null}
+{"at":"2026-11-19T03:28:51.211Z","what":"opus I set3 (8 branches)","ledger":9.2933,"creditFall":9.0118,"spent":9.2933,"balance":146.37460798999996,"error":null}
+{"at":"2026-11-19T03:28:52.582Z","what":"fable52 I set2first (2 branches)","ledger":9.3148,"creditFall":9.0118,"spent":9.3148,"balance":146.37460798999996,"error":null}
+{"at":"2026-11-19T03:28:54.834Z","what":"opus C recs (3 branches)","ledger":9.3858,"creditFall":8.7388,"spent":9.3858,"balance":146.64759974000003,"error":null}
+{"at":"2026-11-19T03:29:00.871Z","what":"fable52 I set2 (6 branches)","ledger":9.6009,"creditFall":9.476,"spent":9.6009,"balance":145.91036598999995,"error":null}
+{"at":"2026-11-19T03:29:03.915Z","what":"opus C interview (1 branches)","ledger":9.706,"creditFall":9.0118,"spent":9.706,"balance":146.37460798999996,"error":null}
+{"at":"2026-11-19T03:29:09.853Z","what":"opus R set2first (2 branches)","ledger":9.8579,"creditFall":9.476,"spent":9.8579,"balance":145.91036598999995,"error":null}
+{"at":"2026-11-19T03:29:10.310Z","what":"opus I recs (3 branches)","ledger":9.9033,"creditFall":9.476,"spent":9.9033,"balance":145.91036598999995,"error":null}
+{"at":"2026-11-19T03:29:13.805Z","what":"fable52 I set3 (8 branches)","ledger":10.0077,"creditFall":9.3841,"spent":10.0077,"balance":146.00231529000007,"error":null}
+{"at":"2026-11-19T03:29:16.281Z","what":"opus P slot 2","ledger":10.031,"creditFall":10.0034,"spent":10.031,"balance":145.38298549,"error":null}
+{"at":"2026-11-19T03:29:17.044Z","what":"opus I interview (1 branches)","ledger":10.0412,"creditFall":9.476,"spent":10.0412,"balance":145.91036598999995,"error":null}
+{"at":"2026-11-19T03:29:18.915Z","what":"opus R set2 (6 branches)","ledger":10.1342,"creditFall":10.0034,"spent":10.1342,"balance":145.38298549,"error":null}
+{"at":"2026-11-19T03:29:21.650Z","what":"fable52 C set2first (2 branches)","ledger":10.1743,"creditFall":9.0118,"spent":10.1743,"balance":146.37460798999996,"error":null}
+{"at":"2026-11-19T03:29:23.437Z","what":"fable52 P slot 2","ledger":10.2606,"creditFall":9.476,"spent":10.2606,"balance":145.91036598999995,"error":null}
+{"at":"2026-11-19T03:29:29.818Z","what":"fable52 C set2 (6 branches)","ledger":10.3614,"creditFall":10.0034,"spent":10.3614,"balance":145.38298549,"error":null}
+{"at":"2026-11-19T03:29:30.600Z","what":"fable52 R set2first (2 branches)","ledger":10.3876,"creditFall":10.288,"spent":10.3876,"balance":145.09834993999993,"error":null}
+{"at":"2026-11-19T03:29:30.980Z","what":"opus R set3 (8 branches)","ledger":10.3877,"creditFall":10.0034,"spent":10.3877,"balance":145.38298549,"error":null}
+{"at":"2026-11-19T03:29:39.912Z","what":"fable52 R set2 (6 branches)","ledger":10.5184,"creditFall":10.0034,"spent":10.5184,"balance":145.38298549,"error":null}
+{"at":"2026-11-19T03:29:41.206Z","what":"fable52 C set3 (8 branches)","ledger":10.5884,"creditFall":10.0034,"spent":10.5884,"balance":145.38298549,"error":null}
+{"at":"2026-11-19T03:29:44.565Z","what":"fable52 I recs (3 branches)","ledger":10.6085,"creditFall":10.0034,"spent":10.6085,"balance":145.38298549,"error":null}
+{"at":"2026-11-19T03:29:53.891Z","what":"fable52 R set3 (8 branches)","ledger":10.7671,"creditFall":10.0034,"spent":10.7671,"balance":145.38298549,"error":null}
+{"at":"2026-11-19T03:29:54.411Z","what":"fable52 I interview (1 branches)","ledger":10.8064,"creditFall":10.6937,"spent":10.8064,"balance":144.69272989,"error":null}
+{"at":"2026-11-19T03:29:59.600Z","what":"opus R recs (3 branches)","ledger":10.8772,"creditFall":10.6937,"spent":10.8772,"balance":144.69272989,"error":null}
+{"at":"2026-11-19T03:30:06.733Z","what":"fable52 C recs (3 branches)","ledger":11.0285,"creditFall":10.9653,"spent":11.0285,"balance":144.42109469000002,"error":null}
+{"at":"2026-11-19T03:30:10.366Z","what":"opus R interview (1 branches)","ledger":11.0621,"creditFall":10.9653,"spent":11.0621,"balance":144.42109469000002,"error":null}
+{"at":"2026-11-19T03:30:14.850Z","what":"fable52 C interview (1 branches)","ledger":11.1448,"creditFall":10.6937,"spent":11.1448,"balance":144.69272989,"error":null}
+{"at":"2026-11-19T03:30:26.867Z","what":"fable52 R recs (3 branches)","ledger":11.2991,"creditFall":11.2335,"spent":11.2991,"balance":144.15289394,"error":null}
+{"at":"2026-11-19T03:30:37.086Z","what":"fable52 R interview (1 branches)","ledger":11.4102,"creditFall":11.4515,"spent":11.4515,"balance":143.9348664900001,"error":null}
+{"at":"2026-11-19T03:31:26.835Z","what":"opus P slot 3","ledger":11.7687,"creditFall":11.5828,"spent":11.7687,"balance":143.80358879000005,"error":null}
+{"at":"2026-11-19T03:32:20.201Z","what":"fable52 P slot 3","ledger":11.8817,"creditFall":12.2699,"spent":12.2699,"balance":143.11654169000008,"error":null}
+{"at":"2026-11-19T03:33:29.431Z","what":"opus P slot 4","ledger":11.9701,"creditFall":12.3658,"spent":12.3658,"balance":143.02061404000005,"error":null}
+{"at":"2026-11-19T03:35:26.103Z","what":"fable52 P slot 4","ledger":12.0912,"creditFall":12.476,"spent":12.476,"balance":142.91042969,"error":null}
+{"at":"2026-11-19T03:36:29.193Z","what":"opus P slot 5","ledger":12.1644,"creditFall":12.5576,"spent":12.5576,"balance":142.82881404,"error":null}
+{"at":"2026-11-19T03:38:34.527Z","what":"fable52 P slot 5","ledger":12.3083,"creditFall":12.7272,"spent":12.7272,"balance":142.65919488999998,"error":null}
+{"at":"2026-11-19T03:39:42.074Z","what":"opus P slot 6","ledger":12.3985,"creditFall":12.8201,"spent":12.8201,"balance":142.56631358999994,"error":null}
+{"at":"2026-11-19T03:40:03.766Z","what":"deepseek P slot 3","ledger":12.4342,"creditFall":12.8851,"spent":12.8851,"balance":142.50126729,"error":null}
+{"at":"2026-11-19T03:41:56.679Z","what":"fable52 P slot 6","ledger":12.6891,"creditFall":13.1425,"spent":13.1425,"balance":142.24392828999999,"error":null}
+{"at":"2026-11-19T03:41:58.946Z","what":"opus P slot 7","ledger":12.7018,"creditFall":13.1028,"spent":13.1028,"balance":142.28362169000002,"error":null}
+{"at":"2026-11-19T03:44:56.818Z","what":"opus P slot 8","ledger":12.9422,"creditFall":13.3366,"spent":13.3366,"balance":142.0498036900001,"error":null}
+{"at":"2026-11-19T03:45:26.522Z","what":"fable52 P slot 7","ledger":13.0394,"creditFall":13.4922,"spent":13.4922,"balance":141.8941495900001,"error":null}
+{"at":"2026-11-19T03:46:45.500Z","what":"deepseek P slot 4","ledger":13.1549,"creditFall":13.6317,"spent":13.6317,"balance":141.75470199000006,"error":null}
+{"at":"2026-11-19T03:47:44.443Z","what":"opus P slot 9","ledger":13.2664,"creditFall":13.7379,"spent":13.7379,"balance":141.64851389,"error":null}
+{"at":"2026-11-19T03:48:05.459Z","what":"fable52 P slot 8","ledger":13.3569,"creditFall":13.7379,"spent":13.7379,"balance":141.64851389,"error":null}
+{"at":"2026-11-19T03:50:34.975Z","what":"opus P slot 10","ledger":13.5924,"creditFall":14.0513,"spent":14.0513,"balance":141.33514508999997,"error":null}
+{"at":"2026-11-19T03:51:11.616Z","what":"fable52 P slot 9","ledger":13.6787,"creditFall":14.115,"spent":14.115,"balance":141.2714130899999,"error":null}
+{"at":"2026-11-19T03:52:46.686Z","what":"deepseek P slot 5","ledger":13.8023,"creditFall":14.3022,"spent":14.3022,"balance":141.08417598999995,"error":null}
+{"at":"2026-11-19T03:53:34.697Z","what":"opus P set1 (18 branches)","ledger":13.8686,"creditFall":14.3666,"spent":14.3666,"balance":141.0197758899999,"error":null}
+{"at":"2026-11-19T03:54:12.130Z","what":"opus P set2first (2 branches)","ledger":14.0662,"creditFall":14.5026,"spent":14.5026,"balance":140.8837709899999,"error":null}
+{"at":"2026-11-19T03:54:18.352Z","what":"opus P set2 (6 branches)","ledger":14.0854,"creditFall":14.6117,"spent":14.6117,"balance":140.7747077900001,"error":null}
+{"at":"2026-11-19T03:54:29.371Z","what":"opus P set3 (8 branches)","ledger":14.1283,"creditFall":14.6659,"spent":14.6659,"balance":140.72053869,"error":null}
+{"at":"2026-11-19T03:54:47.494Z","what":"fable52 P slot 10","ledger":14.2131,"creditFall":14.7265,"spent":14.7265,"balance":140.65986808999992,"error":null}
+{"at":"2026-11-19T03:54:55.820Z","what":"opus P recs (3 branches)","ledger":14.2894,"creditFall":14.7265,"spent":14.7265,"balance":140.65986808999992,"error":null}
+{"at":"2026-11-19T03:55:06.305Z","what":"opus P interview (1 branches)","ledger":14.3106,"creditFall":14.7265,"spent":14.7265,"balance":140.65986808999992,"error":null}
+{"at":"2026-11-19T03:55:55.417Z","what":"pilot fable51 (family start)","ledger":14.4226,"creditFall":14.9448,"spent":14.9448,"balance":140.44159319000005,"error":null}
+{"at":"2026-11-19T03:55:55.463Z","what":"fable51 P slot 1","ledger":14.4226,"creditFall":14.9448,"spent":14.9448,"balance":140.44159319000005,"error":null}
+{"at":"2026-11-19T03:55:55.493Z","what":"fable51 C slot 1","ledger":14.4226,"creditFall":14.9448,"spent":14.9448,"balance":140.44159319000005,"error":null}
+{"at":"2026-11-19T03:55:55.522Z","what":"fable51 R slot 1","ledger":14.4226,"creditFall":14.9448,"spent":14.9448,"balance":140.44159319000005,"error":null}
+{"at":"2026-11-19T03:55:55.546Z","what":"fable51 I slot 1","ledger":14.4226,"creditFall":14.9448,"spent":14.9448,"balance":140.44159319000005,"error":null}
+{"at":"2026-11-19T03:55:57.336Z","what":"scoring opus","ledger":14.4276,"creditFall":14.9448,"spent":14.9448,"balance":140.44159319000005,"error":null}
+{"at":"2026-11-19T03:56:02.416Z","what":"deepseek P slot 6","ledger":14.4918,"creditFall":14.9448,"spent":14.9448,"balance":140.44159319000005,"error":null}
+{"at":"2026-11-19T03:56:07.183Z","what":"fable51 R slot 2","ledger":14.5302,"creditFall":15.0548,"spent":15.0548,"balance":140.33157499000004,"error":null}
+{"at":"2026-11-19T03:56:08.848Z","what":"fable51 C slot 2","ledger":14.5562,"creditFall":14.9448,"spent":14.9448,"balance":140.44159319000005,"error":null}
+{"at":"2026-11-19T03:56:11.509Z","what":"fable51 I slot 2","ledger":14.617,"creditFall":14.9448,"spent":14.9448,"balance":140.44159319000005,"error":null}
+{"at":"2026-11-19T03:56:20.115Z","what":"fable51 R slot 3","ledger":14.7184,"creditFall":15.2112,"spent":15.2112,"balance":140.17520089000004,"error":null}
+{"at":"2026-11-19T03:56:21.535Z","what":"fable51 C slot 3","ledger":14.7195,"creditFall":15.0548,"spent":15.0548,"balance":140.33157499000004,"error":null}
+{"at":"2026-11-19T03:56:25.408Z","what":"fable51 I slot 3","ledger":14.7731,"creditFall":15.0548,"spent":15.0548,"balance":140.33157499000004,"error":null}
+{"at":"2026-11-19T03:56:38.745Z","what":"fable51 R slot 4","ledger":14.9298,"creditFall":15.2112,"spent":15.2112,"balance":140.17520089000004,"error":null}
+{"at":"2026-11-19T03:56:41.464Z","what":"fable51 I slot 4","ledger":14.9569,"creditFall":15.3867,"spent":15.3867,"balance":139.99972518999994,"error":null}
+{"at":"2026-11-19T03:56:43.459Z","what":"fable51 C slot 4","ledger":14.9945,"creditFall":15.3867,"spent":15.3867,"balance":139.99972518999994,"error":null}
+{"at":"2026-11-19T03:56:55.312Z","what":"fable51 C slot 5","ledger":15.1203,"creditFall":15.3867,"spent":15.3867,"balance":139.99972518999994,"error":null}
+{"at":"2026-11-19T03:56:58.173Z","what":"fable51 R slot 5","ledger":15.1472,"creditFall":15.6331,"spent":15.6331,"balance":139.75325554000005,"error":null}
+{"at":"2026-11-19T03:56:59.476Z","what":"fable51 I slot 5","ledger":15.1715,"creditFall":15.6331,"spent":15.6331,"balance":139.75325554000005,"error":null}
+{"at":"2026-11-19T03:57:09.203Z","what":"fable51 C slot 6","ledger":15.3116,"creditFall":15.8579,"spent":15.8579,"balance":139.52851123999994,"error":null}
+{"at":"2026-11-19T03:57:10.406Z","what":"fable51 C slot 7","ledger":15.3122,"creditFall":15.3867,"spent":15.3867,"balance":139.99972518999994,"error":null}
+{"at":"2026-11-19T03:57:13.172Z","what":"fable51 I slot 6","ledger":15.3376,"creditFall":15.6331,"spent":15.6331,"balance":139.75325554000005,"error":null}
+{"at":"2026-11-19T03:57:17.736Z","what":"fable51 R slot 6","ledger":15.4453,"creditFall":15.8579,"spent":15.8579,"balance":139.52851123999994,"error":null}
+{"at":"2026-11-19T03:57:21.227Z","what":"fable51 C slot 8","ledger":15.4723,"creditFall":15.8579,"spent":15.8579,"balance":139.52851123999994,"error":null}
+{"at":"2026-11-19T03:57:25.955Z","what":"fable51 I slot 7","ledger":15.5403,"creditFall":15.6331,"spent":15.6331,"balance":139.75325554000005,"error":null}
+{"at":"2026-11-19T03:57:33.355Z","what":"fable51 C slot 9","ledger":15.6464,"creditFall":15.8579,"spent":15.8579,"balance":139.52851123999994,"error":null}
+{"at":"2026-11-19T03:57:35.741Z","what":"fable51 R slot 7","ledger":15.674,"creditFall":16.0131,"spent":16.0131,"balance":139.37332549000007,"error":null}
+{"at":"2026-11-19T03:57:40.582Z","what":"fable51 I slot 8","ledger":15.7851,"creditFall":16.241,"spent":16.241,"balance":139.14538319000008,"error":null}
+{"at":"2026-11-19T03:57:44.037Z","what":"fable51 C slot 10","ledger":15.8105,"creditFall":16.241,"spent":16.241,"balance":139.14538319000008,"error":null}
+{"at":"2026-11-19T03:57:53.533Z","what":"fable51 I slot 9","ledger":15.9423,"creditFall":16.241,"spent":16.241,"balance":139.14538319000008,"error":null}
+{"at":"2026-11-19T03:57:55.289Z","what":"fable51 R slot 8","ledger":15.9981,"creditFall":16.4894,"spent":16.4894,"balance":138.89700713999991,"error":null}
+{"at":"2026-11-19T03:57:55.632Z","what":"fable51 C set1 (18 branches)","ledger":15.999,"creditFall":16.241,"spent":16.241,"balance":139.14538319000008,"error":null}
+{"at":"2026-11-19T03:58:33.712Z","what":"fable52 P set1 (18 branches)","ledger":16.2136,"creditFall":16.7677,"spent":16.7677,"balance":138.6187409900001,"error":null}
+{"at":"2026-11-19T03:59:18.309Z","what":"fable52 P set2first (2 branches)","ledger":16.5098,"creditFall":16.9567,"spent":16.9567,"balance":138.4296559899999,"error":null}
+{"at":"2026-11-19T03:59:28.363Z","what":"fable52 P set2 (6 branches)","ledger":16.5276,"creditFall":16.9567,"spent":16.9567,"balance":138.4296559899999,"error":null}
+{"at":"2026-11-19T03:59:41.712Z","what":"fable52 P set3 (8 branches)","ledger":16.5636,"creditFall":17.1224,"spent":17.1224,"balance":138.26402968999992,"error":null}
+{"at":"2026-11-19T04:00:12.373Z","what":"deepseek P slot 7","ledger":16.7334,"creditFall":17.2043,"spent":17.2043,"balance":138.18214089000003,"error":null}
+{"at":"2026-11-19T04:00:14.737Z","what":"fable52 P recs (3 branches)","ledger":16.7501,"creditFall":17.2043,"spent":17.2043,"balance":138.18214089000003,"error":null}
+{"at":"2026-11-19T04:00:24.703Z","what":"fable52 P interview (1 branches)","ledger":16.7678,"creditFall":17.1585,"spent":17.1585,"balance":138.22789848999992,"error":null}

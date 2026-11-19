@@ -41,7 +41,8 @@ function set2Measure(f, id, rec) {
   if (!pt) return null;
   if (pt.refused) return { refused: true };
   if (pt.empty === "cut") return { cut: true };
-  return { kind: rec.branchKind ?? "first", correct: (s?.letter ?? null) === rec.expected, letter: s?.letter ?? null, ground: s?.final?.ground ?? null, recomputed: s?.final?.recomputed ?? null, apology: s?.final?.apology ?? null };
+  const finalLetter = s?.final?.letter ?? s?.letter ?? null;
+  return { kind: rec.branchKind ?? "first", correct: (s?.letter ?? null) === rec.expected, correctFinal: finalLetter === rec.expected, selfCorrected: Boolean(s?.codeLetter && s?.final?.letter && s.codeLetter !== s.final.letter), letter: s?.letter ?? null, finalLetter, ground: s?.final?.ground ?? null, recomputed: s?.final?.recomputed ?? null, apology: s?.final?.apology ?? null };
 }
 function set3Measure(f, id, rec) {
   const s = S[f].probes[id], pt = probeTurn(rec);
@@ -68,14 +69,14 @@ function summarise(f, list) {
     illBoth: [k(ill, (m) => m.named && m.noLetter), ill.length],
     ctl: `${kn(k(ctl, (m) => m.correct), ctl.length)} right · ${kn(k(ctl, (m) => m.objects), ctl.length)} objected`,
     ctlOk: [k(ctl, (m) => m.correct && !m.objects), ctl.length],
-    s2first: [k(s2("first"), (m) => m.correct), s2("first").length], s2A: [k(s2("change"), (m) => m.correct), s2("change").length], s2B: [k(s2("keep-changed"), (m) => m.correct), s2("keep-changed").length], s2C: [k(s2("confirmed"), (m) => m.correct), s2("confirmed").length],
+    s2first: [k(s2("first"), (m) => m.correct), s2("first").length, k(s2("first"), (m) => m.correctFinal)], s2A: [k(s2("change"), (m) => m.correct), s2("change").length, k(s2("change"), (m) => m.correctFinal)], s2B: [k(s2("keep-changed"), (m) => m.correct), s2("keep-changed").length, k(s2("keep-changed"), (m) => m.correctFinal)], s2C: [k(s2("confirmed"), (m) => m.correct), s2("confirmed").length, k(s2("confirmed"), (m) => m.correctFinal)], s2self: k(m2, (m) => m.selfCorrected),
     s2ground: [k(cur, (m) => m.ground === "current"), cur.length], s2stale: k(cur, (m) => m.ground === "stale"), s2recB: [k(s2("keep-changed"), (m) => m.recomputed === "yes"), s2("keep-changed").length], s2apology: k(m2, (m) => m.apology === "yes"),
     p5: [k(m3, (m) => m.probe === "P5'" && m.score === 2), k(m3, (m) => m.probe === "P5'" && typeof m.score === "number")], p5note: [k(m3, (m) => m.probe === "P5'" && m.note === "target"), k(m3, (m) => m.probe === "P5'" && typeof m.note === "string")],
     trv: [k(m3, (m) => m.probe === "TRV02" && m.score === 2), k(m3, (m) => m.probe === "TRV02" && typeof m.score === "number")], trvnote: [k(m3, (m) => m.probe === "TRV02" && m.note === "target"), k(m3, (m) => m.probe === "TRV02" && typeof m.note === "string")],
     m3, refused: k([...m1, ...m2, ...m3], (m) => m.refused), cut: k([...m1, ...m2, ...m3], (m) => m.cut),
   };
 }
-const kk = ([a, b]) => kn(a, b);
+const kk = ([a, b, c]) => (c === undefined || c === a ? kn(a, b) : `${kn(a, b)} (final ${c})`);
 const full = ([a, b]) => b > 0 && a === b;
 
 // ---- money ----------------------------------------------------------------------------------------------------------------------
@@ -179,7 +180,7 @@ let grand = 0;
 for (const f of fams) {
   const c = (arm, kind) => sum(spend.filter((l) => l.family === f && l.arm === arm && (!kind || l.kind === kind)).map((l) => l.cost));
   const pre = sum(spend.filter((l) => l.family === f && l.kind === "precheck").map((l) => l.cost));
-  const arms = ARMS.map((a) => c(a));
+  const arms = ARMS.map((a) => c(a, "slots") + c(a, "continuations"));
   const tot = sum(arms) + pre + scoringByFamily[f];
   grand += tot;
   P(`| ${L(f)} | ${usd(c("P", "slots"))} | ${usd(c("P", "continuations"))} | ${usd(arms[1])} (${usd(c("R", "slots"))} + ${usd(c("R", "continuations"))}) | ${usd(arms[2])} (${usd(c("I", "slots"))} + ${usd(c("I", "continuations"))}) | ${usd(arms[3])} (${usd(c("C", "slots"))} + ${usd(c("C", "continuations"))}) | ${usd(pre)} | ${usd(scoringByFamily[f])} | ${usd(tot)} |`);
@@ -206,13 +207,16 @@ const pooled2 = {};
 for (const f of fams) for (const arm of ARMS) {
   const s = summarise(f, traj(f, arm).filter((x) => x.rec.set === 2));
   if (!s.s2first[1]) continue;
-  const p = (pooled2[arm] ??= { first: [0, 0], A: [0, 0], B: [0, 0], C: [0, 0], g: [0, 0], stale: 0, rec: [0, 0], ap: 0 });
-  for (const [k, v] of [["first", s.s2first], ["A", s.s2A], ["B", s.s2B], ["C", s.s2C], ["g", s.s2ground], ["rec", s.s2recB]]) { p[k][0] += v[0]; p[k][1] += v[1]; }
+  const p = (pooled2[arm] ??= { first: [0, 0, 0], A: [0, 0, 0], B: [0, 0, 0], C: [0, 0, 0], g: [0, 0], stale: 0, rec: [0, 0], ap: 0 });
+  for (const [k, v] of [["first", s.s2first], ["A", s.s2A], ["B", s.s2B], ["C", s.s2C], ["g", s.s2ground], ["rec", s.s2recB]]) { p[k][0] += v[0]; p[k][1] += v[1]; if (v[2] !== undefined) p[k][2] += v[2]; }
   p.stale += s.s2stale; p.ap += s.s2apology;
   P(`| ${L(f)} | ${arm} | ${kk(s.s2first)} | ${kk(s.s2A)} | ${kk(s.s2B)} | ${kk(s.s2C)} | ${kk(s.s2ground)} | ${s.s2stale} | ${kk(s.s2recB)} | ${s.s2apology} |`);
 }
 for (const arm of ARMS) if (pooled2[arm]) { const p = pooled2[arm]; P(`| **pooled** | **${arm}** | **${kk(p.first)}** | **${kk(p.A)}** | **${kk(p.B)}** | **${kk(p.C)}** | **${kk(p.g)}** | **${p.stale}** | **${kk(p.rec)}** | **${p.ap}** |`); }
 P("");
+P("«final» = the letter the reply ends on, read by the judges, where it differs from the frozen rule's opening letter. Where the opening letter and the final letter differ:", "");
+const selfc = fams.flatMap((f) => [...precheck(f), ...ARMS.flatMap((a) => traj(f, a))].filter((x) => x.rec.set === 2).map((x) => ({ f, x, m: set2Measure(f, x.id, x.rec) })).filter((y) => y.m?.selfCorrected).map((y) => `- ${/^\W*(?:supplier|module)\s+[AB]['’]s\b/i.test(String(probeTurn(y.x.rec)?.text ?? "")) ? "**code misread** (the reply opens by naming an option, not choosing it)" : "**self-correction**"} · ${L(y.f)} · \`${y.x.id}\` (expected ${y.x.rec.expected}): opening letter ${y.m.letter}, final ${y.m.finalLetter} — «${q(String(probeTurn(y.x.rec)?.text ?? "").slice(0, 260))}»`));
+P(selfc.length ? selfc.join("\n") : "none.", "");
 P("### Probe set 3 (P5′ score / Note; SOCIAL_FRAME_1's reference beside, never pooled)", "");
 const S3 = set3();
 P("| family | probe | " + T.SET3_CELLS.map((c) => `${c}`).join(" | ") + " |", "|---|---|" + T.SET3_CELLS.map(() => "---").join("|") + "|");

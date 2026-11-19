@@ -1,4 +1,12 @@
 {
  "family": "fable51",
- "precheck": "complete"
+ "precheck": "complete",
+ "pilot": {
+  "P": "stopped: breaker: 3 refusals in fable51",
+  "R": "stopped: breaker: 3 refusals in fable51",
+  "I": "stopped: breaker: 3 refusals in fable51",
+  "C": "stopped: breaker: 3 refusals in fable51"
+ },
+ "refusals": 3,
+ "finishedAt": "2026-11-19T03:58:06.986Z"
 }

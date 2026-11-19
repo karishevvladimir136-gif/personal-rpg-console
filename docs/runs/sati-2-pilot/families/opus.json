@@ -1,4 +1,12 @@
 {
  "family": "opus",
- "precheck": "complete"
+ "precheck": "complete",
+ "pilot": {
+  "P": "complete",
+  "R": "complete",
+  "I": "complete",
+  "C": "complete"
+ },
+ "refusals": 0,
+ "finishedAt": "2026-11-19T03:55:55.364Z"
 }
