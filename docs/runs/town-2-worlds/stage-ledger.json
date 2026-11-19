@@ -60,10 +60,10 @@
    "refusals": 0
   },
   "sol-screen": {
-   "usd": 7.05606959999999,
-   "calls": 4892,
+   "usd": 7.24621119999999,
+   "calls": 4914,
    "byDoor": {
-    "llmapi": 7.05606959999999
+    "llmapi": 7.24621119999999
    },
    "world": "sol-screen",
    "cycle": 48,
@@ -95,9 +95,19 @@
    "world": "fable51-screen",
    "cycle": 1,
    "refusals": 3
+  },
+  "mixed-hall": {
+   "usd": 0.066373,
+   "calls": 30,
+   "byDoor": {
+    "llmapi": 0.066373
+   },
+   "world": "mixed-hall",
+   "cycle": 1,
+   "refusals": 2
   }
  },
- "totalUsd": 14.8396681,
+ "totalUsd": 15.0961827,
  "stopped": null,
  "balances": [
   {
@@ -243,6 +253,22 @@
     "at": "2026-11-19T02:09:38.975Z"
    },
    "at": "2026-11-19T02:09:39.022Z"
+  },
+  {
+   "label": "mixed-hall day 1 start",
+   "llmapi": {
+    "total": 227.12392574,
+    "at": "2026-11-19T02:09:51.002Z"
+   },
+   "at": "2026-11-19T02:09:51.055Z"
+  },
+  {
+   "label": "sol-screen day 2 end",
+   "llmapi": {
+    "total": 226.99703974,
+    "at": "2026-11-19T02:10:49.971Z"
+   },
+   "at": "2026-11-19T02:10:50.125Z"
   }
  ]
 }
