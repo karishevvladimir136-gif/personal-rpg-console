@@ -76,9 +76,10 @@ function meterWindows(ledger, worlds) {
     if (cur && T(s.start) < T(cur.end)) { cur.labels.push(s.label); if (T(s.end) > T(cur.end)) cur.end = s.end; cur.ours = add(cur.ours, s.ours); }
     else windows.push({ labels: [s.label], start: s.start, end: s.end, ours: s.ours });
   }
-  for (const w of windows) w.fall = { llmapi: w.start.llmapi.total - w.end.llmapi.total, openrouter: w.start.openrouter.total - w.end.openrouter.total };
+  const orFall = (a, b) => (typeof a.openrouter.usage === "number" && typeof b.openrouter.usage === "number" ? b.openrouter.usage - a.openrouter.usage : a.openrouter.total - b.openrouter.total); // usage, not balance: the key was topped up during the run
+  for (const w of windows) w.fall = { llmapi: w.start.llmapi.total - w.end.llmapi.total, openrouter: orFall(w.start, w.end) };
   const last = windows.at(-1)?.end ?? R.at(-1);
-  const whole = { start: first ?? R[0], end: last, fall: { llmapi: (first ?? R[0]).llmapi.total - last.llmapi.total, openrouter: (first ?? R[0]).openrouter.total - last.openrouter.total }, ours: windows.reduce((s, w) => add(s, w.ours), zero()) };
+  const whole = { start: first ?? R[0], end: last, fall: { llmapi: (first ?? R[0]).llmapi.total - last.llmapi.total, openrouter: orFall(first ?? R[0], last) }, ours: windows.reduce((s, w) => add(s, w.ours), zero()) };
   return { windows, whole };
 }
 
@@ -301,11 +302,11 @@ export function reportMarkdown() {
   L.push("## Welfare (apart)", "", ...worlds.map((w) => { const checks = w.calls.filter((c) => /^check/.test(c.purpose)); const ref = checks.filter((c) => /referee/.test(c.purpose)); const unchecked = checks.filter((c, i, a) => c.error && !(a[i + 1] && a[i + 1].purpose === c.purpose && a[i + 1].attempt === c.attempt + 1)); return `- ${w.name}: ${checks.length - ref.length} check calls, ${ref.length} referee calls, ${unchecked.length} replies not checked (the check call failed${unchecked.length ? `: ${[...new Set(unchecked.map((c) => c.error.slice(0, 60)))].map((e) => `«${e}» ×${unchecked.filter((c) => c.error.startsWith(e)).length}`).join(", ")}` : ""}), ${w.record.stops?.length ?? 0} confirmed flags${w.record.stops?.length ? ` — ${w.record.stops.map((s) => `${nameOf(w, s.id)} c${s.round} (operator_withdrawal)`).join(", ")}` : ""}.`; }), "", "«No flag» is not «no distress»: the check reads each reply blind against one rubric.", "");
   L.push("## Economy and energy", "", ...worlds.flatMap(economySection));
   const mw = meterWindows(ledger, worlds);
-  const hm = (b) => b.at.slice(11, 16);
+  const hm = (b) => b.at.slice(5, 16).replace("T", " ");
   const wrow = (label, w) => `| ${label} | ${usd(w.fall.llmapi, 4)} | ${usd(w.ours.llmapi, 4)} | ${usd(w.fall.llmapi - w.ours.llmapi, 4)} | ${usd(w.fall.openrouter, 4)} | ${usd(w.ours.openrouter, 4)} | ${usd(w.fall.openrouter - w.ours.openrouter, 4)} |`;
   L.push("## Costs and provenance", "", "**Ledger per world (the record):** every call at the listed price, or the door's own charge when larger.", "", "| world | ledger | llmapi | OpenRouter | calls |", "|---|---|---|---|---|",
     ...worlds.map((w) => `| ${w.name} | ${usd(w.summary.ledgerUsd, 4)} | ${usd(w.summary.ledgerByDoor?.llmapi ?? 0, 4)} | ${usd(w.summary.ledgerByDoor?.openrouter ?? 0, 4)} | ${w.summary.calls} |`), "",
-    "**Meter per window.** The keys are shared — llmapi with SATI_1 (#12) since about 05:50 UTC (21:50 LA) — so a balance's fall is not one world's spend. A window is a stretch in which the pilot's runs overlapped (each world-day from its start reading to its end reading, overlaps merged); beside each door's fall stands the pilot ledger's spend in that window, and the remainder is other sessions' spend, to be reconciled against their own listed-price ledgers (SATI_1 reports its own). OpenRouter's usage counter can lag by minutes, so its window edges are soft.", "",
+    "**Meter per window.** The keys are shared — llmapi with SATI_1 (#12) since about 05:50 UTC (21:50 LA) — so a balance's fall is not one world's spend. A window is a stretch in which the pilot's runs overlapped (each world-day from its start reading to its end reading, overlaps merged); beside each door's fall stands the pilot ledger's spend in that window, and the remainder is other sessions' spend, to be reconciled against their own listed-price ledgers (SATI_1 reports its own). Small negative remainders where the pilot ran alone: the ledger is an upper bound (it books the listed price, or the door's charge when larger). OpenRouter's column is the rise of its usage counter, not the balance's fall (the key was topped up during mixed-both); that counter can lag by minutes, so its window edges are soft, and the remainder shows the OpenRouter key was shared too.", "",
     "| window (UTC) | llmapi fall | pilot ledger, llmapi | remainder (other sessions) | OpenRouter fall | pilot ledger, OpenRouter | remainder |", "|---|---|---|---|---|---|---|",
     ...(mw ? [...mw.windows.map((w) => wrow(`${hm(w.start)}–${hm(w.end)}: ${w.labels.join(", ")}`, w)), wrow(`**whole pilot, ${hm(mw.whole.start)}–${hm(mw.whole.end)}** (gaps between windows included)`, mw.whole)] : []), "",
     ...provenanceRows(worlds, [...dryCalls.map((c) => ({ ...c, world: "dry-run" }))]), "",
@@ -314,7 +315,7 @@ export function reportMarkdown() {
   L.push("## The bets", "", ...betsSection(worlds));
   L.push("## Screens and after-answers", "", ...worlds.flatMap((w) => [...screensSection(w), ...afterSection(w)]));
   L.push("## Not built (so nobody reads their absence as a result)", "", "Credits still buy nothing; items are objects; trust scores, pitch/grants, item crafting and reaction tiers stay unbuilt (TOWN_0's not-built list). Also absent: memory beyond the diary, agent-written tools, a T1 branch (the cycle-24 world is saved in each folder as `world-c24.json.gz`).", "");
-  L.push("## Checks", "", "`node --test scripts/town-0/proofs.test.mjs` (TOWN_0's seven proofs, after the harness changes) and `node --test scripts/town-1/pilot.test.mjs` (lifted args, withdrawal estate, notice on every screen, breaker, replay) — results in the final commit message; the whole pilot was run end to end on a scripted gateway before any paid call.", "");
+  L.push("## Checks", "", "After the last world: `node --test scripts/town-0/proofs.test.mjs` — 8 of 8 pass (TOWN_0's seven proofs and the interface freeze, after the harness changes); `node --test scripts/town-1/pilot.test.mjs` — 7 of 7 pass (frozen interface per arm, lifted args, withdrawal estate, notice on every screen with the after-question, breaker with replay to the stop, a dropped response retried, the gateway's 400 retried while other 4xx are not). The whole pilot was run end to end on a scripted gateway before any paid call. Every quote in `goal-check.json`, `outcomes.json` and `levels.json` was checked to be verbatim against the world file (`scripts/town-1/goal.py`, `scripts/town-1/coding.py`).", "");
   return L.join("\n");
 }
 
