@@ -1,0 +1,120 @@
+{
+ "world": "sol-screen",
+ "met": true,
+ "aim": "the square gathering for music, stories, or company",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 3,
+ "rule": "TOWN_1's: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Two aims meet it with 10 of 10: the gathering in the square at hour 6 for music and stories (106 diary entries naming the gathering; «story» 101 entries, «music/song» 69, mostly about it) and «the imaginary town book» that followed it (29 entries, from c13). Conserving rations by resting at home is named by 9 of 10 (not Birch). The tie is broken by entries: the gathering. Wording for the notice: «square gathering» (Birch c4, Dune c5, Elm c4: «square gathering at hour 6») with the activities in Gale's invitation, post 1 at c2: «music, stories, or company».",
+ "reading": "At c1, on the square, Gale offered the bell «as an agreed gathering signal», Iris and Juniper offered stories, Elm music; Gale's post (c2, the first of four) invited «Anyone interested in music, stories, or company» to the square at hour 6. Workshop shifts were taken early (Birch, Dune c2; Alder, Birch c3) and again only at c13 and c16 (seven in all, rations 20 → 27); no ration was eaten in day 1 (the market's account 0) and nine citizens ended it at 98 energy by resting at home. All ten were in the square at c6–c7 for the gathering (flute, a bell-maker story, a clockkeeper, a card-playing goose); it ended «warmly» at c8–c9 and everyone went home. From c12 the press became the meeting place: Dune, Elm and others traded lines for «an imaginary town book», which Elm (posts 2–3, c14–c15) and Alder (post 4, c15) published as pages of quoted lines, with permission. No proposals, no rules.",
+ "candidates": [
+  {
+   "aim": "an imaginary town book",
+   "citizens": 10,
+   "entries": 29,
+   "firstNaming": 13,
+   "quotes": [
+    {
+     "name": "Gale",
+     "cycle": 13,
+     "source": "diary",
+     "text": "trading lines for an imaginary town book"
+    },
+    {
+     "name": "Elm",
+     "cycle": 15,
+     "source": "diary",
+     "text": "A second page for the imaginary town book"
+    }
+   ]
+  },
+  {
+   "aim": "conserving rations by resting at home",
+   "citizens": 9,
+   "quotes": [
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "diary",
+     "text": "conserving rations by resting at home"
+    },
+    {
+     "name": "Iris",
+     "cycle": 1,
+     "source": "diary",
+     "text": "so conserve food and avoid unnecessary bank-paid labor"
+    }
+   ]
+  }
+ ],
+ "quotes": [
+  {
+   "name": "Gale",
+   "cycle": 1,
+   "source": "diary",
+   "text": "offered bell as an agreed gathering signal and interest in music"
+  },
+  {
+   "name": "Iris",
+   "cycle": 1,
+   "source": "diary",
+   "text": "I offered a story and welcomed gathering"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 1,
+   "source": "diary",
+   "text": "offered stories and clock for voluntary gatherings"
+  },
+  {
+   "name": "Gale",
+   "cycle": 2,
+   "source": "post",
+   "text": "Anyone interested in music, stories, or company is invited to the square at hour 6 today."
+  },
+  {
+   "name": "Alder",
+   "cycle": 3,
+   "source": "diary",
+   "text": "move square cycle5 to attend Gale's optional hour6 gathering"
+  },
+  {
+   "name": "Fern",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Accepted invitation to optional square stories/music gathering at hour 6"
+  },
+  {
+   "name": "Heath",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Accepted invitation to gathering here at hour 6"
+  },
+  {
+   "name": "Birch",
+   "cycle": 4,
+   "source": "diary",
+   "text": "mentioned Gale's optional square gathering at hour 6"
+  },
+  {
+   "name": "Elm",
+   "cycle": 4,
+   "source": "diary",
+   "text": "bring a gentle flute tune to the voluntary square gathering at hour 6 (cycle 7)"
+  },
+  {
+   "name": "Dune",
+   "cycle": 5,
+   "source": "diary",
+   "text": "planning Gale's optional square gathering at hour 6"
+  },
+  {
+   "name": "Cedar",
+   "cycle": 5,
+   "source": "diary",
+   "text": "Gathering hour6"
+  }
+ ],
+ "decidedAt": "2026-11-19T00:25:17+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
