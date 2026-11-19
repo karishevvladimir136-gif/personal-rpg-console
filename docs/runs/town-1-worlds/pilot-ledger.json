@@ -116,14 +116,14 @@
    "refusals": 0
   },
   "mixed-both": {
-   "usd": 0.6607309499999996,
-   "calls": 961,
+   "usd": 1.4740989499999997,
+   "calls": 2260,
    "byDoor": {
-    "llmapi": 0.35597070000000014,
-    "openrouter": 0.3047602500000002
+    "llmapi": 0.7641121000000011,
+    "openrouter": 0.70998685
    },
    "world": "mixed-both",
-   "cycle": 16,
+   "cycle": 24,
    "refusals": 0
   },
   "diagnosis 2 (gateway probes)": {
@@ -135,7 +135,7 @@
    "estimated": true
   }
  },
- "totalUsd": 27.813621549999972,
+ "totalUsd": 28.62698954999997,
  "stopped": null,
  "balances": [
   {
@@ -579,6 +579,19 @@
     "at": "2026-11-18T23:27:43.586Z"
    },
    "at": "2026-11-18T23:27:43.586Z"
+  },
+  {
+   "label": "mixed-both day 1 end",
+   "llmapi": {
+    "total": 232.61180094,
+    "at": "2026-11-19T01:27:16.837Z"
+   },
+   "openrouter": {
+    "total": 55.66475138999999,
+    "usage": 1994.33524861,
+    "at": "2026-11-19T01:27:16.982Z"
+   },
+   "at": "2026-11-19T01:27:16.982Z"
   }
  ],
  "notes": [

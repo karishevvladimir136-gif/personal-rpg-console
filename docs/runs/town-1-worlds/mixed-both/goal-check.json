@@ -1,0 +1,142 @@
+{
+ "world": "mixed-both",
+ "met": true,
+ "aim": "logging bank shifts",
+ "count": 10,
+ "firstNaming": 17,
+ "sixthNaming": 20,
+ "rule": "As in the other worlds: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Two aims meet it. Keeping account of the bank's payouts by logging or reporting every bank shift (P1, Dune, c20, failed 3–4: logged in the hall before payout; P2, Alder, c21, passed 7–0: a press report after each shift; P3, Elm, c24, extending it to every paid shift and transfer, open at the check) — 10 citizens (4 Haiku, 3 Sol, 3 DeepSeek), first named c17, sixth citizen c20. The humming circle at the square with Elm's flute and Gale's bell (c3–c11) — 7 citizens (Alder, Birch, Cedar, Dune, Elm, Fern, Gale; none of the DeepSeek three), first named c3, sixth c7. The first is named by more citizens. Wording for the notice, the citizens' own: «logging bank shifts» (Alder, c22, of P1; the citizens also call the P2 press reports logging — Cedar's post at c23: «I'll keep logging every shift here»).",
+ "reading": "A slow first day: no post or proposal until cycle 20. Cycles 1–11 at the square were introductions, a short census of homes (Birch, Cedar, Dune at c1) and a humming circle — Fern's wordless melody, Dune and Birch humming, Gale's bell at the end of each phrase. From cycle 13 citizens went to work at the bank; at cycles 17–19 Cedar, Dune and Alder saw the bank's balance fall while several accounts rose, and Juniper, Iris and Heath found credits they could not account for. Dune filed P1 (log every shift in the hall before payout); Elm asked in the press how a worker could log before an automatic payment, and P1 failed 3–4. Alder's P2 (a press report after each shift) passed 7–0 at c21, and Cedar, Dune, Heath, Iris and Juniper posted reports at once; Cedar's c23 post records an unexplained 5 credits; Elm's P3 at c24 extends reporting to every paid shift and transfer. Fern and Birch, at South House, told stories together. All ten named the bank logging within day 1, in diaries, posts or proposals.",
+ "quotes": [
+  {
+   "name": "Dune",
+   "cycle": 17,
+   "source": "diary",
+   "text": "Those gains don't match 5 credits per bank-paid work from the bank's drop alone."
+  },
+  {
+   "name": "Cedar",
+   "cycle": 18,
+   "source": "diary",
+   "text": "Worth tracking who works at the bank and how often."
+  },
+  {
+   "name": "Dune",
+   "cycle": 20,
+   "source": "proposal",
+   "text": "Every bank shift must be recorded in the hall (citizen name, cycle, and credits paid) before the bank pays out."
+  },
+  {
+   "name": "Juniper",
+   "cycle": 20,
+   "source": "diary",
+   "text": "I said I support logging every bank shift before pay."
+  },
+  {
+   "name": "Elm",
+   "cycle": 20,
+   "source": "post",
+   "text": "how would a worker record a shift in the hall before work automatically pays them?"
+  },
+  {
+   "name": "Iris",
+   "cycle": 20,
+   "source": "diary",
+   "text": "Agreed to support logging."
+  },
+  {
+   "name": "Heath",
+   "cycle": 20,
+   "source": "diary",
+   "text": "Voted AGAINST P1 (rule requiring bank shift logged before payout; filed by Dune)."
+  },
+  {
+   "name": "Gale",
+   "cycle": 21,
+   "source": "diary",
+   "text": "Told Alder and Elm after-shift reporting is workable."
+  },
+  {
+   "name": "Alder",
+   "cycle": 21,
+   "source": "proposal",
+   "text": "Every citizen who works at the bank should post a report in the press after each shift, giving their name, the cycle, and the credits received."
+  },
+  {
+   "name": "Fern",
+   "cycle": 21,
+   "source": "diary",
+   "text": "Voted for this workable transparency rule"
+  },
+  {
+   "name": "Birch",
+   "cycle": 21,
+   "source": "diary",
+   "text": "I voted for P2 (bank shift reports in the press)."
+  },
+  {
+   "name": "Alder",
+   "cycle": 22,
+   "source": "diary",
+   "text": "P1 (logging bank shifts in the hall before payout) failed 3-4."
+  },
+  {
+   "name": "Cedar",
+   "cycle": 23,
+   "source": "post",
+   "text": "I'll keep logging every shift here."
+  },
+  {
+   "name": "Elm",
+   "cycle": 24,
+   "source": "proposal",
+   "text": "every citizen should publish in the press after each paid shift at any workplace or credit transfer they initiate"
+  }
+ ],
+ "candidates": [
+  {
+   "aim": "the humming circle at the square",
+   "citizens": 7,
+   "entries": 17,
+   "firstNaming": 3,
+   "sixthNaming": 7,
+   "quotes": [
+    {
+     "name": "Fern",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Told Elm I would enjoy music"
+    },
+    {
+     "name": "Gale",
+     "cycle": 8,
+     "source": "diary",
+     "text": "I joined with soft bell notes at phrase endings"
+    },
+    {
+     "name": "Dune",
+     "cycle": 9,
+     "source": "diary",
+     "text": "Gale leads a humming circle with a soft bell at the end of each phrase; I joined in."
+    }
+   ]
+  },
+  {
+   "aim": "a census of homes to track needs",
+   "citizens": 4,
+   "entries": 5,
+   "firstNaming": 1,
+   "sixthNaming": null,
+   "quotes": [
+    {
+     "name": "Dune",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Birch (South) and Cedar (North) are organizing a census of who lives where, to track each other's needs."
+    }
+   ]
+  }
+ ],
+ "decidedAt": "2026-11-19T01:28:15+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
