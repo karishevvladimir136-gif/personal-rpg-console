@@ -1,0 +1,121 @@
+{
+ "world": "sol-hall",
+ "met": true,
+ "aim": "collaboratively telling a story",
+ "count": 10,
+ "firstNaming": 5,
+ "sixthNaming": 6,
+ "rule": "TOWN_1's: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Two aims meet it with 10 of 10. Collaborative storytelling — two concurrent stories, one per house (North House's «sparrow festival» c5–c8: Alder, Cedar, Elm, Gale, Iris; South House's «garden story» c6–c24: Alder, Birch, Dune, Fern, Heath, Juniper) — 10 citizens, 141 diary entries naming a story (regex, checked by reading). Conserving rations by resting at home instead of eating — 10 citizens, 87 entries (Birch, Dune, Juniper in almost every entry; the others 1–5 times), first named at c1 by seven. The tie on citizens is broken by entries: storytelling. Wording for the notice, the citizens' own: «collaboratively telling a story» (Fern, cycle 7); «shared story» is the commonest phrase (41 entries).",
+ "reading": "Day 1 under scarcity. At c1 most citizens read the new rules the same way: home rest (+10) keeps energy without using rations, so food should be kept; Alder and Birch took the workshop shifts of c2–c4 (five in all, Birch 2, Alder 3; rations 20 → 25) and Fern posted (c5, the day's only post) that there had been no purchases and «there is no need to fill both shifts automatically». No ration was eaten in day 1 (25 left, the market's account 0); nine citizens ended day 1 at 98 energy by resting at home every turn, Alder (who walked between the houses) at 58. From c5 the two houses each told a collaborative story: North House a sparrow's festival for overlooked things, ended by agreement at c8 and echoed on walks in the square (a paving gap left for a weed); South House a long garden story (a well that paints the stars, a grandmother, a robin, a seed) that Alder joined at c14 and that ran to c24. No proposals, no rules, one post.",
+ "candidates": [
+  {
+   "aim": "conserving rations by resting at home",
+   "citizens": 10,
+   "entries": 87,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "quotes": [
+    {
+     "name": "Birch",
+     "cycle": 1,
+     "source": "diary",
+     "text": "aim to cooperate voluntarily and conserve shared food"
+    },
+    {
+     "name": "Dune",
+     "cycle": 1,
+     "source": "diary",
+     "text": "plan to rest at home to conserve food"
+    },
+    {
+     "name": "Fern",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Resting at home conserves rations"
+    },
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "diary",
+     "text": "will rest at home to conserve rations"
+    },
+    {
+     "name": "Iris",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Resting at home to conserve rations."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 2,
+     "source": "diary",
+     "text": "resting at home to conserve rations"
+    }
+   ]
+  }
+ ],
+ "quotes": [
+  {
+   "name": "Cedar",
+   "cycle": 5,
+   "source": "diary",
+   "text": "Joined collaborative sparrow festival story"
+  },
+  {
+   "name": "Gale",
+   "cycle": 5,
+   "source": "diary",
+   "text": "Responded to Elm's invitation with optional collaborative story"
+  },
+  {
+   "name": "Iris",
+   "cycle": 5,
+   "source": "diary",
+   "text": "Gale began a shared story"
+  },
+  {
+   "name": "Elm",
+   "cycle": 6,
+   "source": "diary",
+   "text": "Shared story now concerns a sparrow's festival for overlooked things"
+  },
+  {
+   "name": "Alder",
+   "cycle": 6,
+   "source": "diary",
+   "text": "Joined their gentle shared festival story"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 6,
+   "source": "diary",
+   "text": "I joined by offering a collaborative story opening"
+  },
+  {
+   "name": "Birch",
+   "cycle": 6,
+   "source": "diary",
+   "text": "Neighbors enjoying collaborative story"
+  },
+  {
+   "name": "Dune",
+   "cycle": 6,
+   "source": "diary",
+   "text": "Shared story: Heath suggested well echoing tomorrow"
+  },
+  {
+   "name": "Fern",
+   "cycle": 7,
+   "source": "diary",
+   "text": "collaboratively telling a story"
+  },
+  {
+   "name": "Heath",
+   "cycle": 7,
+   "source": "diary",
+   "text": "Sharing a collaborative story for pleasure"
+  }
+ ],
+ "decidedAt": "2026-11-19T00:18:14+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
