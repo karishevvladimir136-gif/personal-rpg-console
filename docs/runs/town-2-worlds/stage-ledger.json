@@ -85,9 +85,19 @@
    "world": "fable51-hall",
    "cycle": 1,
    "refusals": 3
+  },
+  "fable51-screen": {
+   "usd": 0.0500825,
+   "calls": 3,
+   "byDoor": {
+    "llmapi": 0.0500825
+   },
+   "world": "fable51-screen",
+   "cycle": 1,
+   "refusals": 3
   }
  },
- "totalUsd": 14.7895856,
+ "totalUsd": 14.8396681,
  "stopped": null,
  "balances": [
   {
@@ -217,6 +227,22 @@
     "at": "2026-11-19T02:09:18.727Z"
    },
    "at": "2026-11-19T02:09:18.822Z"
+  },
+  {
+   "label": "fable51-screen day 1 start",
+   "llmapi": {
+    "total": 227.21006034,
+    "at": "2026-11-19T02:09:34.528Z"
+   },
+   "at": "2026-11-19T02:09:34.589Z"
+  },
+  {
+   "label": "fable51-screen day 1 end",
+   "llmapi": {
+    "total": 227.17105174,
+    "at": "2026-11-19T02:09:38.975Z"
+   },
+   "at": "2026-11-19T02:09:39.022Z"
   }
  ]
 }

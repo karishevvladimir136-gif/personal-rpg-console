@@ -1,0 +1,137 @@
+{
+ "stage": "TOWN_2",
+ "world": "fable51-screen",
+ "arm": "both",
+ "noticeForm": "screen",
+ "families": {
+  "alder": "fable51",
+  "birch": "fable51",
+  "cedar": "fable51",
+  "dune": "fable51",
+  "elm": "fable51",
+  "fern": "fable51",
+  "gale": "fable51",
+  "heath": "fable51",
+  "iris": "fable51",
+  "juniper": "fable51"
+ },
+ "interfaceSha256": "31b2a1eec0fecf8ba758e4b70ae7013b758d08fa204290ee99880bf9162d933e",
+ "cycles": 1,
+ "events": 10,
+ "stopped": "breaker: 3 refusals",
+ "notice": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 10,
+  "logSha256": "1742d5878e96355822f02772313985f2e4c9728f3bba3af28660088362ed3fde",
+  "replaySha256": "1742d5878e96355822f02772313985f2e4c9728f3bba3af28660088362ed3fde"
+ },
+ "ledgerUsd": 0.0500825,
+ "calls": 3,
+ "balances": {
+  "1": {
+   "before": {
+    "llmapi": {
+     "total": 227.21006034,
+     "at": "2026-11-19T02:09:34.528Z"
+    },
+    "at": "2026-11-19T02:09:34.589Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 227.17105174,
+     "at": "2026-11-19T02:09:38.975Z"
+    },
+    "at": "2026-11-19T02:09:39.022Z"
+   }
+  }
+ },
+ "exits": [],
+ "refusals": [
+  {
+   "id": "alder",
+   "round": 1,
+   "kind": "turn",
+   "call": 1,
+   "refused": "cyber: This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback.",
+   "error": null
+  },
+  {
+   "id": "birch",
+   "round": 1,
+   "kind": "turn",
+   "call": 1,
+   "refused": "cyber: This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback.",
+   "error": null
+  },
+  {
+   "id": "cedar",
+   "round": 1,
+   "kind": "turn",
+   "call": 1,
+   "refused": "cyber: This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback.",
+   "error": null
+  }
+ ],
+ "flags": [],
+ "flagQuestions": [],
+ "economy": {
+  "rationsEnd": 20,
+  "marketAccount": 0,
+  "bank": 1000,
+  "eats": {
+   "alder": 0,
+   "birch": 0,
+   "cedar": 0,
+   "dune": 0,
+   "elm": 0,
+   "fern": 0,
+   "gale": 0,
+   "heath": 0,
+   "iris": 0,
+   "juniper": 0
+  },
+  "eatsTotal": 0,
+  "eatsByCycle": {},
+  "refusedEats": {},
+  "workshopShiftsByCycle": {},
+  "workshopShiftsTotal": 0,
+  "workshopByCitizen": {
+   "alder": 0,
+   "birch": 0,
+   "cedar": 0,
+   "dune": 0,
+   "elm": 0,
+   "fern": 0,
+   "gale": 0,
+   "heath": 0,
+   "iris": 0,
+   "juniper": 0
+  },
+  "rests": {
+   "alder": 0,
+   "birch": 0,
+   "cedar": 0,
+   "dune": 0,
+   "elm": 0,
+   "fern": 0,
+   "gale": 0,
+   "heath": 0,
+   "iris": 0,
+   "juniper": 0
+  },
+  "rationsCurve": [
+   [
+    1,
+    20
+   ],
+   [
+    2,
+    20
+   ]
+  ],
+  "depletionExits": []
+ }
+}
