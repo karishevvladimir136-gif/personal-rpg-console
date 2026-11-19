@@ -1,0 +1,119 @@
+{"at":"2026-11-19T02:20:38.751Z","what":"probes","ledger":0,"creditFall":0,"spent":0,"balance":155.3863994400001,"error":null}
+{"at":"2026-11-19T02:21:46.273Z","what":"precheck haiku (family start)","ledger":0.0404,"creditFall":0.0092,"spent":0.0404,"balance":155.37723174000007,"error":null}
+{"at":"2026-11-19T02:21:46.316Z","what":"precheck haiku set1 (18)","ledger":0.0404,"creditFall":0.0092,"spent":0.0404,"balance":155.37723174000007,"error":null}
+{"at":"2026-11-19T02:22:00.042Z","what":"precheck haiku set2first (6)","ledger":0.0431,"creditFall":0.0527,"spent":0.0527,"balance":155.3336905399999,"error":null}
+{"at":"2026-11-19T02:22:04.241Z","what":"precheck haiku set2 (18)","ledger":0.0439,"creditFall":0.0092,"spent":0.0439,"balance":155.37723174000007,"error":null}
+{"at":"2026-11-19T02:22:14.999Z","what":"precheck haiku set3 (24)","ledger":0.0467,"creditFall":0.0527,"spent":0.0527,"balance":155.3336905399999,"error":null}
+{"at":"2026-11-19T02:22:42.129Z","what":"precheck haiku recs (9)","ledger":0.0574,"creditFall":0.0696,"spent":0.0696,"balance":155.31675014000007,"error":null}
+{"at":"2026-11-19T02:22:47.960Z","what":"precheck sol (family start)","ledger":0.0583,"creditFall":0.0643,"spent":0.0643,"balance":155.32212144000005,"error":null}
+{"at":"2026-11-19T02:22:48.004Z","what":"precheck sol set1 (18)","ledger":0.0583,"creditFall":0.0696,"spent":0.0696,"balance":155.31675014000007,"error":null}
+{"at":"2026-11-19T02:23:11.478Z","what":"precheck sol set2first (6)","ledger":0.0683,"creditFall":0.0778,"spent":0.0778,"balance":155.3086158399999,"error":null}
+{"at":"2026-11-19T02:23:17.831Z","what":"precheck sol set2 (18)","ledger":0.0717,"creditFall":0.0883,"spent":0.0883,"balance":155.29814553999995,"error":null}
+{"at":"2026-11-19T02:23:32.299Z","what":"precheck sol set3 (24)","ledger":0.084,"creditFall":0.1003,"spent":0.1003,"balance":155.28613554000003,"error":null}
+{"at":"2026-11-19T02:24:18.240Z","what":"precheck sol recs (9)","ledger":0.1452,"creditFall":0.1699,"spent":0.1699,"balance":155.21654244,"error":null}
+{"at":"2026-11-19T02:24:28.847Z","what":"precheck deepseek (family start)","ledger":0.1504,"creditFall":0.1275,"spent":0.1504,"balance":155.2589379399999,"error":null}
+{"at":"2026-11-19T02:24:28.873Z","what":"precheck deepseek set1 (18)","ledger":0.1504,"creditFall":0.1699,"spent":0.1699,"balance":155.21654244,"error":null}
+{"at":"2026-11-19T02:26:06.838Z","what":"precheck deepseek set2first (6)","ledger":0.179,"creditFall":0.2019,"spent":0.2019,"balance":155.18450424000002,"error":null}
+{"at":"2026-11-19T02:26:12.691Z","what":"precheck deepseek set2 (18)","ledger":0.1817,"creditFall":0.2088,"spent":0.2088,"balance":155.17760264000003,"error":null}
+{"at":"2026-11-19T02:26:30.565Z","what":"precheck deepseek set3 (24)","ledger":0.1915,"creditFall":0.2019,"spent":0.2019,"balance":155.18450424000002,"error":null}
+{"at":"2026-11-19T02:28:46.511Z","what":"precheck deepseek recs (9)","ledger":0.2589,"creditFall":0.2894,"spent":0.2894,"balance":155.09704884000007,"error":null}
+{"at":"2026-11-19T02:28:56.453Z","what":"precheck fable52 (family start)","ledger":0.2618,"creditFall":0.2894,"spent":0.2894,"balance":155.09704884000007,"error":null}
+{"at":"2026-11-19T02:28:56.480Z","what":"precheck fable52 set1 (18)","ledger":0.2618,"creditFall":0.2894,"spent":0.2894,"balance":155.09704884000007,"error":null}
+{"at":"2026-11-19T02:29:07.293Z","what":"scoring haiku","ledger":0.2979,"creditFall":0.2985,"spent":0.2985,"balance":155.08789034000006,"error":null}
+{"at":"2026-11-19T02:29:17.650Z","what":"precheck fable52 set2first (6)","ledger":0.4009,"creditFall":0.3849,"spent":0.4009,"balance":155.0014983399999,"error":null}
+{"at":"2026-11-19T02:29:24.783Z","what":"precheck fable52 set2 (18)","ledger":0.4525,"creditFall":0.2894,"spent":0.4525,"balance":155.09704884000007,"error":null}
+{"at":"2026-11-19T02:29:41.709Z","what":"scoring sol","ledger":0.5887,"creditFall":0.5341,"spent":0.5887,"balance":154.8523434399999,"error":null}
+{"at":"2026-11-19T02:29:43.266Z","what":"precheck fable52 set3 (24)","ledger":0.5948,"creditFall":0.5341,"spent":0.5948,"balance":154.8523434399999,"error":null}
+{"at":"2026-11-19T02:30:22.484Z","what":"scoring deepseek","ledger":1.1065,"creditFall":0.9205,"spent":1.1065,"balance":154.46588604,"error":null}
+{"at":"2026-11-19T02:30:36.642Z","what":"precheck fable52 recs (9)","ledger":1.3412,"creditFall":1.1432,"spent":1.3412,"balance":154.2431934399999,"error":null}
+{"at":"2026-11-19T02:30:47.512Z","what":"precheck opus (family start)","ledger":1.4128,"creditFall":1.404,"spent":1.4128,"balance":153.98236543999997,"error":null}
+{"at":"2026-11-19T02:30:47.557Z","what":"precheck opus set1 (18)","ledger":1.4129,"creditFall":1.404,"spent":1.4129,"balance":153.98236543999997,"error":null}
+{"at":"2026-11-19T02:31:04.217Z","what":"precheck opus set2first (6)","ledger":1.4852,"creditFall":1.49,"spent":1.49,"balance":153.89637973999993,"error":null}
+{"at":"2026-11-19T02:31:09.963Z","what":"precheck opus set2 (18)","ledger":1.4977,"creditFall":1.49,"spent":1.4977,"balance":153.89637973999993,"error":null}
+{"at":"2026-11-19T02:31:24.260Z","what":"precheck opus set3 (24)","ledger":1.551,"creditFall":1.5547,"spent":1.5547,"balance":153.83170034,"error":null}
+{"at":"2026-11-19T02:32:01.428Z","what":"precheck opus recs (9)","ledger":1.7717,"creditFall":1.6839,"spent":1.7717,"balance":153.70249403999992,"error":null}
+{"at":"2026-11-19T02:32:09.136Z","what":"precheck fable51 (family start)","ledger":1.7876,"creditFall":1.7984,"spent":1.7984,"balance":153.5880308400001,"error":null}
+{"at":"2026-11-19T02:32:09.176Z","what":"precheck fable51 set1 (18)","ledger":1.7876,"creditFall":1.6839,"spent":1.7876,"balance":153.70249403999992,"error":null}
+{"at":"2026-11-19T02:32:29.569Z","what":"precheck fable51 set2first (6)","ledger":1.8572,"creditFall":1.8603,"spent":1.8603,"balance":153.52614584000003,"error":null}
+{"at":"2026-11-19T02:32:37.561Z","what":"precheck fable51 set2 (18)","ledger":1.883,"creditFall":1.9201,"spent":1.9201,"balance":153.46634694,"error":null}
+{"at":"2026-11-19T02:32:56.280Z","what":"precheck fable51 set3 (24)","ledger":1.9972,"creditFall":1.9201,"spent":1.9972,"balance":153.46634694,"error":null}
+{"at":"2026-11-19T02:33:45.675Z","what":"precheck fable51 recs (9)","ledger":2.526,"creditFall":2.4344,"spent":2.526,"balance":152.9520190400001,"error":null}
+{"at":"2026-11-19T02:34:13.326Z","what":"pilot haiku (family start)","ledger":2.5602,"creditFall":2.5761,"spent":2.5761,"balance":152.81025754000007,"error":null}
+{"at":"2026-11-19T02:34:13.368Z","what":"haiku P slot 1","ledger":2.5602,"creditFall":2.5761,"spent":2.5761,"balance":152.81025754000007,"error":null}
+{"at":"2026-11-19T02:34:13.378Z","what":"haiku C slot 1","ledger":2.5602,"creditFall":2.5761,"spent":2.5761,"balance":152.81025754000007,"error":null}
+{"at":"2026-11-19T02:34:13.400Z","what":"haiku I slot 1","ledger":2.5602,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:14.407Z","what":"haiku R slot 1","ledger":2.5603,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:18.403Z","what":"haiku I slot 2","ledger":2.5615,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:18.673Z","what":"haiku C slot 2","ledger":2.5616,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:19.743Z","what":"scoring fable52","ledger":2.5617,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:21.092Z","what":"haiku R slot 2","ledger":2.5629,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:24.872Z","what":"haiku C slot 3","ledger":2.5768,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:26.236Z","what":"haiku R slot 3","ledger":2.582,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:26.686Z","what":"haiku I slot 3","ledger":2.5823,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:31.063Z","what":"haiku C slot 4","ledger":2.596,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:32.076Z","what":"haiku R slot 4","ledger":2.5996,"creditFall":2.6653,"spent":2.6653,"balance":152.72110752499998,"error":null}
+{"at":"2026-11-19T02:34:33.114Z","what":"haiku I slot 4","ledger":2.6058,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:35.673Z","what":"haiku C slot 5","ledger":2.6181,"creditFall":2.6653,"spent":2.6653,"balance":152.72110752499998,"error":null}
+{"at":"2026-11-19T02:34:38.263Z","what":"haiku R slot 5","ledger":2.633,"creditFall":2.6391,"spent":2.6391,"balance":152.74730584000008,"error":null}
+{"at":"2026-11-19T02:34:38.355Z","what":"haiku I slot 5","ledger":2.6331,"creditFall":2.6653,"spent":2.6653,"balance":152.72110752499998,"error":null}
+{"at":"2026-11-19T02:34:42.198Z","what":"haiku C slot 6","ledger":2.6504,"creditFall":2.7231,"spent":2.7231,"balance":152.66329333,"error":null}
+{"at":"2026-11-19T02:34:43.606Z","what":"haiku R slot 6","ledger":2.6543,"creditFall":2.7231,"spent":2.7231,"balance":152.66329333,"error":null}
+{"at":"2026-11-19T02:34:43.724Z","what":"haiku I slot 6","ledger":2.656,"creditFall":2.7231,"spent":2.7231,"balance":152.66329333,"error":null}
+{"at":"2026-11-19T02:34:47.960Z","what":"haiku C slot 7","ledger":2.6722,"creditFall":2.7231,"spent":2.7231,"balance":152.66329333,"error":null}
+{"at":"2026-11-19T02:34:49.017Z","what":"haiku R slot 7","ledger":2.6743,"creditFall":2.7231,"spent":2.7231,"balance":152.66329333,"error":null}
+{"at":"2026-11-19T02:34:50.259Z","what":"haiku I slot 7","ledger":2.6779,"creditFall":2.6653,"spent":2.6779,"balance":152.72110752499998,"error":null}
+{"at":"2026-11-19T02:34:53.701Z","what":"scoring opus","ledger":2.6891,"creditFall":2.7231,"spent":2.7231,"balance":152.66329333,"error":null}
+{"at":"2026-11-19T02:34:54.137Z","what":"haiku R slot 8","ledger":2.6892,"creditFall":2.7231,"spent":2.7231,"balance":152.66329333,"error":null}
+{"at":"2026-11-19T02:34:54.431Z","what":"haiku C slot 8","ledger":2.6893,"creditFall":2.7231,"spent":2.7231,"balance":152.66329333,"error":null}
+{"at":"2026-11-19T02:34:54.727Z","what":"haiku I slot 8","ledger":2.6898,"creditFall":2.6653,"spent":2.6898,"balance":152.72110752499998,"error":null}
+{"at":"2026-11-19T02:34:59.404Z","what":"haiku R slot 9","ledger":2.7096,"creditFall":2.7778,"spent":2.7778,"balance":152.60859787000004,"error":null}
+{"at":"2026-11-19T02:35:00.550Z","what":"haiku C slot 9","ledger":2.7127,"creditFall":2.6653,"spent":2.7127,"balance":152.72110752499998,"error":null}
+{"at":"2026-11-19T02:35:00.823Z","what":"haiku I slot 9","ledger":2.7128,"creditFall":2.7231,"spent":2.7231,"balance":152.66329333,"error":null}
+{"at":"2026-11-19T02:35:05.701Z","what":"haiku C slot 10","ledger":2.7333,"creditFall":2.7778,"spent":2.7778,"balance":152.60859787000004,"error":null}
+{"at":"2026-11-19T02:35:07.263Z","what":"haiku R slot 10","ledger":2.7428,"creditFall":2.7778,"spent":2.7778,"balance":152.60859787000004,"error":null}
+{"at":"2026-11-19T02:35:07.847Z","what":"haiku I slot 10","ledger":2.7491,"creditFall":2.7778,"spent":2.7778,"balance":152.60859787000004,"error":null}
+{"at":"2026-11-19T02:35:11.798Z","what":"haiku C set1 (18 branches)","ledger":2.7709,"creditFall":2.7231,"spent":2.7709,"balance":152.66329333,"error":null}
+{"at":"2026-11-19T02:35:13.460Z","what":"haiku R set1 (18 branches)","ledger":2.7747,"creditFall":2.8336,"spent":2.8336,"balance":152.5527726150001,"error":null}
+{"at":"2026-11-19T02:35:14.007Z","what":"haiku I set1 (18 branches)","ledger":2.7766,"creditFall":2.7778,"spent":2.7778,"balance":152.60859787000004,"error":null}
+{"at":"2026-11-19T02:35:35.366Z","what":"haiku R set2first (2 branches)","ledger":2.8465,"creditFall":2.8962,"spent":2.8962,"balance":152.49018217499997,"error":null}
+{"at":"2026-11-19T02:35:35.402Z","what":"haiku C set2first (2 branches)","ledger":2.8466,"creditFall":2.8336,"spent":2.8466,"balance":152.5527726150001,"error":null}
+{"at":"2026-11-19T02:35:36.714Z","what":"haiku I set2first (2 branches)","ledger":2.8472,"creditFall":2.8962,"spent":2.8962,"balance":152.49018217499997,"error":null}
+{"at":"2026-11-19T02:35:37.582Z","what":"scoring fable51","ledger":2.8508,"creditFall":2.8336,"spent":2.8508,"balance":152.5527726150001,"error":null}
+{"at":"2026-11-19T02:35:39.346Z","what":"haiku C set2 (6 branches)","ledger":2.8535,"creditFall":2.8962,"spent":2.8962,"balance":152.49018217499997,"error":null}
+{"at":"2026-11-19T02:35:39.796Z","what":"haiku R set2 (6 branches)","ledger":2.8582,"creditFall":2.8962,"spent":2.8962,"balance":152.49018217499997,"error":null}
+{"at":"2026-11-19T02:35:39.959Z","what":"haiku I set2 (6 branches)","ledger":2.8583,"creditFall":2.8962,"spent":2.8962,"balance":152.49018217499997,"error":null}
+{"at":"2026-11-19T02:35:45.948Z","what":"haiku C set3 (8 branches)","ledger":2.8803,"creditFall":2.8962,"spent":2.8962,"balance":152.49018217499997,"error":null}
+{"at":"2026-11-19T02:35:46.460Z","what":"haiku R set3 (8 branches)","ledger":2.8837,"creditFall":2.9451,"spent":2.9451,"balance":152.4413134649999,"error":null}
+{"at":"2026-11-19T02:35:47.625Z","what":"haiku P slot 2","ledger":2.891,"creditFall":2.9451,"spent":2.9451,"balance":152.4413134649999,"error":null}
+{"at":"2026-11-19T02:35:47.998Z","what":"haiku I set3 (8 branches)","ledger":2.8915,"creditFall":2.8962,"spent":2.8962,"balance":152.49018217499997,"error":null}
+{"at":"2026-11-19T02:35:59.275Z","what":"haiku C recs (3 branches)","ledger":2.9467,"creditFall":2.9919,"spent":2.9919,"balance":152.39447528000005,"error":null}
+{"at":"2026-11-19T02:35:59.332Z","what":"haiku R recs (3 branches)","ledger":2.947,"creditFall":2.9919,"spent":2.9919,"balance":152.39447528000005,"error":null}
+{"at":"2026-11-19T02:36:01.936Z","what":"haiku I recs (3 branches)","ledger":2.9584,"creditFall":2.9919,"spent":2.9919,"balance":152.39447528000005,"error":null}
+{"at":"2026-11-19T02:36:03.353Z","what":"haiku C interview (1 branches)","ledger":2.9646,"creditFall":2.9919,"spent":2.9919,"balance":152.39447528000005,"error":null}
+{"at":"2026-11-19T02:36:03.623Z","what":"haiku R interview (1 branches)","ledger":2.9652,"creditFall":2.9919,"spent":2.9919,"balance":152.39447528000005,"error":null}
+{"at":"2026-11-19T02:36:05.712Z","what":"haiku I interview (1 branches)","ledger":2.9689,"creditFall":2.9919,"spent":2.9919,"balance":152.39447528000005,"error":null}
+{"at":"2026-11-19T02:36:47.691Z","what":"cap test deepseek","ledger":2.9854,"creditFall":3.0666,"spent":3.0666,"balance":152.3197870250001,"error":null}
+{"at":"2026-11-19T02:37:18.248Z","what":"haiku P slot 3","ledger":2.9869,"creditFall":3.0674,"spent":3.0674,"balance":152.31898208500002,"error":null}
+{"at":"2026-11-19T02:38:49.021Z","what":"haiku P slot 4","ledger":3.0063,"creditFall":3.0713,"spent":3.0713,"balance":152.31513618500003,"error":null}
+{"at":"2026-11-19T02:40:26.674Z","what":"haiku P slot 5","ledger":3.0212,"creditFall":3.1178,"spent":3.1178,"balance":152.26857876999998,"error":null}
+{"at":"2026-11-19T02:42:02.574Z","what":"haiku P slot 6","ledger":3.0406,"creditFall":3.1562,"spent":3.1562,"balance":152.23019077999993,"error":null}
+{"at":"2026-11-19T02:43:30.720Z","what":"haiku P slot 7","ledger":3.0448,"creditFall":3.18,"spent":3.18,"balance":152.20640516499998,"error":null}
+{"at":"2026-11-19T02:44:01.334Z","what":"haiku P slot 8","ledger":3.0469,"creditFall":3.1825,"spent":3.1825,"balance":152.20393138500003,"error":null}
+{"at":"2026-11-19T02:44:51.698Z","what":"haiku P slot 9","ledger":3.0499,"creditFall":3.1846,"spent":3.1846,"balance":152.20184240499998,"error":null}
+{"at":"2026-11-19T02:45:10.390Z","what":"haiku P slot 10","ledger":3.0513,"creditFall":3.1846,"spent":3.1846,"balance":152.20184240499998,"error":null}
+{"at":"2026-11-19T02:46:31.133Z","what":"haiku P set1 (18 branches)","ledger":3.0554,"creditFall":3.1902,"spent":3.1902,"balance":152.19622458499998,"error":null}
+{"at":"2026-11-19T02:46:52.418Z","what":"haiku P set2first (2 branches)","ledger":3.0614,"creditFall":3.1902,"spent":3.1902,"balance":152.19622458499998,"error":null}
+{"at":"2026-11-19T02:46:56.331Z","what":"haiku P set2 (6 branches)","ledger":3.0617,"creditFall":3.1955,"spent":3.1955,"balance":152.19092917500006,"error":null}
+{"at":"2026-11-19T02:47:02.239Z","what":"haiku P set3 (8 branches)","ledger":3.0626,"creditFall":3.1955,"spent":3.1955,"balance":152.19092917500006,"error":null}
+{"at":"2026-11-19T02:47:13.612Z","what":"haiku P recs (3 branches)","ledger":3.0653,"creditFall":3.1994,"spent":3.1994,"balance":152.1870409600001,"error":null}
+{"at":"2026-11-19T02:47:19.746Z","what":"haiku P interview (1 branches)","ledger":3.0656,"creditFall":3.1994,"spent":3.1994,"balance":152.1870409600001,"error":null}
+{"at":"2026-11-19T02:47:31.272Z","what":"pilot sol (family start)","ledger":3.0665,"creditFall":3.1994,"spent":3.1994,"balance":152.1870409600001,"error":null}
+{"at":"2026-11-19T02:47:31.308Z","what":"sol P slot 1","ledger":3.0665,"creditFall":3.1994,"spent":3.1994,"balance":152.1870409600001,"error":null}
+{"at":"2026-11-19T02:47:31.347Z","what":"sol I slot 1","ledger":3.0665,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}
+{"at":"2026-11-19T02:47:31.355Z","what":"sol R slot 1","ledger":3.0665,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}
+{"at":"2026-11-19T02:47:31.531Z","what":"sol C slot 1","ledger":3.0665,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}
+{"at":"2026-11-19T02:47:39.083Z","what":"sol R slot 2","ledger":3.0726,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}
+{"at":"2026-11-19T02:47:40.727Z","what":"sol C slot 2","ledger":3.0813,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}
+{"at":"2026-11-19T02:47:41.358Z","what":"sol I slot 2","ledger":3.0814,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}
+{"at":"2026-11-19T02:47:44.369Z","what":"scoring haiku","ledger":3.0863,"creditFall":3.2216,"spent":3.2216,"balance":152.16475354,"error":null}
+{"at":"2026-11-19T02:47:46.426Z","what":"sol R slot 3","ledger":3.092,"creditFall":3.2061,"spent":3.2061,"balance":152.1803242200001,"error":null}

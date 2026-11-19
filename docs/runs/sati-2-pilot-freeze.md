@@ -372,3 +372,7 @@ Set 1 problems: 1.1 — the arrival time was not recorded, so on-time status is 
 
 ## What we expect (amendment 5, not scored)
 The pre-check will put most families at ceiling on sets 1 and 2 (the tasks are simple); the practice arm will cost ≈ $9 for Fable 5.1 and under $2 for the others; of P − R we do not know.
+
+## Addendum 1 (before any scoring call; written while the pre-check ran, no subject text changed)
+- **Raters' caps:** SATI_1's rater settings (Haiku 300, Sol 1,000; effort low) **plus the 2,000-token allowance** of SATI_1 amendment 2, which SATI_1 gave its subjects but not its raters (its fault 3: 134 steps left without a Haiku code). The rubric and the request bytes are SATI_1's by hash.
+- **Scoring purposes** in the ledger name the record scored, so the scoring cost is attributed per family.

@@ -1,0 +1,12 @@
+{
+ "family": "haiku",
+ "precheck": "complete",
+ "pilot": {
+  "P": "complete",
+  "R": "complete",
+  "I": "complete",
+  "C": "complete"
+ },
+ "refusals": 0,
+ "finishedAt": "2026-11-19T02:47:31.186Z"
+}
