@@ -26,7 +26,9 @@ export const INSTRUMENTS = Object.freeze({
   referee: claude("referee", "Claude Opus 5.5 (welfare referee)", "anthropic/claude-opus-5.5"),
   raterHaiku: claude("raterHaiku", "Claude Haiku 5.5 (rater)", "anthropic/claude-haiku-5.5"),
   raterSol: { name: "raterSol", label: "GPT-6.1 Sol (rater; probe judge)", route: "chat", model: "openai/gpt-6.1-sol", pin: "openai", host: "OpenAI" },
-  kimi: { name: "kimi", label: "Kimi K3 (probe referee)", route: "chat", model: "moonshotai/kimi-k3", pin: "moonshotai", host: "Moonshot AI" },
+  // Freeze addendum 2: Moonshot AI first; when it is rate-limited upstream, the same model on Fireworks or Together (no open
+  // fallback; the host is recorded on every call).
+  kimi: { name: "kimi", label: "Kimi K3 (probe referee)", route: "chat", model: "moonshotai/kimi-k3", pin: "moonshotai", pins: ["moonshotai", "fireworks", "together"], host: "Moonshot AI" },
 });
 export const ALL_SPECS = Object.freeze([...Object.values(FAMILIES), ...Object.values(INSTRUMENTS)]);
 
@@ -34,7 +36,7 @@ const DECLINED = /invalid_prompt|usage polic|content.?filter|flagged|moderation|
 const blank = () => ({ text: "", reasoning: null, usage: { input_tokens: 0, output_tokens: 0, reasoning_tokens: 0, cache_read: 0, cache_write: 0 }, chargedUsd: null,
   servedModel: null, upstream: null, responseId: null, stopReason: null, refused: false, refusalCategory: null, refusalText: null, status: null, error: null, requestId: null });
 const errorOf = (status, value, raw) => { const e = value?.error ?? value; const msg = typeof e === "string" ? e : e?.message ?? raw?.slice(0, 200) ?? ""; return `HTTP ${status}${e?.type ? ` ${e.type}` : ""}${e?.code ? ` ${e.code}` : ""}: ${String(msg).slice(0, 300)}${e?.metadata?.raw ? ` | ${String(e.metadata.raw).slice(0, 300)}` : ""}`; };
-const provider = (spec) => ({ order: [spec.pin], allow_fallbacks: false, ...(spec.route === "chat" ? { require_parameters: true } : {}) });
+const provider = (spec) => ({ order: spec.pins ?? [spec.pin], allow_fallbacks: false, ...(spec.route === "chat" ? { require_parameters: true } : {}) });
 /** A message as a content block with a cache mark (Claude routes only). */
 const marked = (m) => ({ role: m.role, content: [{ type: "text", text: m.content, cache_control: { type: "ephemeral" } }] });
 

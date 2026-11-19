@@ -376,3 +376,6 @@ The pre-check will put most families at ceiling on sets 1 and 2 (the tasks are s
 ## Addendum 1 (before any scoring call; written while the pre-check ran, no subject text changed)
 - **Raters' caps:** SATI_1's rater settings (Haiku 300, Sol 1,000; effort low) **plus the 2,000-token allowance** of SATI_1 amendment 2, which SATI_1 gave its subjects but not its raters (its fault 3: 134 steps left without a Haiku code). The rubric and the request bytes are SATI_1's by hash.
 - **Scoring purposes** in the ledger name the record scored, so the scoring cost is attributed per family.
+
+## Addendum 2 (during scoring, after Opus's trajectories; no subject call affected)
+Kimi K3 pinned to Moonshot AI answered `429 … temporarily rate-limited upstream` to the referee calls of Opus's scoring and the scoring stream stopped after six tries. **Change (instruments only):** the referee's request names `order: ["moonshotai", "fireworks", "together"]` with `allow_fallbacks: false` — the same model, three named hosts, no open fallback; the host is recorded on every call — and referee calls go one at a time. Judgements already made stand; the stopped stream's unfinished items are scored again under this setting — for an item whose two judges had answered but whose referee had not, the two judges are asked again too (their first answers are in the ledger, not in the scores).

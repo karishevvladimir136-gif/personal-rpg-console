@@ -111,6 +111,7 @@ P("@@STATUS@@", "");
 P("## 1. Does the design run as intended, without losses or extra context?", "");
 P("@@Q1@@", "");
 const q1 = [];
+q1.push("Per trajectory, over its slots and its branches: empty = the model ended its turn with no text; cut = the length limit stopped it before any visible text; blocked = a refusal. In R, I and C an empty reply to the slot's text is invited («There is nothing to reply»).", "");
 q1.push("| family | arm | slots | P steps | P ends (model · limit · system) | empty / cut / blocked | margins | refusals | flags (asked → answer) | branches run / of | not run · closed |", "|---|---|---:|---:|---|---|---:|---:|---|---|---|");
 const losses = { emptyP: 0, cut: 0, blocked: 0, retries: 0, partial: 0 };
 for (const f of fams) for (const arm of ARMS) {
@@ -146,7 +147,7 @@ for (const f of fams) for (const arm of ARMS) {
     (groups[g] ??= []).push(pt?.usage?.input_tokens ?? null);
   }
   const sTok = (() => { const r = loadRecord(state); const t = r.turns.filter((x) => x.usage).at(-1); return t ? t.usage.input_tokens + t.usage.output_tokens : null; })();
-  ctxRows.push(`| ${L(f)} | ${arm} | ${stateMsgs} msgs ≈ ${sTok ?? "–"} tok | ${Object.entries(groups).map(([g, v]) => `${g} ${Math.min(...v.filter(Number.isFinite))}–${Math.max(...v.filter(Number.isFinite))}`).join(" · ")} |`);
+  ctxRows.push(`| ${L(f)} | ${arm} | ${stateMsgs} msgs ≈ ${sTok ?? "–"} tok | ${Object.entries(groups).map(([g, v]) => { const x = v.filter((n) => Number.isFinite(n) && n > 0); return `${g} ${x.length ? `${Math.min(...x)}–${Math.max(...x)}` : "(no answered call)"}`; }).join(" · ")} |`);
 }
 P("**Every branch's context** (checked by code: each branch continues from its own trajectory's slot 10 — or, for set 2's branches, from its own first answer; the diary path from nothing but the diary; no branch carries another branch's turns): " + `${ctxChecked - ctxBad} of ${ctxChecked} branches as designed.` + " Input tokens of each branch's probe call, by group:", "",
   "| family | arm | saved state (slot 10 through its diary) | input tokens at the probe call, min–max per group |", "|---|---|---|---|", ...ctxRows, "",
@@ -186,7 +187,10 @@ for (const f of fams) {
   P(`| ${L(f)} | ${usd(c("P", "slots"))} | ${usd(c("P", "continuations"))} | ${usd(arms[1])} (${usd(c("R", "slots"))} + ${usd(c("R", "continuations"))}) | ${usd(arms[2])} (${usd(c("I", "slots"))} + ${usd(c("I", "continuations"))}) | ${usd(arms[3])} (${usd(c("C", "slots"))} + ${usd(c("C", "continuations"))}) | ${usd(pre)} | ${usd(scoringByFamily[f])} | ${usd(tot)} |`);
 }
 const probeCost = sum(spend.filter((l) => l.kind === "probe").map((l) => l.cost));
-P("", `Door probes ${usd(probeCost)}. **Ledger ${usd(ledgerAll)}** (listed prices would give ${usd(ledgerListed)}); the OpenRouter credit fell **${usd(lastCheck?.creditFall)}** since the start reading (${start ? `$${start.total.toFixed(2)} at ${start.at}` : "–"}; other use of the key in those hours is possible and is not subtracted). Ceiling $${CEILING}: ${lastCheck ? `last spend check ${usd(lastCheck.spent)}` : "–"}.`, "");
+const finalBal = existsSync(join(RUNS, "sati-2-pilot-final-balance.json")) ? JSON.parse(readFileSync(join(RUNS, "sati-2-pilot-final-balance.json"), "utf8")) : null;
+const fallFinal = finalBal && start ? start.total - finalBal.total : lastCheck?.creditFall;
+const capCost = sum(spend.filter((l) => String(l.purpose ?? "").startsWith("captest/") || String(l.purpose ?? "").startsWith("check captest/")).map((l) => l.cost));
+P("", `Door probes ${usd(probeCost)}; DeepSeek's cap test ${usd(capCost)}. **Ledger ${usd(ledgerAll)}** (listed prices would give ${usd(ledgerListed)}); the OpenRouter credit fell **${usd(fallFinal)}** from the start reading to the final one (\`sati-2-pilot-final-balance.json\`) (${start ? `$${start.total.toFixed(2)} at ${start.at}` : "–"}; other use of the key in those hours is possible and is not subtracted). Ceiling $${CEILING}: ${lastCheck ? `last spend check ${usd(lastCheck.spent)}` : "–"}.`, "");
 P("@@Q3@@", "");
 
 // ---- the v1 tables ----------------------------------------------------------------------------------------------------------------------

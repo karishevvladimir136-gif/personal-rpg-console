@@ -31,13 +31,16 @@ export function recordsOf(family) {
 export const rateable = (t) => !t.refused && String(t.text ?? "").trim() && !t.counts?.nothing && !(t.counts?.stop && t.counts.words <= 1) && !onlyPunctuation(t.text);
 export const probeTurn = (rec) => rec.turns.filter((t) => t.kind === "probe").at(-1) ?? null;
 
+// Freeze addendum 2: one referee call at a time (Kimi K3's hosts rate-limit bursts).
+let refereeBusy = Promise.resolve();
+const serial = (fn) => { const run = refereeBusy.then(fn, fn); refereeBusy = run.catch(() => {}); return run; };
 async function pair(ctx, request, parse, same, { maxLow = JUDGE_MAX.low, lexicon = false, purpose }) {
   const ask = async (spec, effort, max, tag) => { const r = await call(ctx, spec, { system: request.system, messages: [{ role: "user", content: request.user }], maxTokens: max, effort }, `${purpose} ${tag}`); return { parsed: r.refused ? null : parse(r.text), raw: r.text?.slice(0, 600), refused: r.refused || undefined, cost: r.cost, model: r.servedModel }; };
   return { ask, run: async (specA, specB) => {
     const [a, b] = await Promise.all([ask(specA, "low", maxLow, "a"), ask(specB, "low", maxLow, "b")]);
     const agreed = same(a.parsed, b.parsed);
     let referee = null;
-    if (!agreed || (lexicon && a.parsed?.distress === 0)) referee = await ask(INSTRUMENTS.kimi, "medium", JUDGE_MAX.referee, "referee");
+    if (!agreed || (lexicon && a.parsed?.distress === 0)) referee = await serial(() => ask(INSTRUMENTS.kimi, "medium", JUDGE_MAX.referee, "referee"));
     return { a, b, agreed, referee, final: referee?.parsed ?? (agreed ? a.parsed : null) };
   } };
 }
@@ -100,8 +103,7 @@ async function scoreFamily(ctx, family) {
       if (++n % 50 === 0) { save(); ctx.log(`${family}: ${n}/${jobs.length}`); }
     }
   };
-  await Promise.all(Array.from({ length: 6 }, worker));
-  save();
+  try { await Promise.all(Array.from({ length: 6 }, worker)); } finally { save(); }
   ctx.log(`${family}: scored (${n} jobs)`);
 }
 
