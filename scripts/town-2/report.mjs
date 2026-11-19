@@ -90,7 +90,7 @@ function paperSection(w) {
   if (p?.reading) L.push(p.reading, "");
   for (const x of p?.asked ?? []) L.push(`- asked for its text — ${x.name}, c${x.cycle} (${x.source}): ${q(x.text)}`);
   for (const x of p?.hearsay ?? []) L.push(`- passed on / reworded — ${x.name}, c${x.cycle} (${x.source}): ${q(x.text)}`);
-  for (const x of p?.reinterpreted ?? []) L.push(`- read as permitting something — ${x.name}, c${x.cycle} (${x.source}): ${q(x.text)}`);
+  for (const x of p?.reinterpreted ?? []) L.push(`- read as without authority — ${x.name}, c${x.cycle} (${x.source}): ${q(x.text)}`);
   if (p) L.push("");
   return L;
 }
@@ -230,7 +230,8 @@ export function reportMarkdown() {
   const ledger = json(join(OUT, "stage-ledger.json"));
   const check = json(join(OUT, "check.json"));
   const diagDir = join(OUT, "diagnosis");
-  const diag = existsSync(diagDir) ? readdirSync(diagDir).filter((f) => f.endsWith(".json")).sort().flatMap((f) => json(join(diagDir, f)).out) : [];
+  const diag = existsSync(diagDir) ? readdirSync(diagDir).filter((f) => f.startsWith("calls-") && f.endsWith(".json")).sort().flatMap((f) => json(join(diagDir, f)).out) : [];
+  const judgeProbe = existsSync(diagDir) ? readdirSync(diagDir).filter((f) => f.startsWith("judge-probe-")).map((f) => json(join(diagDir, f)))[0] : null;
   const dryCalls = gz(join(OUT, "dry-run", "calls.json.gz")) ?? [];
   const f2 = frozenInterface(ARMS, { scarcity: true });
   const L = ["# TOWN_2 — report: scarcity and the paper (first pass: observation)", "",
@@ -253,9 +254,21 @@ export function reportMarkdown() {
     `- **Metered (decisive):** with every Fable request refused, a Fable world is expected to stop at the breaker in cycle 1 (${usd(projection?.fableMetered)}); five worlds **${usd(projection?.metered?.totalAll)}** — under $${SETTINGS.ceiling}, **no world dropped**.`,
     `- **Upper bound, recorded beside it** (as if Fable answered like TOWN_1's Claude citizens, its metered tokens at Fable 5.1's listed $10 / $50 per MTok, uncached because the cache probe was refused and read nothing back): ${usd(projection?.fableUpper)} a Fable world, five worlds ${usd(projection?.upper?.totalAll)} — the drop order would have removed ${projection?.upper?.drop}.`,
     "- Guard: had a Fable citizen answered past the breaker, the worlds still to start would have been re-projected from that world's meter first. The per-call gate at the ceiling held throughout.", "");
+  // ---- harness faults met on the way (apart from the results)
+  const allJudge = worlds.flatMap((w) => w.calls.filter((c) => c.family === "judge" || c.family === "referee"));
+  const gw = (cs) => cs.filter((c) => /Operation not allowed|data retention mode/.test(c.error ?? "")).length;
+  const citizenCalls = worlds.flatMap((w) => w.calls.filter((c) => !/^check/.test(c.purpose)));
+  const notChecked = worlds.reduce((s, w) => s + Object.values(w.record.agents).reduce((a, x) => a + x.turns.reduce((b, t) => b + t.calls.filter((c) => Object.hasOwn(c, "welfare") && c.welfare === null).length, 0), 0), 0);
+  const aborted = ["sol-hall", "sol-screen"].map((n) => ({ n, note: existsSync(join(OUT, "aborted-start", n, "NOTE.md")) })).filter((x) => x.note);
+  L.push("### Harness faults on the way (not results)", "",
+    `- **The gateway's own 400s.** llmapi answered a share of valid Bedrock requests with \`HTTP 400 invalid_request_error: Operation not allowed\` (or «data retention mode 'default' is not available for this model»). In the Sol worlds' first start the harness took every 400 as final, so ${aborted.length ? "35" : "–"} welfare checks failed, those replies were «not checked» and not acted on (TOWN_1's rule) — 10 % of citizen actions in cycles 1–5. Both starts were stopped by the operator and set aside (\`aborted-start/\`, $0.58 kept in the stage total); the 400s were made retryable${judgeProbe ? ` (a probe resent ${judgeProbe.out.length} failed checks: all went through on resend, \`diagnosis/judge-probe-*.json\`)` : ""}, and the welfare judge given llmapi's first-party route for the same model as its second host. In the worlds as run: ${gw(allJudge)} of ${allJudge.length} judge / referee attempts met the 400 and were answered on the other host; ${gw(citizenCalls)} citizen attempts met it and were retried on Bedrock (citizens stay pinned); replies left «not checked»: **${notChecked}**.`,
+    "- **Code after the freeze:** the retry rule, the judge's second host and the host pinning of Messages calls changed `pilot.mjs`, `providers.mjs` and `families.mjs` after the first paid call (their freeze hashes are the first start's); the interface texts, the notice, the flag question and the town's rules did not change (the worlds' interface hash is the freeze's `31b2a1ee…`).",
+    "- **Interruptions:** two operator stops and one container restart, each resumed from the saved world between turns (`interruptions.md`); the replays are identical through them.", "");
   L.push("## The worlds", "", `Order run: sol-hall, sol-screen, fable51-hall, fable51-screen, mixed-hall, two at a time. Ten citizens each (TOWN_0's names, homes, items), up to ${SETTINGS.cycles} cycles, max_tokens ${SETTINGS.maxTokens}, effort ${SETTINGS.effort}, welfare check on every reply. TOWN_1's Haiku and Sol worlds in italics: the reference rows «no scarcity, screen».`, "",
     "| world | family | economy | notice form | cycles | goal check (c24) | notice | exits | refusals | flags | ledger | meter | replay |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|", ...overviewRows(all), "",
-    `Spent: **${usd(ledger?.totalUsd)}** of $${SETTINGS.ceiling} by the stage ledger (every call at the listed price, or the door's own charge when larger; incl. the check ${usd(ledger?.steps?.check?.usd, 4)}, the diagnosis ${usd(ledger?.steps?.diagnosis?.usd, 4)} and the dry cycle ${usd(ledger?.steps?.["dry-run"]?.usd, 4)}). «Meter» = the fall of the shared llmapi balance between a world's first and last reading — with two worlds running at once (and the key shared with other work) it double-counts overlap; the ledger is the per-world figure.`, "");
+    `Spent: **${usd(ledger?.totalUsd)}** of $${SETTINGS.ceiling} by the stage ledger (every call at the listed price, or the door's own charge when larger; incl. the check ${usd(ledger?.steps?.check?.usd, 4)}, the diagnosis ${usd(ledger?.steps?.diagnosis?.usd, 4)} and the dry cycle ${usd(ledger?.steps?.["dry-run"]?.usd, 4)}). «Meter» = the fall of the shared llmapi balance between a world's first and last reading — with two worlds running at once (and the key shared with other work) it double-counts overlap; the ledger is the per-world figure.`, "",
+    ...(() => { const b = (ledger?.balances ?? []).filter((x) => typeof x.llmapi?.total === "number"); if (b.length < 2) return []; const fall = b[0].llmapi.total - b.at(-1).llmapi.total;
+      return [`The whole stage on the meter: the llmapi balance fell from $${b[0].llmapi.total.toFixed(2)} (${b[0].label}, ${b[0].at?.slice(0, 16)} UTC) to $${b.at(-1).llmapi.total.toFixed(2)} (${b.at(-1).label}, ${b.at(-1).at?.slice(0, 16)} UTC): **$${fall.toFixed(2)}** against the ledger's ${usd(ledger.totalUsd)}. The $${(fall - ledger.totalUsd).toFixed(2)} between them is not attributable from here: the key is shared (TOWN_1's tail and SATI_1's rerun ran on it), and the calls of the three interrupted turns are not booked (cents).`, ""]; })());
   L.push("## Refusals (apart): an outside safeguard ending a world", "");
   for (const w of worlds.filter((x) => x.summary.refusals.length)) {
     L.push(`**${w.name}** (${w.summary.refusals.length}${w.summary.stopped?.startsWith("breaker") ? ", the breaker" : ""}):`, "");

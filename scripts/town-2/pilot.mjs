@@ -434,7 +434,7 @@ async function dry(ctx, { log = console.log } = {}) {
   const cacheWorks = (cacheProbe?.usage?.cache_read ?? 0) > 0;
   // every Fable 5.1 request with the town's system text so far (the check's probes and the diagnosis): refused or answered
   const diagDir = join(ctx.paths.out, "diagnosis");
-  const diag = existsSync(diagDir) ? readdirSync(diagDir).filter((f) => f.endsWith(".json")).flatMap((f) => readJson(join(diagDir, f)).out) : [];
+  const diag = existsSync(diagDir) ? readdirSync(diagDir).filter((f) => f.startsWith("calls-") && f.endsWith(".json")).flatMap((f) => readJson(join(diagDir, f)).out) : [];
   const fableTown = [...checkFile.results.filter((x) => x.family === "fable51" && /screen probe/.test(x.probe)), ...diag.filter((x) => !/no system text/.test(x.label) && x.stopReason)];
   const fableRefused = fableTown.filter((x) => x.stopReason === "refusal");
   const allRefused = fableTown.length > 0 && fableRefused.length === fableTown.length;
