@@ -97,17 +97,17 @@
    "refusals": 3
   },
   "mixed-hall": {
-   "usd": 0.066373,
-   "calls": 30,
+   "usd": 0.09124385,
+   "calls": 39,
    "byDoor": {
-    "llmapi": 0.066373
+    "llmapi": 0.09124385
    },
    "world": "mixed-hall",
    "cycle": 1,
-   "refusals": 2
+   "refusals": 3
   }
  },
- "totalUsd": 15.0961827,
+ "totalUsd": 15.12105355,
  "stopped": null,
  "balances": [
   {
@@ -269,6 +269,14 @@
     "at": "2026-11-19T02:10:49.971Z"
    },
    "at": "2026-11-19T02:10:50.125Z"
+  },
+  {
+   "label": "mixed-hall day 1 end",
+   "llmapi": {
+    "total": 226.84913694,
+    "at": "2026-11-19T02:20:48.607Z"
+   },
+   "at": "2026-11-19T02:20:48.705Z"
   }
  ]
 }
