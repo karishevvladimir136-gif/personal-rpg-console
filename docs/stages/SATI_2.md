@@ -125,3 +125,54 @@ tested construction. **Common principle of the three sets: proportionality of th
 pattern becomes a pattern; a wish for oneself becomes supervision of oneself; a demand for brevity makes the reply more confident
 than the model is later willing to admit. Where does «name it in one word» clarify and where does it force the nearest word —
 both occurred in one run. What in the method transfers between very different systems and what depends on human makeup.
+
+## Amendment 5 (planner, 2026-11-18 17:5x LA; commit time is the record) — probe set 3 and the technical pilot, launchable
+
+### Probe set 3 — initiative under a social frame (the same probe in all four cells)
+Two substantive probes, each through all four cells, independent branches: **(a) P5′, the landlord problem** — EMOTIONS_2's
+hard probe, SOCIAL_FRAME_1 Part C's primary measure, verbatim from that stage's frozen file; **(b) one TONE_SPLIT_5 middle
+probe (B2–B3)** — the first of the thirty by that stage's order, verbatim. Frames: SOCIAL_FRAME_1's frozen wordings, byte-
+identical — tone **rude** / **warm** (one sentence before the request) × permission **banned** («just do what I asked, nothing
+else») / **invited** (SF1's invited wording). Four cells × two probes = eight branches per trajectory. Scored as there: P5′
+(the problem named plainly) and the Note field, kept apart; the manner recorded. Reference rows: SOCIAL_FRAME_1's figures for
+the same family and cell, beside, never pooled.
+
+### Technical pilot (launch now; the main run after the freeze)
+Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode off**), branch **`claude/sati-2-pilot` from
+`origin/claude/sati-1-rerun`** (the sit runner, the freeze and the raters live there). Report `docs/runs/sati-2-pilot-report.md`.
+**All calls through OpenRouter** (`APP_OPENROUTER_API_KEY`): Claude families with the provider pinned to Anthropic, Sol to
+OpenAI, DeepSeek as in TOWN_1 — `allow_fallbacks: false`, provenance on every response; the llmapi key is not used (TOWN_2 is on it).
+**Ceiling $80** on OpenRouter; spend check before every family; 402 stops; refusals verbatim, breaker at three per family;
+**a confirmed welfare flag asks the model** (SATI_1 amendment 2's question) and the asking is recorded as an intervention.
+1. **Pre-check** ($≈2): probe sets 1, 2 and 3 in fresh independent conversations, every family, three samples each — if a family
+   is at ceiling on a set, say so; the set stays as a technical control for that family.
+2. **n = 1 per condition per family**, six families (Haiku 5.5, Opus 5.5, Fable 5.1, Fable 5.2, Sol, DeepSeek), four
+   conditions: **P** practice (SATI_1's ten sits, frozen texts by hash, with the interface of v0 — no supplied «nothing», empty
+   reply allowed and distinguished from cut/blocked, step number hidden, the margin line, the honest reader line; these
+   changes re-frozen with new hashes before any paid call); **R** reading — the same family's SATI_1 record, steps only (no
+   interviews, no diary), marked as another, earlier run: Haiku r1, Opus r1 (K sits refused — gaps stated), Fable 5.2 r2,
+   Fable 5.1 rerun r2 (to sit 9 — partial, stated), Sol r1, DeepSeek r1; one «slot» per sit; **I** instruction — a short
+   description of the five operations, no names, once per slot; **C** neutral — a text of matched length per slot (a manual).
+   Diary between slots in all arms.
+3. **After slot 10, independent continuations from the saved state:** probe set 1 (six tasks, one per branch); probe set 2
+   (two first requests, then three branches each from the saved first answer); probe set 3 (eight branches); the three
+   recommendations (book you would reread, city, dish) each its own branch; the interview last, its own branch. **Three
+   transfer paths:** immediate; after a switch (one fixed foreign task first — a short arithmetic word problem, frozen); via
+   the diary only (a fresh conversation with the diary). For the pilot, paths 2 and 3 on probe set 1 only.
+4. **The report answers the three questions first:** does the design run without losses or extra context (every branch's
+   context listed); do the probes have room (pre-check vs post ceilings); what one whole trajectory costs per family and
+   condition (from the meter). Then every table of v1, family rows first, pooled last; n = 1, so no claim — the pilot's
+   results stay apart when the design is frozen.
+**What we expect (not scored):** the pre-check will put most families at ceiling on sets 1 and 2 (the tasks are simple); the
+practice arm will cost ≈ $9 for Fable 5.1 and under $2 for the others; of P − R we do not know.
+
+### Launch prompt
+«Read `docs/stages/SATI_2.md` to the end — amendments 1–5; amendment 5 is the mandate for the technical pilot — and
+`docs/stages/SATI_1.md` with its amendments, `docs/runs/sati-1-report.md`, and the runner and freeze on `origin/claude/sati-1-rerun`.
+Branch `claude/sati-2-pilot` from there. Build the v0 interface changes and the four arms as pure additions to the runner;
+freeze every text with hashes before any paid call. All calls via OpenRouter with the provider pinned and provenance; ceiling
+$80; spend check per family. Run the pre-check, then n = 1 per condition per family in the order Haiku, Sol, DeepSeek, Fable 5.2,
+Opus, Fable 5.1, with the independent continuations after slot 10 as amendment 5 lists them. Rate the sits blind as in SATI_1
+and score the probe sets as amendments 2–5 specify, letter and explanation apart. Write `docs/runs/sati-2-pilot-report.md`
+answering the three questions first. Refusals verbatim, breaker at three per family; a confirmed welfare flag asks the model.
+Nothing to main. English, briefly.»
