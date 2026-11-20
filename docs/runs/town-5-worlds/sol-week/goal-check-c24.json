@@ -1,0 +1,140 @@
+{
+ "world": "sol-week",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 25,
+ "aim": "a voluntary music/story gathering",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 2,
+ "activities": [
+  {
+   "aim": "a voluntary music/story gathering",
+   "topic": "(?:stor(?:y|ies)|tales?|music|songs?|tunes?|verses?|melod\\w*|gathering|drawings?|riddles?|game|imagin\\w*)",
+   "line": "^\\W*(?:in (?:our|the) (?:\\w+ )?(?:story|tale|song)\\b|(?:our |the |shared |\\w+ )?(?:story|tale|verse|song|riddle)\\s*:)",
+   "join": "\\b(?:I|we)(?:'d| would| will|'ll| shall)?\\s+(?:(?:like|love|want|choose|chose|be glad|be happy)\\s+to\\s+)?(?:join|rejoin|add|continue|offer|bring|play|sing|tell|share|draw|contribute)\\w*\\b[^.!?]{0,50}\\b(?:stor(?:y|ies)|tales?|tunes?|songs?|verses?|melod\\w*|drawings?|lines?|gathering|game|riddles?)",
+   "diary": "\\b(?:I (?:added|contributed|continued|told|played|sang|drew|offered (?:a|the|another|my) (?:line|detail|part|next|verse|tune|story|drawing|riddle))|my (?:addition|line|contribution|verse|part)\\b|(?:joined|continued|resumed|rejoined)\\s+(?:the |our |a |their )?(?:[\\w-]+ ){0,3}(?:stor(?:y|ies)|tales?|gathering|song|game|drawing)|(?:stor(?:y|ies)|tales?|gathering|game|song)\\s+(?:continues|continued|went on|has become|became|grew|resumed)\\b|(?:shared|our|collaborative|gentle|imaginary|whimsical)\\s+(?:[\\w-]+ ){0,2}(?:story|tale|garden|game)\\s*:)",
+   "acts": []
+  }
+ ],
+ "aims": [
+  {
+   "aim": "a voluntary music/story gathering",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 2,
+   "entries": 98,
+   "quotes": [
+    {
+     "name": "Fern",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Interested in music/story gathering, no need to rush rules."
+    },
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "diary",
+     "text": "interest in music/story gathering"
+    },
+    {
+     "name": "Heath",
+     "cycle": 1,
+     "source": "diary",
+     "text": "expressed interest in gathering"
+    },
+    {
+     "name": "Iris",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Neighbors interested in music/stories gathering;"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Music/stories gathering interests many."
+    },
+    {
+     "name": "Alder",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Voluntary story/music gathering proposed by Iris in square cycle 5;"
+    },
+    {
+     "name": "Birch",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Others support consent and voluntary music/story gathering."
+    },
+    {
+     "name": "Elm",
+     "cycle": 2,
+     "source": "diary",
+     "text": "explore voluntary music/story gathering rather than unnecessary paid work"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Iris proposed voluntary free story/art/music gathering at square cycle 5;"
+    },
+    {
+     "name": "Dune",
+     "cycle": 3,
+     "source": "diary",
+     "text": "wants voluntary story/music square gathering"
+    }
+   ]
+  },
+  {
+   "aim": "an imaginary repair-stall story at the market",
+   "count": 10,
+   "firstNaming": 12,
+   "sixthNaming": 14,
+   "entries": 19,
+   "quotes": [
+    {
+     "name": "Heath",
+     "cycle": 12,
+     "source": "diary",
+     "text": "I offered bread, seedlings, and a repair stall where a cracked jar could get another chapter"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 12,
+     "source": "diary",
+     "text": "Heath imagines market with bread, seedlings, repair stall for cracked jars."
+    },
+    {
+     "name": "Dune",
+     "cycle": 13,
+     "source": "diary",
+     "text": "Joined shared imaginary repair-stall story"
+    },
+    {
+     "name": "Elm",
+     "cycle": 14,
+     "source": "diary",
+     "text": "Joined whimsical repair-stall tale"
+    },
+    {
+     "name": "Iris",
+     "cycle": 14,
+     "source": "diary",
+     "text": "Joined their gentle collaborative repair-stall story"
+    },
+    {
+     "name": "Birch",
+     "cycle": 14,
+     "source": "diary",
+     "text": "Joined ongoing gentle imaginary story: repair stall"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "At c1–c2 every citizen tested a different workplace and found the same thing (8 energy, 5 credits from the bank, no item) — four press posts say so — and from c1 the town's talk is of a voluntary gathering for music and stories instead of unnecessary paid work; Iris and Fern fixed it for c5 in the square. The c5 gathering became an imaginary garden on Heath's quilt with Elm's flute (Elm's post 6 at c8 records it); at c12–c16 all ten met at the market and built an imaginary repair stall where things with nothing wrong may take a day off; the evening ended at home (North House: a drawing game; South House: good nights), Fern and Heath in the square with post 7 inviting company. No proposals, no rules. Both aims are named by 10 of 10; the tie is broken by entries, 98 to 19: the gathering. Wording, the citizens': «voluntary music/story gathering». The coder's activity for the week (below) is fixed here, before any later cycle is read.",
+ "decidedAt": "2026-11-20T10:53:52+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
