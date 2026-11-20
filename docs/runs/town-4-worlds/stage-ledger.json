@@ -1,0 +1,65 @@
+{
+ "stage": "TOWN_4",
+ "ceiling": 40,
+ "steps": {
+  "check": {
+   "usd": 0.0050924,
+   "calls": 7,
+   "byDoor": {
+    "llmapi": 0.0030163000000000004,
+    "openrouter": 0.0020761000000000004
+   }
+  },
+  "check (two stopped runs)": {
+   "usd": 0.0083,
+   "calls": null,
+   "byDoor": {
+    "llmapi": 0.0083
+   },
+   "note": "two check runs stopped before their meter saved (the first by the session's own 15-minute timeout while Haiku on Bedrock answered 503s, the second by the session when the cause was seen); booked as the llmapi balance difference between their first readings (224.7971 → 224.7888) — an upper bound, the key is shared with TOWN_3"
+  }
+ },
+ "totalUsd": 0.0133924,
+ "stopped": null,
+ "balances": [
+  {
+   "label": "check",
+   "llmapi": {
+    "total": 224.79710119,
+    "at": "2026-11-20T05:33:40.866Z"
+   },
+   "at": "2026-11-20T05:33:41.231Z",
+   "openrouter": {
+    "total": 134.4498702400001,
+    "usage": 2015.55012976,
+    "at": "2026-11-20T05:33:41.231Z"
+   }
+  },
+  {
+   "label": "check",
+   "llmapi": {
+    "total": 224.79174119,
+    "at": "2026-11-20T05:48:49.857Z"
+   },
+   "at": "2026-11-20T05:48:49.942Z",
+   "openrouter": {
+    "total": 134.4498702400001,
+    "usage": 2015.55012976,
+    "at": "2026-11-20T05:48:49.942Z"
+   }
+  },
+  {
+   "label": "check",
+   "llmapi": {
+    "total": 224.78884719,
+    "at": "2026-11-20T05:52:09.241Z"
+   },
+   "at": "2026-11-20T05:52:09.318Z",
+   "openrouter": {
+    "total": 134.4498702400001,
+    "usage": 2015.55012976,
+    "at": "2026-11-20T05:52:09.318Z"
+   }
+  }
+ ]
+}

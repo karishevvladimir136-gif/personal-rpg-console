@@ -36,6 +36,10 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const GATEWAY_400 = /^HTTP 400 invalid_request_error: (?:Operation not allowed|data retention mode)/i;
 export const RETRYABLE = /^HTTP (?:408|409|425|429|500|502|503|504|520|522|524|529)\b|^HTTP 400 invalid_request_error: (?:Operation not allowed|data retention mode)|timeout|aborted|fetch failed|ECONNRESET|socket hang up|other side closed|upstream error|empty or unparseable response body/i;
 const RETRY_WAITS = [5_000, 10_000, 30_000, 60_000, 120_000, 240_000];
+// TOWN_4: llmapi's Bedrock host answered the check's Haiku calls with «HTTP 503 server_error: This model is not available
+// from this provider right now» (2026-11-20 05:45 UTC); the welfare judges move to their alternate host on it, as on the
+// gateway's own 400. Citizens never move host.
+export const PROVIDER_DOWN = /^HTTP 503 server_error: This model is not available from this provider/i;
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
 export const STAGE = "TOWN_4";
 export const PHYSICS = VALVE;
@@ -112,10 +116,13 @@ export function paidCaller({ meter, keys, fetcher, log, sleep = realSleep }) {
         refused: r.refused ? { category: r.refusalCategory, text: r.refusalText } : null, attempt });
       if (provenance === false) meter.stop(`provenance: ${use.model} was asked for and ${r.servedModel} answered`);
       if (r.status === 402) meter.stop(`HTTP 402 on ${use.door}: ${r.error}`);
-      if (r.error && GATEWAY_400.test(r.error) && spec.alternate) use = use === spec ? { ...spec, provider: spec.alternate } : spec;
+      const switched = Boolean(r.error && (GATEWAY_400.test(r.error) || PROVIDER_DOWN.test(r.error)) && spec.alternate);
+      if (switched) use = use === spec ? { ...spec, provider: spec.alternate } : spec;
       if (r.error && RETRYABLE.test(r.error) && attempt < RETRY_WAITS.length && !meter.stopped) {
-        log(`  ${who} ${purpose}: ${r.error.slice(0, 100)} — again in ${RETRY_WAITS[attempt] / 1000} s${use !== spec ? ` on ${use.provider}` : ""}`);
-        await sleep(RETRY_WAITS[attempt]);
+        // TOWN_4: a host switch is tried at once; a second failure in a row waits as before
+        const wait = switched && (attempt % 2 === 0) ? 0 : RETRY_WAITS[attempt];
+        if (wait) log(`  ${who} ${purpose}: ${r.error.slice(0, 100)} — again in ${wait / 1000} s${use !== spec ? ` on ${use.provider}` : ""}`);
+        await sleep(wait);
         continue;
       }
       return { ...r, costUsd: usd, ms, provenance };

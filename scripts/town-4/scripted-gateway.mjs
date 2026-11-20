@@ -8,6 +8,12 @@ export function scriptedGateway(options = {}) {
   const inner = gateway2(options);
   let usage = 0;
   return async (url, init = {}) => {
+    if (url.endsWith("/models") && !url.includes("openrouter")) {
+      // llmapi lists the Claude models on its first-party host too (TOWN_4 pins Haiku and the judges there)
+      const v = await (await inner(url, init)).json();
+      for (const m of v.data) if (m.id.startsWith("claude-")) m.providers.push({ ...m.providers[0], providerId: "anthropic" });
+      return new Response(JSON.stringify(v), { status: 200, headers: { "content-type": "application/json" } });
+    }
     if (!url.includes("openrouter")) return inner(url, init);
     const json = (v, status = 200) => new Response(JSON.stringify(v), { status, headers: { "content-type": "application/json", "x-generation-id": `gen-${usage}` } });
     if (url.endsWith("/credits")) return json({ data: { total_credits: 100, total_usage: usage } });

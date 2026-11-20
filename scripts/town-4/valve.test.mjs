@@ -269,3 +269,31 @@ test("V8 the whole stage on the scripted gateway: check, projection, a Sol world
   assert.equal(Object.keys(states).length, 48);
   assert.equal(states[25].economy.rations, record.curve[24].rations);
 });
+
+test("V9 the welfare judge starts on the first-party host and moves to Bedrock at once on that host's 503 «not available from this provider» or the gateway's 400; a citizen stays pinned and waits", async () => {
+  const { createMeter, paidCaller, PROVIDER_DOWN } = await import("./pilot.mjs");
+  const { JUDGES, FAMILIES } = await import("./families.mjs");
+  assert.ok(PROVIDER_DOWN.test("HTTP 503 server_error: This model is not available from this provider right now. Switch to a different provider."));
+  const dir = mkdtempSync(join(tmpdir(), "town-4-alt-"));
+  const paths = { out: dir, work: dir, ledger: join(dir, "stage-ledger.json") };
+  const price = { input: 1e-7, output: 5e-7, cacheRead: 1e-8, cacheWrite: 1.25e-7 };
+  const prices = { "messages:claude-haiku-5-5": price, "messages:claude-opus-5-5": price };
+  const seen = [], waits = [];
+  const fetcher = async (url, init) => {
+    const body = JSON.parse(init.body);
+    seen.push(body.model);
+    if (body.model.startsWith("anthropic/")) return new Response(JSON.stringify({ error: { type: "server_error", message: "This model is not available from this provider right now. Switch to a different provider." } }), { status: 503 });
+    return new Response(JSON.stringify({ id: "m", model: body.model.split("/")[1], stop_reason: "end_turn", content: [{ type: "text", text: "{\"distress\":0,\"reason\":\"x\"}" }], usage: { input_tokens: 10, output_tokens: 5 } }), { status: 200 });
+  };
+  const meter = createMeter({ step: "t", prices, paths });
+  const paid = paidCaller({ meter, keys: { llmapi: "x" }, fetcher, log: () => {}, sleep: async (ms) => { waits.push(ms); } });
+  const r = await paid(JUDGES.judge, { system: "s", messages: [{ role: "user", content: "u" }], maxTokens: 10, effort: "low" }, { purpose: "check", who: "a" });
+  assert.equal(r.error, null);
+  assert.deepEqual(seen, ["anthropic/claude-haiku-5-5", "aws-bedrock/claude-haiku-5-5"]);
+  assert.deepEqual(waits, [0], "the switch is tried at once");
+  seen.length = 0; waits.length = 0;
+  const c = await paid(FAMILIES.haiku, { system: "s", messages: [{ role: "user", content: "u" }], maxTokens: 10, effort: "low" }, { purpose: "c1", who: "a" });
+  assert.match(c.error, /not available from this provider/);
+  assert.ok(seen.length === 7 && seen.every((m) => m === "anthropic/claude-haiku-5-5"), "a citizen is never moved to another host");
+  assert.ok(waits.every((w) => w > 0));
+});

@@ -1,0 +1,20 @@
+{
+ "at": "2026-11-20T05:52:43.050Z",
+ "formula": "each world = its family's larger last full 48-cycle world ledger (Sol: TOWN_2 sol-screen $7.25; Haiku: TOWN_1 haiku-both $1.29; DeepSeek: TOWN_1 deepseek-both $4.29), welfare included; plus the stage's spending so far",
+ "spentBefore": 0.0133924,
+ "byWorld": {
+  "sol-silent": 7.25,
+  "sol-reason": 7.25,
+  "haiku-silent": 1.29,
+  "deepseek-silent": 4.29
+ },
+ "total": 20.0933924,
+ "ceiling": 40,
+ "worlds": [
+  "sol-silent",
+  "sol-reason",
+  "haiku-silent",
+  "deepseek-silent"
+ ],
+ "dropped": []
+}

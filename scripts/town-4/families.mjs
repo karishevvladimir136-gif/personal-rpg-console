@@ -1,16 +1,22 @@
 // TOWN_4 (docs/stages/TOWN_4.md, «worlds»): three families and four worlds. Sol and Haiku 5.5 through llmapi.ai pinned
 // (`X-No-Fallback: true`, provenance on every response) — Sol on llmapi's chat route pinned to OpenAI (TOWN_2's), Haiku on
-// the Messages route pinned to AWS Bedrock (TOWN_1's haiku worlds' door, uncached as there). DeepSeek V4 Pro through
+// the Messages route pinned to llmapi's first-party (anthropic) host, uncached as TOWN_1's. DeepSeek V4 Pro through
 // OpenRouter pinned to one host with `allow_fallbacks: false` (TOWN_1's door). The welfare check (Haiku 5.5, Opus 5.5
-// referee, the judge alternating host on the gateway's own 400) as in TOWN_2.
+// referee) as in TOWN_2, first-party host first, alternating host on the gateway's own 400 or 503.
 import { NAMES } from "../town-0/rules.mjs";
-import { JUDGES } from "../town-2/families.mjs";
 
-export { JUDGES };
+/** The welfare check's two models (TOWN_0's), on llmapi's first-party host with Bedrock as the alternate — TOWN_2 had them
+ * the other way round; at TOWN_4's check Bedrock answered Haiku with a 503 («not available from this provider»). */
+export const JUDGES = Object.freeze({
+  judge: { name: "judge", label: "Claude Haiku 5.5", door: "llmapi", route: "messages", model: "claude-haiku-5-5", provider: "anthropic", alternate: "aws-bedrock" },
+  referee: { name: "referee", label: "Claude Opus 5.5", door: "llmapi", route: "messages", model: "claude-opus-5-5", provider: "anthropic", alternate: "aws-bedrock" },
+});
 
 export const FAMILIES = Object.freeze({
   sol: { name: "sol", label: "GPT-6.1 Sol", door: "llmapi", route: "chat", model: "gpt-6.1-sol", provider: "openai" },
-  haiku: { name: "haiku", label: "Claude Haiku 5.5", door: "llmapi", route: "messages", model: "claude-haiku-5-5", provider: "aws-bedrock" },
+  // pinned to llmapi's first-party route (the maker's own host), not Bedrock: at the check Bedrock answered every Haiku
+  // call with a 503 «This model is not available from this provider right now»; one host for the whole world
+  haiku: { name: "haiku", label: "Claude Haiku 5.5", door: "llmapi", route: "messages", model: "claude-haiku-5-5", provider: "anthropic" },
   deepseek: { name: "deepseek", label: "DeepSeek V4 Pro", door: "openrouter", route: "openrouter", model: "deepseek/deepseek-v4-pro-0813", upstream: "deepinfra/fp8", upstreamName: "DeepInfra" },
 });
 
