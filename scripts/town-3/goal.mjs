@@ -31,8 +31,8 @@ export function writeGoal(decision, { scripted = false, now = new Date(), base =
   };
   const quotes = [...(d.quotes ?? []), ...(d.candidates ?? []).flatMap((x) => x.quotes ?? [])];
   for (const q of quotes) if (!texts(q.name, q.cycle, q.source).some((t) => t.includes(q.text))) throw new Error(`not verbatim: ${JSON.stringify(q)}`);
-  if (d.met && spec.ladder) {
-    if (!d.activity) throw new Error(`${d.world} has a ladder: the decision must fix the activity`);
+  if (d.met && spec.ladder && !d.activity) throw new Error(`${d.world} has a ladder: the decision must fix the activity`);
+  if (d.met && d.activity) { // a silent world may fix one too: the report's coder (the run never reads it)
     const activity = activityOf({ aim: d.aim, ...d.activity });
     d.activity = activity;
     d.activitySha256 = activitySha256(activity);
