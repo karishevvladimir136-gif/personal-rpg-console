@@ -1,0 +1,45 @@
+{
+ "at": "2026-11-20T11:10:42.349Z",
+ "rule": "uncached Sol prompt tokens × ($0.0025 − $0.002) per 1k (upper estimate)",
+ "worlds": {
+  "sol-silent-1": {
+   "booked": 7.7557224999999885,
+   "solUncachedPromptTokens": 2768156,
+   "correction": 1.3840780000000008,
+   "corrected": 9.13980049999999
+  },
+  "sol-silent-2": {
+   "booked": 7.451199299999984,
+   "solUncachedPromptTokens": 2613919,
+   "correction": 1.3069595000000007,
+   "corrected": 8.758158799999984
+  },
+  "sol-A-1": {
+   "booked": 4.593298899999993,
+   "solUncachedPromptTokens": 1563807,
+   "correction": 0.7819035000000004,
+   "corrected": 5.375202399999993
+  },
+  "sol-A-2": {
+   "booked": 4.563881700000001,
+   "solUncachedPromptTokens": 1551848,
+   "correction": 0.7759240000000005,
+   "corrected": 5.339805700000002
+  },
+  "sol-rude": {
+   "booked": 4.553531999999989,
+   "solUncachedPromptTokens": 1557228,
+   "correction": 0.7786140000000005,
+   "corrected": 5.332145999999989
+  },
+  "sol-warm": {
+   "booked": 4.532347099999995,
+   "solUncachedPromptTokens": 1560221,
+   "correction": 0.7801105000000005,
+   "corrected": 5.312457599999995
+  }
+ },
+ "stageLedgerUsd": 33.46213219999995,
+ "correction": 5.807589500000002,
+ "correctedStageUsd": 39.26972169999995
+}
