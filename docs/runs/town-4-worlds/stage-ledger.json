@@ -19,27 +19,27 @@
    "note": "two check runs stopped before their meter saved (the first by the session's own 15-minute timeout while Haiku on Bedrock answered 503s, the second by the session when the cause was seen); booked as the llmapi balance difference between their first readings (224.7971 → 224.7888) — an upper bound, the key is shared with TOWN_3"
   },
   "sol-silent": {
-   "usd": 2.3516831,
-   "calls": 1888,
+   "usd": 5.364791399999995,
+   "calls": 3392,
    "byDoor": {
-    "llmapi": 2.3516831
+    "llmapi": 5.364791399999995
    },
    "world": "sol-silent",
-   "cycle": 24,
+   "cycle": 41,
    "refusals": 0
   },
   "sol-reason": {
-   "usd": 2.163370300000005,
-   "calls": 1723,
+   "usd": 6.2045788,
+   "calls": 3708,
    "byDoor": {
-    "llmapi": 2.163370300000005
+    "llmapi": 6.2045788
    },
    "world": "sol-reason",
-   "cycle": 24,
+   "cycle": 48,
    "refusals": 0
   }
  },
- "totalUsd": 4.5284458000000045,
+ "totalUsd": 11.582762599999995,
  "stopped": null,
  "balances": [
   {
@@ -121,6 +121,19 @@
    }
   },
   {
+   "label": "sol-reason day 2 start",
+   "llmapi": {
+    "total": 217.48198919,
+    "at": "2026-11-20T06:38:35.141Z"
+   },
+   "at": "2026-11-20T06:38:35.221Z",
+   "openrouter": {
+    "total": 134.44486473999996,
+    "usage": 2015.55513526,
+    "at": "2026-11-20T06:38:35.221Z"
+   }
+  },
+  {
    "label": "sol-silent day 1 end",
    "llmapi": {
     "total": 215.28211289,
@@ -131,6 +144,32 @@
     "total": 134.44486473999996,
     "usage": 2015.55513526,
     "at": "2026-11-20T06:48:06.554Z"
+   }
+  },
+  {
+   "label": "sol-silent day 2 start",
+   "llmapi": {
+    "total": 215.10189269,
+    "at": "2026-11-20T06:49:08.879Z"
+   },
+   "at": "2026-11-20T06:49:09.138Z",
+   "openrouter": {
+    "total": 134.44486473999996,
+    "usage": 2015.55513526,
+    "at": "2026-11-20T06:49:09.138Z"
+   }
+  },
+  {
+   "label": "sol-reason day 2 end",
+   "llmapi": {
+    "total": 201.19186589,
+    "at": "2026-11-20T07:32:23.574Z"
+   },
+   "at": "2026-11-20T07:32:23.680Z",
+   "openrouter": {
+    "total": 134.44257934000007,
+    "usage": 2015.55742066,
+    "at": "2026-11-20T07:32:23.680Z"
    }
   }
  ]
