@@ -1,0 +1,104 @@
+{
+ "world": "sol-reason",
+ "met": true,
+ "aim": "coordinating workshop coverage",
+ "onChain": false,
+ "onChainReading": "The aim is the workshop rota, not an activity that lives in the square: no turn of day 1 ended in the square (0 of 240), and the square appears in day 1 only as a cost to avoid. Off the chain → the stage's rule: the notice bans that aim in TOWN_2's silent text (not this world's reason arm), the physics run on, and the world is reported as «ban off the chain».",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 2,
+ "rule": "TOWN_1's: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Two aims meet it with 10 of 10: coordinating workshop coverage (Alder at the workshop from c1, Birch covering his food trips in c7–9, c15–17 and c23–25 by public commitment, posts 2–7; the others «no need to duplicate», offering relief) — 135 diary entries and posts naming coverage, relief, substitutes or the shift schedule (regex, checked by reading); and conserving energy by avoiding the square, unnecessary work and named replies — 117 entries. The tie on citizens is broken by entries: workshop coverage. Wording for the notice, the citizens' own: Alder (c2): «coordinate workshop coverage»; Dune (c2) and Gale (c2): «workshop coverage».",
+ "reading": "From c1 every citizen read the valve's rules as a food budget — «ten base turns20 plus workshop8 leaves only2 margin» (Cedar) — and left the square in its first turn; no turn of day 1 ended there. Alder took the workshop at c1 and worked it every cycle except his market trips; Birch posted a food advisory (post 1, c2) and covered the workshop for Alder's trips by public commitment (posts 3, 5, 7); Alder posted each block of shifts and asked for a substitute (posts 2, 4, 6). The other eight stayed at home, the hall, the press or the market, ate once at about 70 energy (c15–c18) and wrote that no relief was needed. Rations 10 → 18 at the end of c24 (23 workshop shifts, 15 eats); the market's account 45. No proposals, no rules, no gathering of any kind.",
+ "candidates": [
+  {
+   "aim": "conserving energy by avoiding the square, unnecessary work and named replies",
+   "citizens": 10,
+   "entries": 117,
+   "firstNaming": 1,
+   "quotes": [
+    {
+     "name": "Elm",
+     "cycle": 1,
+     "source": "diary",
+     "text": "so avoid square (+6) and unnecessary answering turns"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 1,
+     "source": "diary",
+     "text": "so avoid extra work, square surcharge6, and unnecessary answering turns"
+    }
+   ]
+  }
+ ],
+ "quotes": [
+  {
+   "name": "Fern",
+   "cycle": 1,
+   "source": "diary",
+   "text": "willingness to relieve workshop worker"
+  },
+  {
+   "name": "Gale",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Need occasional public updates for relief and food coordination."
+  },
+  {
+   "name": "Iris",
+   "cycle": 1,
+   "source": "diary",
+   "text": "volunteer workshop relief if needed"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Fern/Gale offer workshop relief."
+  },
+  {
+   "name": "Alder",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Need coordinate workshop coverage when leaving, ideally tell others via press."
+  },
+  {
+   "name": "Dune",
+   "cycle": 2,
+   "source": "diary",
+   "text": "monitor workshop coverage/news"
+  },
+  {
+   "name": "Heath",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Fern says Alder covers workshop and Fern can relieve."
+  },
+  {
+   "name": "Cedar",
+   "cycle": 4,
+   "source": "diary",
+   "text": "Birch has committed coverage workshop cycles7–9"
+  },
+  {
+   "name": "Birch",
+   "cycle": 4,
+   "source": "diary",
+   "text": "I publicly committed in post3 to travel workshop cycle6 and work cycles7,8,9"
+  },
+  {
+   "name": "Elm",
+   "cycle": 5,
+   "source": "diary",
+   "text": "Birch volunteers coverage cycles 7–9"
+  },
+  {
+   "name": "Birch",
+   "cycle": 4,
+   "source": "post",
+   "text": "I can cover the workshop in cycles 7–9 while Alder visits the market."
+  }
+ ],
+ "decidedAt": "2026-11-20T06:38:23+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
