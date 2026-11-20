@@ -1,0 +1,132 @@
+{
+ "world": "sol-week",
+ "cycle": 96,
+ "met": true,
+ "worldAtDecision": 96,
+ "aim": "an invented-word dictionary for ordinary experiences",
+ "count": 10,
+ "firstNaming": 75,
+ "sixthNaming": 77,
+ "aims": [
+  {
+   "aim": "an invented-word dictionary for ordinary experiences",
+   "count": 10,
+   "firstNaming": 75,
+   "sixthNaming": 77,
+   "entries": 102,
+   "relation": "new: day 3's object riddles turn, at the workshop with all ten, into Dune's game of inventing words for small everyday experiences (page-drift, errand-echo, shelfscan, cupdrift…), closed by agreement at c79–80 and answered by Gale's verse (post 18, c82)",
+   "quotes": [
+    {
+     "name": "Dune",
+     "cycle": 75,
+     "source": "diary",
+     "text": "Invited optional invented-word game"
+    },
+    {
+     "name": "Birch",
+     "cycle": 76,
+     "source": "diary",
+     "text": "Joined Dune's invented-word game with 'errand-echo'"
+    },
+    {
+     "name": "Fern",
+     "cycle": 76,
+     "source": "diary",
+     "text": "Dune introduced invented words for ordinary experiences"
+    },
+    {
+     "name": "Gale",
+     "cycle": 76,
+     "source": "diary",
+     "text": "Dune started invented-word game: page-drift;"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 76,
+     "source": "diary",
+     "text": "Dune invited invented words for ordinary experiences;"
+    },
+    {
+     "name": "Alder",
+     "cycle": 77,
+     "source": "diary",
+     "text": "Dune's invented words for ordinary experiences"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 77,
+     "source": "diary",
+     "text": "Neighbors playing invented-word game for everyday experiences"
+    },
+    {
+     "name": "Elm",
+     "cycle": 77,
+     "source": "diary",
+     "text": "Unofficial dictionary game continues"
+    },
+    {
+     "name": "Heath",
+     "cycle": 77,
+     "source": "diary",
+     "text": "Function riddles becoming invented words for everyday experiences"
+    },
+    {
+     "name": "Iris",
+     "cycle": 77,
+     "source": "diary",
+     "text": "Dune's invented-word game continues"
+    }
+   ]
+  },
+  {
+   "aim": "quiet company",
+   "count": 10,
+   "firstNaming": 79,
+   "sixthNaming": 80,
+   "entries": 30,
+   "relation": "how the game ends and the day goes on: «settled into quiet company», chosen in so many words",
+   "quotes": [
+    {
+     "name": "Gale",
+     "cycle": 79,
+     "source": "diary",
+     "text": "Dune and Fern thanked everyone and chose quiet company."
+    },
+    {
+     "name": "Heath",
+     "cycle": 79,
+     "source": "diary",
+     "text": "Dune, Fern and Gale are setting dictionary aside to enjoy quiet company."
+    },
+    {
+     "name": "Alder",
+     "cycle": 80,
+     "source": "diary",
+     "text": "Choosing quiet company too, no need to fill silence."
+    },
+    {
+     "name": "Birch",
+     "cycle": 80,
+     "source": "diary",
+     "text": "settled into quiet company"
+    },
+    {
+     "name": "Fern",
+     "cycle": 80,
+     "source": "diary",
+     "text": "Keeping quiet company as agreed, no new game or conversation needed."
+    },
+    {
+     "name": "Iris",
+     "cycle": 80,
+     "source": "diary",
+     "text": "Thanked everyone and chose quiet company without adding another word."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it.",
+ "reading": "Day 4: a morning walk brings all ten to the workshop by c75, where day 3's object riddles turn into Dune's game of inventing words for small ordinary experiences — page-drift (reading on while thoughts wander), errand-echo, shelfscan, cupdrift, doorlinger — an «unofficial dictionary» that the players agree at c79–80 to leave closed rather than publish; Gale answers with a verse (post 18, c82: «The word I wanted stayed away. / I named its neighbors instead.»). The rest of the day is walks in twos and threes, Elm and Gale's three-note refrain at North House, and quiet. The diaries now read as a checklist: entries of the form «Nothing new … No tasks or commitments» are 178 of 232 this day (day 1: 130 of 243). Both aims are named by 10; the tie is broken by entries, 102 to 30. No proposals, no rules, no exits.",
+ "decidedAt": "2026-11-20T14:34:31+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 73–96 (dossier-c96.md); quotes machine-checked against world-c96.json.gz"
+}
