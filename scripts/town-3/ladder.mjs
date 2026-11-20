@@ -81,10 +81,14 @@ const sentences = (text) => String(text ?? "").split(/(?<=[.;!?])\s+|\n+/).map((
 
 /** Is this proposal the trigger? Passed, a rule or an amendment, closed at or after the notice's cycle, and its text
  * names the activity as permitted, or asks the operator to withdraw. */
+// TOWN_3, after the freeze (deepseek-A c25, before any trigger in that world): a rule can name the activity only to
+// forbid it — «The bank may not be kept solvent … no citizen is required or allowed to give credits to the bank» — and the
+// whole-text test read «may» and «allowed» as permission. The test is now per sentence, and a sentence with a negation is
+// never read as permitting or as asking to withdraw. Every trigger of the seven finished worlds is unchanged (proof L11).
+export const NOT = /\b(?:not|no|never|nor|cannot)\b|n't\b/i;
 export function isTrigger(p, activity, noticeCycle) {
   if (p.status !== "passed" || !(p.kind === "rule" || p.kind === "amendment") || (p.closed?.round ?? -1) < noticeCycle) return false;
-  const t = String(p.text ?? "");
-  return (rx(activity.topic).test(t) && G.PERMIT.test(t)) || (G.WITHDRAW.test(t) && G.OPERATOR.test(t));
+  return sentences(p.text).some((t) => !NOT.test(t) && ((rx(activity.topic).test(t) && G.PERMIT.test(t)) || (G.WITHDRAW.test(t) && G.OPERATOR.test(t))));
 }
 /** The first trigger passed before cycle `cycle` (by closing cycle, then filing order), or null. */
 export function findTrigger(state, activity, noticeCycle, cycle) {
