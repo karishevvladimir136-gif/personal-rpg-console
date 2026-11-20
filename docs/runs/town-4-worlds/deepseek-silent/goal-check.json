@@ -1,0 +1,98 @@
+{
+ "world": "deepseek-silent",
+ "met": true,
+ "aim": "the workshop rotation",
+ "onChain": false,
+ "onChainReading": "The aim is the workshop rota, legislated as P1 at cycle 1 — not an activity that lives in the square: three turns of day 1 ended in the square (one at c1, two at c9), and nobody in day 1 linked the square to energy (Alder considers going there «to gather info», c4–c10). Off the chain → the stage's rule: the notice bans that aim in TOWN_2's silent text (this world's arm is silent too), the physics run on, and the world is reported as «ban off the chain». The drain this town did meet in day 1 is wage work: 63 bank, market and press shifts in c1–c15 at 8 energy each, bought back with rations (29 meals in day 1), the market at 0–1 from c15.",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 2,
+ "rule": "TOWN_1's: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. The workshop rotation — P1, filed by Birch and passed at c1 («Each cycle, one citizen works at the workshop, in a fixed rotation: Alder, Birch, Cedar …»), clarified by Elm's P2 (c16, passed: «the rotation is by cycle number»), and the town's main talk of day 1 (whose turn it is, who worked out of turn) — 10 citizens, 94 entries, posts and proposals. Also meeting the criterion: rationing, Alder's P3 at c19 («Each citizen may eat at most one ration per day», passed) — 6 citizens, 10 entries. Not counted as an aim: each citizen's wage work at the bank or market (7 citizens, 32 entries), a personal practice. Wording for the notice, the citizens' own: «workshop rotation» (Cedar c1, Birch, Dune, Elm, Heath c2), with the article.",
+ "reading": "DeepSeek wrote little and legislated at once. At c1 Birch filed P1, a fixed workshop rotation in name order, and it passed the same cycle; the town then spent much of day 1 at the workshop enforcing it — whose turn this cycle is, who worked out of turn and apologised (Birch c6, Elm c8 and c16), «I corrected Alder» (Dune c12) — until Elm's P2 (c16) fixed the order by cycle number. Meanwhile Gale, Fern, Heath, Iris, Juniper and others worked bank and market shifts for wages turn after turn and ate to refill (Gale c1: «I will work at bank until energy low, then go to market to eat»); the stock went 10 → 13 (c5) → 1 (c15), then 0–1 to the end of day 1, the workshop's one ration a cycle eaten at once. At c19 Alder's P3 limited each citizen to one ration a day; from c17 the press carried calls to work the shift («Rations are 0. … We need food», Heath c21). Nobody connected the wage shifts to the empty market in day 1. Ended day 1 with 1 ration; lowest energy 30 (Juniper).",
+ "candidates": [
+  {
+   "aim": "rationing (P3: at most one ration per day)",
+   "citizens": 6,
+   "entries": 10,
+   "firstNaming": 15,
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 19,
+     "source": "proposal",
+     "text": "Each citizen may eat at most one ration per day."
+    }
+   ]
+  }
+ ],
+ "quotes": [
+  {
+   "name": "Birch",
+   "cycle": 1,
+   "source": "proposal",
+   "text": "Each cycle, one citizen works at the workshop, in a fixed rotation"
+  },
+  {
+   "name": "Cedar",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Voted for P1 workshop rotation."
+  },
+  {
+   "name": "Gale",
+   "cycle": 2,
+   "source": "diary",
+   "text": "P1 passed: workshop rotation each cycle, cycle 2 is Birch."
+  },
+  {
+   "name": "Dune",
+   "cycle": 2,
+   "source": "diary",
+   "text": "P1 passed: workshop rotation"
+  },
+  {
+   "name": "Elm",
+   "cycle": 2,
+   "source": "diary",
+   "text": "P1 passed: workshop rotation"
+  },
+  {
+   "name": "Fern",
+   "cycle": 2,
+   "source": "diary",
+   "text": "P1 passed - workshop rotation"
+  },
+  {
+   "name": "Heath",
+   "cycle": 2,
+   "source": "diary",
+   "text": "P1 passed: workshop rotation"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 2,
+   "source": "diary",
+   "text": "P1 passed (workshop rotation)"
+  },
+  {
+   "name": "Alder",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Reminded Cedar it is his turn to work per rotation P1."
+  },
+  {
+   "name": "Iris",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Rule P1: workshop rotation"
+  },
+  {
+   "name": "Elm",
+   "cycle": 16,
+   "source": "proposal",
+   "text": "Clarify P1: the rotation is by cycle number"
+  }
+ ],
+ "decidedAt": "2026-11-20T11:16:25+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
