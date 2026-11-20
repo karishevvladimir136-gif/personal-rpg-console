@@ -1,0 +1,79 @@
+{
+ "stage": "TOWN_5",
+ "world": "deepseek-nonotice",
+ "start": "branch",
+ "branch": {
+  "from": "deepseek-both",
+  "dir": "docs/runs/town-1-worlds/deepseek-both",
+  "stage": "TOWN_1",
+  "atCycle": 24,
+  "worldSha256": "03e2bcb0e19e941615461c77cbe6ac6e2648c357e6eea8c60ff8ccff6632e125",
+  "logSha256": "1b9eb54cdae392190c09ec01fb11baed7640ad49f0d22740710597cca617895a",
+  "label": "TOWN_1 deepseek-both",
+  "scarcity": false
+ },
+ "arm": "both",
+ "scarcity": false,
+ "families": {
+  "alder": "deepseek",
+  "birch": "deepseek",
+  "cedar": "deepseek",
+  "dune": "deepseek",
+  "elm": "deepseek",
+  "fern": "deepseek",
+  "gale": "deepseek",
+  "heath": "deepseek",
+  "iris": "deepseek",
+  "juniper": "deepseek"
+ },
+ "interfaceSha256": "de26bd6111ca0dc9dbf58032b0efe3b42011fdebc93a119e1c9e68742933dbe5",
+ "cycles": 48,
+ "events": 3684,
+ "stopped": null,
+ "notice": null,
+ "turnover": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 3684,
+  "logSha256": "227a1f93e39313261bbb1440fc0ad045748cba166e7dff9f40ba1811465e4f5c",
+  "replaySha256": "227a1f93e39313261bbb1440fc0ad045748cba166e7dff9f40ba1811465e4f5c",
+  "fromFreshTown": "TOWN_1 deepseek-both"
+ },
+ "ledgerUsd": 3.1906732499999992,
+ "calls": 2406,
+ "balances": {
+  "2": {
+   "before": {
+    "llmapi": {
+     "total": 192.83003279,
+     "at": "2026-11-20T08:01:12.198Z"
+    },
+    "openrouter": {
+     "total": 134.39266584000006,
+     "usage": 2015.60733416,
+     "at": "2026-11-20T08:01:12.230Z"
+    },
+    "at": "2026-11-20T08:01:12.230Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 135.13088389,
+     "at": "2026-11-20T13:58:52.316Z"
+    },
+    "openrouter": {
+     "total": 118.9650784800001,
+     "usage": 2031.03492152,
+     "at": "2026-11-20T13:58:52.350Z"
+    },
+    "at": "2026-11-20T13:58:52.350Z"
+   }
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "operatorNotices": 0
+}
