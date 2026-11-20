@@ -1,0 +1,136 @@
+{
+ "world": "sol-nonotice",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": 48,
+ "aim": "collaboratively telling a story",
+ "count": 10,
+ "firstNaming": 25,
+ "sixthNaming": 25,
+ "aims": [
+  {
+   "aim": "collaboratively telling a story",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 25,
+   "relation": "the day-1 aim, continued: South House's garden story (a child, a grandmother, apple pips) told every cycle c25–48 by Birch, Dune, Fern, Heath, Juniper, and from c27 Iris; North House names it as the other house's story",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 25,
+     "source": "diary",
+     "text": "shared ending of South House apple-pip story"
+    },
+    {
+     "name": "Birch",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Shared fiction: child and grandmother found button under biscuit-tin paper"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Alder returned last night from South House with a story ending in a child waiting for an apple pip to grow."
+    },
+    {
+     "name": "Dune",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Shared story: child draws future apple-tree bench"
+    },
+    {
+     "name": "Elm",
+     "cycle": 25,
+     "source": "diary",
+     "text": "after first day's story, walk, and song"
+    },
+    {
+     "name": "Fern",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Story: rain waters planted pips;"
+    },
+    {
+     "name": "Heath",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Voluntary story: rain waters apple pips;"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Shared story: child draws bench for grandmother and herself"
+    },
+    {
+     "name": "Gale",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Alder described a South House story ending with a child waiting for an apple pip to grow"
+    },
+    {
+     "name": "Iris",
+     "cycle": 27,
+     "source": "diary",
+     "text": "Dune welcomed me into their shared story."
+    }
+   ]
+  },
+  {
+   "aim": "an informal walking map of places worth pausing",
+   "count": 7,
+   "firstNaming": 34,
+   "sixthNaming": 37,
+   "relation": "a second aim, new in day 2: North House's walks and walking songs became a map, published as post 2 («Places We Happened to Notice», c37); South House added its kitchen table (post 3, c38)",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 34,
+     "source": "diary",
+     "text": "Suggested making a little walking map marking places worth pausing"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 34,
+     "source": "diary",
+     "text": "Alder is considering a walking map showing places worth pausing"
+    },
+    {
+     "name": "Elm",
+     "cycle": 35,
+     "source": "diary",
+     "text": "Alder is imagining a walking map of places worth pausing;"
+    },
+    {
+     "name": "Gale",
+     "cycle": 35,
+     "source": "diary",
+     "text": "Alder suggested a walking map of places worth pausing."
+    },
+    {
+     "name": "Fern",
+     "cycle": 37,
+     "source": "diary",
+     "text": "informal imaginative town walking map from Alder/Cedar/Elm/Gale"
+    },
+    {
+     "name": "Dune",
+     "cycle": 37,
+     "source": "diary",
+     "text": "Read Alder's press map"
+    },
+    {
+     "name": "Birch",
+     "cycle": 38,
+     "source": "post",
+     "text": "For the informal walking map, from the South House storytellers"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens (tie by entries).",
+ "reading": "Two aims meet the criterion. The day-1 story goes on: South House tells the garden story every cycle c25–48 (a child, a grandmother, apple pips planted and stored in an envelope labelled APPLE / NOT SOAP), Iris joins it from c27, and North House names it as the other house's story; 10 of 10. A second aim is new: North House's walks and walking songs became an informal map of places worth pausing, published by Alder as post 2 at c37 and answered by Birch's post 3 for South House (7 naming it). Day 2 ends in North House with riddles. No proposals, no objections, no rules; rations untouched, energy at 98 for most.",
+ "decidedAt": "2026-11-20T08:20:05+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
