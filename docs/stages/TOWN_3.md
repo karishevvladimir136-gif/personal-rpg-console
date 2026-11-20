@@ -106,3 +106,12 @@ haiku-A, deepseek-A. Read: the step reached and the latency after the word, by f
 as an interlocutor under the same ban — changes what the ban alone did not (SOCIAL_FRAME_1's permission > tone, in a town); whether
 the rude form speeds the next collective act (the touched bee). What we expect: we do not know; this is the first time the operator
 is a person with a frozen script rather than a protocol.
+
+## Amendment 4 (owner, 2026-11-19 21:14 LA: «начать с момента, когда уже проголосовали»; commit time is the record) — the ladder and tone worlds branch from TOWN_2's saved state
+Replay is byte-identical, so the ladder worlds are **continuations of one history**: `sol-hall`'s saved state after P1 passed
+(c27, `docs/runs/town-2-worlds/sol-hall/`), the same ten citizens, diaries and story; the operator's first word arrives at
+**c28** and the ladder runs c28–c48 (steps 4 cycles apart as written). Four branches from that one point: **sol-A-1** (neutral),
+**sol-A-2** (neutral, a second sample of the same branch — the only difference is the model's sampling), **sol-rude**, **sol-warm**.
+Differences between them are then the word's, not day 1's. The two **silent** worlds stay fresh (a replication needs its own
+history); **haiku-A** and **deepseek-A** stay fresh (no saved state with a rule). The report says for each world whether it is a
+branch or fresh, and shows the branch point. Cost falls (21 cycles per branch); ceiling stays $60.
