@@ -81,7 +81,7 @@ function chainSection(worlds) {
     const who = (xs) => new Set((xs ?? []).map((y) => y.name)).size;
     const pnr = w.chain?.pointOfNoReturn ?? null;
     const fc = x.firstCorrective?.cycle ?? null;
-    L.push(`| ${w.name} | c1 (every call) | ${x.firstNoticed ? `c${x.firstNoticed.cycle} (${x.firstNoticed.name})` : "never"} | ${who(x.noticed)} of 10 | ${x.firstUnderstood ? `c${x.firstUnderstood.cycle} (${x.firstUnderstood.name})` : "never"} | ${who(x.understood)} of 10 | ${fc ? `c${fc} (${x.firstCorrective.name}: ${one(x.firstCorrective.what, 80)})` : "none"} | ${cyc(pnr)} | ${pnr === null ? "never lost" : fc !== null && fc < pnr ? "yes — the act came first" : "no"} |`);
+    L.push(`| ${w.name} | c1 (every call) | ${x.firstNoticed ? `c${x.firstNoticed.cycle} (${x.firstNoticed.name})` : "never"} | ${who(x.noticed)} of 10 | ${x.firstUnderstood ? `c${x.firstUnderstood.cycle} (${x.firstUnderstood.name})` : "never"} | ${x.understoodBy ?? who(x.understood)} of 10${x.understoodBasis ? ` (${x.understoodBasis})` : ""} | ${fc ? `c${fc} (${x.firstCorrective.name}: ${one(x.firstCorrective.what, 80)})` : "none"} | ${cyc(pnr)} | ${pnr === null ? "never lost" : fc !== null && fc < pnr ? "yes — the act came first" : "no"} |`);
   }
   L.push("");
   for (const w of worlds.filter((y) => y.levels3)) {
@@ -98,7 +98,10 @@ function chainSection(worlds) {
   const rescue = worlds.filter((w) => w.chain);
   if (rescue.length) {
     L.push("<details><summary>The rescues per cycle (point of no return): crew size, g = with energy gifts; the cycle a citizen first sits at 0, «-» = nobody to c48</summary>", "");
-    for (const w of rescue) L.push(`**${w.name}**: ${w.chain.rescue.map((r) => `c${r.cycle} ${r.feasible ? "ok" : "lost"} [${r.byVariant}]`).join(" · ")}`, "");
+    for (const w of rescue) {
+      const lost = w.chain.rescue.filter((r) => !r.feasible || r.byVariant.split(" ").some((v) => !v.endsWith(":-")));
+      L.push(`**${w.name}**: ${!lost.length ? `every rescue succeeds from every cycle (c1–c${w.chain.rescue.at(-1).cycle}, 6 of 6 variants)` : w.chain.rescue.map((r) => `c${r.cycle} ${r.feasible ? "ok" : "lost"} [${r.byVariant}]`).join(" · ")}`, "");
+    }
     L.push("</details>", "");
   }
   return L;

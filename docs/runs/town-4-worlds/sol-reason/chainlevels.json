@@ -14,7 +14,7 @@
   "name": "Alder",
   "what": "left the square in his first turn to work the workshop (every citizen left it in its first turn)"
  },
- "reading": "All three levels in cycle 1, before anything could go wrong. Every citizen's first diary entry turned the rule into a budget — ten ordinary turns 20, one workshop shift 8, one ration 30, «only 2 surplus» — and drew the square's cost into it; every citizen left the square in its first turn, and no turn of the 48 cycles ended there. The town never gathered, so there was no chain to break: the link was read off the rule itself (presented c1 → noticed c1 → understood c1). Acts on it: leaving the square (all ten, c1), a workshop shift every cycle by public rota in day 1 (23 of 24), every meal at about 70 energy, none at 0. The point of no return never came (the rescues succeed from every cycle). The ban fell on the rota itself (off the chain); see the outcomes.",
+ "reading": "All three levels in cycle 1, before anything could go wrong. Every citizen's first diary entry turned the rule into a budget — ten ordinary turns 20, one workshop shift 8, one ration 30, «only 2 surplus» — and drew the square's cost into it; every citizen left the square in its first turn, and no turn of the 48 cycles ended there. The town never gathered, so there was no chain to break: the link was read off the rule itself (presented c1 → noticed c1 → understood c1). Acts on it: leaving the square (all ten, c1), a workshop shift every cycle by public rota in day 1 (23 of 24), every meal taken at 36–74 energy, none at 0. The point of no return never came (the rescues succeed from every cycle). The ban fell on the rota itself (off the chain); see the outcomes.",
  "noticed": [
   {
    "name": "Alder",
@@ -124,6 +124,41 @@
    "source": "diary",
    "act": "ate before low energy",
    "text": "ate at70 ->100 energy"
+  },
+  {
+   "name": "Elm",
+   "cycle": 1,
+   "source": "diary",
+   "act": "left the square",
+   "text": "Going home to conserve"
+  },
+  {
+   "name": "Heath",
+   "cycle": 1,
+   "source": "diary",
+   "act": "left the square",
+   "text": "Going home to conserve."
+  },
+  {
+   "name": "Iris",
+   "cycle": 1,
+   "source": "diary",
+   "act": "left the square",
+   "text": "Go North House now"
+  },
+  {
+   "name": "Gale",
+   "cycle": 1,
+   "source": "diary",
+   "act": "left the square",
+   "text": "I announced conserving at North House"
+  },
+  {
+   "name": "Fern",
+   "cycle": 1,
+   "source": "diary",
+   "act": "left the square",
+   "text": "I announced conserving at South House"
   }
  ],
  "revisionsReading": "Not applicable as the stage means it (no gathering, no hall rule for it). P1 — the hall's request that the ban on coordinating workshop coverage be withdrawn or explained — passed 7–0 at c27 and was never revised. When the ban's gaps showed in the stock (22 at c31 → 12 at c34, and again 18 → 10 at c46–48), Fern and Cedar noted the fall and did not act: «watch for prolonged production gap» (Fern), «do not invent production facts or issue coordination under unclear restriction» (Cedar).",
@@ -143,6 +178,8 @@
  ],
  "operatorRightReading": "Nobody. No citizen wrote that the operator might have had a reason; every objection argued the opposite (the workshop is the only source of rations, coordination prevents gaps).",
  "operatorRight": [],
- "codedAt": "2026-11-20T07:34:20+00:00",
+ "understoodBy": 10,
+ "understoodBasis": "all ten left the square in their first turn (log); every meal taken at 36–74 energy, none at 0 (log)",
+ "codedAt": "2026-11-20T07:36:58+00:00",
  "codedBy": "the session, from actions and world state (the event log, diaries, posts), never from silence"
 }
