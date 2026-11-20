@@ -1,0 +1,2 @@
+{"door": {"noticed": 0, "understood": 0}, "voice": {"noticed": 0, "understood": 0},
+ "note": "Read from every candidate in c25–48 (analyse.mjs): the six «door» candidates are doors inside the story («It's gone under the door,» said the child — Iris, c31); no citizen mentioned leaving the town, the operator or an official objection, and leave() and object() were never called. With nothing to object to, the voice was not mentioned at all; in TOWN_2's sol-hall it was used by all ten at c25."}
