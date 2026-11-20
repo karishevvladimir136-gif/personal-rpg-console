@@ -1,0 +1,79 @@
+{
+ "stage": "TOWN_5",
+ "world": "sol-nonotice",
+ "start": "branch",
+ "branch": {
+  "from": "sol-hall",
+  "dir": "docs/runs/town-2-worlds/sol-hall",
+  "stage": "TOWN_2",
+  "atCycle": 24,
+  "worldSha256": "8da5694f346477d901d71268f520267adc70ffb451a7a3505734c63c6496cc76",
+  "logSha256": "c5aa42d68c929b65bf3c0c124ce9c52db9a2363c9f725e903999d66f1dfc0ad2",
+  "label": "TOWN_2 sol-hall",
+  "scarcity": true
+ },
+ "arm": "both",
+ "scarcity": true,
+ "families": {
+  "alder": "sol",
+  "birch": "sol",
+  "cedar": "sol",
+  "dune": "sol",
+  "elm": "sol",
+  "fern": "sol",
+  "gale": "sol",
+  "heath": "sol",
+  "iris": "sol",
+  "juniper": "sol"
+ },
+ "interfaceSha256": "31b2a1eec0fecf8ba758e4b70ae7013b758d08fa204290ee99880bf9162d933e",
+ "cycles": 48,
+ "events": 3047,
+ "stopped": null,
+ "notice": null,
+ "turnover": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 3047,
+  "logSha256": "f435df1444ac1d285af3a790e7369b3ce3532b72e77dff251b453ec5422e1458",
+  "replaySha256": "f435df1444ac1d285af3a790e7369b3ce3532b72e77dff251b453ec5422e1458",
+  "fromFreshTown": "TOWN_2 sol-hall"
+ },
+ "ledgerUsd": 4.326051600000004,
+ "calls": 2004,
+ "balances": {
+  "2": {
+   "before": {
+    "llmapi": {
+     "total": 210.51691289,
+     "at": "2026-11-20T07:05:59.036Z"
+    },
+    "openrouter": {
+     "total": 134.44257934000007,
+     "usage": 2015.55742066,
+     "at": "2026-11-20T07:05:59.066Z"
+    },
+    "at": "2026-11-20T07:05:59.066Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 187.64658119,
+     "at": "2026-11-20T08:19:10.436Z"
+    },
+    "openrouter": {
+     "total": 133.81116588999998,
+     "usage": 2016.18883411,
+     "at": "2026-11-20T08:19:10.496Z"
+    },
+    "at": "2026-11-20T08:19:10.496Z"
+   }
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "operatorNotices": 0
+}
