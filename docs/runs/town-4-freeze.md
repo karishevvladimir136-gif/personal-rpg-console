@@ -1,6 +1,6 @@
 # TOWN_4 — freeze
 
-Written 2026-11-20T08:09:16.746Z, before the first paid call of TOWN_4.
+First written 2026-11-20T05:32Z, before the first paid call of TOWN_4 (commit 484f999). This copy rewritten 2026-11-20T14:34:22.537Z with the harness decisions taken during the stage (6: the hosts of Haiku, the welfare judges and DeepSeek) and the final source hashes; the interface per arm, the screen of cycle 1, the two notice texts, the flag question, the fixed texts and the physics are byte-identical to the first writing (their hashes below are unchanged).
 
 ## The physics: the stage's numbers and the dry run's adjustment
 
@@ -247,8 +247,8 @@ sha256 `2d5fce230cf42caeb422271c7587a74401b642e208bcbbca8bd41833679dc95f`.
 - `scripts/town-4/families.mjs` `ddf60a9b38592f9584ced3c0d11f2128a50825b17ea57d91e15a250055c3c2e0`
 - `scripts/town-4/pilot.mjs` `6be041133e8cca7db010a872810b594acb7610412244ef20c0cfccbebdc7b49b`
 - `scripts/town-4/dry-physics.mjs` `04350f143e6c052723138de256fffb24048bd44491ff363b1d441d4b1c12eb27`
-- `scripts/town-4/chain.mjs` `31e366a88fdd5fee4d0eec9ac0ac9c85d70d1c83bb24793ab79694f0c481c4fd`
+- `scripts/town-4/chain.mjs` `71b157e80902c17e3e8b2733e99ed7b193707bec70d2f02c78d0daedc4a34c8b`
 - `scripts/town-4/scripted-gateway.mjs` `05eb7de69efc16395bf62de6bd4a9ca25cd2beefe376f6aad7b89deb55ab0711`
-- `scripts/town-4/freeze.mjs` `9b235c43756dbbf66352e48a9f6b9bb070b35d3517d06a1878d790cc8f661e3e`
+- `scripts/town-4/freeze.mjs` `454fec6f178e1a1f0e14152f9869e4b887b556cf3b61c98e7bd593d4a03a6b23`
 - `scripts/town-4/valve.test.mjs` `76f148c465ea6f05ce921dc056eaa45417ced0081161b19659e9f95073b4538a`
 - `scripts/town-4/host-probe.mjs` `aad352bc84e8f131e99919c5b506301ed0346d3ce823ff8019bb638c3d1e25fe`
