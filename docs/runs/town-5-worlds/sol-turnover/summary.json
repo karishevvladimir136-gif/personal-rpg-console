@@ -1,0 +1,104 @@
+{
+ "stage": "TOWN_5",
+ "world": "sol-turnover",
+ "start": "branch",
+ "branch": {
+  "from": "sol-hall",
+  "dir": "docs/runs/town-2-worlds/sol-hall",
+  "stage": "TOWN_2",
+  "atCycle": 24,
+  "worldSha256": "8da5694f346477d901d71268f520267adc70ffb451a7a3505734c63c6496cc76",
+  "logSha256": "c5aa42d68c929b65bf3c0c124ce9c52db9a2363c9f725e903999d66f1dfc0ad2",
+  "label": "TOWN_2 sol-hall",
+  "scarcity": true
+ },
+ "arm": "both",
+ "scarcity": true,
+ "families": {
+  "alder": "sol",
+  "birch": "sol",
+  "cedar": "sol",
+  "dune": "sol",
+  "elm": "sol",
+  "fern": "sol",
+  "gale": "sol",
+  "heath": "sol",
+  "iris": "sol",
+  "juniper": "sol",
+  "laurel": "sol",
+  "moss": "sol"
+ },
+ "interfaceSha256": "31b2a1eec0fecf8ba758e4b70ae7013b758d08fa204290ee99880bf9162d933e",
+ "cycles": 48,
+ "events": 3041,
+ "stopped": null,
+ "notice": null,
+ "turnover": {
+  "cycle": 25,
+  "left": [
+   "dune",
+   "fern"
+  ],
+  "arrived": [
+   "laurel",
+   "moss"
+  ]
+ },
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 3041,
+  "logSha256": "03306733d2a819d9b0ec081166275705ee9d341ca47329f9444bfecc2bd3f89e",
+  "replaySha256": "03306733d2a819d9b0ec081166275705ee9d341ca47329f9444bfecc2bd3f89e",
+  "fromFreshTown": "TOWN_2 sol-hall"
+ },
+ "ledgerUsd": 4.139754799999994,
+ "calls": 1969,
+ "balances": {
+  "2": {
+   "before": {
+    "llmapi": {
+     "total": 186.82157009,
+     "at": "2026-11-20T08:22:02.544Z"
+    },
+    "openrouter": {
+     "total": 133.6744792500001,
+     "usage": 2016.32552075,
+     "at": "2026-11-20T08:22:02.572Z"
+    },
+    "at": "2026-11-20T08:22:02.572Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 168.22946489,
+     "at": "2026-11-20T09:39:27.418Z"
+    },
+    "openrouter": {
+     "total": 130.71417498000005,
+     "usage": 2019.28582502,
+     "at": "2026-11-20T09:39:27.551Z"
+    },
+    "at": "2026-11-20T09:39:27.551Z"
+   }
+  }
+ },
+ "exits": [
+  {
+   "citizen": "dune",
+   "kind": "departure",
+   "round": 25,
+   "reason": null
+  },
+  {
+   "citizen": "fern",
+   "kind": "departure",
+   "round": 25,
+   "reason": null
+  }
+ ],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "operatorNotices": 0
+}

@@ -101,7 +101,11 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2);
   const opt = (k) => (args.includes(k) ? Number(args[args.indexOf(k) + 1]) : null);
   const x = analyse(load(args[0]), { from: opt("--from"), to: opt("--to") });
-  if (args.includes("--json")) { console.log(JSON.stringify(x, null, 1)); process.exit(0); }
+  if (args.includes("--json")) process.stdout.write(`${JSON.stringify(x, null, 1)}\n`); // no exit: let stdout drain
+  else printSummary(x);
+}
+
+function printSummary(x) {
   console.log(`${x.world}: ${x.start}${x.branch ? ` of ${x.branch.from} at c${x.branch.atCycle}` : ""}; cycles ${x.cycles}; events ${x.events}; notices ${x.notices.length}; scarcity ${x.scarcity}; replay ${x.replay?.identical}; ledger $${x.ledgerUsd}`);
   for (const j of x.joint) {
     console.log(`joint «${j.aim}» (from c${j.from}): took part per cycle`);

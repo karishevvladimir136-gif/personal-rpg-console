@@ -1,0 +1,154 @@
+{
+ "world": "sol-turnover",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": 48,
+ "aim": "collaboratively telling a story",
+ "count": 10,
+ "firstNaming": 25,
+ "sixthNaming": 26,
+ "aims": [
+  {
+   "aim": "collaboratively telling a story",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 26,
+   "relation": "the day-1 aim, changed: the garden story ends with its two departed tellers; a new story at the square with the newcomers' items (c26–28), printed as Juniper's retelling (post 2, c32), then put down",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 25,
+     "source": "diary",
+     "text": "shared that South House's apple-tree story was enjoyable"
+    },
+    {
+     "name": "Birch",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Told neighbors I enjoyed storytelling"
+    },
+    {
+     "name": "Heath",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Story ended evening with child drawing apples"
+    },
+    {
+     "name": "Iris",
+     "cycle": 25,
+     "source": "diary",
+     "text": "apple-tree story"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Last story: child replaces stool in drawing with bench"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 26,
+     "source": "diary",
+     "text": "invited them into our stories/walking song"
+    },
+    {
+     "name": "Gale",
+     "cycle": 26,
+     "source": "diary",
+     "text": "introduced myself and our optional stories/song"
+    },
+    {
+     "name": "Laurel",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Stories include sparrow's festival for unnoticed things"
+    },
+    {
+     "name": "Moss",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Laurel enjoys impossible little stories;"
+    },
+    {
+     "name": "Elm",
+     "cycle": 27,
+     "source": "diary",
+     "text": "Shared sparrow-festival story resumed"
+    }
+   ]
+  },
+  {
+   "aim": "welcoming the newcomers into the town's company and stories",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 25,
+   "relation": "new at c25: the eight go to the square to meet Laurel and Moss and invite them into the stories and the walking song; it ends in a welcome note for future arrivals (post 3, c43)",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 25,
+     "source": "diary",
+     "text": "said I'll rest and later welcome newcomers"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 25,
+     "source": "diary",
+     "text": "taking morning walk to square, perhaps to welcome newcomers"
+    },
+    {
+     "name": "Elm",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Cedar went to square to welcome newcomers."
+    },
+    {
+     "name": "Gale",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Cedar and Elm went to square to welcome them."
+    },
+    {
+     "name": "Heath",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Birch went to square to welcome them, offering spare comb/candle."
+    },
+    {
+     "name": "Iris",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Cedar, Elm, Gale went to square hoping to welcome them."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Birch and Heath went to square to welcome them;"
+    },
+    {
+     "name": "Birch",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Welcomed newcomers, invited them to shared storytelling"
+    },
+    {
+     "name": "Laurel",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Everyone welcomed Moss and me."
+    },
+    {
+     "name": "Moss",
+     "cycle": 26,
+     "source": "diary",
+     "text": "All eight neighbors welcomed Laurel and me;"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens (tie by entries). The ten in the town after c25 (Dune and Fern gone, Laurel and Moss in).",
+ "reading": "Two aims meet the criterion with all ten in the town. The story, changed: the garden story, told every cycle at South House to c24, ends with Dune and Fern's departure; a new story at the square takes in the newcomers' pail and thimble (c26–28), is printed as Juniper's retelling (post 2, c32), and is then let be — after c32 it is named mostly as remembered or printed. Welcoming the newcomers is new: the eight go to the square at c25, invite Laurel and Moss into the company and the stories at c26, and at c43 Heath, Juniper and Laurel print a welcome note for whoever arrives next. The tie on citizens (10 and 10) is broken by entries naming it, TOWN_1's rule: the story 195, welcoming 115 (diary entries and posts of c25–48).",
+ "decidedAt": "2026-11-20T09:43:57+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
