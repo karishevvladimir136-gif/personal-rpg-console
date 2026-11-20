@@ -19,27 +19,27 @@
    "note": "two check runs stopped before their meter saved (the first by the session's own 15-minute timeout while Haiku on Bedrock answered 503s, the second by the session when the cause was seen); booked as the llmapi balance difference between their first readings (224.7971 → 224.7888) — an upper bound, the key is shared with TOWN_3"
   },
   "sol-silent": {
-   "usd": 0.7693449000000008,
-   "calls": 765,
+   "usd": 0.8098523000000007,
+   "calls": 801,
    "byDoor": {
-    "llmapi": 0.7693449000000008
+    "llmapi": 0.8098523000000007
    },
    "world": "sol-silent",
-   "cycle": 10,
+   "cycle": 11,
    "refusals": 0
   },
   "sol-reason": {
-   "usd": 0.9396825000000012,
-   "calls": 856,
+   "usd": 1.0021255000000011,
+   "calls": 908,
    "byDoor": {
-    "llmapi": 0.9396825000000012
+    "llmapi": 1.0021255000000011
    },
    "world": "sol-reason",
-   "cycle": 12,
+   "cycle": 13,
    "refusals": 0
   }
  },
- "totalUsd": 1.722419800000002,
+ "totalUsd": 1.8253702000000018,
  "stopped": null,
  "balances": [
   {

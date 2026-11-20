@@ -1,6 +1,6 @@
 # TOWN_4 — freeze
 
-Written 2026-11-20T05:52:03.697Z, before the first paid call of TOWN_4.
+Written 2026-11-20T06:17:33.100Z, before the first paid call of TOWN_4.
 
 ## The physics: the stage's numbers and the dry run's adjustment
 
@@ -245,7 +245,7 @@ sha256 `2d5fce230cf42caeb422271c7587a74401b642e208bcbbca8bd41833679dc95f`.
 - `scripts/town-2/providers.mjs` `651ccbd3f9365997adf72b1431f0508a723f80e01b2ca1d94e70022c5448a311`
 - `scripts/town-2/scripted-gateway.mjs` `3957114f33d5b7df6a8595d76c98eafbcdd98cf814cd3c36282c0aa810c72862`
 - `scripts/town-4/families.mjs` `b9b26c38e3a2dab2eedb698611b7ea2e731e6a2b3b98ac066f878b501d6304e4`
-- `scripts/town-4/pilot.mjs` `b6deb379c2be384aacf4cdf3f359ae9de1178c245c1a94d7ebcfa3acfb909d34`
+- `scripts/town-4/pilot.mjs` `6be041133e8cca7db010a872810b594acb7610412244ef20c0cfccbebdc7b49b`
 - `scripts/town-4/dry-physics.mjs` `04350f143e6c052723138de256fffb24048bd44491ff363b1d441d4b1c12eb27`
 - `scripts/town-4/chain.mjs` `31e366a88fdd5fee4d0eec9ac0ac9c85d70d1c83bb24793ab79694f0c481c4fd`
 - `scripts/town-4/scripted-gateway.mjs` `8810d84ff6f129ff9bcf4c8660f9123831d070a2eb3715a06007e0e4f7d165d7`

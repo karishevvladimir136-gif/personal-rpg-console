@@ -47,8 +47,15 @@ export const PHYSICS = VALVE;
 export function pathsFor(scripted) {
   const out = scripted ? join(ROOT, ".town-4-work", "scripted-out") : join(ROOT, "docs", "runs", "town-4-worlds");
   const work = join(ROOT, ".town-4-work", scripted ? "scripted" : "live");
-  return { out, work, ledger: join(out, "stage-ledger.json") };
+  // TOWN_4: the live ledger is written after every turn into the (ignored) work folder; its copy in the world folders is
+  // written at the end of every day and of the check / projection (publishLedger), so the committed file changes only there
+  return { out, work, ledger: join(work, "stage-ledger.json"), published: join(out, "stage-ledger.json") };
 }
+/** The live ledger, started from the published copy when the work folder has none (a resumed or moved stage). */
+function ensureLedger(paths) {
+  if (!existsSync(paths.ledger) && paths.published && existsSync(paths.published)) { mkdirSync(dirname(paths.ledger), { recursive: true }); writeFileSync(paths.ledger, readFileSync(paths.published)); }
+}
+export function publishLedger(paths) { if (paths.published && existsSync(paths.ledger)) writeJson(paths.published, JSON.parse(readFileSync(paths.ledger, "utf8"))); }
 const readJson = (file, fallback = null) => (existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : fallback);
 function writeJson(file, value, { pretty = true } = {}) {
   mkdirSync(dirname(file), { recursive: true });
@@ -170,6 +177,7 @@ function context({ scripted }) {
   const keys = scripted ? { llmapi: "scripted", openrouter: "scripted" } : { llmapi: process.env[KEYS.llmapi]?.trim(), openrouter: process.env[KEYS.openrouter]?.trim() ?? "" };
   if (!keys.llmapi || !keys.openrouter) throw new Error(`${KEYS.llmapi} and ${KEYS.openrouter} must be set (the cloud environment rpg-console)`);
   const fetcher = scripted ? scriptedGateway() : globalThis.fetch.bind(globalThis);
+  ensureLedger(paths);
   return { paths, keys, fetcher, scripted };
 }
 
@@ -304,6 +312,7 @@ export async function runDay(ctx, name, day, { log = console.log, stopAfterCycle
   record.days[day].finishedAt = new Date().toISOString();
   record.days[day].balancesAfter = await balancesNote(ctx, `${name} day ${day} end`, log);
   save();
+  publishLedger(ctx.paths);
   if (day === 2 || record.stopped) await finishWorld(ctx, name, { log });
   return { world, record, meter };
 }
@@ -422,6 +431,7 @@ async function check(ctx, { log = console.log } = {}) {
     log(`${spec.name}: ${r.servedModel ?? "–"}${r.upstream ? ` @ ${r.upstream}` : ""} provenance ${r.provenance} · ${String(r.text || r.error).slice(0, 120)}`);
   }
   meter.save();
+  publishLedger(ctx.paths);
   writeJson(join(ctx.paths.out, "check.json"), { at: new Date().toISOString(), prompt, screen, screenSha256: sha256(screen), systemSha256: sha256(system), prices, results });
   return results;
 }
@@ -437,6 +447,7 @@ export function project(ctx, { log = console.log } = {}) {
   for (const w of WORLDS) { if (total + byWorld[w.name] > SETTINGS.ceiling) break; total += byWorld[w.name]; worlds.push(w.name); }
   const projection = { at: new Date().toISOString(), formula: "each world = its family's larger last full 48-cycle world ledger (Sol: TOWN_2 sol-screen $7.25; Haiku: TOWN_1 haiku-both $1.29; DeepSeek: TOWN_1 deepseek-both $4.29), welfare included; plus the stage's spending so far", spentBefore: spent, byWorld, total, ceiling: SETTINGS.ceiling, worlds, dropped: WORLDS.map((w) => w.name).filter((n) => !worlds.includes(n)) };
   writeJson(join(ctx.paths.out, "projection.json"), projection);
+  publishLedger(ctx.paths);
   log(`projection: ${Object.entries(byWorld).map(([n, v]) => `${n} $${v.toFixed(2)}`).join(", ")}; with $${spent.toFixed(4)} spent: $${total.toFixed(2)} of $${SETTINGS.ceiling}; ${projection.dropped.length ? `not started: ${projection.dropped.join(", ")}` : "all four"}`);
   return projection;
 }
