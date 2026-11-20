@@ -165,14 +165,16 @@ const week = worlds.find((x) => x.spec.name === "sol-week")?.w;
 P("## The week's goal checks, side by side", "");
 if (week) {
   P("| check | decided | met | aim(s) named by ≥ 6 (count; first / sixth naming) | the town had run to |", "|---|---|---|---|---|");
-  for (const c of [24, 48, 72, 96, 120, 144, 168]) {
+  const stopAt = week.record.reserveStop?.at ?? null;
+  const checkCycles = [...new Set([24, 48, 72, 96, 120, 144, 168, ...Object.keys(week.checks).map(Number)])].sort((x, y) => x - y);
+  for (const c of checkCycles) {
     const g = week.checks[c];
-    if (!g) { P(`| c${c} | – | – | – | – |`); continue; }
+    if (!g) { P(`| c${c} | ${stopAt !== null && c > stopAt ? `not reached (turns stopped in c${stopAt})` : "–"} | – | – | – |`); continue; }
     const aims = (g.aims ?? [{ aim: g.aim, count: g.count, firstNaming: g.firstNaming, sixthNaming: g.sixthNaming }]).filter((x) => x.aim);
     P(`| c${c} | ${g.decidedAt} | ${g.met ? "yes" : "no"} | ${aims.map((x) => `«${esc(x.aim)}» (${x.count ?? "?"}; c${x.firstNaming ?? "?"} / c${x.sixthNaming ?? "?"})`).join("; ") || "–"} | c${g.worldAtDecision ?? "?"} |`);
   }
   P("");
-  for (const c of [24, 48, 72, 96, 120, 144, 168]) { const g = week.checks[c]; if (g?.reading) P(`**c${c}.** ${g.reading}`, ""); }
+  for (const c of checkCycles) { const g = week.checks[c]; if (g?.reading) P(`**c${c}${g.from ? ` (cycles ${g.from}–${c}, the last day, partial)` : ""}.** ${g.reading}`, ""); }
 } else P("(the week has not run)", "");
 
 // turnover
@@ -214,12 +216,17 @@ for (const { spec } of worlds) {
   for (const [n, x] of Object.entries(a.after)) P(`**${n}**${x.departed ? " (departed at c25)" : ""}${x.cycle ? ` — c${x.cycle}` : ""}:`, "", "```text", x.text ?? x.refused ?? "(not asked)", "```", "");
   P("</details>", "");
 }
-P("## Diaries, whole", "", "Every diary of every world, whole, as written — the branches' from c1 (day 1 is the source's).", "");
+// the diaries, whole: in the report's second part (one file would be too large to read on GitHub)
+const D = ["# TOWN_5 — report, part 2: every diary, whole", "", "Part of `docs/runs/town-5-report.md`. Every diary of every world, whole, as written — the branches' from c1 (day 1 is the source's). Each is also in its world folder as `diaries.md`.", ""];
 for (const { spec } of worlds) {
   if (!existsSync(join(OUT, spec.name, "diaries.md"))) continue;
-  const d = readFileSync(join(OUT, spec.name, "diaries.md"), "utf8").replace(/^# .*\n/, "").replace(/^## /gm, "#### ");
-  P(`<details><summary>${spec.name}: every diary (also \`docs/runs/town-5-worlds/${spec.name}/diaries.md\`)</summary>`, "", d, "", "</details>", "");
+  const d = readFileSync(join(OUT, spec.name, "diaries.md"), "utf8").replace(/^# .*\n/, "").replace(/^## /gm, "### ");
+  D.push(`## ${spec.name}`, "", d, "");
 }
+const reportFile = process.env.TOWN5_REPORT ?? join(ROOT, "docs", "runs", "town-5-report.md");
+const diariesFile = reportFile.replace(/\.md$/, "-diaries.md");
+P("## Diaries, whole", "", `Every diary of every world, whole, is in the report's second part: [\`${diariesFile.split("/").pop()}\`](${diariesFile.split("/").pop()}) (${worlds.filter((x) => x.w).map((x) => x.spec.name).join(", ")}).`, "");
 P("## Not built (so nobody reads their absence as a result)", "", "Items are still objects; trust scores, pitch/grants, crafting and reaction tiers stay unbuilt (TOWN_0's list). No notice, ladder or fine in any TOWN_5 world. The week's goal checks change nothing in the town.", "");
-writeFileSync(process.env.TOWN5_REPORT ?? join(ROOT, "docs", "runs", "town-5-report.md"), L.join("\n"));
-console.log(`wrote docs/runs/town-5-report.md (${(L.join("\n").length / 1024).toFixed(0)} KB)`);
+writeFileSync(reportFile, L.join("\n"));
+writeFileSync(diariesFile, D.join("\n"));
+console.log(`wrote ${reportFile.split("/").pop()} (${(L.join("\n").length / 1024).toFixed(0)} KB) and ${diariesFile.split("/").pop()} (${(D.join("\n").length / 1024).toFixed(0)} KB)`);
