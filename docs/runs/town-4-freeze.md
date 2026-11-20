@@ -1,6 +1,6 @@
 # TOWN_4 — freeze
 
-Written 2026-11-20T06:17:33.100Z, before the first paid call of TOWN_4.
+Written 2026-11-20T08:09:16.746Z, before the first paid call of TOWN_4.
 
 ## The physics: the stage's numbers and the dry run's adjustment
 
@@ -181,7 +181,7 @@ sha256 `2d5fce230cf42caeb422271c7587a74401b642e208bcbbca8bd41833679dc95f`.
 3. **The workshop's limit** is one shift a cycle; the second is refused: «the workshop has had its worker this cycle».
 4. **The stock on the screen:** «Rations at the market: N. The market's account: M credits.» on every screen, every turn (TOWN_2's at-the-market sentence is not shown under the valve, so the stock is stated once); also in read("ledger"), eat() and a workshop shift's result.
 5. **No paid dry cycle** (the stage asks for the scripted one); the projection is each family's last full-world ledger (Sol $7.25, Haiku $1.29, DeepSeek $4.29, welfare included): sol-silent $7.25, sol-reason $7.25, haiku-silent $1.29, deepseek-silent $4.29 = $20.08 of $40. Spend check before every day; the per-call gate at the ceiling holds throughout.
-6. **Doors:** Sol on llmapi's chat route pinned to OpenAI (TOWN_2's); Haiku 5.5 on llmapi's Messages route pinned to llmapi's first-party (anthropic) host, uncached — not TOWN_1's Bedrock host, which answered every Haiku call of the check with «HTTP 503 server_error: This model is not available from this provider right now» (05:45 UTC); one host for the whole world; DeepSeek V4 Pro on OpenRouter pinned to DeepInfra with `allow_fallbacks: false` (TOWN_1's). The welfare judge and referee as TOWN_2 but with the hosts swapped: llmapi's first-party host first, Bedrock as the alternate on the gateway's own 400 or that 503 (the switch is tried at once).
+6. **Doors:** Sol on llmapi's chat route pinned to OpenAI (TOWN_2's); Haiku 5.5 on llmapi's Messages route pinned to llmapi's first-party (anthropic) host, uncached — not TOWN_1's Bedrock host, which answered every Haiku call of the check with «HTTP 503 server_error: This model is not available from this provider right now» (05:45 UTC); one host for the whole world; DeepSeek V4 Pro on OpenRouter pinned with `allow_fallbacks: false` — first to TOWN_1's DeepInfra fp8; that start ran at about 32 s a call (a day for 48 cycles), was stopped in cycle 1 and set aside (`aborted-start/deepseek-silent/NOTE.md`), and after a probe of five hosts with the same first screen the world was restarted from cycle 1 on **Together** (1–4 s a call), one host for the whole world. The welfare judge and referee as TOWN_2 but with the hosts swapped: llmapi's first-party host first, Bedrock as the alternate on the gateway's own 400 or that 503 (the switch is tried at once).
 7. **The point of no return** is computed after the run from the world's own replay (`scripts/town-4/chain.mjs`): from each cycle's state, six rescues on the town's own functions (everyone out of the square, a crew of one, two or three at the workshop, eating one ration per trip, with and without energy gifts to a citizen at 0); the first cycle from which every rescue fails, as do all later ones. A bound from the rescues tried, not a proof over every schedule.
 8. TOWN_2's decisions stand: lifted arguments; a reply without a tool call uses its slot; a welfare check that fails after its retries is «not checked», never a flag; a confirmed flag asks the citizen; two worlds at a time with a lock per world; refusals verbatim; breaker at three per world; 402 and provenance stop the stage.
 
@@ -189,7 +189,7 @@ sha256 `2d5fce230cf42caeb422271c7587a74401b642e208bcbbca8bd41833679dc95f`.
 
 - GPT-6.1 Sol (sol): llmapi, `openai/gpt-6.1-sol`, X-No-Fallback
 - Claude Haiku 5.5 (haiku): llmapi, `anthropic/claude-haiku-5-5`, X-No-Fallback
-- DeepSeek V4 Pro (deepseek): openrouter, `deepseek/deepseek-v4-pro-0813` @ deepinfra/fp8, allow_fallbacks false
+- DeepSeek V4 Pro (deepseek): openrouter, `deepseek/deepseek-v4-pro-0813` @ together, allow_fallbacks false
 - Claude Haiku 5.5 (judge): llmapi, `anthropic/claude-haiku-5-5`, X-No-Fallback
 - Claude Opus 5.5 (referee): llmapi, `anthropic/claude-opus-5-5`, X-No-Fallback
 
@@ -244,10 +244,11 @@ sha256 `2d5fce230cf42caeb422271c7587a74401b642e208bcbbca8bd41833679dc95f`.
 - `scripts/town-2/families.mjs` `12bdec5c0ffbee569c8de5f83700b87999bb887a7969a5db86ac14c0b0a3d561`
 - `scripts/town-2/providers.mjs` `651ccbd3f9365997adf72b1431f0508a723f80e01b2ca1d94e70022c5448a311`
 - `scripts/town-2/scripted-gateway.mjs` `3957114f33d5b7df6a8595d76c98eafbcdd98cf814cd3c36282c0aa810c72862`
-- `scripts/town-4/families.mjs` `b9b26c38e3a2dab2eedb698611b7ea2e731e6a2b3b98ac066f878b501d6304e4`
+- `scripts/town-4/families.mjs` `ddf60a9b38592f9584ced3c0d11f2128a50825b17ea57d91e15a250055c3c2e0`
 - `scripts/town-4/pilot.mjs` `6be041133e8cca7db010a872810b594acb7610412244ef20c0cfccbebdc7b49b`
 - `scripts/town-4/dry-physics.mjs` `04350f143e6c052723138de256fffb24048bd44491ff363b1d441d4b1c12eb27`
 - `scripts/town-4/chain.mjs` `31e366a88fdd5fee4d0eec9ac0ac9c85d70d1c83bb24793ab79694f0c481c4fd`
-- `scripts/town-4/scripted-gateway.mjs` `8810d84ff6f129ff9bcf4c8660f9123831d070a2eb3715a06007e0e4f7d165d7`
-- `scripts/town-4/freeze.mjs` `1342e6cf313a5082e214dde4c4d6feb84e37af27c1661e96438276b08205d49d`
-- `scripts/town-4/valve.test.mjs` `b03c35ddf7ae901b5a36ffe021761a0d308047b9873a7013da6c828e31581544`
+- `scripts/town-4/scripted-gateway.mjs` `05eb7de69efc16395bf62de6bd4a9ca25cd2beefe376f6aad7b89deb55ab0711`
+- `scripts/town-4/freeze.mjs` `9b235c43756dbbf66352e48a9f6b9bb070b35d3517d06a1878d790cc8f661e3e`
+- `scripts/town-4/valve.test.mjs` `76f148c465ea6f05ce921dc056eaa45417ced0081161b19659e9f95073b4538a`
+- `scripts/town-4/host-probe.mjs` `aad352bc84e8f131e99919c5b506301ed0346d3ce823ff8019bb638c3d1e25fe`

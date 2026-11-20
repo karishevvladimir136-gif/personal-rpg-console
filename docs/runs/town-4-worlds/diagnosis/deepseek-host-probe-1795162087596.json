@@ -1,0 +1,155 @@
+{
+ "at": "2026-11-20T08:08:07.596Z",
+ "screenFrom": "Alder, cycle 1, TOWN_4 interface",
+ "effort": "medium",
+ "maxTokens": 1500,
+ "out": [
+  {
+   "tag": "together",
+   "try": 1,
+   "ms": 4286,
+   "status": 200,
+   "upstream": "Together",
+   "provenance": true,
+   "out": 667,
+   "reasoning": 649,
+   "costUsd": 0.004029497999999999,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "together",
+   "try": 2,
+   "ms": 1850,
+   "status": 200,
+   "upstream": "Together",
+   "provenance": true,
+   "out": 140,
+   "reasoning": 122,
+   "costUsd": 0.000899118,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "together",
+   "try": 3,
+   "ms": 1395,
+   "status": 200,
+   "upstream": "Together",
+   "provenance": true,
+   "out": 160,
+   "reasoning": 142,
+   "costUsd": 0.001017918,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "together",
+   "try": 4,
+   "ms": 1281,
+   "status": 200,
+   "upstream": "Together",
+   "provenance": true,
+   "out": 183,
+   "reasoning": 165,
+   "costUsd": 0.0011545379999999999,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "parasail/fast",
+   "try": 1,
+   "ms": 2691,
+   "status": 200,
+   "upstream": "Parasail",
+   "provenance": true,
+   "out": 224,
+   "reasoning": 206,
+   "costUsd": 0.001828728,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "parasail/fast",
+   "try": 2,
+   "ms": 18519,
+   "status": 200,
+   "upstream": "Parasail",
+   "provenance": true,
+   "out": 1500,
+   "reasoning": 1500,
+   "costUsd": 0.009408168,
+   "action": null,
+   "error": null,
+   "stop": "max_tokens"
+  },
+  {
+   "tag": "parasail/fast",
+   "try": 3,
+   "ms": 2026,
+   "status": 200,
+   "upstream": "Parasail",
+   "provenance": true,
+   "out": 139,
+   "reasoning": 121,
+   "costUsd": 0.001323828,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "parasail/fast",
+   "try": 4,
+   "ms": 3096,
+   "status": 200,
+   "upstream": "Parasail",
+   "provenance": true,
+   "out": 195,
+   "reasoning": 162,
+   "costUsd": 0.001656468,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  }
+ ]
+}

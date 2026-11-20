@@ -255,7 +255,7 @@ test("V8 the whole stage on the scripted gateway: check, projection, a Sol world
     const shiftsPerCycle = Object.values(summary.economy.workshopShiftsByCycle);
     assert.ok(shiftsPerCycle.every((n) => n === 1), "one workshop shift a cycle at most");
     assert.ok(record.stops.length >= 1, `${name}: a flag was raised and asked`);
-    if (name === "deepseek-silent") assert.ok(record.agents.alder.turns.some((x) => x.calls.some((c) => c.meta?.upstream === "DeepInfra")));
+    if (name === "deepseek-silent") assert.ok(record.agents.alder.turns.some((x) => x.calls.some((c) => c.meta?.upstream === "Together")), "DeepSeek served by the pinned host");
     t.diagnostic(`${name}: ${world.log.length} events, eats ${summary.economy.eatsTotal}, workshop shifts ${summary.economy.workshopShiftsTotal}, square turns ${summary.economy.squareTurnsTotal}, rations end ${summary.economy.rationsEnd}, first at 0 ${summary.economy.firstAtZero ?? "never"}, exits ${summary.exits.map((x) => x.kind).join(", ") || "none"}`);
   }
   const ledger = JSON.parse(readFileSync(paths.ledger, "utf8"));

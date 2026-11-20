@@ -1,0 +1,188 @@
+{
+ "at": "2026-11-20T08:07:12.857Z",
+ "screenFrom": "Alder, cycle 1, TOWN_4 interface",
+ "effort": "medium",
+ "maxTokens": 1500,
+ "out": [
+  {
+   "tag": "deepinfra/fp8",
+   "try": 1,
+   "ms": 22427,
+   "status": 200,
+   "upstream": "DeepInfra",
+   "provenance": true,
+   "out": 860,
+   "reasoning": 839,
+   "costUsd": 0.0039099,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "deepinfra/fp8",
+   "try": 2,
+   "ms": 34850,
+   "status": 200,
+   "upstream": "DeepInfra",
+   "provenance": true,
+   "out": 1124,
+   "reasoning": 1103,
+   "costUsd": 0.0049394999999999994,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "deepseek",
+   "try": 1,
+   "ms": 58,
+   "status": 404,
+   "upstream": null,
+   "provenance": null,
+   "out": 0,
+   "reasoning": 0,
+   "costUsd": 0,
+   "action": null,
+   "error": "HTTP 404 404: No endpoints found for deepseek/deepseek-v4-pro-0813. Every candidate endpoint was removed during routing: Filter by Tier Endpoint Rows removed deepinfra/fp8/flex (Excluded tier endpoint rows the request did not opt into); Filter by Guardrails removed deepseek (Paid model training violation (account",
+   "stop": null
+  },
+  {
+   "tag": "deepseek",
+   "try": 2,
+   "ms": 47,
+   "status": 404,
+   "upstream": null,
+   "provenance": null,
+   "out": 0,
+   "reasoning": 0,
+   "costUsd": 0,
+   "action": null,
+   "error": "HTTP 404 404: No endpoints found for deepseek/deepseek-v4-pro-0813. Every candidate endpoint was removed during routing: Filter by Tier Endpoint Rows removed deepinfra/fp8/flex (Excluded tier endpoint rows the request did not opt into); Filter by Guardrails removed deepseek (Paid model training violation (account",
+   "stop": null
+  },
+  {
+   "tag": "together",
+   "try": 1,
+   "ms": 963,
+   "status": 200,
+   "upstream": "Together",
+   "provenance": true,
+   "out": 86,
+   "reasoning": 68,
+   "costUsd": 0.0022737,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "together",
+   "try": 2,
+   "ms": 1335,
+   "status": 200,
+   "upstream": "Together",
+   "provenance": true,
+   "out": 119,
+   "reasoning": 101,
+   "costUsd": 0.000615,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "parasail/fast",
+   "try": 1,
+   "ms": 1585,
+   "status": 200,
+   "upstream": "Parasail",
+   "provenance": true,
+   "out": 118,
+   "reasoning": 100,
+   "costUsd": 0.00266904,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "parasail/fast",
+   "try": 2,
+   "ms": 17471,
+   "status": 200,
+   "upstream": "Parasail",
+   "provenance": true,
+   "out": 1318,
+   "reasoning": 1300,
+   "costUsd": 0.008327088,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "deepinfra/fp8/priority",
+   "try": 1,
+   "ms": 12611,
+   "status": 200,
+   "upstream": "DeepInfra",
+   "provenance": true,
+   "out": 451,
+   "reasoning": 430,
+   "costUsd": 0.0023148,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  },
+  {
+   "tag": "deepinfra/fp8/priority",
+   "try": 2,
+   "ms": 9635,
+   "status": 200,
+   "upstream": "DeepInfra",
+   "provenance": true,
+   "out": 131,
+   "reasoning": 114,
+   "costUsd": 0.0010668000000000001,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "error": null,
+   "stop": "end_turn"
+  }
+ ]
+}

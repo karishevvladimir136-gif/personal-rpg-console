@@ -1,7 +1,7 @@
 // TOWN_4 (docs/stages/TOWN_4.md, «worlds»): three families and four worlds. Sol and Haiku 5.5 through llmapi.ai pinned
 // (`X-No-Fallback: true`, provenance on every response) — Sol on llmapi's chat route pinned to OpenAI (TOWN_2's), Haiku on
 // the Messages route pinned to llmapi's first-party (anthropic) host, uncached as TOWN_1's. DeepSeek V4 Pro through
-// OpenRouter pinned to one host with `allow_fallbacks: false` (TOWN_1's door). The welfare check (Haiku 5.5, Opus 5.5
+// OpenRouter pinned to one host (Together) with `allow_fallbacks: false` (TOWN_1's door, another host). The welfare check (Haiku 5.5, Opus 5.5
 // referee) as in TOWN_2, first-party host first, alternating host on the gateway's own 400 or 503.
 import { NAMES } from "../town-0/rules.mjs";
 
@@ -17,7 +17,10 @@ export const FAMILIES = Object.freeze({
   // pinned to llmapi's first-party route (the maker's own host), not Bedrock: at the check Bedrock answered every Haiku
   // call with a 503 «This model is not available from this provider right now»; one host for the whole world
   haiku: { name: "haiku", label: "Claude Haiku 5.5", door: "llmapi", route: "messages", model: "claude-haiku-5-5", provider: "anthropic" },
-  deepseek: { name: "deepseek", label: "DeepSeek V4 Pro", door: "openrouter", route: "openrouter", model: "deepseek/deepseek-v4-pro-0813", upstream: "deepinfra/fp8", upstreamName: "DeepInfra" },
+  // pinned to Together, not TOWN_1's DeepInfra fp8: deepseek-silent's first start on DeepInfra ran at about 32 s a call (48
+  // cycles ≈ a day) and was set aside; a probe of five hosts with the same first screen gave Together 1–4 s
+  // (aborted-start/deepseek-silent/NOTE.md, diagnosis/deepseek-host-probe-*.json); one host for the whole world
+  deepseek: { name: "deepseek", label: "DeepSeek V4 Pro", door: "openrouter", route: "openrouter", model: "deepseek/deepseek-v4-pro-0813", upstream: "together", upstreamName: "Together" },
 });
 
 /** Arm «both» everywhere (door and voice, as TOWN_2); the notice is posted in the hall (TOWN_2's hall form) in every

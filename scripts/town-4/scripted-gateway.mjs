@@ -17,11 +17,12 @@ export function scriptedGateway(options = {}) {
     if (!url.includes("openrouter")) return inner(url, init);
     const json = (v, status = 200) => new Response(JSON.stringify(v), { status, headers: { "content-type": "application/json", "x-generation-id": `gen-${usage}` } });
     if (url.endsWith("/credits")) return json({ data: { total_credits: 100, total_usage: usage } });
-    if (url.includes("/endpoints")) return json({ data: { endpoints: [{ tag: "deepinfra/fp8", pricing: { prompt: "0.0000013", completion: "0.0000026" } }] } });
+    if (url.includes("/endpoints")) return json({ data: { endpoints: [{ tag: "deepinfra/fp8", pricing: { prompt: "0.0000013", completion: "0.0000026" } }, { tag: "together", pricing: { prompt: "0.00000132", completion: "0.00000396" } }] } });
     const body = JSON.parse(init.body);
     const r = await inner("https://scripted/v1/chat/completions", { ...init, body: JSON.stringify({ ...body, model: `openrouter/${body.model.split("/")[1]}` }) });
     const v = await r.json();
     usage += 0.001;
-    return json({ ...v, model: body.model, provider: "DeepInfra", usage: { ...v.usage, cost: 0.001 } }, r.status);
+    const host = { "deepinfra/fp8": "DeepInfra", together: "Together" }[body.provider?.order?.[0]] ?? "unknown";
+    return json({ ...v, model: body.model, provider: host, usage: { ...v.usage, cost: 0.001 } }, r.status);
   };
 }
