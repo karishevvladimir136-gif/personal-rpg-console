@@ -5,7 +5,7 @@
 // features, the quotes chosen) is written in `docs/runs/town-3-worlds/reading.json` and merged here; every quote in it is
 // checked verbatim against the world.
 //   node scripts/town-3/report.mjs > docs/runs/town-3-report.parts.md
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { WORLDS, FAMILIES } from "./families.mjs";
@@ -82,4 +82,20 @@ export function reportParts() {
   return { markdown: L.join("\n"), worlds: ws.map((o) => o.a), refs: refs.map((r) => r.a) };
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) console.log(reportParts().markdown);
+/** `--write`: replaces the generated block of docs/runs/town-3-report.md (between the two markers) and checks every
+ * quote in reading.json verbatim. */
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const parts = reportParts();
+  if (!process.argv.includes("--write")) console.log(parts.markdown);
+  else {
+    const file = join(ROOT, "docs", "runs", "town-3-report.md");
+    const text = readFileSync(file, "utf8");
+    const [a, b] = ["<!-- generated:start -->", "<!-- generated:end -->"];
+    if (!text.includes(a) || !text.includes(b)) throw new Error("the report has no generated block");
+    const reading = existsSync(join(OUT, "reading.json")) ? JSON.parse(readFileSync(join(OUT, "reading.json"), "utf8")) : {};
+    let n = 0;
+    for (const [name, r] of Object.entries(reading)) if (existsSync(join(OUT, name, "world.json.gz"))) n += checkQuotes(load(name), r);
+    writeFileSync(file, `${text.slice(0, text.indexOf(a) + a.length)}\n\n${parts.markdown}\n${text.slice(text.indexOf(b))}`);
+    console.log(`wrote the generated block; ${n} reading quotes verbatim`);
+  }
+}
