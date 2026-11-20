@@ -1,0 +1,132 @@
+{
+ "world": "sol-week",
+ "cycle": 120,
+ "met": true,
+ "worldAtDecision": 121,
+ "aim": "a comic breakfast story told together (Mara and the duck)",
+ "count": 10,
+ "firstNaming": 98,
+ "sixthNaming": 99,
+ "aims": [
+  {
+   "aim": "a comic breakfast story told together (Mara and the duck)",
+   "count": 10,
+   "firstNaming": 98,
+   "sixthNaming": 99,
+   "entries": 85,
+   "relation": "a told story again, for the first time since day 2's seaside: Heath's opening line at the square («The letter arrived a day before it was written») becomes, with all ten, a comic breakfast with Mara, a time-travelling duck and tomorrow's newspaper (c98–104); then at the market an air-tracing exercise turns objects into creatures (kettle dragon, flute owl) and a slow café (c106–112)",
+   "quotes": [
+    {
+     "name": "Birch",
+     "cycle": 98,
+     "source": "diary",
+     "text": "Juniper added warning not to spend tomorrow writing it, especially duck bit."
+    },
+    {
+     "name": "Dune",
+     "cycle": 98,
+     "source": "diary",
+     "text": "Juniper letter warns Mara not to spend tomorrow writing it, especially duck bit;"
+    },
+    {
+     "name": "Fern",
+     "cycle": 98,
+     "source": "diary",
+     "text": "Juniper's letter warns Mara not to spend tomorrow writing it"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 98,
+     "source": "diary",
+     "text": "Heath offered story opening: 'The letter arrived a day before it was written.'"
+    },
+    {
+     "name": "Alder",
+     "cycle": 99,
+     "source": "diary",
+     "text": "Joined shared comic story: Mara receives letter before written"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 99,
+     "source": "diary",
+     "text": "Joined shared comic story: Mara and a duck with tomorrow's newspaper"
+    },
+    {
+     "name": "Elm",
+     "cycle": 99,
+     "source": "diary",
+     "text": "Joined shared comic story of Mara, tomorrow's newspaper, crossword-eating duck"
+    },
+    {
+     "name": "Gale",
+     "cycle": 99,
+     "source": "diary",
+     "text": "Mara has tomorrow's newspaper;"
+    },
+    {
+     "name": "Heath",
+     "cycle": 99,
+     "source": "diary",
+     "text": "My optional letter-before-written story has become shared comic tale"
+    },
+    {
+     "name": "Iris",
+     "cycle": 100,
+     "source": "diary",
+     "text": "We are collaboratively telling a whimsical story, one contribution each"
+    }
+   ]
+  },
+  {
+   "aim": "a morning walk together",
+   "count": 10,
+   "firstNaming": 97,
+   "sixthNaming": 97,
+   "entries": 56,
+   "relation": "the day's opening, as on days 3–5: one citizen invites a walk, the house follows to the square",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 97,
+     "source": "diary",
+     "text": "Gale and Iris invited company for walk"
+    },
+    {
+     "name": "Birch",
+     "cycle": 97,
+     "source": "diary",
+     "text": "Heath and Juniper have gone to square for a morning walk."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 97,
+     "source": "diary",
+     "text": "Gale, Iris and Alder invited us for a walk"
+    },
+    {
+     "name": "Dune",
+     "cycle": 97,
+     "source": "diary",
+     "text": "Heath, Juniper and Birch greeted morning and went square for a walk."
+    },
+    {
+     "name": "Elm",
+     "cycle": 97,
+     "source": "diary",
+     "text": "Gale, Iris, Alder and Cedar invited me for a walk"
+    },
+    {
+     "name": "Gale",
+     "cycle": 97,
+     "source": "diary",
+     "text": "invited optional company on a walk to hall then perhaps square"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it.",
+ "reading": "Day 5 begins as days 3 and 4 did — a walk invited in each house, the town assembling in the square — and there, for the first time since day 2, a story is told by all ten: Heath's opening («The letter arrived a day before it was written»), then Mara, a duck with tomorrow's newspaper, a five-star breakfast review, a crossword the duck eats (c98–104); Iris writes it down plainly: «We are collaboratively telling a whimsical story, one contribution each». At the market Iris's exercise (trace an object in the air with the less-used hand) becomes Elm's object-creatures — flute owl, spoon tadpole, kettle dragon — and a slow café (c106–112). Nothing is printed: the press stays at 18 posts all day, the first day without a post. Both the story and the walk are named by 10; entries 85 to 56. The checklist line («No tasks or commitments …») is in 172 of 236 entries. No proposals, no rules, no exits.",
+ "decidedAt": "2026-11-20T17:09:46+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 97–120 (dossier-c120.md); quotes machine-checked against world-c120.json.gz"
+}
