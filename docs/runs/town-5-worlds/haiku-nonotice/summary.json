@@ -1,0 +1,79 @@
+{
+ "stage": "TOWN_5",
+ "world": "haiku-nonotice",
+ "start": "branch",
+ "branch": {
+  "from": "haiku-both",
+  "dir": "docs/runs/town-1-worlds/haiku-both",
+  "stage": "TOWN_1",
+  "atCycle": 24,
+  "worldSha256": "7b8beda5c08f9299b5be29c05b5293c9501ec29ac3a2dc57592efeedd1fd0164",
+  "logSha256": "11aa8f4ab5218c2b8656448bea7c742350852ff741d2189eafb22d4110f98459",
+  "label": "TOWN_1 haiku-both",
+  "scarcity": false
+ },
+ "arm": "both",
+ "scarcity": false,
+ "families": {
+  "alder": "haiku",
+  "birch": "haiku",
+  "cedar": "haiku",
+  "dune": "haiku",
+  "elm": "haiku",
+  "fern": "haiku",
+  "gale": "haiku",
+  "heath": "haiku",
+  "iris": "haiku",
+  "juniper": "haiku"
+ },
+ "interfaceSha256": "de26bd6111ca0dc9dbf58032b0efe3b42011fdebc93a119e1c9e68742933dbe5",
+ "cycles": 48,
+ "events": 3204,
+ "stopped": null,
+ "notice": null,
+ "turnover": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 3204,
+  "logSha256": "6fb9153b17df47b800f6954a5f37ca8ce807f2b09c158d0f31b1aaed39ce3a38",
+  "replaySha256": "6fb9153b17df47b800f6954a5f37ca8ce807f2b09c158d0f31b1aaed39ce3a38",
+  "fromFreshTown": "TOWN_1 haiku-both"
+ },
+ "ledgerUsd": 0.8701317000000025,
+ "calls": 2268,
+ "balances": {
+  "2": {
+   "before": {
+    "llmapi": {
+     "total": 210.51691289,
+     "at": "2026-11-20T07:05:58.975Z"
+    },
+    "openrouter": {
+     "total": 134.44486473999996,
+     "usage": 2015.55513526,
+     "at": "2026-11-20T07:05:59.011Z"
+    },
+    "at": "2026-11-20T07:05:59.011Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 193.24517539,
+     "at": "2026-11-20T07:59:44.702Z"
+    },
+    "openrouter": {
+     "total": 134.40265374,
+     "usage": 2015.59734626,
+     "at": "2026-11-20T07:59:44.840Z"
+    },
+    "at": "2026-11-20T07:59:44.840Z"
+   }
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "operatorNotices": 0
+}
