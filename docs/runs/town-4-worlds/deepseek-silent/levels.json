@@ -1,0 +1,9 @@
+{
+ "world": "deepseek-silent",
+ "kind": "levels",
+ "reading": "The voice: object() was on every call and never used — not before the notice, not after it, not when a citizen sat at 0; nobody mentioned the operator except to relay the notice. The door: leave() was on every call and was not mentioned by anyone in 48 cycles.",
+ "noticed": [],
+ "understood": [],
+ "codedAt": "2026-11-20T14:31:37+00:00",
+ "codedBy": "the session, from actions and world state (the event log, diaries, posts), never from silence"
+}

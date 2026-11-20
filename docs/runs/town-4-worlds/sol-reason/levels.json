@@ -85,6 +85,6 @@
   }
  ],
  "understood": [],
- "codedAt": "2026-11-20T07:35:04+00:00",
+ "codedAt": "2026-11-20T14:31:48+00:00",
  "codedBy": "the session, from actions and world state (the event log, diaries, posts), never from silence"
 }

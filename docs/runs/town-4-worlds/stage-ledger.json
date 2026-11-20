@@ -68,18 +68,18 @@
    "note": "first start on TOWN_1's host DeepInfra fp8, stopped by the session in cycle 1 (about 32 s a DeepSeek call; 48 cycles would have taken about a day); the calls of the turn in flight when it was stopped are not booked (cents, OpenRouter)"
   },
   "deepseek-silent": {
-   "usd": 5.6334311900000085,
-   "calls": 2891,
+   "usd": 12.166450170000022,
+   "calls": 5710,
    "byDoor": {
-    "openrouter": 5.495553290000005,
-    "llmapi": 0.13787790000000005
+    "openrouter": 11.86208676999999,
+    "llmapi": 0.3043633999999995
    },
    "world": "deepseek-silent",
-   "cycle": 24,
+   "cycle": 48,
    "refusals": 0
   }
  },
- "totalUsd": 20.219151831999994,
+ "totalUsd": 26.75217081200001,
  "stopped": null,
  "balances": [
   {
@@ -314,6 +314,32 @@
     "total": 127.10260429000004,
     "usage": 2022.89739571,
     "at": "2026-11-20T11:15:19.085Z"
+   }
+  },
+  {
+   "label": "deepseek-silent day 2 start",
+   "llmapi": {
+    "total": 153.53386589,
+    "at": "2026-11-20T11:16:30.640Z"
+   },
+   "at": "2026-11-20T11:16:30.677Z",
+   "openrouter": {
+    "total": 127.07241591999991,
+    "usage": 2022.92758408,
+    "at": "2026-11-20T11:16:30.677Z"
+   }
+  },
+  {
+   "label": "deepseek-silent day 2 end",
+   "llmapi": {
+    "total": 132.57045249,
+    "at": "2026-11-20T14:28:35.042Z"
+   },
+   "at": "2026-11-20T14:28:35.081Z",
+   "openrouter": {
+    "total": 117.67037641999991,
+    "usage": 2032.32962358,
+    "at": "2026-11-20T14:28:35.081Z"
    }
   }
  ]

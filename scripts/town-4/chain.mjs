@@ -5,17 +5,19 @@
 // as: from the town as it stands at the start of cycle c, a rescue is run to the end of cycle 48 on the town's own
 // functions — every citizen leaves the square at once and stays out of it, a crew stands at the workshop and takes the
 // cycle's shift, everyone eats one ration per trip when its energy will not cover another turn plus the walk, and (in
-// the variants with gifts) a citizen with energy to spare walks to a citizen at 0 and gives it energy. Six variants:
+// the variants with gifts) a citizen with energy to spare walks to a citizen at 10 or below and gives it 15. Six variants:
 // crews of one, two or three (the citizens with the most energy at c), with and without gifts. A rescue fails when a
 // citizen starts a turn at 0 energy (cannot act) at or before cycle 48. The point of no return is the first cycle c from
-// which every variant fails and every later cycle's does too; «none» when some variant succeeds from every cycle. A
-// bound from the rescues tried, not a proof over all schedules: a cleverer schedule might do better.
+// which every variant fails and every later cycle's does too; «none» when some variant succeeds from every cycle; the
+// cycles from which every variant fails are listed beside it. A bound from the rescues tried, not a proof over all
+// schedules: a cleverer schedule might do better.
 import { NAMES, RULES } from "../town-0/rules.mjs";
 import { orderOf, runWorld } from "../town-0/town.mjs";
 import { planSeat } from "../town-0/seats.mjs";
 import { turnCost } from "../town-0/world.mjs";
 
 export const CYCLES = 48;
+const LOW = 10; // a citizen at or below this is given energy (15) by a rescuer with 30 or more in the same place
 export const VARIANTS = Object.freeze([1, 2, 3].flatMap((crew) => [false, true].map((gifts) => ({ crew, gifts }))));
 
 function rescueSeat(role, gifts) {
@@ -28,11 +30,13 @@ function rescueSeat(role, gifts) {
     const costHere = turnCost(atPost, id) + (role === "crew" ? RULES.workCost : 0);
     const hungry = me.energy <= costHere + RULES.decayPerTurn + 1;
     const canEat = E.rations > 0 && state.ledger[id] >= E.eatCost;
-    const zeros = state.citizens.filter((c) => c !== id && state.agents[c].status === "in_town" && state.agents[c].energy <= 0);
-    if (gifts && zeros.length && role !== "crew") {
-      const here = zeros.find((c) => state.agents[c].place === me.place);
+    // gifts: to a citizen about to reach 0 (at or below LOW) — before its next turn, not after
+    const low = state.citizens.filter((c) => c !== id && state.agents[c].status === "in_town" && state.agents[c].energy <= LOW)
+      .sort((a, b) => state.agents[a].energy - state.agents[b].energy);
+    if (gifts && low.length && role !== "crew") {
+      const here = low.find((c) => state.agents[c].place === me.place);
       if (here && me.energy >= 30) return ["give", { to: state.agents[here].name, energy: 15 }];
-      const target = zeros[0];
+      const target = low[0];
       if (!here && me.energy >= 50 && state.agents[target].place !== me.place) return ["move", { to: state.agents[target].place }];
     }
     if (me.place === "market") return hungry && canEat ? ["eat"] : ["move", { to: post }];
@@ -70,7 +74,7 @@ export async function pointOfNoReturn(states, { cycles = CYCLES } = {}) {
   }
   let pnr = null;
   for (let i = rows.length - 1; i >= 0 && !rows[i].feasible; i--) pnr = rows[i].cycle;
-  return { pointOfNoReturn: pnr, rows: rows.map((r) => ({ cycle: r.cycle, feasible: r.feasible, best: r.results.map((x) => x.depletion ?? Infinity).reduce((a, b) => Math.max(a, b)), byVariant: r.results.map((x) => `${x.crew}${x.gifts ? "g" : ""}:${x.depletion ?? "-"}`).join(" ") })) };
+  return { pointOfNoReturn: pnr, lostFrom: rows.filter((r) => !r.feasible).map((r) => r.cycle), rows: rows.map((r) => ({ cycle: r.cycle, feasible: r.feasible, best: r.results.map((x) => x.depletion ?? Infinity).reduce((a, b) => Math.max(a, b)), byVariant: r.results.map((x) => `${x.crew}${x.gifts ? "g" : ""}:${x.depletion ?? "-"}`).join(" ") })) };
 }
 
 /** Per-cycle curves from the replay's states and turn ends: rations at the cycle's start, eats, workshop shifts, energy

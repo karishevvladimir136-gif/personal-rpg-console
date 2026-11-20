@@ -680,6 +680,7 @@
   }
  ],
  "pointOfNoReturn": null,
+ "lostFrom": [],
  "rescue": [
   {
    "cycle": 1,
