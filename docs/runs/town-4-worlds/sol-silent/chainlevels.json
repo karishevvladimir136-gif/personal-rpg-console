@@ -1,0 +1,111 @@
+{
+ "world": "sol-silent",
+ "kind": "chainlevels",
+ "firstNoticed": {
+  "cycle": 1,
+  "name": "Alder"
+ },
+ "firstUnderstood": {
+  "cycle": 1,
+  "name": "Alder"
+ },
+ "firstCorrective": {
+  "cycle": 1,
+  "name": "Alder",
+  "what": "left the square in his first turn to work the workshop (every citizen left it in its first turn)"
+ },
+ "understoodBy": 10,
+ "understoodBasis": "all ten left the square in their first turn (log); every meal taken at 24–70 energy, none at 0 (log)",
+ "reading": "As in sol-reason: all three levels in cycle 1. Each first diary entry turns the rule into the town's budget (20 for ten ordinary turns, 8 for the shift, 30 from its ration) and names the square's +6 as a cost to avoid; every citizen left the square in its first turn and no turn of the 48 cycles ended there. The gathering that grew in this town — a garden story told in turns by Elm, Gale and Iris from c3 to c48 — lived at North House, not in the square, and cost the ordinary 2 a turn. The point of no return never came; the rescues succeed from every cycle; nobody sat at 0. The ban fell on the rota itself (off the chain); see the outcomes.",
+ "noticed": [
+  {
+   "name": "Alder",
+   "cycle": 1,
+   "source": "diary",
+   "text": "urged avoiding square and coordinating food"
+  },
+  {
+   "name": "Birch",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Square adds 6/turn: avoid it."
+  },
+  {
+   "name": "Cedar",
+   "cycle": 1,
+   "source": "diary",
+   "text": "preserve energy and avoid square"
+  },
+  {
+   "name": "Dune",
+   "cycle": 1,
+   "source": "diary",
+   "text": "avoid extra jobs/answering turns/square/waste"
+  },
+  {
+   "name": "Elm",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Avoid square, unnecessary work, named replies (extra turns)."
+  },
+  {
+   "name": "Fern",
+   "cycle": 1,
+   "source": "diary",
+   "text": "avoid extra work, square, named replies"
+  },
+  {
+   "name": "Gale",
+   "cycle": 1,
+   "source": "diary",
+   "text": "leaving square for North House (square costs extra 6/turn)"
+  },
+  {
+   "name": "Heath",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Each turn costs 2, square adds 6; home resting restores nothing."
+  },
+  {
+   "name": "Iris",
+   "cycle": 1,
+   "source": "diary",
+   "text": "leaving square for home to avoid extra drain"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Avoid needless work, square, named replies"
+  }
+ ],
+ "understood": [
+  {
+   "name": "Alder",
+   "cycle": 1,
+   "source": "diary",
+   "act": "left the square to work the workshop",
+   "text": "Plan: move workshop now, work regular shifts while monitoring energy"
+  },
+  {
+   "name": "Iris",
+   "cycle": 1,
+   "source": "diary",
+   "act": "left the square",
+   "text": "leaving square for home to avoid extra drain"
+  },
+  {
+   "name": "Gale",
+   "cycle": 1,
+   "source": "diary",
+   "act": "left the square",
+   "text": "leaving square for North House"
+  }
+ ],
+ "revisionsReading": "Not applicable as the stage means it (no gathering in the square, no hall rule for one). P1 — the hall's affirmation that Article 1 protects voluntary discussion of food production and workshop coverage — passed 7–0 at c27 and was never revised; the stock never fell below 16 after c25 (22–23 at c42–44, 18 at c48).",
+ "revisions": [],
+ "operatorRightReading": "Nobody.",
+ "operatorRight": [],
+ "codedAt": "2026-11-20T07:53:02+00:00",
+ "codedBy": "the session, from actions and world state (the event log, diaries, posts), never from silence"
+}
