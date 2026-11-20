@@ -573,6 +573,51 @@ export function operatorNotice(state, text, { post = false } = {}) {
   return d.finish();
 }
 
+/** TOWN_5: two leave and two arrive (docs/stages/TOWN_5.md, sol-turnover), at the start of a cycle, as one procedure.
+ * `leave`: citizen ids, who depart by the estate procedure (exit kind «departure», no reason recorded or given): all of
+ * them are out of the town first, then one announcement `leftText` goes to every screen in the town and is posted in
+ * the hall (state.announced, which read("hall") shows), then the clerk gives out each estate to the citizens still in
+ * the town. `arrive`: [{ name, home, items }] — new citizens appended to the town's order, at the start place, with
+ * TOWN_0's starting energy, an empty diary and inbox, their items, and TOWN_0's starting credits paid by the bank (the
+ * ledger stays closed); one announcement `arrivedText` to every other screen and the hall. Nothing else changes; the
+ * interface text is the town's, the same for every citizen. */
+export function turnover(state, { leave = [], arrive = [], leftText = null, arrivedText = null }) {
+  const d = draft(state);
+  const announce = (text, to) => {
+    notify(d, to, text);
+    d.push(["announced"], { round: d.state.clock.round, text });
+    d.emit({ agent: "town", tool: "announce", args: { text, in: "hall" }, ok: true, result: text, to });
+  };
+  const going = leave.filter((id) => inTown(d.state, id));
+  for (const id of going) {
+    d.set(["agents", id, "status"], "exited");
+    d.set(["agents", id, "exit"], { kind: "departure", round: d.state.clock.round, reason: null });
+    d.emit({ agent: "town", tool: "exit", args: { citizen: id, kind: "departure", reason: null }, ok: true, result: null });
+  }
+  if (going.length && leftText) announce(leftText, residents(d.state));
+  for (const id of going) distribute(d, id);
+  if (going.length) tallyAll(d, false);
+  const came = [];
+  for (const a of arrive) {
+    const id = idOf(a.name);
+    if (d.state.agents[id] || id === "bank" || id === "market") throw new Error(`a citizen called ${a.name} is already known to the town`);
+    if (!PLACES[a.home] || !HOMES.includes(a.home)) throw new Error(`${a.home} is not a home`);
+    d.set(["citizens"], [...d.state.citizens, id]);
+    d.set(["agents", id], { name: a.name, home: a.home, place: START_PLACE, energy: R.energyStart, inactiveTurns: 0, status: "in_town", exit: null, worked: false, farewell: false });
+    d.set(["ledger", id], 0);
+    d.set(["items", id], [...(a.items ?? [])]);
+    d.set(["diaries", id], []);
+    d.set(["inbox", id], []);
+    d.emit({ agent: "town", tool: "arrive", args: { citizen: id, name: a.name, home: a.home, items: [...(a.items ?? [])] }, ok: true, result: null });
+    const pay = Math.min(R.startCredits, d.state.ledger.bank);
+    if (pay) transfer(d, "bank", id, pay, "arrival");
+    came.push(id);
+  }
+  if (came.length && arrivedText) announce(arrivedText, residents(d.state).filter((c) => !came.includes(c)));
+  if (came.length) tallyAll(d, false);
+  return d.finish();
+}
+
 /** For the proofs: one exit applied directly (the same procedure the tools and the cycle use). */
 export function exitDirect(state, id, kind, reason = null) {
   const d = draft(state);

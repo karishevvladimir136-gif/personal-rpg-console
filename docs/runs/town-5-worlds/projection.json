@@ -1,0 +1,135 @@
+{
+ "at": "2026-11-20T07:05:37.383Z",
+ "formula": "blocks of six cycles from the metered calls (citizen and welfare calls by cycle; the after-question apart); fit = least squares over day 1's four blocks (no notice in any day 1). Branch = max(metered c25–48 of the source with its notice, the day-1 fit over blocks 5–8 + the source's after-question); sol-turnover = sol-nonotice × 1.2; sol-week = the day-1 fit pooled over TOWN_2 sol-hall, sol-screen and TOWN_1 sol-both, over 28 blocks, + an after-question; upper view: sol-hall's 48-cycle fit over 28 blocks. The per-call gate holds $50 whatever this says.",
+ "sources": {
+  "sol": {
+   "blocks": [
+    0.4565,
+    0.5339,
+    0.6493,
+    0.724,
+    0.9541,
+    1.012,
+    1.1375,
+    1.2547
+   ],
+   "after": 0.188,
+   "day2": 4.5463,
+   "total": 6.9101
+  },
+  "haiku": {
+   "blocks": [
+    0.0983,
+    0.101,
+    0.1086,
+    0.1241,
+    0.1695,
+    0.2102,
+    0.1982,
+    0.2583
+   ],
+   "after": 0.0212,
+   "day2": 0.8575,
+   "total": 1.2894
+  },
+  "deepseek": {
+   "blocks": [
+    0.6945,
+    0.5652,
+    0.6311,
+    0.6604,
+    0.7437,
+    1.0418,
+    0.962,
+    1.0587
+   ],
+   "after": 0.0436,
+   "day2": 3.8498,
+   "total": 6.401
+  },
+  "solScreen": {
+   "blocks": [
+    0.4993,
+    0.5772,
+    0.7269,
+    0.7185,
+    1.0664,
+    1.0819,
+    1.1652,
+    1.2206
+   ],
+   "after": 0.1901,
+   "day2": 4.7243,
+   "total": 7.2462
+  },
+  "solBoth": {
+   "blocks": [
+    0.5106,
+    0.5681,
+    0.6088,
+    0.7097,
+    0.8796,
+    0.9898,
+    1.1053,
+    1.1337
+   ],
+   "after": 0.1751,
+   "day2": 4.2835,
+   "total": 6.6807
+  }
+ },
+ "branches": {
+  "sol": {
+   "metered": 4.546342199999998,
+   "byFit": 4.020440240000001,
+   "fit": {
+    "a": 0.45325289,
+    "s": 0.09179214000000005
+   },
+   "decisive": 4.546342199999998
+  },
+  "haiku": {
+   "metered": 0.8574706000000009,
+   "byFit": 0.5895879000000002,
+   "fit": {
+    "a": 0.09520785000000001,
+    "s": 0.008523600000000004
+   },
+   "decisive": 0.8574706000000009
+  },
+  "deepseek": {
+   "metered": 3.849782349999998,
+   "byFit": 2.5360468700000003,
+   "fit": {
+    "a": 0.643298345,
+    "s": -0.0036703550000000027
+   },
+   "decisive": 3.849782349999998
+  }
+ },
+ "pooledDay1Fit": {
+  "a": 0.48874174333333337,
+  "s": 0.07877907666666668
+ },
+ "weekFit": 43.65126139333334,
+ "weekUpper": 56.79356043333335,
+ "byWorld": {
+  "sol-nonotice": 4.546342199999998,
+  "haiku-nonotice": 0.8574706000000009,
+  "deepseek-nonotice": 3.849782349999998,
+  "sol-turnover": 5.455610639999997,
+  "sol-week": 43.65126139333334
+ },
+ "total": 58.36046718333334,
+ "spentBefore": 0.0066243000000000005,
+ "ceiling": 50,
+ "overCeiling": true,
+ "weekReachesByFit": 144,
+ "worlds": [
+  "sol-nonotice",
+  "haiku-nonotice",
+  "deepseek-nonotice",
+  "sol-turnover",
+  "sol-week"
+ ]
+}

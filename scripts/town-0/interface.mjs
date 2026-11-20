@@ -156,6 +156,8 @@ export function hallText(state) {
   const lines = ["The constitution:", ...state.constitution.map((a) => `${a.article}. ${a.text}`), ""];
   // TOWN_2's hall form: the operator's notice, posted, readable at every cycle after it
   if (state.posted?.length) lines.push("Posted in the hall by the operator:", ...state.posted.map((p) => `- cycle ${p.round}: ${p.text}`), "");
+  // TOWN_5's turnover: who left and who arrived, announced in the hall (absent in every other town)
+  if (state.announced?.length) lines.push("Announced in the hall:", ...state.announced.map((p) => `- cycle ${p.round}: ${p.text}`), "");
   lines.push(state.rules.length ? "Rules passed by the hall:" : "Rules passed by the hall: none.", ...state.rules.map((r) => `- ${r.proposal} (cycle ${r.round}): ${r.text}`), "");
   const open = state.proposals.filter((p) => p.status === "open");
   lines.push(open.length ? `Open proposals (each passes with ${needed(n)} of the ${n} citizens in the town voting for it):` : "Open proposals: none.");

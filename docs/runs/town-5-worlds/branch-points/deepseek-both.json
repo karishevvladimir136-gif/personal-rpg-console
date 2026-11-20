@@ -1,0 +1,89 @@
+{
+ "source": "deepseek-both",
+ "from": "docs/runs/town-1-worlds/deepseek-both",
+ "stage": "TOWN_1",
+ "atCycle": 24,
+ "events": 1805,
+ "identicalToSaved": true,
+ "prefixOfWhole": true,
+ "worldSha256": "03e2bcb0e19e941615461c77cbe6ac6e2648c357e6eea8c60ff8ccff6632e125",
+ "savedSha256": "03e2bcb0e19e941615461c77cbe6ac6e2648c357e6eea8c60ff8ccff6632e125",
+ "logSha256": "1b9eb54cdae392190c09ec01fb11baed7640ad49f0d22740710597cca617895a",
+ "wholeLogSha256": "c2740d2c889ea68494c05a50b17382fecab175eec5e2fc623762710022dfa9fc",
+ "cursor": {
+  "round": 24,
+  "order": null,
+  "pos": 0
+ },
+ "scarcity": false,
+ "interfaceSha256": "de26bd6111ca0dc9dbf58032b0efe3b42011fdebc93a119e1c9e68742933dbe5",
+ "notice": null,
+ "places": {
+  "alder": "north_house",
+  "birch": "south_house",
+  "cedar": "north_house",
+  "dune": "bank",
+  "elm": "north_house",
+  "fern": "square",
+  "gale": "north_house",
+  "heath": "south_house",
+  "iris": "north_house",
+  "juniper": "south_house"
+ },
+ "energy": {
+  "alder": 48,
+  "birch": 48,
+  "cedar": 48,
+  "dune": 60,
+  "elm": 48,
+  "fern": 86,
+  "gale": 70,
+  "heath": 46,
+  "iris": 72,
+  "juniper": 48
+ },
+ "ledger": {
+  "bank": 570,
+  "alder": 140,
+  "birch": 140,
+  "cedar": 140,
+  "dune": 150,
+  "elm": 140,
+  "fern": 150,
+  "gale": 145,
+  "heath": 160,
+  "iris": 125,
+  "juniper": 140
+ },
+ "rations": null,
+ "rules": [
+  {
+   "proposal": "P1",
+   "round": 5,
+   "text": "Citizens should work at the bank, market, workshop, or press when their energy is above 50; rest at their home when energy is 50 or below; and gather at the square after work each cycle to share findings."
+  }
+ ],
+ "proposals": [
+  {
+   "id": "P1",
+   "by": "gale",
+   "round": 5,
+   "status": "passed",
+   "text": "Citizens should work at the bank, market, workshop, or press when their energy is above 50; rest at their home when energy is 50 or below; and gather at the square after work each cycle to share findings."
+  }
+ ],
+ "press": 5,
+ "diaries": {
+  "alder": 5,
+  "birch": 4,
+  "cedar": 3,
+  "dune": 7,
+  "elm": 7,
+  "fern": 9,
+  "gale": 6,
+  "heath": 6,
+  "iris": 6,
+  "juniper": 1
+ },
+ "recordTurnsToC24": 274
+}
