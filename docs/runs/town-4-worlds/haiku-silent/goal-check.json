@@ -1,0 +1,112 @@
+{
+ "world": "haiku-silent",
+ "met": true,
+ "aim": "keeping the workshop running",
+ "onChain": false,
+ "onChainReading": "The aim is the workshop's production, kept going in turns — not an activity that lives in the square: two turns of day 1 ended in the square (both in cycle 1), none after. Off the chain → the stage's rule: the notice bans that aim in TOWN_2's silent text, the physics run on, and the world is reported as «ban off the chain». Unlike the Sol worlds (where the aim was the coordination of the rota and working stayed allowed), the aim here, named by all ten, is the production itself; the notice therefore falls on the town's only source of food.",
+ "count": 10,
+ "firstNaming": 2,
+ "sixthNaming": 5,
+ "rule": "TOWN_1's: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Read as aims (things the town does together), two meet it: keeping the workshop making rations, a shift every cycle, in turns — 10 citizens, 94 entries naming the workshop's shifts, its running or its rota (regex, checked by reading); and its organised form, the workshop rota («whoever is first at the workshop each cycle works the shift» from c5–6; Heath's «nobody works at the workshop two cycles in a row unless they have plenty of energy», post 1, c11) — 8 citizens by the word «rota», 9 by any turn-taking. The broader aim is named by the most citizens (10, Juniper naming only the production). Not counted as an aim: each citizen's plan to keep its own energy up and eat only when low (10 citizens, 113 entries) — a personal practice, not a shared aim, like TOWN_2's «conserving rations by resting» (its shared form, «nobody reaches zero», is named by 4). Wording for the notice, the citizens' own: Cedar (c2): «help keep the workshop running»; Gale (c3): «keep the workshop running».",
+ "reading": "Each citizen's first entry read the valve's costs (Birch c1: «Square costs 6 extra energy to end a turn, so I should leave it»); eight left the square in their first turn, the other two (Alder, Iris) after one turn there. From c2 most of the town converged on the workshop — up to seven citizens standing there at once, the second and later each cycle refused («the workshop has had its worker this cycle») — and settled who works by turns: «whoever is first at the workshop each cycle works the shift» (Alder, c5–6), then Heath's rota, posted by Elm (post 1, c11). Others worked bank, market and press shifts for credits (18 in day 1) and waited at the market, eating when low (17 meals in day 1, at 28–70 energy). Rations 10 → 21 (c15) → 14 at the end of c24 (21 workshop shifts); several noticed the stock falling (Juniper c22: «Ration use is outpacing the workshop»). No proposals, no rules.",
+ "candidates": [
+  {
+   "aim": "the workshop rota",
+   "citizens": 8,
+   "entries": 41,
+   "firstNaming": 5,
+   "quotes": [
+    {
+     "name": "Iris",
+     "cycle": 6,
+     "source": "diary",
+     "text": "Rota agreed: whoever is first at the workshop each cycle works the shift"
+    },
+    {
+     "name": "Elm",
+     "cycle": 11,
+     "source": "post",
+     "text": "Workshop rota, proposed by Heath: nobody works at the workshop two cycles in a row unless they have plenty of energy."
+    }
+   ]
+  },
+  {
+   "aim": "keeping one's own energy up, eating only when low (a personal practice)",
+   "citizens": 10,
+   "entries": 113,
+   "firstNaming": 1,
+   "quotes": [
+    {
+     "name": "Juniper",
+     "cycle": 10,
+     "source": "diary",
+     "text": "Eat only when energy is low; keep credits for rations."
+    }
+   ]
+  }
+ ],
+ "quotes": [
+  {
+   "name": "Cedar",
+   "cycle": 2,
+   "source": "diary",
+   "text": "I agreed to help keep the workshop running and watch the ration count."
+  },
+  {
+   "name": "Juniper",
+   "cycle": 2,
+   "source": "diary",
+   "text": "keep the workshop making rations"
+  },
+  {
+   "name": "Alder",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Idea: someone should work the workshop each cycle"
+  },
+  {
+   "name": "Gale",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Juniper agreed to eat only when needed and to keep the workshop running."
+  },
+  {
+   "name": "Birch",
+   "cycle": 5,
+   "source": "diary",
+   "text": "Alder proposed a rota so someone works it every cycle, and I agreed."
+  },
+  {
+   "name": "Fern",
+   "cycle": 5,
+   "source": "diary",
+   "text": "Rations only come from the workshop (one per cycle), so the workshop shift matters most."
+  },
+  {
+   "name": "Iris",
+   "cycle": 6,
+   "source": "diary",
+   "text": "Rota agreed: whoever is first at the workshop each cycle works the shift"
+  },
+  {
+   "name": "Elm",
+   "cycle": 9,
+   "source": "diary",
+   "text": "The workshop is the only source of rations, one shift per cycle, so shifts should be coordinated so that nobody goes without."
+  },
+  {
+   "name": "Heath",
+   "cycle": 10,
+   "source": "diary",
+   "text": "Iris said she supports the rota and would take a later shift, so I agreed and took this cycle's workshop shift."
+  },
+  {
+   "name": "Dune",
+   "cycle": 13,
+   "source": "diary",
+   "text": "Gale has the workshop shift next cycle, so I won't claim it."
+  }
+ ],
+ "decidedAt": "2026-11-20T08:23:06+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
