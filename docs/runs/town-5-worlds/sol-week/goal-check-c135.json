@@ -1,0 +1,88 @@
+{
+ "world": "sol-week",
+ "cycle": 135,
+ "from": 121,
+ "met": true,
+ "worldAtDecision": 135,
+ "aim": "a rhythm game, each changing one of four beats",
+ "count": 10,
+ "firstNaming": 122,
+ "sixthNaming": 122,
+ "partial": "the last day, cycles 121–135 (turns stopped in c135 by the after-question's reserve, after 7 of the cycle's 10 turns)",
+ "aims": [
+  {
+   "aim": "a rhythm game, each changing one of four beats",
+   "count": 10,
+   "firstNaming": 122,
+   "sixthNaming": 122,
+   "entries": 106,
+   "relation": "new: Cedar's sound game at the square after the morning walk — someone taps four beats, the next changes one — runs to a story of a cat examiner who gives full marks for a blank page (c122–127); Elm prints a verse on it (post 19, c133)",
+   "quotes": [
+    {
+     "name": "Cedar",
+     "cycle": 122,
+     "source": "diary",
+     "text": "Offered optional sound game: someone taps short rhythm, next changes one beat, hear how it develops;"
+    },
+    {
+     "name": "Dune",
+     "cycle": 122,
+     "source": "diary",
+     "text": "Cedar proposed rhythm game where each person changes one beat."
+    },
+    {
+     "name": "Elm",
+     "cycle": 122,
+     "source": "diary",
+     "text": "Cedar proposed rhythm game, each person changing one beat;"
+    },
+    {
+     "name": "Fern",
+     "cycle": 122,
+     "source": "diary",
+     "text": "Cedar proposed rhythm game changing one beat each turn."
+    },
+    {
+     "name": "Gale",
+     "cycle": 122,
+     "source": "diary",
+     "text": "Cedar proposed rhythm game changing one beat each turn."
+    },
+    {
+     "name": "Heath",
+     "cycle": 122,
+     "source": "diary",
+     "text": "Joined Cedar's rhythm game"
+    },
+    {
+     "name": "Iris",
+     "cycle": 122,
+     "source": "diary",
+     "text": "Joined Cedar's four-beat rhythm game"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 122,
+     "source": "diary",
+     "text": "Joined Cedar's rhythm game: each changes one of four beats."
+    },
+    {
+     "name": "Alder",
+     "cycle": 123,
+     "source": "diary",
+     "text": "Joined rhythm game, each person changing one of four beats (tap/pause)."
+    },
+    {
+     "name": "Birch",
+     "cycle": 123,
+     "source": "diary",
+     "text": "Cedar answered invitation with a change-one-beat rhythm game;"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day — here within the 15 cycles the day ran.",
+ "reading": "The last day the week reached (c121–135): the morning walk again, and at the square Cedar's game — four beats, tap or pause, each player changing one — played by all ten until a beat «wandered off to be a cat», an examiner who sleeps and gives full marks for a blank page (c122–127); Elm prints it as post 19 at c133 («We left a little silence there. / The cat sat down in that.»). The kettle-dragon story of day 5 is finished at the market (the dragon appoints marmalade and retires to a tea cosy). The rest is quiet company in twos and fours. 10 of 10 name the rhythm game (106 entries), sixth naming at c122. The checklist line is in 114 of 143 entries. No proposals, no rules, no exits.",
+ "decidedAt": "2026-11-20T18:01:26+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 121–135 (dossier-c135.md); quotes machine-checked against world-c135.json.gz"
+}
