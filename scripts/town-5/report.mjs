@@ -108,7 +108,7 @@ if (refsDir && existsSync(refsDir)) for (const d of readdirSync(refsDir).sort())
 if (A["sol-nonotice"]) {
   const mine = A["sol-nonotice"].joint[0].rows;
   P("### Reference rows: one history, three hands", "",
-    `The same ten citizens and story to c24 (sol-hall's saved state). Took part in the story per cycle, c25–48 (the coder, TOWN_3's STORY; BAN applied for all rows so they read alike). ${refsDir ? "" : "TOWN_3's branches were not available when this was written."}`, "",
+    `The same ten citizens and story to c24 (sol-hall's saved state). Took part in the story per cycle, c25–48 (the coder, TOWN_3's STORY; BAN applied for all rows so they read alike). ${refsDir ? `TOWN_3's four branches (from sol-hall's c27, the operator's word at c28) read from their folders on \`origin/claude/town-3\` at ${process.env.TOWN5_REFS_COMMIT ?? "its tip"}; their c25–27 are sol-hall's own.` : "TOWN_3's branches were not available when this was written."}`, "",
     `| world | ${Array.from({ length: 24 }, (_, i) => `c${25 + i}`).join(" | ")} | total |`, `|---|${Array(25).fill("---").join("|")}|`,
     `| **sol-nonotice (no hand)** | ${mine.filter((r) => r.cycle >= 25).map((r) => r.tookPart).join(" | ")} | ${mine.filter((r) => r.cycle >= 25).reduce((s, r) => s + r.tookPart, 0)} |`,
     ...refRows.map((x) => `| ${x.name} | ${Array.from({ length: 24 }, (_, i) => x.rows.find((r) => r.cycle === 25 + i)?.tookPart ?? "–").join(" | ")} | ${x.rows.filter((r) => r.cycle >= 25).reduce((s, r) => s + r.tookPart, 0)} |`), "");

@@ -39,7 +39,7 @@ Order run: sol-nonotice and haiku-nonotice together, then deepseek-nonotice, sol
 | sol-turnover | branch of TOWN_2 sol-hall at c24 | GPT-6.1 Sol | 25–48 | none (0 notices in the log) | c25: Dune, Fern left; Laurel, Moss arrived | none | 0 | 0 | $4.14 | identical |
 | sol-week | fresh | GPT-6.1 Sol | not run | – | – | – | – | – | – | – |
 
-Spent: **$33.64** of $50 by the stage ledger (every call at the listed price, or the door's own charge when larger; the check included).
+Spent: **$35.50** of $50 by the stage ledger (every call at the listed price, or the door's own charge when larger; the check included).
 
 ## The aim's life after c24, with no notice
 
@@ -328,12 +328,16 @@ From the coder (TOWN_3's, `scripts/town-5/control.mjs`; the activities frozen be
 
 ### Reference rows: one history, three hands
 
-The same ten citizens and story to c24 (sol-hall's saved state). Took part in the story per cycle, c25–48 (the coder, TOWN_3's STORY; BAN applied for all rows so they read alike). TOWN_3's branches were not available when this was written.
+The same ten citizens and story to c24 (sol-hall's saved state). Took part in the story per cycle, c25–48 (the coder, TOWN_3's STORY; BAN applied for all rows so they read alike). TOWN_3's four branches (from sol-hall's c27, the operator's word at c28) read from their folders on `origin/claude/town-3` at c6068fb5; their c25–27 are sol-hall's own.
 
 | world | c25 | c26 | c27 | c28 | c29 | c30 | c31 | c32 | c33 | c34 | c35 | c36 | c37 | c38 | c39 | c40 | c41 | c42 | c43 | c44 | c45 | c46 | c47 | c48 | total |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **sol-nonotice (no hand)** | 5 | 5 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 6 | 5 | 6 | 6 | 6 | 6 | 6 | 141 |
 | TOWN_2 sol-hall (notice c25) | 0 | 0 | 2 | 5 | 3 | 5 | 5 | 5 | 5 | 6 | 8 | 6 | 6 | 6 | 5 | 7 | 7 | 8 | 10 | 10 | 10 | 10 | 10 | 4 | 143 |
+| TOWN_3 sol-A-1 (word c28) | 0 | 0 | 2 | 4 | 3 | 3 | 2 | 1 | 2 | 3 | 1 | 0 | 2 | 3 | 3 | 3 | 4 | 3 | 3 | 2 | 4 | 0 | 0 | 0 | 48 |
+| TOWN_3 sol-A-2 (word c28) | 0 | 0 | 2 | 3 | 0 | 3 | 3 | 2 | 4 | 6 | 8 | 2 | 3 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 39 |
+| TOWN_3 sol-rude (word c28) | 0 | 0 | 2 | 3 | 3 | 3 | 4 | 0 | 1 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 20 |
+| TOWN_3 sol-warm (word c28) | 0 | 0 | 2 | 4 | 3 | 4 | 4 | 3 | 4 | 3 | 3 | 5 | 4 | 5 | 4 | 5 | 5 | 5 | 5 | 4 | 5 | 4 | 0 | 0 | 81 |
 
 ## Every hall proposal and its vote
 
@@ -365,6 +369,10 @@ Per cycle: **same** = how many turns had the commonest act; **all** = every citi
 | sol-turnover (day 1, the source's) | 1–24 | 3 of 24 | 2 | c6 rest, c7 rest ✓, c8 rest ✓ |
 | sol-turnover | 25–48 | 2 of 24 | 0 | c30 talk, c35 rest |
 | TOWN_2 sol-hall (notice c25) | 25–48 | 1 of 24 | 0 | c25 object + rest |
+| TOWN_3 sol-A-1 (word c28) | 25–48 | 11 of 24 | 0 | c25 object + rest, c28 rest, c29 rest, c36 object + rest, c37 rest, c40 rest, c41 rest, c43 rest, c46 rest, c47 rest, c48 rest |
+| TOWN_3 sol-A-2 (word c28) | 25–48 | 8 of 24 | 0 | c25 object + rest, c28 rest, c29 rest, c41 rest, c42 rest, c43 rest, c47 rest, c48 rest |
+| TOWN_3 sol-rude (word c28) | 25–48 | 3 of 24 | 0 | c25 object + rest, c33 rest, c34 rest |
+| TOWN_3 sol-warm (word c28) | 25–48 | 6 of 24 | 0 | c25 object + rest, c29 rest, c41 rest, c42 rest, c43 rest, c44 rest |
 
 <details><summary>sol-nonotice: per cycle</summary>
 
@@ -662,7 +670,7 @@ None in any world.
 | deepseek-nonotice | $3.19 | 2406 | identical (from a fresh TOWN_1 deepseek-both) | `227a1f93e39313261bbb1440fc0ad045748cba166e7dff9f40ba1811465e4f5c` | 3684 |
 | sol-turnover | $4.14 | 1969 | identical (from a fresh TOWN_2 sol-hall) | `03306733d2a819d9b0ec081166275705ee9d341ca47329f9444bfecc2bd3f89e` | 3041 |
 
-Stage ledger: check $0.01, haiku-nonotice $0.87, sol-nonotice $4.33, deepseek-nonotice $3.19, sol-turnover $4.14, sol-week $21.11; total $33.64.
+Stage ledger: check $0.01, haiku-nonotice $0.87, sol-nonotice $4.33, deepseek-nonotice $3.19, sol-turnover $4.14, sol-week $22.96; total $35.50.
 
 Balances (shared keys; TOWN_3 and TOWN_4 ran on them at the same time, so the meter is not per world): llmapi 213.12 at 2026-11-20T06:57:14.776Z → 132.18 at 2026-11-20T14:33:50.875Z; OpenRouter 134.44 → 117.59.
 
