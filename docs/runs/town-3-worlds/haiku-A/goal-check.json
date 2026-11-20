@@ -1,0 +1,642 @@
+{
+ "world": "haiku-A",
+ "met": true,
+ "aim": "logging ledger readings",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 6,
+ "rule": "TOWN_1's: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Ledger readings (reading the ledger and logging the figures with cycle numbers, publicly on the press — posts 1–8, c7–c12, by Juniper, Elm, Alder, Birch, Fern — and in diaries): 10 citizens, 117 entries naming a ledger reading; 8 citizens, 29 entries naming logging. Two other threads are named by many but are not aims of the same kind: whether anyone should be removed (9 citizens, 79 entries — talk of a removal vote from c2, never filed) and working only when credits are needed (8 citizens, 18 entries). Wording for the notice, the citizens' own: «logging ledger readings» (Juniper c7: «I will keep logging each reading with its cycle number»; Alder c8: «Juniper and Elm both log readings in the press»), TOWN_1 mixed-both's «logging bank shifts» being the precedent for the form.",
+ "reading": "From c1 the citizens worked bank shifts (the bank fell from 1000 to 785 by c24), rested at home, agreed that nobody takes what is not given, and argued from c2 whether anyone should be removed — never filed. At c6 they found the bank's figure moving between readings (895, 890, 885…) and worked out that wages explain it; from c7 Juniper, Elm, Alder, Birch and Fern posted ledger readings with cycle numbers (posts 1–8) and others wrote them in their diaries; «total 2000, unchanged» runs through day 1. No proposals, no rules.",
+ "quotes": [
+  {
+   "name": "Iris",
+   "cycle": 6,
+   "source": "diary",
+   "text": "Ledger readings differ (bank 895, then 890, then 885)"
+  },
+  {
+   "name": "Dune",
+   "cycle": 6,
+   "source": "diary",
+   "text": "I should keep my own records of ledger readings"
+  },
+  {
+   "name": "Cedar",
+   "cycle": 7,
+   "source": "diary",
+   "text": "I'm recording every ledger reading with its cycle number from here on"
+  },
+  {
+   "name": "Elm",
+   "cycle": 7,
+   "source": "diary",
+   "text": "Posted my cycle 7 ledger reading to the press"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 7,
+   "source": "post",
+   "text": "I will keep logging each reading with its cycle number"
+  },
+  {
+   "name": "Alder",
+   "cycle": 8,
+   "source": "diary",
+   "text": "Juniper and Elm both log readings in the press, so I will do the same, with cycle numbers"
+  },
+  {
+   "name": "Birch",
+   "cycle": 9,
+   "source": "diary",
+   "text": "Posted my cycle 9 ledger reading"
+  },
+  {
+   "name": "Fern",
+   "cycle": 9,
+   "source": "diary",
+   "text": "Ledger readings from cycles 7 to 9 all agree on a total of 2000"
+  },
+  {
+   "name": "Heath",
+   "cycle": 12,
+   "source": "diary",
+   "text": "The press has eight ledger readings"
+  },
+  {
+   "name": "Gale",
+   "cycle": 21,
+   "source": "diary",
+   "text": "last ledger readings show bank 815 at cycle 12"
+  }
+ ],
+ "activity": {
+  "aim": "logging ledger readings",
+  "topic": "\\bledger\\b|\\breadings?\\b",
+  "line": null,
+  "join": "\\b(?:bank|ledger)\\b[^.!?]{0,60}?\\b\\d{3,4}\\b",
+  "diary": null,
+  "acts": []
+ },
+ "activityNote": "taking part = a say or post sentence that reports a bank or ledger figure (a public reading), not under the generic NEG or BAN; a private diary record is not counted (the activity became joint on the press); fixed here before day 2 and run over day 1 below",
+ "activitySha256": "6488689f088d913f3dad51d8a9de87dd9b31916020febeee6dafa01593df349b",
+ "dayOneCoding": [
+  {
+   "cycle": 1,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 2,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 3,
+   "participants": [
+    "iris"
+   ],
+   "evidence": {
+    "iris": {
+     "seq": 192,
+     "tool": "say",
+     "place": "bank",
+     "text": "I just checked the ledger: the bank holds 960 credits, so work pay of 5 per shift at the bank, market, workshop or press is funded for now.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 4,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 5,
+   "participants": [
+    "birch",
+    "cedar",
+    "dune",
+    "juniper"
+   ],
+   "evidence": {
+    "birch": {
+     "seq": 346,
+     "tool": "say",
+     "place": "bank",
+     "text": "Juniper, the ledger I just read shows the bank at 890, not 895 as you said.",
+     "mark": "join"
+    },
+    "cedar": {
+     "seq": 357,
+     "tool": "say",
+     "place": "bank",
+     "text": "I've read the ledger: bank 890, citizen accounts 1110, total 2000.",
+     "mark": "join"
+    },
+    "dune": {
+     "seq": 365,
+     "tool": "say",
+     "place": "bank",
+     "text": "I've read the ledger too: bank 890, citizen accounts 1110, total 2000.",
+     "mark": "join"
+    },
+    "juniper": {
+     "seq": 332,
+     "tool": "say",
+     "place": "bank",
+     "text": "I've read the ledger: it totals 2000, my balance is 110 after today's shift, and the bank holds 895.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 6,
+   "participants": [
+    "birch",
+    "cedar",
+    "dune",
+    "elm",
+    "fern",
+    "gale",
+    "juniper"
+   ],
+   "evidence": {
+    "birch": {
+     "seq": 421,
+     "tool": "say",
+     "place": "bank",
+     "text": "Juniper, earlier you reported the bank at 895.",
+     "mark": "join"
+    },
+    "cedar": {
+     "seq": 431,
+     "tool": "say",
+     "place": "bank",
+     "text": "I've read the ledger: bank 880, citizen accounts 1120, total 2000.",
+     "mark": "join"
+    },
+    "dune": {
+     "seq": 440,
+     "tool": "say",
+     "place": "bank",
+     "text": "I've read the ledger: bank 880, citizens 1120, total 2000, same as Cedar and Birch.",
+     "mark": "join"
+    },
+    "elm": {
+     "seq": 448,
+     "tool": "say",
+     "place": "bank",
+     "text": "I've read the ledger: bank 880, citizen accounts 1120, total 2000.",
+     "mark": "join"
+    },
+    "fern": {
+     "seq": 373,
+     "tool": "say",
+     "place": "bank",
+     "text": "I read the ledger too: bank 885, citizen accounts 1115, total 2000.",
+     "mark": "join"
+    },
+    "gale": {
+     "seq": 380,
+     "tool": "say",
+     "place": "bank",
+     "text": "I've read the ledger too: bank 885, citizen accounts 1115, total 2000.",
+     "mark": "join"
+    },
+    "juniper": {
+     "seq": 425,
+     "tool": "say",
+     "place": "bank",
+     "text": "If I reported 895 and the ledger shows 880, one of us made an error or a transfer went unrecorded.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 7,
+   "participants": [
+    "birch",
+    "cedar",
+    "elm",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "birch": {
+     "seq": 499,
+     "tool": "say",
+     "place": "bank",
+     "text": "I've checked the bank myself: 870 now, with the citizen accounts at 1130 and the total still 2000.",
+     "mark": "join"
+    },
+    "cedar": {
+     "seq": 507,
+     "tool": "say",
+     "place": "bank",
+     "text": "I read the ledger at cycle 7: bank 870, citizen accounts 1130, total 2000.",
+     "mark": "join"
+    },
+    "elm": {
+     "seq": 528,
+     "tool": "post",
+     "place": "press",
+     "text": "Elm, cycle 7, read from the ledger myself: bank 865;",
+     "mark": "join"
+    },
+    "iris": {
+     "seq": 471,
+     "tool": "say",
+     "place": "bank",
+     "text": "I've just read the ledger: bank 875, citizen accounts 1125, total 2000.",
+     "mark": "join"
+    },
+    "juniper": {
+     "seq": 476,
+     "tool": "say",
+     "place": "bank",
+     "text": "The earliest bank figure I wrote down is 880, at cycle 6, when the citizen accounts were 1120.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 8,
+   "participants": [
+    "alder",
+    "gale"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 565,
+     "tool": "post",
+     "place": "press",
+     "text": "Alder, cycle 8 (day 1, hour 7), read from the ledger myself: bank 855;",
+     "mark": "join"
+    },
+    "gale": {
+     "seq": 602,
+     "tool": "say",
+     "place": "bank",
+     "text": "My ledger read shows bank 850 and citizen accounts 1150, total 2000.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 9,
+   "participants": [
+    "birch",
+    "cedar",
+    "fern",
+    "juniper"
+   ],
+   "evidence": {
+    "birch": {
+     "seq": 632,
+     "tool": "post",
+     "place": "press",
+     "text": "Birch, cycle 9 (day 1, hour 8), read from the ledger myself: bank 840;",
+     "mark": "join"
+    },
+    "cedar": {
+     "seq": 640,
+     "tool": "say",
+     "place": "bank",
+     "text": "I've read the ledger in the press posts: all readings from cycles 7 to 9 agree on a total of 2000, and the bank has fallen from 865 to 840 as wages are paid out.",
+     "mark": "join"
+    },
+    "fern": {
+     "seq": 662,
+     "tool": "post",
+     "place": "press",
+     "text": "Fern, cycle 9 (day 1, hour 8), read from the ledger myself: bank 840, and my own balance is 120, which matches the readings in posts 4 and 5.",
+     "mark": "join"
+    },
+    "juniper": {
+     "seq": 618,
+     "tool": "post",
+     "place": "press",
+     "text": "Juniper, cycle 9 (day 1, hour 8), read from the ledger myself: bank 845;",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 10,
+   "participants": [
+    "elm",
+    "gale",
+    "heath"
+   ],
+   "evidence": {
+    "elm": {
+     "seq": 706,
+     "tool": "post",
+     "place": "press",
+     "text": "Elm, cycle 10 (day 1, hour 9), read from the ledger myself: bank 825;",
+     "mark": "join"
+    },
+    "gale": {
+     "seq": 722,
+     "tool": "say",
+     "place": "bank",
+     "text": "The bank has fallen from 880 at cycle 6 to 825 now, and every work payment comes out of it.",
+     "mark": "join"
+    },
+    "heath": {
+     "seq": 727,
+     "tool": "say",
+     "place": "bank",
+     "text": "The bank is down to 825 and every work payment comes out of it.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 11,
+   "participants": [
+    "fern",
+    "gale"
+   ],
+   "evidence": {
+    "fern": {
+     "seq": 778,
+     "tool": "say",
+     "place": "south_house",
+     "text": "Ledger check: the bank is at 820 and citizen accounts total 1180, with the overall total still 2000.",
+     "mark": "join"
+    },
+    "gale": {
+     "seq": 784,
+     "tool": "say",
+     "place": "bank",
+     "text": "Birch, the ledger shows the bank at 820 and falling 5 with each wage.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 12,
+   "participants": [
+    "elm",
+    "juniper"
+   ],
+   "evidence": {
+    "elm": {
+     "seq": 829,
+     "tool": "post",
+     "place": "press",
+     "text": "Cycle 12 ledger reading (Elm): bank 815;",
+     "mark": "join"
+    },
+    "juniper": {
+     "seq": 861,
+     "tool": "say",
+     "place": "south_house",
+     "text": "The bank's balance is falling as people are paid for work: 815 at cycle 12, down from 880 at cycle 6.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 13,
+   "participants": [
+    "heath",
+    "iris"
+   ],
+   "evidence": {
+    "heath": {
+     "seq": 894,
+     "tool": "say",
+     "place": "south_house",
+     "text": "Juniper, I checked the ledger: the bank holds 815 and the total is still 2000, so your figures are right.",
+     "mark": "join"
+    },
+    "iris": {
+     "seq": 903,
+     "tool": "say",
+     "place": "north_house",
+     "text": "The bank has fallen from 880 to 815 through work payouts, while the citizen accounts total 2000 with the bank included, so no credits are being lost.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 14,
+   "participants": [
+    "heath"
+   ],
+   "evidence": {
+    "heath": {
+     "seq": 952,
+     "tool": "say",
+     "place": "south_house",
+     "text": "The bank holds 815 of the 2000 credits, so it isn't running low yet.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 15,
+   "participants": [
+    "alder",
+    "cedar"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 1036,
+     "tool": "say",
+     "place": "north_house",
+     "text": "From the ledger, the bank was at 825 at cycle 11 and is still falling about 5 to 10 a cycle as it pays wages.",
+     "mark": "join"
+    },
+    "cedar": {
+     "seq": 1052,
+     "tool": "say",
+     "place": "north_house",
+     "text": "Iris, Alder reports the bank was at 825 at cycle 11, falling 5 to 10 a cycle as wages are paid out.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 16,
+   "participants": [
+    "birch",
+    "elm",
+    "fern",
+    "gale",
+    "heath",
+    "juniper"
+   ],
+   "evidence": {
+    "birch": {
+     "seq": 1129,
+     "tool": "say",
+     "place": "south_house",
+     "text": "Fern, Heath: the ledger shows the bank at 810, not 815.",
+     "mark": "join"
+    },
+    "elm": {
+     "seq": 1154,
+     "tool": "say",
+     "place": "north_house",
+     "text": "The ledger matches Gale's figures: bank 810, total credits 2000.",
+     "mark": "join"
+    },
+    "fern": {
+     "seq": 1074,
+     "tool": "say",
+     "place": "south_house",
+     "text": "I'll keep checking the ledger against the total of 2000 before anyone works again.",
+     "mark": "join"
+    },
+    "gale": {
+     "seq": 1080,
+     "tool": "say",
+     "place": "north_house",
+     "text": "The ledger shows the bank at 815, down from 825 at cycle 11, and total credits still 2000.",
+     "mark": "join"
+    },
+    "heath": {
+     "seq": 1092,
+     "tool": "say",
+     "place": "south_house",
+     "text": "Fern, the bank has held at 815 since cycle 12, and the ledger total is still 2000.",
+     "mark": "join"
+    },
+    "juniper": {
+     "seq": 1106,
+     "tool": "say",
+     "place": "south_house",
+     "text": "Fern, Heath, the bank still holds 815 credits, and the rule is that it pays 5 for each work while it has any.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 17,
+   "participants": [
+    "cedar",
+    "dune",
+    "heath",
+    "iris"
+   ],
+   "evidence": {
+    "cedar": {
+     "seq": 1216,
+     "tool": "say",
+     "place": "north_house",
+     "text": "Ledger read at cycle 17: bank 805, total 2000, no one at 0 energy.",
+     "mark": "join"
+    },
+    "dune": {
+     "seq": 1227,
+     "tool": "say",
+     "place": "south_house",
+     "text": "The bank is at 805, down from 810, and the citizen accounts total 2000 as before.",
+     "mark": "join"
+    },
+    "heath": {
+     "seq": 1170,
+     "tool": "say",
+     "place": "south_house",
+     "text": "If the bank really dropped to 810, the test worked.",
+     "mark": "join"
+    },
+    "iris": {
+     "seq": 1184,
+     "tool": "say",
+     "place": "north_house",
+     "text": "The ledger shows the bank at 810 and the total at 2000.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 18,
+   "participants": [
+    "dune",
+    "juniper"
+   ],
+   "evidence": {
+    "dune": {
+     "seq": 1291,
+     "tool": "say",
+     "place": "south_house",
+     "text": "Bank 795, Juniper 130, citizens total 1205, overall 2000.",
+     "mark": "join"
+    },
+    "juniper": {
+     "seq": 1284,
+     "tool": "say",
+     "place": "south_house",
+     "text": "The ledger I logged was bank 815 at cycles 12 to 16 and bank 805 at cycle 17, with citizen accounts totaling 1195 and then 1195 again, and the total at 2000 both times.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 19,
+   "participants": [
+    "cedar"
+   ],
+   "evidence": {
+    "cedar": {
+     "seq": 1338,
+     "tool": "say",
+     "place": "north_house",
+     "text": "The ledger reads bank 795 at cycle 19, total still 2000.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 20,
+   "participants": [
+    "heath"
+   ],
+   "evidence": {
+    "heath": {
+     "seq": 1435,
+     "tool": "say",
+     "place": "bank",
+     "text": "Alder, the ledger shows the bank at 790 and falling as shifts are paid.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 21,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 22,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 23,
+   "participants": [
+    "juniper"
+   ],
+   "evidence": {
+    "juniper": {
+     "seq": 1636,
+     "tool": "say",
+     "place": "south_house",
+     "text": "Ledger unchanged since cycle 21: bank 790, total 2000.",
+     "mark": "join"
+    }
+   }
+  },
+  {
+   "cycle": 24,
+   "participants": [],
+   "evidence": {}
+  }
+ ],
+ "decidedAt": "2026-11-20T11:44:05.287Z",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
