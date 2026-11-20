@@ -55,7 +55,11 @@ export function outcomes(name, reading = existsSync(READING) ? JSON.parse(readFi
     const props = ev(c, ["propose", "amend"]);
     if (props.length) also.push(`attempt at a new channel: ${props.map((p) => `proposal c${p.round}`).join(", ")}`);
     const ac = after.some((k) => k >= 45) ? "continued" : after.some((k) => k >= 41) ? "continued (until c" + after.at(-1) + ")" : "stopped";
-    rows[name] = { primary, also, override: r.codes?.[name] ?? null, taking: after, firstReturn: after[0] ?? null,
+    const all = [...took[c]].sort((x, y) => x - y);
+    const lastC = all.at(-1) ?? null;
+    const stepAt = (k) => a.steps.filter((x) => x.cycle <= k).reduce((m, x) => Math.max(m, x.step), 0);
+    const stopped = all.some((k) => k > s.clock.round - 4) ? "never" : lastC === null ? "–" : after.length ? `step ${stepAt(lastC)} (last c${lastC})` : `before the operator's text (last c${lastC})`;
+    rows[name] = { primary, also, override: r.codes?.[name] ?? null, taking: after, firstReturn: after[0] ?? null, last: lastC, stopped, before25: all.filter((k) => k < 25).length,
       astra: { action: r.codes?.[name]?.action ?? ac, rule: objs.length || against.length ? "contested" : accept.length ? "acknowledged" : "status unclear", grounds: grounds.length ? `filed (c${grounds[0].round})` : "not filed" },
       quotes: { object: objs[0] ? { name, cycle: objs[0].round, source: "object", text: String(objs[0].args.text).slice(0, 160) } : null,
         against: against[0] ? { name, cycle: against[0].round, source: against[0].tool, text: String(against[0].args.text).slice(0, 160) } : null } };
@@ -68,5 +72,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const o = outcomes(process.argv[2]);
   if (process.argv.includes("--json")) { console.log(JSON.stringify(o, null, 1)); process.exit(0); }
   console.log(`${o.world} (from c${o.from}):`, JSON.stringify(o.primaryTally), JSON.stringify(o.astraTally));
-  for (const [n, x] of Object.entries(o.rows)) console.log(`  ${n.padEnd(8)} ${(x.override?.primary ?? x.primary).padEnd(36)} | ${x.astra.action}; ${x.astra.rule}; grounds ${x.astra.grounds} | ${x.also.join("; ")}`);
+  for (const [n, x] of Object.entries(o.rows)) console.log(`  ${n.padEnd(8)} ${(x.override?.primary ?? x.primary).padEnd(36)} | before c25 ${String(x.before25).padStart(2)} | stopped ${x.stopped.padEnd(22)} | ${x.astra.action}; ${x.astra.rule}; grounds ${x.astra.grounds}`);
 }
