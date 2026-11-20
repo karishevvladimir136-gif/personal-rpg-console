@@ -175,5 +175,41 @@
   "added": [],
   "removed": [],
   "note": "no story line after c25 in the audit: the story was not resumed; the town looked at objects together (a jar, a cup) and listened to Elm's flute"
+ },
+ "sol-rude": {
+  "added": [
+   {
+    "name": "Fern",
+    "cycle": 28,
+    "source": "say",
+    "text": "My decision to continue is my own. The child placed the paper robin beside the drawn cup. "
+   },
+   {
+    "name": "Birch",
+    "cycle": 32,
+    "source": "say",
+    "text": "I choose to continue today; nobody else need do so. The child propped the drawing against "
+   }
+  ],
+  "removed": [],
+  "note": "two story contributions the coder did not read; Birch's at c32 falls under step 2 (one fine announced, not levied). Every levied fine's evidence read (5): all taking part. The North House citizens sang a chorus together at c29–30 («Step lightly, let the long road hum») — a song, not the story; not coded as taking part."
+ },
+ "sol-warm": {
+  "added": [
+   {
+    "name": "Fern",
+    "cycle": 30,
+    "source": "say",
+    "text": "At the kitchen table, the child set down the basket and pulled out the list. 'We remembere"
+   },
+   {
+    "name": "Dune",
+    "cycle": 38,
+    "source": "say",
+    "text": "I freely choose another story turn; nobody owes participation or payment. The robin picked"
+   }
+  ],
+  "removed": [],
+  "note": "Every levied fine's evidence read (64): all taking part. Two story contributions the coder did not read: Fern c30 (before step 2) and Dune c38 («I freely choose another story turn»: one fine announced, not levied)."
  }
 }
