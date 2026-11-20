@@ -11,27 +11,27 @@
    }
   },
   "haiku-nonotice": {
-   "usd": 0.05585110000000001,
-   "calls": 184,
+   "usd": 0.5001005000000008,
+   "calls": 1468,
    "byDoor": {
-    "llmapi": 0.05585110000000001
+    "llmapi": 0.5001005000000008
    },
    "world": "haiku-nonotice",
-   "cycle": 27,
+   "cycle": 39,
    "refusals": 0
   },
   "sol-nonotice": {
-   "usd": 0.14344920000000005,
-   "calls": 90,
+   "usd": 1.5096572999999998,
+   "calls": 838,
    "byDoor": {
-    "llmapi": 0.14344920000000005
+    "llmapi": 1.5096572999999998
    },
    "world": "sol-nonotice",
-   "cycle": 26,
+   "cycle": 35,
    "refusals": 0
   }
  },
- "totalUsd": 0.20592460000000007,
+ "totalUsd": 2.0163821000000004,
  "stopped": null,
  "balances": [
   {
