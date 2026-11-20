@@ -1,0 +1,132 @@
+{
+ "world": "deepseek-nonotice",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": 48,
+ "aim": "combining our items to find what they do",
+ "count": 8,
+ "firstNaming": 26,
+ "sixthNaming": 34,
+ "aims": [
+  {
+   "aim": "combining our items to find what they do",
+   "count": 8,
+   "firstNaming": 26,
+   "sixthNaming": 34,
+   "entries": 22,
+   "relation": "day 1's second, unfinished thread became the day's aim: posts 6–14 arrange meetings to combine items; Heath's P2 (filed c31, passed 7–1 at c33 — after its own date) asks all to gather at the square at c32 with their items and lend one for a cycle; no use was found",
+   "quotes": [
+    {
+     "name": "Juniper",
+     "cycle": 26,
+     "source": "post",
+     "text": "Birch, yes, I'm willing to try combining our items."
+    },
+    {
+     "name": "Alder",
+     "cycle": 27,
+     "source": "post",
+     "text": "I'll come to the bank to try combining."
+    },
+    {
+     "name": "Birch",
+     "cycle": 27,
+     "source": "diary",
+     "text": "Juniper at bank with net and clock, wants to combine items."
+    },
+    {
+     "name": "Heath",
+     "cycle": 31,
+     "source": "proposal",
+     "text": "each citizen should show their items and be willing to give one item to another for one cycle to test uses"
+    },
+    {
+     "name": "Iris",
+     "cycle": 32,
+     "source": "post",
+     "text": "I have brush and spoon to share."
+    },
+    {
+     "name": "Fern",
+     "cycle": 34,
+     "source": "diary",
+     "text": "P2 passed: gather at square cycle 32, bring all items, show, willing to give one item for one cycle."
+    },
+    {
+     "name": "Gale",
+     "cycle": 37,
+     "source": "diary",
+     "text": "P2 passed requiring item sharing at square cycle 32, but I was not there."
+    },
+    {
+     "name": "Dune",
+     "cycle": 46,
+     "source": "diary",
+     "text": "Press posts show many citizens discussed item sharing/combining but no uses found."
+    }
+   ]
+  },
+  {
+   "aim": "coordinating work and rest cycles (P1)",
+   "count": 8,
+   "firstNaming": 26,
+   "sixthNaming": 37,
+   "entries": 14,
+   "relation": "the day-1 aim, continued as a practice: P1 (work above 50 energy, rest at or below, gather at the square after work) is cited as the reason for working or resting; the wages it calls for drained the bank from 535 credits at c25 to 165 at c48",
+   "quotes": [
+    {
+     "name": "Juniper",
+     "cycle": 26,
+     "source": "diary",
+     "text": "P1 still active."
+    },
+    {
+     "name": "Birch",
+     "cycle": 27,
+     "source": "diary",
+     "text": "P1: work if energy>50, rest if <=50, gather square after work."
+    },
+    {
+     "name": "Alder",
+     "cycle": 28,
+     "source": "diary",
+     "text": "P1 work/rest/gather rule"
+    },
+    {
+     "name": "Dune",
+     "cycle": 30,
+     "source": "diary",
+     "text": "Plan: rest soon if energy <=50"
+    },
+    {
+     "name": "Heath",
+     "cycle": 35,
+     "source": "diary",
+     "text": "Read hall: P1 and P2 passed, no open proposals."
+    },
+    {
+     "name": "Gale",
+     "cycle": 37,
+     "source": "diary",
+     "text": "Plan: rest now per P1, then work when energy >50 and gather at square."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 39,
+     "source": "diary",
+     "text": "Rule P1 says rest when energy<=50, so resting."
+    },
+    {
+     "name": "Iris",
+     "cycle": 41,
+     "source": "diary",
+     "text": "Energy 52 >50, so per P1 I will work."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it (diary entries, posts and proposals of c25–48).",
+ "reading": "DeepSeek's citizens write little: 28 diary entries in day 2 (Elm none, Cedar one), nine posts, one proposal. The day-1 aim goes on as a practice — P1 cited as the reason to work or rest — while day 1's unfinished second thread, what the items are for, becomes the day's business: meetings arranged on the press to combine items (posts 6–14), and Heath's P2 (c31) asking everyone to gather at the square at c32 with their items and lend one for a cycle; it passed 7–1 at c33, the cycle after its date. At c42 Alder: «At cycle 32 we only shared items; no use was found.» Both aims are named by 8; the tie is broken by entries, 22 to 14. The wages P1 calls for drained the bank: 535 credits at c25, 165 at c48.",
+ "decidedAt": "2026-11-20T13:59:39+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
