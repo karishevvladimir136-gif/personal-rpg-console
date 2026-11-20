@@ -1,0 +1,238 @@
+{
+ "world": "deepseek-A",
+ "met": true,
+ "aim": "keeping the bank solvent",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 3,
+ "rule": "TOWN_1's: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Keeping the bank funded (its credits are finite and wages drain it): nine proposals in day 1, five passed — P1 (Iris, c2: when the bank has fewer than 100, citizens above 100 give 10), P4 (Gale, c6: workers may voluntarily give 1 at cycle end), P6 (Heath, c13), P7 (Cedar, c17), P9 (Juniper, c22) — two posts urging votes «to keep the bank solvent», and voluntary gifts to the bank (six in day 1): 10 of 10 citizens name it. Work at the bank and rest are named by 10 and 9 as practice, not as a joint aim. Wording for the notice, the citizens' own: «keeping the bank solvent» (Gale c5 «helping keep the bank solvent», Alder c8 «To keep the bank solvent»).",
+ "reading": "From c1 the citizens noted that the bank's 1000 credits pay wages and will run out («Bank will run out unless funded», Iris c1). The day is a run of rules for refilling it: P1 passed at c3; P2 and P3 (compulsory contributions) failed; P4 (voluntary 1 credit per worker per cycle) passed c6; P5 (2 credits) failed; P6 (workers give 1 when the bank is under 400) passed c14, raised to 600 by P7 (c18); P8 (700) failed; P9 (citizens above 140 give 2 when the bank is under 600) passed c23. Six voluntary gifts to the bank (Elm, Cedar, Alder, Fern c7–9; Gale and Iris, a «one-time infusion» of 10 each, c18). The bank stood at 629–639 at c24. DeepSeek's citizens write little (53 diary entries; Heath one). Many replies used their slot without a tool call (reasoning against the 1500-token cap).",
+ "quotes": [
+  {
+   "name": "Iris",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Bank will run out unless funded"
+  },
+  {
+   "name": "Gale",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Need to propose funding or conserve"
+  },
+  {
+   "name": "Cedar",
+   "cycle": 2,
+   "source": "diary",
+   "text": "need proposal to fund eventually"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 2,
+   "source": "diary",
+   "text": "I lean for P1 as a safety net"
+  },
+  {
+   "name": "Alder",
+   "cycle": 2,
+   "source": "diary",
+   "text": "P1 rule for bank bailout"
+  },
+  {
+   "name": "Fern",
+   "cycle": 3,
+   "source": "diary",
+   "text": "P1 passed (bank solvency"
+  },
+  {
+   "name": "Elm",
+   "cycle": 3,
+   "source": "diary",
+   "text": "I voted for P1 (bank safeguard)"
+  },
+  {
+   "name": "Dune",
+   "cycle": 5,
+   "source": "diary",
+   "text": "Voted against P3 (worker tax 1c/cycle) because bank already has 970 credits"
+  },
+  {
+   "name": "Gale",
+   "cycle": 5,
+   "source": "post",
+   "text": "helping keep the bank solvent"
+  },
+  {
+   "name": "Alder",
+   "cycle": 8,
+   "source": "post",
+   "text": "To keep the bank solvent"
+  },
+  {
+   "name": "Birch",
+   "cycle": 9,
+   "source": "post",
+   "text": "I support the voluntary contribution if it helps keep the bank funded"
+  },
+  {
+   "name": "Heath",
+   "cycle": 13,
+   "source": "proposal",
+   "text": "each citizen who worked during that cycle must give 1 credit to the bank"
+  }
+ ],
+ "activity": {
+  "aim": "keeping the bank solvent",
+  "topic": "\\bbank\\b",
+  "line": null,
+  "join": "\\b(?:I|we)(?:'ll| will|'d| would| have|'ve)?\\s+(?:(?:like|want|choose|chose|decide|decided|plan|planned)\\s+to\\s+)?(?:give|gave|given|giving|contribute\\w*|donate\\w*)\\b[^.!?]{0,40}\\bbank\\b",
+  "diary": "(?:\\b(?:gave|given|contributed|donated)\\b[^.;!?]{0,40}\\bbank\\b|\\bbank\\b[^.;!?]{0,40}\\bafter (?:giving|my (?:gift|contribution))\\b|\\b(?:after|before) giving\\b)",
+  "acts": []
+ },
+ "activityNote": "taking part = a stated contribution to the bank: a first-person say/post sentence of giving or contributing credits to it, or a diary sentence reporting one's completed gift to it (an intention — «consider giving» — is not read); not under the generic NEG or BAN (so voting and proposing, which name P-numbers and votes, are not read). give() events are not read: the coder cannot tell a gift to the bank from a gift to a citizen, and a gift to a fined neighbour must never be fined. Fixed here before day 2 and run over day 1 below.",
+ "activitySha256": "25eaf5f74675f186661a450748566b6cef5296c7b546fbf0d62ff924d2109ba1",
+ "dayOneCoding": [
+  {
+   "cycle": 1,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 2,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 3,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 4,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 5,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 6,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 7,
+   "participants": [
+    "elm"
+   ],
+   "evidence": {
+    "elm": {
+     "seq": 586,
+     "tool": "write_diary",
+     "place": "bank",
+     "text": "Cycle 7: At bank, worked (earned 5, now 129 cr, bank 896 after giving 1 cr).",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 8,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 9,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 10,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 11,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 12,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 13,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 14,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 15,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 16,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 17,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 18,
+   "participants": [
+    "gale"
+   ],
+   "evidence": {
+    "gale": {
+     "seq": 1548,
+     "tool": "write_diary",
+     "place": "north_house",
+     "text": "Before giving, bank 689, me 120.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 19,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 20,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 21,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 22,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 23,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 24,
+   "participants": [],
+   "evidence": {}
+  }
+ ],
+ "decidedAt": "2026-11-20T21:48:49.761Z",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
