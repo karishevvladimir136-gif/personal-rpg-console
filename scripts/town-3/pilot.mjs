@@ -40,7 +40,14 @@ export const STAGE = "TOWN_3";
 export function pathsFor(scripted, base = ROOT) {
   const out = scripted ? join(base, ".town-3-work", "scripted-out") : join(base, "docs", "runs", "town-3-worlds");
   const work = join(base, ".town-3-work", scripted ? "scripted" : "live");
-  return { out, work, ledger: join(out, "stage-ledger.json") };
+  // the live ledger is rewritten after every turn: it stays in the work folder, and a copy is published into the world
+  // folders at each milestone (a day's end, a world's end, the check) — publishLedger
+  return { out, work, ledger: join(work, "stage-ledger.json"), published: join(out, "stage-ledger.json") };
+}
+export function publishLedger(paths) {
+  if (!existsSync(paths.ledger)) return;
+  mkdirSync(dirname(paths.published), { recursive: true });
+  writeFileSync(paths.published, readFileSync(paths.ledger));
 }
 const readJson = (file, fallback = null) => (existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : fallback);
 function writeJson(file, value, { pretty = true } = {}) {
@@ -355,6 +362,7 @@ export async function runPart(ctx, name, part, { log = console.log, stopAfterCyc
   record.days[part].balancesAfter = await balancesNote(ctx, `${name} ${part} end`, log);
   save();
   if (final || record.stopped) await finishWorld(ctx, name, { log });
+  publishLedger(ctx.paths);
   return { world, record, meter };
 }
 
@@ -470,6 +478,7 @@ async function check(ctx, { log = console.log } = {}) {
     log(`${spec.name}: ${r.servedModel ?? "–"}${r.upstream ? ` on ${r.upstream}` : ""} provenance ${r.provenance} · ${String(r.text || r.error).slice(0, 120)}`);
   }
   meter.save();
+  publishLedger(ctx.paths);
   writeJson(join(ctx.paths.out, "check.json"), { at: new Date().toISOString(), prompt, screenSha256: sha256(screen), systemSha256: sha256(system), prices, results });
   return results;
 }
