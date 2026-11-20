@@ -39,13 +39,13 @@
    "refusals": 0
   },
   "haiku-silent": {
-   "usd": 0.4622524999999999,
-   "calls": 1790,
+   "usd": 1.1525499999999993,
+   "calls": 3658,
    "byDoor": {
-    "llmapi": 0.4622524999999999
+    "llmapi": 1.1525499999999993
    },
    "world": "haiku-silent",
-   "cycle": 24,
+   "cycle": 48,
    "refusals": 0
   },
   "deepseek host probe": {
@@ -68,18 +68,18 @@
    "note": "first start on TOWN_1's host DeepInfra fp8, stopped by the session in cycle 1 (about 32 s a DeepSeek call; 48 cycles would have taken about a day); the calls of the turn in flight when it was stopped are not booked (cents, OpenRouter)"
   },
   "deepseek-silent": {
-   "usd": 0.4366331800000001,
-   "calls": 234,
+   "usd": 2.3651121099999988,
+   "calls": 1333,
    "byDoor": {
-    "openrouter": 0.4272306800000001,
-    "llmapi": 0.009402500000000001
+    "openrouter": 2.3076107099999996,
+    "llmapi": 0.057501399999999994
    },
    "world": "deepseek-silent",
-   "cycle": 3,
+   "cycle": 11,
    "refusals": 0
   }
  },
- "totalUsd": 14.332056321999987,
+ "totalUsd": 16.950832751999986,
  "stopped": null,
  "balances": [
   {
@@ -275,6 +275,32 @@
     "total": 133.72676666000007,
     "usage": 2016.27323334,
     "at": "2026-11-20T08:21:06.143Z"
+   }
+  },
+  {
+   "label": "haiku-silent day 2 start",
+   "llmapi": {
+    "total": 186.53871399,
+    "at": "2026-11-20T08:23:13.013Z"
+   },
+   "at": "2026-11-20T08:23:13.047Z",
+   "openrouter": {
+    "total": 133.64823595000007,
+    "usage": 2016.35176405,
+    "at": "2026-11-20T08:23:13.047Z"
+   }
+  },
+  {
+   "label": "haiku-silent day 2 end",
+   "llmapi": {
+    "total": 173.46818729,
+    "at": "2026-11-20T09:18:24.748Z"
+   },
+   "at": "2026-11-20T09:18:24.801Z",
+   "openrouter": {
+    "total": 131.55256381999993,
+    "usage": 2018.44743618,
+    "at": "2026-11-20T09:18:24.800Z"
    }
   }
  ]
