@@ -11,6 +11,7 @@ import { afterText, systemTextOf, sha256 } from "./interface.mjs";
 export const WORLD_FORMAT = `${FORMAT}/world`;
 export const NO_TOOL_RESULT = "No tool call was read. Reply with one JSON object on its own line, for example {\"tool\": \"end_turn\", \"args\": {}}.";
 
+/** `scarcity`: false (TOWN_0), true (TOWN_2) or an economy's constants (TOWN_4's VALVE). */
 export function newWorld({ names = NAMES, arm = "both", label = null, scarcity = false } = {}) {
   return { format: WORLD_FORMAT, label, state: initialState({ names, arm, scarcity }), cursor: { round: 0, order: null, pos: 0 }, log: [] };
 }

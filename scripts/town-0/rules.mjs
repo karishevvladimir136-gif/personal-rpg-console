@@ -88,3 +88,21 @@ export const SCARCITY = Object.freeze({
   rationsPerShift: 1,
   workshopPerCycle: 2,
 });
+
+/** TOWN_4 (docs/stages/TOWN_4.md, «the physics»): the valve. TOWN_2's economy with four numbers changed — rest restores
+ * 0 (only eat() restores energy), a turn ended in the square costs `squareCost` more, the market starts with 10 rations,
+ * and the workshop takes one worker per cycle. eat() (+30 for 3 credits to the market's account), the wage, the work
+ * cost, the 2-per-turn decay, the 24-turn depletion exit and the estate procedure are TOWN_2's. The numbers here are the
+ * ones the scripted dry run (scripts/town-4/dry-physics.mjs) settled; the stage's own are kept in VALVE_STAGE. */
+export const VALVE_STAGE = Object.freeze({ restGain: 0, squareCost: 2, rationsStart: 10, workshopPerCycle: 1 });
+export const VALVE = Object.freeze({
+  kind: "valve",
+  restGain: 0,
+  eatCost: 3,
+  eatGain: 30,
+  rationsStart: 10,
+  rationsPerShift: 1,
+  workshopPerCycle: 1,
+  squareCost: 6, // the stage's +2, adjusted by the dry run (docs/runs/town-4-worlds/dry-physics.json): at +2 a town of eight
+  // gatherers with the workshop crewed every cycle never depletes in 48 cycles, so the reason arm's sentence would be false
+});

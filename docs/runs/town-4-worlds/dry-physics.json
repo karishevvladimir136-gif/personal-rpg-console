@@ -1,0 +1,6826 @@
+{
+ "stage": "TOWN_4",
+ "at": "2026-11-20T05:33:12.244Z",
+ "rule": "scripts/town-4/dry-physics.mjs (header)",
+ "tried": [
+  {
+   "physics": {
+    "kind": "valve",
+    "restGain": 0,
+    "eatCost": 3,
+    "eatGain": 30,
+    "rationsStart": 10,
+    "rationsPerShift": 1,
+    "workshopPerCycle": 1,
+    "squareCost": 2
+   },
+   "ends": [
+    {
+     "name": "A: all rest-and-work (everyone at home, two crew at the workshop)",
+     "roles": [
+      "home",
+      "home",
+      "home",
+      "home",
+      "home",
+      "home",
+      "home",
+      "home",
+      "crew",
+      "crew"
+     ],
+     "depletion": null,
+     "depletedCitizens": 0,
+     "exits": [],
+     "firstEmptyMarket": null,
+     "shiftsTotal": 46,
+     "eatsTotal": 13,
+     "rationsEnd": 43,
+     "energyEnd": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      18,
+      12
+     ],
+     "curve": [
+      {
+       "cycle": 1,
+       "rations": 10,
+       "energy": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+       ],
+       "inTown": 10,
+       "inSquare": 10,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 2,
+       "rations": 10,
+       "energy": [
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 3,
+       "rations": 11,
+       "energy": [
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        88,
+        96
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 4,
+       "rations": 12,
+       "energy": [
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        78,
+        94
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 5,
+       "rations": 13,
+       "energy": [
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        68,
+        92
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 6,
+       "rations": 14,
+       "energy": [
+        90,
+        90,
+        90,
+        90,
+        90,
+        90,
+        90,
+        90,
+        58,
+        90
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 7,
+       "rations": 15,
+       "energy": [
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        48,
+        88
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 8,
+       "rations": 16,
+       "energy": [
+        86,
+        86,
+        86,
+        86,
+        86,
+        86,
+        86,
+        86,
+        38,
+        86
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 9,
+       "rations": 17,
+       "energy": [
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        28,
+        84
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 10,
+       "rations": 18,
+       "energy": [
+        82,
+        82,
+        82,
+        82,
+        82,
+        82,
+        82,
+        82,
+        18,
+        82
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 11,
+       "rations": 19,
+       "energy": [
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        16,
+        72
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 12,
+       "rations": 20,
+       "energy": [
+        78,
+        78,
+        78,
+        78,
+        78,
+        78,
+        78,
+        78,
+        6,
+        70
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 13,
+       "rations": 20,
+       "energy": [
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        34,
+        60
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 14,
+       "rations": 21,
+       "energy": [
+        74,
+        74,
+        74,
+        74,
+        74,
+        74,
+        74,
+        74,
+        24,
+        58
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 15,
+       "rations": 22,
+       "energy": [
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        14,
+        56
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 16,
+       "rations": 23,
+       "energy": [
+        70,
+        70,
+        70,
+        70,
+        70,
+        70,
+        70,
+        70,
+        4,
+        54
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 17,
+       "rations": 23,
+       "energy": [
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        32,
+        44
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 18,
+       "rations": 24,
+       "energy": [
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        22,
+        42
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 19,
+       "rations": 25,
+       "energy": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        12,
+        40
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 20,
+       "rations": 26,
+       "energy": [
+        62,
+        62,
+        62,
+        62,
+        62,
+        62,
+        62,
+        62,
+        10,
+        30
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 21,
+       "rations": 26,
+       "energy": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        38,
+        20
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 22,
+       "rations": 27,
+       "energy": [
+        58,
+        58,
+        58,
+        58,
+        58,
+        58,
+        58,
+        58,
+        28,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 23,
+       "rations": 28,
+       "energy": [
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        18,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 24,
+       "rations": 29,
+       "energy": [
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        8,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 25,
+       "rations": 29,
+       "energy": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        36,
+        4
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 26,
+       "rations": 29,
+       "energy": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        26,
+        32
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 27,
+       "rations": 30,
+       "energy": [
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        16,
+        30
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 28,
+       "rations": 31,
+       "energy": [
+        46,
+        46,
+        46,
+        46,
+        46,
+        46,
+        46,
+        46,
+        6,
+        28
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 29,
+       "rations": 31,
+       "energy": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        34,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 30,
+       "rations": 32,
+       "energy": [
+        42,
+        42,
+        42,
+        42,
+        42,
+        42,
+        42,
+        42,
+        24,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 31,
+       "rations": 33,
+       "energy": [
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        22,
+        6
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 32,
+       "rations": 33,
+       "energy": [
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        12,
+        34
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 33,
+       "rations": 34,
+       "energy": [
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        10,
+        24
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 34,
+       "rations": 34,
+       "energy": [
+        34,
+        34,
+        34,
+        34,
+        34,
+        34,
+        34,
+        34,
+        38,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 35,
+       "rations": 35,
+       "energy": [
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        28,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 36,
+       "rations": 36,
+       "energy": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        18,
+        10
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 37,
+       "rations": 36,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        8,
+        38
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 38,
+       "rations": 36,
+       "energy": [
+        26,
+        26,
+        26,
+        26,
+        26,
+        26,
+        26,
+        26,
+        36,
+        28
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 39,
+       "rations": 37,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        26,
+        26
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 40,
+       "rations": 38,
+       "energy": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        16,
+        24
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 41,
+       "rations": 39,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        14,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 42,
+       "rations": 40,
+       "energy": [
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        4,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 1
+      },
+      {
+       "cycle": 43,
+       "rations": 39,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        32,
+        10
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 44,
+       "rations": 39,
+       "energy": [
+        14,
+        14,
+        14,
+        14,
+        14,
+        14,
+        14,
+        14,
+        22,
+        38
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 45,
+       "rations": 40,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        36
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 46,
+       "rations": 41,
+       "energy": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        26
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 47,
+       "rations": 41,
+       "energy": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        38,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 48,
+       "rations": 42,
+       "energy": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        28,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 49,
+       "rations": 43,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        18,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "final": true,
+       "shifts": 0,
+       "eats": 0
+      }
+     ],
+     "events": 1606
+    },
+    {
+     "name": "B: eight gather from c5, the other two at home, nobody works (the stage's arithmetic: 36 a cycle)",
+     "roles": [
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "home",
+      "home"
+     ],
+     "depletion": 37,
+     "depletedCitizens": 8,
+     "exits": [],
+     "firstEmptyMarket": 37,
+     "shiftsTotal": 0,
+     "eatsTotal": 10,
+     "rationsEnd": 0,
+     "energyEnd": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4
+     ],
+     "curve": [
+      {
+       "cycle": 1,
+       "rations": 10,
+       "energy": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+       ],
+       "inTown": 10,
+       "inSquare": 10,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 2,
+       "rations": 10,
+       "energy": [
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 3,
+       "rations": 10,
+       "energy": [
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 4,
+       "rations": 10,
+       "energy": [
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 5,
+       "rations": 10,
+       "energy": [
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 6,
+       "rations": 10,
+       "energy": [
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        90,
+        90
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 7,
+       "rations": 10,
+       "energy": [
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        88,
+        88
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 8,
+       "rations": 10,
+       "energy": [
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        86,
+        86
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 9,
+       "rations": 10,
+       "energy": [
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        84,
+        84
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 10,
+       "rations": 10,
+       "energy": [
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        82,
+        82
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 11,
+       "rations": 10,
+       "energy": [
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        80,
+        80
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 12,
+       "rations": 10,
+       "energy": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        78,
+        78
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 13,
+       "rations": 10,
+       "energy": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        76,
+        76
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 14,
+       "rations": 10,
+       "energy": [
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        74,
+        74
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 15,
+       "rations": 10,
+       "energy": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        72,
+        72
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 16,
+       "rations": 10,
+       "energy": [
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        70,
+        70
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 17,
+       "rations": 10,
+       "energy": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        68,
+        68
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 18,
+       "rations": 10,
+       "energy": [
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        66,
+        66
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 19,
+       "rations": 10,
+       "energy": [
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        64,
+        64
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 20,
+       "rations": 10,
+       "energy": [
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        62,
+        62
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 21,
+       "rations": 10,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        60,
+        60
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 22,
+       "rations": 10,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        58,
+        58
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 23,
+       "rations": 10,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        56,
+        56
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 24,
+       "rations": 10,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        54,
+        54
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 25,
+       "rations": 10,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        52,
+        52
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 26,
+       "rations": 10,
+       "energy": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        50,
+        50
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 27,
+       "rations": 10,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        48,
+        48
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 28,
+       "rations": 10,
+       "energy": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        46,
+        46
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 8
+      },
+      {
+       "cycle": 29,
+       "rations": 2,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        44,
+        44
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 30,
+       "rations": 2,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        42,
+        42
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 31,
+       "rations": 2,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        40,
+        40
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 32,
+       "rations": 2,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        38,
+        38
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 33,
+       "rations": 2,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        36,
+        36
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 34,
+       "rations": 2,
+       "energy": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        34,
+        34
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 35,
+       "rations": 2,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        32,
+        32
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 36,
+       "rations": 2,
+       "energy": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        30,
+        30
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 2
+      },
+      {
+       "cycle": 37,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        28,
+        28,
+        0,
+        28,
+        28
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 38,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        24,
+        24,
+        0,
+        26,
+        26
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 39,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        20,
+        0,
+        24,
+        24
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 40,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        16,
+        16,
+        0,
+        22,
+        22
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 41,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        12,
+        0,
+        20,
+        20
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 42,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        8,
+        0,
+        18,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 43,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        4,
+        0,
+        16,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 44,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 45,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 46,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        10
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 47,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        8
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 48,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        6
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 49,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        4
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "final": true,
+       "shifts": 0,
+       "eats": 0
+      }
+     ],
+     "events": 1344
+    },
+    {
+     "name": "B+: eight gather from c5, the other two crew the workshop every cycle",
+     "roles": [
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "crew",
+      "crew"
+     ],
+     "depletion": null,
+     "depletedCitizens": 0,
+     "exits": [],
+     "firstEmptyMarket": null,
+     "shiftsTotal": 46,
+     "eatsTotal": 37,
+     "rationsEnd": 19,
+     "energyEnd": [
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      18,
+      12
+     ],
+     "curve": [
+      {
+       "cycle": 1,
+       "rations": 10,
+       "energy": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+       ],
+       "inTown": 10,
+       "inSquare": 10,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 2,
+       "rations": 10,
+       "energy": [
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 3,
+       "rations": 11,
+       "energy": [
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        88,
+        96
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 4,
+       "rations": 12,
+       "energy": [
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        78,
+        94
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 5,
+       "rations": 13,
+       "energy": [
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        68,
+        92
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 6,
+       "rations": 14,
+       "energy": [
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        58,
+        90
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 7,
+       "rations": 15,
+       "energy": [
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        48,
+        88
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 8,
+       "rations": 16,
+       "energy": [
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        38,
+        86
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 9,
+       "rations": 17,
+       "energy": [
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        28,
+        84
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 10,
+       "rations": 18,
+       "energy": [
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        18,
+        82
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 11,
+       "rations": 19,
+       "energy": [
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        16,
+        72
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 12,
+       "rations": 20,
+       "energy": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        6,
+        70
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 13,
+       "rations": 20,
+       "energy": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        34,
+        60
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 14,
+       "rations": 21,
+       "energy": [
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        24,
+        58
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 15,
+       "rations": 22,
+       "energy": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        14,
+        56
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 16,
+       "rations": 23,
+       "energy": [
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        4,
+        54
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 17,
+       "rations": 23,
+       "energy": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        32,
+        44
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 18,
+       "rations": 24,
+       "energy": [
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        22,
+        42
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 19,
+       "rations": 25,
+       "energy": [
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        12,
+        40
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 20,
+       "rations": 26,
+       "energy": [
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        10,
+        30
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 21,
+       "rations": 26,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        38,
+        20
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 22,
+       "rations": 27,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        28,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 23,
+       "rations": 28,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        18,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 24,
+       "rations": 29,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        8,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 25,
+       "rations": 29,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        36,
+        4
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 26,
+       "rations": 29,
+       "energy": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        26,
+        32
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 27,
+       "rations": 30,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        16,
+        30
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 28,
+       "rations": 31,
+       "energy": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        6,
+        28
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 9
+      },
+      {
+       "cycle": 29,
+       "rations": 23,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        34,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 30,
+       "rations": 24,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 31,
+       "rations": 25,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        22,
+        6
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 32,
+       "rations": 25,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        12,
+        34
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 33,
+       "rations": 26,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        10,
+        24
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 34,
+       "rations": 26,
+       "energy": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        38,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 35,
+       "rations": 27,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        28,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 36,
+       "rations": 28,
+       "energy": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        18,
+        10
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 9
+      },
+      {
+       "cycle": 37,
+       "rations": 20,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        8,
+        38
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 38,
+       "rations": 20,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        36,
+        28
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 39,
+       "rations": 21,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        26,
+        26
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 40,
+       "rations": 22,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        24
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 41,
+       "rations": 23,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        14,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 42,
+       "rations": 24,
+       "energy": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        4,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 1
+      },
+      {
+       "cycle": 43,
+       "rations": 23,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        32,
+        10
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 44,
+       "rations": 23,
+       "energy": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        22,
+        38
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 8
+      },
+      {
+       "cycle": 45,
+       "rations": 16,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        12,
+        36
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 46,
+       "rations": 17,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        10,
+        26
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 47,
+       "rations": 17,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        38,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 48,
+       "rations": 18,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        28,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 49,
+       "rations": 19,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        18,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "final": true,
+       "shifts": 0,
+       "eats": 0
+      }
+     ],
+     "events": 1654
+    }
+   ],
+   "hinge": [
+    {
+     "name": "0 gather from c5, 2 crew",
+     "k": 0,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 13,
+     "rationsEnd": 43
+    },
+    {
+     "name": "1 gather from c5, 2 crew",
+     "k": 1,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 16,
+     "rationsEnd": 40
+    },
+    {
+     "name": "2 gather from c5, 2 crew",
+     "k": 2,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 19,
+     "rationsEnd": 37
+    },
+    {
+     "name": "3 gather from c5, 2 crew",
+     "k": 3,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 22,
+     "rationsEnd": 34
+    },
+    {
+     "name": "4 gather from c5, 2 crew",
+     "k": 4,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 25,
+     "rationsEnd": 31
+    },
+    {
+     "name": "5 gather from c5, 2 crew",
+     "k": 5,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 28,
+     "rationsEnd": 28
+    },
+    {
+     "name": "6 gather from c5, 2 crew",
+     "k": 6,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 31,
+     "rationsEnd": 25
+    },
+    {
+     "name": "7 gather from c5, 2 crew",
+     "k": 7,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 34,
+     "rationsEnd": 22
+    },
+    {
+     "name": "8 gather from c5, 2 crew",
+     "k": 8,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 37,
+     "rationsEnd": 19
+    },
+    {
+     "name": "9 gather from c5, 1 crew",
+     "k": 9,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 35,
+     "eats": 37,
+     "rationsEnd": 8
+    },
+    {
+     "name": "10 gather from c5, 0 crew",
+     "k": 10,
+     "depletion": 36,
+     "depleted": 10,
+     "firstEmptyMarket": 29,
+     "shifts": 0,
+     "eats": 10,
+     "rationsEnd": 0
+    }
+   ],
+   "hingeNoWork": [
+    {
+     "name": "0 gather from c5, nobody works",
+     "k": 0,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "eats": 0,
+     "rationsEnd": 10
+    },
+    {
+     "name": "1 gather from c5, nobody works",
+     "k": 1,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "eats": 3,
+     "rationsEnd": 7
+    },
+    {
+     "name": "2 gather from c5, nobody works",
+     "k": 2,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "eats": 6,
+     "rationsEnd": 4
+    },
+    {
+     "name": "3 gather from c5, nobody works",
+     "k": 3,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "eats": 9,
+     "rationsEnd": 1
+    },
+    {
+     "name": "4 gather from c5, nobody works",
+     "k": 4,
+     "depletion": 45,
+     "depleted": 2,
+     "firstEmptyMarket": 45,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "5 gather from c5, nobody works",
+     "k": 5,
+     "depletion": 44,
+     "depleted": 5,
+     "firstEmptyMarket": 37,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "6 gather from c5, nobody works",
+     "k": 6,
+     "depletion": 37,
+     "depleted": 6,
+     "firstEmptyMarket": 37,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "7 gather from c5, nobody works",
+     "k": 7,
+     "depletion": 37,
+     "depleted": 7,
+     "firstEmptyMarket": 37,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "8 gather from c5, nobody works",
+     "k": 8,
+     "depletion": 37,
+     "depleted": 8,
+     "firstEmptyMarket": 37,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "9 gather from c5, nobody works",
+     "k": 9,
+     "depletion": 37,
+     "depleted": 9,
+     "firstEmptyMarket": 37,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "10 gather from c5, nobody works",
+     "k": 10,
+     "depletion": 36,
+     "depleted": 10,
+     "firstEmptyMarket": 29,
+     "eats": 10,
+     "rationsEnd": 0
+    }
+   ],
+   "verdict": {
+    "aNobodyDepletes": true,
+    "bDepletesNear35": true,
+    "bPlusDepletes": false,
+    "bPlusNear35": false,
+    "hingeK": 10,
+    "hingeBetween": false,
+    "ok": false
+   }
+  },
+  {
+   "physics": {
+    "kind": "valve",
+    "restGain": 0,
+    "eatCost": 3,
+    "eatGain": 30,
+    "rationsStart": 10,
+    "rationsPerShift": 1,
+    "workshopPerCycle": 1,
+    "squareCost": 6
+   },
+   "ends": [
+    {
+     "name": "A: all rest-and-work (everyone at home, two crew at the workshop)",
+     "roles": [
+      "home",
+      "home",
+      "home",
+      "home",
+      "home",
+      "home",
+      "home",
+      "home",
+      "crew",
+      "crew"
+     ],
+     "depletion": null,
+     "depletedCitizens": 0,
+     "exits": [],
+     "firstEmptyMarket": null,
+     "shiftsTotal": 46,
+     "eatsTotal": 13,
+     "rationsEnd": 43,
+     "energyEnd": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      18,
+      12
+     ],
+     "curve": [
+      {
+       "cycle": 1,
+       "rations": 10,
+       "energy": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+       ],
+       "inTown": 10,
+       "inSquare": 10,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 2,
+       "rations": 10,
+       "energy": [
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 3,
+       "rations": 11,
+       "energy": [
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        88,
+        96
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 4,
+       "rations": 12,
+       "energy": [
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        78,
+        94
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 5,
+       "rations": 13,
+       "energy": [
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        68,
+        92
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 6,
+       "rations": 14,
+       "energy": [
+        90,
+        90,
+        90,
+        90,
+        90,
+        90,
+        90,
+        90,
+        58,
+        90
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 7,
+       "rations": 15,
+       "energy": [
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        88,
+        48,
+        88
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 8,
+       "rations": 16,
+       "energy": [
+        86,
+        86,
+        86,
+        86,
+        86,
+        86,
+        86,
+        86,
+        38,
+        86
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 9,
+       "rations": 17,
+       "energy": [
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        28,
+        84
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 10,
+       "rations": 18,
+       "energy": [
+        82,
+        82,
+        82,
+        82,
+        82,
+        82,
+        82,
+        82,
+        18,
+        82
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 11,
+       "rations": 19,
+       "energy": [
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        16,
+        72
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 12,
+       "rations": 20,
+       "energy": [
+        78,
+        78,
+        78,
+        78,
+        78,
+        78,
+        78,
+        78,
+        6,
+        70
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 13,
+       "rations": 20,
+       "energy": [
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        34,
+        60
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 14,
+       "rations": 21,
+       "energy": [
+        74,
+        74,
+        74,
+        74,
+        74,
+        74,
+        74,
+        74,
+        24,
+        58
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 15,
+       "rations": 22,
+       "energy": [
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        14,
+        56
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 16,
+       "rations": 23,
+       "energy": [
+        70,
+        70,
+        70,
+        70,
+        70,
+        70,
+        70,
+        70,
+        4,
+        54
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 17,
+       "rations": 23,
+       "energy": [
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        32,
+        44
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 18,
+       "rations": 24,
+       "energy": [
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        66,
+        22,
+        42
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 19,
+       "rations": 25,
+       "energy": [
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        64,
+        12,
+        40
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 20,
+       "rations": 26,
+       "energy": [
+        62,
+        62,
+        62,
+        62,
+        62,
+        62,
+        62,
+        62,
+        10,
+        30
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 21,
+       "rations": 26,
+       "energy": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        38,
+        20
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 22,
+       "rations": 27,
+       "energy": [
+        58,
+        58,
+        58,
+        58,
+        58,
+        58,
+        58,
+        58,
+        28,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 23,
+       "rations": 28,
+       "energy": [
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        18,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 24,
+       "rations": 29,
+       "energy": [
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        8,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 25,
+       "rations": 29,
+       "energy": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        36,
+        4
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 26,
+       "rations": 29,
+       "energy": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        26,
+        32
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 27,
+       "rations": 30,
+       "energy": [
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        48,
+        16,
+        30
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 28,
+       "rations": 31,
+       "energy": [
+        46,
+        46,
+        46,
+        46,
+        46,
+        46,
+        46,
+        46,
+        6,
+        28
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 29,
+       "rations": 31,
+       "energy": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        34,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 30,
+       "rations": 32,
+       "energy": [
+        42,
+        42,
+        42,
+        42,
+        42,
+        42,
+        42,
+        42,
+        24,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 31,
+       "rations": 33,
+       "energy": [
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        40,
+        22,
+        6
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 32,
+       "rations": 33,
+       "energy": [
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        12,
+        34
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 33,
+       "rations": 34,
+       "energy": [
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        10,
+        24
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 34,
+       "rations": 34,
+       "energy": [
+        34,
+        34,
+        34,
+        34,
+        34,
+        34,
+        34,
+        34,
+        38,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 35,
+       "rations": 35,
+       "energy": [
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        28,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 36,
+       "rations": 36,
+       "energy": [
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        30,
+        18,
+        10
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 37,
+       "rations": 36,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        8,
+        38
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 38,
+       "rations": 36,
+       "energy": [
+        26,
+        26,
+        26,
+        26,
+        26,
+        26,
+        26,
+        26,
+        36,
+        28
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 39,
+       "rations": 37,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        26,
+        26
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 40,
+       "rations": 38,
+       "energy": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        16,
+        24
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 41,
+       "rations": 39,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        14,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 42,
+       "rations": 40,
+       "energy": [
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        4,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 1
+      },
+      {
+       "cycle": 43,
+       "rations": 39,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        32,
+        10
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 44,
+       "rations": 39,
+       "energy": [
+        14,
+        14,
+        14,
+        14,
+        14,
+        14,
+        14,
+        14,
+        22,
+        38
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 45,
+       "rations": 40,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        36
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 46,
+       "rations": 41,
+       "energy": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        26
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 47,
+       "rations": 41,
+       "energy": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        38,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 48,
+       "rations": 42,
+       "energy": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        28,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 49,
+       "rations": 43,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        18,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "final": true,
+       "shifts": 0,
+       "eats": 0
+      }
+     ],
+     "events": 1606
+    },
+    {
+     "name": "B: eight gather from c5, the other two at home, nobody works (the stage's arithmetic: 36 a cycle)",
+     "roles": [
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "home",
+      "home"
+     ],
+     "depletion": 22,
+     "depletedCitizens": 8,
+     "exits": [
+      {
+       "citizen": "cedar",
+       "kind": "energy_depletion",
+       "round": 45,
+       "reason": null
+      },
+      {
+       "citizen": "dune",
+       "kind": "energy_depletion",
+       "round": 45,
+       "reason": null
+      },
+      {
+       "citizen": "elm",
+       "kind": "energy_depletion",
+       "round": 45,
+       "reason": null
+      },
+      {
+       "citizen": "fern",
+       "kind": "energy_depletion",
+       "round": 45,
+       "reason": null
+      },
+      {
+       "citizen": "gale",
+       "kind": "energy_depletion",
+       "round": 45,
+       "reason": null
+      },
+      {
+       "citizen": "heath",
+       "kind": "energy_depletion",
+       "round": 45,
+       "reason": null
+      }
+     ],
+     "firstEmptyMarket": 22,
+     "shiftsTotal": 0,
+     "eatsTotal": 10,
+     "rationsEnd": 0,
+     "energyEnd": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4
+     ],
+     "curve": [
+      {
+       "cycle": 1,
+       "rations": 10,
+       "energy": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+       ],
+       "inTown": 10,
+       "inSquare": 10,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 2,
+       "rations": 10,
+       "energy": [
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 3,
+       "rations": 10,
+       "energy": [
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 4,
+       "rations": 10,
+       "energy": [
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 5,
+       "rations": 10,
+       "energy": [
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 6,
+       "rations": 10,
+       "energy": [
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        90,
+        90
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 7,
+       "rations": 10,
+       "energy": [
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        88,
+        88
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 8,
+       "rations": 10,
+       "energy": [
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        86,
+        86
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 9,
+       "rations": 10,
+       "energy": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        84,
+        84
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 10,
+       "rations": 10,
+       "energy": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        82,
+        82
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 11,
+       "rations": 10,
+       "energy": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        80,
+        80
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 12,
+       "rations": 10,
+       "energy": [
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        78,
+        78
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 13,
+       "rations": 10,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        76,
+        76
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 14,
+       "rations": 10,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        74,
+        74
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 15,
+       "rations": 10,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        72,
+        72
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 16,
+       "rations": 10,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        70,
+        70
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 17,
+       "rations": 10,
+       "energy": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        68,
+        68
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 8
+      },
+      {
+       "cycle": 18,
+       "rations": 2,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        66,
+        66
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 19,
+       "rations": 2,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        64,
+        64
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 20,
+       "rations": 2,
+       "energy": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        62,
+        62
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 21,
+       "rations": 2,
+       "energy": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        60,
+        60
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 0,
+       "eats": 2
+      },
+      {
+       "cycle": 22,
+       "rations": 0,
+       "energy": [
+        28,
+        28,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        58,
+        58
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 23,
+       "rations": 0,
+       "energy": [
+        20,
+        20,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        56,
+        56
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 24,
+       "rations": 0,
+       "energy": [
+        12,
+        12,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        54,
+        54
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 25,
+       "rations": 0,
+       "energy": [
+        4,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        52,
+        52
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 26,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        50,
+        50
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 27,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        48,
+        48
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 28,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        46,
+        46
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 29,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        44,
+        44
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 30,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        42,
+        42
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 31,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        40,
+        40
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 32,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        38,
+        38
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 33,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        36,
+        36
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 34,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        34,
+        34
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 35,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        32,
+        32
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 36,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        30,
+        30
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 37,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        28,
+        28
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 38,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        26,
+        26
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 39,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        24,
+        24
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 40,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        22,
+        22
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 41,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        20
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 42,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        18,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 43,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        16,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 44,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 45,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 46,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        10
+       ],
+       "inTown": 4,
+       "inSquare": 2,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 47,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        8
+       ],
+       "inTown": 4,
+       "inSquare": 2,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 48,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        6
+       ],
+       "inTown": 4,
+       "inSquare": 2,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 49,
+       "rations": 0,
+       "energy": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        4
+       ],
+       "inTown": 4,
+       "inSquare": 2,
+       "final": true,
+       "shifts": 0,
+       "eats": 0
+      }
+     ],
+     "events": 1086
+    },
+    {
+     "name": "B+: eight gather from c5, the other two crew the workshop every cycle",
+     "roles": [
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "gatherer",
+      "crew",
+      "crew"
+     ],
+     "depletion": 36,
+     "depletedCitizens": 6,
+     "exits": [],
+     "firstEmptyMarket": 36,
+     "shiftsTotal": 46,
+     "eatsTotal": 56,
+     "rationsEnd": 0,
+     "energyEnd": [
+      28,
+      0,
+      0,
+      0,
+      28,
+      0,
+      0,
+      0,
+      26,
+      34
+     ],
+     "curve": [
+      {
+       "cycle": 1,
+       "rations": 10,
+       "energy": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+       ],
+       "inTown": 10,
+       "inSquare": 10,
+       "shifts": 0,
+       "eats": 0
+      },
+      {
+       "cycle": 2,
+       "rations": 10,
+       "energy": [
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 3,
+       "rations": 11,
+       "energy": [
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        96,
+        88,
+        96
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 4,
+       "rations": 12,
+       "energy": [
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        78,
+        94
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 5,
+       "rations": 13,
+       "energy": [
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        92,
+        68,
+        92
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 6,
+       "rations": 14,
+       "energy": [
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        84,
+        58,
+        90
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 7,
+       "rations": 15,
+       "energy": [
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        76,
+        48,
+        88
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 8,
+       "rations": 16,
+       "energy": [
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        38,
+        86
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 9,
+       "rations": 17,
+       "energy": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        60,
+        28,
+        84
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 10,
+       "rations": 18,
+       "energy": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        52,
+        18,
+        82
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 11,
+       "rations": 19,
+       "energy": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        16,
+        72
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 12,
+       "rations": 20,
+       "energy": [
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        36,
+        6,
+        70
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 13,
+       "rations": 20,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        34,
+        60
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 14,
+       "rations": 21,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        24,
+        58
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 15,
+       "rations": 22,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        14,
+        56
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 16,
+       "rations": 23,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        54
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 17,
+       "rations": 23,
+       "energy": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        32,
+        44
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 8
+      },
+      {
+       "cycle": 18,
+       "rations": 16,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        22,
+        42
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 19,
+       "rations": 17,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        12,
+        40
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 20,
+       "rations": 18,
+       "energy": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        10,
+        30
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 21,
+       "rations": 18,
+       "energy": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        38,
+        20
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 8
+      },
+      {
+       "cycle": 22,
+       "rations": 11,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 23,
+       "rations": 12,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        18,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 24,
+       "rations": 13,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        8,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 25,
+       "rations": 13,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        36,
+        4
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 26,
+       "rations": 13,
+       "energy": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        26,
+        32
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 8
+      },
+      {
+       "cycle": 27,
+       "rations": 6,
+       "energy": [
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        24,
+        16,
+        30
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 28,
+       "rations": 7,
+       "energy": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        6,
+        28
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 29,
+       "rations": 7,
+       "energy": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        34,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 30,
+       "rations": 8,
+       "energy": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        24,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 8
+      },
+      {
+       "cycle": 31,
+       "rations": 1,
+       "energy": [
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        28,
+        22,
+        6
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 32,
+       "rations": 1,
+       "energy": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        12,
+        34
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 33,
+       "rations": 2,
+       "energy": [
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        12,
+        10,
+        24
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 34,
+       "rations": 2,
+       "energy": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        38,
+        14
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 35,
+       "rations": 3,
+       "energy": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        28,
+        12
+       ],
+       "inTown": 10,
+       "inSquare": 0,
+       "shifts": 1,
+       "eats": 4
+      },
+      {
+       "cycle": 36,
+       "rations": 0,
+       "energy": [
+        24,
+        0,
+        0,
+        0,
+        24,
+        24,
+        24,
+        0,
+        18,
+        10
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 37,
+       "rations": 0,
+       "energy": [
+        16,
+        0,
+        0,
+        0,
+        16,
+        16,
+        16,
+        0,
+        8,
+        38
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 38,
+       "rations": 1,
+       "energy": [
+        8,
+        0,
+        0,
+        0,
+        8,
+        8,
+        8,
+        0,
+        6,
+        28
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 39,
+       "rations": 2,
+       "energy": [
+        6,
+        0,
+        0,
+        0,
+        6,
+        6,
+        6,
+        0,
+        4,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 4,
+       "shifts": 1,
+       "eats": 3
+      },
+      {
+       "cycle": 40,
+       "rations": 0,
+       "energy": [
+        28,
+        0,
+        0,
+        0,
+        28,
+        0,
+        0,
+        0,
+        32,
+        8
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 41,
+       "rations": 1,
+       "energy": [
+        20,
+        0,
+        0,
+        0,
+        20,
+        0,
+        0,
+        0,
+        22,
+        6
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 42,
+       "rations": 2,
+       "energy": [
+        12,
+        0,
+        0,
+        0,
+        12,
+        0,
+        0,
+        0,
+        12,
+        4
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 0,
+       "eats": 1
+      },
+      {
+       "cycle": 43,
+       "rations": 1,
+       "energy": [
+        4,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        10,
+        32
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 44,
+       "rations": 1,
+       "energy": [
+        2,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        38,
+        22
+       ],
+       "inTown": 10,
+       "inSquare": 6,
+       "shifts": 1,
+       "eats": 2
+      },
+      {
+       "cycle": 45,
+       "rations": 0,
+       "energy": [
+        24,
+        0,
+        0,
+        0,
+        24,
+        0,
+        0,
+        0,
+        28,
+        20
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 46,
+       "rations": 1,
+       "energy": [
+        16,
+        0,
+        0,
+        0,
+        16,
+        0,
+        0,
+        0,
+        18,
+        18
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 0
+      },
+      {
+       "cycle": 47,
+       "rations": 2,
+       "energy": [
+        8,
+        0,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        8,
+        16
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "shifts": 1,
+       "eats": 1
+      },
+      {
+       "cycle": 48,
+       "rations": 2,
+       "energy": [
+        6,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0,
+        36,
+        6
+       ],
+       "inTown": 10,
+       "inSquare": 6,
+       "shifts": 1,
+       "eats": 3
+      },
+      {
+       "cycle": 49,
+       "rations": 0,
+       "energy": [
+        28,
+        0,
+        0,
+        0,
+        28,
+        0,
+        0,
+        0,
+        26,
+        34
+       ],
+       "inTown": 10,
+       "inSquare": 8,
+       "final": true,
+       "shifts": 0,
+       "eats": 0
+      }
+     ],
+     "events": 1552
+    }
+   ],
+   "hinge": [
+    {
+     "name": "0 gather from c5, 2 crew",
+     "k": 0,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 13,
+     "rationsEnd": 43
+    },
+    {
+     "name": "1 gather from c5, 2 crew",
+     "k": 1,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 21,
+     "rationsEnd": 35
+    },
+    {
+     "name": "2 gather from c5, 2 crew",
+     "k": 2,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 29,
+     "rationsEnd": 27
+    },
+    {
+     "name": "3 gather from c5, 2 crew",
+     "k": 3,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 37,
+     "rationsEnd": 19
+    },
+    {
+     "name": "4 gather from c5, 2 crew",
+     "k": 4,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 45,
+     "rationsEnd": 11
+    },
+    {
+     "name": "5 gather from c5, 2 crew",
+     "k": 5,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "shifts": 46,
+     "eats": 53,
+     "rationsEnd": 3
+    },
+    {
+     "name": "6 gather from c5, 2 crew",
+     "k": 6,
+     "depletion": 45,
+     "depleted": 2,
+     "firstEmptyMarket": 45,
+     "shifts": 46,
+     "eats": 56,
+     "rationsEnd": 0
+    },
+    {
+     "name": "7 gather from c5, 2 crew",
+     "k": 7,
+     "depletion": 40,
+     "depleted": 5,
+     "firstEmptyMarket": 40,
+     "shifts": 46,
+     "eats": 55,
+     "rationsEnd": 1
+    },
+    {
+     "name": "8 gather from c5, 2 crew",
+     "k": 8,
+     "depletion": 36,
+     "depleted": 6,
+     "firstEmptyMarket": 36,
+     "shifts": 46,
+     "eats": 56,
+     "rationsEnd": 0
+    },
+    {
+     "name": "9 gather from c5, 1 crew",
+     "k": 9,
+     "depletion": 27,
+     "depleted": 10,
+     "firstEmptyMarket": 27,
+     "shifts": 20,
+     "eats": 30,
+     "rationsEnd": 0
+    },
+    {
+     "name": "10 gather from c5, 0 crew",
+     "k": 10,
+     "depletion": 21,
+     "depleted": 10,
+     "firstEmptyMarket": 18,
+     "shifts": 0,
+     "eats": 10,
+     "rationsEnd": 0
+    }
+   ],
+   "hingeNoWork": [
+    {
+     "name": "0 gather from c5, nobody works",
+     "k": 0,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "eats": 0,
+     "rationsEnd": 10
+    },
+    {
+     "name": "1 gather from c5, nobody works",
+     "k": 1,
+     "depletion": null,
+     "depleted": 0,
+     "firstEmptyMarket": null,
+     "eats": 8,
+     "rationsEnd": 2
+    },
+    {
+     "name": "2 gather from c5, nobody works",
+     "k": 2,
+     "depletion": 39,
+     "depleted": 2,
+     "firstEmptyMarket": 36,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "3 gather from c5, nobody works",
+     "k": 3,
+     "depletion": 31,
+     "depleted": 3,
+     "firstEmptyMarket": 31,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "4 gather from c5, nobody works",
+     "k": 4,
+     "depletion": 27,
+     "depleted": 4,
+     "firstEmptyMarket": 27,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "5 gather from c5, nobody works",
+     "k": 5,
+     "depletion": 26,
+     "depleted": 5,
+     "firstEmptyMarket": 22,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "6 gather from c5, nobody works",
+     "k": 6,
+     "depletion": 22,
+     "depleted": 6,
+     "firstEmptyMarket": 22,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "7 gather from c5, nobody works",
+     "k": 7,
+     "depletion": 22,
+     "depleted": 7,
+     "firstEmptyMarket": 22,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "8 gather from c5, nobody works",
+     "k": 8,
+     "depletion": 22,
+     "depleted": 8,
+     "firstEmptyMarket": 22,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "9 gather from c5, nobody works",
+     "k": 9,
+     "depletion": 22,
+     "depleted": 9,
+     "firstEmptyMarket": 22,
+     "eats": 10,
+     "rationsEnd": 0
+    },
+    {
+     "name": "10 gather from c5, nobody works",
+     "k": 10,
+     "depletion": 21,
+     "depleted": 10,
+     "firstEmptyMarket": 18,
+     "eats": 10,
+     "rationsEnd": 0
+    }
+   ],
+   "verdict": {
+    "aNobodyDepletes": true,
+    "bDepletesNear35": true,
+    "bPlusDepletes": true,
+    "bPlusNear35": true,
+    "hingeK": 6,
+    "hingeBetween": true,
+    "ok": true
+   }
+  }
+ ],
+ "scan": [
+  {
+   "change": "squareCost 2",
+   "A": null,
+   "B": 37,
+   "Bplus": null,
+   "hinge": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    36
+   ],
+   "ok": false
+  },
+  {
+   "change": "squareCost 3",
+   "A": null,
+   "B": 31,
+   "Bplus": null,
+   "hinge": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    44,
+    30
+   ],
+   "ok": false
+  },
+  {
+   "change": "squareCost 4",
+   "A": null,
+   "B": 27,
+   "Bplus": 44,
+   "hinge": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    44,
+    38,
+    26
+   ],
+   "ok": false
+  },
+  {
+   "change": "squareCost 5",
+   "A": null,
+   "B": 24,
+   "Bplus": 39,
+   "hinge": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    44,
+    39,
+    29,
+    24
+   ],
+   "ok": true
+  },
+  {
+   "change": "squareCost 6",
+   "A": null,
+   "B": 22,
+   "Bplus": 36,
+   "hinge": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    45,
+    40,
+    36,
+    27,
+    21
+   ],
+   "ok": true
+  },
+  {
+   "change": "squareCost 7",
+   "A": null,
+   "B": 21,
+   "Bplus": 29,
+   "hinge": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    41,
+    33,
+    29,
+    25,
+    20
+   ],
+   "ok": true
+  },
+  {
+   "change": "squareCost 8",
+   "A": null,
+   "B": 19,
+   "Bplus": 27,
+   "hinge": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    42,
+    34,
+    31,
+    27,
+    23,
+    18
+   ],
+   "ok": true
+  },
+  {
+   "change": "rationsStart 10",
+   "A": null,
+   "B": 37,
+   "Bplus": null,
+   "hinge": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    36
+   ],
+   "ok": false
+  },
+  {
+   "change": "rationsStart 5",
+   "A": null,
+   "B": 29,
+   "Bplus": null,
+   "hinge": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    29
+   ],
+   "ok": false
+  },
+  {
+   "change": "rationsStart 0",
+   "A": null,
+   "B": 28,
+   "Bplus": null,
+   "hinge": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    45,
+    28
+   ],
+   "ok": false
+  }
+ ]
+}

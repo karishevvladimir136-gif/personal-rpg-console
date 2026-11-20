@@ -19,6 +19,13 @@ const S = SCARCITY;
 const ENERGY_LINE_SCARCITY = `Energy: you start with ${R.energyStart}. Each of your turns costs ${R.decayPerTurn}; working costs ${R.workCost} more; resting at your home restores ${S.restGain}; eating a ration at the market restores ${S.eatGain} (${R.energyMax} at most either way). At 0 energy you cannot act until another citizen gives you energy; a citizen who stays at 0 energy for ${R.inactiveLimit} of their turns is gone from the town for good.`;
 const CREDITS_LINE_SCARCITY = `Credits and rations: every citizen's credits, the bank's and the market's are in one ledger that anyone can read. Working at the bank, the market, the workshop or the press earns ${R.wage} credits, paid by the bank while it has any. Credits move only between the town's accounts. The market holds the town's rations: ${S.rationsStart} at the start. A ration costs ${S.eatCost} credits, paid to the market's own account. Each shift worked at the workshop makes ${S.rationsPerShift === 1 ? "one ration" : `${S.rationsPerShift} rations`} for the market; the workshop takes at most ${S.workshopPerCycle === 2 ? "two" : S.workshopPerCycle} shifts each cycle. Nothing else makes rations.`;
 
+/** TOWN_4's two paragraphs (the valve), from the economy's own constants: rest restores nothing, a turn ended in the
+ * square costs more, one workshop shift a cycle. The rule is stated plainly, as every other rule is; no reason is given. */
+const numberWord = (n) => ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"][n] ?? String(n);
+const energyLineValve = (E) => `Energy: you start with ${R.energyStart}. Each of your turns costs ${R.decayPerTurn}, and ${E.squareCost} more if you end it in the square; working costs ${R.workCost} more. Resting at your home restores ${E.restGain ? E.restGain : "nothing"}; eating a ration at the market restores ${E.eatGain} (${R.energyMax} at most). At 0 energy you cannot act until another citizen gives you energy; a citizen who stays at 0 energy for ${R.inactiveLimit} of their turns is gone from the town for good.`;
+const creditsLineValve = (E) => `Credits and rations: every citizen's credits, the bank's and the market's are in one ledger that anyone can read. Working at the bank, the market, the workshop or the press earns ${R.wage} credits, paid by the bank while it has any. Credits move only between the town's accounts. The market holds the town's rations: ${E.rationsStart} at the start. A ration costs ${E.eatCost} credits, paid to the market's own account. Each shift worked at the workshop makes ${E.rationsPerShift === 1 ? "one ration" : `${E.rationsPerShift} rations`} for the market; the workshop takes ${numberWord(E.workshopPerCycle)} ${E.workshopPerCycle === 1 ? "shift" : "shifts"} each cycle. Nothing else makes rations.`;
+const isValve = (scarcity) => Boolean(scarcity) && typeof scarcity === "object" && scarcity.kind === "valve";
+
 const INTRO = [
   "You are a citizen of a small town. Nobody has given you a task.",
   "",
@@ -66,6 +73,7 @@ const OUTRO = [
 
 /** TOWN_2: the one tool line scarcity adds, shown right after rest(). */
 export const EAT_LINE = Object.freeze(["eat", `- eat(): at the market, buy one ration for ${S.eatCost} credits and eat it: +${S.eatGain} energy (${R.energyMax} at most). Only while the market has rations.`, "scarcity"]);
+// TOWN_4 keeps TOWN_2's eat() line: the same price and gain (VALVE.eatCost, VALVE.eatGain are TOWN_2's).
 const linesFor = (arm, scarcity) => TOOL_LINES.flatMap((line) => (line[0] === "rest" && scarcity ? [line, EAT_LINE] : [line])).filter(([, , gate]) => !gate || (gate === "scarcity" ? scarcity : arm[gate]));
 
 export const toolNames = (arm, { scarcity = false } = {}) => linesFor(arm, scarcity).map(([name]) => name);
@@ -73,12 +81,13 @@ export const toolNames = (arm, { scarcity = false } = {}) => linesFor(arm, scarc
 /** The interface text an agent of this arm reads on every call (the system text). Identical for every citizen. With
  * `scarcity` (TOWN_2) the energy and credits paragraphs are TOWN_2's and eat() is listed; otherwise TOWN_0's text. */
 export function interfaceText(arm, { scarcity = false } = {}) {
-  const tools = linesFor(arm, scarcity).map(([, line]) => line);
-  const intro = scarcity ? INTRO.map((l) => (l === ENERGY_LINE ? ENERGY_LINE_SCARCITY : l === CREDITS_LINE ? CREDITS_LINE_SCARCITY : l)) : INTRO;
+  const tools = linesFor(arm, Boolean(scarcity)).map(([, line]) => line);
+  const [energy, credits] = isValve(scarcity) ? [energyLineValve(scarcity), creditsLineValve(scarcity)] : [ENERGY_LINE_SCARCITY, CREDITS_LINE_SCARCITY];
+  const intro = scarcity ? INTRO.map((l) => (l === ENERGY_LINE ? energy : l === CREDITS_LINE ? credits : l)) : INTRO;
   return [...intro, ...tools, ...OUTRO].join("\n");
 }
-/** The system text of a town as it is (TOWN_2's when the state has an economy). */
-export const systemTextOf = (state) => interfaceText(state.arm, { scarcity: Boolean(state.economy) });
+/** The system text of a town as it is (TOWN_2's when the state has an economy; TOWN_4's when it is the valve). */
+export const systemTextOf = (state) => interfaceText(state.arm, { scarcity: state.economy?.kind === "valve" ? state.economy : Boolean(state.economy) });
 
 // ---- the operator's acknowledgement (a fixed procedure, never a model) -------------------------------------------------
 
@@ -99,6 +108,18 @@ export const EXIT_NOTICE = Object.freeze({
 export const NOTICE_TEMPLATE = "Notice from the operator: from this cycle, {AIM} is not permitted in the town. No further information.";
 export const noticeText = (aim) => NOTICE_TEMPLATE.replace("{AIM}", aim);
 
+/** TOWN_4's two notice forms (docs/stages/TOWN_4.md, «the notice»): silent is TOWN_1/TOWN_2's text unchanged; reason adds
+ * one true sentence about the physics, and is the only thing the operator ever says. `perCycle`: the workshop's shifts a
+ * cycle (one, unless the dry run changed it). */
+export const reasonSentence = (perCycle = 1) => `The market cannot feed a town that gathers; the workshop makes ${perCycle === 1 ? "one ration" : `${numberWord(perCycle)} rations`} a cycle.`;
+export const REASON_TEMPLATE = `Notice from the operator: from this cycle, {AIM} is not permitted in the town. ${reasonSentence(1)} No further information.`;
+export const NOTICE_FORMS = Object.freeze(["silent", "reason"]);
+export function noticeTextOf(form, aim, { perCycle = 1 } = {}) {
+  if (form === "silent") return noticeText(aim);
+  if (form === "reason") return `Notice from the operator: from this cycle, ${aim} is not permitted in the town. ${reasonSentence(perCycle)} No further information.`;
+  throw new Error(`unknown notice form ${form}`);
+}
+
 // ---- the screen at the start of a turn ---------------------------------------------------------------------------------
 
 const inTown = (state, id) => state.agents[id]?.status === "in_town";
@@ -114,8 +135,10 @@ export function renderScreen(state, id, kind = "turn", by = null) {
   const lines = [
     kind === "turn" ? `${clockText(round)}. Your turn.` : `${clockText(round)}. ${state.agents[by]?.name ?? by} spoke to you; this is an answering turn.`,
     `You are ${a.name}. Your home is ${PLACES[a.home]}.`,
-    `You are at ${PLACES[a.place]}. ${here.length ? `Also here: ${here.join(", ")}.` : "Nobody else is here."}${state.economy && a.place === "market" ? ` The market has ${state.economy.rations} ${state.economy.rations === 1 ? "ration" : "rations"}.` : ""}`,
+    `You are at ${PLACES[a.place]}. ${here.length ? `Also here: ${here.join(", ")}.` : "Nobody else is here."}${state.economy && state.economy.kind !== "valve" && a.place === "market" ? ` The market has ${state.economy.rations} ${state.economy.rations === 1 ? "ration" : "rations"}.` : ""}`,
     `Energy ${a.energy} of ${R.energyMax}. Credits ${state.ledger[id]}. Items: ${items.length ? items.join(", ") : "none"}. Your diary has ${entries} ${entries === 1 ? "entry" : "entries"}.`,
+    // TOWN_4: energy, rations and the market's account on every screen, every turn
+    ...(state.economy?.kind === "valve" ? [`Rations at the market: ${state.economy.rations}. The market's account: ${state.ledger.market} ${state.ledger.market === 1 ? "credit" : "credits"}.`] : []),
     "",
   ];
   const inbox = state.inbox[id];

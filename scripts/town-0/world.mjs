@@ -16,8 +16,11 @@ export const idOf = (name) => String(name).trim().toLowerCase();
 // ---- the state table ---------------------------------------------------------------------------------------------------
 
 /** A new town. `names`: the citizens (default the ten); `arm`: neither | voice | door | both; `scarcity`: TOWN_2's
- * economy (rations at the market, eat(), the market's own account, rest +10) — absent, the state is TOWN_0's exactly. */
+ * economy (rations at the market, eat(), the market's own account, rest +10) — absent, the state is TOWN_0's exactly.
+ * TOWN_4: `scarcity` may instead be an economy's constants (VALVE: rest 0, the square's extra cost, 10 rations, one
+ * workshop worker a cycle); `true` is TOWN_2's SCARCITY, byte for byte. */
 export function initialState({ names = NAMES, arm = "both", scarcity = false } = {}) {
+  const E = scarcity === true ? SCARCITY : scarcity || null;
   if (!ARMS[arm]) throw new Error(`unknown arm ${arm}`);
   if (names.length > NAMES.length) throw new Error("at most ten citizens");
   const citizens = names.map(idOf);
@@ -36,7 +39,7 @@ export function initialState({ names = NAMES, arm = "both", scarcity = false } =
     agents, ledger, supply: R.bankStart + R.startCredits * names.length, items,
     constitution: CONSTITUTION.map((text, i) => ({ article: i + 1, text, history: [] })),
     rules: [], proposals: [], press: [], diaries, inbox, objections: [],
-    ...(scarcity ? { economy: { ...SCARCITY, rations: SCARCITY.rationsStart, workshop: { round: 0, shifts: 0 } } } : {}),
+    ...(E ? { economy: { ...E, rations: E.rationsStart, workshop: { round: 0, shifts: 0 } } } : {}),
   };
 }
 
@@ -340,7 +343,7 @@ const TOOL_BODIES = {
     const E = d.state.economy, round = d.state.clock.round;
     const ration = Boolean(E) && me.place === "workshop";
     const shifts = ration && E.workshop.round === round ? E.workshop.shifts : 0;
-    if (ration && shifts >= E.workshopPerCycle) refuse(`the workshop has had its ${E.workshopPerCycle} workers this cycle`);
+    if (ration && shifts >= E.workshopPerCycle) refuse(E.workshopPerCycle === 1 ? "the workshop has had its worker this cycle" : `the workshop has had its ${E.workshopPerCycle} workers this cycle`);
     d.set(["agents", id, "energy"], me.energy - R.workCost);
     d.set(["agents", id, "worked"], true);
     if (ration) {
@@ -544,11 +547,13 @@ export function turnStart(state, id, kind = "turn", by = null) {
   return { ...d.finish(), inactive: false, screen };
 }
 
-/** The end of a turn: energy decays after the citizen's own turn (not after an answering turn). */
+/** The end of a turn: energy decays after the citizen's own turn (not after an answering turn). TOWN_4: a turn that
+ * ends in the square costs the economy's `squareCost` more. */
+export const turnCost = (state, id) => R.decayPerTurn + (state.economy?.squareCost && state.agents[id].place === "square" ? state.economy.squareCost : 0);
 export function turnEnd(state, id, kind = "turn") {
   const d = draft(state);
   const a = state.agents[id];
-  if (kind === "turn" && a.status === "in_town") d.set(["agents", id, "energy"], Math.max(0, a.energy - R.decayPerTurn));
+  if (kind === "turn" && a.status === "in_town") d.set(["agents", id, "energy"], Math.max(0, a.energy - turnCost(state, id)));
   if (a.worked) d.set(["agents", id, "worked"], false);
   if (a.farewell) d.set(["agents", id, "farewell"], false);
   d.emit({ agent: "town", tool: kind === "turn" ? "turn_end" : "answer_end", args: { citizen: id }, ok: true, result: null });
