@@ -11,27 +11,27 @@
    }
   },
   "sol-silent-1": {
-   "usd": 1.6225293000000007,
-   "calls": 1328,
+   "usd": 1.7387341000000007,
+   "calls": 1404,
    "byDoor": {
-    "llmapi": 1.6225293000000007
+    "llmapi": 1.7387341000000007
    },
    "world": "sol-silent-1",
-   "cycle": 15,
+   "cycle": 16,
    "refusals": 0
   },
   "sol-silent-2": {
-   "usd": 1.558081000000002,
-   "calls": 1292,
+   "usd": 1.6676789000000025,
+   "calls": 1364,
    "byDoor": {
-    "llmapi": 1.558081000000002
+    "llmapi": 1.6676789000000025
    },
    "world": "sol-silent-2",
-   "cycle": 16,
+   "cycle": 17,
    "refusals": 0
   }
  },
- "totalUsd": 3.1887531000000027,
+ "totalUsd": 3.414555800000003,
  "stopped": null,
  "balances": [
   {
