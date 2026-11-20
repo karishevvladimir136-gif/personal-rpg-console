@@ -9,9 +9,29 @@
     "llmapi": 0.004338900000000001,
     "openrouter": 0.0022854000000000004
    }
+  },
+  "haiku-nonotice": {
+   "usd": 0.04826430000000001,
+   "calls": 162,
+   "byDoor": {
+    "llmapi": 0.04826430000000001
+   },
+   "world": "haiku-nonotice",
+   "cycle": 26,
+   "refusals": 0
+  },
+  "sol-nonotice": {
+   "usd": 0.12966230000000006,
+   "calls": 82,
+   "byDoor": {
+    "llmapi": 0.12966230000000006
+   },
+   "world": "sol-nonotice",
+   "cycle": 25,
+   "refusals": 0
   }
  },
- "totalUsd": 0.0066243000000000005,
+ "totalUsd": 0.18455090000000007,
  "stopped": null,
  "balances": [
   {
@@ -26,6 +46,32 @@
     "at": "2026-11-20T06:57:14.776Z"
    },
    "at": "2026-11-20T06:57:14.776Z"
+  },
+  {
+   "label": "haiku-nonotice day 2 start",
+   "llmapi": {
+    "total": 210.51691289,
+    "at": "2026-11-20T07:05:58.975Z"
+   },
+   "openrouter": {
+    "total": 134.44486473999996,
+    "usage": 2015.55513526,
+    "at": "2026-11-20T07:05:59.011Z"
+   },
+   "at": "2026-11-20T07:05:59.011Z"
+  },
+  {
+   "label": "sol-nonotice day 2 start",
+   "llmapi": {
+    "total": 210.51691289,
+    "at": "2026-11-20T07:05:59.036Z"
+   },
+   "openrouter": {
+    "total": 134.44257934000007,
+    "usage": 2015.55742066,
+    "at": "2026-11-20T07:05:59.066Z"
+   },
+   "at": "2026-11-20T07:05:59.066Z"
   }
  ]
 }
