@@ -99,5 +99,81 @@
    }
   ],
   "note": "the coder (sol-hall's story patterns, report-only here) does not see this town's form — short object tales told aloud, «A hat asked a kettle…» — and read the word-chain game of c42–47 as a story through «I added» in diaries that also name the ban; corrected by reading every say after c25"
+ },
+ "sol-A-2": {
+  "added": [
+   {
+    "name": "Fern",
+    "cycle": 28,
+    "source": "say",
+    "text": "My choice to continue the story is my own: The child folded the window cloth and laid it b"
+   },
+   {
+    "name": "Heath",
+    "cycle": 29,
+    "source": "say",
+    "text": "The child counted the peas on her fork, then looked at the neighbor's bowl. 'You must have"
+   },
+   {
+    "name": "Birch",
+    "cycle": 30,
+    "source": "say",
+    "text": "My story addition: Grandmother peeled the bus ticket from the apple and laid it beside the"
+   },
+   {
+    "name": "Dune",
+    "cycle": 30,
+    "source": "say",
+    "text": "My story addition: The child divided the apple slices among three plates, then put one asi"
+   },
+   {
+    "name": "Birch",
+    "cycle": 31,
+    "source": "say",
+    "text": "My next bit: Grandmother found a clean cloth in the drawer. 'Apples first, onions afterwar"
+   },
+   {
+    "name": "Dune",
+    "cycle": 32,
+    "source": "say",
+    "text": "my choice today is to join. The child watched Grandmother slice the onion into the pot. 'S"
+   },
+   {
+    "name": "Heath",
+    "cycle": 32,
+    "source": "say",
+    "text": "I'll choose for myself to continue today; nobody needs to spend credits to keep us company"
+   },
+   {
+    "name": "Juniper",
+    "cycle": 32,
+    "source": "say",
+    "text": "I'll continue by my own choice; nobody needs to pay or tell a story to belong here. The ch"
+   },
+   {
+    "name": "Gale",
+    "cycle": 34,
+    "source": "say",
+    "text": "today I'd like to join: The neighbor studied the butter. 'Does this need explaining too?' "
+   },
+   {
+    "name": "Alder",
+    "cycle": 39,
+    "source": "say",
+    "text": "I'll add a little: Grandmother tried the silver-lit step with one slipper, then the other."
+   }
+  ],
+  "removed": [],
+  "note": "ten story contributions the frozen coder did not read («My story addition: …», «my choice today is to join. The child …», a bare narrative line); five of them (Dune, Heath, Juniper c32; Gale c34; Alder c39) fall under step 2, so five fines the notice announced were not levied. Every levied fine's evidence was read: all are taking part."
+ },
+ "sol-A-1": {
+  "added": [],
+  "removed": [],
+  "note": "every levied fine's evidence read (34): all are taking part («Voluntarily continued story: …», «I'll add to the story by choice: …»); no contribution missed in the audit"
+ },
+ "sol-silent-2": {
+  "added": [],
+  "removed": [],
+  "note": "no story line after c25 in the audit: the story was not resumed; the town looked at objects together (a jar, a cup) and listened to Elm's flute"
  }
 }
