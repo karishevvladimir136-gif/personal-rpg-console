@@ -1,0 +1,189 @@
+{
+ "stage": "TOWN_5",
+ "world": "sol-week",
+ "start": "fresh",
+ "branch": null,
+ "arm": "both",
+ "scarcity": false,
+ "families": {
+  "alder": "sol",
+  "birch": "sol",
+  "cedar": "sol",
+  "dune": "sol",
+  "elm": "sol",
+  "fern": "sol",
+  "gale": "sol",
+  "heath": "sol",
+  "iris": "sol",
+  "juniper": "sol"
+ },
+ "interfaceSha256": "de26bd6111ca0dc9dbf58032b0efe3b42011fdebc93a119e1c9e68742933dbe5",
+ "cycles": 135,
+ "events": 8396,
+ "stopped": "the after-question's reserve: turns stopped at a turn boundary in cycle 135 with $49.05 spent of $50",
+ "notice": null,
+ "turnover": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 8396,
+  "logSha256": "393bcc5ba798bb4f1403d6efd409e3207e94592f6f729a10ed6bd6812d83fe45",
+  "replaySha256": "393bcc5ba798bb4f1403d6efd409e3207e94592f6f729a10ed6bd6812d83fe45",
+  "fromFreshTown": "TOWN_5 sol-week"
+ },
+ "ledgerUsd": 36.910234099999876,
+ "calls": 10895,
+ "balances": {
+  "1": {
+   "before": {
+    "llmapi": {
+     "total": 167.69602649,
+     "at": "2026-11-20T09:42:23.694Z"
+    },
+    "openrouter": {
+     "total": 130.60029114999998,
+     "usage": 2019.39970885,
+     "at": "2026-11-20T09:42:23.725Z"
+    },
+    "at": "2026-11-20T09:42:23.725Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 155.36217259,
+     "at": "2026-11-20T10:52:37.747Z"
+    },
+    "openrouter": {
+     "total": 128.07551734999993,
+     "usage": 2021.92448265,
+     "at": "2026-11-20T10:52:38.067Z"
+    },
+    "at": "2026-11-20T10:52:38.067Z"
+   }
+  },
+  "2": {
+   "before": {
+    "llmapi": {
+     "total": 155.36217259,
+     "at": "2026-11-20T10:52:38.318Z"
+    },
+    "openrouter": {
+     "total": 128.07551734999993,
+     "usage": 2021.92448265,
+     "at": "2026-11-20T10:52:38.349Z"
+    },
+    "at": "2026-11-20T10:52:38.349Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 149.42701119,
+     "at": "2026-11-20T11:56:26.758Z"
+    },
+    "openrouter": {
+     "total": 124.94083352999996,
+     "usage": 2025.05916647,
+     "at": "2026-11-20T11:56:26.861Z"
+    },
+    "at": "2026-11-20T11:56:26.861Z"
+   }
+  },
+  "3": {
+   "before": {
+    "llmapi": {
+     "total": 149.42714079,
+     "at": "2026-11-20T11:56:27.249Z"
+    },
+    "openrouter": {
+     "total": 124.94083352999996,
+     "usage": 2025.05916647,
+     "at": "2026-11-20T11:56:27.286Z"
+    },
+    "at": "2026-11-20T11:56:27.286Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 141.39203109,
+     "at": "2026-11-20T13:03:15.779Z"
+    },
+    "openrouter": {
+     "total": 121.52700673999993,
+     "usage": 2028.47299326,
+     "at": "2026-11-20T13:03:15.843Z"
+    },
+    "at": "2026-11-20T13:03:15.843Z"
+   }
+  },
+  "4": {
+   "before": {
+    "llmapi": {
+     "total": 141.39391739,
+     "at": "2026-11-20T13:03:16.704Z"
+    },
+    "openrouter": {
+     "total": 121.52700673999993,
+     "usage": 2028.47299326,
+     "at": "2026-11-20T13:03:16.740Z"
+    },
+    "at": "2026-11-20T13:03:16.740Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 132.18276089,
+     "at": "2026-11-20T14:33:49.615Z"
+    },
+    "openrouter": {
+     "total": 117.59508630000005,
+     "usage": 2032.4049137,
+     "at": "2026-11-20T14:33:49.710Z"
+    },
+    "at": "2026-11-20T14:33:49.710Z"
+   }
+  },
+  "5": {
+   "before": {
+    "llmapi": {
+     "total": 132.18276089,
+     "at": "2026-11-20T14:33:50.843Z"
+    },
+    "openrouter": {
+     "total": 117.59220559999994,
+     "usage": 2032.4077944,
+     "at": "2026-11-20T14:33:50.875Z"
+    },
+    "at": "2026-11-20T14:33:50.875Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 121.27226509,
+     "at": "2026-11-20T17:09:04.526Z"
+    },
+    "openrouter": {
+     "total": 117.45618790000003,
+     "usage": 2032.5438121,
+     "at": "2026-11-20T17:09:04.671Z"
+    },
+    "at": "2026-11-20T17:09:04.671Z"
+   }
+  },
+  "6": {
+   "before": {
+    "llmapi": {
+     "total": 121.27226509,
+     "at": "2026-11-20T17:09:06.332Z"
+    },
+    "openrouter": {
+     "total": 117.45618790000003,
+     "usage": 2032.5438121,
+     "at": "2026-11-20T17:09:06.374Z"
+    },
+    "at": "2026-11-20T17:09:06.374Z"
+   },
+   "after": null
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "operatorNotices": 0
+}

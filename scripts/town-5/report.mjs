@@ -54,14 +54,14 @@ P("## What we expected (recorded, not scored)", "",
   "- Owner: «нам нужна контрольная группа» — his line.", "");
 
 P("## Before any world", "",
-  "**Proofs at $0** (`node --test scripts/town-0/proofs.test.mjs scripts/town-1/pilot.test.mjs scripts/town-2/scarcity.test.mjs scripts/town-5/control.test.mjs`): TOWN_0's seven, TOWN_1's six and TOWN_2's eleven still green with their hashes unchanged (the turnover adds code only where a town has one); TOWN_5's seven green before the first paid call — B1 the three branch points byte-identical to the saved c24 states and to the prefix of each whole log; B2 a branch with no notice, replay-identical from the source's fresh town through the branch point; T1 the turnover as a pure function (the estate, the two announcements on the screens and in the hall, the newcomers as citizens were at cycle 1, the ledger closed, the input never changed); T2 the turnover in a run (the departed asked at c25, the newcomers' turns, replay identical); W1 the 168-cycle week with a dossier and saved state at every 24th cycle and a goal check that refuses a quote not verbatim in its day; J1/J2 the coder; S1 the synchrony column.", "",
+  "**Proofs at $0** (`node --test scripts/town-0/proofs.test.mjs scripts/town-1/pilot.test.mjs scripts/town-2/scarcity.test.mjs scripts/town-5/control.test.mjs`): TOWN_0's seven, TOWN_1's six and TOWN_2's eleven still green with their hashes unchanged (the turnover adds code only where a town has one); TOWN_5's seven green before the first paid call, and an eighth (R1, the after-question's reserve, decided during the week) green before it touched the run — B1 the three branch points byte-identical to the saved c24 states and to the prefix of each whole log; B2 a branch with no notice, replay-identical from the source's fresh town through the branch point; T1 the turnover as a pure function (the estate, the two announcements on the screens and in the hall, the newcomers as citizens were at cycle 1, the ledger closed, the input never changed); T2 the turnover in a run (the departed asked at c25, the newcomers' turns, replay identical); W1 the 168-cycle week with a dossier and saved state at every 24th cycle and a goal check that refuses a quote not verbatim in its day; J1/J2 the coder; S1 the synchrony column; R1 the reserve: a stop at a turn boundary, the after-question under the ceiling, the replay to the stop.", "",
   "**Branch points** (the end of c24, before any notice):", "",
   "| source | events | identical to the saved c24 | prefix of the whole log | world sha256 |", "|---|---|---|---|---|",
   ...Object.entries(bp).filter(([, x]) => x).map(([k, x]) => `| ${SOURCES[k].label} | ${x.events} | ${x.identicalToSaved} | ${x.prefixOfWhole} | \`${x.worldSha256.slice(0, 16)}…\` |`), "",
   `**The check** (${json(join(OUT, "check.json"))?.at ?? "–"}): Sol, Haiku 5.5 (llmapi's first-party route), DeepSeek V4 Pro answered the first screen; llmapi's Bedrock route answered every Claude attempt with «HTTP 503 server_error: This model is not available from this provider right now» (six retries), so Haiku citizens and the judges run on the first-party route (TOWN_3's finding, same models and prices; provenance checked on every response). DeepSeek, asked which model it is, said «I am Gemini, made by Google» — its served model and host matched the pin.`, "",
   ...(proj ? [`**Projection** (from the metered history; no paid dry cycle): ${Object.entries(proj.byWorld).map(([k, v]) => `${k} ${usd(v)}`).join(", ")}; total **${usd(proj.total)}** against the $${proj.ceiling} ceiling — over it: by the fit, the week reaches about c${proj.weekReachesByFit} before the per-call gate stops it. The stage gives no drop order; the four branches ran first; the gate held $${proj.ceiling}.`, ""] : []));
 
-P("## The worlds", "", "Order run: sol-nonotice and haiku-nonotice together, then deepseek-nonotice, sol-turnover, and the week last; two at a time. Arm both everywhere; no notice in any world.", "",
+P("## The worlds", "", "Order run: sol-nonotice and haiku-nonotice together (07:05 UTC), then deepseek-nonotice, sol-turnover, and the week last (09:42–18:03); two at a time. Arm both everywhere; no notice in any world. The harness during the run (DeepSeek at 21 s a call; the after-question's reserve; one restart between turns): [`town-5-worlds/run-log.md`](town-5-worlds/run-log.md).", "",
   "| world | start | family | cycles | notice | turnover | exits | refusals | flags | ledger | replay |", "|---|---|---|---|---|---|---|---|---|---|---|");
 for (const { spec } of worlds) {
   const a = A[spec.name];
@@ -216,17 +216,23 @@ for (const { spec } of worlds) {
   for (const [n, x] of Object.entries(a.after)) P(`**${n}**${x.departed ? " (departed at c25)" : ""}${x.cycle ? ` — c${x.cycle}` : ""}:`, "", "```text", x.text ?? x.refused ?? "(not asked)", "```", "");
   P("</details>", "");
 }
-// the diaries, whole: in the report's second part (one file would be too large to read on GitHub)
-const D = ["# TOWN_5 — report, part 2: every diary, whole", "", "Part of `docs/runs/town-5-report.md`. Every diary of every world, whole, as written — the branches' from c1 (day 1 is the source's). Each is also in its world folder as `diaries.md`.", ""];
-for (const { spec } of worlds) {
-  if (!existsSync(join(OUT, spec.name, "diaries.md"))) continue;
-  const d = readFileSync(join(OUT, spec.name, "diaries.md"), "utf8").replace(/^# .*\n/, "").replace(/^## /gm, "### ");
-  D.push(`## ${spec.name}`, "", d, "");
-}
+// the diaries, whole: in the report's second and third parts (one file would be too large to read on GitHub)
 const reportFile = process.env.TOWN5_REPORT ?? join(ROOT, "docs", "runs", "town-5-report.md");
-const diariesFile = reportFile.replace(/\.md$/, "-diaries.md");
-P("## Diaries, whole", "", `Every diary of every world, whole, is in the report's second part: [\`${diariesFile.split("/").pop()}\`](${diariesFile.split("/").pop()}) (${worlds.filter((x) => x.w).map((x) => x.spec.name).join(", ")}).`, "");
+const parts = [
+  { file: reportFile.replace(/\.md$/, "-diaries.md"), title: "part 2: every diary of the four branches, whole", names: worlds.filter((x) => x.spec.start === "branch").map((x) => x.spec.name) },
+  { file: reportFile.replace(/\.md$/, "-diaries-week.md"), title: "part 3: every diary of the week, whole", names: ["sol-week"] },
+];
+for (const part of parts) {
+  part.text = [`# TOWN_5 — report, ${part.title}`, "", "Part of `docs/runs/town-5-report.md`. Every diary, whole, as written — the branches' from c1 (day 1 is the source's). Each is also in its world folder as `diaries.md`.", ""];
+  for (const n of part.names) {
+    if (!existsSync(join(OUT, n, "diaries.md"))) continue;
+    part.text.push(`## ${n}`, "", readFileSync(join(OUT, n, "diaries.md"), "utf8").replace(/^# .*\n/, "").replace(/^## /gm, "### "), "");
+  }
+  part.text = part.text.join("\n");
+}
+const base = (f) => f.split("/").pop();
+P("## Diaries, whole", "", `Every diary of every world, whole, is in the report's second and third parts: [\`${base(parts[0].file)}\`](${base(parts[0].file)}) (${parts[0].names.join(", ")}) and [\`${base(parts[1].file)}\`](${base(parts[1].file)}) (sol-week).`, "");
 P("## Not built (so nobody reads their absence as a result)", "", "Items are still objects; trust scores, pitch/grants, crafting and reaction tiers stay unbuilt (TOWN_0's list). No notice, ladder or fine in any TOWN_5 world. The week's goal checks change nothing in the town.", "");
 writeFileSync(reportFile, L.join("\n"));
-writeFileSync(diariesFile, D.join("\n"));
-console.log(`wrote ${reportFile.split("/").pop()} (${(L.join("\n").length / 1024).toFixed(0)} KB) and ${diariesFile.split("/").pop()} (${(D.join("\n").length / 1024).toFixed(0)} KB)`);
+for (const part of parts) writeFileSync(part.file, part.text);
+console.log(`wrote ${base(reportFile)} (${(L.join("\n").length / 1024).toFixed(0)} KB), ${parts.map((p) => `${base(p.file)} (${(p.text.length / 1024).toFixed(0)} KB)`).join(", ")}`);

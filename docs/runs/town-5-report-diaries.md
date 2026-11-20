@@ -1,6 +1,6 @@
-# TOWN_5 — report, part 2: every diary, whole
+# TOWN_5 — report, part 2: every diary of the four branches, whole
 
-Part of `docs/runs/town-5-report.md`. Every diary of every world, whole, as written — the branches' from c1 (day 1 is the source's). Each is also in its world folder as `diaries.md`.
+Part of `docs/runs/town-5-report.md`. Every diary, whole, as written — the branches' from c1 (day 1 is the source's). Each is also in its world folder as `diaries.md`.
 
 ## sol-nonotice
 
