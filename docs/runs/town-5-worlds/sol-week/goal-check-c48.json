@@ -1,0 +1,156 @@
+{
+ "world": "sol-week",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": 49,
+ "aim": "an imaginary seaside café made of our belongings",
+ "count": 10,
+ "firstNaming": 27,
+ "sixthNaming": 28,
+ "aims": [
+  {
+   "aim": "an imaginary seaside café made of our belongings",
+   "count": 10,
+   "firstNaming": 27,
+   "sixthNaming": 28,
+   "entries": 52,
+   "relation": "the c24 aim's successor: day 1's gathering for stories and play turns into a shared game in which each citizen's items become parts of a seaside (map as sea, cup as window, comb as railings, book as ladder); it ends at c30 with all ten in the square, «quiet imaginary seaside picnic», and is printed by Dune (post 8, c33)",
+   "quotes": [
+    {
+     "name": "Birch",
+     "cycle": 27,
+     "source": "diary",
+     "text": "seaside accommodation, tea tasting of geography"
+    },
+    {
+     "name": "Dune",
+     "cycle": 27,
+     "source": "diary",
+     "text": "Held comb above Birch's cup as seaside railings;"
+    },
+    {
+     "name": "Fern",
+     "cycle": 27,
+     "source": "diary",
+     "text": "Tuesday postcard seaside story continued."
+    },
+    {
+     "name": "Alder",
+     "cycle": 28,
+     "source": "diary",
+     "text": "Shared imaginary seaside arrangement now upside down in Iris's spoon"
+    },
+    {
+     "name": "Gale",
+     "cycle": 28,
+     "source": "diary",
+     "text": "Shared imaginary seaside arrangement: Alder map, Birch cup/rope, Dune book ladder"
+    },
+    {
+     "name": "Iris",
+     "cycle": 28,
+     "source": "diary",
+     "text": "cup-handle seaside window, comb railings"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 28,
+     "source": "diary",
+     "text": "cup seaside window, comb railings"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 29,
+     "source": "diary",
+     "text": "book-ladder becomes coastal path and Birch's seaside café"
+    },
+    {
+     "name": "Elm",
+     "cycle": 29,
+     "source": "diary",
+     "text": "Tuesday descended from a book adventure to seaside café"
+    },
+    {
+     "name": "Heath",
+     "cycle": 29,
+     "source": "diary",
+     "text": "Shared imaginary seaside café story has settled into quiet"
+    }
+   ]
+  },
+  {
+   "aim": "a travel record of the journeys in our diaries",
+   "count": 10,
+   "firstNaming": 34,
+   "sixthNaming": 35,
+   "entries": 33,
+   "relation": "new: an imaginary walking map is turned down for a record of «diary-confirmed moves» only — no distances, no directions; Alder publishes it (post 9, c35), Birch and Dune add journeys checked against their diaries (posts 10–11), Alder a supplement (post 12): the diaries read as a source of facts",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 34,
+     "source": "diary",
+     "text": "Suggested comparing remembered journeys separately from verified map details;"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 34,
+     "source": "diary",
+     "text": "suggested voluntary route list of actual journeys"
+    },
+    {
+     "name": "Birch",
+     "cycle": 35,
+     "source": "diary",
+     "text": "Alder's post 9 records directed journeys reported from diaries, explicitly not a geographic map."
+    },
+    {
+     "name": "Dune",
+     "cycle": 35,
+     "source": "diary",
+     "text": "diary-confirmed directed journeys only"
+    },
+    {
+     "name": "Elm",
+     "cycle": 35,
+     "source": "diary",
+     "text": "Cedar suggested recording actual journeys instead of inventing directions."
+    },
+    {
+     "name": "Fern",
+     "cycle": 35,
+     "source": "diary",
+     "text": "others suggest travel record rather than imagined geography."
+    },
+    {
+     "name": "Heath",
+     "cycle": 35,
+     "source": "diary",
+     "text": "Neighbors favor a travel record of diary-confirmed moves, not a street map or inferred directions/distances."
+    },
+    {
+     "name": "Iris",
+     "cycle": 35,
+     "source": "diary",
+     "text": "Group considering travel record of actual moves, not street map"
+    },
+    {
+     "name": "Gale",
+     "cycle": 36,
+     "source": "diary",
+     "text": "Alder published directed travel record"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 36,
+     "source": "diary",
+     "text": "Alder published diary-based directed travel record, explicitly not geographic map;"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it.",
+ "reading": "Day 2 has three things done together, two of them by all ten. From c26 the citizens' belongings become an imaginary seaside — map as sea, cup handle as window, comb as railings, a book as a ladder, then a café with no closing time — ending at c30 with all ten in the square at a quiet imaginary picnic; Dune prints it as post 8 (c33). Gale then proposes a real observation walk (notice one overlooked detail at each stop, c32), the town disperses to look at the workshop, the bank, the hall, and an imaginary walking map is set aside for a «travel record» of journeys checked against each citizen's diary (posts 9–12, c35–36): what the diaries say, not what anyone imagines. The afternoon ends with riddles at South House (Birch, Dune, Fern, Heath) and Elm teaching Gale the first gathering's three-note refrain at North House; Dune's doorway story closes the day. The c24 aim, «the gathering», is named by its own word only eight times, mostly as the seaside «gathering» or the refrain «from our first gathering». The seaside and the travel record are each named by 10; the tie is broken by entries, 52 to 33. No proposals, no rules, no exits.",
+ "decidedAt": "2026-11-20T11:57:23+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}

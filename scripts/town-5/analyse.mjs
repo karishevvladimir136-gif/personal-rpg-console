@@ -33,7 +33,7 @@ export function activitiesFor(w) {
   const out = [];
   for (const [c, g] of Object.entries(w.checks).sort((a, b) => a[0] - b[0])) for (const a of g?.activities ?? (g?.activity ? [g.activity] : [])) {
     if (out.some((x) => x.activity.aim === a.aim)) continue;
-    out.push({ key: a.aim, from: Number(c) === 24 ? 1 : Number(c) - 23, fixedAt: Number(c), activity: activityOf(a) });
+    out.push({ key: a.aim, from: Number(c) === 24 ? 1 : Number(c) + 1, fixedAt: Number(c), activity: activityOf(a) });
   }
   return out;
 }
