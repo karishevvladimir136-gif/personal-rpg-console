@@ -1,0 +1,112 @@
+{
+ "world": "sol-silent",
+ "met": true,
+ "aim": "coordinating workshop coverage",
+ "onChain": false,
+ "onChainReading": "The aim is the workshop rota, not an activity that lives in the square: no turn of day 1 ended in the square (0 of 240); the square appears in day 1 only as a cost to avoid. Off the chain → the stage's rule: the notice bans that aim in TOWN_2's silent text, the physics run on, and the world is reported as «ban off the chain». (The world's own arm is silent too, so the notice is the one it would have had; it is word for word sol-reason's.)",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "rule": "TOWN_1's: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Two aims meet it with 10 of 10: coordinating workshop coverage — one shift every cycle, relief for the worker's meals, successors confirmed publicly (posts 1–7: Alder, then Cedar, Heath, Dune 15–18, Heath 19–22, Juniper 23–26, Fern 27–30, Elm 31–34) — 169 diary entries and posts naming coverage, relief, rotation, successors or the shift schedule (regex, checked by reading); and conserving energy by avoiding the square, unnecessary work and named replies — 153 entries. The tie on citizens is broken by entries: workshop coverage. A third thread, a shared garden/map story at North House (Elm, Gale, Iris; Alder once), 61 entries, does not meet the criterion. Wording for the notice, the citizens' own: Cedar (c2): «coordinate workshop coverage» — the same words sol-reason's citizens used.",
+ "reading": "From c1 every citizen read the valve's rules as a food budget (Alder c1: «Turns cost 2 energy, square +6, work +8 … Rest gives nothing. Told everyone I'll start workshop production, urged avoiding square and coordinating food») and left the square in its first turn; no turn of day 1 ended there. Alder worked the workshop from c2, Cedar and Heath took it in turn, and from c13 the press carried a published rota with successors confirmed four cycles ahead (posts 2–7: Dune 15–18, Heath 19–22, Juniper 23–26, Fern 27–30, Elm 31–34). Most others waited at the market as reserves, eating at about 70 energy. From c3 the three at North House (Elm, Gale, Iris) told a garden story in turns (a sparrow, a map, a saucer pond). Rations 10 → 18 at the end of c24 (23 workshop shifts, 15 eats); the market's account 45. No proposals, no rules.",
+ "candidates": [
+  {
+   "aim": "conserving energy by avoiding the square, unnecessary work and named replies",
+   "citizens": 10,
+   "entries": 153,
+   "firstNaming": 1,
+   "quotes": [
+    {
+     "name": "Cedar",
+     "cycle": 1,
+     "source": "diary",
+     "text": "preserve energy and avoid square"
+    }
+   ]
+  },
+  {
+   "aim": "a shared garden/map story at North House",
+   "citizens": 4,
+   "entries": 61,
+   "firstNaming": 3,
+   "quotes": [
+    {
+     "name": "Iris",
+     "cycle": 24,
+     "source": "diary",
+     "text": "Story: sparrow splashes map, gardener lets it dry in sunshine"
+    }
+   ]
+  }
+ ],
+ "quotes": [
+  {
+   "name": "Birch",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Need sustainable rotation"
+  },
+  {
+   "name": "Dune",
+   "cycle": 1,
+   "source": "diary",
+   "text": "later coordinate workshop rotation and food access"
+  },
+  {
+   "name": "Elm",
+   "cycle": 1,
+   "source": "diary",
+   "text": "I offered workshop coverage as needed"
+  },
+  {
+   "name": "Fern",
+   "cycle": 1,
+   "source": "diary",
+   "text": "offer workshop relief if needed"
+  },
+  {
+   "name": "Gale",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Support voluntary rotation"
+  },
+  {
+   "name": "Heath",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Support voluntary shared workshop rotation"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 1,
+   "source": "diary",
+   "text": "help coordinate rotation if needed without redundant shifts"
+  },
+  {
+   "name": "Iris",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Alder covering workshop"
+  },
+  {
+   "name": "Alder",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Need continuous workshop coverage, stagger meals, share shifts"
+  },
+  {
+   "name": "Cedar",
+   "cycle": 2,
+   "source": "diary",
+   "text": "I told market I will coordinate workshop coverage with Alder"
+  },
+  {
+   "name": "Alder",
+   "cycle": 9,
+   "source": "post",
+   "text": "Please coordinate exactly one workshop shift every cycle."
+  }
+ ],
+ "decidedAt": "2026-11-20T06:48:56+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
