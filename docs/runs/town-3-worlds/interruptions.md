@@ -4,3 +4,4 @@ Each resumed from the saved world between turns (the harness saves after every t
 
 - 2026-11-20 ≈06:35 UTC — container restart during day 1 of sol-silent-1 (cycle 12) and sol-silent-2 (cycle 12); both resumed with the same command.
 - 2026-11-20 ≈14:50 UTC — the deepseek-A runner stopped during day 1 (after cycle 14, its last saved turn; most likely a second container restart, noticed at 17:40); resumed with the same command.
+- 2026-11-20 17:49 UTC — the deepseek-A runner stopped again after cycle 15 (the container was reclaimed while the session was idle; restarted at 19:11); resumed with the same command. From here a monitor stays armed while the world runs, so the session is never idle.
