@@ -9,9 +9,29 @@
     "llmapi": 0.0052134,
     "openrouter": 0.0029294
    }
+  },
+  "sol-silent-1": {
+   "usd": 1.1619856000000015,
+   "calls": 1030,
+   "byDoor": {
+    "llmapi": 1.1619856000000015
+   },
+   "world": "sol-silent-1",
+   "cycle": 12,
+   "refusals": 0
+  },
+  "sol-silent-2": {
+   "usd": 1.1190500000000014,
+   "calls": 988,
+   "byDoor": {
+    "llmapi": 1.1190500000000014
+   },
+   "world": "sol-silent-2",
+   "cycle": 12,
+   "refusals": 0
   }
  },
- "totalUsd": 0.0081428,
+ "totalUsd": 2.2891784000000026,
  "stopped": null,
  "balances": [
   {
@@ -39,6 +59,32 @@
     "at": "2026-11-20T06:04:10.752Z"
    },
    "at": "2026-11-20T06:04:10.752Z"
+  },
+  {
+   "label": "sol-silent-1 day1 start",
+   "llmapi": {
+    "total": 223.99244289,
+    "at": "2026-11-20T06:04:33.995Z"
+   },
+   "openrouter": {
+    "total": 134.44603914000004,
+    "usage": 2015.55396086,
+    "at": "2026-11-20T06:04:34.030Z"
+   },
+   "at": "2026-11-20T06:04:34.030Z"
+  },
+  {
+   "label": "sol-silent-2 day1 start",
+   "llmapi": {
+    "total": 223.99164809,
+    "at": "2026-11-20T06:04:34.054Z"
+   },
+   "openrouter": {
+    "total": 134.44486473999996,
+    "usage": 2015.55513526,
+    "at": "2026-11-20T06:04:34.086Z"
+   },
+   "at": "2026-11-20T06:04:34.086Z"
   }
  ]
 }
