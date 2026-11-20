@@ -215,3 +215,23 @@ test("S1 the synchrony column: all citizens doing the same act in their turn, an
   assert.equal(rows[2].noPriorExchange, false, "c3: the later ones in each house heard «rest» before resting");
   assert.deepEqual([rows[3].all, rows[3].same, rows[3].turns], [false, 3, 4]);
 });
+
+test("R1 the after-question's reserve: with the stage ledger near the ceiling, the week's turns stop at a turn boundary, every citizen is asked the after-question under the ceiling, the stop's state and partial-day dossier are written, and the replay stops at the same place, identical", async () => {
+  const ctx = scratch("r1");
+  await project(ctx, { log: quiet });
+  writeFileSync(ctx.paths.ledger, JSON.stringify({ stage: "TOWN_5", ceiling: 50, steps: { earlier: { usd: 48.9, calls: 0, byDoor: {} } }, totalUsd: 48.9, stopped: null, balances: [] }));
+  const { world, record, meter } = await runWorldTo(ctx, "sol-week", { log: quiet });
+  assert.ok(record.reserveStop, "stopped by the reserve");
+  assert.match(record.stopped, /after-question's reserve/);
+  assert.ok(world.cursor.order !== null || world.state.clock.round < 168, "before the week's end");
+  assert.ok(meter.spent() <= 50, "under the ceiling");
+  const lastTurns = Object.values(record.agents).map((a) => a.turns.at(-1)).filter(Boolean);
+  assert.ok(lastTurns.every((t) => !t.stopped), "no turn cut short");
+  assert.ok(world.state.citizens.every((id) => record.agents[id].after?.asked || record.agents[id].after?.why), "the after-question to every citizen");
+  const dir = join(ctx.paths.out, "sol-week");
+  const c = world.state.clock.round;
+  assert.ok(existsSync(join(dir, `world-c${c}.json.gz`)) && existsSync(join(dir, `dossier-c${c}.md`)), "the stop's state and dossier");
+  const saved = gz(join(dir, "record.json.gz"));
+  assert.equal(saved.replay.identical, true, "replay identical to the stop");
+  assert.equal(saved.replay.exhausted, false);
+});

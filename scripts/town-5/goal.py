@@ -20,7 +20,7 @@ w = json.loads(gzip.open(os.path.join(root, f"world-c{cycle}.json.gz")).read())
 s = w["state"]
 if s["clock"]["round"] != cycle:
     raise SystemExit(f"world-c{cycle} is at cycle {s['clock']['round']}")
-first = cycle - 23
+first = int(d.get("from", cycle - 23))  # a partial last day (a stopped world) gives its own first cycle
 byname = {s["agents"][c]["name"]: c for c in s["citizens"]}
 def texts(name, cyc, source):
     c = byname[name]

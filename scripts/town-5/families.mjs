@@ -27,7 +27,11 @@ export const JUDGES = Object.freeze({
 });
 
 /** TOWN_2's settings with TOWN_5's ceiling ($50). A day is 24 cycles; a branch starts after cycle 24. */
-export const SETTINGS = Object.freeze({ day: 24, branchAt: 24, maxTokens: 1500, effort: "medium", ceiling: 50, breaker: 3, arm: "both" });
+export const SETTINGS = Object.freeze({ day: 24, branchAt: 24, maxTokens: 1500, effort: "medium", ceiling: 50, breaker: 3, arm: "both",
+  // decided during the week (2026-11-20 ≈14:40 UTC, the week at c97 with $16.55 left): a world's turns stop at a turn
+  // boundary once the stage ledger reaches ceiling − afterReserve, so that the after-question can still be asked under
+  // the ceiling (the per-call gate alone would stop the week mid-turn with no after-question)
+  afterReserve: 1 });
 
 const homogeneous = (family) => NAMES.map(() => family);
 

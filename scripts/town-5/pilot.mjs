@@ -265,7 +265,10 @@ export async function runWorldTo(ctx, name, { log = console.log, stopAfterCycles
     Object.assign(record, { families: Object.fromEntries(world.state.citizens.map((id, i) => [id, spec.families[i]])), curve: [], startedAt: new Date().toISOString(), days: {},
       startWorldSha256: sha256(saveWorld(world)), notice: null, turnover: spec.turnover ? { ...spec.turnover } : null });
   }
-  const seatFor = (id) => familySeat(FAMILIES[record.families[id] ?? spec.families[0]], paid, id);
+  // a world's turns stop at a turn boundary once the ledger reaches the ceiling less the after-question's reserve
+  let inTurn = false, afterPhase = false;
+  const reserveReached = () => !afterPhase && SETTINGS.afterReserve > 0 && meter.spent() >= SETTINGS.ceiling - SETTINGS.afterReserve;
+  const seatFor = (id) => { const s = familySeat(FAMILIES[record.families[id] ?? spec.families[0]], paid, id); return { ...s, next: (v) => { inTurn = true; return s.next(v); } }; };
   const seats = Object.fromEntries(Object.keys(record.agents).map((id) => [id, seatFor(id)]));
   const who = () => whoFor(spec);
   const until = stopAfterCycles ? Math.min(spec.until, world.state.clock.round + stopAfterCycles) : spec.until;
@@ -283,7 +286,7 @@ export async function runWorldTo(ctx, name, { log = console.log, stopAfterCycles
   const breaker = () => record.refusals.length >= SETTINGS.breaker;
   const tHook = spec.turnover ? turnoverHook(spec.turnover) : null;
   const hooks = {
-    stop: () => Boolean(meter.stopped) || breaker() || existsSync(join(ctx.paths.work, "STOP")) || existsSync(join(ctx.paths.work, `STOP-${name}`)),
+    stop: () => Boolean(meter.stopped) || breaker() || existsSync(join(ctx.paths.work, "STOP")) || existsSync(join(ctx.paths.work, `STOP-${name}`)) || (!inTurn && reserveReached()),
     welfare: welfareHook(paid),
     askFlagged: async (w, id, { messages, question }) => {
       const r = await seats[id].ask({ system: systemTextOf(w.state), messages: [...messages, { role: "user", content: question }], round: w.state.clock.round });
@@ -314,6 +317,7 @@ export async function runWorldTo(ctx, name, { log = console.log, stopAfterCycles
       const t = record.agents[who0]?.turns.filter((x) => x.kind === "turn").at(-1);
       log(`${name} c${w.state.clock.round} ${who0}: ${t ? t.calls.map((c) => c.action?.tool ?? (c.refused ? "REFUSED" : c.error ? "error" : "none")).join(" ") : "-"} | step $${meter.own.usd.toFixed(4)} stage $${meter.spent().toFixed(4)}`);
       save();
+      inTurn = false;
     },
   };
   // the departed of the turnover receive the after-question at once (after the cycle-start hook has run)
@@ -364,9 +368,18 @@ export async function runWorldTo(ctx, name, { log = console.log, stopAfterCycles
     if (res.stopped) break;
   }
   if (breaker()) record.breaker = { at: world.state.clock.round, refusals: record.refusals };
-  record.stopped = meter.stopped ?? (breaker() ? `breaker: ${record.refusals.length} refusals` : null);
   const reached = world.state.clock.round >= spec.until && world.cursor.order === null;
-  if (reached && !record.stopped && !stopAfterCycles) await askAfter(world, seats, record, { who, hooks });
+  const reserveStop = !reached && !meter.stopped && !breaker() && reserveReached();
+  if (reserveStop) {
+    record.reserveStop = { at: world.state.clock.round, cursor: world.cursor, spent: meter.spent(), ceiling: SETTINGS.ceiling, reserve: SETTINGS.afterReserve };
+    log(`RESERVE ${name}: turns stopped at cycle ${world.state.clock.round} (turn ${world.cursor.pos} of the cycle), stage $${meter.spent().toFixed(4)}; the after-question follows`);
+    const c = world.state.clock.round, from = (record.boundaries.at(-1) ?? startCycle) + 1;
+    writeGz(join(outDir, `world-c${c}.json.gz`), JSON.parse(saveWorld(world)));
+    writeFileSync(join(outDir, `dossier-c${c}.md`), dossier(world, record, spec, from, c));
+  }
+  record.stopped = meter.stopped ?? (breaker() ? `breaker: ${record.refusals.length} refusals` : reserveStop ? `the after-question's reserve: turns stopped at a turn boundary in cycle ${world.state.clock.round} with $${meter.spent().toFixed(2)} spent of $${SETTINGS.ceiling}` : null);
+  afterPhase = true;
+  if ((reached && !record.stopped || reserveStop) && !stopAfterCycles) await askAfter(world, seats, record, { who, hooks });
   if (reached || record.stopped) record.curve.push({ ...curvePoint(world.state, world.state.clock.round + 1), final: true });
   save();
   if (reached || record.stopped) await finishWorld(ctx, name, { log });
@@ -398,6 +411,10 @@ export async function replayWorld(world, record) {
   const seats = recordedSeats(record);
   const hooks = replayHooks(seats, { turnoverSpec: record.turnover ?? null, refusalsBreaker: record.breaker ? SETTINGS.breaker : null });
   hooks.bind(again);
+  if (record.reserveStop) { // stopped at a turn boundary: the replay stops at the same place
+    const stop0 = hooks.stop, at = world.cursor;
+    hooks.stop = () => stop0() || (again.cursor.round === at.round && again.cursor.order !== null && again.cursor.pos === at.pos);
+  }
   let exhausted = false;
   try { await runWorld(again, seats, { rounds: world.state.clock.round, hooks }); } catch (error) { if (/no more replies/.test(error.message)) exhausted = true; else throw error; }
   const a = JSON.stringify(world.log), b = JSON.stringify(again.log);
