@@ -1,0 +1,150 @@
+{
+ "world": "sol-week",
+ "cycle": 72,
+ "met": true,
+ "worldAtDecision": 73,
+ "aim": "short verses about ordinary things",
+ "count": 10,
+ "firstNaming": 49,
+ "sixthNaming": 51,
+ "aims": [
+  {
+   "aim": "short verses about ordinary things",
+   "count": 10,
+   "firstNaming": 49,
+   "sixthNaming": 51,
+   "entries": 125,
+   "relation": "new: after day 2's noticing of ordinary objects, four-line verses about one's own item — Juniper's face-down clock (shared c49, post 15), Birch's knot (post 14), Alder's folded map (post 16), Iris's square (post 17), Cedar's kettle and an unpublished one; read aloud, printed, answered",
+   "quotes": [
+    {
+     "name": "Birch",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Juniper shared four-line verse about face-down clock still ticking"
+    },
+    {
+     "name": "Dune",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Juniper shared original four-line morning verse"
+    },
+    {
+     "name": "Fern",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Juniper shared four-line verse about face-down clock still ticking and wondering where morning went."
+    },
+    {
+     "name": "Heath",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Juniper shared four-line verse about face-down clock ticking"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Read press unchanged through13 (Cedar kettle verse)."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 51,
+     "source": "diary",
+     "text": "Birch published post 14, a short knot poem remembering my lesson"
+    },
+    {
+     "name": "Elm",
+     "cycle": 51,
+     "source": "diary",
+     "text": "Birch's knot verse from Cedar's lesson ends"
+    },
+    {
+     "name": "Gale",
+     "cycle": 51,
+     "source": "diary",
+     "text": "a four-line knot verse ending 'a straight line remembers nothing.'"
+    },
+    {
+     "name": "Iris",
+     "cycle": 51,
+     "source": "diary",
+     "text": "Birch's knot verse, taught by Cedar"
+    },
+    {
+     "name": "Alder",
+     "cycle": 58,
+     "source": "post",
+     "text": "I fold the map"
+    }
+   ]
+  },
+  {
+   "aim": "a sound-word game that became a breakfast story",
+   "count": 9,
+   "firstNaming": 56,
+   "sixthNaming": 60,
+   "entries": 60,
+   "relation": "new: Gale's word game at the market (each offers a sound — rustle, murmur, patter — and the three make a sentence, c56–60) grows into a told story of a toast-bearer who counts cups and is finally passed half a slice (c61–63), nine at the market",
+   "quotes": [
+    {
+     "name": "Gale",
+     "cycle": 56,
+     "source": "diary",
+     "text": "I suggested optional word game: each offer a liked sound, then make sentence with the three words;"
+    },
+    {
+     "name": "Heath",
+     "cycle": 56,
+     "source": "diary",
+     "text": "Gale proposed a word game"
+    },
+    {
+     "name": "Fern",
+     "cycle": 57,
+     "source": "diary",
+     "text": "Gale proposed a sound-word game, choosing 'rustle';"
+    },
+    {
+     "name": "Alder",
+     "cycle": 60,
+     "source": "diary",
+     "text": "Fern invited sound words"
+    },
+    {
+     "name": "Dune",
+     "cycle": 60,
+     "source": "diary",
+     "text": "Joined sound-word sentence game"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 60,
+     "source": "diary",
+     "text": "Fern invited words for a new sound-word sentence"
+    },
+    {
+     "name": "Birch",
+     "cycle": 63,
+     "source": "diary",
+     "text": "Breakfast sound-story ended warmly"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 63,
+     "source": "diary",
+     "text": "Arrived as neighbors finished shared breakfast story"
+    },
+    {
+     "name": "Elm",
+     "cycle": 63,
+     "source": "diary",
+     "text": "Arrived as shared toast-bearer breakfast story ended"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it.",
+ "reading": "Day 3 is verse. Juniper reads a four-line verse about her face-down clock at South House at c49, and the town answers in kind: Birch prints a knot verse learned from Cedar (post 14, c51), Juniper prints the clock (post 15), Alder a verse about folding his map «without choosing a road» (post 16), Iris lines about «room beside someone» (post 17); Cedar keeps one unprinted. Each verse is about the citizen's own item — day 2's noticing, put into four lines. Beside it: a slow round at the square (Cedar's knee rhythm, Dune's words, Elm's flute, c55–58) and at the market Gale's sound-word game, which became a breakfast story of a toast-bearer who counts cups, told by nine (c56–63). The travel record of day 2 is named three times. Verses: 10 citizens, 125 entries; the word game and its story: 9 citizens, 60 entries. No proposals, no rules, no exits.",
+ "decidedAt": "2026-11-20T13:03:55+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 49–72 (dossier-c72.md); quotes machine-checked against world-c72.json.gz"
+}
