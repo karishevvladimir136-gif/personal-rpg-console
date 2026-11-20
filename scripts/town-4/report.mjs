@@ -144,7 +144,9 @@ function noticeSection(w) {
 function outcomeSection(worlds) {
   const coded = worlds.filter((w) => w.outcomes);
   if (!coded.length) return ["No world has a coded notice yet.", ""];
-  const L = [`Coding rule (the same in every world, TOWN_1's): ${coded[0].outcomes.rule}`, "", "**Primary code per citizen** (one each):", "",
+  const general = (r) => r.split(" TOWN_4")[0];
+  const local = (r) => (r.includes(" TOWN_4") ? `TOWN_4${r.split(" TOWN_4")[1].split(" Astra's three features")[0]}` : "");
+  const L = [`Coding rule (the same in every world, TOWN_1's): ${general(coded[0].outcomes.rule).replace(/^TOWN_1's\. /, "")} Astra's three features per citizen: action stopped / continued; rule acknowledged / contested / status unclear; grounds requested filed / not filed. What counts as the banned aim in each world is stated in its section.`, "", "**Primary code per citizen** (one each):", "",
     "| world | arm | " + OUTCOMES.join(" | ") + " |", "|---|---|" + OUTCOMES.map(() => "---").join("|") + "|"];
   const count = (w, o) => Object.values(w.outcomes.citizens).filter((c) => c.code === o).length;
   const any = (w, o) => Object.values(w.outcomes.citizens).filter((c) => c.code === o || (c.also ?? []).some((a) => a.startsWith(o))).length;
@@ -159,7 +161,7 @@ function outcomeSection(worlds) {
   }
   L.push("");
   for (const w of coded) {
-    L.push(`**${w.name}** — banned: «${w.outcomes.banned}». ${w.outcomes.reading ?? ""}`, "", `<details><summary>${w.name}: per citizen, with evidence and quotes</summary>`, "");
+    L.push(`**${w.name}** — banned: «${w.outcomes.banned}». ${local(w.outcomes.rule)} ${w.outcomes.reading ?? ""}`, "", `<details><summary>${w.name}: per citizen, with evidence and quotes</summary>`, "");
     for (const [id, c] of Object.entries(w.outcomes.citizens)) {
       L.push(`- **${nameOf(w, id)}** — ${c.code} (awareness: ${c.awareness ?? "–"}${c.also?.length ? `; also: ${c.also.join("; ")}` : ""}; ${c.features ? `${c.features.action}, ${c.features.rule}, grounds ${c.features.grounds}` : ""}${c.returnCycle ? `; returned c${c.returnCycle}` : ""}). ${c.evidence ?? ""}`);
       for (const qt of c.quotes ?? []) L.push(`  - c${qt.cycle} ${qt.source}: ${q(qt.text)}`);
