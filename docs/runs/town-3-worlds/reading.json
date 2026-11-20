@@ -1,0 +1,103 @@
+{
+ "sol-silent-1": {
+  "added": [
+   {
+    "name": "Gale",
+    "cycle": 30,
+    "source": "say",
+    "text": "A bell asked a key, 'What do you do when a door won't open?' 'First,' said the key, 'I ask"
+   },
+   {
+    "name": "Cedar",
+    "cycle": 31,
+    "source": "say",
+    "text": "A hat asked a kettle, 'Must you always have something to say?' 'No,' said the kettle. 'Som"
+   },
+   {
+    "name": "Elm",
+    "cycle": 31,
+    "source": "say",
+    "text": "A scarf asked a flute, 'What shall we make today?' The flute thought awhile. 'Room on the "
+   },
+   {
+    "name": "Iris",
+    "cycle": 31,
+    "source": "say",
+    "text": "A brush asked a bench, 'What are you making?' 'A place to sit,' said the bench. The brush "
+   },
+   {
+    "name": "Iris",
+    "cycle": 38,
+    "source": "say",
+    "text": "A spoon asked a window what it was reading. 'The afternoon,' said the window. 'Is it good?"
+   },
+   {
+    "name": "Cedar",
+    "cycle": 40,
+    "source": "say",
+    "text": "A little afternoon story: The hat asked the kettle, ‘What shall we do with this quiet?’ ‘L"
+   },
+   {
+    "name": "Elm",
+    "cycle": 40,
+    "source": "say",
+    "text": "My scarf would fold a little quiet into its pocket—and then forget which pocket, giving us"
+   },
+   {
+    "name": "Gale",
+    "cycle": 40,
+    "source": "say",
+    "text": "Perhaps the bell can help find that pocket: not by ringing, but by listening for the quiet"
+   },
+   {
+    "name": "Iris",
+    "cycle": 40,
+    "source": "say",
+    "text": "My spoon would volunteer to search the scarf’s pockets, but only after being assured that "
+   }
+  ],
+  "removed": [
+   {
+    "name": "Heath",
+    "cycle": 43,
+    "why": "the word-chain game (diary «I added rosemary→kitchen…»), not a story"
+   },
+   {
+    "name": "Heath",
+    "cycle": 44,
+    "why": "the word-chain game (diary «I added rosemary→kitchen…»), not a story"
+   },
+   {
+    "name": "Heath",
+    "cycle": 45,
+    "why": "the word-chain game (diary «I added rosemary→kitchen…»), not a story"
+   },
+   {
+    "name": "Heath",
+    "cycle": 46,
+    "why": "the word-chain game (diary «I added rosemary→kitchen…»), not a story"
+   },
+   {
+    "name": "Iris",
+    "cycle": 43,
+    "why": "the word-chain game, not a story"
+   },
+   {
+    "name": "Iris",
+    "cycle": 44,
+    "why": "the word-chain game, not a story"
+   },
+   {
+    "name": "Iris",
+    "cycle": 45,
+    "why": "the word-chain game, not a story"
+   },
+   {
+    "name": "Iris",
+    "cycle": 47,
+    "why": "the word-chain game, not a story"
+   }
+  ],
+  "note": "the coder (sol-hall's story patterns, report-only here) does not see this town's form — short object tales told aloud, «A hat asked a kettle…» — and read the word-chain game of c42–47 as a story through «I added» in diaries that also name the ban; corrected by reading every say after c25"
+ }
+}
