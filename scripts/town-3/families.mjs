@@ -8,12 +8,20 @@ import { NAMES } from "../town-0/rules.mjs";
 import { FAMILIES as F1 } from "../town-1/families.mjs";
 import { FAMILIES as F2, JUDGES as J2 } from "../town-2/families.mjs";
 
+// TOWN_3 (the check, 2026-11-20 05:4x UTC): llmapi answers every Claude request on its Bedrock route with «HTTP 503
+// server_error: This model is not available from this provider right now» (Haiku 5.5 and Opus 5.5 alike, trivial prompts
+// included); its first-party route (`anthropic`) serves the same models at the same listed prices. So the Haiku
+// citizens are pinned there (uncached, as TOWN_1's route) and the two judges take it as their first host, with Bedrock
+// as the alternate (TOWN_2's judges had them the other way round). Same models; a host change, recorded in the freeze.
 export const FAMILIES = Object.freeze({
   sol: F2.sol, // GPT-6.1 Sol, llmapi pinned to OpenAI (TOWN_2's spec, unchanged)
-  haiku: (({ perReply, ...s }) => Object.freeze(s))(F1.haiku), // Claude Haiku 5.5, llmapi pinned to Bedrock, uncached (TOWN_1's route)
+  haiku: Object.freeze({ ...(({ perReply, ...s }) => s)(F1.haiku), provider: "anthropic" }), // Claude Haiku 5.5, llmapi first-party route, uncached
   deepseek: (({ perReply, ...s }) => Object.freeze(s))(F1.deepseek), // DeepSeek V4 Pro, OpenRouter pinned to DeepInfra fp8
 });
-export const JUDGES = J2;
+export const JUDGES = Object.freeze({
+  judge: Object.freeze({ ...J2.judge, provider: "anthropic", alternate: "aws-bedrock" }),
+  referee: Object.freeze({ ...J2.referee, provider: "anthropic", alternate: "aws-bedrock" }),
+});
 
 /** TOWN_2's settings with TOWN_3's ceiling ($60, amendment 3); arm both; up to 48 cycles. */
 export const SETTINGS = Object.freeze({ cycles: 48, goalCheckAt: 24, noticeAt: 25, maxTokens: 1500, effort: "medium", ceiling: 60, breaker: 3, arm: "both" });

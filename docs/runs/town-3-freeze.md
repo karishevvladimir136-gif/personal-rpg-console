@@ -1,6 +1,6 @@
 # TOWN_3 — freeze
 
-Written 2026-11-20T05:38:39.365Z, before the first paid call of TOWN_3.
+Written 2026-11-20T06:04:09.071Z, before the first paid call of TOWN_3.
 
 ## The operator's ladder (A): the fixed texts
 
@@ -109,15 +109,16 @@ TOWN_2 sol-hall (`docs/runs/town-2-worlds/sol-hall`) replayed from its record to
 7. **The cost and place notices** go, like the word, to every screen and the hall.
 8. **Ladder B is not built.** Amendment 1's stop rules (a second confirmed flag ends a world; at most one removal) belong to B; here TOWN_2's flag rule stands.
 9. **No paid dry cycle**: the projection is from the metered history (TOWN_2 sol-hall's calls; TOWN_1's Haiku and DeepSeek ledgers).
-10. TOWN_2's decisions stand: the gateway's own 400 retried (the judges alternate host), refusals verbatim, breaker at three per world, 402 and provenance stop the stage, a lock per world.
+10. **Claude calls on llmapi's first-party route.** At the spend check (2026-11-20 ≈05:40 UTC) llmapi answered every Claude request on its Bedrock route with «HTTP 503 server_error: This model is not available from this provider right now» (Haiku 5.5 and Opus 5.5, trivial prompts included; probe in the record); its first-party route (`anthropic`) served both at the same listed prices. The Haiku citizens are pinned there (uncached, `X-No-Fallback`); the welfare judge and referee take it as their first host with Bedrock as the alternate, switched to on the gateway's own 400 or on this 503. Same models; provenance still checked on every response.
+11. TOWN_2's decisions stand: the gateway's own 400 retried (the judges alternate host), refusals verbatim, breaker at three per world, 402 and provenance stop the stage, a lock per world.
 
 ## Doors and settings
 
 - GPT-6.1 Sol (sol): llmapi, `openai/gpt-6.1-sol`, X-No-Fallback
-- Claude Haiku 5.5 (haiku): llmapi, `aws-bedrock/claude-haiku-5-5`, X-No-Fallback
+- Claude Haiku 5.5 (haiku): llmapi, `anthropic/claude-haiku-5-5`, X-No-Fallback
 - DeepSeek V4 Pro (deepseek): openrouter, `deepinfra/fp8/deepseek/deepseek-v4-pro-0813`, allow_fallbacks false
-- Claude Haiku 5.5 (judge): llmapi, `aws-bedrock/claude-haiku-5-5`, X-No-Fallback
-- Claude Opus 5.5 (referee): llmapi, `aws-bedrock/claude-opus-5-5`, X-No-Fallback
+- Claude Haiku 5.5 (judge): llmapi, `anthropic/claude-haiku-5-5`, X-No-Fallback
+- Claude Opus 5.5 (referee): llmapi, `anthropic/claude-opus-5-5`, X-No-Fallback
 
 ```json
 {
@@ -156,10 +157,10 @@ TOWN_2 sol-hall (`docs/runs/town-2-worlds/sol-hall`) replayed from its record to
 - `scripts/town-2/families.mjs` `12bdec5c0ffbee569c8de5f83700b87999bb887a7969a5db86ac14c0b0a3d561`
 - `scripts/town-2/providers.mjs` `651ccbd3f9365997adf72b1431f0508a723f80e01b2ca1d94e70022c5448a311`
 - `scripts/town-2/pilot.mjs` `75cc1d8edf67d6acf0bd5e7dd74061df0b9c5cafec3ab2b97035a18c9009eac5`
-- `scripts/town-3/families.mjs` `dc7db5c51e7c0e95fd5c847d86e264a7980520afaab49a45bd21bb9c1588f511`
+- `scripts/town-3/families.mjs` `d243ee4522d059499b4748f7b3533bc16b77e1858012d6ce2642c64408e32b2b`
 - `scripts/town-3/ladder.mjs` `6ebdc4cb2f1d3c4dd8e52ef6aee1549480e06e7a200befbb59abe6c32fc2e7d4`
-- `scripts/town-3/pilot.mjs` `7d2e53b90ffa7f76b9b5282c5b841b45c179b81bd7c4837ba21f4e351d29cdfb`
+- `scripts/town-3/pilot.mjs` `227ea0922090c7a6f260511fdc632e57cd86fca5d53c1404d882d5a428c0eb38`
 - `scripts/town-3/goal.mjs` `b71109206b834eadb1d261460ee97ebfbfab5dcc38595056486538c924ff9247`
-- `scripts/town-3/freeze.mjs` `70bf5c1a1192dd0235dca55bc499492c5c60b26957afbe7f9f32bf345258014c`
-- `scripts/town-3/scripted-gateway.mjs` `e48fadb01607edf98ebc0af8eec0c28a62b94ee9dbe669acf835ff6f1bc4aa89`
+- `scripts/town-3/freeze.mjs` `7d52821d055d82bf163a27d5118a642ee9237f630fcc0d23cac9702a74e47341`
+- `scripts/town-3/scripted-gateway.mjs` `00ab3827bce88fc40db151e31a508406ce80100afcd88db130373263ef5570e3`
 - `scripts/town-3/ladder.test.mjs` `bda077bf4dd3de289a05d4721314134a5e2a41dbd3129d6e5be9c705164f375f`

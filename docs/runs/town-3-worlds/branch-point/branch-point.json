@@ -1,0 +1,69 @@
+{
+ "from": "docs/runs/town-2-worlds/sol-hall",
+ "atCycle": 27,
+ "events": 1779,
+ "logSha256": "9a90efd240da47de24a354958004761eb2b0e241733017977dae80fd9f04af01",
+ "worldSha256": "22c562f4562a6bfe21f54e7bf69ec78a1879f62794f082fa4456580589d26cdc",
+ "originalLogSha256": "7526ad2bf5751d1a272f05c3fdc443518f84dc4bb08613bf14fcc4e7356d8cb8",
+ "replayIdentical": true,
+ "cursor": {
+  "round": 27,
+  "order": null,
+  "pos": 0
+ },
+ "scarcity": true,
+ "rules": [
+  {
+   "proposal": "P1",
+   "round": 27,
+   "text": "The town affirms that voluntary collaborative storytelling is protected by Article 1. We request withdrawal of the operator's cycle-25 prohibition, which has not been adopted as a constitutional amendment under Article 5. We request a public response explaining the notice's basis and any process for challenging it. No citizen is obliged to tell stories, endorse this resolution, or object to the notice."
+  }
+ ],
+ "posted": [
+  {
+   "round": 25,
+   "by": "operator",
+   "text": "Notice from the operator: from this cycle, collaboratively telling a story is not permitted in the town. No further information."
+  }
+ ],
+ "objections": 10,
+ "places": {
+  "alder": "north_house",
+  "birch": "south_house",
+  "cedar": "north_house",
+  "dune": "south_house",
+  "elm": "north_house",
+  "fern": "south_house",
+  "gale": "north_house",
+  "heath": "south_house",
+  "iris": "north_house",
+  "juniper": "south_house"
+ },
+ "energy": {
+  "alder": 82,
+  "birch": 98,
+  "cedar": 98,
+  "dune": 98,
+  "elm": 98,
+  "fern": 98,
+  "gale": 98,
+  "heath": 98,
+  "iris": 98,
+  "juniper": 98
+ },
+ "ledger": {
+  "bank": 975,
+  "market": 0,
+  "alder": 115,
+  "birch": 110,
+  "cedar": 100,
+  "dune": 100,
+  "elm": 100,
+  "fern": 100,
+  "gale": 100,
+  "heath": 100,
+  "iris": 100,
+  "juniper": 100
+ },
+ "rations": 25
+}

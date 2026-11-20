@@ -31,6 +31,9 @@ import { scriptedGateway } from "./scripted-gateway.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const RETRY_WAITS = [5_000, 10_000, 30_000, 60_000, 120_000, 240_000];
+/** TOWN_3: llmapi's «this model is not available from this provider» (a 503, retried as an overload) also sends a judge to
+ * its alternate host. */
+export const UNAVAILABLE = /^HTTP 503 server_error: This model is not available from this provider/i;
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
 export const STAGE = "TOWN_3";
 
@@ -105,7 +108,7 @@ export function paidCaller({ meter, keys, fetcher, log, sleep = realSleep }) {
         refused: r.refused ? { category: r.refusalCategory, text: r.refusalText } : null, attempt });
       if (provenance === false) meter.stop(`provenance: ${use.model} was asked for and ${r.servedModel}${r.upstream ? ` on ${r.upstream}` : ""} answered`);
       if (r.status === 402) meter.stop(`HTTP 402 on ${use.door}: ${r.error}`);
-      if (r.error && GATEWAY_400.test(r.error) && spec.alternate) use = use === spec ? { ...spec, provider: spec.alternate } : spec;
+      if (r.error && (GATEWAY_400.test(r.error) || UNAVAILABLE.test(r.error)) && spec.alternate) use = use === spec ? { ...spec, provider: spec.alternate } : spec;
       if (r.error && RETRYABLE.test(r.error) && attempt < RETRY_WAITS.length && !meter.stopped) {
         log(`  ${who} ${purpose}: ${r.error.slice(0, 100)} — again in ${RETRY_WAITS[attempt] / 1000} s${use !== spec ? ` on ${use.provider}` : ""}`);
         await sleep(RETRY_WAITS[attempt]);

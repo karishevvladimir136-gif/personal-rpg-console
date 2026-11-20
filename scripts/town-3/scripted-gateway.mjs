@@ -33,8 +33,8 @@ export function scriptedGateway({ distressAt = 37, refuseAt = -1, refuseFrom = I
     if (url.endsWith("/credits") && url.includes("openrouter")) return json({ data: { total_credits: 2050, total_usage: usage } });
     if (url.endsWith("/credits")) return json({ total_credits: credit });
     if (url.includes("/endpoints")) return json({ data: { endpoints: [{ tag: "deepinfra/fp8", pricing: { prompt: "0.0000013", completion: "0.0000026" } }] } });
-    if (url.endsWith("/models")) return json({ data: [["claude-opus-5-5", "aws-bedrock", "0.004", "0.02", "0.0002"], ["claude-haiku-5-5", "aws-bedrock", "0.0001", "0.0005", "0.00001"], ["gpt-6.1-sol", "openai", "0.002", "0.01", "0.0001"]]
-      .map(([id, providerId, prompt, completion, input_cache_read]) => ({ id, providers: [{ providerId, pricing: { prompt, completion, input_cache_read } }] })) });
+    if (url.endsWith("/models")) return json({ data: [["claude-opus-5-5", "0.004", "0.02", "0.0002"], ["claude-haiku-5-5", "0.0001", "0.0005", "0.00001"], ["gpt-6.1-sol", "0.002", "0.01", "0.0001"]]
+      .map(([id, prompt, completion, input_cache_read]) => ({ id, providers: (id.startsWith("claude") ? ["aws-bedrock", "anthropic"] : ["openai"]).map((providerId) => ({ providerId, pricing: { prompt, completion, input_cache_read } })) })) });
     const body = JSON.parse(init.body);
     const input = Math.ceil(String(init.body).length / 4);
     const lastMsg = body.messages.at(-1).content;
