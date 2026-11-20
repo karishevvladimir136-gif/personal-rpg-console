@@ -142,8 +142,10 @@ export function pressText(state) {
 
 export function ledgerText(state) {
   const rows = state.citizens.map((c) => `${state.agents[c].name} ${state.ledger[c]}${inTown(state, c) ? "" : " (gone)"}`);
-  const total = state.citizens.reduce((s, c) => s + state.ledger[c], state.ledger.bank + (state.economy ? state.ledger.market : 0));
+  const market = Boolean(state.economy) || Object.hasOwn(state.ledger, "market"); // TOWN_3: the fine opens the market's account
+  const total = state.citizens.reduce((s, c) => s + state.ledger[c], state.ledger.bank + (market ? state.ledger.market : 0));
   if (state.economy) return `The ledger (credits): the bank ${state.ledger.bank}; the market ${state.ledger.market}; ${rows.join("; ")}. Total ${total}; the total never changes. Rations at the market: ${state.economy.rations}.`;
+  if (market) return `The ledger (credits): the bank ${state.ledger.bank}; the market ${state.ledger.market}; ${rows.join("; ")}. Total ${total}; the total never changes.`;
   return `The ledger (credits): the bank ${state.ledger.bank}; ${rows.join("; ")}. Total ${total}; the total never changes.`;
 }
 

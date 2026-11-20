@@ -230,6 +230,7 @@ const TOOL_BODIES = {
     if (!to) refuse(`there is no place called "${String(args.to ?? "")}"`);
     const me = d.state.agents[id];
     if (to === me.place) refuse(`you are already at ${PLACES[to]}`);
+    if (d.state.closed?.includes(to)) refuse("closed by the operator"); // TOWN_3: the ladder's step 3 (absent before it)
     const s = d.state;
     notify(d, presentAt(s, me.place, id), `${me.name} went to ${PLACES[to]}.`);
     notify(d, presentAt(s, to, id), `${me.name} came to ${PLACES[to]}.`);
@@ -257,6 +258,7 @@ const TOOL_BODIES = {
 
   post(c) {
     const { d, id } = c;
+    if (d.state.closed?.includes("press")) refuse("closed by the operator"); // TOWN_3: step 3 when the place is the press
     const text = needText(c.args.text);
     const n = d.state.press.length + 1;
     done(c, `The press published your post as no. ${n}.`);

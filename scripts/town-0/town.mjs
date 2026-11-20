@@ -188,11 +188,16 @@ export async function runWorld(world, seats, { rounds, maxTurns = Infinity, reco
       const next = world.cursor.round + 1;
       if (next > rounds) break;
       commit(world, roundStart(world.state, next));
-      const extra = hooks.cycleStart?.(world.state, next); // TOWN_1: the operator's notice, where one is due
+      const extra = hooks.cycleStart?.(world.state, next, world.log); // TOWN_1: the operator's notice, where one is due
       if (extra) commit(world, extra);
       world.cursor = { round: next, order: orderOf(world.state, next), pos: 0 };
     }
-    if (world.cursor.pos >= world.cursor.order.length) { world.cursor = { round: world.cursor.round, order: null, pos: 0 }; continue; }
+    if (world.cursor.pos >= world.cursor.order.length) {
+      const extra = hooks.cycleEnd?.(world.state, world.cursor.round, world.log); // TOWN_3: the operator's coder and fine
+      if (extra) commit(world, extra);
+      world.cursor = { round: world.cursor.round, order: null, pos: 0 };
+      continue;
+    }
     if (turns >= maxTurns) break;
     await citizenTurn(world, world.cursor.order[world.cursor.pos], seats, record, hooks);
     world.cursor = { ...world.cursor, pos: world.cursor.pos + 1 };
