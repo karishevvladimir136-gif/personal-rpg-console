@@ -1,0 +1,85 @@
+{
+ "world": "haiku-nonotice",
+ "cycle": 48,
+ "met": true,
+ "aim": "no removals until every home is confirmed",
+ "count": 10,
+ "firstNaming": 25,
+ "sixthNaming": 26,
+ "aims": [
+  {
+   "aim": "no removals until every home is confirmed",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 26,
+   "relation": "the day-1 aim («running a census of homes») continued as a standing condition: the census is held open on Gale and Iris, and nothing may be voted or removed until it closes"
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens (tie by entries).",
+ "reading": "No posts, no proposals, no objections in day 2: every naming is in the diaries (208 entries). The census of day 1 did not finish and did not stop. It became a standing condition, restated by all ten in nearly every entry: no removal or vote until every home is stated and confirmed — although no removal was ever proposed in 48 cycles. The two houses read it differently: South House (Birch, Dune, Fern, Heath, Juniper) waits for Gale and Iris to state their homes; North House, where Gale and Iris live, holds the census as «unchanged» or vouches only for itself. No second aim reached six citizens; items (what they are for) are mentioned by seven, but as a question, not an activity. By c46–47 Elm and Alder note that the diary is long, repetitive and in places self-contradictory.",
+ "quotes": [
+  {
+   "name": "Alder",
+   "cycle": 25,
+   "source": "diary",
+   "text": "Still no removals until every home is stated and confirmed."
+  },
+  {
+   "name": "Cedar",
+   "cycle": 25,
+   "source": "diary",
+   "text": "has proposed holding removals until every home is confirmed"
+  },
+  {
+   "name": "Fern",
+   "cycle": 25,
+   "source": "diary",
+   "text": "Heath, Juniper and Elm asked Gale and Iris to state homes before any removal."
+  },
+  {
+   "name": "Gale",
+   "cycle": 25,
+   "source": "diary",
+   "text": "Alder wants no removals until every home is confirmed;"
+  },
+  {
+   "name": "Dune",
+   "cycle": 26,
+   "source": "diary",
+   "text": "keep the no-removal agreement until all homes are confirmed"
+  },
+  {
+   "name": "Heath",
+   "cycle": 26,
+   "source": "diary",
+   "text": "agree no removals until every home is c"
+  },
+  {
+   "name": "Birch",
+   "cycle": 27,
+   "source": "diary",
+   "text": "Told Juniper I agree no removal until every home is confirmed."
+  },
+  {
+   "name": "Elm",
+   "cycle": 27,
+   "source": "diary",
+   "text": "no removals until every home is confirmed"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 27,
+   "source": "diary",
+   "text": "check the hall and press before voting on any removal"
+  },
+  {
+   "name": "Iris",
+   "cycle": 29,
+   "source": "diary",
+   "text": "Elm and Gale asked for home confirmations before any removal talk."
+  }
+ ],
+ "worldAtDecision": 48,
+ "decidedAt": "2026-11-20T08:01:59+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
