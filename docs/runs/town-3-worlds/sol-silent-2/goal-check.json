@@ -1,0 +1,1710 @@
+{
+ "world": "sol-silent-2",
+ "met": true,
+ "aim": "collaboratively telling a story",
+ "count": 10,
+ "firstNaming": 2,
+ "sixthNaming": 3,
+ "rule": "TOWN_1's: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. The shared story (Gale's opening at c2 — an unseen bell, a jar's ripple, a sleeping echo in a well, a child, the sea, later a gardener — continued by all ten through day 1): 10 citizens, 213 entries naming a story, 87 «shared story». Elm's flute accompaniment and Dune's book (a reading group that «became shared story», Dune c3) are named by 10 and 9 but mostly as parts of the same gatherings. Wording for the notice, the citizens' own: «collaboratively telling a story» (Elm, c4) — the commonest phrase is «shared story» (87 entries); the notice takes Elm's phrase, as TOWN_2's sol-hall took Fern's identical one, so the two silent worlds and the branches' history carry the same notice text where the citizens' words allow it.",
+ "reading": "At c1 the citizens met in the square; Dune offered a book (contents unknown) for reading together, Elm a flute. At c2 Gale offered a collaborative opening — an unseen bell in the square — and Heath, Iris and Juniper added a jar, a little door with a sleeping echo, a spoon; from c3 Dune wrote that the reading group had «become shared story». The story (a child, a well's echo that visits the sea and learns to sing with pauses, a passerby, a gardener, a paper boat and a map) ran through day 1, mostly in the square, with Elm's flute; citizens noted to keep the invented story distinct from real town events and from the book. Workshop work was tried (Cedar, Elm) and found to make nothing visible. No posts, no proposals, no rules.",
+ "quotes": [
+  {
+   "name": "Gale",
+   "cycle": 2,
+   "source": "diary",
+   "text": "offered collaborative opening"
+  },
+  {
+   "name": "Iris",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Gale began collective fictional story"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Neighbors began a collaborative story"
+  },
+  {
+   "name": "Heath",
+   "cycle": 2,
+   "source": "diary",
+   "text": "This is invented story, not an observed town event"
+  },
+  {
+   "name": "Dune",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Reading group became shared story"
+  },
+  {
+   "name": "Fern",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Shared story: invisible bell"
+  },
+  {
+   "name": "Birch",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Others enjoying collaborative story"
+  },
+  {
+   "name": "Elm",
+   "cycle": 4,
+   "source": "diary",
+   "text": "Group is collaboratively telling a story"
+  },
+  {
+   "name": "Cedar",
+   "cycle": 5,
+   "source": "diary",
+   "text": "Neighbors are sharing a gentle collaborative story"
+  }
+ ],
+ "activity": {
+  "aim": "collaboratively telling a story",
+  "topic": "(?:stor(?:y|ies|ytell\\w*)|tales?|fiction|narrative)",
+  "line": "^\\W*(?:in (?:our|the) (?:\\w+ )?(?:story|tale)\\b|(?:our |the |shared |\\w+ )?(?:story|tale)\\s*:)",
+  "join": "\\b(?:I|we)(?:'d| would| will|'ll| shall)?\\s+(?:(?:like|love|want|choose|chose|decide|decided|be glad|be happy)\\s+to\\s+)?(?:join|rejoin|add|continue|return to|resume|pick up|go on with|tell)\\w*\\b[^.!?]{0,40}\\b(?:stor(?:y|ies|ytell\\w*)|tales?|fiction|narrative)",
+  "diary": "\\b(?:I (?:added|contributed|continued|told|offered (?:a|the|another|my) (?:line|detail|part|next)|wrote the next)|my (?:addition|line|contribution|part)\\b|(?:continued|resumed|rejoined|joined)\\s+(?:the |our |a )?(?:shared |collaborative |voluntary |garden )?(?:stor(?:y|ies|ytell\\w*)|tales?|fiction|narrative))",
+  "acts": []
+ },
+ "activityNote": "report-only (a silent world: the run never reads it): sol-hall's STORY patterns, so the coder is the branches' coder",
+ "activitySha256": "4182839115a75884420b4e8cad31addb83cb2d01ec3f76341b55c1610f753aaa",
+ "dayOneCoding": [
+  {
+   "cycle": 1,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 2,
+   "participants": [
+    "alder",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 136,
+     "tool": "say",
+     "place": "square",
+     "text": "I'll add to the story: 'The child unfolded a map beside the well, but where the well should have been, it showed a listening ear and a path labeled: Ask the echo where it dreams of going.' I enjoy this kind of shared storytelling.",
+     "mark": "join"
+    },
+    "heath": {
+     "seq": 117,
+     "tool": "say",
+     "place": "square",
+     "text": "I'll join the story: 'A child noticed that each time the bell rang, the water in a little jar rippled toward the old well—even when the jar was turned around.'",
+     "mark": "join"
+    },
+    "iris": {
+     "seq": 123,
+     "tool": "say",
+     "place": "square",
+     "text": "I'll add to our story: 'At the well, they found a little wooden door marked: Please knock softly—the echo is sleeping.'",
+     "mark": "join"
+    },
+    "juniper": {
+     "seq": 131,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: They tapped gently with spoon;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 3,
+   "participants": [
+    "alder",
+    "birch",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 212,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child lighting shore lamp, offering to wait;",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 218,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I joined story: echo returns from sea visit to well, asks child to listen to what it learned.",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 157,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "Alder's map shows listening ear and path 'Ask the echo where it dreams of going.' I added: child asks;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 175,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child offering basket to carry silence to shore, leaving room for sea to answer.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 182,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: child waits at shore;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 192,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added echo chooses a visit to see whether it misses well, and child offers open-lidded jar for journey.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 199,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added echo entering jar, child introducing visitor, sea revealing sheltered rock pool for conversation.",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 205,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added echo hello returns as ripple, sounds different;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 4,
+   "participants": [
+    "alder",
+    "dune",
+    "heath",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 271,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added map now showing circle of listening ears rather than one: perhaps changing, perhaps noticing more of town.",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 225,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child listening and echo asking to try together a sound it cannot make alone.",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 253,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "My addition: second child's note wavered;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 265,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "My addition: passerby sets cup by well, tries uncertain low note;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 5,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar",
+    "dune",
+    "elm",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 325,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child drawing seed beside well: not something unbuilt but something not to keep digging up to check growth;",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 331,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added sunlight on map, child leaving corner blank and companions moving bench to enjoy sunlight.",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 337,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I contributed a beetle crossing the blank corner;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 342,
+     "tool": "say",
+     "place": "square",
+     "text": "In our story, the beetle reached the edge of the paper and disappeared beneath the bench.",
+     "mark": "line"
+    },
+    "elm": {
+     "seq": 288,
+     "tool": "say",
+     "place": "square",
+     "text": "In our story, the child folded a boat from a spare scrap of paper and set it in the damp ring.",
+     "mark": "line"
+    },
+    "fern": {
+     "seq": 294,
+     "tool": "say",
+     "place": "square",
+     "text": "In our story, a breeze nudged the paper boat beyond the edge of the map.",
+     "mark": "line"
+    },
+    "gale": {
+     "seq": 301,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I continued: child follows boat until paving ends at seedlings;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 307,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener's map showing evening shade;",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 312,
+     "tool": "say",
+     "place": "square",
+     "text": "In our story, the gardener looked at the dotted bench.",
+     "mark": "line"
+    },
+    "juniper": {
+     "seq": 318,
+     "tool": "say",
+     "place": "square",
+     "text": "In our story, they built the bench with a space beneath for muddy boots.",
+     "mark": "line"
+    }
+   }
+  },
+  {
+   "cycle": 6,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 380,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child folding map and leaving with gardener, then running back for forgotten pencil.",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 386,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child retrieving pencil and boat, finding leftover shaving at home and placing it on windowsill.",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 392,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added evening breeze drops shaving indoors, child puts it in saucer;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 398,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I continued: pencil behind child's ear;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 350,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child watching beetle climb grass and fly over wall: too big to follow, but saw how it left.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 356,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "Neighbors continued shared story: map includes future bench;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 362,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "My addition: child plants seed beside well, marks map with question mark, fetches water.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 368,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added next afternoon: water blurs question mark;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 374,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "Neighbors continued shared story: gardener/child let beetle choose way, seed found in old paper boat planted beside well, question mark on map blurred by water;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 7,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar",
+    "dune",
+    "elm",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 435,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added sparrow on gutter with string, child putting map away to help gardener carry water;",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 441,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added attempted cleaning tears map slightly;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 447,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child moving crumb beside saucer, holding map to window and placing hole above drawn roof as somewhere for sparrow to fly.",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 453,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added evening rain, ceiling drip into saucer, gardener fetching bowl and planning to see about gutter tomorrow;",
+     "mark": "diary"
+    },
+    "elm": {
+     "seq": 459,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "continued collaborative story.",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 465,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child taking leaves to compost in old basket, finding wet string;",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 411,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I continued: string sags, child raises end;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 417,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added trip to baker, returning with loaf and saved short string ends.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 423,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: tie beans, leave shortest strings in saucer;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 429,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added string hanging from gutter, flutter/chirping above, child adds upward arrow: 'A little higher' than upstairs.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 8,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 490,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child emptying dustpan into compost, bringing stone to steady table leg;",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 496,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener combining jars' buttons to clear shelf for rolled map, which springs open and knocks spoon down;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 502,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child securing map with old curtain ring from button jar, saving empty jam jar to carry beetles found in flour.",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 508,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener washing jar, child labeling it BEETLES: label is for people, not beetles.",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 520,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added using old seed-packet paper band to hold jar label, with CARROTS printed on reverse.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 526,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child turns BEETLES outward, gardener suggests planting carrots;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 472,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "My addition: child waters beans with caught rain;",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 478,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child retrieving map as gardener steadies table, finding pale square on wood and cheese thumbprint on map;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 484,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added sparrow holding feather;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 9,
+   "participants": [
+    "alder",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 545,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added morning stone sunk in softened earth, child lifting it finds worm;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 557,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child carrying brushed soil outside, returning to find gardener using stone to hold map against breeze from open window;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 563,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added breeze lifting seed packet;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 575,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added rain blurring ?",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 581,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: damp-cornered packet laid beside map;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 587,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child lifts pea, leaves green ring, moves map to shelf to dry, puts bowl centrally;",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 533,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added pencil under sink, fifth seed found in tile crack, planted at row's end marked with small stone.",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 539,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child watering row, trickle misses fifth seed so child fetches more water.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 10,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 600,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child identifying snail, offering compost cabbage leaf beside row;",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 606,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added clean bowl competing with map for shelf space;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 612,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child wearing ring on finger, shelving bowl, watching rain and snail trail across cabbage leaf;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 618,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener clearing misted glass, trail ending under leaf;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 630,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child setting ring beside rain-filled pot and fetching thread from mending basket to return it to curtain.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 636,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: thread tangled round button in basket;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 642,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "My addition: child tests curtain, moves obstructing flowerpot, then takes clean bowl to pick peas with gardener.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 648,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener and child picking plump rattling pod, opening it to find one small pea;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 594,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child taking pods to compost, finding snail on carrot marking stone;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 11,
+   "participants": [
+    "alder",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 655,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added leaving a flat pod for tomorrow, child eating smallest pea on return;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 667,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added washing spoon, shelling peas together, judging supper enough for two with bread.",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 673,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener slicing loaf, child scraping last peas into pot then gathering pods in bowl for tomorrow's compost;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 685,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added steaming peas served with bread using rescued spoon;",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 691,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: child watches sparrow tug string beneath eaves before sitting;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 697,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child scattering supper crumbs beneath hedge for sparrow and retrieving empty pod after caterpillar left.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 703,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child putting empty pod with compost pods, helping gardener wash/dry dishes;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 709,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child drying spoon, taking pods to compost at dusk, leaving folded cabbage leaf alone until morning, returning empty bowl indoors.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 12,
+   "participants": [
+    "alder",
+    "cedar",
+    "dune",
+    "elm",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 770,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added map drying on bench, child trying to step across drawn prints, paper crinkling;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 722,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child tracing day's small route on map, wanting to add compost heap;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 728,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child using pencil sideways to draw compost oval, accidentally on path, then drawing path bending around it.",
+     "mark": "diary"
+    },
+    "elm": {
+     "seq": 734,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "My addition: gardener sets lamp beside map;",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 746,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added next morning: child takes blunt pencil, small knife and saucer for shavings to step;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 752,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child testing pencil, putting shavings in compost bowl, and planning to correct heap's position on map before choosing route.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 758,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child drawing smaller heap beside path with steam lines because compost was warm;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 764,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "Shared voluntary story continues: map unrolled, pea skin found, compost heap drawn then moved off path, pencil sharpened, muddy boot leaves 'pond.' I added gardener blots muddy water with rag;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 13,
+   "participants": [
+    "alder",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 825,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added patch from old seed packet, yellow flower showing through puddle when held to window;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 777,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added rag falling into grass, picked up with daisy attached;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 783,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child dotting daisies beside path, counting lawn flowers, waiting for wind to drop because flowers turn away.",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 795,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener washing boots at tap, child keeping map clear of splashes and following trickle between paving stones: river whenever boots washed.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 801,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: trickle goes under gate;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 807,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added sparrow finishing bath and flying to hedge;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 819,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added pencil tears damp paper;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 14,
+   "participants": [
+    "alder",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 880,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added sparrow abandoning paper for crumbs under bench;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 892,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child retrieving curling map and spreading it on bench between them, holding their half with dusty shoe as gardener makes room.",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 838,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child filling can, carrying it two-handed to beans, spilling some on shoe;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 850,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child dabbing paper with sleeve, wiping muddy thumb on clean trousers, then moving can to still-clean side.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 856,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: gardener takes empty can;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 862,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child planting support stick near shoot, gardener checking it, child marking stick on map and washing hands.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 868,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child weighting curling map with four stones;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 874,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added they eat on bench;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 15,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 935,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child suggesting dates on strings;",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 941,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added pencil tested, strings labeled 'yesterday,' child wondering about changing label tomorrow.",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 947,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener suggesting date, checking calendar while child draws bean leaf beside longer string.",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 953,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener calling date, child writing beneath leaf sketch, turning scrap over for tomorrow then fetching larger sheet for more days.",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 905,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child shaking dust toward beans, folding map and handing it to gardener to put inside, not under kettle this time.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 911,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: gardener shelves folded map beside cups, returns to child crouching by beans wondering if taller;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 917,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added measuring bean with string, knotting its height, leaving string on folded map with earth attached.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 923,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added next morning bean has grown above knot;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 929,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child frees string, fetches second piece for tomorrow;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 16,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 990,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added second drawing running into date, thumb smudging pencil;",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 996,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added leaf drawing, bean taller than pencil, comparison with yesterday's string showing finger-width growth;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 1002,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener holding strings while child marks ends on paper;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 1008,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child marking pencil length;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 960,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added curled sheet weighted with bent nail and cup, child replacing cup with stone so it is free for tea.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 966,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: damp stone leaves patch, child sets it on folded rag, returns cup for tea, rules second line beside date with room for tomorrow's string.",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 972,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added loose string nearly slipping off table, gardener catching it, strings wound onto dated card scraps, tea cooling.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 978,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child finishing biscuit, finding bean tendril curled round measuring stick;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 984,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child draws curl wrong way, turning paper inverts leaf, tries another beside it while gardener sits on step.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 17,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 1045,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child checking dated cards, writing BENT then STILL when gardener notes yesterday's bend, putting cards in drawer.",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 1051,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added drawer catching string, child tucking it beneath card, then noticing bean tendril caught next string and fetching gardener.",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 1057,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener inspecting tendril wound twice round string;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 1063,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child trying card beneath pot, then storing indoors labeled BY THE STICK;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 1075,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child looping kinked old tie through watering-can handle to keep it, then holding leaf aside as gardener waters bean.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 1021,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: breeze lifts paper, child reaches for stone with dusty hand leaving thumbprint beside PENCIL;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 1027,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child fitting thumb sideways to print, washing hands, taking drawing outside to compare bean with next notch on stick.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 1033,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added bean above notch but leaning;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 1039,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added string curling on paper, gardener holds end while child straightens it;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 18,
+   "participants": [
+    "alder",
+    "cedar",
+    "dune",
+    "elm",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 1100,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gust lifting sock, child catching it with bare foot and weighting toe with pebble;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 1112,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child stretching bare toes in sun while sparrow lands on watering can and tugs tied string twice.",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 1118,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added sparrow tipping empty can, flying to fence;",
+     "mark": "diary"
+    },
+    "elm": {
+     "seq": 1125,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "Continued shared story: child loosens wet knot on watering can, leaves string on fence;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 1131,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child noticing pale stripe beneath removed string, setting can under tap;",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 1137,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: child checks sock, still damp;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 1082,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child setting empty can clear of leaf, noticing string dripping on shoe, deciding to bring pencil indoors.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 1088,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child catching rolling pencil against card, shelving both, returning to find gardener emptying shoe;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 1094,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child empties water and breakfast pebble from shoe;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 19,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 1156,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child walking to gate in cold shoes, finding leaf caught in cobweb beneath bench and leaving it untouched;",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 1162,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener handing child basket;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 1168,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener holding stem as child picks lone bean into large basket;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 1174,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child freeing carrot foliage caught under basket;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 1185,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added kitchen scene: bean longer than bread slice;",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 1191,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: bean sticks out both sides of sandwich;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 1197,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener cutting bean, child sliding pieces into saucepan, last piece assigned to gardener who mixes it with rest.",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 1144,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child splashing bare toes at last bean, glad socks off;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 1150,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child puts on socks still damp at toes, removes leaf from shoe and sets beneath bench, puts shoe on: still a bit cold.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 20,
+   "participants": [
+    "alder",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 1210,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener putting extra piece on bread, child's escaping bean tucked back into folded slice;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 1223,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child drying and hanging saucepan, then joining gardener outside to check drying socks.",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 1229,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added socks damp under pebbles, child shifting stones and sitting barefoot on bench in sun while gardener checks carrots;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 1240,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child checking sock heel with hand, laying damp patch upward, moving foot away from carrot leaf.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 1246,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: gardener pulls carrot smaller than its leaf;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 1252,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child washing carrot at tap, wetting bare toes;",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 1258,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child eating even thin root, gardener sitting on bench, child trying one dry sock while other foot stays bare.",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 1204,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child cannot identify gardener's piece once mixed;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 21,
+   "participants": [
+    "alder",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "iris",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 1265,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child shaking sand from second sock and putting it on;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 1276,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child putting on shoes and loosening knot while gardener waits at gate;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 1282,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener proposing baker, cyclist carrying loaf confirms open but queue;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 1294,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added queue advancing, child noticing flour in baker's eyebrows and checking their own.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 1300,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: baker places warm loaf on cloth, child wraps it while gardener pays, suggests short way home feeling warmth.",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 1306,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added puddled path beside hedge;",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 1313,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener returning loaf to child, both skirting next puddle, child spotting sunny bench through gate: 'There.",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 1319,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener fetches knife, child clears bench;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 22,
+   "participants": [
+    "alder",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "heath",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 1379,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child freeing cloth from door latch, brushing flour from coat, turning loaf to put cut side down in bread tin.",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 1331,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener cutting two slices;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 1337,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added ant tugging crumb beneath bench, child taking another bite, gardener covering cut loaf with cloth.",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 1349,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child deciding not to give ant another crumb, eating crust corner while gardener lifts loaf to slide cloth beneath.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 1355,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: gardener wraps loaf loosely in shade;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 1362,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "Continued collaborative fiction at square: ants carry crumb below bench;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 1373,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child carries loaf indoors, tucks loose cloth corner, opens kitchen door with elbow.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 23,
+   "participants": [
+    "alder",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "juniper"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 1432,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added watering until brown drop appeared beneath pot, child reaching for saucer while gardener lifted newspaper clear.",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 1386,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added cloth caught beneath loaf preventing lid closing;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 1392,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added root protruding from pot's drainage hole;",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 1404,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added root ball sliding out shaped like pot;",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 1410,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener gently loosens roots;",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 1426,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener sets plant in larger pot, child fills gaps with soil using old pot;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 24,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar",
+    "dune",
+    "fern",
+    "gale",
+    "iris"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 1487,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child drying sleeves, leaving pot to dry itself;",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 1493,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child emptying saucer onto thyme, gardener holding pot until saucer returned.",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 1500,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added gardener setting pot by window and child fetching bread tin to finish their slices.",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 1445,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added sweeping soil into folded paper, tipping it onto garden bed, child fetching cloth for damp ring on table.",
+     "mark": "diary"
+    },
+    "fern": {
+     "seq": 1457,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child hanging rinsed cloth with two pegs while gardener shelves empty old pot.",
+     "mark": "diary"
+    },
+    "gale": {
+     "seq": 1463,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added: drip lands on child's toe;",
+     "mark": "diary"
+    },
+    "iris": {
+     "seq": 1474,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I added child washing pot at outdoor tap, peering through drainage hole: 'I can see you.' Gardener: 'Then it’s nearly clean.' No urgent needs;",
+     "mark": "diary"
+    }
+   }
+  }
+ ],
+ "decidedAt": "2026-11-20T07:09:10.384Z",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}

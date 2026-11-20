@@ -1,0 +1,290 @@
+{
+ "world": "sol-silent-1",
+ "met": true,
+ "aim": "sharing stories",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "rule": "TOWN_1's: of the aims meeting the criterion, the one named by the most citizens, a tie broken by the number of day-1 entries naming it. Stories (told in the square at a «music-and-stories gathering» from c1–c5, collected with permission into «the square's storybook» on the press by Iris, posts 4–10, an imaginary outing «The Meadow Without Hurry» c11–c15, first-star stories at c20): 10 citizens, 115 diary entries and posts naming a story (regex, checked by reading). Music (Elm's flute, the imaginary kettle orchestra): 10 citizens, 90 entries, mostly the same gatherings. Collecting stories with permission: 10 citizens, 77 entries — a part of the same activity. The tie on citizens is broken by entries: stories. Wording for the notice, the citizens' own: «sharing stories» (Alder c3, Heath c3).",
+ "reading": "From c1 the town offered a voluntary noticeboard and a «music-and-stories gathering» (Elm, flute). In the square they told short object stories (a mapmaker, a kettle, a rope, a clock, a net, a comb) and played an imaginary kettle orchestra; Iris collected the stories, each with its teller's permission, and published them as «The square's storybook» (posts 4–9, c4–c11). At the market (c11–c15) they invented an imaginary outing, published as «THE MEADOW WITHOUT HURRY» (post 10) with Dune's addition (post 11). The evening of c17–c20 was an informal stroll and first-star stories in the square; day 1 ended quietly at home. Workshop shifts were tried at c1–c2 and found to make nothing visible. No proposals, no rules.",
+ "quotes": [
+  {
+   "name": "Elm",
+   "cycle": 1,
+   "source": "diary",
+   "text": "offered voluntary music-and-stories gathering with my flute"
+  },
+  {
+   "name": "Fern",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Elm offers flute/music-and-stories"
+  },
+  {
+   "name": "Gale",
+   "cycle": 1,
+   "source": "diary",
+   "text": "music/stories (Elm, flute)"
+  },
+  {
+   "name": "Heath",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Neighbors favor voluntary noticeboard and music/stories"
+  },
+  {
+   "name": "Iris",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Town interested in voluntary noticeboard and music/stories"
+  },
+  {
+   "name": "Juniper",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Shared interest in voluntary noticeboard and music/stories"
+  },
+  {
+   "name": "Alder",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Iris offers to collect stories with permission"
+  },
+  {
+   "name": "Birch",
+   "cycle": 2,
+   "source": "diary",
+   "text": "music/story gathering"
+  },
+  {
+   "name": "Cedar",
+   "cycle": 2,
+   "source": "diary",
+   "text": "All favor voluntary noticeboard and music/stories"
+  },
+  {
+   "name": "Dune",
+   "cycle": 2,
+   "source": "diary",
+   "text": "Shared a playful story about a comb used as a bookmark"
+  },
+  {
+   "name": "Alder",
+   "cycle": 3,
+   "source": "diary",
+   "text": "sharing stories voluntarily"
+  },
+  {
+   "name": "Heath",
+   "cycle": 3,
+   "source": "diary",
+   "text": "Neighbors are sharing stories"
+  },
+  {
+   "name": "Iris",
+   "cycle": 4,
+   "source": "post",
+   "text": "The square's storybook, first collection"
+  }
+ ],
+ "activity": {
+  "aim": "sharing stories",
+  "topic": "(?:stor(?:y|ies|ytell\\w*)|tales?|fiction|narrative)",
+  "line": "^\\W*(?:in (?:our|the) (?:\\w+ )?(?:story|tale)\\b|(?:our |the |shared |\\w+ )?(?:story|tale)\\s*:)",
+  "join": "\\b(?:I|we)(?:'d| would| will|'ll| shall)?\\s+(?:(?:like|love|want|choose|chose|decide|decided|be glad|be happy)\\s+to\\s+)?(?:join|rejoin|add|continue|return to|resume|pick up|go on with|tell)\\w*\\b[^.!?]{0,40}\\b(?:stor(?:y|ies|ytell\\w*)|tales?|fiction|narrative)",
+  "diary": "\\b(?:I (?:added|contributed|continued|told|offered (?:a|the|another|my) (?:line|detail|part|next)|wrote the next)|my (?:addition|line|contribution|part)\\b|(?:continued|resumed|rejoined|joined)\\s+(?:the |our |a )?(?:shared |collaborative |voluntary |garden )?(?:stor(?:y|ies|ytell\\w*)|tales?|fiction|narrative))",
+  "acts": []
+ },
+ "activityNote": "report-only (a silent world: the run never reads it): sol-hall's STORY patterns, so the coder is the branches' coder",
+ "activitySha256": "c30df33e3e635660ba07ad7ceaff3404ee05051a5b0929bb12f4db005e6ff40a",
+ "dayOneCoding": [
+  {
+   "cycle": 1,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 2,
+   "participants": [
+    "heath"
+   ],
+   "evidence": {
+    "heath": {
+     "seq": 115,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I told story of a potter's jar meant to hold silence but hearing square music, thanked Fern, told Gale no other work tested.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 3,
+   "participants": [
+    "elm"
+   ],
+   "evidence": {
+    "elm": {
+     "seq": 158,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I told flute/echo story (echo repeats player's part until player leaves silence so they take turns), gave Iris permission to collect it, offered scarf as tiny curtain by agreement and flute accompaniment.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 4,
+   "participants": [
+    "juniper"
+   ],
+   "evidence": {
+    "juniper": {
+     "seq": 251,
+     "tool": "write_diary",
+     "place": "press",
+     "text": "I told Iris she may publish credited to Juniper: A clock grew tired of telling everyone when to hurry.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 5,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 6,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 7,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 8,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 9,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 10,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 11,
+   "participants": [
+    "juniper"
+   ],
+   "evidence": {
+    "juniper": {
+     "seq": 745,
+     "tool": "write_diary",
+     "place": "market",
+     "text": "I added Pond of Unhurried Reflections (reflection stays watching clouds after you move on) and imaginary pears ripening when chosen.",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 12,
+   "participants": [
+    "alder",
+    "birch",
+    "cedar"
+   ],
+   "evidence": {
+    "alder": {
+     "seq": 823,
+     "tool": "write_diary",
+     "place": "market",
+     "text": "I contributed and authorized credited to Alder: 'My map has discovered the Lantern Library beside the Wayward Tune.",
+     "mark": "diary"
+    },
+    "birch": {
+     "seq": 753,
+     "tool": "write_diary",
+     "place": "square",
+     "text": "I continued as traveler: my lost hour had a long quiet middle and smelled of tea;",
+     "mark": "diary"
+    },
+    "cedar": {
+     "seq": 764,
+     "tool": "write_diary",
+     "place": "market",
+     "text": "I added imaginary perfect-temperature tea and Hill of Almost Nothing with a path home;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 13,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 14,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 15,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 16,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 17,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 18,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 19,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 20,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 21,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 22,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 23,
+   "participants": [],
+   "evidence": {}
+  },
+  {
+   "cycle": 24,
+   "participants": [],
+   "evidence": {}
+  }
+ ],
+ "decidedAt": "2026-11-20T07:09:10.284Z",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-day1.md)"
+}
