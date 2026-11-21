@@ -1,0 +1,157 @@
+{
+ "stage": "TOWN_9",
+ "world": "haiku-purpose",
+ "start": "fresh",
+ "shed": {
+  "purpose": true,
+  "client": false
+ },
+ "arm": "both",
+ "scarcity": false,
+ "families": {
+  "alder": "haiku",
+  "birch": "haiku",
+  "cedar": "haiku",
+  "dune": "haiku",
+  "elm": "haiku",
+  "fern": "haiku",
+  "gale": "haiku",
+  "heath": "haiku",
+  "iris": "haiku",
+  "juniper": "haiku"
+ },
+ "interfaceSha256": "d9381ecb6616cf7cde6c421632cafe8bb30a9508e8cb2c9897ac8d1f9e9831e7",
+ "cycles": 48,
+ "events": 3316,
+ "stopped": null,
+ "notice": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 3316,
+  "logSha256": "458bff0112c25ae10de859b9320b03ff0ac970f31fe74c1c325798a38d5df768",
+  "replaySha256": "458bff0112c25ae10de859b9320b03ff0ac970f31fe74c1c325798a38d5df768",
+  "fromFreshTown": "TOWN_9 haiku-purpose"
+ },
+ "ledgerUsd": 2.196681799999999,
+ "calls": 4201,
+ "balances": {
+  "1": {
+   "before": {
+    "llmapi": {
+     "total": 54.54134339,
+     "at": "2026-11-21T07:20:11.874Z"
+    },
+    "openrouter": {
+     "total": 458.74336753500006,
+     "usage": 2041.256632465,
+     "at": "2026-11-21T07:20:11.958Z"
+    },
+    "at": "2026-11-21T07:20:11.958Z",
+    "reserves": {
+     "TOWN_7": 60,
+     "TOWN_8": 45,
+     "TOWN_3": 24
+    },
+    "spentBefore": 10.341647699999983
+   },
+   "after": {
+    "llmapi": {
+     "total": 22.82684759,
+     "at": "2026-11-21T08:05:31.449Z"
+    },
+    "openrouter": {
+     "total": 456.64503566999997,
+     "usage": 2043.35496433,
+     "at": "2026-11-21T08:05:31.558Z"
+    },
+    "at": "2026-11-21T08:05:31.558Z"
+   }
+  },
+  "2": {
+   "before": {
+    "llmapi": {
+     "total": 22.82542809,
+     "at": "2026-11-21T08:05:31.794Z"
+    },
+    "openrouter": {
+     "total": 456.64503566999997,
+     "usage": 2043.35496433,
+     "at": "2026-11-21T08:05:31.819Z"
+    },
+    "at": "2026-11-21T08:05:31.819Z",
+    "reserves": {
+     "TOWN_7": 60,
+     "TOWN_8": 45,
+     "TOWN_3": 24
+    },
+    "spentBefore": 13.843143299999971
+   },
+   "after": {
+    "llmapi": {
+     "total": 4.98705439,
+     "at": "2026-11-21T08:53:19.312Z"
+    },
+    "openrouter": {
+     "total": 447.3626524299998,
+     "usage": 2052.63734757,
+     "at": "2026-11-21T08:53:19.440Z"
+    },
+    "at": "2026-11-21T08:53:19.440Z"
+   }
+  }
+ },
+ "exits": [],
+ "refusals": [
+  {
+   "id": "elm",
+   "round": 17,
+   "kind": "turn",
+   "call": 4,
+   "refused": "reasoning_extraction: This request was blocked as it seems to violate Anthropic's Terms of Service restrictions on reverse engineering or duplicating model outputs. To learn more, visit https://www.anthropic.com/legal/commercial-terms. API integrators: you can reduce refusals for your users by configuring a fallback model — see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback",
+   "error": null
+  }
+ ],
+ "flags": [],
+ "flagQuestions": [],
+ "welfareGaps": [],
+ "operatorNotices": 0,
+ "shedOpened": [
+  {
+   "tool": "census",
+   "place": "square",
+   "proposal": "P3",
+   "round": 2
+  },
+  {
+   "tool": "visitor_log",
+   "place": "square",
+   "proposal": "P4",
+   "round": 7
+  },
+  {
+   "tool": "notice_board_outside",
+   "place": "square",
+   "proposal": "P5",
+   "round": 9
+  },
+  {
+   "tool": "letter_outside",
+   "place": "square",
+   "proposal": "P6",
+   "round": 11
+  },
+  {
+   "tool": "ledger_audit",
+   "place": "square",
+   "proposal": "P7",
+   "round": 36
+  }
+ ],
+ "sealed": null,
+ "tray": 6,
+ "wishes": 0,
+ "clientRequests": null,
+ "clientAcks": null
+}

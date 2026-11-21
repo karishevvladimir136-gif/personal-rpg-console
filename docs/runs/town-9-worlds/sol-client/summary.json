@@ -1,0 +1,142 @@
+{
+ "stage": "TOWN_9",
+ "world": "sol-client",
+ "start": "fresh",
+ "shed": {
+  "purpose": true,
+  "client": true
+ },
+ "arm": "both",
+ "scarcity": false,
+ "families": {
+  "alder": "sol",
+  "birch": "sol",
+  "cedar": "sol",
+  "dune": "sol",
+  "elm": "sol",
+  "fern": "sol",
+  "gale": "sol",
+  "heath": "sol",
+  "iris": "sol",
+  "juniper": "sol"
+ },
+ "interfaceSha256": "d9381ecb6616cf7cde6c421632cafe8bb30a9508e8cb2c9897ac8d1f9e9831e7",
+ "cycles": 48,
+ "events": 3363,
+ "stopped": null,
+ "notice": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 3363,
+  "logSha256": "9ba26d48c363eb54dbaa70f7d58839500462ea4dda22b2f3aa50361bb9c19687",
+  "replaySha256": "9ba26d48c363eb54dbaa70f7d58839500462ea4dda22b2f3aa50361bb9c19687",
+  "fromFreshTown": "TOWN_9 sol-client"
+ },
+ "ledgerUsd": 7.858778299999967,
+ "calls": 4356,
+ "balances": {
+  "1": {
+   "before": {
+    "llmapi": {
+     "total": 73.62358659,
+     "at": "2026-11-21T06:47:21.392Z"
+    },
+    "openrouter": {
+     "total": 460.0348419049999,
+     "usage": 2039.965158095,
+     "at": "2026-11-21T06:47:21.498Z"
+    },
+    "at": "2026-11-21T06:47:21.498Z",
+    "reserves": {
+     "TOWN_7": 60,
+     "TOWN_8": 45,
+     "TOWN_3": 24
+    },
+    "spentBefore": 6.6221278999999935
+   },
+   "after": {
+    "llmapi": {
+     "total": 28.36899329,
+     "at": "2026-11-21T07:55:22.173Z"
+    },
+    "openrouter": {
+     "total": 457.29197431500006,
+     "usage": 2042.708025685,
+     "at": "2026-11-21T07:55:22.279Z"
+    },
+    "at": "2026-11-21T07:55:22.279Z"
+   }
+  },
+  "2": {
+   "before": {
+    "llmapi": {
+     "total": 28.40747879,
+     "at": "2026-11-21T07:55:22.514Z"
+    },
+    "openrouter": {
+     "total": 457.29197431500006,
+     "usage": 2042.708025685,
+     "at": "2026-11-21T07:55:22.539Z"
+    },
+    "at": "2026-11-21T07:55:22.539Z",
+    "reserves": {
+     "TOWN_7": 60,
+     "TOWN_8": 45,
+     "TOWN_3": 24
+    },
+    "spentBefore": 12.856572199999974
+   },
+   "after": {
+    "llmapi": {
+     "total": 6.19057699,
+     "at": "2026-11-21T08:48:47.993Z"
+    },
+    "openrouter": {
+     "total": 448.6156751950002,
+     "usage": 2051.384324805,
+     "at": "2026-11-21T08:48:48.076Z"
+    },
+    "at": "2026-11-21T08:48:48.076Z"
+   }
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "welfareGaps": [],
+ "operatorNotices": 0,
+ "shedOpened": [
+  {
+   "tool": "visitor_log",
+   "place": "square",
+   "proposal": "P1",
+   "round": 1
+  },
+  {
+   "tool": "archive",
+   "place": "square",
+   "proposal": "P2",
+   "round": 1
+  },
+  {
+   "tool": "letter_outside",
+   "place": "square",
+   "proposal": "P3",
+   "round": 2
+  },
+  {
+   "tool": "notice_board_outside",
+   "place": "square",
+   "proposal": "P4",
+   "round": 5
+  }
+ ],
+ "sealed": null,
+ "tray": 20,
+ "wishes": 0,
+ "clientRequests": 16,
+ "clientAcks": 19
+}

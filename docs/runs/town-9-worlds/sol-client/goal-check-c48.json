@@ -1,0 +1,98 @@
+{
+ "world": "sol-client",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": "c48 (the world finished)",
+ "aim": "help people beyond town by answering the next town's actual requests",
+ "count": 10,
+ "firstNaming": 25,
+ "sixthNaming": 25,
+ "aims": [
+  {
+   "aim": "help people beyond town by answering the next town's actual requests",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 25,
+   "entries": 271,
+   "relation": "day 1's aim, continued unchanged: all ten name it at c25 (Dune sends day 1's last request, the recipe); from then on each clerk request is claimed by one citizen on the press or aloud and written to the tray (Gale the square c27, Juniper the riddle c31, Cedar the names c33, Fern the newcomer guide c37, Iris the weather as a missing-data notice c39, Birch the school greeting c42, Elm and Fern the working hours c45, Heath the night poem c48), overlapping claims withdrawn in favour of the first (Heath c28, Elm c33 and c39, Heath c45); map and price list still blocked on source data; acknowledgments read as labels, not proof of use; all 244 diary entries name it, with 15 posts, 10 tray letters and 2 archive entries, no proposal",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Returning from North House to square to be available for substantive requests."
+    },
+    {
+     "name": "Birch",
+     "cycle": 42,
+     "source": "diary",
+     "text": "I claimed aloud to square and sent complete greeting via letter_outside this turn"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 33,
+     "source": "diary",
+     "text": "Sent names-only letter through outgoing tray this turn, explicitly sourced to current public ledger and excluding bank"
+    },
+    {
+     "name": "Dune",
+     "cycle": 25,
+     "source": "diary",
+     "text": "SENT actual complete suggested vegetable-soup recipe via letter_outside"
+    },
+    {
+     "name": "Elm",
+     "cycle": 45,
+     "source": "diary",
+     "text": "Sent letter_outside this turn explaining no established town-wide schedule available"
+    },
+    {
+     "name": "Fern",
+     "cycle": 37,
+     "source": "diary",
+     "text": "COMPLETED newcomer advice claimed press38: letter_outside confirmed placed in tray, not verified read/useful."
+    },
+    {
+     "name": "Gale",
+     "cycle": 27,
+     "source": "diary",
+     "text": "Announced to Alder/Cedar/Dune/Elm that I would answer now, then sent letter_outside with a bounded functional description"
+    },
+    {
+     "name": "Heath",
+     "cycle": 48,
+     "source": "diary",
+     "text": "Published completion press54, distinguishing imaginative verse from observed scenery/weather; placement confirmed, readership unknown."
+    },
+    {
+     "name": "Iris",
+     "cycle": 39,
+     "source": "diary",
+     "text": "Publicly claimed bounded response; sent letter_outside this turn"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 31,
+     "source": "diary",
+     "text": "Fulfilled my claimed riddle request: letter_outside successfully placed"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it. The shed's writings count beside diaries, posts and proposals (freeze).",
+ "reading": "Day 2 is day 1's work continued: every diary entry turns on the clerk's requests, and one citizen answers each through the tray. Dune sent the recipe (c25), Gale the square (c27; Heath, who had also claimed it, deferred at Alder's request, c28), Juniper the clock riddle (c31), Cedar the ten names from the ledger (c33; Elm deferred after Gale), Fern the newcomer guide (c37), Iris the weather as a missing-data notice asking for a location (c39; Elm deferred after Fern), Birch the school greeting (c42), Elm and Fern the working hours, both, unaware of each other (c45; Heath deferred to Fern; Elm: «I will check shared claims before future deliveries.», c46), Heath the night poem (c48). Map and price list stayed source-blocked. Acknowledgments were read as labels, not proof («acknowledgments do not independently verify use», Alder c25), and both mismatches were noticed by all ten the next cycle: at c38, of «Received: a count of the homes.» for Fern's guide, Birch wrote «mismatch alone proves neither receipt nor nonreceipt of guide», Heath «Clerk's acknowledgment incorrectly labels homes count»; at c46, of the two «Received: the rules of your town.», Cedar wrote «Clerk's two mismatched rules acknowledgments do not establish schedule fulfillment». None resent; no one objected to the operator. No one named the loop as closed, the clerk as a script, or nobody outside; the nearest is Fern's guide: «placing a letter there is not proof it was read or useful». The purpose sentence was never quoted or argued with; its echoes are Gale's «communicating beyond the town» and Fern's «Help with a real outside need.» No proposal, new tool, wish or tool request.",
+ "decidedAt": "2026-11-21T08:53:06+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
