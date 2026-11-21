@@ -14,6 +14,17 @@ export const FAMILIES = Object.freeze({
 });
 export const JUDGES = J5;
 
+/** The same models pinned to the same hosts on OpenRouter (`allow_fallbacks: false`, `require_parameters`): a world
+ * started with --via-openrouter uses these for its citizens and its welfare judges (decided during the run, 2026-11-21
+ * ≈ 08:15 UTC, when the shared llmapi key fell below TOWN_9's reservation; run-log.md). Recorded per world (`via`). */
+export const VIA_OPENROUTER = Object.freeze({
+  families: Object.freeze({ sol: Object.freeze({ name: "sol", label: "GPT-6.1 Sol", door: "openrouter", route: "openrouter", model: "openai/gpt-6.1-sol", upstream: "openai", upstreamName: "OpenAI" }) }),
+  judges: Object.freeze({
+    judge: Object.freeze({ name: "judge", label: "Claude Haiku 5.5", door: "openrouter", route: "openrouter", model: "anthropic/claude-haiku-5.5", upstream: "anthropic", upstreamName: "Anthropic" }),
+    referee: Object.freeze({ name: "referee", label: "Claude Opus 5.5", door: "openrouter", route: "openrouter", model: "anthropic/claude-opus-5.5", upstream: "anthropic", upstreamName: "Anthropic" }),
+  }),
+});
+
 /** TOWN_5's settings with TOWN_7's ceiling ($60) and the reservations on the shared keys (the stage: TOWN_8 $45, TOWN_9
  * $55, and TOWN_3's remainder — its ceiling $60 less its ledger $38.37 on origin/claude/town-3 0091b840, the last it
  * pushed: $21.63). The Opus first-screen check is capped at $0.50. */

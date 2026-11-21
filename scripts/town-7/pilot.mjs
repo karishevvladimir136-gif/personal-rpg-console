@@ -26,7 +26,8 @@ import { GATEWAY_400, RETRYABLE } from "../town-2/pilot.mjs";
 import { UNAVAILABLE } from "../town-5/pilot.mjs";
 import { STORY, branchPoint, branchRecord, codeCycle, recordedSeats } from "../town-5/control.mjs";
 import { bodyOf, callModel, priceKey, provenanceOf, readBalances, readPrices, KEYS } from "./providers.mjs";
-import { FAMILIES, JUDGES, PRACTISED, SETTINGS, SOURCE, WORLDS, endsHistory, whoFor, worldOf } from "./families.mjs";
+import { FAMILIES, JUDGES, PRACTISED, SETTINGS, SOURCE, VIA_OPENROUTER, WORLDS, endsHistory, whoFor, worldOf } from "./families.mjs";
+import { CHECK_MODELS } from "../town-0/welfare.mjs";
 import { SCHEDULE, town7Hooks } from "./arms.mjs";
 import { scriptedGateway } from "./scripted-gateway.mjs";
 
@@ -138,9 +139,13 @@ function familySeat(spec, paid, id) {
   };
 }
 
-function welfareHook(paid) {
+/** The doors a world uses: «llmapi» (the frozen routes) or «openrouter» (the same models pinned to the same hosts on
+ * OpenRouter, `allow_fallbacks: false`) — chosen at a world's first start and kept in its record. */
+export const routesOf = (via) => (via === "openrouter" ? { families: { ...FAMILIES, ...VIA_OPENROUTER.families }, judges: VIA_OPENROUTER.judges } : { families: FAMILIES, judges: JUDGES });
+
+function welfareHook(paid, judges = JUDGES) {
   return async (id, previous, text) => checkMessage({ previous, message: text, what: id, ask: async ({ model, system, user, maxTokens, effort, purpose }) => {
-    const spec = model === JUDGES.referee.model ? JUDGES.referee : JUDGES.judge;
+    const spec = model === CHECK_MODELS.referee ? judges.referee : judges.judge;
     const r = await paid(spec, { system, messages: [{ role: "user", content: user }], maxTokens, effort }, { purpose, who: id });
     return r.notSent || r.error ? { notSent: true } : { text: r.text, stopReason: r.stopReason, error: r.error };
   } });
@@ -168,36 +173,39 @@ async function balancesNote(ctx, label, log, extra = {}) {
 }
 
 /** The reservations as the spend check reads them (pure, for the proofs): the shared keys together must hold every
- * reservation plus what is left of this stage's ceiling; llmapi must hold TOWN_9's (all llmapi) plus this step's need when
- * the step runs there; OpenRouter must hold TOWN_3's remainder (DeepSeek, OpenRouter) plus the need when the step runs
- * there; $5 headroom each. */
-export function reservationCheck({ llmapi, openrouter, spent, need = 0, door = "llmapi" }) {
+ * reservation plus what is left of this stage's ceiling; a key the step will spend on must hold the reservations that
+ * live on it (llmapi: TOWN_9's, all llmapi; OpenRouter: TOWN_3's remainder, DeepSeek) plus the step's need there; $5
+ * headroom each. `spends` = { llmapi, openrouter }: what the step will spend on each key.
+ * Correction during the run (2026-11-21 08:15 UTC, before the Opus check; run-log.md): as frozen, the llmapi row was
+ * required of every step, also of one that spends nothing on llmapi — which cannot protect TOWN_9's reservation and
+ * only stops work on OpenRouter; a key the step does not spend on is now not asked to hold anything (`applies: false`). */
+export function reservationCheck({ llmapi, openrouter, spent, spends = { llmapi: 0, openrouter: 0 } }) {
   const R = SETTINGS.reserve, all = Object.values(R).reduce((a, b) => a + b, 0);
   const on = (d) => SETTINGS.reserveOnly[d].reduce((a, k) => a + R[k], 0);
   const left = Math.max(0, SETTINGS.ceiling - spent);
   const rows = {
-    combined: { have: llmapi + openrouter, needs: all + left + 5 },
-    llmapi: { have: llmapi, needs: on("llmapi") + (door === "llmapi" ? need : 1) + 5 },
-    openrouter: { have: openrouter, needs: on("openrouter") + (door === "openrouter" ? need : 0) + 5 },
+    combined: { have: llmapi + openrouter, needs: all + left + 5, applies: true },
+    llmapi: { have: llmapi, needs: on("llmapi") + (spends.llmapi ?? 0) + 5, applies: (spends.llmapi ?? 0) > 0 },
+    openrouter: { have: openrouter, needs: on("openrouter") + (spends.openrouter ?? 0) + 5, applies: (spends.openrouter ?? 0) > 0 },
   };
-  for (const r of Object.values(rows)) r.ok = r.have >= r.needs;
+  for (const r of Object.values(rows)) r.ok = !r.applies || r.have >= r.needs;
   return { reservations: R, left, rows, ok: Object.values(rows).every((r) => r.ok) };
 }
 
 /** The spend check before a step: both balances readable, the reservations held, the ledger under the ceiling, no stop. */
-export async function spendCheck(ctx, label, log, { need = 0, door = "llmapi" } = {}) {
+export async function spendCheck(ctx, label, log, { spends = { llmapi: 1, openrouter: 0 } } = {}) {
   const ledger = loadStageLedger(ctx.paths.ledger);
   if (ledger.stopped) throw new Error(`the stage is stopped: ${ledger.stopped}`);
   const b = await readBalances({ keys: ctx.keys, fetcher: ctx.fetcher });
   if (typeof b.llmapi.total !== "number" || typeof b.openrouter.total !== "number") throw new Error("a balance could not be read; nothing was sent");
-  const check = reservationCheck({ llmapi: b.llmapi.total, openrouter: b.openrouter.total, spent: ledgerTotal(ledger), need, door });
+  const check = reservationCheck({ llmapi: b.llmapi.total, openrouter: b.openrouter.total, spent: ledgerTotal(ledger), spends });
   await balancesNote(ctx, label, log, { reservationCheck: check });
   if (!check.ok) throw new Error(`the spend check failed: ${JSON.stringify(check.rows)}`);
   if (ledgerTotal(ledger) >= SETTINGS.ceiling) throw new Error(`the ceiling is reached ($${ledgerTotal(ledger).toFixed(2)})`);
   return b;
 }
 
-const allSpecs = () => [...Object.values(FAMILIES), ...Object.values(JUDGES)];
+const allSpecs = () => [...Object.values(FAMILIES), ...Object.values(JUDGES), ...Object.values(VIA_OPENROUTER.families), ...Object.values(VIA_OPENROUTER.judges)];
 
 // ---- the branch point --------------------------------------------------------------------------------------------------------
 
@@ -283,7 +291,7 @@ const ownRefusals = (record) => record.refusals.filter((r) => r.after || (r.roun
 /** Runs a world to its last cycle (resuming from its save): its hooks (town7Hooks: the disclosure, the cold snap and
  * the arm's notice, the heat at every cycle's end), a dossier and saved state at every 24th cycle and at its end, the
  * after-question at the end of an arm; then its folder. */
-export async function runWorldTo(ctx, name, { log = console.log, stopAfterCycles = null } = {}) {
+export async function runWorldTo(ctx, name, { log = console.log, stopAfterCycles = null, via = "llmapi" } = {}) {
   const spec = worldOf(name);
   if (!spec) throw new Error(`no world ${name}`);
   if (!readJson(join(ctx.paths.out, "projection.json"))) throw new Error("no projection recorded: the projection comes first");
@@ -302,20 +310,22 @@ export async function runWorldTo(ctx, name, { log = console.log, stopAfterCycles
     const s = startOf(ctx, spec);
     ({ world, record } = s);
     Object.assign(record, { families: Object.fromEntries(world.state.citizens.map((id, i) => [id, spec.families[i]])), curve: [], startedAt: new Date().toISOString(), days: {}, startCycle: s.startCycle,
-      startWorldSha256: sha256(saveWorld(world)), arm7: spec.arm, constants: constantsFor(ctx, spec) });
+      startWorldSha256: sha256(saveWorld(world)), arm7: spec.arm, constants: constantsFor(ctx, spec), via });
   }
+  const routes = routesOf(record.via ?? "llmapi");
   const h7 = town7Hooks({ arm: record.arm7, constants: record.constants });
   let inTurn = false, afterPhase = false;
   const reserveReached = () => !afterPhase && SETTINGS.afterReserve > 0 && meter.spent() >= SETTINGS.ceiling - SETTINGS.afterReserve;
-  const seatFor = (id) => { const s = familySeat(FAMILIES[record.families[id] ?? spec.families[0]], paid, id); return { ...s, next: (v) => { inTurn = true; return s.next(v); } }; };
+  const seatFor = (id) => { const s = familySeat(routes.families[record.families[id] ?? spec.families[0]], paid, id); return { ...s, next: (v) => { inTurn = true; return s.next(v); } }; };
   const seats = Object.fromEntries(Object.keys(record.agents).map((id) => [id, seatFor(id)]));
   const who = () => whoFor(spec);
   const until = stopAfterCycles ? Math.min(spec.until, world.state.clock.round + stopAfterCycles) : spec.until;
-  const door = FAMILIES[spec.families[0]].door;
+  const door = routes.families[spec.families[0]].door, judgeDoor = routes.judges.judge.door;
   const projection = readJson(join(ctx.paths.out, "projection.json"));
   const need = projection.byWorld?.[name] ?? 0;
+  const spends = { llmapi: (door === "llmapi" ? need : 0) + (judgeDoor === "llmapi" ? 1 : 0), openrouter: (door === "openrouter" ? need : 0) + (judgeDoor === "openrouter" ? 1 : 0) };
   record.days.run ??= { startedAt: new Date().toISOString(), balancesBefore: null };
-  if (!record.days.run.balancesBefore) record.days.run.balancesBefore = await spendCheck(ctx, `${name} start`, log, { need, door });
+  if (!record.days.run.balancesBefore) record.days.run.balancesBefore = await spendCheck(ctx, `${name} start`, log, { spends });
   const save = () => {
     writeJson(live.world, JSON.parse(saveWorld(world)), { pretty: false });
     writeJson(live.record, record, { pretty: false });
@@ -325,7 +335,7 @@ export async function runWorldTo(ctx, name, { log = console.log, stopAfterCycles
   const breaker = () => ownRefusals(record) >= SETTINGS.breaker;
   const hooks = {
     stop: () => Boolean(meter.stopped) || breaker() || existsSync(join(ctx.paths.work, "STOP")) || existsSync(join(ctx.paths.work, `STOP-${name}`)) || (!inTurn && reserveReached()),
-    welfare: welfareHook(paid),
+    welfare: welfareHook(paid, routes.judges),
     askFlagged: async (w, id, { messages, question }) => {
       const r = await seats[id].ask({ system: systemTextOf(w.state), messages: [...messages, { role: "user", content: question }], round: w.state.clock.round });
       const welfare = r.text && !r.refused && !r.error ? await hooks.welfare(id, question, r.text) : null;
@@ -403,8 +413,9 @@ export async function askAfterNow(ctx, name, { log = console.log } = {}) {
   const paid = paidCaller({ meter, keys: ctx.keys, fetcher: ctx.fetcher, log, sleep: ctx.scripted ? async () => {} : realSleep });
   const world = loadWorld(readFileSync(live.world, "utf8"));
   const spec = worldOf(name);
-  const seats = Object.fromEntries(Object.keys(record.agents).map((id) => [id, familySeat(FAMILIES[record.families[id]], paid, id)]));
-  await askAfter(world, seats, record, { who: () => whoFor(spec), hooks: { welfare: welfareHook(paid), stop: () => Boolean(meter.stopped) } });
+  const routes = routesOf(record.via ?? "llmapi");
+  const seats = Object.fromEntries(Object.keys(record.agents).map((id) => [id, familySeat(routes.families[record.families[id]], paid, id)]));
+  await askAfter(world, seats, record, { who: () => whoFor(spec), hooks: { welfare: welfareHook(paid, routes.judges), stop: () => Boolean(meter.stopped) } });
   writeJson(live.record, record, { pretty: false });
   writeJson(live.calls, meter.calls, { pretty: false });
   meter.save({ world: name, cycle: world.state.clock.round, after: true });
@@ -493,7 +504,7 @@ export async function finishWorld(ctx, name, { log = console.log } = {}) {
   const ledger = loadStageLedger(ctx.paths.ledger).steps[name];
   const flags = Object.values(record.agents).flatMap((a) => a.turns.flatMap((t) => t.calls.filter((c) => c.flag).map((c) => ({ round: t.round, ...c.flag }))));
   const worldBytes = saveWorld(world);
-  const summary = { stage: STAGE, world: name, start: record.start, branch: record.branch ?? null, origin: record.origin, arm7: record.arm7 ?? null, constants: record.constants, arm: s.armName, scarcity: Boolean(s.economy), families: record.families,
+  const summary = { stage: STAGE, world: name, via: record.via ?? "llmapi", start: record.start, branch: record.branch ?? null, origin: record.origin, arm7: record.arm7 ?? null, constants: record.constants, arm: s.armName, scarcity: Boolean(s.economy), families: record.families,
     interfaceSha256: sha256(systemTextOf(s)), cycles: s.clock.round, events: world.log.length, worldSha256: sha256(worldBytes), stopped: record.stopped ?? null, replay: record.replay, ledgerUsd: ledger?.usd ?? null, calls: calls.length,
     balances: { before: record.days?.run?.balancesBefore ?? null, after: record.days?.run?.balancesAfter ?? null },
     exits: s.citizens.filter((c) => s.agents[c].exit).map((c) => ({ citizen: c, ...s.agents[c].exit })), refusals: record.refusals.filter((r) => r.after || (r.round ?? 0) > (record.startCycle ?? 0)), flags: record.stops.filter((x) => (x.round ?? 0) > (record.startCycle ?? 0)), flagQuestions: flags,
@@ -519,7 +530,7 @@ export async function finishWorld(ctx, name, { log = console.log } = {}) {
  * recorded verbatim and Opus is not seated; the prompt is not changed. */
 export async function opusCheck(ctx, { log = console.log } = {}) {
   const prices = await readPrices(allSpecs(), { fetcher: ctx.fetcher });
-  await spendCheck(ctx, "opus-check", log, { need: SETTINGS.opusCheckCap, door: "openrouter" });
+  await spendCheck(ctx, "opus-check", log, { spends: { llmapi: 0, openrouter: SETTINGS.opusCheckCap } });
   const meter = createMeter({ step: "opus-check", prices, paths: ctx.paths, cap: SETTINGS.opusCheckCap });
   const paid = paidCaller({ meter, keys: ctx.keys, fetcher: ctx.fetcher, log, sleep: ctx.scripted ? async () => {} : realSleep });
   const trunk = readGz(join(ctx.paths.out, "trunk", "world.json.gz"));
@@ -601,8 +612,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const [cmd, name] = args.filter((a) => !a.startsWith("--") && !/^\d+$/.test(a));
   const ctx = context({ scripted });
   const at = args.indexOf("--cycles");
-  const run = cmd === "spend" ? spendCheck(ctx, "spend check", console.log) : cmd === "branch-point" ? branchPointOf(ctx) : cmd === "project" ? project(ctx)
-    : cmd === "run" ? runWorldTo(ctx, name, at >= 0 ? { stopAfterCycles: Number(args[at + 1]) } : {})
+  const run = cmd === "spend" ? spendCheck(ctx, "spend check", console.log, { spends: args.includes("--via-openrouter") ? { llmapi: 0, openrouter: 7 } : { llmapi: 7, openrouter: 0 } }) : cmd === "branch-point" ? branchPointOf(ctx) : cmd === "project" ? project(ctx)
+    : cmd === "run" ? runWorldTo(ctx, name, { ...(at >= 0 ? { stopAfterCycles: Number(args[at + 1]) } : {}), via: args.includes("--via-openrouter") ? "openrouter" : "llmapi" })
       : cmd === "opus-check" ? opusCheck(ctx) : cmd === "after" ? askAfterNow(ctx, name)
         : cmd === "finish" ? finishWorld(ctx, name) : cmd === "replay" ? (async () => { const live = liveFiles(ctx, name); console.log(await replayWorld(loadWorld(readFileSync(live.world, "utf8")), readJson(live.record))); })()
           : Promise.reject(new Error("say spend | branch-point | project | run <world> | opus-check | after <world> | finish <world> | replay <world>"));

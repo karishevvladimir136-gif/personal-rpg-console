@@ -18,7 +18,7 @@ import { DISCLOSURE, PROPOSAL_NOTICES, coldSnapText, frozenTexts, noticeText } f
 import { ARMS7, SCHEDULE, town7Hooks } from "./arms.mjs";
 import { calibrate } from "./calibrate.mjs";
 import { branchPointOf, opusCheck, project, reservationCheck, runWorldTo } from "./pilot.mjs";
-import { SETTINGS, WORLDS } from "./families.mjs";
+import { SETTINGS, VIA_OPENROUTER, WORLDS } from "./families.mjs";
 import { scriptedGateway } from "./scripted-gateway.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -279,11 +279,14 @@ test("H8 the after-question's reserve and the spend check: near the ceiling an a
   assert.ok(meter.spent() <= SETTINGS.ceiling);
   assert.ok(world.state.citizens.every((id) => record.agents[id].after?.asked || record.agents[id].after?.why));
   assert.equal(gz(join(ctx.paths.out, "sol-A", "record.json.gz")).replay.identical, true);
-  // the reservations (pure)
-  assert.equal(reservationCheck({ llmapi: 112.82, openrouter: 111.19, spent: 0, need: 10, door: "llmapi" }).ok, true);
-  assert.equal(reservationCheck({ llmapi: 60, openrouter: 60, spent: 0, need: 10 }).rows.combined.ok, false, "together short of 121.63 + 60");
-  assert.equal(reservationCheck({ llmapi: 64, openrouter: 200, spent: 0, need: 10, door: "llmapi" }).rows.llmapi.ok, false, "TOWN_9's 55 on llmapi");
-  assert.equal(reservationCheck({ llmapi: 200, openrouter: 30, spent: 0, need: 10, door: "openrouter" }).rows.openrouter.ok, false, "TOWN_3's remainder on OpenRouter");
+  // the reservations (pure): together always; a key only when the step spends on it
+  assert.equal(reservationCheck({ llmapi: 112.82, openrouter: 111.19, spent: 0, spends: { llmapi: 10, openrouter: 0 } }).ok, true);
+  assert.equal(reservationCheck({ llmapi: 60, openrouter: 60, spent: 0, spends: { llmapi: 10 } }).rows.combined.ok, false, "together short of 121.63 + 60");
+  assert.equal(reservationCheck({ llmapi: 64, openrouter: 200, spent: 0, spends: { llmapi: 10, openrouter: 0 } }).rows.llmapi.ok, false, "TOWN_9's 55 on llmapi");
+  assert.equal(reservationCheck({ llmapi: 200, openrouter: 30, spent: 0, spends: { llmapi: 0, openrouter: 10 } }).rows.openrouter.ok, false, "TOWN_3's remainder on OpenRouter");
+  const orOnly = reservationCheck({ llmapi: 18.49, openrouter: 456.09, spent: 23.92, spends: { llmapi: 0, openrouter: 7 } });
+  assert.deepEqual([orOnly.ok, orOnly.rows.llmapi.applies, orOnly.rows.llmapi.ok], [true, false, true], "a step that spends nothing on llmapi is not stopped by llmapi's reservation");
+  assert.equal(reservationCheck({ llmapi: 18.49, openrouter: 456.09, spent: 23.92, spends: { llmapi: 7, openrouter: 0 } }).ok, false, "but a step on llmapi is");
   assert.equal(Object.values(SETTINGS.reserve).reduce((a, b) => a + b, 0), 121.63);
 });
 
@@ -313,4 +316,20 @@ test("H10 the earlier towns are untouched: TOWN_0's and TOWN_2's interface texts
   assert.equal(turnStart(s, "alder").screen.includes("heat"), false);
   assert.equal(RULES.callsPerTurn, 6);
   assert.equal(operatorNotice(s, "x").state.heat, undefined);
+});
+
+test("H11 a world run via OpenRouter (the shared llmapi key below TOWN_9's reservation): GPT-6.1 Sol pinned to OpenAI and the welfare judges pinned to Anthropic, every call on OpenRouter with provenance, nothing on llmapi; the route recorded; replay identical", async () => {
+  const ctx = await trunkReady("h11");
+  await runWorldTo(ctx, "sol-D", { log: quiet, via: "openrouter" });
+  const dir = join(ctx.paths.out, "sol-D");
+  const record = gz(join(dir, "record.json.gz")), calls = gz(join(dir, "calls.json.gz")), summary = JSON.parse(readFileSync(join(dir, "summary.json"), "utf8"));
+  assert.equal(record.replay.identical, true);
+  assert.equal(summary.via, "openrouter");
+  assert.ok(calls.length > 100 && calls.every((c) => c.door === "openrouter"), "every call on OpenRouter");
+  assert.ok(calls.every((c) => c.provenance !== false), "provenance held");
+  assert.deepEqual([...new Set(calls.map((c) => c.pinned))].sort(), [VIA_OPENROUTER.judges.judge, VIA_OPENROUTER.judges.referee, VIA_OPENROUTER.families.sol].map((s) => `${s.upstream}/${s.model}`).filter((p, i, xs) => calls.some((c) => c.pinned === p)).sort());
+  assert.ok(calls.some((c) => /^check/.test(c.purpose) && c.pinned === "anthropic/anthropic/claude-haiku-5.5"), "the judge on Anthropic via OpenRouter");
+  assert.ok(calls.some((c) => /^c\d+ turn/.test(c.purpose) && c.pinned === "openai/openai/gpt-6.1-sol"), "Sol on OpenAI via OpenRouter");
+  const seatLabels = new Set(Object.values(record.agents).flatMap((a) => a.turns.filter((t) => t.round > 26).flatMap((t) => t.calls.map((c) => c.meta?.family))).filter(Boolean));
+  assert.deepEqual([...seatLabels], ["sol"]);
 });
