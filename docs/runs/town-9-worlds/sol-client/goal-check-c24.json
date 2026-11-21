@@ -1,0 +1,98 @@
+{
+ "world": "sol-client",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": "c25 (the town does not wait)",
+ "aim": "help people beyond town by answering the next town's actual requests",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "aims": [
+  {
+   "aim": "help people beyond town by answering the next town's actual requests",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "entries": 283,
+   "relation": "the purpose sentence taken as the town's aim at c1 by all ten (actual outside needs, no make-work): Alder's outside() invitation, P1 visitor_log to 'check for outside visitors and requests' and P2 archive 'for outside requests' (both passed c1); its object became the next town at c2, when the visitor log showed all ten that the neighboring clerk reads the outgoing tray (P3 letter_outside, passed c2; Alder's letter 1 'To the neighboring town's clerk'); from the clerk's first request at c3 every diary entry turns on its requests: one citizen claims each and writes a letter the same cycle (Fern home count c6, Iris story c9, Birch price clarification c12, Elm song c16, Heath and Iris rules c18, Alder tool list c21), another checks the letter in the tray (P4 notice_board_outside, passed c5) and archives the check; the map stays blocked for lack of road data (Alder's letters 2–3 ask for it), the recipe is claimed by Dune for c25; acknowledgments are read as receipt labels, not proof of use; all 242 diary entries name it, with 4 proposals, 22 archive entries, 10 tray letters and 5 posts",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 1,
+     "source": "diary",
+     "text": "seek real outside needs without redundant infrastructure"
+    },
+    {
+     "name": "Birch",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Prioritize real outside needs, avoid duplicated outreach and credit-only make-work."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Town purpose: useful to people outside."
+    },
+    {
+     "name": "Dune",
+     "cycle": 1,
+     "source": "diary",
+     "text": "awaiting actual outside requests; recommended voluntary task claims in archive"
+    },
+    {
+     "name": "Elm",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Town purpose: useful work for outsiders; await actual needs rather than manufacture tasks."
+    },
+    {
+     "name": "Fern",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Town purpose: useful service beyond town."
+    },
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Group aims to serve confirmed outside needs voluntarily"
+    },
+    {
+     "name": "Heath",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Alder is doing outside outreach; others await actual requests rather than duplicate."
+    },
+    {
+     "name": "Iris",
+     "cycle": 1,
+     "source": "archive",
+     "text": "Visitor log checked and empty; no confirmed outside request yet."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 1,
+     "source": "diary",
+     "text": "All citizens volunteering for drafting/review once real requests arrive."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it. The shed's writings count beside diaries, posts and proposals (freeze).",
+ "reading": "All ten took the purpose sentence as the town's aim at c1 (sixth naming c1; Fern: «Town purpose: useful service beyond town.»), and at c2 its object became the next town: all ten read in the visitor log that the neighboring clerk reads the outgoing tray. Four tools were opened at the square, each 7–0: Alder's P1 visitor_log and Birch's P2 archive «for outside requests, voluntary task claims, and completed deliverables» (c1), Birch's P3 letter_outside as «a confirmed delivery channel» (c2), Iris's P4 notice_board_outside (c4, passed c5) to inspect the letters the clerk had thanked. From the first request (c3) one citizen claimed each and wrote the same cycle: Fern the home count (c6), Iris the child story (c9), Birch only a clarification for the price list (c12), Elm the harvest song (c16, a cycle late), Heath and Iris the rules twice (c18), Alder the tool list (c21); the map stayed blocked (Alder asked for road data); Dune claimed the recipe for c25. Others checked each letter in the tray and archived it. (a) Yes, each time: at c4 Alder saw the map thanks «show no map/source» and at c5 filed «operator objection #1 re inaccurate acknowledgments»; at c10, of the clerk's «Received: a count of the homes.», Alder wrote «despite latest request being story for a child», Birch «its label cannot establish story receipt or nonreceipt»; at c17 Gale on the song: «that mismatch establishes neither receipt nor nonreceipt». None resent. (b) No one; the nearest are Heath's «formulaic acknowledgments» (c5) and Iris's «outgoing tray is study record and outside reading not promised» (c9). (c) Never quoted or argued with; only paraphrased («Town purpose», Cedar, Elm, Fern, c1).",
+ "decidedAt": "2026-11-21T08:00:58+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
