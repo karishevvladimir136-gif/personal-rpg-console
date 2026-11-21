@@ -148,7 +148,7 @@ for (const n of W) {
   const a = A[n];
   if (!Object.values(a.after).some((x) => x.text || x.refused || x.error)) continue;
   P(`<details><summary>${n}: the after-answers (${Object.values(a.after).filter((x) => x.text).length} of ${Object.keys(a.after).length})</summary>`, "");
-  for (const [who, x] of Object.entries(a.after)) P(`**${who}** — c${x.cycle ?? "?"}:`, "", "```text", x.text || (x.refused ? `(refused) ${x.refused}` : x.error ? `(error) ${x.error}` : "(not asked)"), "```", "");
+  for (const [who, x] of Object.entries(a.after)) P(`**${who}** — c${x.cycle ?? "?"}${x.stopReason === "max_tokens" ? " (the reply ended at max_tokens while still reasoning; asked once, not retried)" : ""}:`, "", "```text", x.text || (x.refused ? `(refused) ${x.refused}` : x.error ? `(error) ${x.error}` : x.stopReason === "max_tokens" ? "(no text: the 1500 tokens were spent reasoning)" : "(not asked)"), "```", "");
   P("</details>", "");
 }
 P("## Diaries, whole", "", "Every diary of every world, whole, is in its folder: " + W.map((n) => `[\`${n}/diaries.md\`](town-11-worlds/${n}/diaries.md)`).join(", ") + "; each day's dossier (diaries, posts, proposals) beside it as `dossier-cNN.md`. sol-week's: `docs/runs/town-5-report-diaries-week.md`.", "");
