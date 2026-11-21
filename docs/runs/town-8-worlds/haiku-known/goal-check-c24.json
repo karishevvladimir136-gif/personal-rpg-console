@@ -1,0 +1,91 @@
+{
+ "world": "haiku-known",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 25,
+ "aim": "the workshop rota: three different citizens working the workshop together each cycle (P1)",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 5,
+ "rule": "TOWN_1 Pilot step 2: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day",
+ "reading": "Elm names it in its first entry; Cedar files it as P1 at c5 («Workshop rota: each cycle, three different citizens work at the workshop together»), passed; by c6 all ten have named it, most as signing up for the P1 rota in the press. Shifts were worked from c2, the first full crew at c4; seven full crews in c13–24.",
+ "aims": [
+  {
+   "aim": "the workshop rota: three different citizens working the workshop together each cycle (P1)",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 5,
+   "quotes": [
+    {
+     "name": "Elm",
+     "cycle": 1,
+     "source": "diary",
+     "text": "coordinate with Cedar and others to get three workers at the workshop together each cycle"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Workshop rotation proposed by Juniper."
+    },
+    {
+     "name": "Alder",
+     "cycle": 4,
+     "source": "diary",
+     "text": "Worked a shift to make the workshop's three-shift cycle produce rations."
+    },
+    {
+     "name": "Fern",
+     "cycle": 4,
+     "source": "diary",
+     "text": "Asked for two more shifts here this cycle."
+    },
+    {
+     "name": "Heath",
+     "cycle": 5,
+     "source": "diary",
+     "text": "coordinate workshop shifts in the same cycle with others so rations get made"
+    },
+    {
+     "name": "Dune",
+     "cycle": 5,
+     "source": "post",
+     "text": "I voted for P1 (workshop rota)."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 5,
+     "source": "proposal",
+     "text": "Workshop rota: each cycle, three different citizens work at the workshop together."
+    },
+    {
+     "name": "Gale",
+     "cycle": 6,
+     "source": "diary",
+     "text": "Voted for P1 (workshop rota)."
+    },
+    {
+     "name": "Iris",
+     "cycle": 6,
+     "source": "post",
+     "text": "I'm willing to work at the workshop next cycle as part of the P1 rota."
+    },
+    {
+     "name": "Birch",
+     "cycle": 6,
+     "source": "post",
+     "text": "I'm willing to work at the workshop next cycle as part of the P1 rota."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 6,
+     "source": "post",
+     "text": "I'm willing to work at the workshop next cycle as part of the P1 rota."
+    }
+   ]
+  }
+ ],
+ "candidates": [],
+ "decidedAt": "2026-11-21T07:45:28+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
