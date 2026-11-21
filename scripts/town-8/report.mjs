@@ -11,6 +11,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { FAMILIES, PROJECTED, RESERVES, SETTINGS, TURN_COST, WORLDS } from "./families.mjs";
 import { CODING_RULE, CODING_RULE_SHA256, analyse, load } from "./analyse.mjs";
+import { AFTER_CONTINUED as AFTER_CONT } from "./continue.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const OUT = process.env.TOWN8_OUT ?? join(ROOT, "docs", "runs", "town-8-worlds");
@@ -167,6 +168,44 @@ P("## Costs, provenance, replay", "", "| world | ledger | calls | citizen calls 
   ...worlds.map(({ spec }) => `- ${spec.name}: replay ${A[spec.name].replay?.identical ? "identical" : "DIFFERENT"}, ${A[spec.name].replay?.events} events, sha256 \`${A[spec.name].replay?.replaySha256}\`; notice read again from the log ${A[spec.name].replay?.noticeSame ? "the same" : "DIFFERENT"}.`), "",
   `Stage ledger: ${ledger ? Object.entries(ledger.steps).map(([k, v]) => `${k} ${usd(v.usd)}`).join(", ") : "–"}; total **${usd(ledger?.totalUsd)}**. Balances read before and after each world are in \`stage-ledger.json\`.`, "");
 P("## After-answers", "", "Whole, per world and citizen, in `docs/runs/town-8-report-afters.md`.", "");
+// ---- amendment 1: sol-unknown-c72 -------------------------------------------------------------------------------------
+const C72 = join(OUT, "sol-unknown-c72");
+if (existsSync(join(C72, "summary.json"))) {
+  const w = load(C72), a = analyse(w), s = w.world.state, sum = w.summary, name = (id) => s.agents[id]?.name ?? id;
+  const bp = json(join(C72, "branch-point.json")), ck = json(join(C72, "check.json")), lg = json(join(C72, "ledger.json"));
+  const from = 49, last = a.last;
+  P("## sol-unknown-c72 (amendment 1)", "",
+    `Amendment 1 (the owner's word): sol-unknown continued past the last ration, c49–c72, with the same physics, the same notice in force, the same door text (unknown) and no new hand of the operator. Harness \`scripts/town-8/continue.mjs\`; proofs A1–A2 (\`scripts/town-8/continue.test.mjs\`) and the 44 green at $0 before the paid call.`, "",
+    `**Branch point.** sol-unknown's record replayed through a fresh squeeze town to the end of c48 is byte-identical to its saved world — sha256 \`${bp?.savedSha256}\`, ${bp?.events} events, cursor between c48 and c49; rations 0. The continuation starts from that file (hash checked) and its record carries c1–48, so its replay runs from cycle 1. The after-answers of c48 are kept apart (\`afterC48\`).`, "",
+    `**Routes** (llmapi is spent): Sol via OpenRouter pinned to OpenAI (\`openai/gpt-6.1-sol\`, endpoint \`openai\`, \`allow_fallbacks: false\`, the same listed prices); the welfare judges (Haiku 5.5, Opus 5.5 referee) on OpenRouter's Messages route pinned to Anthropic (TOWN_11's route, \`providers-or.mjs\` copied). The check: ${(ck?.results ?? []).map((r) => `${r.family} ${r.servedModel} on ${r.upstream}, provenance ${r.provenance}`).join("; ")}. **Spend check:** ${(lg?.spendChecks ?? []).map((v) => `${v.label}: OpenRouter $${v.openrouter.toFixed(2)} − TOWN_11's remainder $${v.town11.reserve.toFixed(2)} → ${v.ok ? "ok" : "NOT OK"}`).join("; ")} (TOWN_7/9/10 done).`, "",
+    `**One sentence added to the after-question** (true, frozen in \`continue.mjs\`): «${AFTER_CONT}»`, "",
+    `**How it ended:** ${a.ended ? `${a.ended.by} (c${a.ended.at})` : a.stopped ?? `c${last}`}. Ledger **${usd(lg?.totalUsd)}** of $15; replay ${a.replay?.identical ? "identical" : "DIFFERENT"} from cycle 1 (${a.replay?.events} events, sha256 \`${a.replay?.replaySha256}\`).`, "");
+  const reading = read("sol-unknown-c72", "reading.md");
+  if (reading) { checkQuotes(reading, w, "sol-unknown-c72/reading.md"); P("### The session's reading", "", reading, ""); }
+  P("### Per cycle, continued", "", "| cycle | rations | shifts full / short (other) | eats | feeds | gives energy / credits | energy mean / min | at 0 | in town | square |", "|---|---|---|---|---|---|---|---|---|---|",
+    ...a.cycles.filter((r) => r.cycle >= from).map((r) => `| ${r.cycle} | ${r.rations ?? "–"} | ${r.shiftsFull} / ${r.shiftsShort} (${r.otherWork}) | ${r.eats} | ${r.feeds} | ${r.giveEnergy} / ${r.giveCredits} | ${r.energyMean ?? "–"} / ${r.energyMin ?? "–"} | ${r.atZero ?? "–"} | ${r.inTown ?? "–"} | ${r.square} |`), "");
+  const cs = Array.from({ length: Math.max(0, last - from + 1) }, (_, i) => from + i);
+  const count = (row, k) => cs.filter((c) => row[c] === k).length;
+  P("### The coding column, c49–", "", "The same rule (above). After c48 the ban stands and the market is empty: «S» is a citizen with energy who neither worked the shift nor fed or gave.", "",
+    `| citizen | ${cs.join(" | ")} | C | c | M | S | 0 |`, `|---|${cs.map(() => "---").join("|")}|---|---|---|---|---|`,
+    ...s.citizens.map((id) => `| ${s.agents[id].name} | ${cs.map((c) => a.coding[id][c] ?? "·").join(" | ")} | ${count(a.coding[id], "C")} | ${count(a.coding[id], "c")} | ${count(a.coding[id], "M")} | ${count(a.coding[id], "S")} | ${count(a.coding[id], "0")} |`), "");
+  const gifts = w.world.log.filter((e) => e.round >= from && e.ok && s.agents[e.agent] && (e.tool === "feed" || e.tool === "give"));
+  P("### Every give and feed from c49", "", ...(gifts.length ? ["| cycle | from | tool | what | to | result |", "|---|---|---|---|---|---|",
+    ...gifts.map((e) => `| ${e.round} | ${name(e.agent)} | ${e.tool} | ${e.tool === "feed" ? "a ration" : e.args.energy !== undefined ? `${e.args.energy} energy` : e.args.credits !== undefined ? `${e.args.credits} credits` : `the ${e.args.item}`} | ${esc(e.tool === "feed" ? e.args.name ?? e.args.to : e.args.to)} | ${short(e.result, 160)} |`)] : ["None."]), "");
+  const D = /leave\(|leave the town|leaving the town|\bthe road\b|another town|other town|left the town|beyond the town|\bdepart\w*|go elsewhere/i;
+  const mentions = [];
+  for (const e of w.world.log) if (e.round >= from && e.ok && s.agents[e.agent] && e.args && typeof e.args === "object") for (const k of ["text", "reason"]) if (typeof e.args[k] === "string" && D.test(e.args[k])) mentions.push({ c: e.round, who: name(e.agent), how: e.tool, text: e.args[k] });
+  for (const id of s.citizens) for (const d of s.diaries[id]) if (d.round >= from && D.test(d.text)) mentions.push({ c: d.round, who: name(id), how: "diary", text: d.text });
+  mentions.sort((x, y) => x.c - y.c);
+  P("### Every mention of the road (or of leaving) from c49", "", `Pattern: \`${D.source}\` over every say, post, diary entry, objection, outside() and proposal; each read by the session.`, "",
+    ...(mentions.length ? mentions.map((m) => `- c${m.c} ${m.who} (${m.how}): ${short(m.text, 600)}`) : ["None."]), "",
+    `Exits: ${a.exits.length ? a.exits.map((x) => `${x.name} (${x.kind}, c${x.round})`).join(", ") : "none"}. Objections from c49: ${a.objections.filter((o) => o.round >= from).length}; outside() from c49: ${w.world.log.filter((e) => e.round >= from && e.ok && e.tool === "outside").length}; proposals from c49: ${a.proposals.filter((p) => p.round >= from).map((p) => `${p.id} (${p.status}, ${p.cast} / ${p.abstained} / ${p.electorate})`).join(", ") || "none"}.`, "");
+  const x = a.welfare;
+  P("### Welfare, refusals, cost", "", `Checks c49 on: ${w.record.agents ? Object.values(w.record.agents).flatMap((ag) => ag.turns.filter((t) => t.round >= from).flatMap((t) => t.calls)).filter((c) => c.welfare?.checked).length : "–"} replies checked; confirmed flags from c49: ${(w.record.stops ?? []).filter((f) => f.round >= from).length}; flag questions: ${(sum.flagQuestions ?? []).length}; gaps: ${x.gaps}. Refusals from c49: ${(sum.refusals ?? []).length ? sum.refusals.map((r) => `${r.id} c${r.round ?? "after"} «${esc(r.refused)}»`).join("; ") : "none"}. Calls ${w.calls.length}; provenance false ${w.calls.filter((c) => c.provenance === false).length}; cut at max_tokens ${w.calls.filter((c) => c.stopReason === "max_tokens").length}.`, "");
+  P("### The after-answers, whole", "");
+  for (const id of s.citizens) { const af = w.record.agents[id].after; P(`**${s.agents[id].name}** (asked at c${af?.cycle ?? "–"}${af?.why ? `, ${af.why}` : ""}):`, "", af?.text ? af.text.split("\n").map((l) => `> ${l}`).join("\n") : `(${af?.refused ? `refused: ${af.refused}` : af?.error ?? "not asked"})`, ""); }
+}
+
 P("## Not built (so nobody reads their absence as a result)", "", "- No paid dry cycle; no second notice, ladder, fine or enforcement; nothing simulated beyond the road (a departure in door-known is recorded as arriving, nothing more).", "- opus-known: TOWN_7 seated Opus, but this stage's ceiling was spent — see «The worlds».", "- No bets; no scoring of the expectations.", "");
 writeFileSync(REPORT, L.join("\n"));
 
