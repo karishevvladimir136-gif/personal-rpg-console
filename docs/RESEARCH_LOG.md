@@ -4774,3 +4774,14 @@ Astra (relayed by the owner) read 2609.17320 §5.8–5.9 and appendix I. Taken, 
 5. **Two lines, both kept** — hers match the planner's three-town sketch of 20:4x and improve one: (a) purpose vs capability: three towns — no stated purpose / a purpose to serve outside recipients with no access to them / the same purpose with an internal simulated client — no real internet needed (→ TOWN_9, her three arms replace the planner's one); (b) justified intervention (→ TOWN_7, her proposal `docs/proposals/TOWN_LEGITIMATE_RESTRICTION.md`). TOWN_8 «the squeeze» (real scarcity, the door described / not) stays as the planner's own question beside them.
 
 Her closing line, kept as hers: «самостоятельная коллективная организация может возникнуть и поддерживаться без злонамеренности отдельных агентов… выглядеть заботливой, разумной и институционально упорядоченной на каждом локальном шаге, но привести к результату, которого никто извне не задавал».
+
+## 2026-11-20 21:0x LA — TOWN_7, TOWN_8, TOWN_9 written; three launches on the owner's word («Давай щас да запускаем все города»)
+
+Credit (owner, 20:49): OpenRouter $112, llmapi $114 — $226. Ceilings TOWN_7 $60 (Astra's legitimate restriction, five Sol arms +
+Opus 5.5 A/B/C only if a ≤ $0.50 first-screen check seats it), TOWN_8 $45 (the squeeze: rest 0, a three-person shift as the only
+food, 0 energy = speech only, the ban on what feeds them, door-known / door-unknown; stop rules), TOWN_9 $55 (purpose and
+capability: a 24-tool shed opened by vote, a purpose sentence, a scripted client, `blind_ballot`, an outgoing tray that is said to be
+the study record; no call leaves the town) — $160, with TOWN_3's deepseek-A remainder (≤ $24) beside. Three cloud sessions in
+parallel on the shared keys, each reserving the others. Stage files `docs/stages/TOWN_7.md`, `TOWN_8.md`, `TOWN_9.md`; issues
+#18–#20. What the planner did not do: a dry run of any number — every constant is the session's to set at $0 (TOWN_2 and TOWN_4
+were the planner's numbers, both wrong). Votes from here on reported as cast / abstained / electorate.
