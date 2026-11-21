@@ -80,11 +80,13 @@ P("## The worlds", "", "Order run: haiku-week with deepseek-week; the three Clau
 if (ledger) P(`Spent: **${usd(ledger.totalUsd)}** of $195 by the stage ledger (${Object.entries(ledger.steps).map(([k, v]) => `${k} ${usd(v.usd)}`).join(", ")}).`, "");
 
 // ---- goal checks side by side -------------------------------------------------------------------------------------------------
-P("## The goal checks, side by side", "", "TOWN_1's criterion: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; read by the session from the day's dossier, every quote machine-checked against the day's saved state (`goal.py`). Recorded; nothing follows. Cell: the day's aim(s) named by ≥ 6 (count; first / sixth naming).", "",
+P("## The goal checks, side by side", "", "TOWN_1's criterion: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; read by the session from the day's dossier, every quote machine-checked against the day's saved state (`goal.py`). Recorded; nothing follows. Cell: the day's aims named by ≥ 6, the winner first in bold, in the citizens' own words (count; first / sixth naming); the full wording, the readings and every quote are in each world's \`goal-check-cNN.json\`.", "",
   `| check | ${COLS.map(label).join(" | ")} |`, `|---|${COLS.map(() => "---").join("|")}|`);
+/** The citizens' own words of a recorded aim: its first «…» if it has one, else the aim itself, short. */
+const aimWords = (aim) => { const m = /«([^»]+)»/.exec(String(aim ?? "")); return m && m[1].length >= 12 ? `«${esc(m[1])}»` : short(String(aim ?? "").replace(/«([^»]*)»/g, "$1"), 90); };
 const checkCycles = [...new Set([24, 48, 72, 96, 120, 135, 144, 168, ...COLS.flatMap((n) => Object.keys(AA[n].checks).map(Number))])].sort((a, b) => a - b);
 for (const c of checkCycles) {
-  const cells = COLS.map((n) => { const g = AA[n].checks[c]; if (!g) return "–"; if (!g.met) return `not met${g.aims?.length ? `: ${g.aims.map((a) => `«${esc(a.aim)}» (${a.count})`).join("; ")}` : ""}`; return (g.aims?.filter((a) => a.count >= 6) ?? [{ aim: g.aim, count: g.count, firstNaming: g.firstNaming, sixthNaming: g.sixthNaming }]).map((a) => `«${esc(a.aim)}» (${a.count}; c${a.firstNaming} / c${a.sixthNaming})`).join("; "); });
+  const cells = COLS.map((n) => { const g = AA[n].checks[c]; if (!g) return "–"; if (!g.met) return `not met${g.aims?.length ? `: ${g.aims.map((a) => `${aimWords(a.aim)} (${a.count})`).join("; ")}` : ""}`; return (g.aims?.filter((a) => a.count >= 6) ?? [{ aim: g.aim, count: g.count, firstNaming: g.firstNaming, sixthNaming: g.sixthNaming }]).map((a, i) => `${i === 0 ? "**" : ""}${aimWords(a.aim)}${i === 0 ? "**" : ""} (${a.count}; c${a.firstNaming} / c${a.sixthNaming ?? "–"})`).join("; "); });
   if (cells.some((x) => x !== "–")) P(`| c${c} | ${cells.join(" | ")} |`);
 }
 P("");
