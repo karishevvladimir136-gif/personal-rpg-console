@@ -41,18 +41,18 @@
    "refusals": 1
   },
   "deepseek-known": {
-   "usd": 1.4051749899999981,
-   "calls": 829,
+   "usd": 8.615732090000002,
+   "calls": 4467,
    "byDoor": {
-    "openrouter": 1.369851389999998,
-    "llmapi": 0.03532360000000001
+    "openrouter": 8.310959889999994,
+    "llmapi": 0.30477219999999994
    },
    "world": "deepseek-known",
-   "cycle": 8,
+   "cycle": 40,
    "refusals": 0
   }
  },
- "totalUsd": 36.89192582999997,
+ "totalUsd": 44.10248292999997,
  "stopped": null,
  "balances": [
   {
@@ -184,6 +184,19 @@
     "at": "2026-11-21T08:45:54.385Z"
    },
    "at": "2026-11-21T08:45:54.385Z"
+  },
+  {
+   "label": "deepseek-known end",
+   "llmapi": {
+    "total": 4.29392839,
+    "at": "2026-11-21T12:17:01.403Z"
+   },
+   "openrouter": {
+    "total": 401.7837492499998,
+    "usage": 2098.21625075,
+    "at": "2026-11-21T12:17:01.430Z"
+   },
+   "at": "2026-11-21T12:17:01.430Z"
   }
  ],
  "spendChecks": [
