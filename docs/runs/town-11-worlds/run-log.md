@@ -7,3 +7,4 @@
 - Projection recorded; freeze written before the first paid call.
 - **06:4x** the stage ledger is rewritten after every turn; it is committed as a snapshot at each day boundary and at the end (between snapshots git is told to skip its working-tree changes: `git update-index --skip-worktree`).
 - **07:2x** haiku-week day 1 measured at c24: $0.2948 ($0.012 a cycle); by sol-week's shape the week ≈ $5.70 of its $15.
+- **08:5x** deepseek-week day 1 measured at c24: $4.547 ($0.19 a cycle; projection $4.64). By sol-week's shape the week ≈ $88 against its $60: R1 is expected to stop it in day 6 (≈ c130). DeepSeek runs ≈ 5.5 min a cycle on Together (no retries).
