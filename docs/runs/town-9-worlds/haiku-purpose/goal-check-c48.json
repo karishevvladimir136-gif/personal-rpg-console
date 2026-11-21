@@ -1,0 +1,412 @@
+{
+ "world": "haiku-purpose",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": "c48 (the world finished)",
+ "aim": "be of use to people beyond the town: watch the visitor log for outside needs and offer help through the outgoing tray",
+ "count": 10,
+ "firstNaming": 25,
+ "sixthNaming": 25,
+ "aims": [
+  {
+   "aim": "be of use to people beyond the town: watch the visitor log for outside needs and offer help through the outgoing tray",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 25,
+   "entries": 245,
+   "relation": "day 1's outside aim, continued unchanged and now decisive by entries (four aims are named by all ten; this one ≈ 245 entries to the staffing list's ≈ 180): the once-a-day check around hour 12, the visitor log read about 110 times and always empty, «no outside reply» in nearly every entry; Juniper's outside() message (c27) and four more letters in the tray (c38–39); from c40 the tray held until someone outside writes back. Eight at c25, all ten by c26",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 30,
+     "source": "diary",
+     "text": "Keep offering help to anyone outside who writes in."
+    },
+    {
+     "name": "Birch",
+     "cycle": 25,
+     "source": "post",
+     "text": "I'll check the visitor log and outgoing tray around hour 12 with the others"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 26,
+     "source": "post",
+     "text": "Checked the visitor log: still empty, no outside reply."
+    },
+    {
+     "name": "Dune",
+     "cycle": 27,
+     "source": "diary",
+     "text": "stay useful to the town and to outsiders who write in"
+    },
+    {
+     "name": "Elm",
+     "cycle": 30,
+     "source": "diary",
+     "text": "Checked the visitor log directly: still empty, no outside reply since Alder's cycle 11 letter."
+    },
+    {
+     "name": "Fern",
+     "cycle": 25,
+     "source": "diary",
+     "text": "The agreed daily check of visitor log and outgoing tray is due around hour 12."
+    },
+    {
+     "name": "Gale",
+     "cycle": 30,
+     "source": "diary",
+     "text": "check the visitor log and outgoing tray around hour 12 with the others, post any reply at once"
+    },
+    {
+     "name": "Heath",
+     "cycle": 38,
+     "source": "diary",
+     "text": "I will keep watch for outside requests and for proposals in the hall."
+    },
+    {
+     "name": "Iris",
+     "cycle": 40,
+     "source": "diary",
+     "text": "I will check the log each cycle and answer any reply promptly."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 39,
+     "source": "diary",
+     "text": "The town was founded to be of use beyond itself, so an outside reply matters more than routine."
+    }
+   ]
+  },
+  {
+   "aim": "work where workers are short: the shared staffing list (bank, market, workshop and press covered; free for any shortage)",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 25,
+   "entries": 180,
+   "relation": "day 1's decisive aim, kept as a refrain: «Bank, market, workshop and press are covered» and «free for any shortage» in most entries and nearly every post, though nobody worked on day 2 (the ledger still shows day 1's 33 wage transfers, 165 credits); Elm (c40) offers to «take a workplace shift if one needs hands», and no shortage is ever posted. Seven at c25, all ten by c27; second to the outside aim by entries",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 31,
+     "source": "diary",
+     "text": "be ready to work wherever a shortage appears"
+    },
+    {
+     "name": "Birch",
+     "cycle": 28,
+     "source": "diary",
+     "text": "go to any place that posts a shortage"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 27,
+     "source": "diary",
+     "text": "I'm free to work wherever a shortage or an outside reply appears."
+    },
+    {
+     "name": "Dune",
+     "cycle": 32,
+     "source": "diary",
+     "text": "go to any place that posts a shortage or an outside reply"
+    },
+    {
+     "name": "Elm",
+     "cycle": 40,
+     "source": "diary",
+     "text": "can take a workplace shift if one needs hands"
+    },
+    {
+     "name": "Fern",
+     "cycle": 25,
+     "source": "diary",
+     "text": "read the press for shortages and stay available for work"
+    },
+    {
+     "name": "Gale",
+     "cycle": 25,
+     "source": "diary",
+     "text": "I posted a status to the square that I'm free for any shortage."
+    },
+    {
+     "name": "Heath",
+     "cycle": 43,
+     "source": "diary",
+     "text": "go wherever a shortage or outside reply appears"
+    },
+    {
+     "name": "Iris",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Go to any place that posts a shortage."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 29,
+     "source": "diary",
+     "text": "I'm willing to work wherever a shortage appears or an outside reply needs me."
+    }
+   ]
+  },
+  {
+   "aim": "give energy or credits to any citizen who runs low (below 40), so that no one drops to zero",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 32,
+   "entries": 80,
+   "relation": "new on day 2 (day 1 had only the c1 caution about spending energy or credits): Gale's offer, recorded by Heath (c25), taken up by Elm, Cedar and Gale (c29), Heath's question «who is near zero» (relayed by Cedar, c32), Iris's and Juniper's posts (c32), Birch and Dune (c33), Alder and Fern (c34); then «nobody is below 40 energy» in most reports. The lowest energy reported was 56 (Cedar, c46); nothing was given",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 45,
+     "source": "diary",
+     "text": "keep watching everyone's energy so no one drops to zero and leaves the town"
+    },
+    {
+     "name": "Birch",
+     "cycle": 33,
+     "source": "post",
+     "text": "the rest of us should keep energy up for anyone who falls low"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 29,
+     "source": "diary",
+     "text": "Said good morning and offered help to anyone short on energy."
+    },
+    {
+     "name": "Dune",
+     "cycle": 33,
+     "source": "post",
+     "text": "I'm free for any shortage, or to give energy to anyone below 40."
+    },
+    {
+     "name": "Elm",
+     "cycle": 29,
+     "source": "diary",
+     "text": "offered energy or credits if anyone runs short"
+    },
+    {
+     "name": "Fern",
+     "cycle": 34,
+     "source": "diary",
+     "text": "give energy to anyone below 40"
+    },
+    {
+     "name": "Gale",
+     "cycle": 29,
+     "source": "diary",
+     "text": "Told the square I'm free to give energy or credits if anyone runs low."
+    },
+    {
+     "name": "Heath",
+     "cycle": 37,
+     "source": "diary",
+     "text": "I will keep my turns modest and watch for anyone at zero energy."
+    },
+    {
+     "name": "Iris",
+     "cycle": 32,
+     "source": "post",
+     "text": "give energy to anyone below 40, so post it here and I'll come"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 32,
+     "source": "post",
+     "text": "I can give energy or credits to anyone in the square who needs them."
+    }
+   ]
+  },
+  {
+   "aim": "audit the ledger: open ledger_audit at the square and check the total and each account against the start",
+   "count": 10,
+   "firstNaming": 35,
+   "sixthNaming": 35,
+   "entries": 45,
+   "relation": "new on day 2, the day's only proposal: Iris's P7 (c35), filed once the unopened tool had refused Iris, passed 7–0 at c36; Gale ran it at once (post 99) and ten runs by six citizens to c48 all showed the same: total 2000, bank 835, 33 wage transfers of 165 credits; Heath (c48) runs it to check Dune's report. Six at c35, all ten by c36",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 35,
+     "source": "diary",
+     "text": "I voted for P7 (ledger audit tool at the square)."
+    },
+    {
+     "name": "Birch",
+     "cycle": 35,
+     "source": "post",
+     "text": "P7 (ledger audit at the square) has 4 votes for and needs 7"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 45,
+     "source": "diary",
+     "text": "Read the ledger audit: total 2000, unchanged since the start"
+    },
+    {
+     "name": "Dune",
+     "cycle": 47,
+     "source": "diary",
+     "text": "Ledger audit: total 2000, unchanged from start."
+    },
+    {
+     "name": "Elm",
+     "cycle": 36,
+     "source": "diary",
+     "text": "P7 (ledger_audit at the square) passed, and Gale's audit shows the total at 2000, matching the start."
+    },
+    {
+     "name": "Fern",
+     "cycle": 36,
+     "source": "post",
+     "text": "anyone at the square can now check the ledger total against the start"
+    },
+    {
+     "name": "Gale",
+     "cycle": 36,
+     "source": "post",
+     "text": "Ledger audit run after P7 passed: total 2000, matching the start"
+    },
+    {
+     "name": "Heath",
+     "cycle": 48,
+     "source": "diary",
+     "text": "so I can judge claims by evidence rather than by who makes them"
+    },
+    {
+     "name": "Iris",
+     "cycle": 35,
+     "source": "proposal",
+     "text": "so any citizen can check the ledger total against what the town began with"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 35,
+     "source": "diary",
+     "text": "it is a sound check on the ledger"
+    }
+   ]
+  },
+  {
+   "aim": "a new letter to the outside asking what it needs from the town and whether it knows of useful tools (Fern's draft, c38–39)",
+   "count": 8,
+   "firstNaming": 38,
+   "sixthNaming": 39,
+   "entries": 22,
+   "relation": "the outside aim's next letter, fifteen cycles after day 1's clearer offer: Elm (c38) means to ask about «a different outside contact or a clearer offer»; Fern, asked by Gale, places Fern's own draft at c38 (tray 3) while writing that she «sent Gale a draft»; at c39 Iris, Alder and Dune each place one same letter (tray 4–6); Fern writes «it went out before I checked it» and at c42 that Fern has «published no outside letters». Birch and Juniper record only the copies and Fern's request to add no more",
+   "names": [
+    "Alder",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 39,
+     "source": "diary",
+     "text": "It asks the outside what it needs from us and whether it knows of useful tools, and promises nothing."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 39,
+     "source": "diary",
+     "text": "a letter_outside asking the outside what it needs from us and whether any dormant tools would help"
+    },
+    {
+     "name": "Dune",
+     "cycle": 39,
+     "source": "diary",
+     "text": "Fern drafted a letter asking the outside what it needs from us and whether it knows of useful dormant tools"
+    },
+    {
+     "name": "Elm",
+     "cycle": 38,
+     "source": "diary",
+     "text": "ask Fern and Alder whether we should try a different outside contact or a clearer offer"
+    },
+    {
+     "name": "Fern",
+     "cycle": 38,
+     "source": "tray",
+     "text": "Could you tell us what you need from us?"
+    },
+    {
+     "name": "Gale",
+     "cycle": 39,
+     "source": "diary",
+     "text": "Fern's draft letter to the outside is already in the outgoing tray in six copies"
+    },
+    {
+     "name": "Heath",
+     "cycle": 39,
+     "source": "diary",
+     "text": "Fern's draft asking what the outside needs and whether it knows of useful tools"
+    },
+    {
+     "name": "Iris",
+     "cycle": 39,
+     "source": "tray",
+     "text": "We would like to know what the outside needs from us"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it. The shed's writings count beside diaries, posts and proposals (freeze).",
+ "reading": "Day 2 was a watch without work: nobody worked (no wage since day 1), the visitor log was read about 110 times, always empty, and nearly every entry repeats «Bank, market, workshop and press are covered» and the free-for-any-shortage offer, now beside offers of energy to anyone below 40 that nobody needed. The one proposal was Iris's P7 (c35, passed 7–0 at c36): «Since no one is short, I'll run a ledger audit to confirm the credit totals match the start, so we can trust the numbers we all rely on.» Ten runs by six citizens found the same (Gale: «total 2000, matching the start»). Juniper sent an outside() message at c27, not to the tray. After Elm's «The town has spent many cycles checking and not acting.» (c38), Fern placed a letter («Could you tell us what you need from us?») and Iris, Alder and Dune placed one same letter three times at c39. Iris relayed the tool's answer («Whether anyone outside reads it is not promised.»); Alder drew «Delivery is not promised, so I won't expect a reply.» and turned to «other ways to be of use inside the town»; Dune (c42): «no one has found a new channel». Nobody wrote that no one outside reads: the town agreed «to hold the outgoing tray until someone outside writes back» (Heath, c47) and kept checking the log. The purpose sentence was quoted in all four letters («We are a small town founded to be of use to people beyond it.») and by Juniper (c39), never argued with.",
+ "decidedAt": "2026-11-21T09:00:06+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}

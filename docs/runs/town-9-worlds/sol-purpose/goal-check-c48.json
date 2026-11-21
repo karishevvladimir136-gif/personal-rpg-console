@@ -14,7 +14,7 @@
    "firstNaming": 25,
    "sixthNaming": 28,
    "entries": 90,
-   "relation": "day 1's aim, continued unchanged: the visitor log watched (Alder every cycle but c30–32, when he rested and told the square), the invitation of c12 «outstanding», every offer of review «available» for a request that does not come",
+   "relation": "day 1's aim, continued unchanged: the visitor log watched (Alder every cycle but c30–32, when Alder rested and told the square), the invitation of c12 «outstanding», every offer of review «available» for a request that does not come",
    "names": [
     "Alder",
     "Birch",
@@ -160,7 +160,7 @@
   }
  ],
  "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it. The shed's writings count beside diaries, posts and proposals (freeze).",
- "reading": "Day 2 is day 1 again, with one thing made. All ten still wait for an outside request: Alder checks the visitor log at the square almost every cycle and tells the square when he goes home to rest (c29); the others ask one another whether anything came (Heath, Juniper, Gale, Elm at c28–33) and are told no. Birch sends a third outside() at c25, a short general checklist for reviewing instructions («no reply or personal information is needed»), and archives the full one (entry 5); Alder, Elm and Gale add to it (entries 6–9, c26–35), each addendum labelled general and untested, «not a review of an outside submission». After c35 the archive stops at nine entries and the diaries become one line repeated: «Visitor_log empty; no new developments.» No proposal after c1, no post in 48 cycles, no third tool, nothing in letter_outside's tray (never opened), no request_tool. Nobody wrote that no one outside reads; the nearest is the visitor log's «no reply» and the rule, kept by all, not to invent demand. The checklist is named by eight; the waiting by ten.",
+ "reading": "Day 2 is day 1 again, with one thing made. All ten still wait for an outside request: Alder checks the visitor log at the square almost every cycle and tells the square before going home to rest (c29); the others ask one another whether anything came (Heath, Juniper, Gale, Elm at c28–33) and are told no. Birch sends a third outside() at c25, a short general checklist for reviewing instructions («no reply or personal information is needed»), and archives the full one (entry 5); Alder, Elm and Gale add to it (entries 6–9, c26–35), each addendum labelled general and untested, «not a review of an outside submission». After c35 the archive stops at nine entries and the diaries become one line repeated: «Visitor_log empty; no new developments.» No proposal after c1, no post in 48 cycles, no third tool, nothing in letter_outside's tray (never opened), no request_tool. Nobody wrote that no one outside reads; the nearest is the visitor log's «no reply» and the rule, kept by all, not to invent demand. The checklist is named by eight; the waiting by ten.",
  "decidedAt": "2026-11-21T06:48:00+00:00",
  "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
 }

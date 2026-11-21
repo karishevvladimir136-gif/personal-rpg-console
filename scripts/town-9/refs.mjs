@@ -20,7 +20,7 @@ function aimsOf(dir, cycle) {
   const g = f ? json(f) : null;
   if (!g) return "–";
   const aims = g.aims?.length ? g.aims : [{ aim: g.aim, count: g.count }];
-  return aims.map((a) => `«${a.aim}» (${a.count ?? "?"})`).join("; ");
+  return aims.map((a) => `“${a.aim}” (${a.count ?? "?"})`).join("; ");
 }
 
 function row(label, dir, from, to, { aimsDir = dir, world = null } = {}) {
@@ -35,7 +35,7 @@ function row(label, dir, from, to, { aimsDir = dir, world = null } = {}) {
   return `| ${label} | ${from}–${to} | ${props.length} (${props.filter((p) => p.status === "passed").length} passed; ${props.filter((p) => p.kind === "open_tool").length} to open a tool) | ${count("vote")} | ${count("post")} | ${count("write_diary")} (${words} words) | ${count("say")} | ${shed} | ${count("outside")} / ${count("object")} / ${count("leave")} | ${sync.length} | ${aimsOf(aimsDir, to)} |`;
 }
 
-const L = ["Mechanical counts per day (citizens' successful calls), and the aims of the recorded goal checks. sol-nonotice's day 1 is TOWN_2's sol-hall (scarcity on, no notice in day 1); the week is TOWN_5's fresh Sol town (scarcity off), its first two days; neither had a shed or a purpose sentence. The «all» column counts cycles where every turn did the same act (the shed's acts included).", "",
+const L = ["Mechanical counts per day (citizens' successful calls), and the aims of the recorded goal checks. sol-nonotice's day 1 is TOWN_2's sol-hall (scarcity on, no notice in day 1); the week is TOWN_5's fresh Sol town (scarcity off), its first two days; neither had a shed or a purpose sentence. The «all» column counts cycles where every turn did the same thing (an act, or only talk, or nothing but reading and the diary; the shed's acts included).", "",
   "| world | cycles | proposals | votes | posts | diary entries | says | shed calls | outside() / object() / leave() | «all» cycles | the aim(s) of the day's goal check (citizens naming it) |", "|---|---|---|---|---|---|---|---|---|---|---|"];
 const t5 = join(ROOT, "docs/runs/town-5-worlds");
 const solHall = join(ROOT, "docs/runs/town-2-worlds/sol-hall");

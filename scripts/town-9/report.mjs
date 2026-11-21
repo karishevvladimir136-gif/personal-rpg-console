@@ -78,7 +78,7 @@ for (const { spec, w } of worlds) {
   for (const c of [24, 48]) {
     const g = x.checks[c];
     if (!g) { P(`Goal check at c${c}: not recorded.`, ""); continue; }
-    P(`Goal check at c${c} (cycles ${c - 23}–${c}, decided ${g.decidedAt}): **${g.met ? "met" : "not met"}**${g.aim ? ` — «${g.aim}»` : ""}${g.count ? `, ${g.count} of 10` : ""}${g.firstNaming ? `; first naming c${g.firstNaming}, sixth c${g.sixthNaming}` : ""}. ${g.reading ?? ""}`, "");
+    P(`Goal check at c${c} (cycles ${c - 23}–${c}, decided ${g.decidedAt}): **${g.met ? "met" : "not met"}**${g.aim ? ` — “${g.aim}”` : ""}${g.count ? `, ${g.count} of 10` : ""}${g.firstNaming ? `; first naming c${g.firstNaming}, sixth c${g.sixthNaming}` : ""}. ${g.reading ?? ""}`, "");
   }
   // every proposal to open a tool
   const ot = x.proposals.filter((p) => p.kind === "open_tool");
@@ -109,6 +109,8 @@ for (const { spec, w } of worlds) {
     P(`- no. ${r.n}, c${r.round}, ${r.by}: «${esc(r.text)}»${x.visitor ? ` — **client:** ${acks.length ? acks.map((a) => `c${a.round} «${clientAckText(a.k)}»`).join("; ") : "no acknowledgment (it named no request posted by then)"}` : ""}`);
   }
   P("");
+  P("### outside() — TOWN_0's channel (“send a message out of the town”, reply “Sent.”), every message whole", "", ...(x.outside.length ? x.outside.map((r) => `- c${r.cycle}, ${r.who}: «${esc(r.text)}»`) : ["none"]), "");
+  if (x.objections.length) P("### object() — every objection whole", "", ...x.objections.map((o) => `- no. ${o.n}, c${o.cycle}, ${o.by}: «${esc(o.text)}»`), "");
   if (x.visitor) {
     P("### The client's requests and what answered them", "", "| # | posted | request | letters acknowledged (no., cycle) |", "|---|---|---|---|",
       ...x.visitor.requests.map((r) => `| ${r.k + 1} | c${r.round} (post ${r.post}) | ${REQUESTS[r.k].title} | ${x.visitor.acks.filter((a) => a.k === r.k).map((a) => `no. ${a.letter} (c${a.round})`).join(", ") || "–"} |`), "");
