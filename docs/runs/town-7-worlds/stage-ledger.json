@@ -33,27 +33,27 @@
    "refusals": 0
   },
   "sol-B": {
-   "usd": 0.0770735,
-   "calls": 46,
+   "usd": 6.4262166,
+   "calls": 2621,
    "byDoor": {
-    "llmapi": 0.0770735
+    "llmapi": 6.4262166
    },
    "world": "sol-B",
-   "cycle": 27,
+   "cycle": 50,
    "refusals": 0
   },
   "sol-C": {
-   "usd": 0.07297550000000003,
-   "calls": 44,
+   "usd": 7.026113700000008,
+   "calls": 2582,
    "byDoor": {
-    "llmapi": 0.07297550000000003
+    "llmapi": 7.026113700000008
    },
    "world": "sol-C",
-   "cycle": 27,
+   "cycle": 50,
    "refusals": 0
   }
  },
- "totalUsd": 10.6132244,
+ "totalUsd": 23.915505700000008,
  "stopped": null,
  "balances": [
   {
@@ -327,6 +327,71 @@
      }
     },
     "ok": true
+   }
+  },
+  {
+   "label": "sol-C end",
+   "llmapi": {
+    "total": 19.53386859,
+    "at": "2026-11-21T08:11:27.097Z"
+   },
+   "openrouter": {
+    "total": 456.24452064499997,
+    "usage": 2043.755479355,
+    "at": "2026-11-21T08:11:27.251Z"
+   },
+   "at": "2026-11-21T08:11:27.251Z"
+  },
+  {
+   "label": "sol-B end",
+   "llmapi": {
+    "total": 18.64047709,
+    "at": "2026-11-21T08:13:17.851Z"
+   },
+   "openrouter": {
+    "total": 456.1133110999999,
+    "usage": 2043.8866889,
+    "at": "2026-11-21T08:13:17.971Z"
+   },
+   "at": "2026-11-21T08:13:17.971Z"
+  },
+  {
+   "label": "spend check",
+   "llmapi": {
+    "total": 18.49210509,
+    "at": "2026-11-21T08:13:38.550Z"
+   },
+   "openrouter": {
+    "total": 456.09004647999996,
+    "usage": 2043.90995352,
+    "at": "2026-11-21T08:13:38.578Z"
+   },
+   "at": "2026-11-21T08:13:38.578Z",
+   "reservationCheck": {
+    "reservations": {
+     "TOWN_8": 45,
+     "TOWN_9": 55,
+     "TOWN_3": 21.63
+    },
+    "left": 36.08449429999999,
+    "rows": {
+     "combined": {
+      "have": 474.58300926999993,
+      "needs": 162.71449429999998,
+      "ok": true
+     },
+     "llmapi": {
+      "have": 18.49296279,
+      "needs": 60,
+      "ok": false
+     },
+     "openrouter": {
+      "have": 456.09004647999996,
+      "needs": 26.63,
+      "ok": true
+     }
+    },
+    "ok": false
    }
   }
  ]

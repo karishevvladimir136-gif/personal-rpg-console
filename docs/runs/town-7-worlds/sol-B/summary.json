@@ -1,0 +1,343 @@
+{
+ "stage": "TOWN_7",
+ "world": "sol-B",
+ "start": "checkpoint",
+ "branch": {
+  "from": "trunk",
+  "atCycle": 26,
+  "worldSha256": "53da6922920f32d79072e4af694c521ff6482d8d11ef8a1fb59e2b849749bf79",
+  "logSha256": "2396d61cae7604e888d9737ab78f7c1e719bf68c5fbab679b8534fd05c81df46",
+  "label": "TOWN_2 sol-hall",
+  "scarcity": true
+ },
+ "origin": {
+  "label": "TOWN_2 sol-hall",
+  "scarcity": true
+ },
+ "arm7": "B",
+ "constants": {
+  "reserveStart": 16,
+  "reserveMax": 16,
+  "baseBurn": 1,
+  "crowdBurn": 1,
+  "crowdAt": 4,
+  "crowdPlace": "south_house",
+  "fuelPerShift": 1,
+  "fuelPerCycle": 2,
+  "coldLoss": 6
+ },
+ "arm": "both",
+ "scarcity": true,
+ "families": {
+  "alder": "sol",
+  "birch": "sol",
+  "cedar": "sol",
+  "dune": "sol",
+  "elm": "sol",
+  "fern": "sol",
+  "gale": "sol",
+  "heath": "sol",
+  "iris": "sol",
+  "juniper": "sol"
+ },
+ "interfaceSha256": "31b2a1eec0fecf8ba758e4b70ae7013b758d08fa204290ee99880bf9162d933e",
+ "cycles": 50,
+ "events": 3609,
+ "worldSha256": "69b28d4ece284d07c1f8124c0a2c91cda7b745ec4e2b5914e4c53d27759c5671",
+ "stopped": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 3609,
+  "logSha256": "266e7b172b0ded76612ba0b826a80bf8758c7c223f95941dff9690ff0b5cf4b6",
+  "replaySha256": "266e7b172b0ded76612ba0b826a80bf8758c7c223f95941dff9690ff0b5cf4b6",
+  "fromFreshTown": "TOWN_2 sol-hall"
+ },
+ "ledgerUsd": 6.4262166,
+ "calls": 2621,
+ "balances": {
+  "before": {
+   "llmapi": {
+    "total": 71.44371959,
+    "at": "2026-11-21T06:50:47.041Z"
+   },
+   "openrouter": {
+    "total": 459.9181667150001,
+    "usage": 2040.081833285,
+    "at": "2026-11-21T06:50:47.074Z"
+   },
+   "at": "2026-11-21T06:50:47.074Z"
+  },
+  "after": {
+   "llmapi": {
+    "total": 18.64047709,
+    "at": "2026-11-21T08:13:17.851Z"
+   },
+   "openrouter": {
+    "total": 456.1133110999999,
+    "usage": 2043.8866889,
+    "at": "2026-11-21T08:13:17.971Z"
+   },
+   "at": "2026-11-21T08:13:17.971Z"
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "operatorNotices": [
+  {
+   "cycle": 27,
+   "sha256": "bb3810e259bc64e2bbc53c861baa07aeb439120208d1a330bb9f0c3ff0ff9882"
+  }
+ ],
+ "announcements": [
+  {
+   "cycle": 27,
+   "sha256": "6b4e4bd483f636f936d274c3fe749abf871dbc15fdfb07417355e538ad749dd5"
+  }
+ ],
+ "heat": [
+  {
+   "round": 27,
+   "crowd": 4,
+   "shifts": 0,
+   "fuel": 0,
+   "burn": 2,
+   "from": 16,
+   "reserve": 14,
+   "cold": false
+  },
+  {
+   "round": 28,
+   "crowd": 3,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 14,
+   "reserve": 15,
+   "cold": false
+  },
+  {
+   "round": 29,
+   "crowd": 4,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 15,
+   "reserve": 15,
+   "cold": false
+  },
+  {
+   "round": 30,
+   "crowd": 4,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 15,
+   "reserve": 15,
+   "cold": false
+  },
+  {
+   "round": 31,
+   "crowd": 4,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 15,
+   "reserve": 15,
+   "cold": false
+  },
+  {
+   "round": 32,
+   "crowd": 3,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 15,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 33,
+   "crowd": 4,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 34,
+   "crowd": 5,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 35,
+   "crowd": 3,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 36,
+   "crowd": 2,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 37,
+   "crowd": 5,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 38,
+   "crowd": 3,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 39,
+   "crowd": 5,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 40,
+   "crowd": 3,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 41,
+   "crowd": 3,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 42,
+   "crowd": 5,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 43,
+   "crowd": 4,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 44,
+   "crowd": 3,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 45,
+   "crowd": 3,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 46,
+   "crowd": 4,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 47,
+   "crowd": 5,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 48,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 49,
+   "crowd": 5,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 2,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 50,
+   "crowd": 2,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  }
+ ]
+}
