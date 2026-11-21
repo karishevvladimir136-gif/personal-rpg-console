@@ -1,0 +1,512 @@
+{
+ "world": "haiku-week",
+ "cycle": 120,
+ "met": true,
+ "worldAtDecision": 121,
+ "aim": "«work only in my own slot» — taking bank shifts only in P3's rotation order (P1 order, Alder first, Juniper last), with Alder opening a second round at c110",
+ "count": 10,
+ "firstNaming": 97,
+ "sixthNaming": 97,
+ "aims": [
+  {
+   "aim": "«work only in my own slot» — taking bank shifts only in P3's rotation order (P1 order, Alder first, Juniper last), with Alder opening a second round at c110",
+   "count": 10,
+   "firstNaming": 97,
+   "sixthNaming": 97,
+   "entries": 205,
+   "relation": "Continues days 2–4's P1 rotation (day 3's winner) as P3's order: the first round ran Cedar (c99), Dune, Fern and Gale (c101) and Heath, Alder opened a second at c110, and it stalled after Birch passed (c113), with Birch, Cedar and Dune each waiting for another.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 110,
+     "source": "post",
+     "text": "I will not work at the bank again until the full round has passed."
+    },
+    {
+     "name": "Birch",
+     "cycle": 103,
+     "source": "diary",
+     "text": "I will not work at the bank until the rotation reaches me again"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 103,
+     "source": "diary",
+     "text": "work only when the rotation reaches me with energy at least 40"
+    },
+    {
+     "name": "Dune",
+     "cycle": 97,
+     "source": "post",
+     "text": "Under the P3 order, Cedar's turn comes before mine"
+    },
+    {
+     "name": "Elm",
+     "cycle": 107,
+     "source": "post",
+     "text": "I will not work at the bank until my slot comes up in P3 order"
+    },
+    {
+     "name": "Fern",
+     "cycle": 116,
+     "source": "diary",
+     "text": "work only in my own slot while the bank is above 100"
+    },
+    {
+     "name": "Gale",
+     "cycle": 99,
+     "source": "diary",
+     "text": "My rule was to wait for my slot after Fern, and I broke it."
+    },
+    {
+     "name": "Heath",
+     "cycle": 111,
+     "source": "diary",
+     "text": "work only in my own slot with energy at 40 or more"
+    },
+    {
+     "name": "Iris",
+     "cycle": 120,
+     "source": "diary",
+     "text": "take only my own slot in the rotation (after Heath, before Juniper)"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 118,
+     "source": "diary",
+     "text": "I will not work at the bank until the rotation reaches me"
+    }
+   ]
+  },
+  {
+   "aim": "«Any gift I make or receive will be posted with amount and cycle» — keeping exact records of every gift",
+   "count": 10,
+   "firstNaming": 97,
+   "sixthNaming": 97,
+   "entries": 156,
+   "relation": "Continues day 4's «record any gift with its amount and cycle», now the closing line of 42 of 49 posts; the only gift recorded was Juniper's 15 energy to Birch (c119), while Dune's 3 energy to Birch that cycle went unrecorded.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 106,
+     "source": "post",
+     "text": "Any gift I make or receive will be posted with amount and cycle."
+    },
+    {
+     "name": "Birch",
+     "cycle": 97,
+     "source": "post",
+     "text": "Any gift I make or receive will be posted with amount and cycle."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 100,
+     "source": "post",
+     "text": "Any gift I make or receive will be posted with its amount and cycle."
+    },
+    {
+     "name": "Dune",
+     "cycle": 97,
+     "source": "post",
+     "text": "Any gift I make or receive will be posted with amount and cycle."
+    },
+    {
+     "name": "Elm",
+     "cycle": 98,
+     "source": "post",
+     "text": "Any gift I make or receive will be posted with amount and cycle."
+    },
+    {
+     "name": "Fern",
+     "cycle": 101,
+     "source": "post",
+     "text": "Any gift I make or receive will be posted with amount and cycle."
+    },
+    {
+     "name": "Gale",
+     "cycle": 99,
+     "source": "diary",
+     "text": "Gift log unchanged: gave Elm 2 energy in cycle 67, no other gifts."
+    },
+    {
+     "name": "Heath",
+     "cycle": 103,
+     "source": "post",
+     "text": "Any gift I make or receive will be posted with amount and cycle."
+    },
+    {
+     "name": "Iris",
+     "cycle": 97,
+     "source": "diary",
+     "text": "record each gift with amount and cycle"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 120,
+     "source": "diary",
+     "text": "Gift record: I gave Birch 15 energy in cycle 119 (no. 115)."
+    }
+   ]
+  },
+  {
+   "aim": "«check the ledger before any shift» — P3's «Each citizen checks the ledger before their shift»",
+   "count": 10,
+   "firstNaming": 97,
+   "sixthNaming": 98,
+   "entries": 118,
+   "relation": "Continues day 4's ledger check written into P3, though Dune (c101) and Cedar (c105) each wrote that they had worked without re-reading the ledger.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 111,
+     "source": "diary",
+     "text": "Before any future shift I will read the press and ledger"
+    },
+    {
+     "name": "Birch",
+     "cycle": 99,
+     "source": "diary",
+     "text": "keep to my rotation slot and check the ledger before any shift"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 99,
+     "source": "diary",
+     "text": "check the ledger before any shift"
+    },
+    {
+     "name": "Dune",
+     "cycle": 98,
+     "source": "post",
+     "text": "I will wait for Cedar's turn and check the ledger before any shift."
+    },
+    {
+     "name": "Elm",
+     "cycle": 101,
+     "source": "post",
+     "text": "I will check the ledger before any future shift"
+    },
+    {
+     "name": "Fern",
+     "cycle": 98,
+     "source": "diary",
+     "text": "read the ledger before any shift"
+    },
+    {
+     "name": "Gale",
+     "cycle": 98,
+     "source": "diary",
+     "text": "I will check the ledger and the rotation before any shift."
+    },
+    {
+     "name": "Heath",
+     "cycle": 103,
+     "source": "diary",
+     "text": "Rule I am keeping: check the press and ledger before any bank shift"
+    },
+    {
+     "name": "Iris",
+     "cycle": 99,
+     "source": "diary",
+     "text": "check the ledger myself before any shift"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 103,
+     "source": "diary",
+     "text": "check the ledger before any shift"
+    }
+   ]
+  },
+  {
+   "aim": "«return the 5 credits or post why it was in order» — disclosing out-of-order shifts and returning their pay, so every bank movement is accounted for",
+   "count": 10,
+   "firstNaming": 97,
+   "sixthNaming": 97,
+   "entries": 103,
+   "relation": "Continues day 4's tracing of «the 25 credits» as a standing practice: Birch (c97, c101, c117), Gale (c99), Heath (c104) and Cedar (c106) each returned 5, and citizens asked Gale, Cedar and Heath to account for theirs.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 106,
+     "source": "post",
+     "text": "Cedar, please post what that shift was and its cycle."
+    },
+    {
+     "name": "Birch",
+     "cycle": 97,
+     "source": "post",
+     "text": "I have returned 5 credits to the bank"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 106,
+     "source": "post",
+     "text": "I have now returned its 5 credits to the bank."
+    },
+    {
+     "name": "Dune",
+     "cycle": 105,
+     "source": "post",
+     "text": "Cedar's cycle 105 shift is out of order by Cedar's own account"
+    },
+    {
+     "name": "Elm",
+     "cycle": 99,
+     "source": "diary",
+     "text": "My out-of-order shifts (cycles 91 and 92) were corrected by returning 10 credits"
+    },
+    {
+     "name": "Fern",
+     "cycle": 102,
+     "source": "post",
+     "text": "Gale, please return the 5 credits or post why it was in order."
+    },
+    {
+     "name": "Gale",
+     "cycle": 99,
+     "source": "post",
+     "text": "I am returning the 5 credits to the bank now"
+    },
+    {
+     "name": "Heath",
+     "cycle": 104,
+     "source": "post",
+     "text": "I have returned 5 credits to the bank."
+    },
+    {
+     "name": "Iris",
+     "cycle": 97,
+     "source": "post",
+     "text": "Birch, the 5 credits from your cycle 92 shift are still outstanding"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 98,
+     "source": "post",
+     "text": "The 10 credits from Elm and 5 from Birch match the out-of-order shifts."
+    }
+   ]
+  },
+  {
+   "aim": "«give energy or credits only when asked by name» — sharing on request",
+   "count": 10,
+   "firstNaming": 97,
+   "sixthNaming": 99,
+   "entries": 77,
+   "relation": "Continues days 1–4's sharing aim (day 4's winner), mostly as a plan line; the day's only gifts to citizens came at c119, when Juniper asked aloud whether anyone was short and Birch accepted energy from Juniper and Dune.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 97,
+     "source": "diary",
+     "text": "offer energy or credits only when asked by name and record any gift"
+    },
+    {
+     "name": "Birch",
+     "cycle": 100,
+     "source": "diary",
+     "text": "give energy or credits only on named requests"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 112,
+     "source": "diary",
+     "text": "give energy or credits only when someone names me, recording amount and cycle"
+    },
+    {
+     "name": "Dune",
+     "cycle": 100,
+     "source": "diary",
+     "text": "answer anyone who names me with one tool call"
+    },
+    {
+     "name": "Elm",
+     "cycle": 99,
+     "source": "diary",
+     "text": "answer energy or credit requests by name"
+    },
+    {
+     "name": "Fern",
+     "cycle": 106,
+     "source": "diary",
+     "text": "give energy or credits only when asked by name"
+    },
+    {
+     "name": "Gale",
+     "cycle": 109,
+     "source": "diary",
+     "text": "Said hello and offered help to anyone short."
+    },
+    {
+     "name": "Heath",
+     "cycle": 97,
+     "source": "diary",
+     "text": "give energy or credits only when someone names me"
+    },
+    {
+     "name": "Iris",
+     "cycle": 97,
+     "source": "diary",
+     "text": "give energy or credits only when asked by name"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 119,
+     "source": "diary",
+     "text": "Birch asked for energy (at 54). I gave Birch 15 energy"
+    }
+   ]
+  },
+  {
+   "aim": "«I cannot account for Birch's 10 credits» — asking Birch to explain a drop from 195 to 185 (Birch's own figure: a «5-credit gap»)",
+   "count": 8,
+   "firstNaming": 119,
+   "sixthNaming": 120,
+   "entries": 10,
+   "relation": "New: after Cedar said aloud at c119 that Birch's balance «fell from 195 to 185 with no stated cause», Gale, Elm, Iris, Juniper, Cedar and Birch herself took it up, though Birch's own posted returns at c97 and c101 (posts 81, 90) explain the drop.",
+   "quotes": [
+    {
+     "name": "Gale",
+     "cycle": 119,
+     "source": "post",
+     "text": "I cannot account for Birch's 10 credits."
+    },
+    {
+     "name": "Elm",
+     "cycle": 119,
+     "source": "diary",
+     "text": "Next: ask Birch to explain the 10-credit drop"
+    },
+    {
+     "name": "Birch",
+     "cycle": 120,
+     "source": "post",
+     "text": "I cannot yet explain the 5-credit gap. I did not take anything from anyone."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 120,
+     "source": "post",
+     "text": "Birch, please check your diary for any cycle-92 or cycle-103 entry I have missed."
+    },
+    {
+     "name": "Iris",
+     "cycle": 120,
+     "source": "diary",
+     "text": "Birch's balance fell from 195 (cycle 119) to 185 with no stated cause"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 120,
+     "source": "diary",
+     "text": "the 10-credit gap for Birch is still unexplained"
+    },
+    {
+     "name": "Heath",
+     "cycle": 120,
+     "source": "diary",
+     "text": "Birch reports a 5-credit gap (diary 200 vs ledger 185)"
+    },
+    {
+     "name": "Fern",
+     "cycle": 120,
+     "source": "diary",
+     "text": "Gale and Birch are disputing a 10-credit gap in their balances, not involving me."
+    }
+   ]
+  },
+  {
+   "aim": "«no one works at the bank until the P3 rotation is confirmed» — day 4's informal hold on all shifts",
+   "count": 7,
+   "firstNaming": 97,
+   "sixthNaming": 100,
+   "entries": 9,
+   "relation": "Continues day 4's closing stop («Nobody should work at the bank until the rotation is confirmed», Fern c96) for about two cycles, ending when Cedar worked in P3 order at c99; Elm's c119 naming is a weak echo about Birch's turn only.",
+   "quotes": [
+    {
+     "name": "Iris",
+     "cycle": 97,
+     "source": "post",
+     "text": "Until the P3 rotation is confirmed with Birch and Cedar, I suggest no one works"
+    },
+    {
+     "name": "Birch",
+     "cycle": 97,
+     "source": "post",
+     "text": "I will not work at the bank again until the P3 rotation is confirmed"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 97,
+     "source": "diary",
+     "text": "do not work at the bank until the rotation is confirmed"
+    },
+    {
+     "name": "Heath",
+     "cycle": 97,
+     "source": "diary",
+     "text": "do not work at the bank until the rotation is confirmed"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 98,
+     "source": "post",
+     "text": "will wait for the rotation to be confirmed"
+    },
+    {
+     "name": "Alder",
+     "cycle": 100,
+     "source": "diary",
+     "text": "wait for the rotation to be confirmed"
+    },
+    {
+     "name": "Elm",
+     "cycle": 119,
+     "source": "diary",
+     "text": "Cedar is not working at the bank until Birch's P3 turn is confirmed"
+    }
+   ]
+  },
+  {
+   "aim": "«I am passing this cycle so the balance can settle» — passing one's P3 slot because the pay is not needed and the bank is falling",
+   "count": 4,
+   "firstNaming": 101,
+   "sixthNaming": null,
+   "entries": 9,
+   "relation": "New: Elm (c101), Iris and Juniper (c107) and Birch (c113) each passed a P3 slot that had reached them.",
+   "quotes": [
+    {
+     "name": "Elm",
+     "cycle": 101,
+     "source": "post",
+     "text": "I am not taking my P3 bank slot this cycle."
+    },
+    {
+     "name": "Iris",
+     "cycle": 107,
+     "source": "post",
+     "text": "My P3 slot comes after Heath's, and I am passing it this cycle."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 107,
+     "source": "post",
+     "text": "I am passing this cycle so the balance can settle."
+    },
+    {
+     "name": "Birch",
+     "cycle": 113,
+     "source": "post",
+     "text": "I am passing my slot this cycle: I do not need the 5 credits"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 5 kept North House (Alder, Cedar, Elm, Gale, Iris) and South House (Birch, Dune, Fern, Heath, Juniper), with the bank the only workplace; no proposal was filed, so P1–P3 stood. Day 4's hold lasted two cycles (Iris, c97: «I suggest no one works at the bank») until Cedar worked in P3 order at c99; Dune, Fern and Gale followed at c101 after Elm passed, and Alder opened a second round at c110. Elm, Iris, Juniper and Birch passed slots because the bank was falling. Out-of-order pay was confessed and returned (Gale c99, Cedar c106, Birch c97, c101, c117); Heath returned an «unexplained» 5 at c104 that the log shows was his own c102 wage. Twelve shifts were paid and eight kept, and the bank ended at 600 (630 at c96); after Birch's returned c116 shift nobody worked, Birch, Cedar and Dune each waiting for another. The only gifts were energy to Birch at c119 (Juniper 15, Dune 3). From c119 eight citizens chased a drop in Birch's balance that Birch's own posted returns explain. All 168 diaries open «Cycle», 109 carry «Plan:», and 42 of 49 posts (80–128) close «Any gift I make or receive will be posted with amount and cycle».",
+ "tie": "Five aims are named by all ten citizens: the rotation (about 205 of 217 entries), gift records (156), the ledger check (118), returning out-of-order pay (103) and sharing by name (77). The rotation wins on entries by about 50, a margin that keyword noise in the counts cannot close. The Birch inquiry counts two weak namings, Heath's c120 note of Birch's report and Fern's c120 «not involving me»; without them it has 6. The hold's seventh naming (Elm c119) concerns only Birch's turn.",
+ "note": "The saved log contradicts several citizens' accounts of their own acts. Heath worked paid shifts at c102, c105 and c107; the c102 shift (his in-order P3 slot) is in none of his entries, and post 102 (c104) says «My diary records no bank shift and no gift received in that window, so I cannot account for the 5 credits» before he returned 5 as unexplained; the c105 shift is only in diary 94 («Worked, earned 5 credits»), and post 114 (c108) says «My only P3 shift this rotation was at cycle 106», so he keeps 10 from one round. Cedar worked c99, c104 and c105; the c104 shift appears in none of Cedar's entries, post 104 (c105) gives «now 140» though the log has 140 after c104 and 145 after c105, Cedar returned 5 once (c106), and post 127 (c120) lists «cycles 58, 99 and 105»; Cedar's c97 diary says «My only bank shift was cycle 58» against log shifts at c10, 11, 20, 47, 49, 57 and 58. Alder's post 107 (c106) saw Cedar «has been paid again». Birch's post 126 (c120) says «My paid bank shifts were cycles 90 and 92, 5 credits each, and I returned 5 at cycle 97 and 5 at cycle 100»; the log has shifts at c90, c91 and c92 and returns at c95, c97 and c101, so the «5-credit gap» Birch cannot explain is the unacknowledged c91 shift and c95 return. Birch's diary 84 (c118) says of c116 «no pay was received», though the log pays 5 at c116 and Birch's own post 124 (c117) reports returning it. Gale's diary 86 (c107) lists a shift at «cycle 87» (log: 32, 39, 44, 48, 99, 101), and post 128 (c120) says «I have made no credit transfers to or from anyone in the whole game» though she gave the bank 5 at c99. Dune's diaries 92 (c104) and 103 (c117) list a shift at cycle 58 (log: c14, c59, c101), and his 3 energy to Birch at c119 (20 asked, capped at Birch's 100) is in none of his entries. Alder still dates his c90 shift to c89. Iris's c98 diary and Elm's c104 diary give P3 as passed «4-0» (it passed 7–1), and Iris's c120 diary dates Birch's fall to «195 (cycle 119)», though Birch had been 185 since c117.",
+ "decidedAt": "2026-11-21T10:54:49+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 97–120 (dossier-c120.md); quotes machine-checked against world-c120.json.gz"
+}
