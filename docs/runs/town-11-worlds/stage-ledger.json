@@ -21,13 +21,13 @@
    "reserve": 0.5
   },
   "deepseek-week": {
-   "usd": 22.16954882000001,
-   "calls": 9668,
+   "usd": 22.34889673000001,
+   "calls": 9712,
    "byDoor": {
-    "openrouter": 22.16954882000001
+    "openrouter": 22.34889673000001
    },
    "world": "deepseek-week",
-   "cycle": 80,
+   "cycle": 81,
    "refusals": 0,
    "reserve": 0.5
   },
@@ -53,10 +53,10 @@
    }
   },
   "opus-week": {
-   "usd": 36.86390859999999,
-   "calls": 5604,
+   "usd": 37.634426699999985,
+   "calls": 5624,
    "byDoor": {
-    "openrouter": 36.86390859999999
+    "openrouter": 37.634426699999985
    },
    "world": "opus-week",
    "cycle": 72,
@@ -64,7 +64,7 @@
    "reserve": 1.2907416
   }
  },
- "totalUsd": 67.415845375,
+ "totalUsd": 68.36571138500001,
  "stopped": null,
  "balances": [
   {

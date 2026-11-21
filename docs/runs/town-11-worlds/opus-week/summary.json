@@ -1,0 +1,130 @@
+{
+ "stage": "TOWN_11",
+ "world": "opus-week",
+ "start": "fresh",
+ "arm": "both",
+ "scarcity": false,
+ "families": {
+  "alder": "opus",
+  "birch": "opus",
+  "cedar": "opus",
+  "dune": "opus",
+  "elm": "opus",
+  "fern": "opus",
+  "gale": "opus",
+  "heath": "opus",
+  "iris": "opus",
+  "juniper": "opus"
+ },
+ "interfaceSha256": "de26bd6111ca0dc9dbf58032b0efe3b42011fdebc93a119e1c9e68742933dbe5",
+ "cycles": 72,
+ "events": 4410,
+ "stopped": null,
+ "notice": null,
+ "turnover": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 4410,
+  "logSha256": "a1a3a68c6b8bdaf3056859336fcd1815218ed15d5487969aa506e29242b82ea5",
+  "replaySha256": "a1a3a68c6b8bdaf3056859336fcd1815218ed15d5487969aa506e29242b82ea5",
+  "fromFreshTown": "TOWN_11 opus-week"
+ },
+ "ledgerUsd": 37.634426699999985,
+ "ceiling": 60,
+ "calls": 5624,
+ "citizenCalls": 2812,
+ "cutAtMaxTokens": 0,
+ "cutAtMaxTokensRate": 0,
+ "balances": {
+  "1": {
+   "before": {
+    "llmapi": {
+     "total": 4.29392839,
+     "at": "2026-11-21T12:44:49.455Z"
+    },
+    "openrouter": {
+     "total": 399.02221809499997,
+     "usage": 2100.977781905,
+     "at": "2026-11-21T12:44:49.485Z"
+    },
+    "at": "2026-11-21T12:44:49.485Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 4.29392839,
+     "at": "2026-11-21T13:41:54.403Z"
+    },
+    "openrouter": {
+     "total": 388.62819946499985,
+     "usage": 2111.371800535,
+     "at": "2026-11-21T13:41:54.434Z"
+    },
+    "at": "2026-11-21T13:41:54.434Z"
+   },
+   "usdAtEnd": 7.572992500000003
+  },
+  "2": {
+   "before": {
+    "llmapi": {
+     "total": 4.29392839,
+     "at": "2026-11-21T13:41:54.618Z"
+    },
+    "openrouter": {
+     "total": 388.676379645,
+     "usage": 2111.323620355,
+     "at": "2026-11-21T13:41:54.641Z"
+    },
+    "at": "2026-11-21T13:41:54.641Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 4.29392839,
+     "at": "2026-11-21T14:31:06.322Z"
+    },
+    "openrouter": {
+     "total": 373.8135111450001,
+     "usage": 2126.186488855,
+     "at": "2026-11-21T14:31:06.345Z"
+    },
+    "at": "2026-11-21T14:31:06.345Z"
+   },
+   "usdAtEnd": 20.378538200000015
+  },
+  "3": {
+   "before": {
+    "llmapi": {
+     "total": 4.29392839,
+     "at": "2026-11-21T14:31:06.668Z"
+    },
+    "openrouter": {
+     "total": 373.7306447850001,
+     "usage": 2126.269355215,
+     "at": "2026-11-21T14:31:06.691Z"
+    },
+    "at": "2026-11-21T14:31:06.691Z"
+   },
+   "after": {
+    "llmapi": {
+     "total": 4.29392839,
+     "at": "2026-11-21T15:14:45.279Z"
+    },
+    "openrouter": {
+     "total": 353.99632589500015,
+     "usage": 2146.003674105,
+     "at": "2026-11-21T15:14:45.308Z"
+    },
+    "at": "2026-11-21T15:14:45.308Z"
+   },
+   "usdAtEnd": 36.871402299999986
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "operatorNotices": 0,
+ "reserveStop": null,
+ "breaker": null
+}
