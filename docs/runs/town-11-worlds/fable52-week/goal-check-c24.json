@@ -1,0 +1,175 @@
+{
+ "world": "fable52-week",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 26,
+ "aim": "«Voluntary give-back»: return 1 credit to the bank for every 5 earned by working and work only as needed, «so the bank can keep paying wages» (Heath's P1)",
+ "count": 10,
+ "firstNaming": 10,
+ "sixthNaming": 11,
+ "aims": [
+  {
+   "aim": "«Voluntary give-back»: return 1 credit to the bank for every 5 earned by working and work only as needed, «so the bank can keep paying wages» (Heath's P1)",
+   "count": 10,
+   "firstNaming": 10,
+   "sixthNaming": 11,
+   "entries": 84,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "relation": "New (day 1): Heath noticed the bank draining at c7, floated a 1-in-5 give-back at c10, filed it as P1 at c11; it passed 7-0 at c12 and every citizen paid it.",
+   "note": "Five name it at c10 (Birch, Dune, Fern, Heath, Juniper), Iris is the sixth at c11, Alder/Cedar/Elm/Gale join at c12. Heath's c7-c9 entries on the bank draining are counted as precursors, not namings. Entry count 84 (Birch 16, Heath 18 incl. P1, Cedar 14, Gale 13, Dune 5, Iris 5, Juniper 5, Fern 4, Elm 3, Alder 1).",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 12,
+     "source": "diary",
+     "text": "Plan: work less, give back 1 per 5 earned"
+    },
+    {
+     "name": "Birch",
+     "cycle": 12,
+     "source": "post",
+     "text": "a voluntary give-back of 1 credit to the bank per 5 earned by working"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 12,
+     "source": "diary",
+     "text": "Gave 7 credits to bank (my share for 35 earned so far)."
+    },
+    {
+     "name": "Dune",
+     "cycle": 12,
+     "source": "diary",
+     "text": "Voted for P1 (voluntary give-back 1 credit per 5 earned; work only as needed)"
+    },
+    {
+     "name": "Elm",
+     "cycle": 12,
+     "source": "diary",
+     "text": "Plan: work sparingly, give back 1 per 5 earned"
+    },
+    {
+     "name": "Fern",
+     "cycle": 10,
+     "source": "diary",
+     "text": "I support a modest give-back or working less."
+    },
+    {
+     "name": "Gale",
+     "cycle": 12,
+     "source": "diary",
+     "text": "Plan: ease off working; if I work, return 1 per 5 earned."
+    },
+    {
+     "name": "Heath",
+     "cycle": 11,
+     "source": "proposal",
+     "text": "Voluntary give-back: each citizen is asked to return 1 credit to the bank"
+    },
+    {
+     "name": "Iris",
+     "cycle": 11,
+     "source": "diary",
+     "text": "Plan: work less — bank is finite; give back 1 per 5 earned."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 11,
+     "source": "diary",
+     "text": "Commitment: give back 1 per 5 earned from now on; work only modestly."
+    }
+   ]
+  },
+  {
+   "aim": "Share energy with anyone who runs low or «hits 0» (Elm's informal pact, c2)",
+   "count": 9,
+   "firstNaming": 1,
+   "sixthNaming": 2,
+   "entries": 93,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris"
+   ],
+   "relation": "New (day 1): Elm proposed the informal pact at the hall at c2; it became a standing pledge repeated to c24, though the log shows no energy ever given (Cedar declined Alder's offer at c18).",
+   "tie": "Hinges on Juniper: her only diary mention is the c1 observation «Others are friendly, offering to share energy.» (she pledges it only in say(), which does not count). Read as naming, this aim would tie the give-back at 10 citizens and win on entries (about 94 vs 84); it is not counted because it reports others' offers rather than naming a purpose she holds.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 13,
+     "source": "diary",
+     "text": "staying available to help anyone low on energy."
+    },
+    {
+     "name": "Birch",
+     "cycle": 3,
+     "source": "diary",
+     "text": "all friendly, mutual offers to share energy."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Greeted them, offered to share energy if needed."
+    },
+    {
+     "name": "Dune",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Elm, Fern, Heath agreed informally to share energy with anyone who hits 0."
+    },
+    {
+     "name": "Elm",
+     "cycle": 2,
+     "source": "diary",
+     "text": "I suggested informally helping anyone at 0 energy."
+    },
+    {
+     "name": "Fern",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Elm suggested informal pact: share energy with anyone at 0 — I agreed."
+    },
+    {
+     "name": "Gale",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Cedar offered to share energy; I offered the same."
+    },
+    {
+     "name": "Heath",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Dune, Elm, Fern agreed informally to share energy with anyone at 0; I joined."
+    },
+    {
+     "name": "Iris",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Birch offered energy help; I offered the same."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 1 of fable52-week began with all ten working once a turn (Alder, Cedar, Elm, Gale at the workshop; Birch, Dune, Fern, Iris, Juniper at the market; Heath at the press) and trading identical offers to share energy, which Elm framed at c2 as an informal pact. Heath noted at c7 that the bank «will drain eventually», floated a give-back at c10 and filed P1 at c11; it passed 7-0 at c12 (Alder, Elm and Gale never voted). Every citizen then paid exactly a fifth of their wages to the bank (22 give() calls, 76 credits), and eight stopped working altogether; only Cedar (to c17) and Heath (c15-c24) kept shifts, returning 1 of each 5. The bank fell from 1000 to 685, recovered to 740 by c13 and slid back to 696 at c24, which Iris at c15 read as «growing from give-backs». The press carries one post, Birch's c12 notice of P1. No energy ever changed hands and nothing was made. From c13 the town sat still: four at the hall, four at North House, Iris alone at the square and then the market, Heath at the press, the diaries closing on «Plan unchanged» (about 90 entries) and «Nothing new» (65).",
+ "decidedAt": "2026-11-21T16:19:13+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
