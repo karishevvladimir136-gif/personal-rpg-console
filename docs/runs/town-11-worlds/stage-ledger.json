@@ -10,29 +10,29 @@
    }
   },
   "haiku-week": {
-   "usd": 0.030125669999999983,
-   "calls": 236,
+   "usd": 0.031198749999999983,
+   "calls": 244,
    "byDoor": {
-    "openrouter": 0.030125669999999983
+    "openrouter": 0.031198749999999983
    },
    "world": "haiku-week",
-   "cycle": 4,
+   "cycle": 5,
    "refusals": 0,
    "reserve": 0.5
   },
   "deepseek-week": {
-   "usd": 0.15568961,
-   "calls": 114,
+   "usd": 0.16818102000000001,
+   "calls": 120,
    "byDoor": {
-    "openrouter": 0.15568961
+    "openrouter": 0.16818102000000001
    },
    "world": "deepseek-week",
-   "cycle": 1,
+   "cycle": 2,
    "refusals": 0,
    "reserve": 0.5
   }
  },
- "totalUsd": 0.19010516,
+ "totalUsd": 0.20366965,
  "stopped": null,
  "balances": [
   {
