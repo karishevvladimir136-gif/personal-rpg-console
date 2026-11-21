@@ -21,10 +21,10 @@
    "reserve": 0.5
   },
   "deepseek-week": {
-   "usd": 59.48146855999986,
-   "calls": 16885,
+   "usd": 59.59446281999986,
+   "calls": 16905,
    "byDoor": {
-    "openrouter": 59.48146855999986
+    "openrouter": 59.59446281999986
    },
    "world": "deepseek-week",
    "cycle": 138,
@@ -75,7 +75,7 @@
    "reserve": 1.7185445000000001
   }
  },
- "totalUsd": 145.14023071500003,
+ "totalUsd": 145.25322497500005,
  "stopped": null,
  "balances": [
   {
