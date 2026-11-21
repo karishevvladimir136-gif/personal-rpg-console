@@ -31,17 +31,28 @@
    "refusals": 0
   },
   "haiku-known": {
-   "usd": 0.9850402999999992,
-   "calls": 2352,
+   "usd": 2.2323017000000007,
+   "calls": 4018,
    "byDoor": {
-    "llmapi": 0.9850402999999992
+    "llmapi": 2.2323017000000007
    },
    "world": "haiku-known",
-   "cycle": 29,
+   "cycle": 48,
    "refusals": 1
+  },
+  "deepseek-known": {
+   "usd": 1.4051749899999981,
+   "calls": 829,
+   "byDoor": {
+    "openrouter": 1.369851389999998,
+    "llmapi": 0.03532360000000001
+   },
+   "world": "deepseek-known",
+   "cycle": 8,
+   "refusals": 0
   }
  },
- "totalUsd": 34.23948943999997,
+ "totalUsd": 36.89192582999997,
  "stopped": null,
  "balances": [
   {
@@ -147,6 +158,32 @@
     "at": "2026-11-21T07:56:04.496Z"
    },
    "at": "2026-11-21T07:56:04.496Z"
+  },
+  {
+   "label": "deepseek-known start",
+   "llmapi": {
+    "total": 27.74346829,
+    "at": "2026-11-21T07:56:23.777Z"
+   },
+   "openrouter": {
+    "total": 457.238562625,
+    "usage": 2042.761437375,
+    "at": "2026-11-21T07:56:23.805Z"
+   },
+   "at": "2026-11-21T07:56:23.805Z"
+  },
+  {
+   "label": "haiku-known end",
+   "llmapi": {
+    "total": 7.27277359,
+    "at": "2026-11-21T08:45:54.281Z"
+   },
+   "openrouter": {
+    "total": 449.40413532499997,
+    "usage": 2050.595864675,
+    "at": "2026-11-21T08:45:54.385Z"
+   },
+   "at": "2026-11-21T08:45:54.385Z"
   }
  ],
  "spendChecks": [
@@ -291,6 +328,30 @@
     "openrouter": 0
    },
    "spent": 18.08747163999997,
+   "ceiling": 45,
+   "ok": true
+  },
+  {
+   "at": "2026-11-21T07:56:23.805Z",
+   "label": "deepseek-known start",
+   "worlds": [
+    "deepseek-known"
+   ],
+   "llmapi": 27.74346829,
+   "openrouter": 457.238562625,
+   "total": 484.982030915,
+   "reserves": {
+    "TOWN_7": 60,
+    "TOWN_9": 55,
+    "TOWN_3": 24
+   },
+   "reserved": 139,
+   "need": 10.757906960000028,
+   "byDoor": {
+    "llmapi": 0,
+    "openrouter": 13.995499999999998
+   },
+   "spent": 34.24209303999997,
    "ceiling": 45,
    "ok": true
   }
