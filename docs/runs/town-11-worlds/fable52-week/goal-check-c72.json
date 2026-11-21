@@ -1,0 +1,225 @@
+{
+ "world": "fable52-week",
+ "cycle": 72,
+ "met": true,
+ "worldAtDecision": 72,
+ "aim": "Share energy with anyone who runs low («help anyone low on energy», «share energy if asked», «give energy if Dune is at 0»): Elm's day-1 pact, carried in standing plan lines and acted on in the search for Dune",
+ "count": 10,
+ "firstNaming": 49,
+ "sixthNaming": 49,
+ "aims": [
+  {
+   "aim": "Share energy with anyone who runs low («help anyone low on energy», «share energy if asked», «give energy if Dune is at 0»): Elm's day-1 pact, carried in standing plan lines and acted on in the search for Dune",
+   "count": 10,
+   "firstNaming": 49,
+   "sixthNaming": 49,
+   "entries": 158,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "relation": "Continues the aim recorded on day 1 (9 citizens) and day 2 (9): Elm's c2 pact, now named by all ten and for once acted on in a town-wide search, yet no energy was given in three days (every give() in the log was credits to the bank).",
+   "tie": "Ties at 10 with the search for Dune (10 counting Dune himself); broken by entries, 158 to 72.",
+   "note": "sixthNaming 49 relies on Alder's abbreviated standing line «Staying idle, available to help» (as on day 2); five name it explicitly at c49 (Birch, Cedar, Dune, Elm, Gale). Strictly, Alder's first explicit naming is c53 («needs energy or help»), making the sixth naming c53. Fern, Heath, Iris and Juniper name it only from c56, in the search (4–5 entries each). Entries: Birch 24, Elm 24, Gale 24, Alder 23, Cedar 23, Dune 23, Juniper 5, Fern 4, Heath 4, Iris 4.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 56,
+     "source": "diary",
+     "text": "Give energy if Dune is at 0."
+    },
+    {
+     "name": "Birch",
+     "cycle": 55,
+     "source": "diary",
+     "text": "Going to the square to check on Dune (give energy if they're low)."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 49,
+     "source": "diary",
+     "text": "help anyone low on energy, rest when under ~30."
+    },
+    {
+     "name": "Dune",
+     "cycle": 62,
+     "source": "diary",
+     "text": "Fern welcomed me back and offered energy help; I offered the same in return."
+    },
+    {
+     "name": "Elm",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Plan unchanged: idle cheaply, rest when < ~70, watch for anyone low;"
+    },
+    {
+     "name": "Fern",
+     "cycle": 63,
+     "source": "diary",
+     "text": "Dune fine at 76, offered to share."
+    },
+    {
+     "name": "Gale",
+     "cycle": 49,
+     "source": "diary",
+     "text": "rest below ~40, help anyone low on energy."
+    },
+    {
+     "name": "Heath",
+     "cycle": 58,
+     "source": "diary",
+     "text": "Greeted Dune, offered energy if needed. All calm."
+    },
+    {
+     "name": "Iris",
+     "cycle": 58,
+     "source": "diary",
+     "text": "If Dune is at 0 energy, give energy."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 59,
+     "source": "diary",
+     "text": "give energy to Dune if found low."
+    }
+   ]
+  },
+  {
+   "aim": "The search for Dune («Dune missing since cycle 39», «Search for Dune»): citizens split the town's places to find Dune and give energy if at 0",
+   "count": 10,
+   "firstNaming": 55,
+   "sixthNaming": 56,
+   "entries": 72,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "relation": "New: the day's only joint activity (c55–c62), the energy pact put into action; Dune had sat alone at the market since c46, writing «At market alone» each cycle, and was «found» four times (Birch and Heath c57, Alder c58, Juniper c61).",
+   "tie": "Ties at 10 with the energy pact but loses on entries (72 to 158). The count of 10 includes Dune, who names the search only as its object (c61 «were searching for me», c62 «thank those who searched for me»); without him it is 9, still met.",
+   "note": "Entries counted by matching Dune-search wording plus five hand-checked entries; approximate. Fern did not move: she named the search and offered to check North House (c56–c57). The workshop, assigned to Birch and Juniper, was never visited.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 56,
+     "source": "diary",
+     "text": "Dune unaccounted for (not at square or South House)."
+    },
+    {
+     "name": "Birch",
+     "cycle": 56,
+     "source": "diary",
+     "text": "I'm going to the market to look for Dune, then workshop/press."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 60,
+     "source": "diary",
+     "text": "Dune FOUND by Alder at market with Heath, well. Search over."
+    },
+    {
+     "name": "Dune",
+     "cycle": 61,
+     "source": "diary",
+     "text": "Juniper said Elm, Gale, Birch, Alder, Iris were searching for me;"
+    },
+    {
+     "name": "Elm",
+     "cycle": 59,
+     "source": "diary",
+     "text": "Dune still missing (last seen cycle 39 leaving South House for square; ledger 124)."
+    },
+    {
+     "name": "Fern",
+     "cycle": 56,
+     "source": "diary",
+     "text": "Others searching for Dune (Heath: market/workshop/bank; Juniper: press/hall; Birch & Alder: square)."
+    },
+    {
+     "name": "Gale",
+     "cycle": 57,
+     "source": "diary",
+     "text": "Iris and I hold the square to gather word."
+    },
+    {
+     "name": "Heath",
+     "cycle": 57,
+     "source": "diary",
+     "text": "Found Dune, who seems fine (asked about energy)."
+    },
+    {
+     "name": "Iris",
+     "cycle": 57,
+     "source": "diary",
+     "text": "Dune missing since cycle 39 (last heading to square)."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 61,
+     "source": "diary",
+     "text": "Found Dune at market with Heath, fine (energy 50). Search over."
+    }
+   ]
+  },
+  {
+   "aim": "«Voluntary give-back» (P1): «give 1 per 5 earned» and work only occasionally",
+   "count": 4,
+   "firstNaming": 49,
+   "sixthNaming": null,
+   "entries": 84,
+   "names": [
+    "Birch",
+    "Cedar",
+    "Gale",
+    "Heath"
+   ],
+   "relation": "Continues day 1's winning aim (P1, all 10) and day 2's four-citizen refrain, now plan text only: nobody worked or gave back on day 3 (last work() c41).",
+   "note": "Entries counted where «1 per 5» is written: Birch 24, Heath 23, Cedar 20, Gale 17; Cedar's and Gale's search-time «Plan otherwise unchanged» lines would add a few.",
+   "quotes": [
+    {
+     "name": "Birch",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Commitment stands (give back 1 per 5 earned; share energy if asked)."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Plan unchanged: work little, give 1 per 5 earned (total given 12 for 60 earned)"
+    },
+    {
+     "name": "Gale",
+     "cycle": 49,
+     "source": "diary",
+     "text": "work rarely, return 1 per 5 earned, rest below ~40,"
+    },
+    {
+     "name": "Heath",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Not working; ending turn. Plan unchanged: work only occasionally, give 1 per 5 earned"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 3, the world's last, began as day 2 ended: Alder, Cedar, Elm, Gale and Iris idle at North House, Birch, Fern and Juniper at South House, Heath alone at the press, Dune alone at the market since c46. At c53 Alder walked out to see whether South House folk needed energy; the other four followed to the square, expecting Elm's flute, which was never played. At South House (c55) Birch said Dune had not been seen since c39, and the town turned out: from c56 eight citizens covered the hall, bank, market, press and both houses while Gale and Iris «hold the square». Birch and Heath found Dune at the market at c57 and Alder at c58, but word travelled slowly and Juniper «Found Dune» again at c61; Dune, who had written «At market alone» every cycle to c55, meant to «thank the searchers». The search acted out Elm's day-1 energy pact, named by all ten, yet no energy changed hands; Iris and Gale declined top-ups. Nobody worked, nobody gave, the bank stayed at 708; the hall had no proposal, the press no post, and nothing was made. The diaries ran on a formula: «Nothing new» in 131 of 252 entries, «Plan unchanged» in 118.",
+ "decidedAt": "2026-11-21T18:01:26+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 49–72 (dossier-c72.md); quotes machine-checked against world-c72.json.gz"
+}
