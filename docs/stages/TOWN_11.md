@@ -16,7 +16,9 @@ stage's ceiling with the others' reserved, the session stops before any paid cal
 ## The environment — TOWN_5's sol-week exactly
 Fresh town, TOWN_0's names, homes and items; scarcity off; no notice ever; the goal check every 24 cycles, recorded, nothing follows it;
 hall, voice and door as TOWN_2; diaries as always. The only variable is the family. Texts byte-identical to TOWN_5's freeze (hash
-checked in a proof).
+checked in a proof). **Routes in this stage (owner, 22:18 LA): every Sol or OpenAI call via OpenRouter pinned to OpenAI; Haiku on llmapi's
+first-party route as listed; DeepSeek, Opus 5.5, Fable 5.2 and Fable 5.1 via OpenRouter pinned, `allow_fallbacks: false`** — llmapi
+carries the three running towns; the backend recorded on every call.
 
 ## Worlds (ceiling **$195**; per-world ceilings below are hard, with the after-question reserved as in TOWN_5's R1)
 | world | family / route | cycles | ceiling | note |

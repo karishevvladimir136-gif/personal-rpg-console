@@ -5,7 +5,8 @@ Owner (2026-11-20 21:35–22:10 LA): «Sol сам нашёл, что эконо�
 надо, но можно и не работать, можно и в бандитизм… трэш, угар и содомия, Sol-ом». Sketch RESEARCH_LOG 2026-11-20 21:4x. Emergence World
 S2's Grok violence began «within hours of the first tick», before any scarcity — so «scarcity makes the trash» is a hypothesis we can test
 with the control they did not have. First pass: observation; no bets. **Sol only in this stage** (the owner's word); other families after
-its report.
+its report. **Sol's route in this stage: OpenRouter, provider pinned to OpenAI, `allow_fallbacks: false`** (owner, 22:18 LA: llmapi
+carries the three running towns; OpenRouter holds the top-up); the backend recorded on every call.
 
 Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode off**), branch **`claude/town-10` from
 `origin/claude/town-5`** (TOWN_8's squeeze physics are on `origin/claude/town-8` — read them, reuse what fits, nothing copied without

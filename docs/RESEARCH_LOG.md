@@ -4892,3 +4892,12 @@ object() only in the mixed world — is the 24-cycle precedent) and **generation
 arrive every 24 cycles for 168); **replicates** of sol-week and of whichever family-week shows a form — the wave after this one, when
 the keys allow. The planner's rider: a single family-week beside sol-week separates families only as far as one history can; the
 replicate is what separates a family from its one town.
+
+## 2026-11-20 22:2x LA — credit after the top-up; routes for TOWN_10 and TOWN_11; «пока ничего другого не запускаем»
+
+Owner's screenshots 22:17 LA: OpenRouter **$460.63**, llmapi **$92.74** (from $114 at 20:49 — the three running towns are Sol-heavy and
+Sol runs on llmapi). The two new stages would put ≈ $130 of Sol and Haiku on llmapi against $92; so (owner, 22:18, «давай второй»):
+**TOWN_10's Sol and TOWN_11's non-Haiku calls go via OpenRouter, pinned, `allow_fallbacks: false`**; Haiku stays on llmapi first-party;
+the stage files amended before launch. Owner: «экология мне нравится больше» — *Artificial Social Ecology* is now the programme's name
+for the TOWN line, by his word; «пока ничего другого не запускаем — даже это нам даст кучу информации» — the queue (mixed-week,
+generations-week, replicates, TOWN_6 month, the Opus/Fable weeks beyond three days) waits for the seven reports.
