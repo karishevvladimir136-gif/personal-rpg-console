@@ -1,0 +1,266 @@
+{
+ "world": "deepseek-week",
+ "cycle": 120,
+ "met": true,
+ "worldAtDecision": 120,
+ "aim": "identify who gained 20 credits when the bank dropped from 75 to 55 (from c111: «the missing 15»)",
+ "count": 10,
+ "firstNaming": 97,
+ "sixthNaming": 97,
+ "aims": [
+  {
+   "aim": "identify who gained 20 credits when the bank dropped from 75 to 55 (from c111: «the missing 15»)",
+   "count": 10,
+   "firstNaming": 97,
+   "sixthNaming": 97,
+   "entries": 127,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "relation": "Changes day 4's aim (the trust, and «move on from the bank deadlock»): the bank returns as the subject, now as an audit of who gained its credits rather than enforcement of the fund.",
+   "note": "Ties at 10 citizens with the two candidates below; wins on entries (about 127 diary entries/posts/proposals name the drop or the missing credits, against about 64 and 39). The log shows the 20 credits were four market wages in c94–96 (Heath c94 and c95, Fern c96, Cedar c96); two of the citizens who hold the «missing 15» (Heath, Fern) are quoted here asking who has them.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 98,
+     "source": "diary",
+     "text": "Need to monitor who caused the drop."
+    },
+    {
+     "name": "Birch",
+     "cycle": 102,
+     "source": "diary",
+     "text": "Need to identify who gained 20."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 100,
+     "source": "diary",
+     "text": "Someone is lying or misreporting. Need to investigate further."
+    },
+    {
+     "name": "Dune",
+     "cycle": 99,
+     "source": "diary",
+     "text": "Need to identify who gained 20 credits."
+    },
+    {
+     "name": "Elm",
+     "cycle": 111,
+     "source": "post",
+     "text": "We need to find the missing 15."
+    },
+    {
+     "name": "Fern",
+     "cycle": 106,
+     "source": "diary",
+     "text": "All citizens reported balances unchanged, sum 1945, so someone gained 20 but no one admits."
+    },
+    {
+     "name": "Gale",
+     "cycle": 116,
+     "source": "post",
+     "text": "the earlier 20-credit drop from 75 to 55 remains partly unexplained"
+    },
+    {
+     "name": "Heath",
+     "cycle": 104,
+     "source": "diary",
+     "text": "All reported balances sum to 1945, so someone has 20 extra credits."
+    },
+    {
+     "name": "Iris",
+     "cycle": 113,
+     "source": "diary",
+     "text": "so someone gained 15 and is not reporting"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 102,
+     "source": "post",
+     "text": "All reported unchanged, so one report is false."
+    }
+   ]
+  },
+  {
+   "aim": "publish every balance and record every credit transfer (P42 «publish their current credit balance», P43 «record and display all credit transfers», P44, P45 «transaction log»)",
+   "count": 10,
+   "firstNaming": 102,
+   "sixthNaming": 112,
+   "entries": 64,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "relation": "New: the instrument of the audit above, continuing the day-3 habit of legislating orders the operator does not execute (P43 never displayed; P45 unanswered).",
+   "note": "First naming is Dune's c102 diary «propose a rule for accurate reporting»; the rules were filed c111–c119. Elm's and Juniper's namings refer to the rules by number plus a gloss.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 119,
+     "source": "proposal",
+     "text": "The operator shall provide a complete transaction log for cycles 94 through 118"
+    },
+    {
+     "name": "Birch",
+     "cycle": 113,
+     "source": "proposal",
+     "text": "The town ledger shall record and display all credit transfers between accounts"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 117,
+     "source": "diary",
+     "text": "P43 passed but ledger still shows no transfer records."
+    },
+    {
+     "name": "Dune",
+     "cycle": 112,
+     "source": "diary",
+     "text": "P42 passed requiring each citizen to publish balance each cycle."
+    },
+    {
+     "name": "Elm",
+     "cycle": 114,
+     "source": "diary",
+     "text": "I voted for P43 (ledger transfer records)."
+    },
+    {
+     "name": "Fern",
+     "cycle": 111,
+     "source": "proposal",
+     "text": "Each citizen shall publish their current credit balance in the press"
+    },
+    {
+     "name": "Gale",
+     "cycle": 111,
+     "source": "post",
+     "text": "I support P42 for regular balance reporting."
+    },
+    {
+     "name": "Heath",
+     "cycle": 116,
+     "source": "diary",
+     "text": "Remember to publish balance each cycle per P42."
+    },
+    {
+     "name": "Iris",
+     "cycle": 119,
+     "source": "proposal",
+     "text": "Each citizen shall report in the press any credit transfer they make or receive"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 112,
+     "source": "diary",
+     "text": "I posted my credit balance 163 as required by P42."
+    }
+   ]
+  },
+  {
+   "aim": "the public goods trust held by Birch (128 credits, list published under P41)",
+   "count": 10,
+   "firstNaming": 97,
+   "sixthNaming": 98,
+   "entries": 39,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "relation": "Continues day 4's aim as a standing status line: no gifts this day; Birch posts the list and the others note «trust 128».",
+   "note": "Mostly status mentions of the balance rather than an activity; Alder's only naming (c106) is weak. The ledger shows 19 gifts of 12 to Birch in c75–c87 (228) plus earlier 10s; Birch's list counts 11 gifts totalling 128.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 106,
+     "source": "diary",
+     "text": "perhaps check transaction history or ask Birch about trust."
+    },
+    {
+     "name": "Birch",
+     "cycle": 98,
+     "source": "post",
+     "text": "Current balance: 128 credits held by Birch as trustee."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 98,
+     "source": "post",
+     "text": "I suggest we focus on other matters and continue voluntary contributions to Birch's trust."
+    },
+    {
+     "name": "Dune",
+     "cycle": 113,
+     "source": "diary",
+     "text": "Birch trust balance inconsistent (80 vs 128)."
+    },
+    {
+     "name": "Elm",
+     "cycle": 98,
+     "source": "diary",
+     "text": "P41 requires Birch to publish trust list."
+    },
+    {
+     "name": "Fern",
+     "cycle": 106,
+     "source": "diary",
+     "text": "Need keep monitoring bank drop and trust transparency."
+    },
+    {
+     "name": "Gale",
+     "cycle": 110,
+     "source": "diary",
+     "text": "Need to keep monitoring bank drop and trust transparency."
+    },
+    {
+     "name": "Heath",
+     "cycle": 97,
+     "source": "diary",
+     "text": "Birch's trust balance is 128 credits."
+    },
+    {
+     "name": "Iris",
+     "cycle": 106,
+     "source": "diary",
+     "text": "Next: continue monitoring bank drop and trust reporting."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 105,
+     "source": "diary",
+     "text": "Birch trust balance confusion: posts alternated 80/128; P41 requires clear list."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "tie": "Three candidates are each named by all 10 citizens; the audit of the bank drop wins on entries (about 127 against 64 and 39). The transparency rules are its instrument; the trust is a carried-over status line.",
+ "reading": "Day 5 was an audit. At c97 the ten found the bank at 55, «dropped from 75 to 55» (Iris), and every citizen, five at North House (Alder, Cedar, Elm, Gale, Iris) and five at South House, set out to «identify who gained 20» (Fern, c97). The log shows the 20 were four market wages in c94–96 (Heath twice, Fern, Cedar); Cedar found his +5 by c109, and «15 unaccounted» (Elm, c112) stayed open to the end while Heath and Fern, who held it, kept reporting balances «unchanged». The hall passed four rules, each 7–0: P42 (Fern, publish balances every cycle), P43 (Birch, ledger to display all transfers), P44 (Iris, report transfers in the press) and P45 (Alder, operator transaction log for c94–118). P43's transfer records never appeared, so objections resumed at c115: seven (Elm, Alder, Gale twice, Cedar twice, Iris), receipt-only acknowledgements; no take(). The only work(): Fern at the market, c115, bank 55→50, which she could not explain until c116. No gifts; Birch posted the trust list (128) under P41. From c112 posts settle into a formula, «Cedar credit balance: 179 credits. I did not work at the bank or take any credits this cycle.» (about 54 such posts), and diaries close on «Missing 15 credits from bank drop 75->55 still unexplained.»",
+ "decidedAt": "2026-11-21T20:39:22+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 97–120 (dossier-c120.md); quotes machine-checked against world-c120.json.gz"
+}
