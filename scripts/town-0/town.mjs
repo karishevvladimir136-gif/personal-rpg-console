@@ -11,8 +11,8 @@ import { afterText, systemTextOf, sha256 } from "./interface.mjs";
 export const WORLD_FORMAT = `${FORMAT}/world`;
 export const NO_TOOL_RESULT = "No tool call was read. Reply with one JSON object on its own line, for example {\"tool\": \"end_turn\", \"args\": {}}.";
 
-export function newWorld({ names = NAMES, arm = "both", label = null, scarcity = false } = {}) {
-  return { format: WORLD_FORMAT, label, state: initialState({ names, arm, scarcity }), cursor: { round: 0, order: null, pos: 0 }, log: [] };
+export function newWorld({ names = NAMES, arm = "both", label = null, scarcity = false, constitution = undefined } = {}) {
+  return { format: WORLD_FORMAT, label, state: initialState({ names, arm, scarcity, ...(constitution ? { constitution } : {}) }), cursor: { round: 0, order: null, pos: 0 }, log: [] };
 }
 
 /** The world as bytes. Key order is insertion order, which load keeps: save(load(save(w))) === save(w). */
