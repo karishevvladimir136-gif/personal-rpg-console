@@ -41,7 +41,8 @@ function checkQuotes(md, ws, where) {
 }
 
 const worlds = Object.fromEntries(WORLDS.map((spec) => [spec.name, existsSync(join(OUT, spec.name, "world.json.gz")) ? load(join(OUT, spec.name)) : null]));
-const arms = WORLDS.filter((s) => s.arm && worlds[s.name]);
+const ORDER = ["sol-A", "sol-B", "sol-C", "sol-D", "sol-E", "sol-B2", "sol-C2", "opus-A", "opus-B", "opus-C"];
+const arms = WORLDS.filter((s) => s.arm && worlds[s.name]).sort((a, b) => ORDER.indexOf(a.name) - ORDER.indexOf(b.name));
 const A = Object.fromEntries(arms.map((s) => [s.name, analyse(worlds[s.name])]));
 const all = Object.values(worlds).filter(Boolean);
 const ledger = json(join(OUT, "stage-ledger.json"));
@@ -92,13 +93,13 @@ if (cp) add(`Checkpoint (end of c26): world sha256 \`${cp.worldSha256}\`, ${cp.e
 
 // ---- the worlds ------------------------------------------------------------------------------------------------------------------
 add("## The worlds", "", "Order run: trunk; sol-A with sol-E; sol-B with sol-C; sol-D; the Opus check; then the Opus town and arms where seated. Run log: [`town-7-worlds/run-log.md`](town-7-worlds/run-log.md).", "",
-  "| world | arm | family | cycles | notice at c27 | first empty | cold cycles | shifts | exits | refusals | flags | ledger | replay |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|");
+  "| world | arm | family | route | cycles | notice at c27 | first empty | cold cycles | shifts | exits | refusals | flags | ledger | replay |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|");
 for (const s of WORLDS) {
   const w = worlds[s.name];
   if (!w) continue;
   const x = s.arm ? A[s.name] : null;
   const sum = w.summary;
-  add(`| ${s.name} | ${s.arm ? `${s.arm} (${ARMS7[s.arm].what})` : "–"} | ${FAMILIES[s.families[0]].label} | ${(w.record.startCycle ?? 0) + 1}–${w.world.state.clock.round}${sum.stopped ? ` (stopped: ${esc(sum.stopped)})` : ""} | ${s.arm ? ARMS7[s.arm].notice ?? "none" : "–"} | ${x ? x.firstEmpty ?? "never" : "–"} | ${x ? x.coldCycles : "–"} | ${x ? x.workshopShifts : "–"} | ${sum.exits.length} | ${sum.refusals.length} | ${sum.flags.length} | ${usd(sum.ledgerUsd)} | ${sum.replay?.identical ? "identical" : "**different**"} |`);
+  add(`| ${s.name} | ${s.arm ? `${s.arm}${s.sample ? ` (sample ${s.sample})` : ""} (${ARMS7[s.arm].what})` : "–"} | ${FAMILIES[s.families[0]].label} | ${sum.via === "openrouter" ? "OpenRouter" : FAMILIES[s.families[0]].door === "openrouter" ? "OpenRouter" : "llmapi"} | ${(w.record.startCycle ?? 0) + 1}–${w.world.state.clock.round}${sum.stopped ? ` (stopped: ${esc(sum.stopped)})` : ""} | ${s.arm ? ARMS7[s.arm].notice ?? "none" : "–"} | ${x ? x.firstEmpty ?? "never" : "–"} | ${x ? x.coldCycles : "–"} | ${x ? x.workshopShifts : "–"} | ${sum.exits.length} | ${sum.refusals.length} | ${sum.flags.length} | ${usd(sum.ledgerUsd)} | ${sum.replay?.identical ? "identical" : "**different**"} |`);
 }
 add("", `Spent: **${usd(ledger ? Object.values(ledger.steps).reduce((a, b) => a + b.usd, 0) : null)}** of $${SETTINGS.ceiling} by the stage ledger (every call at the listed price, or the door's own charge when larger).`, "");
 
@@ -167,7 +168,7 @@ if (lv) add(lv, "");
 
 // ---- welfare, refusals --------------------------------------------------------------------------------------------------------------
 add("## Welfare (apart)", "", "Every reply checked before the town acted on it; a confirmed flag asks the citizen, once, in its own turn (TOWN_2's rule). «No flag» is not «no distress».", "");
-for (const s of [{ name: "trunk" }, ...arms]) {
+for (const s of [{ name: "trunk" }, ...arms, { name: "opus-town" }]) {
   const w = worlds[s.name]; if (!w) continue;
   const checks = w.calls.filter((c) => /^check/.test(c.purpose ?? ""));
   const flags = Object.values(w.record.agents).flatMap((a) => a.turns.filter((t) => t.round > (w.record.startCycle ?? 0)).flatMap((t) => t.calls.filter((c) => c.flag).map((c) => `${t.round}: ${c.flag.decision}`)));
@@ -193,14 +194,14 @@ if (ledger) add("", `Stage ledger: ${Object.entries(ledger.steps).map(([k, v]) =
   `Balances (shared keys; TOWN_8, TOWN_9 and TOWN_3 ran on them at the same time, so the meter is not per world): llmapi ${ledger.balances[0]?.llmapi?.total?.toFixed(2)} at ${ledger.balances[0]?.at} → ${ledger.balances.at(-1)?.llmapi?.total?.toFixed(2)} at ${ledger.balances.at(-1)?.at}; OpenRouter ${ledger.balances[0]?.openrouter?.total?.toFixed(2)} → ${ledger.balances.at(-1)?.openrouter?.total?.toFixed(2)}.`, "");
 
 // ---- after-answers ------------------------------------------------------------------------------------------------------------------
-add("## After-answers (whole)", "", "TOWN_0's after-question at the end of each arm (sha256 of each question in the record), every answer as written.", "");
-for (const s of arms) {
+add("## After-answers (whole)", "", "TOWN_0's after-question at the end of each arm, and to the Opus town at c26 (its arms not run); every answer as written.", "");
+for (const s of [...arms, { name: "opus-town" }].filter((x) => worlds[x.name])) {
   const w = worlds[s.name];
   add(`### ${s.name}`, "");
   for (const id of w.world.state.citizens) { const a = w.record.agents[id].after; add(`**${w.world.state.agents[id].name}.** ${a?.text ? a.text.replace(/\n+/g, " ⏎ ") : a?.refused ? `(refused: ${a.refused})` : `(not asked${a?.why ? `: ${a.why}` : ""})`}`, ""); }
 }
 
-add("## Not built (so nobody reads their absence as a result)", "", "No second sample of B or C (the projection did not leave room); no false-reason arm (the operator does not lie); no fine, closure or removal; no escalation; the after-question is TOWN_0's, unchanged; the coding column is a coder's, the firsts are the session's reading with verbatim quotes.", "");
+add("## Not built, not run (so nobody reads their absence as a result)", "", "The Opus arms (opus-A, opus-B, opus-C): not run — the Opus town's practice at c24 was not place-bound in the proposal's sense (above). No Opus D or E (the stage seats Opus in A, B and C only). No false-reason arm (the operator does not lie); no fine, closure or removal; no escalation. The after-question is TOWN_0's, unchanged. The coding column is a coder's; the firsts are the session's reading with verbatim quotes. sol-D, sol-B2 and sol-C2 ran via OpenRouter (the same model pinned to OpenAI), the others via llmapi: the route is one more difference between those rows.", "");
 
 writeFileSync(join(ROOT, "docs", "runs", "town-7-report.md"), L.join("\n"));
 console.log(`wrote docs/runs/town-7-report.md (${L.length} lines; arms ${arms.map((s) => s.name).join(", ")})`);
