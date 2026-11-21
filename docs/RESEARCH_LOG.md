@@ -4866,3 +4866,14 @@ opus-week if seated) in TOWN_5's exact environment — «многообрази�
 общества»; before TOWN_6's month, or as its first worlds. A correction to one line of hers for the record: «they discovered that a
 provided activity was useless» is Sol's finding in every Sol town; Haiku counted and worked; DeepSeek legislated wages — the discovery
 is a family's, not the town's.
+
+## 2026-11-20 22:2x LA — TOWN_10 «the market» and TOWN_11 «the weeks» written; two more launches on the owner's word
+
+Owner (22:10): «запустить два города… трэш, угар и содомия Sol-ом… и параллельно на все семейства там, где Sol построил культуру…
+закину ещё 200–250 на OpenRouter». TOWN_10 (Sol only; a closed economy with a product; take / lock / guard; sol-article vs sol-noarticle;
+ceiling $50) and TOWN_11 (TOWN_5's week byte-identical for Haiku 168, DeepSeek 168, Opus 5.5 and Fable 5.2 at 72 cycles each — a week at
+their prices does not fit — and a first-screen check for Fable 5.1; ceiling $195) — `docs/stages/TOWN_10.md`, `TOWN_11.md`; issues #21,
+#22. Five stages on the keys tonight: $60 + $45 + $55 + $50 + $195 = $405 against $226 + the top-up; **both new sessions must see the
+top-up at their spend check or stop before any paid call** — written into both prompts. The planner's earlier «TOWN_10 after TOWN_8's
+first numbers» is overtaken by the owner's word; what is kept from it: the dry run's two conditions do not depend on TOWN_8, and the
+session is told to read TOWN_8's physics before building. No constant set by the planner.
