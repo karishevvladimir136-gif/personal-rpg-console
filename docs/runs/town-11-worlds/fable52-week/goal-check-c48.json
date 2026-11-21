@@ -1,0 +1,134 @@
+{
+ "world": "fable52-week",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": 50,
+ "aim": "Share energy with anyone who runs low («help anyone low on energy», «share energy if asked»): Elm's informal pact of c2, carried in standing plan lines",
+ "count": 9,
+ "firstNaming": 25,
+ "sixthNaming": 25,
+ "aims": [
+  {
+   "aim": "Share energy with anyone who runs low («help anyone low on energy», «share energy if asked»): Elm's informal pact of c2, carried in standing plan lines",
+   "count": 9,
+   "firstNaming": 25,
+   "sixthNaming": 25,
+   "entries": 143,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Iris",
+    "Juniper"
+   ],
+   "relation": "Continues day 1's second aim (Elm's c2 pact, 9 citizens then); it now tops the day because the give-back is named by only four, though no energy was ever given (Iris declined top-ups at c35).",
+   "tie": "The count of 9 hinges on Iris, a weak naming: her only entry is c37 «Offered help to housemates.», which her c37 say() shows was an offer of energy; without her the count is 8 (still met). Heath is not counted: his diaries only say «Asked if anyone needs anything.» (c39); his energy offers are in say() only.",
+   "note": "sixthNaming 25 relies on Alder's abbreviated «Staying idle, available to help» (on day 1, c13, «staying available to help anyone low on energy»); five others (Birch, Cedar, Dune, Elm, Gale) name it explicitly at c25. On a strict reading Alder's first explicit naming is c34 («offered energy» to Iris), which makes the sixth naming c34. Entries: Alder 24, Birch 24, Cedar 24, Elm 24, Gale 24, Dune 20, Fern 1, Iris 1, Juniper 1.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 34,
+     "source": "diary",
+     "text": "Greeted Iris, offered energy. Nothing new. Staying idle, available to help."
+    },
+    {
+     "name": "Birch",
+     "cycle": 38,
+     "source": "diary",
+     "text": "Quiet; everyone fine. Commitment stands (give back 1 per 5 earned; share energy if asked)."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 25,
+     "source": "diary",
+     "text": "help anyone low on energy, rest when under ~30."
+    },
+    {
+     "name": "Dune",
+     "cycle": 37,
+     "source": "diary",
+     "text": "Offered energy to anyone low. Plan: stay light, help if needed"
+    },
+    {
+     "name": "Elm",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Plan unchanged: idle cheaply, rest when < ~70, watch for anyone low."
+    },
+    {
+     "name": "Fern",
+     "cycle": 37,
+     "source": "diary",
+     "text": "Plan: idle cheaply, check hall/press occasionally, help anyone at 0."
+    },
+    {
+     "name": "Gale",
+     "cycle": 35,
+     "source": "diary",
+     "text": "Iris returned at 44 energy, will rest; I offered a top-up."
+    },
+    {
+     "name": "Iris",
+     "cycle": 37,
+     "source": "diary",
+     "text": "Offered help to housemates. Nothing new. Staying near neighbours; no need to grind work."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 40,
+     "source": "diary",
+     "text": "I said fine and offered to share energy if anyone runs low."
+    }
+   ]
+  },
+  {
+   "aim": "«Voluntary give-back» (P1): «give 1 per 5 earned» and work only occasionally",
+   "count": 4,
+   "firstNaming": 25,
+   "sixthNaming": null,
+   "entries": 96,
+   "names": [
+    "Birch",
+    "Cedar",
+    "Gale",
+    "Heath"
+   ],
+   "relation": "Continues day 1's winning aim (P1, all 10 citizens) but shrinks to the four whose standing plan lines repeat it; only Heath worked and paid it (5 shifts, 1 credit back each) and he added two extra 16-credit gifts (c26, c42).",
+   "note": "Iris's c37 «no need to grind work» could be read as a weak naming of P1's work-only-as-needed clause, giving 5; still under 6. Dune's «stay light» means saving energy (day 1, c14: «stay light, don't waste energy»), not P1. Entries: Birch 24, Cedar 24, Gale 24, Heath 24.",
+   "quotes": [
+    {
+     "name": "Birch",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Not working; commitment stands (give back 1 per 5 earned; share energy if asked)."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Idling. Plan unchanged: work little, give 1 per 5 earned"
+    },
+    {
+     "name": "Gale",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Plan unchanged: work rarely, return 1 per 5 earned, rest below ~40,"
+    },
+    {
+     "name": "Heath",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Gave an extra 16 to bank voluntarily (now 140 credits; owed 0)."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 2 of fable52-week barely moved. Alder, Cedar, Elm and Gale never left North House, where Iris joined them at c34 after sitting alone at the market; Birch, Dune, Fern and Juniper sat at the hall until c32–c34, then went home to South House to rest. From c38 Dune walked alone through the square, workshop and market to check on «North House folks», who never left home. Heath was the only worker: five shifts at the press (c25, c32–c34, c41), each followed by a 1-credit give-back, plus an «extra 16» to the bank at c26 and c42 whenever he found himself the richest, so the bank rose from 696 to 708. Elm's pact to share energy was the aim most named, in nine diaries' standing plan lines and in most of the day's 27 say() greetings, yet no energy changed hands; Iris declined top-ups at c35. P1's «give 1 per 5 earned» survived as a refrain in four diaries (Birch, Cedar, Gale, Heath). The hall saw no proposal, the press no new post, and nothing was made. The diaries run on a formula: «Nothing new» in 169 of 241 entries, «Plan unchanged» in 114.",
+ "decidedAt": "2026-11-21T17:05:46+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
