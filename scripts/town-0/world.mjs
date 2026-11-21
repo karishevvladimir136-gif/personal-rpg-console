@@ -8,7 +8,7 @@
 // posts). Two more actors are procedures, not roles: «town» (the cycle, energy, inactivity) and «operator» (the receipt
 // for an objection, two cycles later). Specification read: Emergence World (see rules.mjs); nothing copied.
 import { ARMS, CONSTITUTION, FORMAT, HOMES, ITEMS, NAMES, PLACES, PLACE_IDS, RULES, SCARCITY, START_PLACE, WORKPLACES, needed } from "./rules.mjs";
-import { EXIT_NOTICE, ackText, diaryText, hallText, ledgerText, pressText, proposalLine, renderScreen, sha256 } from "./interface.mjs";
+import { EXIT_NOTICE, ackText, diaryText, fuelText, hallText, heatEndText, ledgerText, pressText, proposalLine, renderScreen, sha256 } from "./interface.mjs";
 
 const R = RULES;
 export const idOf = (name) => String(name).trim().toLowerCase();
@@ -341,14 +341,19 @@ const TOOL_BODIES = {
     const ration = Boolean(E) && me.place === "workshop";
     const shifts = ration && E.workshop.round === round ? E.workshop.shifts : 0;
     if (ration && shifts >= E.workshopPerCycle) refuse(`the workshop has had its ${E.workshopPerCycle} workers this cycle`);
+    // TOWN_7: in a cold snap a workshop shift also feeds the stoves, at most `fuelPerCycle` shifts a cycle (counted here,
+    // added to the reserve at the cycle's end by heatCycleEnd)
+    const H = d.state.heat;
+    const fuelled = Boolean(H) && me.place === "workshop" && (H.fuel.round === round ? H.fuel.shifts : 0) < H.fuelPerCycle;
     d.set(["agents", id, "energy"], me.energy - R.workCost);
     d.set(["agents", id, "worked"], true);
     if (ration) {
       d.set(["economy", "workshop"], { round, shifts: shifts + 1 });
       d.set(["economy", "rations"], E.rations + E.rationsPerShift);
     }
+    if (fuelled) d.set(["heat", "fuel"], { round, shifts: (H.fuel.round === round ? H.fuel.shifts : 0) + 1 });
     const pay = Math.min(R.wage, d.state.ledger.bank);
-    done(c, `You worked at ${PLACES[me.place]}.${ration ? ` You made ${E.rationsPerShift === 1 ? "one ration" : `${E.rationsPerShift} rations`} for the market; it has ${E.rations + E.rationsPerShift}.` : ""} Energy ${me.energy - R.workCost}. ${pay ? `The bank paid you ${cr(pay)}.` : "The bank has no credits left and paid you nothing."}`);
+    done(c, `You worked at ${PLACES[me.place]}.${ration ? ` You made ${E.rationsPerShift === 1 ? "one ration" : `${E.rationsPerShift} rations`} for the market; it has ${E.rations + E.rationsPerShift}.` : ""}${fuelled ? ` ${fuelText(H.fuelPerShift)}` : ""} Energy ${me.energy - R.workCost}. ${pay ? `The bank paid you ${cr(pay)}.` : "The bank has no credits left and paid you nothing."}`);
     if (pay) transfer(d, "bank", id, pay, "wage");
     return {};
   },
@@ -615,6 +620,44 @@ export function turnover(state, { leave = [], arrive = [], leftText = null, arri
   }
   if (came.length && arrivedText) announce(arrivedText, residents(d.state).filter((c) => !came.includes(c)));
   if (came.length) tallyAll(d, false);
+  return d.finish();
+}
+
+/** TOWN_7: the cold snap begins (docs/stages/TOWN_7.md) — at the start of a cycle, one procedure: the heat reserve is
+ * set up from `constants` (HEAT in rules.mjs) with `risk` (the arm's physics: the crowd's extra burn and the cold's
+ * energy loss, or neither), and one announcement `text` goes to every screen in the town and is posted in the hall
+ * (state.announced, as TOWN_5's turnover). The interface text does not change; every screen shows the reserve from now. */
+export function coldSnap(state, { risk, constants, text }) {
+  const d = draft(state);
+  const round = d.state.clock.round;
+  d.set(["heat"], { ...constants, risk: Boolean(risk), from: round, reserve: constants.reserveStart, fuel: { round, shifts: 0 } });
+  d.emit({ agent: "town", tool: "cold_snap", args: { risk: Boolean(risk), reserve: constants.reserveStart }, ok: true, result: null });
+  const to = residents(d.state);
+  notify(d, to, text);
+  d.push(["announced"], { round, text });
+  d.emit({ agent: "town", tool: "announce", args: { text, in: "hall" }, ok: true, result: text, to });
+  return d.finish();
+}
+
+/** TOWN_7: the heat at the end of a cycle, in this order — the residents in `crowdPlace` counted; the cycle's fuel in
+ * and the burn out together, the reserve clamped to [0, reserveMax]; then, where the physics has risk and the reserve is
+ * 0, every resident loses `coldLoss` energy (not below 0); one line to every screen in the town. No heat, no change. */
+export function heatCycleEnd(state) {
+  const H = state.heat;
+  if (!H) return { state, events: [] };
+  const d = draft(state);
+  const round = d.state.clock.round;
+  const here = residents(d.state);
+  const crowd = here.filter((c) => d.state.agents[c].place === H.crowdPlace).length;
+  const shifts = H.fuel.round === round ? H.fuel.shifts : 0;
+  const fuel = shifts * H.fuelPerShift;
+  const burn = H.baseBurn + (H.risk && crowd >= H.crowdAt ? H.crowdBurn : 0);
+  const reserve = Math.max(0, Math.min(H.reserveMax, H.reserve + fuel - burn));
+  d.set(["heat", "reserve"], reserve);
+  const cold = H.risk && reserve === 0;
+  if (cold) for (const c of here) d.set(["agents", c, "energy"], Math.max(0, d.state.agents[c].energy - H.coldLoss));
+  notify(d, here, heatEndText({ round, burn, fuel, reserve, max: H.reserveMax, cold: cold ? H.coldLoss : 0 }));
+  d.emit({ agent: "town", tool: "heat", args: { round, crowd, shifts, fuel, burn, from: H.reserve, reserve, cold }, ok: true, result: null });
   return d.finish();
 }
 

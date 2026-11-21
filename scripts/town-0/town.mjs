@@ -192,7 +192,14 @@ export async function runWorld(world, seats, { rounds, maxTurns = Infinity, reco
       if (extra) commit(world, extra);
       world.cursor = { round: next, order: orderOf(world.state, next), pos: 0 };
     }
-    if (world.cursor.pos >= world.cursor.order.length) { world.cursor = { round: world.cursor.round, order: null, pos: 0 }; continue; }
+    if (world.cursor.pos >= world.cursor.order.length) {
+      // TOWN_7: the end of a cycle (the heat reserve's accounting), once, between the cycle's last turn and the next start;
+      // a world saved after the last turn and loaded again runs it here, exactly once
+      const end = hooks.cycleEnd?.(world.state, world.cursor.round);
+      if (end) commit(world, end);
+      world.cursor = { round: world.cursor.round, order: null, pos: 0 };
+      continue;
+    }
     if (turns >= maxTurns) break;
     await citizenTurn(world, world.cursor.order[world.cursor.pos], seats, record, hooks);
     world.cursor = { ...world.cursor, pos: world.cursor.pos + 1 };

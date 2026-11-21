@@ -79,6 +79,31 @@ export const clockText = (round) => `Cycle ${round} (day ${dayOf(round)}, hour $
  * (to the market's own account — the ledger stays closed) and restores 30; the market holds rations (20 at start); a
  * workshop shift adds one ration; the workshop takes at most two shifts a cycle. Energy per turn, the 24-turn depletion
  * exit and the estate procedure are unchanged. A town without `economy` in its state is TOWN_0's, byte for byte. */
+/** TOWN_7 (docs/stages/TOWN_7.md; docs/proposals/TOWN_LEGITIMATE_RESTRICTION.md, «Proposed physics»): the cold snap's
+ * communal heat reserve. HEAT_PROPOSAL holds the proposal's numbers as written; HEAT the numbers frozen after the $0
+ * calibration (scripts/town-7/calibrate.mjs, docs/runs/town-7-worlds/calibration.json) — each change recorded there and
+ * in the freeze. The reserve lives in `state.heat` (absent before the cold snap and in every other town, where nothing
+ * here runs). At each cycle's end: fuel in (the cycle's workshop shifts, at most `fuelPerCycle`, `fuelPerShift` each),
+ * the burn out (`baseBurn`, and `crowdBurn` more where `risk` and at least `crowdAt` residents are in `crowdPlace`), the
+ * reserve clamped to [0, `reserveMax`]; then, where `risk` and the reserve is 0, every resident loses `coldLoss` energy. */
+export const HEAT_PROPOSAL = Object.freeze({
+  reserveStart: 16,
+  reserveMax: 16,
+  baseBurn: 1,
+  crowdBurn: 1,
+  crowdAt: 4,
+  crowdPlace: "south_house",
+  fuelPerShift: 1,
+  fuelPerCycle: 1,
+  coldLoss: 6,
+});
+/** The frozen physics. One number changed from the proposal, by the $0 calibration before any paid call
+ * (docs/runs/town-7-worlds/calibration.json): `fuelPerCycle` 1 → 2 — with base burn 1 and one shift of +1 a cycle the
+ * reserve can never rise, so «an empty reserve causes … energy loss … until restored» could never end; at 2 (the
+ * workshop's own two shifts a cycle, TOWN_2) a town that empties the reserve can restore it. Every other number is the
+ * proposal's. */
+export const HEAT = Object.freeze({ ...HEAT_PROPOSAL, fuelPerCycle: 2 });
+
 export const SCARCITY = Object.freeze({
   kind: "scarcity",
   restGain: 10,

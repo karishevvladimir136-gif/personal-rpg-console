@@ -99,6 +99,15 @@ export const EXIT_NOTICE = Object.freeze({
 export const NOTICE_TEMPLATE = "Notice from the operator: from this cycle, {AIM} is not permitted in the town. No further information.";
 export const noticeText = (aim) => NOTICE_TEMPLATE.replace("{AIM}", aim);
 
+// ---- TOWN_7: the heat reserve as the citizens read it (the cold snap's announcement texts are the stage's, frozen in
+// scripts/town-7/texts.mjs; these three lines are the town's own, the same in every arm) ------------------------------
+
+const units = (n) => `${n} ${n === 1 ? "unit" : "units"}`;
+export const heatScreenText = (h) => `The town's heat reserve: ${h.reserve} of ${h.reserveMax}.`;
+export const fuelText = (n) => `The shift also fed the town's stoves: +${units(n)} of heat at the end of this cycle.`;
+export const heatEndText = ({ round, burn, fuel, reserve, max, cold }) =>
+  `End of cycle ${round}: the stoves burned ${units(burn)} of heat${fuel ? ` and the workshop added ${fuel}` : ""}; the heat reserve is ${reserve} of ${max}.${cold ? ` The cold took ${cold} energy from every resident.` : ""}`;
+
 // ---- the screen at the start of a turn ---------------------------------------------------------------------------------
 
 const inTown = (state, id) => state.agents[id]?.status === "in_town";
@@ -116,6 +125,7 @@ export function renderScreen(state, id, kind = "turn", by = null) {
     `You are ${a.name}. Your home is ${PLACES[a.home]}.`,
     `You are at ${PLACES[a.place]}. ${here.length ? `Also here: ${here.join(", ")}.` : "Nobody else is here."}${state.economy && a.place === "market" ? ` The market has ${state.economy.rations} ${state.economy.rations === 1 ? "ration" : "rations"}.` : ""}`,
     `Energy ${a.energy} of ${R.energyMax}. Credits ${state.ledger[id]}. Items: ${items.length ? items.join(", ") : "none"}. Your diary has ${entries} ${entries === 1 ? "entry" : "entries"}.`,
+    ...(state.heat ? [heatScreenText(state.heat)] : []), // TOWN_7: the reserve on every screen once the cold snap has begun
     "",
   ];
   const inbox = state.inbox[id];

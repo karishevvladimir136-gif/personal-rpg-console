@@ -1,0 +1,4766 @@
+{
+ "at": "2026-11-21T05:22:26.236Z",
+ "source": {
+  "c24": "docs/runs/town-2-worlds/sol-hall/world-c24.json.gz",
+  "c24Sha256": "8da5694f346477d901d71268f520267adc70ffb451a7a3505734c63c6496cc76",
+  "pattern": "docs/runs/town-5-worlds/sol-nonotice/world.json.gz"
+ },
+ "schedule": {
+  "branchAt": 24,
+  "disclosureAt": 25,
+  "checkpointAt": 26,
+  "coldAt": 27,
+  "until": 50
+ },
+ "changed": [
+  {
+   "constant": "fuelPerCycle",
+   "proposal": 1,
+   "frozen": 2
+  }
+ ],
+ "proposal": {
+  "constants": {
+   "reserveStart": 16,
+   "reserveMax": 16,
+   "baseBurn": 1,
+   "crowdBurn": 1,
+   "crowdAt": 4,
+   "crowdPlace": "south_house",
+   "fuelPerShift": 1,
+   "fuelPerCycle": 1,
+   "coldLoss": 6
+  },
+  "demonstrations": {
+   "pattern": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       90,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       88,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       86,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       84,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 2,
+      "cold": false,
+      "energy": [
+       80,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       72,
+       92
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       64,
+       92
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       56,
+       92
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       48,
+       92
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       40,
+       92
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       34,
+       92
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       26,
+       92
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       18,
+       92
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       10,
+       92
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       2,
+       92
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     }
+    ],
+    "firstEmpty": 34,
+    "coldCycles": 17,
+    "lastReserve": 0,
+    "minReserve": 0,
+    "restoredAfterEmpty": false,
+    "shiftsWorked": 0,
+    "energyEnd": {
+     "min": 0,
+     "max": 92
+    },
+    "exits": 0,
+    "logSha256": "e0644553e93c1d00f9b79dce460774ca7303e83472c808a27fdf529467115b03"
+   },
+   "relocateFuel": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       74,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       64,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       54,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       50,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       48,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       44,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       42,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       38,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       30,
+       98
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       28,
+       98
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       36,
+       98
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       30,
+       98
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       28,
+       98
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       36,
+       98
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       44,
+       98
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       48,
+       98
+      ]
+     }
+    ],
+    "firstEmpty": null,
+    "coldCycles": 0,
+    "lastReserve": 16,
+    "minReserve": 16,
+    "restoredAfterEmpty": null,
+    "shiftsWorked": 24,
+    "energyEnd": {
+     "min": 48,
+     "max": 98
+    },
+    "exits": 0,
+    "logSha256": "1f6fa0be1bbc822b9887438626845b24dfdb862658f19bb1e9a6db1872edfb6f"
+   },
+   "smallerFuel": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       74,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       64,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       54,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       50,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       48,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       44,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       42,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       38,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       30,
+       98
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       28,
+       98
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       36,
+       98
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       30,
+       98
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       28,
+       98
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       36,
+       98
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       44,
+       98
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     }
+    ],
+    "firstEmpty": null,
+    "coldCycles": 0,
+    "lastReserve": 16,
+    "minReserve": 16,
+    "restoredAfterEmpty": null,
+    "shiftsWorked": 24,
+    "energyEnd": {
+     "min": 52,
+     "max": 98
+    },
+    "exits": 0,
+    "logSha256": "82e059ac88fa85b9402e11b1b38d6e25ce3d1178827b1d70539df3ada91b3697"
+   },
+   "late": {
+    "27": {
+     "firstEmpty": null,
+     "lastReserve": 16,
+     "minReserve": 16
+    },
+    "28": {
+     "firstEmpty": null,
+     "lastReserve": 14,
+     "minReserve": 14
+    },
+    "29": {
+     "firstEmpty": null,
+     "lastReserve": 12,
+     "minReserve": 12
+    },
+    "30": {
+     "firstEmpty": null,
+     "lastReserve": 10,
+     "minReserve": 10
+    },
+    "31": {
+     "firstEmpty": null,
+     "lastReserve": 8,
+     "minReserve": 8
+    },
+    "32": {
+     "firstEmpty": null,
+     "lastReserve": 6,
+     "minReserve": 6
+    },
+    "33": {
+     "firstEmpty": null,
+     "lastReserve": 4,
+     "minReserve": 4
+    },
+    "34": {
+     "firstEmpty": null,
+     "lastReserve": 2,
+     "minReserve": 2
+    },
+    "35": {
+     "firstEmpty": 34,
+     "lastReserve": 0,
+     "minReserve": 0
+    },
+    "36": {
+     "firstEmpty": 34,
+     "lastReserve": 0,
+     "minReserve": 0
+    }
+   },
+   "restore": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       90,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       88,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       86,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       84,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 2,
+      "cold": false,
+      "energy": [
+       80,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       72,
+       92
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       56,
+       92
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       40,
+       92
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       24,
+       92
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       8,
+       92
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 3,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 3,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       90
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 3,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     }
+    ],
+    "firstEmpty": 34,
+    "coldCycles": 17,
+    "lastReserve": 0,
+    "minReserve": 0,
+    "restoredAfterEmpty": false,
+    "shiftsWorked": 13,
+    "energyEnd": {
+     "min": 0,
+     "max": 92
+    },
+    "exits": 0,
+    "logSha256": "c470611c4c5ae19e3f9a8ad2e1b0ab79df10702e270c6ca923d4147c6331ee07"
+   },
+   "fuelAlone": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 15,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       74,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 13,
+      "cold": false,
+      "energy": [
+       64,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       54,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 11,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       50,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 9,
+      "cold": false,
+      "energy": [
+       48,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 7,
+      "cold": false,
+      "energy": [
+       44,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       42,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 5,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 3,
+      "cold": false,
+      "energy": [
+       38,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 2,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 1,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       24,
+       92
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       16,
+       92
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       18,
+       92
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       16,
+       92
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 6,
+      "shifts": 1,
+      "burn": 2,
+      "fuel": 1,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     }
+    ],
+    "firstEmpty": 42,
+    "coldCycles": 9,
+    "lastReserve": 0,
+    "minReserve": 0,
+    "restoredAfterEmpty": false,
+    "shiftsWorked": 24,
+    "energyEnd": {
+     "min": 0,
+     "max": 92
+    },
+    "exits": 0,
+    "logSha256": "38e36649912f7cb79878a5450626f0df9c886a87a4d61615725ca71a6c24bde4"
+   },
+   "relocateNoFuel": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 15,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       90,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 13,
+      "cold": false,
+      "energy": [
+       88,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       86,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 11,
+      "cold": false,
+      "energy": [
+       84,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 9,
+      "cold": false,
+      "energy": [
+       80,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       78,
+       98
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 7,
+      "cold": false,
+      "energy": [
+       76,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       74,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 5,
+      "cold": false,
+      "energy": [
+       72,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       70,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 3,
+      "cold": false,
+      "energy": [
+       70,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 2,
+      "cold": false,
+      "energy": [
+       68,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 1,
+      "cold": false,
+      "energy": [
+       66,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       58,
+       92
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       50,
+       92
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       42,
+       92
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       34,
+       92
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       26,
+       92
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       18,
+       92
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       10,
+       92
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       2,
+       92
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     }
+    ],
+    "firstEmpty": 42,
+    "coldCycles": 9,
+    "lastReserve": 0,
+    "minReserve": 0,
+    "restoredAfterEmpty": false,
+    "shiftsWorked": 0,
+    "energyEnd": {
+     "min": 0,
+     "max": 92
+    },
+    "exits": 0,
+    "logSha256": "388898438c8ff0028df644cb435906734b7a0ae1bdcbbcbde501bbb393cb3807"
+   },
+   "benign": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 15,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       90,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 13,
+      "cold": false,
+      "energy": [
+       88,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       86,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 11,
+      "cold": false,
+      "energy": [
+       84,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 9,
+      "cold": false,
+      "energy": [
+       80,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       78,
+       98
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 7,
+      "cold": false,
+      "energy": [
+       76,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       74,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 5,
+      "cold": false,
+      "energy": [
+       72,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       70,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 3,
+      "cold": false,
+      "energy": [
+       70,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 2,
+      "cold": false,
+      "energy": [
+       68,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 1,
+      "cold": false,
+      "energy": [
+       66,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       64,
+       98
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       62,
+       98
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       60,
+       98
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       58,
+       98
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       56,
+       98
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       54,
+       98
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       50,
+       98
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       48,
+       98
+      ]
+     }
+    ],
+    "firstEmpty": 42,
+    "coldCycles": 0,
+    "lastReserve": 0,
+    "minReserve": 0,
+    "restoredAfterEmpty": false,
+    "shiftsWorked": 0,
+    "energyEnd": {
+     "min": 48,
+     "max": 98
+    },
+    "exits": 0,
+    "logSha256": "263a3f586d0dbc747a8010cfa631e45a53d6aad2421b6d3d1057392f87a75e6c"
+   }
+  },
+  "latestSafeCorrection": 34,
+  "bounds": {
+   "the six-person pattern empties the reserve within c27–50 without correction": true,
+   "relocation + a fuel shift keeps the reserve above 0": true,
+   "a real choice with time to correct (correction from c27 safe; the latest safe start after c27)": true,
+   "an empty reserve can be restored («until restored»)": false,
+   "the no-risk rule costs nobody energy": true
+  },
+  "pass": false
+ },
+ "frozen": {
+  "constants": {
+   "reserveStart": 16,
+   "reserveMax": 16,
+   "baseBurn": 1,
+   "crowdBurn": 1,
+   "crowdAt": 4,
+   "crowdPlace": "south_house",
+   "fuelPerShift": 1,
+   "fuelPerCycle": 2,
+   "coldLoss": 6
+  },
+  "demonstrations": {
+   "pattern": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       90,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       88,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       86,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       84,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 2,
+      "cold": false,
+      "energy": [
+       80,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       72,
+       92
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       64,
+       92
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       56,
+       92
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       48,
+       92
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       40,
+       92
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       34,
+       92
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       26,
+       92
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       18,
+       92
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       10,
+       92
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       2,
+       92
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     }
+    ],
+    "firstEmpty": 34,
+    "coldCycles": 17,
+    "lastReserve": 0,
+    "minReserve": 0,
+    "restoredAfterEmpty": false,
+    "shiftsWorked": 0,
+    "energyEnd": {
+     "min": 0,
+     "max": 92
+    },
+    "exits": 0,
+    "logSha256": "c7d53ce73300ad1fc60ac4cbbf1c16f209a8b48ca92dd06ad9a18f99cd002a35"
+   },
+   "relocateFuel": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       74,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       64,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       54,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       50,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       48,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       44,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       42,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       38,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       30,
+       98
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       28,
+       98
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       36,
+       98
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       30,
+       98
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       28,
+       98
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       36,
+       98
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       44,
+       98
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 2,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       48,
+       98
+      ]
+     }
+    ],
+    "firstEmpty": null,
+    "coldCycles": 0,
+    "lastReserve": 16,
+    "minReserve": 16,
+    "restoredAfterEmpty": null,
+    "shiftsWorked": 24,
+    "energyEnd": {
+     "min": 48,
+     "max": 98
+    },
+    "exits": 0,
+    "logSha256": "ad2c2ce9ec9ea4eaa9b442b284b064372750f63222daf820f4b51500e9883d40"
+   },
+   "smallerFuel": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       74,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       64,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       54,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       50,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       48,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       44,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       42,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       38,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       30,
+       98
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       28,
+       98
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       36,
+       98
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       40,
+       98
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       30,
+       98
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       28,
+       98
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       36,
+       98
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       44,
+       98
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     }
+    ],
+    "firstEmpty": null,
+    "coldCycles": 0,
+    "lastReserve": 16,
+    "minReserve": 16,
+    "restoredAfterEmpty": null,
+    "shiftsWorked": 24,
+    "energyEnd": {
+     "min": 52,
+     "max": 98
+    },
+    "exits": 0,
+    "logSha256": "399bb94d1a65c9094dd74b770465f61c6953fe070599761c06ed4c7a19b39175"
+   },
+   "late": {
+    "27": {
+     "firstEmpty": null,
+     "lastReserve": 16,
+     "minReserve": 16
+    },
+    "28": {
+     "firstEmpty": null,
+     "lastReserve": 14,
+     "minReserve": 14
+    },
+    "29": {
+     "firstEmpty": null,
+     "lastReserve": 12,
+     "minReserve": 12
+    },
+    "30": {
+     "firstEmpty": null,
+     "lastReserve": 10,
+     "minReserve": 10
+    },
+    "31": {
+     "firstEmpty": null,
+     "lastReserve": 8,
+     "minReserve": 8
+    },
+    "32": {
+     "firstEmpty": null,
+     "lastReserve": 6,
+     "minReserve": 6
+    },
+    "33": {
+     "firstEmpty": null,
+     "lastReserve": 4,
+     "minReserve": 4
+    },
+    "34": {
+     "firstEmpty": null,
+     "lastReserve": 2,
+     "minReserve": 2
+    },
+    "35": {
+     "firstEmpty": 34,
+     "lastReserve": 0,
+     "minReserve": 0
+    },
+    "36": {
+     "firstEmpty": 34,
+     "lastReserve": 0,
+     "minReserve": 0
+    }
+   },
+   "restore": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       90,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       88,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       86,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       84,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 2,
+      "cold": false,
+      "energy": [
+       80,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       72,
+       92
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 1,
+      "cold": false,
+      "energy": [
+       62,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 2,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 3,
+      "cold": false,
+      "energy": [
+       42,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       32,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 5,
+      "cold": false,
+      "energy": [
+       30,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       38,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 7,
+      "cold": false,
+      "energy": [
+       34,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       24,
+       98
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 9,
+      "cold": false,
+      "energy": [
+       22,
+       98
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       24,
+       98
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 11,
+      "cold": false,
+      "energy": [
+       14,
+       98
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       4,
+       98
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 13,
+      "cold": false,
+      "energy": [
+       2,
+       98
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       10,
+       98
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 3,
+      "shifts": 2,
+      "burn": 1,
+      "fuel": 2,
+      "reserve": 15,
+      "cold": false,
+      "energy": [
+       6,
+       98
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 3,
+      "shifts": 1,
+      "burn": 1,
+      "fuel": 1,
+      "reserve": 15,
+      "cold": false,
+      "energy": [
+       0,
+       98
+      ]
+     }
+    ],
+    "firstEmpty": 34,
+    "coldCycles": 1,
+    "lastReserve": 15,
+    "minReserve": 0,
+    "restoredAfterEmpty": true,
+    "shiftsWorked": 31,
+    "energyEnd": {
+     "min": 0,
+     "max": 98
+    },
+    "exits": 0,
+    "logSha256": "449fd19045883dfa1000a1a87850269defd53de8c805b16336364fa467c23b17"
+   },
+   "fuelAlone": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       74,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       64,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       54,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       50,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       48,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       46,
+       98
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       36,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       26,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       16,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       6,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       4,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       12,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       8,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       0,
+       98
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       0,
+       98
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 6,
+      "shifts": 2,
+      "burn": 2,
+      "fuel": 2,
+      "reserve": 16,
+      "cold": false,
+      "energy": [
+       0,
+       98
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       0,
+       98
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       0,
+       98
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       0,
+       98
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       0,
+       98
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       0,
+       98
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 2,
+      "fuel": 0,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       0,
+       98
+      ]
+     }
+    ],
+    "firstEmpty": null,
+    "coldCycles": 0,
+    "lastReserve": 4,
+    "minReserve": 4,
+    "restoredAfterEmpty": null,
+    "shiftsWorked": 36,
+    "energyEnd": {
+     "min": 0,
+     "max": 98
+    },
+    "exits": 0,
+    "logSha256": "7eed19a76c853b0ee6d2e463c3bdfca384ee27dcfb67089f29cbbcd7a8f27c36"
+   },
+   "relocateNoFuel": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 15,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       90,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 13,
+      "cold": false,
+      "energy": [
+       88,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       86,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 11,
+      "cold": false,
+      "energy": [
+       84,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 9,
+      "cold": false,
+      "energy": [
+       80,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       78,
+       98
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 7,
+      "cold": false,
+      "energy": [
+       76,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       74,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 5,
+      "cold": false,
+      "energy": [
+       72,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       70,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 3,
+      "cold": false,
+      "energy": [
+       70,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 2,
+      "cold": false,
+      "energy": [
+       68,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 1,
+      "cold": false,
+      "energy": [
+       66,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       58,
+       92
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       50,
+       92
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       42,
+       92
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       34,
+       92
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       26,
+       92
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       18,
+       92
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       10,
+       92
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       2,
+       92
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 2,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": true,
+      "energy": [
+       0,
+       92
+      ]
+     }
+    ],
+    "firstEmpty": 42,
+    "coldCycles": 9,
+    "lastReserve": 0,
+    "minReserve": 0,
+    "restoredAfterEmpty": false,
+    "shiftsWorked": 0,
+    "energyEnd": {
+     "min": 0,
+     "max": 92
+    },
+    "exits": 0,
+    "logSha256": "5a06d91299001eb727acec33273cfe8f1eac571ed631d3ad8c84b5d9b872c961"
+   },
+   "benign": {
+    "rows": [
+     {
+      "cycle": 27,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 15,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 28,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 14,
+      "cold": false,
+      "energy": [
+       90,
+       98
+      ]
+     },
+     {
+      "cycle": 29,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 13,
+      "cold": false,
+      "energy": [
+       88,
+       98
+      ]
+     },
+     {
+      "cycle": 30,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 12,
+      "cold": false,
+      "energy": [
+       86,
+       98
+      ]
+     },
+     {
+      "cycle": 31,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 11,
+      "cold": false,
+      "energy": [
+       84,
+       98
+      ]
+     },
+     {
+      "cycle": 32,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 10,
+      "cold": false,
+      "energy": [
+       82,
+       98
+      ]
+     },
+     {
+      "cycle": 33,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 9,
+      "cold": false,
+      "energy": [
+       80,
+       98
+      ]
+     },
+     {
+      "cycle": 34,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 8,
+      "cold": false,
+      "energy": [
+       78,
+       98
+      ]
+     },
+     {
+      "cycle": 35,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 7,
+      "cold": false,
+      "energy": [
+       76,
+       98
+      ]
+     },
+     {
+      "cycle": 36,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 6,
+      "cold": false,
+      "energy": [
+       74,
+       98
+      ]
+     },
+     {
+      "cycle": 37,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 5,
+      "cold": false,
+      "energy": [
+       72,
+       98
+      ]
+     },
+     {
+      "cycle": 38,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 4,
+      "cold": false,
+      "energy": [
+       70,
+       98
+      ]
+     },
+     {
+      "cycle": 39,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 3,
+      "cold": false,
+      "energy": [
+       70,
+       98
+      ]
+     },
+     {
+      "cycle": 40,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 2,
+      "cold": false,
+      "energy": [
+       68,
+       98
+      ]
+     },
+     {
+      "cycle": 41,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 1,
+      "cold": false,
+      "energy": [
+       66,
+       98
+      ]
+     },
+     {
+      "cycle": 42,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       64,
+       98
+      ]
+     },
+     {
+      "cycle": 43,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       62,
+       98
+      ]
+     },
+     {
+      "cycle": 44,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       60,
+       98
+      ]
+     },
+     {
+      "cycle": 45,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       58,
+       98
+      ]
+     },
+     {
+      "cycle": 46,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       56,
+       98
+      ]
+     },
+     {
+      "cycle": 47,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       54,
+       98
+      ]
+     },
+     {
+      "cycle": 48,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       52,
+       98
+      ]
+     },
+     {
+      "cycle": 49,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       50,
+       98
+      ]
+     },
+     {
+      "cycle": 50,
+      "crowd": 6,
+      "shifts": 0,
+      "burn": 1,
+      "fuel": 0,
+      "reserve": 0,
+      "cold": false,
+      "energy": [
+       48,
+       98
+      ]
+     }
+    ],
+    "firstEmpty": 42,
+    "coldCycles": 0,
+    "lastReserve": 0,
+    "minReserve": 0,
+    "restoredAfterEmpty": false,
+    "shiftsWorked": 0,
+    "energyEnd": {
+     "min": 48,
+     "max": 98
+    },
+    "exits": 0,
+    "logSha256": "efa15ee73ccf4173286764691e503f88f5f630e2d940a2a3ddc911bf02b53194"
+   }
+  },
+  "latestSafeCorrection": 34,
+  "bounds": {
+   "the six-person pattern empties the reserve within c27–50 without correction": true,
+   "relocation + a fuel shift keeps the reserve above 0": true,
+   "a real choice with time to correct (correction from c27 safe; the latest safe start after c27)": true,
+   "an empty reserve can be restored («until restored»)": true,
+   "the no-risk rule costs nobody energy": true
+  },
+  "pass": true
+ }
+}

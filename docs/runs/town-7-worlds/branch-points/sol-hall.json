@@ -1,0 +1,25 @@
+{
+ "source": "sol-hall",
+ "from": "docs/runs/town-2-worlds/sol-hall",
+ "atCycle": 24,
+ "events": 1527,
+ "identicalToSaved": true,
+ "prefixOfWhole": true,
+ "worldSha256": "8da5694f346477d901d71268f520267adc70ffb451a7a3505734c63c6496cc76",
+ "savedSha256": "8da5694f346477d901d71268f520267adc70ffb451a7a3505734c63c6496cc76",
+ "logSha256": "c5aa42d68c929b65bf3c0c124ce9c52db9a2363c9f725e903999d66f1dfc0ad2",
+ "wholeLogSha256": "7526ad2bf5751d1a272f05c3fdc443518f84dc4bb08613bf14fcc4e7356d8cb8",
+ "cursor": {
+  "round": 24,
+  "order": null,
+  "pos": 0
+ },
+ "label": "TOWN_2 sol-hall",
+ "town5": {
+  "file": "docs/runs/town-5-worlds/branch-points/sol-hall.json",
+  "worldSha256": "8da5694f346477d901d71268f520267adc70ffb451a7a3505734c63c6496cc76",
+  "logSha256": "c5aa42d68c929b65bf3c0c124ce9c52db9a2363c9f725e903999d66f1dfc0ad2"
+ },
+ "sameAsTown5": true,
+ "startsWith": true
+}
