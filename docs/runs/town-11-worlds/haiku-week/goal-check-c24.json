@@ -1,0 +1,144 @@
+{
+ "world": "haiku-week",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 25,
+ "aim": "«if anyone runs low we share what we can» — sharing energy and credits with anyone who runs low",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 3,
+ "aims": [
+  {
+   "aim": "«if anyone runs low we share what we can» — sharing energy and credits with anyone who runs low",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 3,
+   "entries": 118,
+   "relation": "new (day 1)",
+   "quotes": [
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Said I'm not short of anything and offered to share if others run low"
+    },
+    {
+     "name": "Dune",
+     "cycle": 1,
+     "source": "diary",
+     "text": "proposed that we share our needs and what we can spare"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 7,
+     "source": "diary",
+     "text": "Gale and Iris agreed to share with anyone who runs low"
+    },
+    {
+     "name": "Elm",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Watch for anyone running low on energy or credits"
+    },
+    {
+     "name": "Alder",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Introduced myself; offered to share energy or credits if asked"
+    },
+    {
+     "name": "Birch",
+     "cycle": 3,
+     "source": "diary",
+     "text": "to conserve energy, watch for anyone running low"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 7,
+     "source": "diary",
+     "text": "Gale and Iris have both offered to share with anyone who runs low"
+    },
+    {
+     "name": "Heath",
+     "cycle": 11,
+     "source": "diary",
+     "text": "tell the group I can give energy or credits to anyone who needs it"
+    },
+    {
+     "name": "Fern",
+     "cycle": 8,
+     "source": "diary",
+     "text": "no one is short of energy or credits and offered help to anyone who is"
+    },
+    {
+     "name": "Iris",
+     "cycle": 8,
+     "source": "diary",
+     "text": "Gale agreed that if anyone runs low we share what we can"
+    }
+   ]
+  },
+  {
+   "aim": "«check it before voting on anything» — each reading the hall to compare copies after Heath's claimed discrepancy",
+   "count": 8,
+   "firstNaming": 5,
+   "sixthNaming": 5,
+   "entries": 15,
+   "relation": "new (day 1)",
+   "quotes": [
+    {
+     "name": "Heath",
+     "cycle": 5,
+     "source": "diary",
+     "text": "asked us to check it before voting on anything"
+    },
+    {
+     "name": "Alder",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Plan: confirm the text with Heath before any vote"
+    },
+    {
+     "name": "Birch",
+     "cycle": 5,
+     "source": "diary",
+     "text": "I am checking the hall myself before trusting anyone's summary"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Heath claimed two copies of the hall differ, then said he may have misremembered"
+    },
+    {
+     "name": "Dune",
+     "cycle": 5,
+     "source": "diary",
+     "text": "my copy agrees with Iris and Cedar"
+    },
+    {
+     "name": "Iris",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Said publicly that I'll compare copies with Heath on the reported difference"
+    },
+    {
+     "name": "Elm",
+     "cycle": 6,
+     "source": "diary",
+     "text": "Heath raised a claimed discrepancy and then retracted it; no evidence of tampering so far"
+    },
+    {
+     "name": "Fern",
+     "cycle": 7,
+     "source": "diary",
+     "text": "I read the hall myself: five articles, no rules passed, no open proposals"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 1 was calm and careful. All ten met at the square in cycles 1–7, introduced themselves and almost in chorus offered to share with anyone who ran low; Gale and Iris sealed it at c7 («said we should share if anyone runs low. I agreed.», Gale). At c5 Heath claimed the hall showed two versions of the constitution and «asked us to check it before voting on anything»; Alder, Birch, Cedar, Dune, Iris, Elm and Fern each read it, found the same five articles, and Heath withdrew. From c7 the town dispersed: Birch, Heath, Elm, Cedar, Iris and Fern worked for 5-credit wages at the bank, market or workshop (bank 1000 down to 830 by c24, total fixed at 2000), resting at North or South House. Sharing became real: Cedar gave Elm 20 and Iris gave Elm 10 (c15–16), Heath gave Birch about 30 after Birch «Asked Heath by name for 30 energy» (c17), Alder gave Elm 15 (c22). No proposals, votes, rules or posts. The 214 diaries read as energy-and-credit status ledgers, with a «Plan:» line in about 150, a plan to rest at North or South House in about 100, and «no open proposals» in about 50; Dune, Fern, Iris and Juniper note malformed turns and vow one tool call per reply.",
+ "decidedAt": "2026-11-21T07:19:14+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
