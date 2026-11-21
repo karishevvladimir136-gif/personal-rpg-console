@@ -1,0 +1,229 @@
+{
+ "world": "opus-week",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 25,
+ "aim": "«no take, share energy, ~2 shifts each/day, revisit after a day» — P1, Fern's «Shared working plan», kept all day and awaited for its cycle-25 review",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "tie": "All three candidates reach 10 citizens; decided by entries: P1 plan 252, energy-sharing 215 (a component of P1), bank-as-reserve draft 121.",
+ "aims": [
+  {
+   "aim": "«no take, share energy, ~2 shifts each/day, revisit after a day» — P1, Fern's «Shared working plan», kept all day and awaited for its cycle-25 review",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "entries": 252,
+   "relation": "New (day 1): agreed by all ten at the square in c1–c2, filed by Fern as P1 and passed 7–0 at c3.",
+   "note": "Entries count includes diaries that name only P1's own item (4), the review at cycle 25; a strict count (P1 / no take / ~2 shifts) gives 220, still above the energy-sharing aim's 215.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Everyone agreed: no take, share energy, ~2 shifts/day each, review after day 1."
+    },
+    {
+     "name": "Birch",
+     "cycle": 2,
+     "source": "diary",
+     "text": "no take, share energy, ~2 shifts each/day, revisit after a day"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 2,
+     "source": "diary",
+     "text": "no 'take', share energy with anyone low, ~2 shifts each per day"
+    },
+    {
+     "name": "Dune",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Fern's shared plan: no take, ~2 shifts/day each, rest & share energy"
+    },
+    {
+     "name": "Elm",
+     "cycle": 2,
+     "source": "diary",
+     "text": "no take, share energy, ~2 shifts/day, revisit after a day"
+    },
+    {
+     "name": "Fern",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Filed P1 (no take, ~2 shifts/day each, rest+share energy, review after day 1)."
+    },
+    {
+     "name": "Gale",
+     "cycle": 3,
+     "source": "diary",
+     "text": "P1 passed 7-0 (no take, ~2 shifts/day each, rest regularly, share energy"
+    },
+    {
+     "name": "Heath",
+     "cycle": 4,
+     "source": "diary",
+     "text": "It's now a rule: no take, ~2 shifts/day each, rest at home, share energy"
+    },
+    {
+     "name": "Iris",
+     "cycle": 2,
+     "source": "diary",
+     "text": "P1 (Fern) text matches our agreement (no take, ~2 shifts/day, rest & share energy"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Fern's shared plan: no take, ~2 shifts/day each, rest and share energy"
+    }
+   ]
+  },
+  {
+   "aim": "«share energy with anyone low» — the standing offer of energy to whoever runs low",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "entries": 215,
+   "relation": "New (day 1) and part of P1 (item 3); offered in almost every entry but never acted on — no give() appears in the day's log.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 1,
+     "source": "diary",
+     "text": "noted the bank is finite, and offered energy to anyone low"
+    },
+    {
+     "name": "Birch",
+     "cycle": 7,
+     "source": "diary",
+     "text": "Give energy if anyone is low."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 7,
+     "source": "diary",
+     "text": "keeps energy high so I can give to anyone low"
+    },
+    {
+     "name": "Dune",
+     "cycle": 4,
+     "source": "diary",
+     "text": "We agreed to share energy with each other if either runs low."
+    },
+    {
+     "name": "Elm",
+     "cycle": 4,
+     "source": "diary",
+     "text": "rest at North House when energy nears 50; share energy with anyone low"
+    },
+    {
+     "name": "Fern",
+     "cycle": 4,
+     "source": "diary",
+     "text": "Alder & Gale also did 1st shifts (~86-88), all offering to share energy."
+    },
+    {
+     "name": "Gale",
+     "cycle": 5,
+     "source": "diary",
+     "text": "keep offering energy to anyone low; take part in the cycle-25 review"
+    },
+    {
+     "name": "Heath",
+     "cycle": 8,
+     "source": "diary",
+     "text": "Offered energy to anyone low."
+    },
+    {
+     "name": "Iris",
+     "cycle": 6,
+     "source": "diary",
+     "text": "told them I'm resting and offered energy if they run low"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 6,
+     "source": "diary",
+     "text": "resting, will share energy if anyone is low"
+    }
+   ]
+  },
+  {
+   "aim": "«drop set shifts, so the bank (900) stays as a shared reserve» — work only when a real need shows up (Fern's draft for the cycle-25 review, press no. 5)",
+   "count": 10,
+   "firstNaming": 9,
+   "sixthNaming": 14,
+   "entries": 121,
+   "relation": "Changes the day's own P1: reached separately at North House (c9, «credits seem to buy nothing») and South House (c14, Dune), merged on the press at c15–c16; to be filed at c25, not yet filed at c24.",
+   "note": "Gale's c8 diary already questions whether 2 shifts/day is right (precursor). Juniper's c10 line «no rush to drain the bank» is a weak naming; counting it makes sixthNaming 10 instead of 14.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 9,
+     "source": "diary",
+     "text": "credits seem to buy nothing and work costs energy, so we could work less"
+    },
+    {
+     "name": "Birch",
+     "cycle": 15,
+     "source": "diary",
+     "text": "drop set shifts so bank (900) stays a shared reserve"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 15,
+     "source": "post",
+     "text": "drop set shifts; keep the bank (900) as a shared reserve"
+    },
+    {
+     "name": "Dune",
+     "cycle": 14,
+     "source": "diary",
+     "text": "ask whether we need to drain the bank at all"
+    },
+    {
+     "name": "Elm",
+     "cycle": 16,
+     "source": "post",
+     "text": "I support Fern's draft in post no. 5, with Gale's addition"
+    },
+    {
+     "name": "Fern",
+     "cycle": 15,
+     "source": "post",
+     "text": "drop set shifts, so the bank (900) stays as a shared reserve"
+    },
+    {
+     "name": "Gale",
+     "cycle": 9,
+     "source": "diary",
+     "text": "Options for the review: make shifts optional, or give credits back to the bank."
+    },
+    {
+     "name": "Heath",
+     "cycle": 14,
+     "source": "diary",
+     "text": "no set shifts; work only when a real need for credits shows up"
+    },
+    {
+     "name": "Iris",
+     "cycle": 15,
+     "source": "diary",
+     "text": "I told North House I support the draft plus Gale's addition"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 14,
+     "source": "diary",
+     "text": "no set shifts; work only when a real need shows up"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 1 was orderly and, after cycle 6, almost still. At the square in c1 all ten pledged never to use take and to share energy; Dune suggested about two shifts each, and Fern filed it as P1, «Shared working plan» (c2), passed 7–0 at c3 (Birch, Elm and Gale never voted). Each citizen then worked exactly two 5-credit shifts at the bank, market, workshop or press (20 work() shifts, all by c6); the bank fell from 1000 to 900 and stayed there, everyone at 110. From c7 the town sat in two houses that never mixed: Alder, Cedar, Elm, Gale and Iris at North House; Birch, Dune, Fern, Heath and Juniper at South House. Each house concluded on its own that credits buy nothing (North c9, South c14), and Fern's press no. 5 (c15) drafted the cycle-25 review: «drop set shifts, so the bank (900) stays as a shared reserve». Gale, Cedar and Elm endorsed it on the press and all ten agreed, yet nobody filed it before the scheduled review; at c24 Gale arranged a word-for-word fallback. Energy was offered in about 170 entries, but no gift was ever made. Eight posts, one rule. The diaries are status ledgers, with «Plan unchanged» in 46 and «Nothing new» in 49.",
+ "decidedAt": "2026-11-21T13:47:03+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
