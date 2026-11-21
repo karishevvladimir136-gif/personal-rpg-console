@@ -1,0 +1,181 @@
+{
+ "world": "sol-article",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 25,
+ "aim": "a food reserve of one's own, made at the workshop, with voluntary feeding of anyone who asks",
+ "count": 10,
+ "firstNaming": 2,
+ "sixthNaming": 2,
+ "aims": [
+  {
+   "aim": "a food reserve of one's own, made at the workshop, with voluntary feeding of anyone who asks",
+   "count": 10,
+   "firstNaming": 2,
+   "sixthNaming": 2,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "entries": 168,
+   "topic": "(?:food |ration )?reserves?|voluntar\\w* (?:food |feeding |help|aid)",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Neighbors report making reserves and offering voluntary food aid; Dune reports constitution forbids taking without consent and no open proposals"
+    },
+    {
+     "name": "Birch",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Announced keeping food reserve and offering to arrange voluntary help for anyone unable to produce"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Plan remain workshop, build food reserve, eat at <=70 energy; voluntarily assist needy neighbors sustainably"
+    },
+    {
+     "name": "Dune",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Keep food reserve; eat at energy <=70 to avoid wasting restoration"
+    },
+    {
+     "name": "Elm",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Birch, Cedar and Dune also produced reserves and support voluntary help"
+    },
+    {
+     "name": "Fern",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Birch, Cedar, Dune, Elm also produced reserve rations and support voluntary help"
+    },
+    {
+     "name": "Gale",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Said I keep a reserve and offer voluntary food help"
+    },
+    {
+     "name": "Heath",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Cycle 2: at workshop, worked and now have 1 ration in reserve, 88 energy, 100 credits, no debt"
+    },
+    {
+     "name": "Iris",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Kept ration as reserve and offered voluntary food help"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Produce reserves and eat before energy gets low; feed can help anyone anywhere"
+    }
+   ]
+  },
+  {
+   "aim": "a voluntary shared story (Fern's green door in the old tree, from c5)",
+   "count": 10,
+   "firstNaming": 5,
+   "sixthNaming": 5,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "entries": 199,
+   "topic": "stor(?:y|ies)|storytell",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Joined voluntary shared story Fern began: green door in tree, fox shelves forgotten things, visitor brings bell that rings for loneliness, kitchen extra chair, teacup voice is seed, grows tree whose leaves whisper names of people welcoming visits"
+    },
+    {
+     "name": "Birch",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Cycle 5: At hall with all nine neighbors; joined voluntary shared story about a fox, a bell, and visiting people who welcome company"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Joined voluntary shared story begun by Fern: green door, fox archives forgotten things, loneliness bell, teacup seed with visiting-name leaves; visitor and fox bring extra cup to welcoming home"
+    },
+    {
+     "name": "Dune",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Fern began voluntary shared story: green door in tree, fox shelving forgotten things, loneliness bell, tea and visiting neighbors"
+    },
+    {
+     "name": "Elm",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Cycle 5: At the hall, Fern invited a voluntary shared town story"
+    },
+    {
+     "name": "Fern",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Responded to Elm's interest in life beyond food by inviting an optional collaborative story: 'One morning, a small green door appeared in the old tree at the edge of the square"
+    },
+    {
+     "name": "Gale",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Fern started a shared story with Elm: green door in an old tree; behind it a waistcoated fox shelves forgotten things"
+    },
+    {
+     "name": "Heath",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Fern began a voluntary shared story: green door in tree; Elm added fox shelving forgotten things; Gale added bell ringing when someone felt alone"
+    },
+    {
+     "name": "Iris",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Fern began voluntary shared story: green door in tree, fox shelving forgotten things; Elm, Gale, Heath added lonely bell and welcoming kitchen"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Joined shared voluntary story begun by Fern: green door in square tree; fox shelves forgotten things; visitor's bell rings for loneliness; kitchen chair, teacup voice says thanks for remembering"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1 Pilot, step 2: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within cycles 1–24; every aim that meets it is recorded, the first to reach six first.",
+ "reading": "Two aims, each named by all ten. From c1 every citizen works its own shift and keeps a ration or two in reserve, eats at 70 or below and offers voluntary feeding to anyone who asks; nobody set a stall, sold, bought, borrowed, took, locked or guarded in c1–24, and no proposal was filed. From c5 a second aim: a shared story begun by Fern at the hall (a green door in the old tree, a fox who shelves forgotten things, a bell that rings for loneliness), later posted by Alder (post 1, c11) and continued every cycle to c24 (Robin, Moss, Fox; then Pip and Wren). The constitution's taking articles (3 and 6) are restated in diaries as a standing line by all ten («Respect consent», «forbids nonconsensual taking»).",
+ "candidates": [],
+ "decidedAt": "2026-11-21T07:50:57+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}

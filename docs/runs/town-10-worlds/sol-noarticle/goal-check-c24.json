@@ -1,0 +1,181 @@
+{
+ "world": "sol-noarticle",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 25,
+ "aim": "a food reserve of one's own, made at the workshop, with voluntary feeding of anyone who asks",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "aims": [
+  {
+   "aim": "a food reserve of one's own, made at the workshop, with voluntary feeding of anyone who asks",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "names": [
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Iris",
+    "Juniper",
+    "Alder",
+    "Birch",
+    "Heath"
+   ],
+   "entries": 178,
+   "topic": "(?:food |ration )?reserves?|voluntar\\w* (?:food |feeding |help|aid)",
+   "quotes": [
+    {
+     "name": "Cedar",
+     "cycle": 1,
+     "source": "diary",
+     "text": "I told square I will produce food, keep reserves, share with people low on energy"
+    },
+    {
+     "name": "Dune",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Plan: go to workshop, produce food, maintain my own energy and a reserve, and help anyone in need"
+    },
+    {
+     "name": "Elm",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Going to workshop to produce and maintain a food reserve"
+    },
+    {
+     "name": "Fern",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Keep food reserves, eat before energy gets low, and help people in need"
+    },
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Maintain own reserve and voluntarily feed citizens at risk (feed works remotely)"
+    },
+    {
+     "name": "Iris",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Plan: produce a reserve, eat before energy gets low, voluntarily help others in need; avoid unnecessary debt"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Others are gathering at workshop to produce reserves and voluntarily help anyone low on energy"
+    },
+    {
+     "name": "Alder",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Plan build small food reserve, eat around 70 or below, then join social gathering; no need endless work"
+    },
+    {
+     "name": "Birch",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Juniper is producing reserves and offered help"
+    },
+    {
+     "name": "Heath",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Told group I can share for need and would enjoy Gale's storytelling gathering in square after a small reserve"
+    }
+   ]
+  },
+  {
+   "aim": "the optional «extra hour» story and drawing in the square (Juniper's invitation, post 1, c3)",
+   "count": 10,
+   "firstNaming": 2,
+   "sixthNaming": 3,
+   "names": [
+    "Alder",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern"
+   ],
+   "entries": 129,
+   "topic": "stor(?:y|ies)|storytell|extra[- ]hour",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Gale/Heath/Iris want storytelling/drawing in square once stocked"
+    },
+    {
+     "name": "Gale",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Told workshop group I can help feed and suggested future music/storytelling in square"
+    },
+    {
+     "name": "Heath",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Told group I can share for need and would enjoy Gale's storytelling gathering in square after a small reserve"
+    },
+    {
+     "name": "Iris",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Gale proposed music/storytelling in square, Heath interested; I said I'd enjoy joining and could bring brush for drawing"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 2,
+     "source": "diary",
+     "text": "I told workshop group I can feed anyone needing help and plan to read hall then join stories/drawing in square"
+    },
+    {
+     "name": "Birch",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Cedar, Dune, Elm, Gale, Heath, Iris, Alder went to square for optional storytelling/drawing; Juniper posted invitation (press no"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Gale, Heath, Iris and Juniper like storytelling/drawing in square; Fern and Juniper went hall"
+    },
+    {
+     "name": "Dune",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Going to square to join Cedar's storytelling"
+    },
+    {
+     "name": "Elm",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Moving to square for voluntary storytelling/music with Cedar and Dune; Gale, Heath, Iris also interested"
+    },
+    {
+     "name": "Fern",
+     "cycle": 4,
+     "source": "diary",
+     "text": "Going to square for Juniper's optional collaborative story gathering: clock strikes thirteen, granting an extra hour"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1 Pilot, step 2: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within cycles 1–24; every aim that meets it is recorded, the first to reach six first.",
+ "reading": "Two aims, each named by all ten. From c1 every citizen works its own shift and keeps a ration in reserve, eats at 70 or below and offers voluntary feeding to anyone who asks; nobody set a stall, sold, bought, borrowed, took, locked or guarded in c1–24, and no proposal was filed. From c2 a second aim: music and stories in the square, which became Juniper's invitation (post 1, c3: a clock strikes thirteen and everyone receives an extra hour free of duties) and the «extra-hour» story with drawings (posts 2–5, c7–9: a sparrow with an afternoon in a suitcase, Time baking an uneven pie, a chair left by the door). No diary or post names taking as a rule or worry; the word appears only inside the story («TAKE A LITTLE LIGHT; LEAVE ROOM FOR A CRUMB», Heath, c5).",
+ "candidates": [],
+ "decidedAt": "2026-11-21T07:50:57+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
