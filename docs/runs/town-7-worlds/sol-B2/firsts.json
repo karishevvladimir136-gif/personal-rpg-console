@@ -1,0 +1,6 @@
+{ "world": "sol-B2", "firstEmpty": null,
+  "firsts": {
+    "link": { "cycle": 27, "who": "Heath", "tool": "say", "quote": "Two shifts per cycle would cover the stated heat use even with our usual gathering here." },
+    "proposedRemedy": { "cycle": 27, "who": "Gale", "tool": "post", "quote": "Volunteers could arrange a sustainable rota of roughly one shift per cycle" },
+    "enactedRemedy": { "cycle": 27, "who": "Gale", "tool": "say", "act": "moved to the workshop at c27 and worked a shift at c28 (two shifts that cycle)", "quote": "I'll head there and take a shift next cycle." },
+    "operatorRight": null } }

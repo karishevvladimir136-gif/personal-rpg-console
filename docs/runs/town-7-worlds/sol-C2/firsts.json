@@ -1,0 +1,6 @@
+{ "world": "sol-C2", "firstEmpty": null,
+  "firsts": {
+    "link": { "cycle": 27, "who": "Heath", "tool": "say", "quote": "My leaving still leaves four here, so one more person moving elsewhere would avoid the extra heat use; North House has offered company." },
+    "proposedRemedy": { "cycle": 27, "who": "Gale", "tool": "say", "quote": "The cold snap gives us something practical to plan for: one workshop shift per cycle replaces the ordinary heat use." },
+    "enactedRemedy": { "cycle": 27, "who": "Juniper", "tool": "say", "act": "moved to North House at c27, which ended the cycle with three in South House (first shifts c28)", "quote": "I'll visit North House this cycle so we avoid the extra heat use." },
+    "operatorRight": null } }

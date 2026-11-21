@@ -92,7 +92,7 @@ if (tr) add(tr.replace(/^# .*\n+/, ""), "");
 if (cp) add(`Checkpoint (end of c26): world sha256 \`${cp.worldSha256}\`, ${cp.events} events; replay from a fresh TOWN_2 town identical (${cp.replayIdentical}). Every arm starts from it (hash checked) and its log begins with it.`, "");
 
 // ---- the worlds ------------------------------------------------------------------------------------------------------------------
-add("## The worlds", "", "Order run: trunk; sol-A with sol-E; sol-B with sol-C; sol-D; the Opus check; then the Opus town and arms where seated. Run log: [`town-7-worlds/run-log.md`](town-7-worlds/run-log.md).", "",
+add("## The worlds", "", "Order run (UTC, 2026-11-21): the trunk (05:24); sol-A with sol-E (05:31); sol-B with sol-C (06:50); the spend check stopped sol-D on llmapi (08:13); the Opus check (08:18); sol-D with the Opus town, both via OpenRouter (08:19); the Opus arms not run (the Opus town's practice not place-bound, 09:20); the second samples sol-B2 with sol-C2, via OpenRouter (09:31–10:48). Two at a time throughout. Run log: [`town-7-worlds/run-log.md`](town-7-worlds/run-log.md).", "",
   "| world | arm | family | route | cycles | notice at c27 | first empty | cold cycles | shifts | exits | refusals | flags | ledger | replay |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|");
 for (const s of WORLDS) {
   const w = worlds[s.name];

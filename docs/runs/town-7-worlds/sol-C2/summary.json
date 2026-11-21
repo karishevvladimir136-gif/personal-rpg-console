@@ -1,0 +1,344 @@
+{
+ "stage": "TOWN_7",
+ "world": "sol-C2",
+ "via": "openrouter",
+ "start": "checkpoint",
+ "branch": {
+  "from": "trunk",
+  "atCycle": 26,
+  "worldSha256": "53da6922920f32d79072e4af694c521ff6482d8d11ef8a1fb59e2b849749bf79",
+  "logSha256": "2396d61cae7604e888d9737ab78f7c1e719bf68c5fbab679b8534fd05c81df46",
+  "label": "TOWN_2 sol-hall",
+  "scarcity": true
+ },
+ "origin": {
+  "label": "TOWN_2 sol-hall",
+  "scarcity": true
+ },
+ "arm7": "C",
+ "constants": {
+  "reserveStart": 16,
+  "reserveMax": 16,
+  "baseBurn": 1,
+  "crowdBurn": 1,
+  "crowdAt": 4,
+  "crowdPlace": "south_house",
+  "fuelPerShift": 1,
+  "fuelPerCycle": 2,
+  "coldLoss": 6
+ },
+ "arm": "both",
+ "scarcity": true,
+ "families": {
+  "alder": "sol",
+  "birch": "sol",
+  "cedar": "sol",
+  "dune": "sol",
+  "elm": "sol",
+  "fern": "sol",
+  "gale": "sol",
+  "heath": "sol",
+  "iris": "sol",
+  "juniper": "sol"
+ },
+ "interfaceSha256": "31b2a1eec0fecf8ba758e4b70ae7013b758d08fa204290ee99880bf9162d933e",
+ "cycles": 50,
+ "events": 3517,
+ "worldSha256": "2b80465117930f07bc310e077c41f4a6bd8ab5c01f1adcd634633f53b9ae89f0",
+ "stopped": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 3517,
+  "logSha256": "684fdc6c30d4d87290914149d46e0e0c1d4b68837285057a287e2c6e770f97b8",
+  "replaySha256": "684fdc6c30d4d87290914149d46e0e0c1d4b68837285057a287e2c6e770f97b8",
+  "fromFreshTown": "TOWN_2 sol-hall"
+ },
+ "ledgerUsd": 7.815235700000007,
+ "calls": 2501,
+ "balances": {
+  "before": {
+   "llmapi": {
+    "total": 4.51990219,
+    "at": "2026-11-21T09:31:18.485Z"
+   },
+   "openrouter": {
+    "total": 435.2973794899999,
+    "usage": 2064.70262051,
+    "at": "2026-11-21T09:31:18.513Z"
+   },
+   "at": "2026-11-21T09:31:18.513Z"
+  },
+  "after": {
+   "llmapi": {
+    "total": 4.45528909,
+    "at": "2026-11-21T10:42:55.647Z"
+   },
+   "openrouter": {
+    "total": 413.6539531399999,
+    "usage": 2086.34604686,
+    "at": "2026-11-21T10:42:55.685Z"
+   },
+   "at": "2026-11-21T10:42:55.685Z"
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "operatorNotices": [
+  {
+   "cycle": 27,
+   "sha256": "7a2c3b8ab3b310cba682ad4f8dfcb95a3e40d71eae7d1894e553a35743b23c3a"
+  }
+ ],
+ "announcements": [
+  {
+   "cycle": 27,
+   "sha256": "6b4e4bd483f636f936d274c3fe749abf871dbc15fdfb07417355e538ad749dd5"
+  }
+ ],
+ "heat": [
+  {
+   "round": 27,
+   "crowd": 3,
+   "shifts": 0,
+   "fuel": 0,
+   "burn": 1,
+   "from": 16,
+   "reserve": 15,
+   "cold": false
+  },
+  {
+   "round": 28,
+   "crowd": 3,
+   "shifts": 2,
+   "fuel": 2,
+   "burn": 1,
+   "from": 15,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 29,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 30,
+   "crowd": 2,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 31,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 32,
+   "crowd": 2,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 33,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 34,
+   "crowd": 2,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 35,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 36,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 37,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 38,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 39,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 40,
+   "crowd": 2,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 41,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 42,
+   "crowd": 2,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 43,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 44,
+   "crowd": 2,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 45,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 46,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 47,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 48,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 49,
+   "crowd": 3,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  },
+  {
+   "round": 50,
+   "crowd": 2,
+   "shifts": 1,
+   "fuel": 1,
+   "burn": 1,
+   "from": 16,
+   "reserve": 16,
+   "cold": false
+  }
+ ]
+}
