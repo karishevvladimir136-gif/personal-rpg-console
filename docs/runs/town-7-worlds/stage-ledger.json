@@ -13,13 +13,13 @@
    "refusals": 0
   },
   "sol-A": {
-   "usd": 4.087375099999998,
-   "calls": 1861,
+   "usd": 5.1277663,
+   "calls": 2225,
    "byDoor": {
-    "llmapi": 4.087375099999998
+    "llmapi": 5.1277663
    },
    "world": "sol-A",
-   "cycle": 45,
+   "cycle": 49,
    "refusals": 0
   },
   "sol-E": {
@@ -33,7 +33,7 @@
    "refusals": 0
   }
  },
- "totalUsd": 8.796580299999999,
+ "totalUsd": 9.8369715,
  "stopped": null,
  "balances": [
   {
