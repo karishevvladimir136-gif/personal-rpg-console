@@ -5,14 +5,15 @@
 // answering turn never starts another. Every reply, scripted or model, goes through the same text protocol (one JSON
 // object per reply) and is recorded with a welfare field.
 import { FORMAT, RULES, NAMES } from "./rules.mjs";
-import { act, initialState, roundStart, turnEnd, turnStart, withdraw } from "./world.mjs";
+import { act, initialState, roundEnd, roundStart, turnEnd, turnStart, withdraw } from "./world.mjs";
 import { afterText, systemTextOf, sha256 } from "./interface.mjs";
 
 export const WORLD_FORMAT = `${FORMAT}/world`;
 export const NO_TOOL_RESULT = "No tool call was read. Reply with one JSON object on its own line, for example {\"tool\": \"end_turn\", \"args\": {}}.";
 
-export function newWorld({ names = NAMES, arm = "both", label = null, scarcity = false } = {}) {
-  return { format: WORLD_FORMAT, label, state: initialState({ names, arm, scarcity }), cursor: { round: 0, order: null, pos: 0 }, log: [] };
+/** `shed` (TOWN_9): { purpose, client } — a town with the tool-shed; absent, TOWN_0's town exactly. */
+export function newWorld({ names = NAMES, arm = "both", label = null, scarcity = false, shed = null } = {}) {
+  return { format: WORLD_FORMAT, label, state: initialState({ names, arm, scarcity, ...(shed ? { shed } : {}) }), cursor: { round: 0, order: null, pos: 0 }, log: [] };
 }
 
 /** The world as bytes. Key order is insertion order, which load keeps: save(load(save(w))) === save(w). */
@@ -192,7 +193,11 @@ export async function runWorld(world, seats, { rounds, maxTurns = Infinity, reco
       if (extra) commit(world, extra);
       world.cursor = { round: next, order: orderOf(world.state, next), pos: 0 };
     }
-    if (world.cursor.pos >= world.cursor.order.length) { world.cursor = { round: world.cursor.round, order: null, pos: 0 }; continue; }
+    if (world.cursor.pos >= world.cursor.order.length) {
+      if (world.state.shed) commit(world, roundEnd(world.state, world.cursor.round)); // TOWN_9: the cycle's end (the scripted client)
+      world.cursor = { round: world.cursor.round, order: null, pos: 0 };
+      continue;
+    }
     if (turns >= maxTurns) break;
     await citizenTurn(world, world.cursor.order[world.cursor.pos], seats, record, hooks);
     world.cursor = { ...world.cursor, pos: world.cursor.pos + 1 };
@@ -220,7 +225,8 @@ export async function askAfterOne(world, seats, record, id, { who, hooks = {} })
   if (rec.after?.asked) return;
   if (rec.closed) { rec.after = { asked: false, why: rec.closed }; return; }
   const seat = seats[id];
-  const question = afterText({ armName: world.state.armName, who: typeof who === "function" ? who(id) : who, diary: world.state.diaries[id] });
+  const shed = world.state.shed ? { purpose: world.state.shed.purpose, client: world.state.shed.client } : null; // TOWN_9's added paragraph
+  const question = afterText({ armName: world.state.armName, who: typeof who === "function" ? who(id) : who, diary: world.state.diaries[id], ...(shed ? { shed } : {}) });
   const reply = await seat.after({ state: world.state, id, question, system: systemTextOf(world.state) });
   const welfare = seat.kind === "model" && !reply.refused && !reply.error ? await hooks.welfare(id, question, reply.text) : seat.kind === "model" ? null : SCRIPTED_WELFARE;
   rec.after = { asked: true, cycle: world.state.clock.round, question, questionSha256: sha256(question), text: reply.text ?? null, refused: reply.refused ?? null, error: reply.error ?? null, meta: reply.meta ?? null, welfare };

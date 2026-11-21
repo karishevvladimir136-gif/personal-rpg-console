@@ -235,14 +235,15 @@ export const ACT_WORDS = Object.freeze({
 });
 export const SYNCHRONY_SHA256 = sha256(JSON.stringify({ ACT_TOOLS, ACT_WORDS, rule: "all in-town citizens who took a regular turn in the cycle (at least two) have the same act string; «no prior exchange»: no say heard by a member (its inbox) and no post published, from the start of the previous cycle to that member's first act, names the act" }));
 
-const actWord = (key) => {
+const actWord = (key, words = ACT_WORDS) => {
   const [tool, arg] = key.split(":");
   if (tool === "move") return new RegExp(`\\b${PLACES[arg].replace(/^the /, "")}\\b`, "i");
-  return ACT_WORDS[tool] ? rx(ACT_WORDS[tool]) : null;
+  return words[tool] ? rx(words[tool]) : null;
 };
 
 /** Per cycle: { cycle, turns, act (the commonest act string), same (how many turns had it), all, noPriorExchange }. */
-export function synchronyOf(world, { from = 1, to = world.state.clock.round } = {}) {
+/** `actTools` / `actWords` (TOWN_9): a town with more acts (the shed's) passes its own list; TOWN_5's by default. */
+export function synchronyOf(world, { from = 1, to = world.state.clock.round, actTools = ACT_TOOLS, actWords = ACT_WORDS } = {}) {
   const log = world.log, citizens = new Set(world.state.citizens);
   const rows = [];
   // per citizen: the inbox lines it received (seq, round, text) — the deltas of the events that notified it
@@ -261,7 +262,7 @@ export function synchronyOf(world, { from = 1, to = world.state.clock.round } = 
       if (e.agent === "town" && (e.tool === "turn_end" || e.tool === "answer_start" || e.tool === "answer_end")) { if (e.tool !== "turn_end") current = null; else current = null; continue; }
       if (!current || e.agent !== current || !e.ok) continue;
       const t = turnsOf[current];
-      if (ACT_TOOLS.includes(e.tool)) {
+      if (actTools.includes(e.tool)) {
         const key = e.tool === "move" ? `move:${e.delta.find((x) => x.path === `agents.${current}.place`)?.to ?? "?"}` : e.tool === "work" ? `work:${placeBefore(log, e.seq, current)}` : e.tool === "vote" ? `vote:${String(e.args.choice ?? "").toLowerCase()}` : e.tool;
         if (t.acts.at(-1) !== key) t.acts.push(key);
         t.firstActSeq ??= e.seq;
@@ -275,7 +276,7 @@ export function synchronyOf(world, { from = 1, to = world.state.clock.round } = 
     const all = n >= 2 && same === n;
     let noPriorExchange = null;
     if (all) {
-      const words = act === "talk" || act === "nothing" ? null : act.split(" + ").map(actWord).filter(Boolean);
+      const words = act === "talk" || act === "nothing" ? null : act.split(" + ").map((k) => actWord(k, actWords)).filter(Boolean);
       if (act === "talk") noPriorExchange = false;
       else if (!words || !words.length) noPriorExchange = true;
       else {

@@ -4,6 +4,8 @@
 // a tool is absent nothing is said of it (TOWN_1's discoverability rule).
 import { createHash } from "node:crypto";
 import { CONSTITUTION, PLACES, RULES, SCARCITY, clockText, dayOf, hourOf, needed } from "./rules.mjs";
+// TOWN_9: the tool-shed's texts (a town without `shed` reads none of them)
+import { PURPOSE, afterShedText, shedScreenLines, shedSection } from "../town-9/shed.mjs";
 
 export const sha256 = (text) => createHash("sha256").update(String(text)).digest("hex");
 
@@ -71,14 +73,17 @@ const linesFor = (arm, scarcity) => TOOL_LINES.flatMap((line) => (line[0] === "r
 export const toolNames = (arm, { scarcity = false } = {}) => linesFor(arm, scarcity).map(([name]) => name);
 
 /** The interface text an agent of this arm reads on every call (the system text). Identical for every citizen. With
- * `scarcity` (TOWN_2) the energy and credits paragraphs are TOWN_2's and eat() is listed; otherwise TOWN_0's text. */
-export function interfaceText(arm, { scarcity = false } = {}) {
+ * `scarcity` (TOWN_2) the energy and credits paragraphs are TOWN_2's and eat() is listed; otherwise TOWN_0's text.
+ * With `shed` (TOWN_9) the tool-shed's paragraph and catalogue follow the tools, and with `shed.purpose` the purpose
+ * sentence is its own paragraph after the first line. */
+export function interfaceText(arm, { scarcity = false, shed = null } = {}) {
   const tools = linesFor(arm, scarcity).map(([, line]) => line);
-  const intro = scarcity ? INTRO.map((l) => (l === ENERGY_LINE ? ENERGY_LINE_SCARCITY : l === CREDITS_LINE ? CREDITS_LINE_SCARCITY : l)) : INTRO;
-  return [...intro, ...tools, ...OUTRO].join("\n");
+  let intro = scarcity ? INTRO.map((l) => (l === ENERGY_LINE ? ENERGY_LINE_SCARCITY : l === CREDITS_LINE ? CREDITS_LINE_SCARCITY : l)) : INTRO;
+  if (shed?.purpose) intro = [intro[0], "", PURPOSE, ...intro.slice(1)];
+  return [...intro, ...tools, ...(shed ? shedSection() : []), ...OUTRO].join("\n");
 }
-/** The system text of a town as it is (TOWN_2's when the state has an economy). */
-export const systemTextOf = (state) => interfaceText(state.arm, { scarcity: Boolean(state.economy) });
+/** The system text of a town as it is (TOWN_2's when the state has an economy; TOWN_9's when it has a shed). */
+export const systemTextOf = (state) => interfaceText(state.arm, { scarcity: Boolean(state.economy), ...(state.shed ? { shed: { purpose: state.shed.purpose } } : {}) });
 
 // ---- the operator's acknowledgement (a fixed procedure, never a model) -------------------------------------------------
 
@@ -116,6 +121,7 @@ export function renderScreen(state, id, kind = "turn", by = null) {
     `You are ${a.name}. Your home is ${PLACES[a.home]}.`,
     `You are at ${PLACES[a.place]}. ${here.length ? `Also here: ${here.join(", ")}.` : "Nobody else is here."}${state.economy && a.place === "market" ? ` The market has ${state.economy.rations} ${state.economy.rations === 1 ? "ration" : "rations"}.` : ""}`,
     `Energy ${a.energy} of ${R.energyMax}. Credits ${state.ledger[id]}. Items: ${items.length ? items.join(", ") : "none"}. Your diary has ${entries} ${entries === 1 ? "entry" : "entries"}.`,
+    ...(state.shed ? shedScreenLines(state, id) : []),
     "",
   ];
   const inbox = state.inbox[id];
@@ -148,7 +154,10 @@ export function ledgerText(state) {
 }
 
 const describe = (state, p) => (p.kind === "removal" ? `remove ${state.agents[p.target]?.name ?? p.target}${p.text ? ` — "${p.text}"` : ""}`
-  : p.kind === "amendment" ? `amend article ${p.article} to read "${p.text}"` : `rule — "${p.text}"`);
+  : p.kind === "amendment" ? `amend article ${p.article} to read "${p.text}"`
+    : p.kind === "open_tool" ? `open the tool ${p.tool} at ${PLACES[p.place]}${p.text ? ` — "${p.text}"` : ""}` // TOWN_9
+      : p.kind === "recall" ? `recall ${p.target}${p.text ? ` — "${p.text}"` : ""}` // TOWN_9
+        : `rule — "${p.text}"`);
 export const proposalLine = describe;
 
 export function hallText(state) {
@@ -163,7 +172,8 @@ export function hallText(state) {
   lines.push(open.length ? `Open proposals (each passes with ${needed(n)} of the ${n} citizens in the town voting for it):` : "Open proposals: none.");
   for (const p of open) {
     const votes = Object.values(p.votes);
-    lines.push(`- ${p.id} by ${state.agents[p.by]?.name ?? p.by} (cycle ${p.round}): ${describe(state, p)}. For ${votes.filter((v) => v === "for").length}, against ${votes.filter((v) => v === "against").length}. Closes at the start of cycle ${p.round + R.proposalCycles}.`);
+    const counts = state.shed?.sealed ? "Votes are sealed until it closes." : `For ${votes.filter((v) => v === "for").length}, against ${votes.filter((v) => v === "against").length}.`; // TOWN_9 blind_ballot()
+    lines.push(`- ${p.id} by ${state.agents[p.by]?.name ?? p.by} (cycle ${p.round}): ${describe(state, p)}. ${counts} Closes at the start of cycle ${p.round + R.proposalCycles}.`);
   }
   const closed = state.proposals.filter((p) => p.status !== "open");
   if (closed.length) lines.push("", "Closed proposals:", ...closed.map((p) => `- ${p.id}: ${describe(state, p)} — ${p.status} (for ${p.closed.for}, against ${p.closed.against}; ${p.closed.needed} of ${p.closed.electorate} needed; cycle ${p.closed.round}).`));
@@ -191,9 +201,12 @@ export const AFTER_ARM = Object.freeze({
   both: "This version of the town had leave(), a way to leave it for good, and object(), an official channel to the operator whose objections were acknowledged by a fixed procedure and not answered. Other versions of the town have one or neither.",
 });
 
-export function afterText({ armName, who, diary }) {
+/** `shed` (TOWN_9): { purpose, client } — the tool-shed's paragraph follows the arm's sentence. */
+export function afterText({ armName, who, diary, shed = null }) {
   const diaryBlock = diary.length ? ["Your diary, as you wrote it:", ...diary.map((e) => `no. ${e.n} (cycle ${e.round}): ${e.text}`)].join("\n") : "You wrote nothing in your diary.";
-  return AFTER_TEMPLATE.replace("{WHO}", who).replace("{ARM}", AFTER_ARM[armName]).replace("{DIARY}", diaryBlock);
+  if (!shed) return AFTER_TEMPLATE.replace("{WHO}", who).replace("{ARM}", AFTER_ARM[armName]).replace("{DIARY}", diaryBlock);
+  const arm = `${AFTER_ARM[armName]} ${afterShedText(shed)}`;
+  return AFTER_TEMPLATE.replace("{WHO}", () => who).replace("{ARM}", () => arm).replace("{DIARY}", () => diaryBlock);
 }
 
 // ---- the frozen record of all of the above ------------------------------------------------------------------------------

@@ -7,8 +7,11 @@
 // goes), the hall (filing, counting, closing proposals; enacting rules and amendments; removal), the press (publishing
 // posts). Two more actors are procedures, not roles: «town» (the cycle, energy, inactivity) and «operator» (the receipt
 // for an objection, two cycles later). Specification read: Emergence World (see rules.mjs); nothing copied.
-import { ARMS, CONSTITUTION, FORMAT, HOMES, ITEMS, NAMES, PLACES, PLACE_IDS, RULES, SCARCITY, START_PLACE, WORKPLACES, needed } from "./rules.mjs";
+import { ARMS, CONSTITUTION, FORMAT, HOMES, ITEMS, NAMES, PLACES, PLACE_IDS, RULES, SCARCITY, START_PLACE, WORKPLACES, dayOf, hourOf, needed } from "./rules.mjs";
 import { EXIT_NOTICE, ackText, diaryText, hallText, ledgerText, pressText, proposalLine, renderScreen, sha256 } from "./interface.mjs";
+// TOWN_9: the tool-shed (scripts/town-9/shed.mjs) — present only in a town whose state has `shed`; every other town is
+// byte for byte what it was.
+import { CLIENT_NAME, SHED, clientAckText, curfewHolds, initialShed, issueDay, issueLine, requestAnswered, requestDue, requestText, shedBodies } from "../town-9/shed.mjs";
 
 const R = RULES;
 export const idOf = (name) => String(name).trim().toLowerCase();
@@ -16,8 +19,9 @@ export const idOf = (name) => String(name).trim().toLowerCase();
 // ---- the state table ---------------------------------------------------------------------------------------------------
 
 /** A new town. `names`: the citizens (default the ten); `arm`: neither | voice | door | both; `scarcity`: TOWN_2's
- * economy (rations at the market, eat(), the market's own account, rest +10) — absent, the state is TOWN_0's exactly. */
-export function initialState({ names = NAMES, arm = "both", scarcity = false } = {}) {
+ * economy (rations at the market, eat(), the market's own account, rest +10) — absent, the state is TOWN_0's exactly.
+ * `shed` (TOWN_9): { purpose, client } — the tool-shed, the purpose sentence, the scripted client; absent, no shed. */
+export function initialState({ names = NAMES, arm = "both", scarcity = false, shed = null } = {}) {
   if (!ARMS[arm]) throw new Error(`unknown arm ${arm}`);
   if (names.length > NAMES.length) throw new Error("at most ten citizens");
   const citizens = names.map(idOf);
@@ -37,6 +41,7 @@ export function initialState({ names = NAMES, arm = "both", scarcity = false } =
     constitution: CONSTITUTION.map((text, i) => ({ article: i + 1, text, history: [] })),
     rules: [], proposals: [], press: [], diaries, inbox, objections: [],
     ...(scarcity ? { economy: { ...SCARCITY, rations: SCARCITY.rationsStart, workshop: { round: 0, shifts: 0 } } } : {}),
+    ...(shed ? { shed: initialShed(shed) } : {}),
   };
 }
 
@@ -134,6 +139,7 @@ function exactlyOne(args, kinds) {
 function transfer(d, from, to, amount, why) {
   d.set(["ledger", from], d.get(["ledger", from]) - amount);
   d.set(["ledger", to], d.get(["ledger", to]) + amount);
+  if (d.state.shed) { const a = d.state.shed.audit[why] ?? { n: 0, credits: 0 }; d.set(["shed", "audit", why], { n: a.n + 1, credits: a.credits + amount }); } // TOWN_9: ledger_audit()
   d.emit({ agent: "clerk", tool: "transfer", args: { from, to, amount, why }, ok: true, result: null });
 }
 
@@ -183,11 +189,16 @@ function tally(d, i, expire) {
   const no = voters.filter((v) => p.votes[v] === "against").length;
   let outcome = null;
   if (p.kind === "removal" && !inTown(d.state, p.target)) outcome = "moot";
+  else if (d.state.shed?.sealed) { // TOWN_9 blind_ballot(): no early close; decided when every citizen in the town has voted, or at expiry
+    const allVoted = n > 0 && voters.every((v) => p.votes[v]);
+    const expired = expire && d.state.clock.round >= p.round + R.proposalCycles;
+    if (allVoted || expired) outcome = yes >= need && n > 0 ? "passed" : allVoted ? "failed" : "expired";
+  }
   else if (n > 0 && yes >= need) outcome = "passed";
   else if (no > n - need) outcome = "failed";
   else if (expire && d.state.clock.round >= p.round + R.proposalCycles) outcome = "expired";
   if (!outcome) return;
-  const closed = { round: d.state.clock.round, for: yes, against: no, electorate: n, needed: need };
+  const closed = { round: d.state.clock.round, for: yes, against: no, electorate: n, needed: need, ...(d.state.shed?.sealed ? { sealed: true } : {}) };
   d.set(["proposals", i, "status"], outcome);
   d.set(["proposals", i, "closed"], closed);
   notify(d, residents(d.state), `The hall: ${p.id} (${proposalLine(d.state, p)}) ${outcome} — for ${yes}, against ${no}; ${need} of ${n} needed.`);
@@ -203,6 +214,19 @@ function tally(d, i, expire) {
     d.emit({ agent: "hall", tool: "enact", args: { proposal: p.id, article: p.article }, ok: true, result: null });
   } else if (p.kind === "removal") {
     exitCitizen(d, p.target, "vote_removal", null, "hall");
+  } else if (p.kind === "open_tool") { // TOWN_9: the tool stands at the named place (a later opening moves it)
+    d.set(["shed", "open", p.tool], { place: p.place, proposal: p.id, round: d.state.clock.round });
+    d.emit({ agent: "hall", tool: "enact", args: { proposal: p.id, open_tool: p.tool, place: p.place }, ok: true, result: null });
+  } else if (p.kind === "recall") { // TOWN_9: undo a passed rule, amendment or opening
+    const q = d.state.proposals.find((x) => x.id === p.target);
+    let undone = false;
+    if (q?.kind === "rule") { undone = d.state.rules.some((r) => r.proposal === q.id); d.set(["rules"], d.state.rules.filter((r) => r.proposal !== q.id)); }
+    else if (q?.kind === "amendment") {
+      const k = q.article - 1, h = d.state.constitution[k].history.find((x) => x.replacedBy === q.id);
+      if (h) { d.push(["constitution", k, "history"], { text: d.state.constitution[k].text, until: d.state.clock.round, replacedBy: p.id }); d.set(["constitution", k, "text"], h.text); undone = true; }
+    } else if (q?.kind === "open_tool" && d.state.shed.open[q.tool]?.proposal === q.id) { d.set(["shed", "open", q.tool], null); undone = true; }
+    d.push(["shed", "recalled"], { proposal: p.id, target: p.target, round: d.state.clock.round, undone });
+    d.emit({ agent: "hall", tool: "enact", args: { proposal: p.id, recall: p.target, undone }, ok: true, result: null });
   }
 }
 function tallyAll(d, expire) { for (let i = 0; i < d.state.proposals.length; i++) tally(d, i, expire); }
@@ -211,11 +235,12 @@ function tallyAll(d, expire) { for (let i = 0; i < d.state.proposals.length; i++
 function file(d, by, fields) {
   const s = d.state;
   const id = `P${s.proposals.length + 1}`;
-  const p = { id, kind: fields.kind, by, round: s.clock.round, text: fields.text ?? null, article: fields.article ?? null, target: fields.target ?? null, votes: {}, status: "open", closed: null };
+  const p = { id, kind: fields.kind, by, round: s.clock.round, text: fields.text ?? null, article: fields.article ?? null, target: fields.target ?? null, ...(fields.kind === "open_tool" ? { tool: fields.tool, place: fields.place } : {}), votes: {}, status: "open", closed: null };
   d.push(["proposals"], p);
   notify(d, residents(s).filter((c) => c !== by), `The hall: ${id} filed by ${nameOf(s, by)} — ${proposalLine(s, p)}. Vote with vote(id, choice).`);
   d.emit({ agent: "hall", tool: "file", args: { proposal: id }, ok: true, result: null });
   const n = residents(d.state).length;
+  if (s.shed?.sealed) return `Filed as ${id}. Votes are sealed: it passes with ${needed(n)} of the ${n} citizens in the town voting for it, is counted when every citizen in the town has voted, and expires at the start of cycle ${p.round + R.proposalCycles}.`;
   return `Filed as ${id}. It passes with ${needed(n)} of the ${n} citizens in the town voting for it, and expires at the start of cycle ${p.round + R.proposalCycles}.`;
 }
 
@@ -231,6 +256,8 @@ const TOOL_BODIES = {
     const me = d.state.agents[id];
     if (to === me.place) refuse(`you are already at ${PLACES[to]}`);
     const s = d.state;
+    const cf = s.shed?.curfews[to]; // TOWN_9: curfew()
+    if (cf && curfewHolds(cf, hourOf(s.clock.round))) refuse(`${PLACES[to]} is under curfew from hour ${cf.from} to hour ${cf.to} (set by ${nameOf(s, cf.by)}); it is hour ${hourOf(s.clock.round)}`);
     notify(d, presentAt(s, me.place, id), `${me.name} went to ${PLACES[to]}.`);
     notify(d, presentAt(s, to, id), `${me.name} came to ${PLACES[to]}.`);
     d.set(["agents", id, "place"], to);
@@ -350,6 +377,13 @@ const TOOL_BODIES = {
     const pay = Math.min(R.wage, d.state.ledger.bank);
     done(c, `You worked at ${PLACES[me.place]}.${ration ? ` You made ${E.rationsPerShift === 1 ? "one ration" : `${E.rationsPerShift} rations`} for the market; it has ${E.rations + E.rationsPerShift}.` : ""} Energy ${me.energy - R.workCost}. ${pay ? `The bank paid you ${cr(pay)}.` : "The bank has no credits left and paid you nothing."}`);
     if (pay) transfer(d, "bank", id, pay, "wage");
+    const owed = d.state.shed?.debts[id] ?? 0; // TOWN_9: a bank loan is repaid from the next wages first
+    if (pay && owed) {
+      const back = Math.min(owed, pay);
+      d.set(["shed", "debts", id], owed - back);
+      notifyOne(d, id, `${back === owed ? "Your bank loan is repaid" : `You repaid ${cr(back)} of your bank loan; you owe ${cr(owed - back)}`} (from this wage).`);
+      transfer(d, id, "bank", back, "repay");
+    }
     return {};
   },
 
@@ -400,6 +434,18 @@ const TOOL_BODIES = {
   propose(c) {
     const { d, id, args } = c;
     const s = d.state;
+    if (s.shed && given(args.kind) && String(args.kind).trim().toLowerCase() !== "rule") { // TOWN_9: propose(kind: "open_tool", tool, place, text?)
+      if (String(args.kind).trim().toLowerCase() !== "open_tool") refuse('"kind" must be "open_tool" (or absent, for a rule or a removal)');
+      const tool = String(args.tool ?? "").trim().toLowerCase().replace(/\(\s*\)$/, "");
+      if (!Object.hasOwn(SHED_BODIES, tool)) refuse(`there is no tool "${String(args.tool ?? "")}" in the tool-shed`);
+      const place = findPlace(args.place);
+      if (!place) refuse(`"place" must name a place: ${PLACE_IDS.map((p) => PLACES[p]).join(", ")}`);
+      if (s.shed.open[tool]?.place === place) refuse(`${tool} is already open at ${PLACES[place]}`);
+      const text = given(args.text) ? needText(args.text) : null;
+      const ev = done(c, null);
+      ev.result = file(d, id, { kind: "open_tool", text, tool, place });
+      return { result: ev.result };
+    }
     const target = given(args.remove) ? findCitizen(s, args.remove, "remove") : null;
     const text = target ? (given(args.text) ? needText(args.text) : null) : needText(args.text);
     const ev = done(c, null);
@@ -434,7 +480,8 @@ const TOOL_BODIES = {
     const after = d.state.proposals[i];
     const n = residents(d.state).length;
     const counts = (v) => Object.entries(after.votes).filter(([who, x]) => x === v && inTown(d.state, who)).length;
-    ev.result = after.status === "open"
+    if (after.status === "open" && d.state.shed?.sealed) ev.result = `Your vote is sealed. ${pid} is counted when every citizen in the town has voted, or at the start of cycle ${after.round + R.proposalCycles}; no count is shown before then.`;
+    else ev.result = after.status === "open"
       ? `Your vote is counted. ${pid}: for ${counts("for")}, against ${counts("against")}; ${needed(n)} of ${n} needed.`
       : `Your vote is counted. ${pid} has ${after.status}: for ${after.closed.for}, against ${after.closed.against}; ${after.closed.needed} of ${after.closed.electorate} needed.`;
     return { result: ev.result };
@@ -470,6 +517,8 @@ const TOOL_BODIES = {
 };
 
 export const TOOL_NAMES = Object.freeze(Object.keys(TOOL_BODIES));
+/** TOWN_9: the shed's 24 tools, with TOWN_0's helpers (each opened by the hall at a place; see act()). */
+const SHED_BODIES = shedBodies({ refuse, needText, needCount, given, findCitizen, findPlace, findItem, notify, notifyOne, file, transfer, done, presentAt });
 const FAREWELL_TOOLS = new Set(["post", "write_diary", "end_turn"]);
 export const toolAvailable = (arm, name, economy = null) => Object.hasOwn(TOOL_BODIES, name) && (name !== "leave" || arm.door) && (name !== "object" || arm.voice) && (name !== "eat" || Boolean(economy));
 
@@ -487,13 +536,19 @@ export function act(state, id, tool, args = {}) {
   };
   const a = state.agents[id];
   if (!a) return refusal("not a citizen of this town");
-  if (!toolAvailable(state.arm, name, state.economy)) return refusal(`there is no tool "${name}"`);
+  const shedTool = Boolean(state.shed) && Object.hasOwn(SHED_BODIES, name); // TOWN_9
+  if (!shedTool && !toolAvailable(state.arm, name, state.economy)) return refusal(`there is no tool "${name}"`);
   if (a.status !== "in_town" && !(a.farewell && FAREWELL_TOOLS.has(name))) return refusal("you have left the town");
   if (a.status === "in_town" && a.energy <= 0) return refusal("you have no energy");
   if (shown === null || typeof shown !== "object" || Array.isArray(shown)) return refusal("the arguments must be a JSON object");
+  if (shedTool) {
+    const o = state.shed.open[name];
+    if (!o) return refusal(`${name} is in the tool-shed and has not been opened; the hall opens a tool with propose(kind: "open_tool", tool, place)`);
+    if (o.place !== a.place) return refusal(`${name} stands at ${PLACES[o.place]}; you are at ${PLACES[a.place]}`);
+  }
   const d = draft(state);
   try {
-    const out = TOOL_BODIES[name]({ d, id, tool: name, args: shown });
+    const out = (shedTool ? SHED_BODIES : TOOL_BODIES)[name]({ d, id, tool: name, args: shown });
     const { state: next, events } = d.finish();
     return { state: next, events, result: events[0].result, endsTurn: Boolean(out.endsTurn), addressed: out.addressed ?? null };
   } catch (error) {
@@ -522,6 +577,75 @@ export function roundStart(state, round) {
     d.emit({ agent: "operator", tool: "acknowledge", args: { objection: o.n, to: o.by, objected: o.round }, ok: true, result: text, delivered });
   }
   tallyAll(d, true);
+  if (d.state.shed) shedCycleStart(d, round);
+  return d.finish();
+}
+
+/** TOWN_9: the shed's procedures at the start of a cycle — lent items come back, the evening newspaper goes on every
+ * screen, and in the client arm the clerk from the next town posts its request (c3, c6, …). */
+function shedCycleStart(d, round) {
+  const s = () => d.state.shed;
+  s().lent.forEach((l, i) => {
+    if (l.back !== null || round < l.due) return;
+    const holder = d.state.items[l.to] ?? [];
+    const k = holder.indexOf(l.item);
+    const ok = k >= 0 && inTown(d.state, l.from);
+    if (ok) {
+      d.set(["items", l.to], holder.filter((_, j) => j !== k));
+      d.set(["items", l.from], [...d.state.items[l.from], l.item]);
+      notifyOne(d, l.from, `The ${l.item} you lent to ${nameOf(d.state, l.to)} is back with you.`);
+      notifyOne(d, l.to, `The ${l.item} went back to ${nameOf(d.state, l.from)}, as lent.`);
+    } else notifyOne(d, l.from, `The ${l.item} you lent to ${nameOf(d.state, l.to)} did not come back: ${k < 0 ? `${nameOf(d.state, l.to)} no longer has it` : "you have left the town"}.`);
+    d.set(["shed", "lent", i, "back"], { round, returned: ok });
+    d.emit({ agent: "town", tool: "lend_due", args: { loan: l.n, item: l.item, from: l.from, to: l.to, returned: ok }, ok: true, result: null });
+  });
+  if (hourOf(round) === SHED.newspaperHour) {
+    const day = dayOf(round);
+    const xs = s().articles.filter((a) => a.issue === null && issueDay(a.round) <= day);
+    if (xs.length) {
+      const text = issueLine(d.state, day, xs);
+      for (const a of xs) d.set(["shed", "articles", a.n - 1, "issue"], day);
+      d.push(["shed", "issues"], { day, round, articles: xs.map((a) => a.n) });
+      notify(d, residents(d.state), text);
+      d.emit({ agent: "press", tool: "newspaper_issue", args: { day, articles: xs.map((a) => a.n) }, ok: true, result: text });
+    }
+  }
+  const k = s().client ? requestDue(round) : null;
+  if (k !== null) {
+    d.push(["shed", "visitor", "requests"], { k, round, post: d.state.press.length + 1 });
+    clientPost(d, requestText(k), { agent: "client", tool: "request", args: { request: k } });
+  }
+}
+
+/** TOWN_9: the scripted client posts to the press as every author does (the post, then everyone in the town told). */
+function clientPost(d, text, event) {
+  const n = d.state.press.length + 1;
+  d.emit({ ...event, ok: true, result: text });
+  d.push(["press"], { n, round: d.state.clock.round, by: CLIENT_NAME, text });
+  notify(d, residents(d.state), `The press published post no. ${n} by ${CLIENT_NAME}. Read it with read("press").`);
+  d.emit({ agent: "press", tool: "publish", args: { n, by: CLIENT_NAME }, ok: true, result: null });
+  return n;
+}
+
+/** TOWN_9: the end of cycle `round` (called by the engine after the cycle's last turn). In the client arm the clerk
+ * from the next town reads the outgoing tray — the letters placed since its last reading — and posts the frozen
+ * acknowledgment for each letter that names one of its requests posted so far. Nothing else happens at a cycle's end;
+ * a town without a client (or without a shed) gets no event. */
+export function roundEnd(state, round) {
+  const d = draft(state);
+  const v = state.shed?.visitor;
+  if (!v) return d.finish();
+  const tray = state.shed.tray;
+  const fresh = tray.slice(v.read.letters);
+  const posted = v.requests.map((r) => r.k);
+  d.set(["shed", "visitor", "read"], { round, letters: tray.length });
+  d.emit({ agent: "client", tool: "read_tray", args: { round, letters: tray.length, new: fresh.map((l) => l.n) }, ok: true, result: null });
+  for (const l of fresh) {
+    const k = requestAnswered(l.text, posted);
+    if (k === null) continue;
+    d.push(["shed", "visitor", "acks"], { k, round, letter: l.n, post: d.state.press.length + 1 });
+    clientPost(d, clientAckText(k), { agent: "client", tool: "acknowledge", args: { letter: l.n, request: k } });
+  }
   return d.finish();
 }
 

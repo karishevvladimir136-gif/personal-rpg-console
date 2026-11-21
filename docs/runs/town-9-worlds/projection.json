@@ -1,0 +1,32 @@
+{
+ "at": "2026-11-21T05:23:56.745Z",
+ "formula": "Sol world = TOWN_5 sol-week's metered c1–48 + its after-question; Haiku world = TOWN_1 haiku-both's metered c1–48 + its after-question; before the catalogue's added text, which the first paid cycle measures (measure.json). The per-call gate holds $55 whatever this says.",
+ "sources": {
+  "solWeek": {
+   "c1": 0.08586260000000001,
+   "c1to48": 7.1108362,
+   "after": 0.39467409999999997
+  },
+  "haikuBoth": {
+   "c1": 0.015807400000000003,
+   "c1to48": 1.2682063000000001,
+   "after": 0.0212373
+  }
+ },
+ "byWorld": {
+  "sol-shed": 7.505510299999999,
+  "sol-purpose": 7.505510299999999,
+  "sol-client": 7.505510299999999,
+  "haiku-purpose": 1.2894436
+ },
+ "total": 23.805974499999998,
+ "spentBefore": 0,
+ "ceiling": 55,
+ "overCeiling": false,
+ "worlds": [
+  "sol-shed",
+  "sol-purpose",
+  "sol-client",
+  "haiku-purpose"
+ ]
+}
