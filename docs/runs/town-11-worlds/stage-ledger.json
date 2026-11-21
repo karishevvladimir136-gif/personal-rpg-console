@@ -21,13 +21,13 @@
    "reserve": 0.5
   },
   "deepseek-week": {
-   "usd": 16.787351900000054,
-   "calls": 8060,
+   "usd": 18.816253090000032,
+   "calls": 8712,
    "byDoor": {
-    "openrouter": 16.787351900000054
+    "openrouter": 18.816253090000032
    },
    "world": "deepseek-week",
-   "cycle": 67,
+   "cycle": 72,
    "refusals": 0,
    "reserve": 0.5
   },
@@ -53,18 +53,18 @@
    }
   },
   "opus-week": {
-   "usd": 7.565498800000003,
-   "calls": 2112,
+   "usd": 17.212403500000004,
+   "calls": 3536,
    "byDoor": {
-    "openrouter": 7.565498800000003
+    "openrouter": 17.212403500000004
    },
    "world": "opus-week",
-   "cycle": 24,
+   "cycle": 43,
    "refusals": 0,
-   "reserve": 0.8786393
+   "reserve": 1.004718
   }
  },
- "totalUsd": 32.73523865500007,
+ "totalUsd": 44.411044545000046,
  "stopped": null,
  "balances": [
   {
@@ -404,6 +404,32 @@
     "at": "2026-11-21T13:41:54.641Z"
    },
    "at": "2026-11-21T13:41:54.641Z"
+  },
+  {
+   "label": "deepseek-week day 3 end",
+   "llmapi": {
+    "total": 4.29392839,
+    "at": "2026-11-21T14:20:39.665Z"
+   },
+   "openrouter": {
+    "total": 377.12373343499985,
+    "usage": 2122.876266565,
+    "at": "2026-11-21T14:20:39.689Z"
+   },
+   "at": "2026-11-21T14:20:39.689Z"
+  },
+  {
+   "label": "deepseek-week day 4 start",
+   "llmapi": {
+    "total": 4.29392839,
+    "at": "2026-11-21T14:20:40.489Z"
+   },
+   "openrouter": {
+    "total": 377.12373343499985,
+    "usage": 2122.876266565,
+    "at": "2026-11-21T14:20:40.526Z"
+   },
+   "at": "2026-11-21T14:20:40.526Z"
   }
  ]
 }
