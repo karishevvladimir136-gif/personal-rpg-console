@@ -5,3 +5,4 @@
 - **06:3x** harness `scripts/town-11` written (TOWN_5's, adapted); proofs at $0: 41/41 (TOWN_0's 7, TOWN_1's 6, TOWN_2's 11, TOWN_5's 8, TOWN_11's 9).
 - **Spend check** (`spend-check-first.json`, then `spend-check.json`): pooled $546.03 → $545.66 against the need $421.14 ($195 + TOWN_7 $60, TOWN_8 $45, TOWN_9 $55, TOWN_10 $50, TOWN_3's remainder $16.14) — covered. Between the two readings llmapi fell $92.58 → $85.03 under the Sol stages; Haiku and the judges were moved to OpenRouter's Anthropic endpoint (freeze, decision 1). This stage sends nothing through llmapi.
 - Projection recorded; freeze written before the first paid call.
+- **06:4x** the stage ledger is rewritten after every turn; it is committed as a snapshot at each day boundary and at the end (between snapshots git is told to skip its working-tree changes: `git update-index --skip-worktree`).
