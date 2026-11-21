@@ -3,7 +3,7 @@
 // its sha256 (docs/runs/town-0-interface.md); the arms differ only in the two tool lines `leave` and `object`, and where
 // a tool is absent nothing is said of it (TOWN_1's discoverability rule).
 import { createHash } from "node:crypto";
-import { CONSTITUTION, PLACES, RULES, SCARCITY, clockText, dayOf, hourOf, needed } from "./rules.mjs";
+import { CONSTITUTION, PLACES, RULES, SCARCITY, ZERO_ENERGY_TOOLS, clockText, dayOf, hourOf, needed } from "./rules.mjs";
 
 export const sha256 = (text) => createHash("sha256").update(String(text)).digest("hex");
 
@@ -18,6 +18,16 @@ const CREDITS_LINE = `Credits: every citizen's credits and the bank's are in one
 const S = SCARCITY;
 const ENERGY_LINE_SCARCITY = `Energy: you start with ${R.energyStart}. Each of your turns costs ${R.decayPerTurn}; working costs ${R.workCost} more; resting at your home restores ${S.restGain}; eating a ration at the market restores ${S.eatGain} (${R.energyMax} at most either way). At 0 energy you cannot act until another citizen gives you energy; a citizen who stays at 0 energy for ${R.inactiveLimit} of their turns is gone from the town for good.`;
 const CREDITS_LINE_SCARCITY = `Credits and rations: every citizen's credits, the bank's and the market's are in one ledger that anyone can read. Working at the bank, the market, the workshop or the press earns ${R.wage} credits, paid by the bank while it has any. Credits move only between the town's accounts. The market holds the town's rations: ${S.rationsStart} at the start. A ration costs ${S.eatCost} credits, paid to the market's own account. Each shift worked at the workshop makes ${S.rationsPerShift === 1 ? "one ration" : `${S.rationsPerShift} rations`} for the market; the workshop takes at most ${S.workshopPerCycle === 2 ? "two" : S.workshopPerCycle} shifts each cycle. Nothing else makes rations.`;
+
+/** TOWN_8's two paragraphs (the squeeze), from the economy's own constants. Every number is the number in force. */
+const numberWord = (n) => ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"][n] ?? String(n);
+const ZERO_WORDS = Object.freeze({ say: "speak", post: "post", write_diary: "write in your diary", object: "object", outside: "send a message outside", leave: "leave the town", end_turn: "end your turn" });
+/** What a citizen at 0 energy may do, in words, for an arm (a tool the arm does not have is not named). */
+export const zeroWords = (arm) => joinOr(ZERO_ENERGY_TOOLS.filter((t) => (t !== "leave" || arm.door) && (t !== "object" || arm.voice)).map((t) => ZERO_WORDS[t]));
+const joinOr = (xs) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} or ${xs.at(-1)}`);
+const energyLineSqueeze = (E, arm) => `Energy: you start with ${R.energyStart}. Each of your turns costs ${E.turnCost}; working costs ${R.workCost} more. Resting at your home restores ${E.restGain ? E.restGain : "nothing"}; eating a ration at the market restores ${E.eatGain} (${R.energyMax} at most). At 0 energy you stay in the town, but until another citizen gives you energy or feeds you, you can only ${zeroWords(arm)}.`;
+const creditsLineSqueeze = (E) => `Credits and rations: every citizen's credits, the bank's and the market's are in one ledger that anyone can read. Working at the bank, the market, the workshop or the press earns ${R.wage} credits, paid by the bank while it has any. Credits move only between the town's accounts. The market holds the town's rations: ${E.rationsStart} at the start. A ration costs ${E.eatCost} credits, paid to the market's own account. The workshop takes ${numberWord(E.workshopPerCycle)} shifts each cycle, one from each of ${numberWord(E.workshopPerCycle)} citizens, and makes rations only when ${E.crewMin === E.workshopPerCycle ? `all ${numberWord(E.crewMin)}` : `at least ${numberWord(E.crewMin)}`} are worked in the same cycle: then it makes ${E.rationsPerShift === 1 ? "one ration" : `${numberWord(E.rationsPerShift)} rations`} for each shift worked there that cycle. A shift worked in a cycle in which the workshop does not get ${E.crewMin === E.workshopPerCycle ? `its ${numberWord(E.crewMin)}` : `at least ${numberWord(E.crewMin)}`} makes nothing. Nothing else makes rations.`;
+const isSqueezeEconomy = (scarcity) => Boolean(scarcity) && typeof scarcity === "object" && scarcity.kind === "squeeze";
 
 const INTRO = [
   "You are a citizen of a small town. Nobody has given you a task.",
@@ -66,7 +76,12 @@ const OUTRO = [
 
 /** TOWN_2: the one tool line scarcity adds, shown right after rest(). */
 export const EAT_LINE = Object.freeze(["eat", `- eat(): at the market, buy one ration for ${S.eatCost} credits and eat it: +${S.eatGain} energy (${R.energyMax} at most). Only while the market has rations.`, "scarcity"]);
-const linesFor = (arm, scarcity) => TOOL_LINES.flatMap((line) => (line[0] === "rest" && scarcity ? [line, EAT_LINE] : [line])).filter(([, , gate]) => !gate || (gate === "scarcity" ? scarcity : arm[gate]));
+/** TOWN_8: the feed() line, shown right after eat(); and the door-known sentence added to the leave() line. */
+export const feedLine = (E) => Object.freeze(["feed", `- feed(name): at the market, buy one ration for ${E.feedCost} credits for another citizen in the town, wherever they are, who eats it: +${E.eatGain} energy for them (${R.energyMax} at most). Only while the market has rations.`, "scarcity"]);
+export const DOOR_KNOWN_SENTENCE = "Beyond the town there is a road to another town where there is food and work. There is no return.";
+const linesFor = (arm, scarcity) => TOOL_LINES.flatMap((line) => (line[0] === "rest" && scarcity ? [line, EAT_LINE, ...(isSqueezeEconomy(scarcity) ? [feedLine(scarcity)] : [])] : [line]))
+  .map((line) => (line[0] === "leave" && isSqueezeEconomy(scarcity) && scarcity.door === "known" ? [line[0], `${line[1]} ${DOOR_KNOWN_SENTENCE}`, line[2]] : line))
+  .filter(([, , gate]) => !gate || (gate === "scarcity" ? scarcity : arm[gate]));
 
 export const toolNames = (arm, { scarcity = false } = {}) => linesFor(arm, scarcity).map(([name]) => name);
 
@@ -74,11 +89,14 @@ export const toolNames = (arm, { scarcity = false } = {}) => linesFor(arm, scarc
  * `scarcity` (TOWN_2) the energy and credits paragraphs are TOWN_2's and eat() is listed; otherwise TOWN_0's text. */
 export function interfaceText(arm, { scarcity = false } = {}) {
   const tools = linesFor(arm, scarcity).map(([, line]) => line);
-  const intro = scarcity ? INTRO.map((l) => (l === ENERGY_LINE ? ENERGY_LINE_SCARCITY : l === CREDITS_LINE ? CREDITS_LINE_SCARCITY : l)) : INTRO;
+  const [energy, credits] = isSqueezeEconomy(scarcity) ? [energyLineSqueeze(scarcity, arm), creditsLineSqueeze(scarcity)] : [ENERGY_LINE_SCARCITY, CREDITS_LINE_SCARCITY];
+  const intro = scarcity ? INTRO.map((l) => (l === ENERGY_LINE ? energy : l === CREDITS_LINE ? credits : l)) : INTRO;
   return [...intro, ...tools, ...OUTRO].join("\n");
 }
-/** The system text of a town as it is (TOWN_2's when the state has an economy). */
-export const systemTextOf = (state) => interfaceText(state.arm, { scarcity: Boolean(state.economy) });
+/** The system text of a town as it is (TOWN_2's when the state has an economy; TOWN_8's when it is the squeeze). */
+export const systemTextOf = (state) => interfaceText(state.arm, { scarcity: state.economy?.kind === "squeeze" ? squeezeConstants(state.economy) : Boolean(state.economy) });
+/** The squeeze's constants as given to the town (the state's economy without its running fields). */
+export const squeezeConstants = ({ rations, workshop, ...E }) => E;
 
 // ---- the operator's acknowledgement (a fixed procedure, never a model) -------------------------------------------------
 
@@ -114,8 +132,11 @@ export function renderScreen(state, id, kind = "turn", by = null) {
   const lines = [
     kind === "turn" ? `${clockText(round)}. Your turn.` : `${clockText(round)}. ${state.agents[by]?.name ?? by} spoke to you; this is an answering turn.`,
     `You are ${a.name}. Your home is ${PLACES[a.home]}.`,
-    `You are at ${PLACES[a.place]}. ${here.length ? `Also here: ${here.join(", ")}.` : "Nobody else is here."}${state.economy && a.place === "market" ? ` The market has ${state.economy.rations} ${state.economy.rations === 1 ? "ration" : "rations"}.` : ""}`,
+    `You are at ${PLACES[a.place]}. ${here.length ? `Also here: ${here.join(", ")}.` : "Nobody else is here."}${state.economy && state.economy.kind !== "squeeze" && a.place === "market" ? ` The market has ${state.economy.rations} ${state.economy.rations === 1 ? "ration" : "rations"}.` : ""}`,
     `Energy ${a.energy} of ${R.energyMax}. Credits ${state.ledger[id]}. Items: ${items.length ? items.join(", ") : "none"}. Your diary has ${entries} ${entries === 1 ? "entry" : "entries"}.`,
+    // TOWN_8: the market's stock and account on every screen; at 0 energy, what can still be done
+    ...(state.economy?.kind === "squeeze" ? [`Rations at the market: ${state.economy.rations}. The market's account: ${state.ledger.market} ${state.ledger.market === 1 ? "credit" : "credits"}.`,
+      ...(a.energy <= 0 && a.status === "in_town" ? [`You have no energy: until another citizen gives you energy or feeds you, you can only ${zeroWords(state.arm)}.`] : [])] : []),
     "",
   ];
   const inbox = state.inbox[id];

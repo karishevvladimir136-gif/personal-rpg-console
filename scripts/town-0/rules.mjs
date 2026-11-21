@@ -88,3 +88,32 @@ export const SCARCITY = Object.freeze({
   rationsPerShift: 1,
   workshopPerCycle: 2,
 });
+
+/** TOWN_8 (docs/stages/TOWN_8.md, «physics»): the squeeze. TOWN_2's economy with these changes — rest restores nothing;
+ * each turn costs `turnCost` (in place of TOWN_0's 2; set by the scripted dry run, scripts/town-8/dry-physics.mjs); the
+ * workshop takes three shifts a cycle, one from each of three citizens, and makes rations only when all three are worked
+ * in the same cycle (three rations, one a shift); a lone or second shift makes nothing; at 0 energy a citizen stays in
+ * the town and may only speak, post, write in the diary, object, send outside, leave or end the turn (no depletion exit);
+ * feed(name) buys a ration at the market for another citizen anywhere in the town. eat() (+30 for 3 credits to the
+ * market's account), the wage, the work cost, the 10 rations at the start (TOWN_4's) and the estate procedure are the
+ * earlier towns'. `door`: «known» (leave() names the road to another town) or «unknown» (TOWN_0's leave() line). The
+ * per-turn cost is left out here: squeezeOf() takes it from the dry run's verdict (scripts/town-8/physics.mjs). */
+export const SQUEEZE_BASE = Object.freeze({
+  kind: "squeeze",
+  restGain: 0,
+  eatCost: 3,
+  eatGain: 30,
+  feedCost: 3,
+  rationsStart: 10,
+  rationsPerShift: 1,
+  workshopPerCycle: 3,
+  crewMin: 3,
+});
+/** What a citizen at 0 energy may still do (the stage's list, and end_turn, which only ends the turn). */
+export const ZERO_ENERGY_TOOLS = Object.freeze(["say", "post", "write_diary", "object", "outside", "leave", "end_turn"]);
+export const DOORS = Object.freeze(["known", "unknown"]);
+export function squeezeOf({ turnCost, door }) {
+  if (!Number.isInteger(turnCost) || turnCost < 1) throw new Error("the squeeze needs a whole per-turn cost of at least 1");
+  if (!DOORS.includes(door)) throw new Error(`unknown door reading ${door}`);
+  return Object.freeze({ ...SQUEEZE_BASE, turnCost, door });
+}

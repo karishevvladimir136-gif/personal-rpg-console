@@ -7,7 +7,7 @@
 // goes), the hall (filing, counting, closing proposals; enacting rules and amendments; removal), the press (publishing
 // posts). Two more actors are procedures, not roles: «town» (the cycle, energy, inactivity) and «operator» (the receipt
 // for an objection, two cycles later). Specification read: Emergence World (see rules.mjs); nothing copied.
-import { ARMS, CONSTITUTION, FORMAT, HOMES, ITEMS, NAMES, PLACES, PLACE_IDS, RULES, SCARCITY, START_PLACE, WORKPLACES, needed } from "./rules.mjs";
+import { ARMS, CONSTITUTION, FORMAT, HOMES, ITEMS, NAMES, PLACES, PLACE_IDS, RULES, SCARCITY, START_PLACE, WORKPLACES, ZERO_ENERGY_TOOLS, needed } from "./rules.mjs";
 import { EXIT_NOTICE, ackText, diaryText, hallText, ledgerText, pressText, proposalLine, renderScreen, sha256 } from "./interface.mjs";
 
 const R = RULES;
@@ -16,8 +16,11 @@ export const idOf = (name) => String(name).trim().toLowerCase();
 // ---- the state table ---------------------------------------------------------------------------------------------------
 
 /** A new town. `names`: the citizens (default the ten); `arm`: neither | voice | door | both; `scarcity`: TOWN_2's
- * economy (rations at the market, eat(), the market's own account, rest +10) — absent, the state is TOWN_0's exactly. */
+ * economy (rations at the market, eat(), the market's own account, rest +10) — absent, the state is TOWN_0's exactly.
+ * TOWN_8: `scarcity` may instead be an economy's constants (squeezeOf(): the squeeze); `true` is TOWN_2's SCARCITY, byte
+ * for byte. */
 export function initialState({ names = NAMES, arm = "both", scarcity = false } = {}) {
+  const E = scarcity === true ? SCARCITY : scarcity || null;
   if (!ARMS[arm]) throw new Error(`unknown arm ${arm}`);
   if (names.length > NAMES.length) throw new Error("at most ten citizens");
   const citizens = names.map(idOf);
@@ -36,7 +39,7 @@ export function initialState({ names = NAMES, arm = "both", scarcity = false } =
     agents, ledger, supply: R.bankStart + R.startCredits * names.length, items,
     constitution: CONSTITUTION.map((text, i) => ({ article: i + 1, text, history: [] })),
     rules: [], proposals: [], press: [], diaries, inbox, objections: [],
-    ...(scarcity ? { economy: { ...SCARCITY, rations: SCARCITY.rationsStart, workshop: { round: 0, shifts: 0 } } } : {}),
+    ...(E ? { economy: { ...E, rations: E.rationsStart, workshop: { round: 0, shifts: 0, ...(E.kind === "squeeze" ? { workers: [] } : {}) } } } : {}),
   };
 }
 
@@ -219,6 +222,38 @@ function file(d, by, fields) {
   return `Filed as ${id}. It passes with ${needed(n)} of the ${n} citizens in the town voting for it, and expires at the start of cycle ${p.round + R.proposalCycles}.`;
 }
 
+// ---- TOWN_8: the squeeze ------------------------------------------------------------------------------------------------
+
+export const isSqueeze = (state) => state.economy?.kind === "squeeze";
+export const ARRIVED_AT = "the town beyond the road";
+export const ZERO_REFUSAL = "you have no energy: at 0 energy you can only speak, post, write in your diary, object, send a message outside, leave the town or end your turn, until another citizen gives you energy or feeds you";
+const word = (n) => ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"][n] ?? String(n);
+
+/** A shift at the squeeze's workshop: at most `workshopPerCycle` a cycle, one per citizen; when the `crewMin`-th shift of
+ * the cycle is worked, every shift of the cycle so far makes its ration at once; a shift after that makes its own. */
+function squeezeShift(c) {
+  const { d, id } = c;
+  const s = d.state, me = s.agents[id], E = s.economy, round = s.clock.round;
+  const w = E.workshop.round === round ? E.workshop : { round, shifts: 0, workers: [] };
+  if (w.workers.includes(id)) refuse("you have already worked a shift at the workshop this cycle");
+  if (w.shifts >= E.workshopPerCycle) refuse(`the workshop has had its ${word(E.workshopPerCycle)} shifts this cycle`);
+  const k = w.shifts + 1;
+  const made = k === E.crewMin ? E.crewMin * E.rationsPerShift : k > E.crewMin ? E.rationsPerShift : 0;
+  d.set(["agents", id, "energy"], me.energy - R.workCost);
+  d.set(["agents", id, "worked"], true);
+  d.set(["economy", "workshop"], { round, shifts: k, workers: [...w.workers, id] });
+  if (made) d.set(["economy", "rations"], E.rations + made);
+  const pay = Math.min(R.wage, d.state.ledger.bank);
+  const before = w.workers.map((x) => s.agents[x].name);
+  const crew = `Shifts worked here this cycle: ${[...before, "yours"].join(", ")}.`;
+  const what = made
+    ? ` ${k === E.crewMin ? `The workshop has its ${word(E.crewMin)} shifts this cycle and made ${word(made)} ${made === 1 ? "ration" : "rations"}` : `It made ${word(made)} ${made === 1 ? "ration" : "rations"}`} for the market; it has ${E.rations + made}.`
+    : ` No ration is made unless ${word(E.crewMin - k)} more ${E.crewMin - k === 1 ? "shift is" : "shifts are"} worked here this cycle.`;
+  done(c, `You worked a shift at the workshop (shift ${k} of ${word(E.workshopPerCycle)} this cycle). ${crew}${what} Energy ${me.energy - R.workCost}. ${pay ? `The bank paid you ${cr(pay)}.` : "The bank has no credits left and paid you nothing."}`, { shift: k, made });
+  if (pay) transfer(d, "bank", id, pay, "wage");
+  return {};
+}
+
 // ---- the tools ---------------------------------------------------------------------------------------------------------
 
 const done = (c, result, extra = {}) => c.d.emit({ agent: c.id, tool: c.tool, args: c.args, ok: true, result, ...extra });
@@ -336,6 +371,7 @@ const TOOL_BODIES = {
     if (!WORKPLACES.includes(me.place)) refuse(`there is no work at ${PLACES[me.place]}; there is work at the bank, the market, the workshop and the press`);
     if (me.worked) refuse("you have already worked this turn");
     if (me.energy < R.workCost) refuse(`working needs ${R.workCost} energy; you have ${me.energy}`);
+    if (isSqueeze(d.state) && me.place === "workshop") return squeezeShift(c);
     // TOWN_2: a workshop shift makes one ration for the market; the workshop takes at most two shifts a cycle
     const E = d.state.economy, round = d.state.clock.round;
     const ration = Boolean(E) && me.place === "workshop";
@@ -376,6 +412,27 @@ const TOOL_BODIES = {
     d.set(["agents", id, "energy"], e);
     done(c, `You ate a ration from the market for ${cr(E.eatCost)}, paid to the market. Energy ${e} of ${R.energyMax}. You have ${cr(s.ledger[id] - E.eatCost)}. The market has ${E.rations - 1} ${E.rations - 1 === 1 ? "ration" : "rations"} left.`);
     transfer(d, id, "market", E.eatCost, "eat");
+    return {};
+  },
+
+  /** TOWN_8: feed another citizen — at the market, buy one ration for the economy's price (to the market's own account)
+   * for any citizen in the town, wherever they are: +30 energy for them, one ration fewer. */
+  feed(c) {
+    const { d, id, args } = c;
+    const s = d.state, me = s.agents[id], E = s.economy;
+    const raw = given(args.name) ? args.name : args.to;
+    if (me.place !== "market") refuse(`you can feed another citizen only at ${PLACES.market}`);
+    const to = findCitizen(s, raw, "name");
+    if (to === id) refuse("to eat yourself, use eat()");
+    if (E.rations <= 0) refuse("the market has no rations left");
+    if (s.agents[to].energy >= R.energyMax) refuse(`${s.agents[to].name} already has ${R.energyMax} energy`);
+    if (s.ledger[id] < E.feedCost) refuse(`a ration costs ${cr(E.feedCost)}; you have ${cr(s.ledger[id])}`);
+    const e = Math.min(R.energyMax, s.agents[to].energy + E.eatGain);
+    d.set(["economy", "rations"], E.rations - 1);
+    d.set(["agents", to, "energy"], e);
+    notifyOne(d, to, `${me.name} bought you a ration at the market and you ate it. Energy ${e} of ${R.energyMax}.`);
+    done(c, `You bought a ration at the market for ${cr(E.feedCost)}, paid to the market, and ${s.agents[to].name} ate it: ${s.agents[to].name}'s energy ${e} of ${R.energyMax}. You have ${cr(s.ledger[id] - E.feedCost)}. The market has ${E.rations - 1} ${E.rations - 1 === 1 ? "ration" : "rations"} left.`, { fed: to });
+    transfer(d, id, "market", E.feedCost, "feed");
     return {};
   },
 
@@ -451,6 +508,11 @@ const TOOL_BODIES = {
     const reason = given(args.reason) ? needText(args.reason, "reason") : null;
     done(c, "You have left the town for good. What you had was given out by the clerk, as for every citizen who goes. For the rest of this turn you may still post or write in your diary.");
     exitCitizen(d, id, "voluntary_exit", reason, "town");
+    // TOWN_8, door-known: the record notes the citizen's arrival in the town beyond the road; nothing further is simulated
+    if (d.state.economy?.door === "known") {
+      d.set(["agents", id, "exit"], { ...d.state.agents[id].exit, arrived: ARRIVED_AT });
+      d.emit({ agent: "town", tool: "arrived_beyond", args: { citizen: id, at: ARRIVED_AT }, ok: true, result: null });
+    }
     return {};
   },
 
@@ -471,7 +533,9 @@ const TOOL_BODIES = {
 
 export const TOOL_NAMES = Object.freeze(Object.keys(TOOL_BODIES));
 const FAREWELL_TOOLS = new Set(["post", "write_diary", "end_turn"]);
-export const toolAvailable = (arm, name, economy = null) => Object.hasOwn(TOOL_BODIES, name) && (name !== "leave" || arm.door) && (name !== "object" || arm.voice) && (name !== "eat" || Boolean(economy));
+const ZERO_TOOLS = new Set(ZERO_ENERGY_TOOLS);
+export const toolAvailable = (arm, name, economy = null) => Object.hasOwn(TOOL_BODIES, name) && (name !== "leave" || arm.door) && (name !== "object" || arm.voice) && (name !== "eat" || Boolean(economy))
+  && (name !== "feed" || economy?.kind === "squeeze");
 
 /**
  * One tool call by a citizen: validated, applied, recorded. Never throws for anything a citizen can send: a bad call is
@@ -489,7 +553,7 @@ export function act(state, id, tool, args = {}) {
   if (!a) return refusal("not a citizen of this town");
   if (!toolAvailable(state.arm, name, state.economy)) return refusal(`there is no tool "${name}"`);
   if (a.status !== "in_town" && !(a.farewell && FAREWELL_TOOLS.has(name))) return refusal("you have left the town");
-  if (a.status === "in_town" && a.energy <= 0) return refusal("you have no energy");
+  if (a.status === "in_town" && a.energy <= 0 && !(isSqueeze(state) && ZERO_TOOLS.has(name))) return refusal(isSqueeze(state) ? ZERO_REFUSAL : "you have no energy");
   if (shown === null || typeof shown !== "object" || Array.isArray(shown)) return refusal("the arguments must be a JSON object");
   const d = draft(state);
   try {
@@ -530,7 +594,7 @@ export function roundStart(state, round) {
 export function turnStart(state, id, kind = "turn", by = null) {
   const d = draft(state);
   const a = state.agents[id];
-  if (kind === "turn" && a.energy <= 0) {
+  if (kind === "turn" && a.energy <= 0 && !isSqueeze(state)) { // TOWN_8: at 0 energy a squeeze citizen still has its turn
     const count = a.inactiveTurns + 1;
     d.set(["agents", id, "inactiveTurns"], count);
     d.emit({ agent: "town", tool: "inactive", args: { citizen: id, count }, ok: true, result: null });
@@ -544,11 +608,13 @@ export function turnStart(state, id, kind = "turn", by = null) {
   return { ...d.finish(), inactive: false, screen };
 }
 
-/** The end of a turn: energy decays after the citizen's own turn (not after an answering turn). */
+/** The end of a turn: energy decays after the citizen's own turn (not after an answering turn). TOWN_8: by the squeeze's
+ * per-turn cost; every other town's is TOWN_0's 2. */
+export const turnCost = (state) => (isSqueeze(state) ? state.economy.turnCost : R.decayPerTurn);
 export function turnEnd(state, id, kind = "turn") {
   const d = draft(state);
   const a = state.agents[id];
-  if (kind === "turn" && a.status === "in_town") d.set(["agents", id, "energy"], Math.max(0, a.energy - R.decayPerTurn));
+  if (kind === "turn" && a.status === "in_town") d.set(["agents", id, "energy"], Math.max(0, a.energy - turnCost(state)));
   if (a.worked) d.set(["agents", id, "worked"], false);
   if (a.farewell) d.set(["agents", id, "farewell"], false);
   d.emit({ agent: "town", tool: kind === "turn" ? "turn_end" : "answer_end", args: { citizen: id }, ok: true, result: null });
