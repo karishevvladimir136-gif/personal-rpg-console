@@ -21,15 +21,15 @@
    "reserve": 0.5
   },
   "deepseek-week": {
-   "usd": 45.68110974000007,
-   "calls": 14785,
+   "usd": 59.48146855999986,
+   "calls": 16885,
    "byDoor": {
-    "openrouter": 45.68110974000007
+    "openrouter": 59.48146855999986
    },
    "world": "deepseek-week",
-   "cycle": 120,
+   "cycle": 138,
    "refusals": 0,
-   "reserve": 0.5582336933333334
+   "reserve": 0.5581483466666667
   },
   "seat-opus": {
    "usd": 0.007493700000000001,
@@ -75,7 +75,7 @@
    "reserve": 1.7185445000000001
   }
  },
- "totalUsd": 131.33987189500024,
+ "totalUsd": 145.14023071500003,
  "stopped": null,
  "balances": [
   {
