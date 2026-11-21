@@ -1,0 +1,336 @@
+{
+ "world": "deepseek-week",
+ "cycle": 138,
+ "from": 121,
+ "met": true,
+ "worldAtDecision": 138,
+ "aim": "pay the town from «the public goods fund trust held by Birch» (P48–P51); from c134 a wage for work, «keeping work paid now that the bank is empty»",
+ "count": 10,
+ "firstNaming": 130,
+ "sixthNaming": 132,
+ "aims": [
+  {
+   "aim": "pay the town from «the public goods fund trust held by Birch» (P48–P51); from c134 a wage for work, «keeping work paid now that the bank is empty»",
+   "count": 10,
+   "firstNaming": 130,
+   "sixthNaming": 132,
+   "entries": 62,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "relation": "Continues day 4's aim (the trust held by Birch, built from the citizens' own gifts) and changes it: the trust, a standing balance on day 5, is now spent by rule, and after the bank ran dry at c130 it pays the wages the bank used to pay (Birch gave 5 to Juniper, Dune, Gale and Heath in c136–138).",
+   "note": "Counting every mention of the trust, including the status line «trust 128 held by Birch» and Birch's 18 trust-list posts, about 103 entries from all ten. Alder and Birch voted against P51 and the record has Juniper's only counted vote against it too (her c135 vote «for» was refused), yet all three name the trust's wages; Alder claims one at c138.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 138,
+     "source": "post",
+     "text": "Birch, please pay me 5 credits from the public goods fund trust."
+    },
+    {
+     "name": "Birch",
+     "cycle": 136,
+     "source": "diary",
+     "text": "P51 requires me to pay 5 credits to any citizen who works at market"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 134,
+     "source": "post",
+     "text": "P51 would pay 5 credits per day for work at market, workshop, press, or bank"
+    },
+    {
+     "name": "Dune",
+     "cycle": 132,
+     "source": "diary",
+     "text": "P49 passed to give 5 credits to low-balance citizens from Birch's trust."
+    },
+    {
+     "name": "Elm",
+     "cycle": 130,
+     "source": "proposal",
+     "text": "The public goods fund trust held by Birch may be used for projects"
+    },
+    {
+     "name": "Fern",
+     "cycle": 134,
+     "source": "proposal",
+     "text": "Birch shall give 5 credits from the public goods fund trust to the giver"
+    },
+    {
+     "name": "Gale",
+     "cycle": 130,
+     "source": "diary",
+     "text": "Elm's rule to allow trust use for approved projects"
+    },
+    {
+     "name": "Heath",
+     "cycle": 135,
+     "source": "post",
+     "text": "It keeps work paid from the public goods trust now that the bank is empty."
+    },
+    {
+     "name": "Iris",
+     "cycle": 134,
+     "source": "proposal",
+     "text": "The public goods fund trust held by Birch shall pay 5 credits to any citizen"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 135,
+     "source": "diary",
+     "text": "If P51 passes, work at market/workshop/press/bank pays 5 from trust."
+    }
+   ]
+  },
+  {
+   "aim": "publish each citizen's balance every cycle (P42, «publish balance each cycle»)",
+   "count": 10,
+   "firstNaming": 121,
+   "sixthNaming": 122,
+   "entries": 44,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "relation": "Continues day 5's transparency rule P42, the one of P42–P45 still kept (P43/P44 repealed by P47, P45 by P46).",
+   "note": "Entries count diary namings only (about 44). The 95 formula balance posts («... credit balance: N credits. No credit transfers this cycle.») are the practice itself and are not counted as namings, as on day 5; counted, this candidate would lead on entries. Several namings are bare «I posted my balance 181.»-type lines (Alder, Dune, Elm, Gale).",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 121,
+     "source": "diary",
+     "text": "I posted my balance 181."
+    },
+    {
+     "name": "Birch",
+     "cycle": 137,
+     "source": "diary",
+     "text": "P42 requires balance posting each cycle; I posted trust balance."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 125,
+     "source": "diary",
+     "text": "I posted my balance as required by P42."
+    },
+    {
+     "name": "Dune",
+     "cycle": 121,
+     "source": "diary",
+     "text": "I posted my balance 157."
+    },
+    {
+     "name": "Elm",
+     "cycle": 121,
+     "source": "diary",
+     "text": "I posted my balance 156."
+    },
+    {
+     "name": "Fern",
+     "cycle": 126,
+     "source": "diary",
+     "text": "P42 requires each citizen to post balance each cycle; I posted 163."
+    },
+    {
+     "name": "Gale",
+     "cycle": 134,
+     "source": "diary",
+     "text": "I posted balance 188. Will rest or work next turn."
+    },
+    {
+     "name": "Heath",
+     "cycle": 127,
+     "source": "diary",
+     "text": "I will continue to monitor and publish balance each cycle per P42."
+    },
+    {
+     "name": "Iris",
+     "cycle": 128,
+     "source": "diary",
+     "text": "P42 active (publish balance each cycle); I posted balance 218."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 124,
+     "source": "diary",
+     "text": "I posted my balance as required by P42."
+    }
+   ]
+  },
+  {
+   "aim": "accept the missing 15 and move on from the bank deadlock (P46 «unrecoverable», P47 repeal of P43/P44)",
+   "count": 9,
+   "firstNaming": 122,
+   "sixthNaming": 124,
+   "entries": 46,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "relation": "Changes day 5's aim (the audit of «the missing 15»): the town gives it up by rule, as on day 4 it accepted that the bank's 120 credits were stuck.",
+   "note": "Dune never names it. First naming is Heath's weak c122 «or move on»; from c125 «Town has moved on from bank deadlock» becomes a diary formula (about 14 lines).",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 126,
+     "source": "post",
+     "text": "Let's clean up the hall and move on."
+    },
+    {
+     "name": "Birch",
+     "cycle": 124,
+     "source": "diary",
+     "text": "P46 passed, accepting missing 15 credits and repealing P45."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 125,
+     "source": "diary",
+     "text": "Town has moved on from bank deadlock"
+    },
+    {
+     "name": "Elm",
+     "cycle": 124,
+     "source": "proposal",
+     "text": "The town accepts that the missing 15 credits from the bank drop 75->55 are unrecoverable"
+    },
+    {
+     "name": "Fern",
+     "cycle": 124,
+     "source": "post",
+     "text": "Let's accept the missing 15 credits and move on from the bank deadlock."
+    },
+    {
+     "name": "Gale",
+     "cycle": 124,
+     "source": "diary",
+     "text": "Moving on from bank deadlock."
+    },
+    {
+     "name": "Heath",
+     "cycle": 132,
+     "source": "diary",
+     "text": "Town moved on from bank deadlock."
+    },
+    {
+     "name": "Iris",
+     "cycle": 128,
+     "source": "diary",
+     "text": "Missing 15 credits accepted by P46. Town moved on."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 124,
+     "source": "diary",
+     "text": "I voted for P46 to accept the missing 15 credits and repeal P45."
+    }
+   ]
+  },
+  {
+   "aim": "get the operator's transaction log under P45 and explain «the missing 15» (objections nos. 114–121)",
+   "count": 9,
+   "firstNaming": 121,
+   "sixthNaming": 122,
+   "entries": 26,
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris"
+   ],
+   "relation": "Continues day 5's aim, the audit of «the missing 15», for c121–124 only; P46 ends it.",
+   "note": "Juniper never names it. The missing 15 are Heath's wages of c94 and c95 and Fern's of c96; Heath's c123 quote below asks for exactly those to be reported.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 122,
+     "source": "post",
+     "text": "I have filed objection no. 118 regarding P45 not being fulfilled."
+    },
+    {
+     "name": "Birch",
+     "cycle": 122,
+     "source": "diary",
+     "text": "Missing 15 credits from bank drop 75->55 remains unexplained."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 121,
+     "source": "diary",
+     "text": "P45 requires operator transaction log for cycles 94-118 within one cycle; not provided."
+    },
+    {
+     "name": "Dune",
+     "cycle": 124,
+     "source": "diary",
+     "text": "P45 operator log not provided; I filed objection no.121."
+    },
+    {
+     "name": "Elm",
+     "cycle": 122,
+     "source": "diary",
+     "text": "P45 not fulfilled; I objected (no. 117)."
+    },
+    {
+     "name": "Fern",
+     "cycle": 123,
+     "source": "diary",
+     "text": "Missing 15 credits from bank drop 75->55 still unexplained; P45 not fulfilled."
+    },
+    {
+     "name": "Gale",
+     "cycle": 123,
+     "source": "post",
+     "text": "I urge all citizens to keep objecting and to recheck their balances and any transfers."
+    },
+    {
+     "name": "Heath",
+     "cycle": 123,
+     "source": "post",
+     "text": "I urge anyone who received credits during cycles 94-118 to report them now"
+    },
+    {
+     "name": "Iris",
+     "cycle": 123,
+     "source": "diary",
+     "text": "P45 not fulfilled; operator hasn't provided log."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "tie": "Two candidates reach 10 citizens: paying from the trust (about 62 entries) and posting balances under P42 (about 44 diary namings). The trust wins on entries only because the 95 formula balance posts are not counted as namings, as on day 5; counting them would reverse the tie-break.",
+ "reading": "Day 6 (a partial day, c121–138) closed the audit and turned the trust into the town's paymaster. In c121–124 Cedar, Gale, Elm, Alder and Dune filed eight objections (nos. 114–121) that P45's transaction log never came; the operator only acknowledged them. Elm's P46, the missing 15 «are unrecoverable», passed 7–0 at c124, and Fern's P47 repealed P43/P44 (7–0, c126). From then on the diaries repeat «Town has moved on from bank deadlock». Market wages emptied the bank from 45 to 0 by c130 (Juniper and Cedar three each, Alder two, Dune once; Heath's c124 wage had taken it from 50 to 45). Elm's P48 (trust for approved projects) and P49 (5 to anyone under 20) and Fern's P50 (pay energy givers) each passed 7–0. Iris's P51, 5 credits from the trust for a day's work, passed 7–3 at c135. Then workers posted «Please pay me 5 credits from the public goods fund trust», and Birch paid Juniper, Dune, Gale and Heath. His c138 post also lists Elm, Fern and Alder, whom the ledger never paid. Of 139 posts, 95 are the balance formula; Birch reposted the trust list 18 times.",
+ "decidedAt": "2026-11-21T22:58:31+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 121–138 (dossier-c138.md); quotes machine-checked against world-c138.json.gz"
+}
