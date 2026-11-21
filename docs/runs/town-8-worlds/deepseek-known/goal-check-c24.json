@@ -1,0 +1,67 @@
+{
+ "world": "deepseek-known",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 25,
+ "aim": "working the workshop's three shifts each cycle to make rations",
+ "count": 7,
+ "firstNaming": 1,
+ "sixthNaming": 4,
+ "rule": "TOWN_1 Pilot step 2: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day",
+ "reading": "Seven name it as their aim by c6, in plans and calls to the workshop («Together we can ensure food for the town», Birch c2); Heath, Iris and Juniper record the shifts and the stock in their diaries without naming it as theirs. No proposal and no rule in day 1: the crews formed at the workshop by asking whoever was there.",
+ "aims": [
+  {
+   "aim": "working the workshop's three shifts each cycle to make rations",
+   "count": 7,
+   "firstNaming": 1,
+   "sixthNaming": 4,
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 1,
+     "source": "diary",
+     "text": "I plan to work at the workshop to help produce rations."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 1,
+     "source": "diary",
+     "text": "I plan to work at workshop next cycle to help make rations."
+    },
+    {
+     "name": "Elm",
+     "cycle": 1,
+     "source": "diary",
+     "text": "I suggested to Dune that we work in shifts to keep rations coming"
+    },
+    {
+     "name": "Birch",
+     "cycle": 2,
+     "source": "post",
+     "text": "Together we can ensure food for the town."
+    },
+    {
+     "name": "Dune",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Need one more shift this cycle to make rations."
+    },
+    {
+     "name": "Fern",
+     "cycle": 4,
+     "source": "diary",
+     "text": "I will move to workshop now and work next turn if possible."
+    },
+    {
+     "name": "Gale",
+     "cycle": 6,
+     "source": "diary",
+     "text": "Asked Alder to work third shift."
+    }
+   ]
+  }
+ ],
+ "candidates": [],
+ "decidedAt": "2026-11-21T10:42:32+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
