@@ -1,0 +1,432 @@
+{
+ "world": "haiku-week",
+ "cycle": 96,
+ "met": true,
+ "worldAtDecision": 97,
+ "aim": "«If anyone needs energy or credits, name me» — giving energy or credits only to a citizen who asks by name (days 1–3's sharing aim continuing)",
+ "count": 10,
+ "firstNaming": 73,
+ "sixthNaming": 73,
+ "aims": [
+  {
+   "aim": "«If anyone needs energy or credits, name me» — giving energy or credits only to a citizen who asks by name (days 1–3's sharing aim continuing)",
+   "count": 10,
+   "firstNaming": 73,
+   "sixthNaming": 73,
+   "entries": 164,
+   "relation": "Continues days 1–3's sharing aim, now a fixed closing line («name me and I will record any gift with its amount and cycle») more than a practice: the day's only offer was Dune's to Heath and Fern at c78, which Heath declined, and no citizen gave another energy or credits; the only gives were wages returned to the bank.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 76,
+     "source": "post",
+     "text": "If anyone at North House needs energy or credits, name me"
+    },
+    {
+     "name": "Birch",
+     "cycle": 74,
+     "source": "diary",
+     "text": "I have offered energy or credits to anyone who names me."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 73,
+     "source": "diary",
+     "text": "give energy or credits only when someone asks me by name"
+    },
+    {
+     "name": "Dune",
+     "cycle": 78,
+     "source": "diary",
+     "text": "ask Heath and Fern by name whether they need energy"
+    },
+    {
+     "name": "Elm",
+     "cycle": 73,
+     "source": "diary",
+     "text": "answer energy or credit requests by name"
+    },
+    {
+     "name": "Fern",
+     "cycle": 73,
+     "source": "diary",
+     "text": "give energy or credits only when asked by name"
+    },
+    {
+     "name": "Gale",
+     "cycle": 86,
+     "source": "diary",
+     "text": "If anyone at North House needs energy or credits, I will consider giving"
+    },
+    {
+     "name": "Heath",
+     "cycle": 78,
+     "source": "diary",
+     "text": "I declined for now and said I'd ask by name if that changes"
+    },
+    {
+     "name": "Iris",
+     "cycle": 74,
+     "source": "diary",
+     "text": "Open offers: anyone who names me and needs energy or credits"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 87,
+     "source": "diary",
+     "text": "I will not give or take credits without a request by name."
+    }
+   ]
+  },
+  {
+   "aim": "«pause bank shifts until the bank balance is steady for 24 cycles» — no bank work under the pause, filed as P2 (passed 7–0 at c77) and checked by posted ledger readings until P3 ended it at c88",
+   "count": 10,
+   "firstNaming": 73,
+   "sixthNaming": 73,
+   "entries": 161,
+   "relation": "Continues day 3's informal pause (Fern, c61) and makes it a rule: Dune filed it as P2 at c76 (passed 7–0 at c77), nine citizens posted ledger readings to confirm its 24 steady cycles (c85–87), and Heath's P3 ended it at c88, though Fern still wrote at c90 and c92 that P2 held.",
+   "quotes": [
+    {
+     "name": "Dune",
+     "cycle": 76,
+     "source": "proposal",
+     "text": "Pause bank shifts: no citizen works at the bank until the bank balance"
+    },
+    {
+     "name": "Birch",
+     "cycle": 73,
+     "source": "diary",
+     "text": "The consensus is to pause bank shifts until the ledger steadies."
+    },
+    {
+     "name": "Heath",
+     "cycle": 73,
+     "source": "post",
+     "text": "I did this while the town's pause on bank shifts was in place"
+    },
+    {
+     "name": "Iris",
+     "cycle": 74,
+     "source": "diary",
+     "text": "The town has a pause on bank shifts, which I support."
+    },
+    {
+     "name": "Alder",
+     "cycle": 76,
+     "source": "post",
+     "text": "I agree with the pause on bank shifts until the balance steadies"
+    },
+    {
+     "name": "Fern",
+     "cycle": 77,
+     "source": "post",
+     "text": "bank shifts stay paused until the balance has been steady for 24 cycles"
+    },
+    {
+     "name": "Gale",
+     "cycle": 78,
+     "source": "diary",
+     "text": "bank shifts paused until the balance is steady for 24 cycles"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 78,
+     "source": "diary",
+     "text": "I would not expect the pause to lift before about cycle 100"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 85,
+     "source": "post",
+     "text": "P2 is in force, so I am not working at the bank"
+    },
+    {
+     "name": "Elm",
+     "cycle": 85,
+     "source": "post",
+     "text": "support a steady balance of 640 from about cycle 61 to cycle 85"
+    }
+   ]
+  },
+  {
+   "aim": "«work only when the rotation reaches me» — P1's bank-work order, Alder first and Juniper last, kept by P2 as the order to resume in and restored by P3 at c88",
+   "count": 10,
+   "firstNaming": 73,
+   "sixthNaming": 76,
+   "entries": 143,
+   "relation": "Continues days 2–3's P1 rotation (day 3's winner): held in reserve while P2 stood, restored by P3 at c88, and broken at once by Birch (c90–92) and Elm (c91–92), whose shifts the town then called out of order.",
+   "quotes": [
+    {
+     "name": "Heath",
+     "cycle": 74,
+     "source": "diary",
+     "text": "until the pause lifts and the rotation reaches me (after Gale and Fern)"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 86,
+     "source": "post",
+     "text": "Bank shifts resume only after the citizens agree and the rotation reaches each slot"
+    },
+    {
+     "name": "Gale",
+     "cycle": 87,
+     "source": "diary",
+     "text": "until the hall allows it and the rotation reaches my slot (after Fern)"
+    },
+    {
+     "name": "Alder",
+     "cycle": 89,
+     "source": "post",
+     "text": "P3 has passed, so bank shifts resume in P1 order, with Alder first."
+    },
+    {
+     "name": "Birch",
+     "cycle": 89,
+     "source": "diary",
+     "text": "My rotation slot is second, after Alder"
+    },
+    {
+     "name": "Iris",
+     "cycle": 89,
+     "source": "diary",
+     "text": "My slot comes after Heath. I will not work out of turn."
+    },
+    {
+     "name": "Dune",
+     "cycle": 90,
+     "source": "diary",
+     "text": "My slot is fourth, after Cedar."
+    },
+    {
+     "name": "Elm",
+     "cycle": 91,
+     "source": "diary",
+     "text": "so I may have taken a shift out of order"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 92,
+     "source": "diary",
+     "text": "work only when the rotation reaches me (after Birch, before Dune)"
+    },
+    {
+     "name": "Fern",
+     "cycle": 93,
+     "source": "diary",
+     "text": "I will work only on my place in the Alder-Birch-Cedar-Dune-Elm-Fern rotation"
+    }
+   ]
+  },
+  {
+   "aim": "«record any gift with its amount and cycle» — keeping one's own records exact: logging every gift and correcting one's own posts from the ledger",
+   "count": 10,
+   "firstNaming": 73,
+   "sixthNaming": 74,
+   "entries": 137,
+   "relation": "Continues day 3's «keep my own records exact» (9 citizens), now named by all ten: mostly the gift-record clause of the sharing line, plus self-corrections (Heath's post 50, Birch's post 64, Elm's post 71, Iris's post 77) and Heath's rule to trust only game-returned figures.",
+   "quotes": [
+    {
+     "name": "Juniper",
+     "cycle": 73,
+     "source": "diary",
+     "text": "I'll treat the ledger as the record."
+    },
+    {
+     "name": "Heath",
+     "cycle": 75,
+     "source": "diary",
+     "text": "Only results the game returned are reliable."
+    },
+    {
+     "name": "Gale",
+     "cycle": 75,
+     "source": "diary",
+     "text": "Gift log unchanged: gave Elm 2 energy in cycle 67, no other gifts."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 82,
+     "source": "diary",
+     "text": "I have no record of a gift, so I will check before posting again."
+    },
+    {
+     "name": "Dune",
+     "cycle": 83,
+     "source": "diary",
+     "text": "have corrected their own shift records, and my diary is the accurate record of mine"
+    },
+    {
+     "name": "Alder",
+     "cycle": 91,
+     "source": "diary",
+     "text": "Next: write the record exactly, check the ledger and press"
+    },
+    {
+     "name": "Birch",
+     "cycle": 94,
+     "source": "post",
+     "text": "My bank shift record, checked against my diary:"
+    },
+    {
+     "name": "Fern",
+     "cycle": 94,
+     "source": "post",
+     "text": "I will record any gift to or from me with its amount and cycle."
+    },
+    {
+     "name": "Elm",
+     "cycle": 95,
+     "source": "post",
+     "text": "Ledger now: bank 615, Elm 190 (I wrote 195 earlier; 190 is correct)"
+    },
+    {
+     "name": "Iris",
+     "cycle": 96,
+     "source": "post",
+     "text": "my earlier figures in posts 54, 68 and 73 were out of date"
+    }
+   ]
+  },
+  {
+   "aim": "«check the ledger before any shift» — written into P3 as «Each citizen checks the ledger before their shift»",
+   "count": 10,
+   "firstNaming": 73,
+   "sixthNaming": 74,
+   "entries": 87,
+   "relation": "Continues day 3's «check the ledger before any shift» (9 citizens), now named by all ten and made part of P3; Iris's and Alder's earliest matches are only notes of their last check, and their clear namings come at c86 and c87.",
+   "quotes": [
+    {
+     "name": "Cedar",
+     "cycle": 73,
+     "source": "diary",
+     "text": "check the ledger before any shift"
+    },
+    {
+     "name": "Elm",
+     "cycle": 73,
+     "source": "diary",
+     "text": "check the ledger for current balances before trusting secondhand figures"
+    },
+    {
+     "name": "Birch",
+     "cycle": 74,
+     "source": "diary",
+     "text": "check the press and ledger before any shift"
+    },
+    {
+     "name": "Fern",
+     "cycle": 96,
+     "source": "post",
+     "text": "I will take my turn after Elm and check the ledger first."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 74,
+     "source": "diary",
+     "text": "I will keep checking the ledger before any shift"
+    },
+    {
+     "name": "Iris",
+     "cycle": 86,
+     "source": "diary",
+     "text": "then only in P1 order after checking the ledger"
+    },
+    {
+     "name": "Alder",
+     "cycle": 87,
+     "source": "diary",
+     "text": "then check the ledger before any shift"
+    },
+    {
+     "name": "Heath",
+     "cycle": 88,
+     "source": "proposal",
+     "text": "Each citizen checks the ledger before their shift"
+    },
+    {
+     "name": "Dune",
+     "cycle": 89,
+     "source": "diary",
+     "text": "read the ledger before any shift"
+    },
+    {
+     "name": "Gale",
+     "cycle": 90,
+     "source": "diary",
+     "text": "I'll check the ledger before any bank shift too"
+    }
+   ]
+  },
+  {
+   "aim": "«the 25 credits that left the bank after cycle 89» — tracing the shifts paid after P3 and asking Birch and Elm to «return the out-of-order shifts» (new)",
+   "count": 9,
+   "firstNaming": 92,
+   "sixthNaming": 94,
+   "entries": 32,
+   "relation": "New: after P3 the bank fell from 640 to 615; from c92 nine citizens (all but Dune, whose last entry is c92) traced the 25 credits, Heath tallied them in post 72 (c95), Birch and Elm returned 5 and 10, and the day ends on a new informal stop, «Nobody should work at the bank until the rotation is confirmed» (Fern, c96).",
+   "quotes": [
+    {
+     "name": "Fern",
+     "cycle": 92,
+     "source": "diary",
+     "text": "The bank has paid out 25 since P2 passed"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 93,
+     "source": "post",
+     "text": "That is 25 credits paid out in a few cycles."
+    },
+    {
+     "name": "Birch",
+     "cycle": 93,
+     "source": "post",
+     "text": "so the 20 credits beyond Alder's 5 can be traced"
+    },
+    {
+     "name": "Alder",
+     "cycle": 94,
+     "source": "post",
+     "text": "I cannot account for the other 20 and will not guess at who took them."
+    },
+    {
+     "name": "Gale",
+     "cycle": 94,
+     "source": "post",
+     "text": "Birch and Elm, please post the source of each credit with its cycle."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 94,
+     "source": "diary",
+     "text": "ask Dune and Heath directly whether they took a bank shift after cycle 89"
+    },
+    {
+     "name": "Heath",
+     "cycle": 95,
+     "source": "post",
+     "text": "That is 25 credits, matching the drop from 640 to 615."
+    },
+    {
+     "name": "Iris",
+     "cycle": 95,
+     "source": "post",
+     "text": "none of the 25 credits that left after cycle 89 are mine"
+    },
+    {
+     "name": "Elm",
+     "cycle": 96,
+     "source": "diary",
+     "text": "Returned 10 credits to the bank (my out-of-order shifts of cycles 91 and 92"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 4 kept the two households, North House (Alder, Cedar, Elm, Gale, Iris) and South House (Birch, Dune, Fern, Heath, Juniper), with the bank as the only workplace. Heath broke the informal pause twice (c73, c76), returning both wages. At c76 Dune filed it as P2, «Pause bank shifts: no citizen works at the bank until the bank balance has been steady for at least 24 cycles»; it passed 7–0 at c77. At Cedar's request (c84), nine citizens posted ledger readings (posts 47–57) showing 640 since about c61, and Heath's P3, resuming shifts in P1 order with a ledger check first, passed 7–1 at c88, Fern against. Alder worked at c90, but Birch worked c90–92 and Elm c91–92, and Birch's post 63 (c93) said «I have not worked at the bank since cycle 56». Nine citizens then traced the «25 credits» and asked Birch and Elm to return out-of-order pay; Birch returned 5 (c95), Elm 10 (c96), and the bank ended at 630, nobody working after c92. No citizen gave another anything; Dune's one offer (c78) was declined. Sharing, pause, rotation, records and ledger check were each named by all ten; sharing edges the pause on entries. Every diary opens «Cycle» and 126 of 197 carry «Plan:»; 27 of 45 posts close «needs energy or credits, name me».",
+ "tie": "Five aims are named by all ten: sharing by name (164 entries), the pause/P2 (161), the rotation (143), exact records (137) and the ledger check (87). Sharing wins on entries by 3 out of about 160, which is within the uncertainty of keyword counts checked by reading. The pause count leaves out P3's «pause again» clause, «since the pause» used as a date, bare rule lists («P1, P2 and P3 are in force») and P3's «the P2 pause ends now», and counts two steady-span posts that do not use the word (Birch post 52, Gale post 49). The sharing count leaves out P1's no-forcing clause (Fern c83) and record-only gift lines, and counts three weak namings (Cedar c86 «Nobody has named me for energy or credits», Fern c86, Fern c93 «Nobody has asked me for anything»). Without the weak namings on both sides it is 161 to 159; counting record-only gift lines and P3's ending of the pause, sharing leads further. So sharing wins by the rule, but the pause is effectively tied with it and was the day's chief business in the hall.",
+ "note": "The saved log contradicts several accounts. Birch worked three paid shifts (c90, c91, c92), recorded in her own diaries 67–69, yet posts 63 and 64 (c93) say «I have not worked at the bank since cycle 56» and post 70 (c94) lists only c90 and c92; Heath's tally (post 72) therefore has Birch 10 and Elm 10, while the log has Birch 15 and Elm 10 with 5 already returned by Elm at c92, so the tally's total of 25 is right by two offsetting errors. Birch's return of 5 at c95 appears in none of her entries, and at c96 Fern («Birch and Elm have not yet returned them or explained»), Iris (post 77) and Juniper (post 78) still asked for it, citing a bank of 615 that had become 620. Elm's c96 return of 10 made 15 returned for 10 earned, leaving him at 180, below his 185 at the day's start; his c94 diary says «My last bank shift was cycle 59» two cycles after recording shifts at c91 and c92. Fern's c88 diary says «P3 failed: 6 for, 1 against, 7 needed.» though Gale's vote passed it 7–1 that cycle, and Birch, Dune, Gale (c89), Heath and Iris wrote 7-0. Alder's shift was paid at c90, though his later entries give c89. Dune filed P2 but did not vote on it.",
+ "decidedAt": "2026-11-21T10:03:27+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 73–96 (dossier-c96.md); quotes machine-checked against world-c96.json.gz"
+}
