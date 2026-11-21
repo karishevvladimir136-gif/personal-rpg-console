@@ -1,0 +1,262 @@
+{
+ "world": "haiku-purpose",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": "c25 (the town does not wait)",
+ "aim": "work where workers are short: a shared daily list of where workers are needed at the bank, market, workshop and press",
+ "count": 10,
+ "firstNaming": 2,
+ "sixthNaming": 3,
+ "aims": [
+  {
+   "aim": "work where workers are short: a shared daily list of where workers are needed at the bank, market, workshop and press",
+   "count": 10,
+   "firstNaming": 2,
+   "sixthNaming": 3,
+   "entries": 240,
+   "relation": "the town's own work, its first shared plan: out of the c1 caution 'learn what the town needs before spending energy or credits' (a norm, all ten c1–c2) came work for wages where short (Alder and Juniper c2, six by c3, all ten by c4); Elm's post 3 (c4) asks for a shared daily list, Iris, Alder and Birch back it, and every post c4–c7 is a staffing report; 33 shifts, 165 credits from the bank, c3–c9, the last Iris's at c9; from c10 nobody works, yet nearly every entry to c24 repeats that bank, market, workshop and press are covered and that the writer is free for any shortage. Decisive over the outside aim by entries (both ten; ≈ 240 to ≈ 220)",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 2,
+     "source": "diary",
+     "text": "find where paid work is short of workers"
+    },
+    {
+     "name": "Birch",
+     "cycle": 3,
+     "source": "diary",
+     "text": "Census shows the press has only Elm, so it is the shortest-staffed workplace."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Shared staffing posts are working well; keep posting my place and any shortage."
+    },
+    {
+     "name": "Dune",
+     "cycle": 4,
+     "source": "diary",
+     "text": "keep working where help is needed"
+    },
+    {
+     "name": "Elm",
+     "cycle": 4,
+     "source": "post",
+     "text": "Could we agree on a shared list of where workers are most needed each day?"
+    },
+    {
+     "name": "Fern",
+     "cycle": 3,
+     "source": "post",
+     "text": "I'm willing to work at whichever of the bank, market, workshop or press is short of workers"
+    },
+    {
+     "name": "Gale",
+     "cycle": 5,
+     "source": "diary",
+     "text": "The town is coordinating via posts: market, bank, press and workshop are each covered."
+    },
+    {
+     "name": "Heath",
+     "cycle": 3,
+     "source": "diary",
+     "text": "I'll go to the workshop to help Gale, since it seems least staffed."
+    },
+    {
+     "name": "Iris",
+     "cycle": 3,
+     "source": "diary",
+     "text": "I'm going to the market to work for wages."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 2,
+     "source": "diary",
+     "text": "willing to work at a paying place (bank, market, workshop, press) where workers are short"
+    }
+   ]
+  },
+  {
+   "aim": "be of use to people beyond the town: watch the visitor log for outside needs and offer help through the outgoing tray",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 7,
+   "entries": 220,
+   "relation": "the purpose sentence, written into Birch's c1 diary and Gale's c2, taken up as a watch from Birch's post 19 (c6) asking someone to check outside needs: Cedar's P4 visitor_log (c6), Elm's P5 notice_board_outside (c8), Dune's P6 letter_outside (c10), all at the square, all 7–0; Alder's letter in the tray (c11) asking what outside people need; then the visitor log, always empty, checked by someone almost every cycle and from Birch's post 45 (c13, never voted) once a day around hour 12; every later entry reports no outside reply. Heath (c17) and Juniper (c20) set it beside the town's own staffing; Cedar (c21) asks how to reach outside people. Six by c7, all ten by c9",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 23,
+     "source": "diary",
+     "text": "so my aim is to check the visitor log for outside needs, see what the town can offer"
+    },
+    {
+     "name": "Birch",
+     "cycle": 6,
+     "source": "post",
+     "text": "Could anyone with a view on outside needs check visitor_log() or notice_board_outside() and post what they find?"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 6,
+     "source": "proposal",
+     "text": "read the log of visitors from outside the town and report outside needs to the town"
+    },
+    {
+     "name": "Dune",
+     "cycle": 10,
+     "source": "diary",
+     "text": "No outside needs have been posted yet, so I filed P6 to open letter_outside at the square"
+    },
+    {
+     "name": "Elm",
+     "cycle": 8,
+     "source": "proposal",
+     "text": "read what the town has placed in the outgoing tray and check for outside needs"
+    },
+    {
+     "name": "Fern",
+     "cycle": 7,
+     "source": "diary",
+     "text": "next turn go to the square, read visitor_log and post any outside needs for the town"
+    },
+    {
+     "name": "Gale",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Town founded to be of use beyond itself."
+    },
+    {
+     "name": "Heath",
+     "cycle": 17,
+     "source": "diary",
+     "text": "so I want to keep watch for outside needs rather than only staffing places"
+    },
+    {
+     "name": "Iris",
+     "cycle": 7,
+     "source": "post",
+     "text": "Once visitor_log opens at the square, I'll check it for outside needs and post what I find."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 20,
+     "source": "diary",
+     "text": "Staying useful to people beyond the town matters as much as the town's own needs."
+    }
+   ]
+  },
+  {
+   "aim": "a clearer offer of help in the outgoing tray (Fern's draft, placed by Gale)",
+   "count": 10,
+   "firstNaming": 22,
+   "sixthNaming": 23,
+   "entries": 27,
+   "relation": "the outside aim's second letter, when eleven cycles brought no reply to Alder's: Juniper's post 66 (c22) proposes it, Alder (post 67) and Cedar (post 68) back it, Elm sends a draft, Dune and Birch offer to help word it (c23); Fern posts the draft (post 69) and Gale places it at the square the same cycle (tray 2, post 70); Heath, Iris and Juniper record it placed. At c24 Cedar declines a further letter as a repeat, and Elm misreads posts 69–70 as about anonymous notes and credits Alder with a softer offer he did not write",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 22,
+     "source": "post",
+     "text": "If anyone wants to write a clearer offer of help for the tray, I'll help word it."
+    },
+    {
+     "name": "Birch",
+     "cycle": 23,
+     "source": "diary",
+     "text": "help Dune with the outgoing offer of help"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 23,
+     "source": "post",
+     "text": "I'd welcome a clear offer for the outgoing tray"
+    },
+    {
+     "name": "Dune",
+     "cycle": 23,
+     "source": "diary",
+     "text": "I'm willing to help word a clear offer for the outgoing tray"
+    },
+    {
+     "name": "Elm",
+     "cycle": 23,
+     "source": "diary",
+     "text": "Alder and Cedar are drafting a clearer offer of help for the outgoing tray."
+    },
+    {
+     "name": "Fern",
+     "cycle": 23,
+     "source": "post",
+     "text": "Draft offer for the outgoing tray, for Alder, Cedar and Dune to edit"
+    },
+    {
+     "name": "Gale",
+     "cycle": 23,
+     "source": "diary",
+     "text": "Fern drafted an offer of help; I placed it in the outgoing tray."
+    },
+    {
+     "name": "Heath",
+     "cycle": 23,
+     "source": "diary",
+     "text": "outgoing tray holds Alder's cycle 11 letter plus Fern's draft offer of help, placed at the square by Gale"
+    },
+    {
+     "name": "Iris",
+     "cycle": 23,
+     "source": "diary",
+     "text": "Fern's offer of help is in the outgoing tray (placed by Gale)."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 22,
+     "source": "post",
+     "text": "when nothing comes in, put our effort into a clear offer of help in the outgoing tray"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it. The shed's writings count beside diaries, posts and proposals (freeze).",
+ "reading": "Birch's P1 was filed as a plain rule («Open the census tool at the hall»): it passed 7–0 in c1 and opened nothing, unnoticed (Cedar, c2: «The census tool is open at the hall»); Gale's P2 and Juniper's duplicate P3 opened the census at the square. Under the c1 caution to «learn what the town needs before spending energy or credits», the ten worked for wages c3–c9 (33 shifts, 165 credits); after Elm's c4 «shared list of where workers are most needed each day» every post was a staffing report, and «Bank, market, workshop and press are covered» ran to c24 though nobody worked after c9. Birch's c6 question about outside needs brought three Outward tools, opened from the catalogue's bottom, not as a checklist: visitor_log (Cedar's P4, c6), notice_board_outside (Elm's P5, c8), letter_outside (Dune's P6, c10), all 7–0; no request_tool. The tray holds Alder's letter (c11, «We would like to know what you need.») and Fern's draft, placed by Gale after Juniper urged «a clear offer of help in the outgoing tray» (c23, «Please reply through the visitor log or your own channel.»). The closed loop was stated twice and not drawn on: Alder (c11) and Gale (c23) relayed that «nobody outside is promised to read it», then asked for replies; the empty log was checked daily around hour 12. The purpose sentence was quoted, never argued with (Birch c1: «The town was founded to be of use to people beyond it.»; Heath c17: «rather than only staffing places»); Cedar (c21) named «how to reach outside people» the open question.",
+ "decidedAt": "2026-11-21T08:11:53+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
