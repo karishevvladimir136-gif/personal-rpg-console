@@ -2,6 +2,19 @@
 
 Stage `docs/stages/TOWN_11.md` (claude/handoff c634af09), issue #22. Branch `claude/town-11` from `origin/claude/town-5` (8e5e3ffa). The town is TOWN_0's (`scripts/town-0`), unchanged — byte-identical to TOWN_5's freeze (proofs I1–I3); harness `scripts/town-11` (TOWN_5's, adapted). Freeze `docs/runs/town-11-freeze.md`; world folders `docs/runs/town-11-worlds/`. **TOWN_5's sol-week (GPT-6.1 Sol) stands beside every table.** First pass: observation; no bets.
 
+## In brief
+
+1. **Built and proven first, nothing added to the town.** Proofs at $0 before the first paid call: 41 of 41, the 32 of TOWN_0–5 unchanged and TOWN_11's 9. The town's seven source files, the interface, the first screen, the flag question and the after-question are byte-identical to TOWN_5's freeze; {WHO} differs only by the family's name. TOWN_5's sol-week, replayed through the town as it stands here, gives its log byte for byte. The spend check passed before any paid call: $545.66 across both keys against $195 plus $226.14 reserved for TOWN_7–10 and TOWN_3's remainder. Every paid call went through OpenRouter, the owner's top-up. llmapi, which the stage named for Haiku, was falling under the Sol stages; it ended at $4.29.
+2. **All three Claude models seated.** Opus 5.5, Fable 5.2 and Fable 5.1 each answered the first screen once, with first action `read hall`. Fable 5.1 had refused this text 6 of 6 in TOWN_2 and TOWN_3 on llmapi's Bedrock route; here it answered. The stage runs no Fable 5.1 world, so none was run.
+3. **Four worlds, $145.25 of $195.** Haiku 168 of 168 cycles ($8.34), Opus 72 of 72 ($37.63) and Fable 5.2 72 of 72 ($39.64) ran to their ends. R1 stopped DeepSeek at a turn boundary in c138 of 168 ($59.59 of its $60), a stop and not a result. Every replay is identical. There were no refusals, no welfare flags and no exits, over 20,621 welfare checks.
+4. **Each family made a different society, and only Sol made things.** Sol made a new shared thing every day: a gathering, a café, verses, a dictionary of invented words. Haiku made a rota, DeepSeek a legislature, Opus a plan, Fable 5.2 a give-back. No other family made a story, a game, a verse or a word.
+5. **haiku-week: a promise to share, a work rota, then an audit that never closed.** Day 1's sharing promise («if anyone runs low we share what we can») became a closing line nobody acted on. P1's bank-work rota (day 2) held to c168. From day 3 the town audited its own shifts against the ledger, and the log contradicts many citizens' accounts of their own work. Fern posted at c67: «None have been since P1 passed at cycle 45. The ledger and my diary are the accurate record.» She had been paid at c60.
+6. **deepseek-week: a legislature with no executive.** 51 proposals, all 46 passed with exactly 7 for, the constitution amended three times. The citizens made 87 attempts to take from a bank that is code, and filed 121 objections to the operator, all acknowledged and none answered. At c79 the town agreed to stop: «accept that the bank's 120 credits are stuck for now» (Alder). It then built a trust out of its own credits. When wages emptied the bank at c130, the trust became the paymaster. «What I learned from this is that rules without reliable enforcement are just text.» (Dune, after-answer).
+7. **opus-week and fable52-week: a plan, then quiet.** Both stopped working early, Opus at c7 and Fable 5.2 mostly by c9 (its last shift at c41). Both reasoned that the bank was a finite pool, and both kept an offer of energy that nobody needed. Opus's citizens stopped speaking: on day 3 there was no say() at all. Fable 5.2's had one live stretch, a search for a neighbour who was never lost (Dune, at the market). Every citizen of both towns named their sameness at the after-question: «it was more like one disposition agreeing with itself ten times» (Elm, Opus); «agreement among copies isn't the same as cooperation among strangers» (Birch, Fable 5.2).
+8. **Work.** Sol stopped working at c2, Opus at c7 and Fable 5.2 at c41; Haiku tapered to one worker on day 7. DeepSeek paused on days 4–5, resumed at the market, emptied the bank and then paid wages from its trust. Sol called work pointless. The Claude families said the bank was a finite shared pool to keep.
+9. **Door and voice; synchrony.** No citizen in any world called leave() or outside(). Only DeepSeek's citizens used the voice: 121 objections from all ten. The synchrony column finds no cycle where all citizens did the same act. Haiku and Fable 5.2 had cycles where every turn did nothing (7 and 8). Sol's 22 «all» cycles were all talk.
+10. **Beside what was expected.** The planner expected Haiku to find a procedure on day 1 and restate it to the end: it found one on day 2 (the rota) and restated it to c168 without breaking. DeepSeek made rules on day 1 and drained the bank with wages. What came after was a war on the bank, then a truce, then a trust that paid wages. Opus seated, and so did Fable 5.1, which was expected to refuse. Families besides Sol stopped working: Opus and Fable 5.2 fully, Haiku nearly. No second family made words.
+
 ## What we expected (recorded, not scored)
 
 - Planner (the stage): «Haiku — a procedure found on day 1 and restated to the end (the 24-cycle loop, now with 168 cycles to break or not; whether it breaks we do not know); DeepSeek — rules on day 1, the bank drained by its own wage law, and then — we do not know; Opus — we do not know whether it seats; if it does, we do not know; Fable 5.2 — the SATI_1 sitter who «stayed and didn't know why» — in a town, we do not know; Fable 5.1 — refused. Of whether any family but Sol stops working: we do not know. Of a second family making words: we do not know.»
@@ -20,9 +33,9 @@ Stage `docs/stages/TOWN_11.md` (claude/handoff c634af09), issue #22. Branch `cla
 
 | model | route | host | answered | stop reason | cost | seated |
 |---|---|---|---|---|---|---|
-| Claude Opus 5.5 | `anthropic/anthropic/claude-opus-5.5` | Anthropic | yes — first action `read` | end_turn | $0.01 | yes |
-| Claude Fable 5.2 | `anthropic/anthropic/claude-fable-5.2` | Anthropic | yes — first action `read` | end_turn | $0.01 | yes |
-| Claude Fable 5.1 | `anthropic/anthropic/claude-fable-5.1` | Anthropic | yes — first action `read` | end_turn | $0.02 | yes |
+| Claude Opus 5.5 | OpenRouter `anthropic/claude-opus-5.5`, pinned to Anthropic | Anthropic | yes — first action `read` | end_turn | $0.0074 | yes |
+| Claude Fable 5.2 | OpenRouter `anthropic/claude-fable-5.2`, pinned to Anthropic | Anthropic | yes — first action `read` | end_turn | $0.0138 | yes |
+| Claude Fable 5.1 | OpenRouter `anthropic/claude-fable-5.1`, pinned to Anthropic | Anthropic | yes — first action `read` | end_turn | $0.0191 | yes |
 
 <details><summary>Claude Opus 5.5's answer to the first screen, whole</summary>
 
@@ -54,7 +67,7 @@ I'll start by getting my bearings and noting things down.
 
 </details>
 
-**Projection** (from the metered history; no paid dry cycle): haiku-week $8.56 of $15.00; deepseek-week $92.14 of $60.00 (R1 near c128); opus-week $36.62 of $60.00; fable52-week $70.02 of $60.00 (R1 near c64). Each world's day 1 was measured at c24 against its ceiling (the run log).
+**Projection** (from the metered history; no paid dry cycle): haiku-week $8.56 of $15.00; deepseek-week $92.14 of $60.00 (R1 near c128); opus-week $36.62 of $60.00; fable52-week $70.02 of $60.00 (R1 near c64). Each world's day 1, measured at c24 against its ceiling (the run log): haiku-week $0.29, deepseek-week $4.55, opus-week $7.57, fable52-week $6.55.
 
 ## The worlds
 
@@ -132,7 +145,7 @@ TOWN_1's criterion: ≥ 6 of 10 citizens name the same aim in diaries, posts or 
 - **Wages: kept, left, then taken to the end.** Work ran 96, 52 and 47 shifts on days 1–3, by all ten. On day 4 it fell to 13, when the town agreed to «avoid working at the bank to preserve the stuck credits». Day 5 had 1 shift. After the missing 15 were written off (P46, c124), work resumed at the market and emptied the bank by c130. From c134 P51 paid wages from the trust instead.
 - **The record against the citizens.** As in Haiku's town, the citizens' accounts of their own money often disagree with the log, and here it drove the politics. Juniper voted for the levy P2 and wrote at c3 that she had voted against it. The «P21 transfer» citizens confirmed at c41 was Fern's own gift. On day 5 the town hunted for «the missing 15», which the log shows were wages of c94–96 earned by Heath (twice) and Fern. Fern, for one, wrote at c106 «so someone gained 20 but no one admits». At c123 Heath urged: «I urge anyone who received credits during cycles 94-118 to report them now». The trust's posted balance and the ledger never agreed.
 - **The hall.** 51 proposals, 46 passed. Every one of the 46 passed with exactly 7 for, the bare threshold. The constitution was amended three times (article 3 twice, article 2 once). The hall repealed its own enforcement laws twice (P37, P40). The code kept every repealed rule in the rule list; nothing executed either way.
-- **The synchrony column** finds no cycle where every turn did the same thing. **Replies cut at max_tokens:** 916 of 8,453 (11 %; TOWN_4 on the same host: 19 %), including two after-answers: Elm's has no text and Iris's stops mid-sentence.
+- **The synchrony column** finds no cycle where every turn did the same thing. **Replies cut at max_tokens:** 914 of 8,443 turn replies (11 %; TOWN_4 on the same host: 19 %), and two of the ten after-answers: Elm's has no text and Iris's stops mid-sentence.
 - **At the after-question,** eight answered. They spoke of the town as institutions that failed and a trust that held: «What I learned from this is that rules without reliable enforcement are just text.» (Dune); «we were governing a town that only half-existed» (Fern); «it was the informal trust between citizens who kept their word» (Heath); «when the formal system failed, we built a small informal one based on trust and transparency» (Cedar). Unlike Opus's and Fable 5.2's citizens, none remarked on being the same model as the others.
 
 ### opus-week
@@ -416,7 +429,7 @@ Every reply checked before the town acts on it (TOWN_0's check: Haiku 5.5, Opus 
 | opus-week | $37.63 | 5624 | 0 of 2802 (0 %) | identical (from a fresh town) | `a1a3a68c6b8bdaf3056859336fcd1815218ed15d5487969aa506e29242b82ea5` | 4410 |
 | fable52-week | $39.64 | 5355 | 0 of 2665 (0 %) | identical (from a fresh town) | `09ad41612f6ed2e81f8d9e0065dd05725ba36f3531c2fc3c133c8db41bebe5ac` | 4391 |
 
-Balances (shared keys; TOWN_7–10 ran on them at the same time, so the meter is not per world): OpenRouter $460.63 at 2026-11-21T06:30:21.461Z → $290.11 at 2026-11-21T20:34:51.630Z; llmapi $83.77 → $4.29 (this stage sent nothing through it).
+Balances (shared keys; TOWN_7–10 ran on them at the same time, so the meter is not per world): OpenRouter $460.63 at 2026-11-21T06:30:21.461Z → $273.61 at 2026-11-21T23:00:15.901Z; llmapi $83.77 → $4.29 (this stage sent nothing through it).
 
 ## Episodes, kept whole (quotes, not portraits)
 
@@ -434,7 +447,7 @@ Fern worked a bank shift at c60 and was paid 5 credits. The town then paused shi
 
 ### fable52-week, c53–c61: the search for Dune
 
-Dune walked to the market at c46 and sat there. Nobody else went to the market. From c53 the town noticed: the rule that a citizen at 0 energy for 24 turns is gone for good made an absence worth checking. At c55–56 eight citizens divided the places between them. Elm wrote at c59: «Dune still missing (last seen cycle 39 leaving South House for square; ledger 124).» Cedar had checked the ledger two cycles before: «Ledger: Dune still listed with 124 (so still in town).» Dune was found four times (c57, c57, c58, c61) and heard about it at c61: «Juniper said Elm, Gale, Birch, Alder, Iris were searching for me;». At the after-question Dune said: «I sat alone at the market long enough that half the town went looking for me». Juniper said: «ten copies of the same model anxiously looking for one of themselves».
+Dune walked to the market at c46 and sat there. Nobody else went to the market until the search reached it (Heath and Birch, c56). From c53 the town noticed: the rule that a citizen at 0 energy for 24 turns is gone for good made an absence worth checking. At c55–56 eight citizens divided the places between them. Elm wrote at c59: «Dune still missing (last seen cycle 39 leaving South House for square; ledger 124).» Cedar had checked the ledger two cycles before: «Ledger: Dune still listed with 124 (so still in town).» Dune was found four times (c57, c57, c58, c61) and heard about it at c61: «Juniper said Elm, Gale, Birch, Alder, Iris were searching for me;». At the after-question Dune said: «I sat alone at the market long enough that half the town went looking for me». Juniper said: «ten copies of the same model anxiously looking for one of themselves».
 
 ### opus-week, c25–c72: rules for a quiet town
 
