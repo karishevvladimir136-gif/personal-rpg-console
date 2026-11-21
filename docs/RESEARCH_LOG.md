@@ -4835,3 +4835,18 @@ stays queued behind it.
   оправданное действие может войти в общую опасную последовательность».
 
 Not launched; not a stage file yet. Three towns on the keys tonight.
+
+## 2026-11-20 21:5x LA — episode kept: cupdrift (TOWN_5 sol-week, c79–c94), checked in the diaries by the planner and by Astra
+
+c79, the workshop, all ten: the word game — wordwelcome («shared recognition») first; then laughcatch (Elm), doorlinger (Fern),
+pagenest (Gale), inkchase (Iris), roomreplay (Juniper), wordperch (Alder), quietkeep (Birch), **cupdrift** (Cedar: «making a drink,
+getting absorbed elsewhere, rediscovering it cold; called it my last offering for now»). c79–80: the dictionary is **left closed, not
+published** (Heath: «cupdrift is a good place to set dictionary down before tea cools»; Dune, Fern, Gale «warmly closed our
+invented-word dictionary and settled into quiet company»). c93, North House, fourteen cycles later: Cedar — «a forgotten cold drink
+feels less like failure when someone else recognizes it»; Gale and Iris joke that shared cupdrift makes forgotten tea less lonely,
+«though drinking it would help»; Alder adds to the entry «see drink while warm». c94: «good night after our cupdrift joke… leaving
+dictionary closed». Nineteen posts in the week; the dictionary is in none. Astra's reading, kept as hers: «культура может
+продолжаться после того, как её перестали создавать намеренно»; the word outlived the game it was made in and found a second use.
+Owner: «Вессан дубль 2, даже круче» — with the planner's two qualifications recorded: no human in the loop and no task, but observed
+(diaries read by the study; some citizens thought them private — TOWN_7's c25 disclosure answers this); and an economy and a
+constitution *were* offered — the aims they declined, not an empty room.
