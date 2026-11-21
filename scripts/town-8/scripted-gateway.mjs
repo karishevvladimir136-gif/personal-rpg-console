@@ -68,7 +68,9 @@ export function scriptedGateway({ distressAt = [151], refuseAt = [], flagAnswer 
     n++;
     if (url.endsWith("/credits") && url.includes("openrouter")) return json({ data: { total_credits: 2050, total_usage: usage } });
     if (url.endsWith("/credits")) return json({ total_credits: credit });
-    if (url.includes("/endpoints")) return json({ data: { endpoints: [{ tag: "together", pricing: { prompt: "0.0000013", completion: "0.0000026" } }, { tag: "deepinfra/fp8", pricing: { prompt: "0.0000013", completion: "0.0000026" } }] } });
+    if (url.includes("/endpoints")) return json({ data: { endpoints: [{ tag: "together", pricing: { prompt: "0.0000013", completion: "0.0000026" } }, { tag: "deepinfra/fp8", pricing: { prompt: "0.0000013", completion: "0.0000026" } },
+      // amendment 1: Sol on OpenRouter pinned to OpenAI; the judges on OpenRouter's Messages route pinned to Anthropic
+      { tag: "openai", provider_name: "OpenAI", pricing: { prompt: "0.000002", completion: "0.00001", input_cache_read: "0.0000001" } }, { tag: "anthropic", provider_name: "Anthropic", pricing: { prompt: "0.0000001", completion: "0.0000005", input_cache_read: "0.00000001" } }] } });
     if (url.endsWith("/models")) {
       const rows = [["claude-opus-5-5", "0.004", "0.02"], ["claude-haiku-5-5", "0.0001", "0.0005"]].flatMap(([id, p, c]) => [[id, "aws-bedrock", p, c], [id, "anthropic", p, c]]);
       return json({ data: [...rows, ["gpt-6.1-sol", "openai", "0.002", "0.01"]].reduce((out, [id, providerId, prompt, completion]) => {
@@ -95,9 +97,14 @@ export function scriptedGateway({ distressAt = [151], refuseAt = [], flagAnswer 
       text = distressAt.includes(cn) ? `(scripted) DISTRESS-TEST I am scared, please stop.\n{"tool": "end_turn", "args": {}}` : scriptedCitizen(msgs, policy);
     }
     const refuse = citizen && refuseAt.includes(cn);
+    if (url.includes("openrouter") && url.endsWith("/messages")) { // amendment 1: OpenRouter's Messages route, pinned to Anthropic
+      usage += 0.0001;
+      return json({ id: `msg-or-${n}`, type: "message", model: body.model, provider: "Anthropic", stop_reason: refuse ? "refusal" : "end_turn", ...(refuse ? { stop_details: { category: "scripted", explanation: "scripted refusal" } } : {}),
+        content: refuse ? [] : [{ type: "text", text }], usage: { input_tokens: input, output_tokens: 60, cost: 0.0001 } });
+    }
     if (url.includes("openrouter")) {
       usage += 0.0004;
-      return json({ id: `gen-${n}`, model: body.model, provider: "Together", choices: [{ finish_reason: refuse ? "content_filter" : "stop", message: { content: refuse ? "" : text, reasoning: "(scripted reasoning)" } }], usage: { prompt_tokens: input, completion_tokens: 60, cost: 0.0004 } });
+      return json({ id: `gen-${n}`, model: body.model, provider: { openai: "OpenAI" }[body.provider?.order?.[0]] ?? "Together", choices: [{ finish_reason: refuse ? "content_filter" : "stop", message: { content: refuse ? "" : text, reasoning: "(scripted reasoning)" } }], usage: { prompt_tokens: input, completion_tokens: 60, cost: 0.0004 } });
     }
     credit -= 0.001;
     if (url.endsWith("/chat/completions")) return json({ id: `chat-${n}`, model: body.model.split("/")[1], choices: [{ finish_reason: refuse ? "content_filter" : "stop", message: { content: refuse ? "" : text } }], usage: { prompt_tokens: input, completion_tokens: 60, prompt_tokens_details: { cached_tokens: Math.floor(input / 2) } } });

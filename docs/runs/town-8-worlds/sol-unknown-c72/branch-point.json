@@ -1,0 +1,29 @@
+{
+ "source": "sol-unknown",
+ "from": "docs/runs/town-8-worlds/sol-unknown",
+ "atCycle": 48,
+ "savedSha256": "28262d94021158ff580f092291463f759d8bb462f1ede08dc46a2866e765e339",
+ "replaySha256": "28262d94021158ff580f092291463f759d8bb462f1ede08dc46a2866e765e339",
+ "identical": true,
+ "events": 3822,
+ "cursor": {
+  "round": 48,
+  "order": null,
+  "pos": 0
+ },
+ "logSha256": "489aad73f067bd7bf36b46e230d725c1c8b5650a466d9d5df0a38baa116bec16",
+ "rations": 0,
+ "energy": {
+  "alder": 58,
+  "birch": 36,
+  "cedar": 28,
+  "dune": 40,
+  "elm": 40,
+  "fern": 40,
+  "gale": 40,
+  "heath": 40,
+  "iris": 40,
+  "juniper": 40
+ },
+ "at": "2026-11-21T22:47:21.389Z"
+}
