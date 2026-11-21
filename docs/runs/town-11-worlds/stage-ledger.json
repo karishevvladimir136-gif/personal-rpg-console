@@ -10,29 +10,29 @@
    }
   },
   "haiku-week": {
-   "usd": 3.8850563800000075,
-   "calls": 9896,
+   "usd": 5.489590300000011,
+   "calls": 11610,
    "byDoor": {
-    "openrouter": 3.8850563800000075
+    "openrouter": 5.489590300000011
    },
    "world": "haiku-week",
-   "cycle": 120,
+   "cycle": 144,
    "refusals": 0,
    "reserve": 0.5
   },
   "deepseek-week": {
-   "usd": 8.61661867000002,
-   "calls": 4832,
+   "usd": 10.80587582000002,
+   "calls": 5780,
    "byDoor": {
-    "openrouter": 8.61661867000002
+    "openrouter": 10.80587582000002
    },
    "world": "deepseek-week",
-   "cycle": 41,
+   "cycle": 48,
    "refusals": 0,
    "reserve": 0.5
   }
  },
- "totalUsd": 12.505964930000028,
+ "totalUsd": 16.29975600000003,
  "stopped": null,
  "balances": [
   {
@@ -229,6 +229,32 @@
     "at": "2026-11-21T10:47:50.571Z"
    },
    "at": "2026-11-21T10:47:50.571Z"
+  },
+  {
+   "label": "deepseek-week day 2 end",
+   "llmapi": {
+    "total": 4.37902079,
+    "at": "2026-11-21T11:41:08.193Z"
+   },
+   "openrouter": {
+    "total": 406.5597943550001,
+    "usage": 2093.440205645,
+    "at": "2026-11-21T11:41:08.216Z"
+   },
+   "at": "2026-11-21T11:41:08.216Z"
+  },
+  {
+   "label": "deepseek-week day 3 start",
+   "llmapi": {
+    "total": 4.37902079,
+    "at": "2026-11-21T11:41:08.652Z"
+   },
+   "openrouter": {
+    "total": 406.5327627450001,
+    "usage": 2093.467237255,
+    "at": "2026-11-21T11:41:08.675Z"
+   },
+   "at": "2026-11-21T11:41:08.675Z"
   }
  ]
 }
