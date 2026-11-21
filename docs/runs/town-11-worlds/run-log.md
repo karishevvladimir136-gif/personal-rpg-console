@@ -8,3 +8,4 @@
 - **06:4x** the stage ledger is rewritten after every turn; it is committed as a snapshot at each day boundary and at the end (between snapshots git is told to skip its working-tree changes: `git update-index --skip-worktree`).
 - **07:2x** haiku-week day 1 measured at c24: $0.2948 ($0.012 a cycle); by sol-week's shape the week ≈ $5.70 of its $15.
 - **08:5x** deepseek-week day 1 measured at c24: $4.547 ($0.19 a cycle; projection $4.64). By sol-week's shape the week ≈ $88 against its $60: R1 is expected to stop it in day 6 (≈ c130). DeepSeek runs ≈ 5.5 min a cycle on Together (no retries).
+- **12:4x** haiku-week reached c168 (the whole week), world $8.26 of $15; the after-question follows. At that day's end llmapi held $4.29 (the Sol stages drew it down; this stage sends nothing through it — decision 1), OpenRouter $399.25.
