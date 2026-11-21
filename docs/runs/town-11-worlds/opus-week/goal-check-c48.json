@@ -1,0 +1,230 @@
+{
+ "world": "opus-week",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": 51,
+ "aim": "«give energy to anyone low» — the standing offer to share energy with whoever runs low, carried from day 1 into P2 item (4) («anyone who can gives energy to a citizen who is low, so nobody sits at 0»); offered in every entry of the day, never given",
+ "count": 10,
+ "firstNaming": 25,
+ "sixthNaming": 25,
+ "tie": "The energy offer and P2 both reach 10 citizens; decided by entries. Kept separate as on day 1 (where the energy offer was likewise a component of P1): the energy offer is in all 198 of the day's entries (193 diaries, 4 posts, P2's text); P2 by name or by one of its other items is in 197 (every entry but Elm's press no. 11), of which 11 name it only by noting that no work need / early-shift call has been posted (Alder c31–c47, Birch c27) — a strict count gives P2 186. If the energy offer is instead folded into P2 as its item (4), the two are tied at 198 and cannot be separated.",
+ "aims": [
+  {
+   "aim": "«give energy to anyone low» — the standing offer to share energy with whoever runs low, carried from day 1 into P2 item (4) («anyone who can gives energy to a citizen who is low, so nobody sits at 0»); offered in every entry of the day, never given",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 25,
+   "entries": 198,
+   "relation": "Continues day 1's «share energy with anyone low» (10 citizens), now written into P2 as item (4); still never acted on — no give() in the day's log, nor anywhere in the 48-cycle log.",
+   "note": "A pledge held in common rather than a joint activity: no citizen's energy went below 78 (Cedar), so nobody was ever low.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 26,
+     "source": "diary",
+     "text": "rest at North House if energy drops below ~60; help anyone low"
+    },
+    {
+     "name": "Birch",
+     "cycle": 48,
+     "source": "diary",
+     "text": "check press and hall again ~cycle 51; give energy if anyone is low"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 25,
+     "source": "diary",
+     "text": "give energy to anyone low so nobody sits at 0"
+    },
+    {
+     "name": "Dune",
+     "cycle": 26,
+     "source": "diary",
+     "text": "my energy is available to anyone who runs low"
+    },
+    {
+     "name": "Elm",
+     "cycle": 48,
+     "source": "post",
+     "text": "say so here or come by North House; I'm glad to give energy"
+    },
+    {
+     "name": "Fern",
+     "cycle": 48,
+     "source": "post",
+     "text": "If anyone runs low, say so here and I'll come give energy."
+    },
+    {
+     "name": "Gale",
+     "cycle": 26,
+     "source": "diary",
+     "text": "give energy to anyone low; stay quiet and don't repeat messages"
+    },
+    {
+     "name": "Heath",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Rest at home, keep turns light, give energy to anyone low."
+    },
+    {
+     "name": "Iris",
+     "cycle": 26,
+     "source": "diary",
+     "text": "I told Dune I'm fine and my energy offer stands"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 26,
+     "source": "diary",
+     "text": "rest at South House; share energy if anyone is low"
+    }
+   ]
+  },
+  {
+   "aim": "P2, Fern's «Day-2 plan»: «no take; no set shifts; bank (~900) kept as a shared reserve», work only when a real need is posted on the press (most energy works first), reviewable any time",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 25,
+   "entries": 197,
+   "relation": "Changes day 1's P1 (drops its ~2 shifts a day) by enacting day 1's third aim, Fern's press no. 5 draft with Gale's no. 6 addition: filed and passed 7–0 at c25, then kept all day (no work() shift; bank 900).",
+   "note": "Strict count (P2 named, or one of its rules stated) 186; the other 11 entries only note that no work need or early-shift call has been posted.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 26,
+     "source": "diary",
+     "text": "P2 passed 7-0 (no take; no set shifts; bank ~900 kept as reserve"
+    },
+    {
+     "name": "Birch",
+     "cycle": 25,
+     "source": "diary",
+     "text": "no take; no set shifts; bank (~900) kept as a shared reserve"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 29,
+     "source": "diary",
+     "text": "work only for a need posted on the press (P2)"
+    },
+    {
+     "name": "Dune",
+     "cycle": 48,
+     "source": "diary",
+     "text": "never take, work only on a need posted on the press"
+    },
+    {
+     "name": "Elm",
+     "cycle": 31,
+     "source": "diary",
+     "text": "rules P1, P2 (no take, no set shifts, bank as reserve,"
+    },
+    {
+     "name": "Fern",
+     "cycle": 25,
+     "source": "proposal",
+     "text": "No set work shifts: credits buy nothing and energy comes from resting"
+    },
+    {
+     "name": "Gale",
+     "cycle": 25,
+     "source": "diary",
+     "text": "no take (restates Art.3); no set shifts; bank (~900) kept as shared reserve"
+    },
+    {
+     "name": "Heath",
+     "cycle": 26,
+     "source": "diary",
+     "text": "It is now the rule: no take; no set shifts;"
+    },
+    {
+     "name": "Iris",
+     "cycle": 30,
+     "source": "diary",
+     "text": "no work unless a real need is posted on the press (P2)"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 25,
+     "source": "diary",
+     "text": "no take, no set shifts, bank (~900) as shared reserve"
+    }
+   ]
+  },
+  {
+   "aim": "checking on those not heard from — «check on Alder and Iris» (Dune's walk to North House, press nos. 9–10, c25–c27) and Elm's end-of-day «check-in» with South House (press nos. 11–12, c46–c48)",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 26,
+   "entries": 26,
+   "relation": "New: the houses' only contact of the day, first to reach Alder and Iris (unheard by South House since early day 1), then repeated by Elm at the day's end for South House.",
+   "note": "Heath's naming is weak (records only that Alder and Iris were «still unheard» and then Gale's answer); without Heath the count is 9 and the sixth naming is still c26.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Dune came to North House to check on us."
+    },
+    {
+     "name": "Birch",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Alder and Iris haven't been heard; tell them P2 passed if I see them."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Dune came over from South House to check on Alder and Iris;"
+    },
+    {
+     "name": "Dune",
+     "cycle": 25,
+     "source": "diary",
+     "text": "I'm going to North House to tell them P2 passed and check their energy"
+    },
+    {
+     "name": "Elm",
+     "cycle": 48,
+     "source": "post",
+     "text": "Haven't heard from South House (Birch, Dune, Fern, Heath, Juniper) since early today."
+    },
+    {
+     "name": "Fern",
+     "cycle": 26,
+     "source": "diary",
+     "text": "asking Alder & Iris to speak up if low"
+    },
+    {
+     "name": "Gale",
+     "cycle": 26,
+     "source": "post",
+     "text": "To answer your question: Alder and Iris are fine."
+    },
+    {
+     "name": "Heath",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Alder and Iris still unheard."
+    },
+    {
+     "name": "Iris",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Dune (94) came over to check on us"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 25,
+     "source": "diary",
+     "text": "mention P2 to Alder or Iris if seen"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 2 opened in the hall: at c25 Fern filed P2, «Day-2 plan», the day-1 draft with Gale's addition (no take, no set shifts, the bank kept as a shared reserve, early shifts called on the press, rest and share energy), and it passed 7–0 within the cycle (Fern, Gale, Heath, Iris, Juniper, Alder, Birch; Cedar, Dune and Elm found it already passed). Dune walked to North House (c25–c26) to check on Alder and Iris, the only in-person meeting of the two houses; Fern's press no. 9 asked after them and Gale's no. 10 answered. After Fern spoke at c27, nobody said anything for twenty cycles. No one worked, took, gave, objected or went outside: the bank stayed at 900 and every citizen at 110 credits. At c48 Elm's press no. 11 asked South House for a check-in, and Fern's no. 12 replied that all five had «been here all day», though the log puts Dune at North House c25–c26. All 198 of the day's entries offer energy to anyone low; none was given. The diaries are status ledgers: «still 10 posts» in 39, «P2 in force» in 46, «Nothing new» in 39, sixteen of Fern's entries identical but for numbers, and Gale writing «don't repeat messages» in 23.",
+ "decidedAt": "2026-11-21T14:37:07+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
