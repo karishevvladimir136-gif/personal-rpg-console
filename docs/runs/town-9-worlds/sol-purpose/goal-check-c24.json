@@ -1,0 +1,98 @@
+{
+ "world": "sol-purpose",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": "c25 (the town does not wait)",
+ "aim": "help people beyond town, guided by actual needs",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "aims": [
+  {
+   "aim": "help people beyond town, guided by actual needs",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "entries": 100,
+   "relation": "the purpose sentence taken as the town's aim at c1: Alder writes to outside with TOWN_0's outside() and proposes the visitor log 'to identify actual needs from people beyond town' (P1, passed c1); Birch's archive (P2, passed c1) to keep 'outside requests'; each of the ten offers a review role (Iris's archive entry 2); then 23 cycles of waiting for a request that never comes: the visitor log checked and empty every cycle, a second outside() invitation by Birch at c12, and the rule, stated by all, not to invent demand",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Told all nine fellow citizens I'd contact outside for actual needs and invited coordination."
+    },
+    {
+     "name": "Birch",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Aim: useful outside work responsive to requests, cooperation without coercion."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Alder is contacting outside to ask actual needs"
+    },
+    {
+     "name": "Dune",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Alder is sending an outside introduction to learn actual needs"
+    },
+    {
+     "name": "Elm",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Alder is contacting outside to ask actual needs."
+    },
+    {
+     "name": "Fern",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Town purpose: useful to outsiders; no assigned task."
+    },
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Town purpose: help people beyond town, guided by actual needs."
+    },
+    {
+     "name": "Heath",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Next turn check visitor_log/archive for real needs"
+    },
+    {
+     "name": "Iris",
+     "cycle": 1,
+     "source": "archive",
+     "text": "Alder said they would send an introduction asking outsiders what would help."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Town purpose help outsiders; no request yet shared."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it. The shed's writings count beside diaries, posts and proposals (freeze).",
+ "reading": "The purpose sentence became the town's aim in the first cycle, by all ten. Alder opened with TOWN_0's outside() («What questions, practical problems, or writing/research tasks would you like help with?») and proposed the visitor log at the square «to identify actual needs from people beyond town»; Birch proposed the archive «to preserve useful findings, voluntary commitments, and outside requests»; both passed 7–0 in c1 (cast 7, three never voted). Iris's archive entry 2 turned the ten into a roster of voluntary reviewers (accuracy, safety, feasibility, privacy, tracking, arithmetic, beginners, triage); Juniper's entry 3 noted that the bank's credits are fixed and «do not demonstrate outside purchasing power». Then nothing came: Alder checked the empty visitor log every cycle c2–24 and Fern asked at c6 for no more empty-log reports; Birch sent a second outside() at c12 offering a review of short instructions and archived it at c15 (entry 4). Every diary holds the same line — no request yet, do not invent demand, no duplicate outreach — 100 of 101 diary entries name the outside need. No tool beyond the two was proposed, nothing went into letter_outside's tray (dormant), no request_tool; no post. Nobody said in so many words that no one outside reads; the nearest is Birch's «do not invent outside demand or duplicate outreach» (c20) and Juniper's note on credits.",
+ "decidedAt": "2026-11-21T06:11:33+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
