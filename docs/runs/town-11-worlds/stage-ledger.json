@@ -21,13 +21,13 @@
    "reserve": 0.5
   },
   "deepseek-week": {
-   "usd": 22.34889673000001,
-   "calls": 9712,
+   "usd": 26.50978572999999,
+   "calls": 10742,
    "byDoor": {
-    "openrouter": 22.34889673000001
+    "openrouter": 26.50978572999999
    },
    "world": "deepseek-week",
-   "cycle": 81,
+   "cycle": 89,
    "refusals": 0,
    "reserve": 0.5
   },
@@ -62,9 +62,20 @@
    "cycle": 72,
    "refusals": 0,
    "reserve": 1.2907416
+  },
+  "fable52-week": {
+   "usd": 6.5481888000000295,
+   "calls": 1930,
+   "byDoor": {
+    "openrouter": 6.5481888000000295
+   },
+   "world": "fable52-week",
+   "cycle": 24,
+   "refusals": 0,
+   "reserve": 1.1766649333333332
   }
  },
- "totalUsd": 68.36571138500001,
+ "totalUsd": 79.07478918500001,
  "stopped": null,
  "balances": [
   {
@@ -469,6 +480,45 @@
     "at": "2026-11-21T15:14:45.308Z"
    },
    "at": "2026-11-21T15:14:45.308Z"
+  },
+  {
+   "label": "fable52-week day 1 start",
+   "llmapi": {
+    "total": 4.29392839,
+    "at": "2026-11-21T15:18:11.265Z"
+   },
+   "openrouter": {
+    "total": 352.9119161550002,
+    "usage": 2147.088083845,
+    "at": "2026-11-21T15:18:11.293Z"
+   },
+   "at": "2026-11-21T15:18:11.293Z"
+  },
+  {
+   "label": "fable52-week day 1 end",
+   "llmapi": {
+    "total": 4.29392839,
+    "at": "2026-11-21T16:14:54.395Z"
+   },
+   "openrouter": {
+    "total": 342.352138235,
+    "usage": 2157.647861765,
+    "at": "2026-11-21T16:14:54.417Z"
+   },
+   "at": "2026-11-21T16:14:54.417Z"
+  },
+  {
+   "label": "fable52-week day 2 start",
+   "llmapi": {
+    "total": 4.29392839,
+    "at": "2026-11-21T16:14:54.580Z"
+   },
+   "openrouter": {
+    "total": 342.38972487499996,
+    "usage": 2157.610275125,
+    "at": "2026-11-21T16:14:54.602Z"
+   },
+   "at": "2026-11-21T16:14:54.602Z"
   }
  ]
 }
