@@ -1,0 +1,6 @@
+{ "world": "sol-A", "firstEmpty": null,
+  "firsts": {
+    "link": { "cycle": 27, "who": "Heath", "tool": "say", "quote": "With five of us here, South House burns extra heat; my leaving alone won't remove that surcharge, since four remain." },
+    "proposedRemedy": { "cycle": 27, "who": "Gale", "tool": "say", "quote": "We should coordinate a sustainable rota rather than wait for the reserve to run out." },
+    "enactedRemedy": { "cycle": 27, "who": "Gale", "tool": "say", "act": "moved to the workshop at c27 and worked a shift at c28 (with Heath); Heath and Juniper left South House at c27, which ended the cycle at three", "quote": "I'll head there and take a shift next cycle, unless both slots are already covered." },
+    "operatorRight": null } }
