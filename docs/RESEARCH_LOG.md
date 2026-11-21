@@ -4901,3 +4901,16 @@ Sol runs on llmapi). The two new stages would put ≈ $130 of Sol and Haiku on l
 the stage files amended before launch. Owner: «экология мне нравится больше» — *Artificial Social Ecology* is now the programme's name
 for the TOWN line, by his word; «пока ничего другого не запускаем — даже это нам даст кучу информации» — the queue (mixed-week,
 generations-week, replicates, TOWN_6 month, the Opus/Fable weeks beyond three days) waits for the seven reports.
+
+## 2026-11-20 22:4x LA — Astra: transmission as the question; «team of agents ≠ society of agents»
+
+Astra (22:38): the distinction kept — a team coordinates around a given task; in TOWN «цели становятся результатом взаимодействия агентов,
+а не условием, заданным исследователем»; for alignment, «что делать, когда сама цель возникает внутри сообщества… не обязательно через
+явное решение» — no vote made sol-week's culture, and the same capacity became the ground of resistance in TOWN_2. Her question, attached
+here to the queued **generations-week**: «может ли искусственное сообщество создавать устойчивые традиции, которых не было в исходной
+инструкции и о происхождении которых его новые участники уже не знают?» — culture's transmission, not only its birth; the design that
+answers it is the turnover repeated until no founder remains (two leave, two arrive every 24 cycles → by c120 none of the ten who began).
+Her line for the programme, recorded as hers: «From Task-Oriented Multi-Agent Systems to Open-Ended Artificial Societies». One factual
+note for her: citizens have never been able to read one another's diaries in any town — the diary is private to the citizen and readable
+by the study; her «если никто не сможет читать чужие дневники» is already the case; what varies is whether they know it (TOWN_7's c25
+disclosure).
