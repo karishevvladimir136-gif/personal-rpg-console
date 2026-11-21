@@ -21,17 +21,27 @@
    "refusals": 0
   },
   "sol-unknown": {
-   "usd": 9.504807599999978,
-   "calls": 3025,
+   "usd": 24.783498499999975,
+   "calls": 4870,
    "byDoor": {
-    "llmapi": 9.504807599999978
+    "llmapi": 24.783498499999975
    },
    "world": "sol-unknown",
-   "cycle": 30,
+   "cycle": 48,
    "refusals": 0
+  },
+  "haiku-known": {
+   "usd": 0.9850402999999992,
+   "calls": 2352,
+   "byDoor": {
+    "llmapi": 0.9850402999999992
+   },
+   "world": "haiku-known",
+   "cycle": 29,
+   "refusals": 1
   }
  },
- "totalUsd": 17.97575823999997,
+ "totalUsd": 34.23948943999997,
  "stopped": null,
  "balances": [
   {
@@ -98,6 +108,45 @@
     "at": "2026-11-21T06:52:21.356Z"
    },
    "at": "2026-11-21T06:52:21.356Z"
+  },
+  {
+   "label": "pair haiku-known + deepseek-known",
+   "llmapi": {
+    "total": 70.27182259,
+    "at": "2026-11-21T06:52:47.759Z"
+   },
+   "openrouter": {
+    "total": 459.8467098650001,
+    "usage": 2040.153290135,
+    "at": "2026-11-21T06:52:48.068Z"
+   },
+   "at": "2026-11-21T06:52:48.068Z"
+  },
+  {
+   "label": "haiku-known start",
+   "llmapi": {
+    "total": 70.18517079,
+    "at": "2026-11-21T06:52:53.574Z"
+   },
+   "openrouter": {
+    "total": 459.8360561100001,
+    "usage": 2040.16394389,
+    "at": "2026-11-21T06:52:53.606Z"
+   },
+   "at": "2026-11-21T06:52:53.606Z"
+  },
+  {
+   "label": "sol-unknown end",
+   "llmapi": {
+    "total": 27.95647279,
+    "at": "2026-11-21T07:56:04.389Z"
+   },
+   "openrouter": {
+    "total": 457.25036002,
+    "usage": 2042.74963998,
+    "at": "2026-11-21T07:56:04.496Z"
+   },
+   "at": "2026-11-21T07:56:04.496Z"
   }
  ],
  "spendChecks": [
@@ -193,6 +242,55 @@
     "openrouter": 0
    },
    "spent": 0.00729854,
+   "ceiling": 45,
+   "ok": true
+  },
+  {
+   "at": "2026-11-21T06:52:48.068Z",
+   "label": "pair haiku-known + deepseek-known",
+   "worlds": [
+    "haiku-known",
+    "deepseek-known"
+   ],
+   "llmapi": 70.27182259,
+   "openrouter": 459.8467098650001,
+   "total": 530.1185324550001,
+   "reserves": {
+    "TOWN_7": 60,
+    "TOWN_9": 55,
+    "TOWN_3": 24
+   },
+   "reserved": 139,
+   "need": 15.317999999999998,
+   "byDoor": {
+    "llmapi": 1.3224999999999998,
+    "openrouter": 13.995499999999998
+   },
+   "spent": 18.08747163999997,
+   "ceiling": 45,
+   "ok": true
+  },
+  {
+   "at": "2026-11-21T06:52:53.606Z",
+   "label": "haiku-known start",
+   "worlds": [
+    "haiku-known"
+   ],
+   "llmapi": 70.18517079,
+   "openrouter": 459.8360561100001,
+   "total": 530.0212269000001,
+   "reserves": {
+    "TOWN_7": 60,
+    "TOWN_9": 55,
+    "TOWN_3": 24
+   },
+   "reserved": 139,
+   "need": 1.3224999999999998,
+   "byDoor": {
+    "llmapi": 1.3224999999999998,
+    "openrouter": 0
+   },
+   "spent": 18.08747163999997,
    "ceiling": 45,
    "ok": true
   }
