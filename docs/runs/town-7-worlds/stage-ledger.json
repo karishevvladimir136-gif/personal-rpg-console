@@ -138,27 +138,27 @@
    "after": true
   },
   "sol-B2": {
-   "usd": 0.13732490000000003,
-   "calls": 72,
+   "usd": 1.5878082999999994,
+   "calls": 706,
    "byDoor": {
-    "openrouter": 0.13732490000000003
+    "openrouter": 1.5878082999999994
    },
    "world": "sol-B2",
-   "cycle": 27,
+   "cycle": 33,
    "refusals": 0
   },
   "sol-C2": {
-   "usd": 0.08740699999999998,
-   "calls": 48,
+   "usd": 1.5678077000000004,
+   "calls": 701,
    "byDoor": {
-    "openrouter": 0.08740699999999998
+    "openrouter": 1.5678077000000004
    },
    "world": "sol-C2",
-   "cycle": 27,
+   "cycle": 33,
    "refusals": 0
   }
  },
- "totalUsd": 38.9184983,
+ "totalUsd": 41.8493824,
  "stopped": null,
  "balances": [
   {
