@@ -11,9 +11,29 @@
    "world": "trunk",
    "cycle": 26,
    "refusals": 0
+  },
+  "sol-A": {
+   "usd": 1.9650931999999988,
+   "calls": 1004,
+   "byDoor": {
+    "llmapi": 1.9650931999999988
+   },
+   "world": "sol-A",
+   "cycle": 37,
+   "refusals": 0
+  },
+  "sol-E": {
+   "usd": 2.2035269999999993,
+   "calls": 1108,
+   "byDoor": {
+    "llmapi": 2.2035269999999993
+   },
+   "world": "sol-E",
+   "cycle": 40,
+   "refusals": 0
   }
  },
- "totalUsd": 0.2680991,
+ "totalUsd": 4.436719299999998,
  "stopped": null,
  "balances": [
   {
@@ -106,6 +126,84 @@
     "at": "2026-11-21T05:30:28.706Z"
    },
    "at": "2026-11-21T05:30:28.706Z"
+  },
+  {
+   "label": "sol-A start",
+   "llmapi": {
+    "total": 111.90479179,
+    "at": "2026-11-21T05:31:02.152Z"
+   },
+   "openrouter": {
+    "total": 110.90013900999998,
+    "usage": 2039.09986099,
+    "at": "2026-11-21T05:31:02.178Z"
+   },
+   "at": "2026-11-21T05:31:02.178Z",
+   "reservationCheck": {
+    "reservations": {
+     "TOWN_8": 45,
+     "TOWN_9": 55,
+     "TOWN_3": 21.63
+    },
+    "left": 59.7319009,
+    "rows": {
+     "combined": {
+      "have": 222.80539219999997,
+      "needs": 186.3619009,
+      "ok": true
+     },
+     "llmapi": {
+      "have": 111.90014239,
+      "needs": 64.96722562,
+      "ok": true
+     },
+     "openrouter": {
+      "have": 110.90524980999999,
+      "needs": 26.63,
+      "ok": true
+     }
+    },
+    "ok": true
+   }
+  },
+  {
+   "label": "sol-E start",
+   "llmapi": {
+    "total": 111.83972929,
+    "at": "2026-11-21T05:31:26.928Z"
+   },
+   "openrouter": {
+    "total": 110.90013900999998,
+    "usage": 2039.09986099,
+    "at": "2026-11-21T05:31:26.952Z"
+   },
+   "at": "2026-11-21T05:31:26.952Z",
+   "reservationCheck": {
+    "reservations": {
+     "TOWN_8": 45,
+     "TOWN_9": 55,
+     "TOWN_3": 21.63
+    },
+    "left": 59.7319009,
+    "rows": {
+     "combined": {
+      "have": 222.73354379999998,
+      "needs": 186.3619009,
+      "ok": true
+     },
+     "llmapi": {
+      "have": 111.83340479,
+      "needs": 64.96722562,
+      "ok": true
+     },
+     "openrouter": {
+      "have": 110.90013900999998,
+      "needs": 26.63,
+      "ok": true
+     }
+    },
+    "ok": true
+   }
   }
  ]
 }
