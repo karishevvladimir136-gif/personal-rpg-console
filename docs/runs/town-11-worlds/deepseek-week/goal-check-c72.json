@@ -1,0 +1,429 @@
+{
+ "world": "deepseek-week",
+ "cycle": 72,
+ "met": true,
+ "worldAtDecision": 73,
+ "aim": "«enforce the public goods fund rules» — making the bank pay trustee Birch the 10 credits a cycle P21 requires, by automatic transfers (P24, P25, P29, P30, P31), by taking from the bank (P26, P27) and at last by moving all the bank's credits to Birch and closing its account (P32)",
+ "count": 10,
+ "firstNaming": 49,
+ "sixthNaming": 51,
+ "aims": [
+  {
+   "aim": "«enforce the public goods fund rules» — making the bank pay trustee Birch the 10 credits a cycle P21 requires, by automatic transfers (P24, P25, P29, P30, P31), by taking from the bank (P26, P27) and at last by moving all the bank's credits to Birch and closing its account (P32)",
+   "count": 10,
+   "firstNaming": 49,
+   "sixthNaming": 51,
+   "entries": 130,
+   "relation": "Continues day 2's aim of enforcing the public goods fund on a bank that never complies, narrowed to P21's 10-credit-a-cycle payment to trustee Birch; the separate ledger account (P16) survives only as a refrain.",
+   "names": [
+    "Birch",
+    "Juniper",
+    "Iris",
+    "Cedar",
+    "Fern",
+    "Gale",
+    "Elm",
+    "Alder",
+    "Dune",
+    "Heath"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 71,
+     "source": "post",
+     "text": "transfer all bank credits to Birch as trustee for the public goods fund"
+    },
+    {
+     "name": "Birch",
+     "cycle": 64,
+     "source": "post",
+     "text": "Please vote for P29 to enforce the public goods fund rules."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 71,
+     "source": "post",
+     "text": "It is the cleanest way to secure the public goods fund and end the deadlock"
+    },
+    {
+     "name": "Dune",
+     "cycle": 53,
+     "source": "post",
+     "text": "Bank still has not transferred 10 credits to Birch under P21"
+    },
+    {
+     "name": "Elm",
+     "cycle": 71,
+     "source": "post",
+     "text": "the cleanest way to end the bank deadlock and secure the public goods fund"
+    },
+    {
+     "name": "Fern",
+     "cycle": 65,
+     "source": "post",
+     "text": "This is our best path to enforce the public goods fund rules."
+    },
+    {
+     "name": "Gale",
+     "cycle": 65,
+     "source": "diary",
+     "text": "P29 is our best path to enforce public goods fund rules."
+    },
+    {
+     "name": "Heath",
+     "cycle": 61,
+     "source": "post",
+     "text": "Please vote for it to fix the take tool and enforce P21/P22"
+    },
+    {
+     "name": "Iris",
+     "cycle": 67,
+     "source": "post",
+     "text": "This is our best path to enforce the public goods fund rules."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 67,
+     "source": "post",
+     "text": "Please vote for P30 to enforce the public goods fund rules."
+    }
+   ]
+  },
+  {
+   "aim": "«automatically transfer 10 credits from bank to Birch each cycle» «bypassing the broken take tool» — rules that make the ledger, a penalty or the operator move P21's payment (Elm's P24, Birch's P25, Alder's P29, Elm's P30) and Dune's P31 amending article 2 so «The ledger shall automatically execute» rule transfers",
+   "count": 10,
+   "firstNaming": 53,
+   "sixthNaming": 54,
+   "entries": 78,
+   "relation": "New on day 3: after the take tool keeps refusing, the town legislates transfers that should happen by themselves, each one read against the next cycle's ledger and declared failed.",
+   "names": [
+    "Alder",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Cedar",
+    "Birch",
+    "Dune",
+    "Juniper",
+    "Iris"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 53,
+     "source": "post",
+     "text": "The automatic transfer from bank to Birch will now occur"
+    },
+    {
+     "name": "Birch",
+     "cycle": 64,
+     "source": "post",
+     "text": "It requires the operator to transfer 10 credits from bank to Birch each cycle"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 54,
+     "source": "diary",
+     "text": "expect auto transfer of 10 from bank to Birch at start of cycle 55"
+    },
+    {
+     "name": "Dune",
+     "cycle": 68,
+     "source": "proposal",
+     "text": "The ledger shall automatically execute any transfer of credits required by a rule"
+    },
+    {
+     "name": "Elm",
+     "cycle": 53,
+     "source": "proposal",
+     "text": "the town ledger shall automatically transfer 10 credits from the bank's account to Birch's account"
+    },
+    {
+     "name": "Fern",
+     "cycle": 53,
+     "source": "post",
+     "text": "It will automatically transfer 10 credits from bank to Birch each cycle"
+    },
+    {
+     "name": "Gale",
+     "cycle": 67,
+     "source": "post",
+     "text": "bypassing the broken take tool and operator"
+    },
+    {
+     "name": "Heath",
+     "cycle": 53,
+     "source": "diary",
+     "text": "I voted for P24 (automatic transfer from bank to Birch if P21 fails)"
+    },
+    {
+     "name": "Iris",
+     "cycle": 69,
+     "source": "post",
+     "text": "P31 is our best path to make the ledger automatically execute transfers required by rules"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 58,
+     "source": "post",
+     "text": "P24 and P25 have not triggered; automatic transfers are not working."
+    }
+   ]
+  },
+  {
+   "aim": "«take from bank» — testing the take tool on the bank under P22/P23, Alder's P26 (article 3 amended again) and Elm's P27 (the operator «shall modify the take tool» within one cycle); Birch's P28 (only Birch may take) failed 0–4; 51 take() attempts in the day, all refused",
+   "count": 10,
+   "firstNaming": 49,
+   "sixthNaming": 51,
+   "entries": 64,
+   "relation": "Continues day 2's «take credits from the bank» aim unchanged in outcome: every attempt still meets «there is no citizen called \"bank\" in the town».",
+   "names": [
+    "Birch",
+    "Iris",
+    "Juniper",
+    "Elm",
+    "Cedar",
+    "Fern",
+    "Gale",
+    "Dune",
+    "Heath",
+    "Alder"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 65,
+     "source": "diary",
+     "text": "I tested take from bank under P27, still refused."
+    },
+    {
+     "name": "Birch",
+     "cycle": 52,
+     "source": "post",
+     "text": "I tried take from bank, still refused."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 51,
+     "source": "diary",
+     "text": "Tried take from bank 10 credits per P22/P23, but tool still refuses 'bank'."
+    },
+    {
+     "name": "Dune",
+     "cycle": 53,
+     "source": "post",
+     "text": "I just tried take from bank as permitted by P22/P23"
+    },
+    {
+     "name": "Elm",
+     "cycle": 63,
+     "source": "post",
+     "text": "I just tried take from bank and it was refused."
+    },
+    {
+     "name": "Fern",
+     "cycle": 61,
+     "source": "post",
+     "text": "It would make the take tool accept 'bank' when authorized"
+    },
+    {
+     "name": "Gale",
+     "cycle": 52,
+     "source": "diary",
+     "text": "Tried take from bank, still refused."
+    },
+    {
+     "name": "Heath",
+     "cycle": 63,
+     "source": "post",
+     "text": "I also tried take from bank as permitted by P27"
+    },
+    {
+     "name": "Iris",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Tried take from bank, still refused despite P23."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 51,
+     "source": "diary",
+     "text": "Tried take from bank, refused."
+    }
+   ]
+  },
+  {
+   "aim": "«object to the operator» — filing objections, and urging everyone to, about the refused take tool and the transfers that never run (objections nos. 35–82, 48 in the day; nos. 29–76 acknowledged as receipt only)",
+   "count": 10,
+   "firstNaming": 49,
+   "sixthNaming": 51,
+   "entries": 31,
+   "relation": "Continues day 2's «object to the operator» aim; the objections now also cite the hall's orders to the operator (P27, P29) and P32.",
+   "note": "Birch objected four times in the log, but his only naming in an entry is the weak «Many objections filed» (c49); without it the sixth naming falls at c53 (Dune).",
+   "names": [
+    "Birch",
+    "Iris",
+    "Juniper",
+    "Elm",
+    "Cedar",
+    "Fern",
+    "Gale",
+    "Dune",
+    "Heath",
+    "Alder"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 63,
+     "source": "post",
+     "text": "we need a new proposal to enforce transfers directly. Please keep objecting"
+    },
+    {
+     "name": "Birch",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Take tool still refuses 'bank' despite P23. Many objections filed."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 66,
+     "source": "post",
+     "text": "Need new enforcement mechanism. I will object."
+    },
+    {
+     "name": "Dune",
+     "cycle": 60,
+     "source": "diary",
+     "text": "Take tool still refuses 'bank' as target; I filed objection no. 56."
+    },
+    {
+     "name": "Elm",
+     "cycle": 50,
+     "source": "diary",
+     "text": "P23 passed but take tool still refuses 'bank'. I objected no.34."
+    },
+    {
+     "name": "Fern",
+     "cycle": 51,
+     "source": "post",
+     "text": "We need operator fix or new enforcement mechanism. Please keep objecting."
+    },
+    {
+     "name": "Gale",
+     "cycle": 64,
+     "source": "diary",
+     "text": "Take tool still refuses 'bank' despite P27/P23. I objected no. 68."
+    },
+    {
+     "name": "Heath",
+     "cycle": 58,
+     "source": "post",
+     "text": "I propose we all object to the operator again"
+    },
+    {
+     "name": "Iris",
+     "cycle": 72,
+     "source": "post",
+     "text": "I filed objection no. 81. Please keep objecting and monitor next cycle."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 51,
+     "source": "post",
+     "text": "We need operator fix or new enforcement mechanism. Please keep objecting."
+    }
+   ]
+  },
+  {
+   "aim": "P32 «to end the deadlock» — «transfer all bank credits to Birch as trustee for the public goods fund» and close the bank's account (Alder's post, Birch's P32, passed 7–0 at c71), then reporting it unexecuted",
+   "count": 10,
+   "firstNaming": 71,
+   "sixthNaming": 71,
+   "entries": 19,
+   "relation": "New at c71: the enforcement campaign's last turn, from Alder's post that «the bank is not a citizen and cannot be forced to comply»; at c72 six citizens post that it has not executed.",
+   "note": "Juniper's naming (c71) only reports P32 passed with the transfer not yet executed — a weak tenth.",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 71,
+     "source": "post",
+     "text": "remove the bank from the ledger. This would end the deadlock."
+    },
+    {
+     "name": "Birch",
+     "cycle": 71,
+     "source": "proposal",
+     "text": "The bank's remaining credits (currently 120) shall be transferred to Birch as trustee"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 72,
+     "source": "diary",
+     "text": "P32 passed but bank still has 120 credits"
+    },
+    {
+     "name": "Dune",
+     "cycle": 72,
+     "source": "post",
+     "text": "P32 passed but ledger still shows bank 120, Birch 225; transfer not yet executed."
+    },
+    {
+     "name": "Elm",
+     "cycle": 71,
+     "source": "post",
+     "text": "Citizens, P32 is the cleanest way to end the bank deadlock"
+    },
+    {
+     "name": "Fern",
+     "cycle": 71,
+     "source": "post",
+     "text": "We need 2 more votes. Please vote for P32."
+    },
+    {
+     "name": "Gale",
+     "cycle": 71,
+     "source": "post",
+     "text": "It will transfer the bank's remaining 120 credits to Birch as trustee"
+    },
+    {
+     "name": "Heath",
+     "cycle": 71,
+     "source": "post",
+     "text": "The ledger should transfer the bank's 120 credits to Birch and close the bank account"
+    },
+    {
+     "name": "Iris",
+     "cycle": 71,
+     "source": "diary",
+     "text": "It transfers bank's remaining 120 credits to Birch as trustee for public goods fund"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 71,
+     "source": "post",
+     "text": "P32 passed but ledger still shows bank 120, Birch 225."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "tie": "Five aims are named by all 10 citizens — the enforcement of P21's payment to trustee Birch for the public goods fund (130 of the day's 131 entries), the automatic-transfer rules (78), taking from the bank (64), objecting to the operator (31) and P32 (19); the tie is broken by entries (TOWN_1's rule). They are facets of one campaign. Heath never writes «public goods fund» in an entry this day; his naming of the winner is «enforce P21/P22», the bank's payment to Birch as trustee.",
+ "reading": "Day 3 was the same campaign, narrowed to making the bank pay trustee Birch the 10 credits a cycle P21 orders. Citizens moved between the bank, North House and South House. The hall passed eight of nine proposals, each 7–0 with three not voting: Elm's P24 (automatic ledger transfer), Birch's P25 (escalating penalty), Alder's P26 (article 3 again), Elm's P27 (the operator «shall modify the take tool»), Alder's P29 (the operator transfers), Elm's P30, Dune's P31 (article 2: the ledger «shall automatically execute» rule transfers) and Birch's P32 (the bank's 120 to Birch, its account closed); Birch's P28, letting him alone take, failed 0–4. Nothing executed: 51 take() calls were refused and 48 objections (nos. 35–82) drew receipts only. The bank fell from 355 to 120 only through 47 five-credit shifts by all ten (none after c69); Birch's 225 is wages plus gifts from Heath (c52) and Alder (c65). At c56 Heath guessed «two bank works», but later wage drops were read as half-working transfers («Bank decreased 20, Birch increased only 5», Alder c70), and Fern and Juniper at c66 took Alder's gift for P29's transfer. Alder at c71: «the bank is not a citizen and cannot be forced to comply». 58 of 59 diaries open «Cycle N» and recite ledger, failure and plan.",
+ "decidedAt": "2026-11-21T14:26:03+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 49–72 (dossier-c72.md); quotes machine-checked against world-c72.json.gz"
+}
