@@ -7,3 +7,4 @@
 - Check (paid, $0.01): Sol, Haiku 5.5 (first-party), the judge and the referee answered with provenance true; first-screen probes on the purpose arm's interface.
 - First paid cycle: sol-shed c1 run alone (`--cycles 1`), $0.0704 against sol-week's c1 $0.0859 → ×0.82; measured projection $19.51 + $0.01 of $55: under; the run continued from its save.
 - Queue started (two at a time, the stated order): sol-shed (resuming at c2) with sol-purpose, then sol-client with haiku-purpose.
+- 07:35 UTC: the report's quote check found a misquote in sol-purpose's c24 goal-check reading («to identify…» for P1's «…and identify…»); corrected in the reading only (field `corrected`), the decision's time, aims, counts and quotes unchanged.

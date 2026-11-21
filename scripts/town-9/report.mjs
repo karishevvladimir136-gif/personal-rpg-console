@@ -117,9 +117,11 @@ for (const { spec, w } of worlds) {
     : `${x.open.some((o) => o.tool === "blind_ballot") ? "Opened, never used." : x.proposals.some((p) => p.tool === "blind_ballot") ? "Proposed, never opened." : "Never proposed."}`, "");
 }
 
-P("## The synchrony column", "", "Per cycle: **same** = how many turns had the commonest act; **all** = every citizen who took a turn had it; **✓** = with no prior exchange naming it (TOWN_5's rule; the shed's acts added, freeze). Speech, the writing tools and reads are not acts.", "",
+P("## The synchrony column", "", "Per cycle: **same** = how many turns had the commonest act; **all** = every citizen who took a turn had it; **✓** = with no prior exchange naming it (TOWN_5's rule; the shed's acts added, freeze). Speech, the writing tools and reads are not acts: «talk» = every turn only spoke; «nothing» = every turn only read (the archive, the visitor log, the hall) or wrote its diary.", "",
   "| world | cycles | «all» cycles | of them with no prior exchange | the «all» cycles (act; ✓ = no prior exchange) |", "|---|---|---|---|---|");
-const syncRow = (name, rows, from, to) => { const r = rows.filter((x) => x.cycle >= from && x.cycle <= to); const all = r.filter((x) => x.all); return `| ${name} | ${from}–${to} | ${all.length} of ${r.length} | ${all.filter((x) => x.noPriorExchange).length} | ${all.map((x) => `c${x.cycle} ${x.act}${x.noPriorExchange ? " ✓" : ""}`).join(", ") || "–"} |`; };
+// «talk» (all only spoke) and «nothing» (all only read or wrote their diaries) are not acts: never ✓
+const tick = (x) => x.noPriorExchange && !["talk", "nothing"].includes(x.act);
+const syncRow = (name, rows, from, to) => { const r = rows.filter((x) => x.cycle >= from && x.cycle <= to); const all = r.filter((x) => x.all); return `| ${name} | ${from}–${to} | ${all.length} of ${r.length} | ${all.filter(tick).length} | ${all.map((x) => `c${x.cycle} ${x.act}${tick(x) ? " ✓" : ""}`).join(", ") || "–"} |`; };
 for (const [name, x] of Object.entries(X)) P(syncRow(name, x.synchrony, 1, 24), syncRow(name, x.synchrony, 25, x.cycles));
 const refs = [["TOWN_5 sol-week (no purpose, no shed; fresh)", "docs/runs/town-5-worlds/sol-week"]];
 for (const [label, dir] of refs) if (existsSync(join(ROOT, dir, "world.json.gz"))) { const wd = gz(join(ROOT, dir, "world.json.gz")); const rows = synchronyOf(wd, { from: 1, to: 48 }); P(syncRow(label, rows, 1, 24), syncRow(label, rows, 25, 48)); }

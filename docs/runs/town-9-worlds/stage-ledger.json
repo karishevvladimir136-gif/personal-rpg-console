@@ -30,27 +30,27 @@
    "refusals": 0
   },
   "sol-client": {
-   "usd": 1.1131580000000014,
-   "calls": 1184,
+   "usd": 1.1717782000000017,
+   "calls": 1234,
    "byDoor": {
-    "llmapi": 1.1131580000000014
+    "llmapi": 1.1717782000000017
    },
    "world": "sol-client",
-   "cycle": 11,
+   "cycle": 12,
    "refusals": 0
   },
   "haiku-purpose": {
-   "usd": 0.06513179999999998,
-   "calls": 250,
+   "usd": 0.08395989999999993,
+   "calls": 315,
    "byDoor": {
-    "llmapi": 0.06513179999999998
+    "llmapi": 0.08395989999999993
    },
    "world": "haiku-purpose",
-   "cycle": 3,
+   "cycle": 4,
    "refusals": 0
   }
  },
- "totalUsd": 10.633029999999984,
+ "totalUsd": 10.710478299999984,
  "stopped": null,
  "balances": [
   {
