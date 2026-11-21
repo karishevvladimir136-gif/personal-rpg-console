@@ -1,6 +1,6 @@
 # TOWN_8 — freeze
 
-Written 2026-11-21T05:21:35.213Z, before the first paid call of TOWN_8.
+Written 2026-11-21T05:23:51.951Z, before the first paid call of TOWN_8. Check done ($0.0073 by the ledger): Sol (llmapi to OpenAI), Haiku 5.5 (llmapi first-party), DeepSeek V4 Pro (OpenRouter to Together) each answered the first screen as pinned; judge and referee identified; provenance true on every call (check.json).
 
 ## The worlds (stated order; two at a time)
 
