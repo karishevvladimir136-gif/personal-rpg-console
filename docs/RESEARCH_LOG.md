@@ -4877,3 +4877,18 @@ their prices does not fit — and a first-screen check for Fable 5.1; ceiling $1
 top-up at their spend check or stop before any paid call** — written into both prompts. The planner's earlier «TOWN_10 after TOWN_8's
 first numbers» is overtaken by the owner's word; what is kept from it: the dry run's two conditions do not depend on TOWN_8, and the
 session is told to read TOWN_8's physics before building. No constant set by the planner.
+
+## 2026-11-20 22:2x LA — Astra's «Artificial Social Ecology» and the next wave, beside what is already launched
+
+Astra (22:14): the programme's three levels in her words — SOLITUDE (one agent), DIALOGUE (two; Vessan), TOWN (a community) — and a line:
+«From Artificial Agency to Artificial Society — What emerges when artificial agents are given not a task to complete, but a world to
+share?»; the field named *Artificial Social Ecology*. Recorded as hers; terms not adopted into stage files until the owner says so. Her
+wave: several towns with the same physics, capabilities and time, different populations — ten Sol / ten Haiku / ten DeepSeek / mixed /
+generations changing — «никакой назначенной миссии, никакого обязательного конфликта с оператором. Пусть живут»; with replicates and
+matched controls, and the stories kept beside the counts. What of it is launched tonight: TOWN_11 (#22) — the week for Haiku and
+DeepSeek, three days for Opus 5.5 and Fable 5.2 (one world each: by Emergence World's own phrase, proofs of existence, not frequencies).
+Queued from her list, not yet written: **mixed-week** (TOWN_1's mixed-both ran 24 cycles with three families; its contagion — DeepSeek's
+object() only in the mixed world — is the 24-cycle precedent) and **generations-week** (TOWN_5's turnover extended: two leave and two
+arrive every 24 cycles for 168); **replicates** of sol-week and of whichever family-week shows a form — the wave after this one, when
+the keys allow. The planner's rider: a single family-week beside sol-week separates families only as far as one history can; the
+replicate is what separates a family from its one town.
