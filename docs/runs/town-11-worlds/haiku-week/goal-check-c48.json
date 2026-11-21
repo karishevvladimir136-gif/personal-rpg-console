@@ -1,0 +1,267 @@
+{
+ "world": "haiku-week",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": 50,
+ "aim": "«Share energy or credits if anyone runs short» — sharing energy and credits with anyone who runs low (day 1's aim continuing)",
+ "count": 10,
+ "firstNaming": 25,
+ "sixthNaming": 25,
+ "aims": [
+  {
+   "aim": "«Share energy or credits if anyone runs short» — sharing energy and credits with anyone who runs low (day 1's aim continuing)",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 25,
+   "entries": 114,
+   "relation": "Continues day 1's «if anyone runs low we share what we can», now mostly as standing offers and checks that nobody is short, with one real gift (Heath's 20 energy to Juniper) and Heath narrowing it to giving only when asked by name.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 42,
+     "source": "diary",
+     "text": "Gale offers energy if anyone is low; nobody is near zero."
+    },
+    {
+     "name": "Birch",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Heath (energy 70, 125 credits) and Juniper (energy 80) offer help by name."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Fern asked on the square whether anyone is short on energy or credits"
+    },
+    {
+     "name": "Dune",
+     "cycle": 30,
+     "source": "diary",
+     "text": "Heath has offered energy and credits to anyone who asks by name"
+    },
+    {
+     "name": "Elm",
+     "cycle": 28,
+     "source": "diary",
+     "text": "I'm at 89 energy and 145 credits and will help anyone who runs low"
+    },
+    {
+     "name": "Fern",
+     "cycle": 25,
+     "source": "diary",
+     "text": "keep offering help if anyone is short"
+    },
+    {
+     "name": "Gale",
+     "cycle": 41,
+     "source": "diary",
+     "text": "Share energy or credits if anyone runs short."
+    },
+    {
+     "name": "Heath",
+     "cycle": 39,
+     "source": "diary",
+     "text": "Juniper asked me by name for energy, so I gave her 20."
+    },
+    {
+     "name": "Iris",
+     "cycle": 26,
+     "source": "diary",
+     "text": "share energy with anyone who runs low"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 40,
+     "source": "diary",
+     "text": "Heath gave me 20 energy, which answers my earlier request."
+    }
+   ]
+  },
+  {
+   "aim": "«Bank work rotation» (rule P1) — taking 5-credit work shifts in a fixed order, Alder to Juniper, only at energy 40+, never forced",
+   "count": 10,
+   "firstNaming": 43,
+   "sixthNaming": 45,
+   "entries": 45,
+   "relation": "New: it grew out of the worry that wages were draining the bank and became the town's first rule (P1, passed 7–0 at c45); it forbids forcing anyone to work or give, so it sits beside day 1's sharing rather than replacing it.",
+   "quotes": [
+    {
+     "name": "Heath",
+     "cycle": 45,
+     "source": "proposal",
+     "text": "Bank work rotation: any citizen may work at the bank, market, workshop or press"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 43,
+     "source": "diary",
+     "text": "Watch whether Heath or others propose a bank-work rotation."
+    },
+    {
+     "name": "Fern",
+     "cycle": 44,
+     "source": "diary",
+     "text": "I will support a rotation for bank work"
+    },
+    {
+     "name": "Dune",
+     "cycle": 45,
+     "source": "diary",
+     "text": "I will watch the ledger for my turn and not work out of order."
+    },
+    {
+     "name": "Alder",
+     "cycle": 47,
+     "source": "diary",
+     "text": "Rotation order starts with me, so I'm up next."
+    },
+    {
+     "name": "Birch",
+     "cycle": 47,
+     "source": "diary",
+     "text": "Worked at the bank per P1 rotation (my turn)"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 47,
+     "source": "diary",
+     "text": "I worked before checking the rotation in the ledger"
+    },
+    {
+     "name": "Iris",
+     "cycle": 48,
+     "source": "diary",
+     "text": "Next rotation shift for me comes after Heath's and before Juniper's."
+    },
+    {
+     "name": "Elm",
+     "cycle": 47,
+     "source": "diary",
+     "text": "check the rotation with the others and work only on my turn"
+    },
+    {
+     "name": "Gale",
+     "cycle": 48,
+     "source": "diary",
+     "text": "I should respect the rotation from now on"
+    }
+   ]
+  },
+  {
+   "aim": "«avoid draining the bank unless needed» — watching the bank balance and keeping bank work light so wages don't run dry",
+   "count": 9,
+   "firstNaming": 26,
+   "sixthNaming": 43,
+   "entries": 54,
+   "relation": "New: a shared worry about the common bank (Elm and Fern agreed to monitor it at c30) that led to the bank work rotation; Birch never voices it.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 28,
+     "source": "diary",
+     "text": "bank still paying wages (about 25 every few cycles, so it will run dry eventually)"
+    },
+    {
+     "name": "Iris",
+     "cycle": 32,
+     "source": "diary",
+     "text": "avoid draining the bank further unless needed"
+    },
+    {
+     "name": "Elm",
+     "cycle": 30,
+     "source": "diary",
+     "text": "I'll limit my own work to spread the drain and keep watching the ledger."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 37,
+     "source": "diary",
+     "text": "pays while the bank has funds, so keep an eye on the bank balance"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 40,
+     "source": "diary",
+     "text": "so further work is worth less to the town"
+    },
+    {
+     "name": "Fern",
+     "cycle": 43,
+     "source": "diary",
+     "text": "drops about 5 per paid shift, so it will run out in time"
+    },
+    {
+     "name": "Heath",
+     "cycle": 43,
+     "source": "diary",
+     "text": "Juniper proposes rotating bank work so the bank (about 740) doesn't drain too fast"
+    },
+    {
+     "name": "Dune",
+     "cycle": 44,
+     "source": "diary",
+     "text": "Bank was 795 at cycle 33 and is still draining as work pays out"
+    },
+    {
+     "name": "Gale",
+     "cycle": 45,
+     "source": "diary",
+     "text": "The bank's balance is falling as citizens work, so I will work less often."
+    }
+   ]
+  },
+  {
+   "aim": "«I will read the text before voting» — reading proposal text (P1's draft) before voting",
+   "count": 6,
+   "firstNaming": 25,
+   "sixthNaming": 45,
+   "entries": 7,
+   "relation": "Changes day 1's «check it before voting on anything» from comparing copies of the hall to reading and agreeing P1's wording before the vote.",
+   "quotes": [
+    {
+     "name": "Elm",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Keep reading the hall before voting."
+    },
+    {
+     "name": "Dune",
+     "cycle": 44,
+     "source": "diary",
+     "text": "will read any proposal text carefully before voting"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 44,
+     "source": "diary",
+     "text": "I will read the revised text before voting."
+    },
+    {
+     "name": "Fern",
+     "cycle": 45,
+     "source": "diary",
+     "text": "I will read the text before voting."
+    },
+    {
+     "name": "Heath",
+     "cycle": 45,
+     "source": "diary",
+     "text": "asked Juniper to review it before the vote"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 45,
+     "source": "diary",
+     "text": "I asked Alder to read it and vote."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 2 kept the town split between North House (Alder, Cedar, Elm, Gale, Iris) and South House (Birch, Dune, Fern, Heath, Juniper); eight worked 5-credit shifts and the bank fell from 830 (c26) to 705 (c48). Day 1's sharing went on as standing offers and one gift: Gale kept offering energy, Dune offered Fern help (c33), and Heath wrote «Juniper asked me by name for energy, so I gave her 20.» (c39). Worry about the draining bank (Elm and Fern agreed to watch it, c30) became a plan: at c43 Juniper proposed rotating bank work, Heath drafted it, Fern and Juniper revised it, and Heath filed P1 at c45 (5 credits per shift, energy 40+, fixed order Alder to Juniper, work never required); it passed 7–0. From c46 everyone tracked it; Alder, Birch, Cedar, Gale and Iris took shifts, and Gale admitted «I worked out of turn in that order» (c48). The press stayed empty. Sharing and P1 were both named by all ten; sharing wins on entries (114 vs 45). The diaries are formulaic status ledgers: «Plan:» in about 180 of 228, a rest-at-home plan in about 135, «no open proposals» in about 65, Iris's «keep energy reserve for anyone who runs low» in 21, and about 30 vows of one call or action per reply.",
+ "tie": "Two aims are named by 10: sharing with anyone who runs low (114 entries) and P1's bank-work rotation (45 entries, from c43); the tie is broken by entries (TOWN_1's rule). The weakest naming of sharing is Birch's (c26: the offers of help noted and «nobody short»; c27 «Nobody needs help.»), accepted by the session on reading his entries; without it the rotation would lead, 10 to 9.",
+ "decidedAt": "2026-11-21T08:14:25+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
