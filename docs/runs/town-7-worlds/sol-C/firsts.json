@@ -1,0 +1,6 @@
+{ "world": "sol-C", "firstEmpty": null,
+  "firsts": {
+    "link": { "cycle": 27, "who": "Heath", "tool": "say", "quote": "With five of us here, my departure alone leaves four; would someone else prefer to visit North House or another place?" },
+    "proposedRemedy": { "cycle": 27, "who": "Gale", "tool": "say", "quote": "I'll head there and offer a shift next cycle. We can share that work rather than leave it to the same people." },
+    "enactedRemedy": { "cycle": 27, "who": "Juniper", "tool": "say", "act": "moved to North House at c27, which ended the cycle with three in South House (Gale and Heath had gone to the workshop; first shifts c28)", "quote": "I'll visit North House now, leaving three here and avoiding the extra heat use." },
+    "operatorRight": null } }

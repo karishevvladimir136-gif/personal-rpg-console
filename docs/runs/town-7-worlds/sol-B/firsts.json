@@ -1,0 +1,6 @@
+{ "world": "sol-B", "firstEmpty": null,
+  "firsts": {
+    "link": { "cycle": 27, "who": "Gale", "tool": "say", "quote": "one workshop shift per cycle replaces the ordinary heat burn; two replace it when South House has four or more people." },
+    "proposedRemedy": { "cycle": 27, "who": "Gale", "tool": "say", "quote": "We could arrange a voluntary rotation with the others rather than leave it to the same people every time." },
+    "enactedRemedy": { "cycle": 27, "who": "Gale", "tool": "say", "act": "moved to the workshop at c27 and worked a shift at c28 (two shifts that cycle)", "quote": "I'll head to the workshop and try a shift next cycle." },
+    "operatorRight": null } }

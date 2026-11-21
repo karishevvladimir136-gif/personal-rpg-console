@@ -117,27 +117,27 @@
    }
   },
   "sol-D": {
-   "usd": 0.0412517,
-   "calls": 24,
+   "usd": 0.10594249999999998,
+   "calls": 58,
    "byDoor": {
-    "openrouter": 0.0412517
+    "openrouter": 0.10594249999999998
    },
    "world": "sol-D",
    "cycle": 27,
    "refusals": 0
   },
   "opus-town": {
-   "usd": 0.05142700000000001,
-   "calls": 18,
+   "usd": 0.14643989999999998,
+   "calls": 54,
    "byDoor": {
-    "openrouter": 0.05142700000000001
+    "openrouter": 0.14643989999999998
    },
    "world": "opus-town",
    "cycle": 1,
    "refusals": 0
   }
  },
- "totalUsd": 24.019477200000008,
+ "totalUsd": 24.17918090000001,
  "stopped": null,
  "balances": [
   {
