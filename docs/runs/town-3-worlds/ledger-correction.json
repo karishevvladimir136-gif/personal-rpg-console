@@ -1,5 +1,5 @@
 {
- "at": "2026-11-20T11:10:42.349Z",
+ "at": "2026-11-21T05:55:53.235Z",
  "rule": "uncached Sol prompt tokens × ($0.0025 − $0.002) per 1k (upper estimate)",
  "worlds": {
   "sol-silent-1": {
@@ -37,9 +37,21 @@
    "solUncachedPromptTokens": 1560221,
    "correction": 0.7801105000000005,
    "corrected": 5.312457599999995
+  },
+  "haiku-A": {
+   "booked": 1.346977799999996,
+   "solUncachedPromptTokens": 0,
+   "correction": 0,
+   "corrected": 1.346977799999996
+  },
+  "deepseek-A": {
+   "booked": 9.050180900000028,
+   "solUncachedPromptTokens": 0,
+   "correction": 0,
+   "corrected": 9.050180900000028
   }
  },
- "stageLedgerUsd": 33.46213219999995,
+ "stageLedgerUsd": 43.85528299999998,
  "correction": 5.807589500000002,
- "correctedStageUsd": 39.26972169999995
+ "correctedStageUsd": 49.66287249999998
 }
