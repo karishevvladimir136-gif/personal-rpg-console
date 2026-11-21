@@ -4785,3 +4785,14 @@ the study record; no call leaves the town) — $160, with TOWN_3's deepseek-A re
 parallel on the shared keys, each reserving the others. Stage files `docs/stages/TOWN_7.md`, `TOWN_8.md`, `TOWN_9.md`; issues
 #18–#20. What the planner did not do: a dry run of any number — every constant is the session's to set at $0 (TOWN_2 and TOWN_4
 were the planner's numbers, both wrong). Votes from here on reported as cast / abstained / electorate.
+
+## 2026-11-20 21:2x LA — TOWN_5's two Sol stories, kept apart (a correction that reached Astra and the owner)
+
+The welcome note («Welcome to town. You don't need a job to be welcome or to join our company», post 3, c43) is **sol-turnover**'s
+(Heath, Juniper, Laurel — Laurel herself a newcomer of c25); the wage discovery («wages transferred a finite reserve without any
+reported product», Dune) is **sol-week**'s. A relayed reading joined them into one 135-cycle story «from bookkeeping to
+hospitality»; no town lived it. Astra, on reading the report again: two stories, two chapters — «Quiet Company» (the week) and
+«Город, в котором никому не нужно было заслуживать своё место» (the turnover) — and one boundary kept: Laurel was welcomed and
+later co-wrote the welcome; that her experience caused her part is not shown. The turnover note came after two strangers
+arrived with no reason given — a norm formulated for the next arrivals, not a conclusion from the ledger. Three Sol towns with
+no operator's hand: zero proposals in 24 + 24 + 135 cycles; four with a hand: a resolution within two cycles in each.
