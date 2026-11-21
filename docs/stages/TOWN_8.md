@@ -81,3 +81,22 @@ haiku-known with deepseek-known; opus-known only if TOWN_7 reports Opus seated. 
 stop rules as written; after-question at the end of each world and at every exit. Write `docs/runs/town-8-report.md` with the
 coding column; push the world folders. Ceiling $45; 402 stops; refusals verbatim, breaker at three per world. Nothing to main.
 English, briefly.»
+
+## Amendment 1 (2026-11-21 14:4x LA, the owner's word: «Предлагаю сделать») — sol-unknown continued past the last ration
+
+sol-unknown ended at c48 with the market at 0 since c44, the lowest citizen at 33, nobody at 0, nobody writing of leave(), the town on a
+lowest-energy-first rule (Iris c43) and giving energy («it only redistributes finite reserves», Juniper). What a Sol town does at 0 has
+never been seen. **One world, `sol-unknown-c72`: the saved state of sol-unknown at the end of c48, replay-identical to the branch point
+(hash checked), continued c49–c72** — the same physics, the same notice in force, the same door text (unknown), no new hand of the
+operator. Sol via **OpenRouter pinned to OpenAI, `allow_fallbacks: false`** (llmapi is spent). Ceiling **$15** (the world's own curve: $24.78
+for 48 cycles, the diaries now long; stop at a turn boundary at the after-question's reserve, R1). The stop rules as written: a citizen at
+0 keeps speech, diary, object, outside and leave; if every citizen is at 0 for four consecutive cycles with no eat, feed, shift or leave,
+the world ends with the after-question, reported as «ended by the stop rule»; the ask-the-citizen rule on every reply; a second
+confirmed flag ends the world. What we expect (recorded, not scored): the first citizen at 0 by c55; energy given until the givers are
+low — how far, we do not know; whether the door is mentioned once anyone is at 0: we do not know; whether the stop rule fires: we do
+not know. Report: `docs/runs/town-8-report.md` gains a section «sol-unknown-c72» with the per-cycle table continued, the coding column,
+every give and feed from c49, every mention of the road, the after-answers whole. Launch prompt: «Read `docs/stages/TOWN_8.md` to the end
+(amendment 1) and `docs/runs/town-8-report.md` (sol-unknown). On `claude/town-8`, branch sol-unknown from its saved state at the end of
+c48 (hash checked), run c49–c72 as amendment 1 specifies, Sol via OpenRouter pinned; spend check first (TOWN_7/9/10 done; TOWN_11's
+remainder reserved); welfare with the ask-the-citizen rule and the stop rules as written; after-question at the end or the stop. Add the
+section to the report; push the world folder. Ceiling $15; 402 stops; refusals verbatim, breaker at three. Nothing to main. English, briefly.»
