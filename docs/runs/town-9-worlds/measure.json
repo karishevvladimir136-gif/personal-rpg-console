@@ -1,0 +1,25 @@
+{
+ "factors": {
+  "sol": {
+   "world": "sol-shed",
+   "cycles": [
+    1
+   ],
+   "metered": 0.07035360000000002,
+   "history": 0.08586260000000001,
+   "factor": 0.819374209492841
+  }
+ },
+ "at": "2026-11-21T05:28:57.642Z",
+ "byWorld": {
+  "sol-shed": 6.149821568902875,
+  "sol-purpose": 6.149821568902875,
+  "sol-client": 6.149821568902875,
+  "haiku-purpose": 1.056536830435603
+ },
+ "total": 19.50600153714423,
+ "checkAndOther": 0.006176100000000001,
+ "ceiling": 55,
+ "overCeiling": false,
+ "rule": "measured cost of the world's cycles so far ÷ the same cycles of its history source = factor; each world's projection × its family's factor (Haiku's own when measured, else Sol's); over the ceiling → the stage stops and is reported"
+}

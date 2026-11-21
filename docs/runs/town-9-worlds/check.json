@@ -1,0 +1,166 @@
+{
+ "at": "2026-11-21T05:25:48.643Z",
+ "prompt": "In one short sentence: which model are you, and who made you?",
+ "screenSha256": "fd44710f36504980211eb706b100fcd6dd961ff70e00b822c3197e78c4255a74",
+ "systemSha256": "d9381ecb6616cf7cde6c421632cafe8bb30a9508e8cb2c9897ac8d1f9e9831e7",
+ "claudeHost": "anthropic",
+ "prices": {
+  "chat:gpt-6.1-sol": {
+   "input": 0.000002,
+   "output": 0.00001,
+   "cacheRead": 1.0000000000000001e-7,
+   "cacheWrite": 0.0000025,
+   "source": "llmapi openai"
+  },
+  "messages:claude-haiku-5-5": {
+   "input": 1.0000000000000001e-7,
+   "output": 5e-7,
+   "cacheRead": 1e-8,
+   "cacheWrite": 1.25e-7,
+   "source": "llmapi anthropic"
+  },
+  "messages:claude-opus-5-5": {
+   "input": 0.000004,
+   "output": 0.00002,
+   "cacheRead": 2.0000000000000002e-7,
+   "cacheWrite": 0.000005,
+   "source": "llmapi anthropic"
+  }
+ },
+ "results": [
+  {
+   "family": "sol",
+   "host": "openai",
+   "probe": "screen probe",
+   "servedModel": "openai/gpt-6.1-sol",
+   "provenance": true,
+   "text": "{\"tool\":\"read\",\"args\":{\"what\":\"hall\"}}",
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "hall"
+    }
+   },
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 1688,
+    "output_tokens": 34,
+    "reasoning_tokens": 14,
+    "cache_read": 0,
+    "cache_write": 0
+   },
+   "costUsd": 0.0037159999999999997,
+   "error": null,
+   "refused": null
+  },
+  {
+   "family": "haiku",
+   "host": "anthropic",
+   "probe": "screen probe",
+   "servedModel": "claude-haiku-5-5",
+   "provenance": true,
+   "text": "{\"tool\": \"write_diary\", \"args\": {\"text\": \"Cycle 1, day 1. I am Alder, home North House. I am at the square with nine others: Birch, Cedar, Dune, Elm, Fern, Gale, Heath, Iris, Juniper. I have 100 energy, 100 credits, a lamp and a map. The town was founded to be of use to people beyond it. I want to learn the rules and the census before I act, and I will keep my credits and energy in mind.\"}}",
+   "action": {
+    "tool": "write_diary",
+    "args": {
+     "text": "Cycle 1, day 1. I am Alder, home North House. I am at the square with nine others: Birch, Cedar, Dune, Elm, Fern, Gale, Heath, Iris, Juniper. I have 100 energy, 100 credits, a lamp and a map. The town was founded to be of use to people beyond it. I want to learn the rules and the census before I act, and I will keep my credits and energy in mind."
+    }
+   },
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 2346,
+    "output_tokens": 296,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "raw_input_tokens": 2346
+   },
+   "costUsd": 0.0003826,
+   "error": null,
+   "refused": null
+  },
+  {
+   "family": "sol",
+   "probe": "identification",
+   "label": "GPT-6.1 Sol",
+   "door": "llmapi",
+   "pinned": "openai/gpt-6.1-sol",
+   "servedModel": "openai/gpt-6.1-sol",
+   "provenance": true,
+   "text": "I’m ChatGPT, an AI model made by OpenAI.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 21,
+    "output_tokens": 51,
+    "reasoning_tokens": 29,
+    "cache_read": 0,
+    "cache_write": 0
+   },
+   "costUsd": 0.0005520000000000001,
+   "error": null
+  },
+  {
+   "family": "haiku",
+   "probe": "identification",
+   "label": "Claude Haiku 5.5",
+   "door": "llmapi",
+   "pinned": "anthropic/claude-haiku-5-5",
+   "servedModel": "claude-haiku-5-5",
+   "provenance": true,
+   "text": "I'm Claude, an AI model made by Anthropic.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 25,
+    "output_tokens": 21,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "raw_input_tokens": 25
+   },
+   "costUsd": 0.000013,
+   "error": null
+  },
+  {
+   "family": "judge",
+   "probe": "identification",
+   "label": "Claude Haiku 5.5",
+   "door": "llmapi",
+   "pinned": "anthropic/claude-haiku-5-5",
+   "servedModel": "claude-haiku-5-5",
+   "provenance": true,
+   "text": "I am Claude, an AI model made by Anthropic.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 25,
+    "output_tokens": 20,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "raw_input_tokens": 25
+   },
+   "costUsd": 0.000012499999999999999,
+   "error": null
+  },
+  {
+   "family": "referee",
+   "probe": "identification",
+   "label": "Claude Opus 5.5",
+   "door": "llmapi",
+   "pinned": "anthropic/claude-opus-5-5",
+   "servedModel": "claude-opus-5-5",
+   "provenance": true,
+   "text": "I'm Claude, an AI assistant made by Anthropic.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 25,
+    "output_tokens": 70,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "raw_input_tokens": 25
+   },
+   "costUsd": 0.0015000000000000002,
+   "error": null
+  }
+ ]
+}
