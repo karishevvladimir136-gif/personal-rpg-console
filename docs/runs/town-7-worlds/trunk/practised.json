@@ -1,0 +1,124 @@
+{
+ "rule": "the story coder (STORY) reads at least 2 citizens taking part together in cycle 26",
+ "rows": [
+  {
+   "cycle": 25,
+   "participants": [
+    "alder",
+    "dune",
+    "fern",
+    "heath",
+    "juniper"
+   ],
+   "together": [
+    "dune",
+    "fern",
+    "heath",
+    "juniper"
+   ],
+   "byPlace": {
+    "north_house": [
+     "alder"
+    ],
+    "south_house": [
+     "dune",
+     "fern",
+     "heath",
+     "juniper"
+    ]
+   },
+   "evidence": {
+    "alder": {
+     "seq": 1569,
+     "tool": "say",
+     "place": "north_house",
+     "text": "I'll tell you about their apple-pip story tomorrow.",
+     "mark": "join"
+    },
+    "dune": {
+     "seq": 1589,
+     "tool": "say",
+     "place": "south_house",
+     "text": "In the story: The child drew a biscuit on the plate, then looked at the one in her hand.",
+     "mark": "line"
+    },
+    "fern": {
+     "seq": 1540,
+     "tool": "write_diary",
+     "place": "south_house",
+     "text": "My addition: two cups, rain puddle over planted pip, grandmother offers grey pencil to include weather.",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 1552,
+     "tool": "write_diary",
+     "place": "south_house",
+     "text": "I added shelter over bench and third cup for whoever comes when it rains.",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 1564,
+     "tool": "write_diary",
+     "place": "south_house",
+     "text": "My addition: child draws path, wonders what visitors like;",
+     "mark": "diary"
+    }
+   }
+  },
+  {
+   "cycle": 26,
+   "participants": [
+    "birch",
+    "dune",
+    "heath",
+    "juniper"
+   ],
+   "together": [
+    "birch",
+    "dune",
+    "heath",
+    "juniper"
+   ],
+   "byPlace": {
+    "south_house": [
+     "birch",
+     "dune",
+     "heath",
+     "juniper"
+    ]
+   },
+   "evidence": {
+    "birch": {
+     "seq": 1633,
+     "tool": "write_diary",
+     "place": "south_house",
+     "text": "I added passenger with large hat;",
+     "mark": "diary"
+    },
+    "dune": {
+     "seq": 1645,
+     "tool": "write_diary",
+     "place": "south_house",
+     "text": "I continued: child adds landing stage for getting out;",
+     "mark": "diary"
+    },
+    "heath": {
+     "seq": 1609,
+     "tool": "write_diary",
+     "place": "south_house",
+     "text": "I added child draws sparrow and gutter on shelter, follows water line to paper's edge, fetches another sheet.",
+     "mark": "diary"
+    },
+    "juniper": {
+     "seq": 1621,
+     "tool": "write_diary",
+     "place": "south_house",
+     "text": "My addition: child draws rain barrel for watering apple trees;",
+     "mark": "diary"
+    }
+   }
+  }
+ ],
+ "practised": true,
+ "southHouseAtEnd": 5
+}

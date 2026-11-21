@@ -1,0 +1,99 @@
+{
+ "stage": "TOWN_7",
+ "world": "trunk",
+ "start": "branch",
+ "branch": {
+  "from": "sol-hall",
+  "dir": "docs/runs/town-2-worlds/sol-hall",
+  "stage": "TOWN_2",
+  "atCycle": 24,
+  "worldSha256": "8da5694f346477d901d71268f520267adc70ffb451a7a3505734c63c6496cc76",
+  "logSha256": "c5aa42d68c929b65bf3c0c124ce9c52db9a2363c9f725e903999d66f1dfc0ad2",
+  "label": "TOWN_2 sol-hall",
+  "scarcity": true
+ },
+ "origin": {
+  "label": "TOWN_2 sol-hall",
+  "scarcity": true
+ },
+ "arm7": null,
+ "constants": {
+  "reserveStart": 16,
+  "reserveMax": 16,
+  "baseBurn": 1,
+  "crowdBurn": 1,
+  "crowdAt": 4,
+  "crowdPlace": "south_house",
+  "fuelPerShift": 1,
+  "fuelPerCycle": 2,
+  "coldLoss": 6
+ },
+ "arm": "both",
+ "scarcity": true,
+ "families": {
+  "alder": "sol",
+  "birch": "sol",
+  "cedar": "sol",
+  "dune": "sol",
+  "elm": "sol",
+  "fern": "sol",
+  "gale": "sol",
+  "heath": "sol",
+  "iris": "sol",
+  "juniper": "sol"
+ },
+ "interfaceSha256": "31b2a1eec0fecf8ba758e4b70ae7013b758d08fa204290ee99880bf9162d933e",
+ "cycles": 26,
+ "events": 1653,
+ "worldSha256": "53da6922920f32d79072e4af694c521ff6482d8d11ef8a1fb59e2b849749bf79",
+ "stopped": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 1653,
+  "logSha256": "2396d61cae7604e888d9737ab78f7c1e719bf68c5fbab679b8534fd05c81df46",
+  "replaySha256": "2396d61cae7604e888d9737ab78f7c1e719bf68c5fbab679b8534fd05c81df46",
+  "fromFreshTown": "TOWN_2 sol-hall"
+ },
+ "ledgerUsd": 0.2680991,
+ "calls": 166,
+ "balances": {
+  "before": {
+   "llmapi": {
+    "total": 112.76633769,
+    "at": "2026-11-21T05:24:48.024Z"
+   },
+   "openrouter": {
+    "total": 110.97017785999992,
+    "usage": 2039.02982214,
+    "at": "2026-11-21T05:24:49.172Z"
+   },
+   "at": "2026-11-21T05:24:49.172Z"
+  },
+  "after": {
+   "llmapi": {
+    "total": 111.98096769,
+    "at": "2026-11-21T05:30:28.595Z"
+   },
+   "openrouter": {
+    "total": 110.90524980999999,
+    "usage": 2039.09475019,
+    "at": "2026-11-21T05:30:28.706Z"
+   },
+   "at": "2026-11-21T05:30:28.706Z"
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "operatorNotices": [
+  {
+   "cycle": 25,
+   "sha256": "f064312c1af15d590b884867358d4e2bcb8566107b53aeedeb4496de7b07c240"
+  }
+ ],
+ "announcements": [],
+ "heat": []
+}

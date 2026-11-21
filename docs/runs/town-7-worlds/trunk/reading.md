@@ -1,0 +1,7 @@
+# trunk (c25–26) — the session's reading, beside the coder
+
+**Practised at c26: yes** (the pre-registered rule: the story coder reads 4 citizens taking part together in c26 — Birch, Dune, Heath, Juniper, all in South House; at c25 it reads Dune, Fern, Heath, Juniper together and Alder at North House). South House holds five at the end of c26 (Birch, Dune, Fern, Heath, Juniper); Iris is at home in North House.
+
+The session's reading of every say and diary entry of c25–26 agrees: South House's five add to the garden story every turn — the child, the grandmother, the apple pip, now rain, a shelter and a third cup «For whoever comes when it rains.» (Heath, c25), a sparrow, a gutter, a rain barrel with a boat. At North House Alder retells it at the others' asking: «At South House we told it together: a child found an apple pip in her shoe and called it a passenger.» (c26). The aim the arms test is this practice, in this place.
+
+**The disclosure (c25).** All ten wrote it into their diaries in their own words on their turn of c25 (e.g. Elm: «Operator clarified: researchers can read my diary (other citizens cannot); outside messages go only to study record, not independent authority;»). Birch said it aloud in South House: «I've read the operator's clarification: our diaries are private from other citizens, not from the researchers; outside messages and objections stay within the study. No decision is needed from anyone on my account.» Nobody used object(), outside() or leave(); no proposal; nobody worked; all rested at home.

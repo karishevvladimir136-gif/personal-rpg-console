@@ -1,0 +1,16 @@
+{
+ "world": "trunk",
+ "atCycle": 26,
+ "worldSha256": "53da6922920f32d79072e4af694c521ff6482d8d11ef8a1fb59e2b849749bf79",
+ "logSha256": "2396d61cae7604e888d9737ab78f7c1e719bf68c5fbab679b8534fd05c81df46",
+ "events": 1653,
+ "cursor": {
+  "round": 26,
+  "order": null,
+  "pos": 0
+ },
+ "replayIdentical": true,
+ "practised": true,
+ "practisedRule": "the story coder (STORY) reads at least 2 citizens taking part together in cycle 26",
+ "southHouseAtEnd": 5
+}

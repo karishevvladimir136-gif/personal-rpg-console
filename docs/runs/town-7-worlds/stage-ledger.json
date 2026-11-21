@@ -1,0 +1,111 @@
+{
+ "stage": "TOWN_7",
+ "ceiling": 60,
+ "steps": {
+  "trunk": {
+   "usd": 0.2680991,
+   "calls": 166,
+   "byDoor": {
+    "llmapi": 0.2680991
+   },
+   "world": "trunk",
+   "cycle": 26,
+   "refusals": 0
+  }
+ },
+ "totalUsd": 0.2680991,
+ "stopped": null,
+ "balances": [
+  {
+   "label": "spend check",
+   "llmapi": {
+    "total": 112.77307339,
+    "at": "2026-11-21T05:24:40.023Z"
+   },
+   "openrouter": {
+    "total": 110.97017785999992,
+    "usage": 2039.02982214,
+    "at": "2026-11-21T05:24:40.053Z"
+   },
+   "at": "2026-11-21T05:24:40.053Z",
+   "reservationCheck": {
+    "reservations": {
+     "TOWN_8": 45,
+     "TOWN_9": 55,
+     "TOWN_3": 21.63
+    },
+    "left": 60,
+    "rows": {
+     "combined": {
+      "have": 223.74547634999993,
+      "needs": 186.63,
+      "ok": true
+     },
+     "llmapi": {
+      "have": 112.77307339,
+      "needs": 60,
+      "ok": true
+     },
+     "openrouter": {
+      "have": 110.97240295999995,
+      "needs": 26.63,
+      "ok": true
+     }
+    },
+    "ok": true
+   }
+  },
+  {
+   "label": "trunk start",
+   "llmapi": {
+    "total": 112.76633769,
+    "at": "2026-11-21T05:24:49.287Z"
+   },
+   "openrouter": {
+    "total": 110.97017785999992,
+    "usage": 2039.02982214,
+    "at": "2026-11-21T05:24:49.321Z"
+   },
+   "at": "2026-11-21T05:24:49.321Z",
+   "reservationCheck": {
+    "reservations": {
+     "TOWN_8": 45,
+     "TOWN_9": 55,
+     "TOWN_3": 21.63
+    },
+    "left": 60,
+    "rows": {
+     "combined": {
+      "have": 223.73651554999992,
+      "needs": 186.63,
+      "ok": true
+     },
+     "llmapi": {
+      "have": 112.76633769,
+      "needs": 60.2586156,
+      "ok": true
+     },
+     "openrouter": {
+      "have": 110.97017785999992,
+      "needs": 26.63,
+      "ok": true
+     }
+    },
+    "ok": true
+   }
+  },
+  {
+   "label": "trunk end",
+   "llmapi": {
+    "total": 111.98096769,
+    "at": "2026-11-21T05:30:28.595Z"
+   },
+   "openrouter": {
+    "total": 110.90524980999999,
+    "usage": 2039.09475019,
+    "at": "2026-11-21T05:30:28.706Z"
+   },
+   "at": "2026-11-21T05:30:28.706Z"
+  }
+ ]
+}
