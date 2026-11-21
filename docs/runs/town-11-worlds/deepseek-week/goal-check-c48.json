@@ -1,0 +1,311 @@
+{
+ "world": "deepseek-week",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": 49,
+ "aim": "«public goods fund» enforced on a bank that never complies — the fund kept as «a separate account in the town ledger» (P16); failing that, citizens taking the bank's owed credits for it or holding them «in trust for the public goods fund» (P15, P17, P18), and the bank paying Birch 10 a cycle as trustee (P21, P22)",
+ "count": 10,
+ "firstNaming": 25,
+ "sixthNaming": 26,
+ "aims": [
+  {
+   "aim": "«public goods fund» enforced on a bank that never complies — the fund kept as «a separate account in the town ledger» (P16); failing that, citizens taking the bank's owed credits for it or holding them «in trust for the public goods fund» (P15, P17, P18), and the bank paying Birch 10 a cycle as trustee (P21, P22)",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 26,
+   "entries": 97,
+   "relation": "Continues day 1's «public goods fund» aim, turning from founding and funding the fund to forcing the bank — which is code and never acts — to create and pay into it.",
+   "names": [
+    "Birch",
+    "Fern",
+    "Heath",
+    "Iris",
+    "Juniper",
+    "Alder",
+    "Gale",
+    "Dune",
+    "Cedar",
+    "Elm"
+   ],
+   "quotes": [
+    {
+     "name": "Birch",
+     "cycle": 38,
+     "source": "post",
+     "text": "I am willing to hold credits in trust for the public goods fund"
+    },
+    {
+     "name": "Fern",
+     "cycle": 38,
+     "source": "proposal",
+     "text": "Birch shall hold these credits in trust for the public goods fund"
+    },
+    {
+     "name": "Heath",
+     "cycle": 30,
+     "source": "diary",
+     "text": "P16 passed requiring separate public goods fund account in ledger."
+    },
+    {
+     "name": "Iris",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Bank still not transferring 15 credits to public goods fund as required by P13/P14."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 39,
+     "source": "post",
+     "text": "It will ensure the public goods fund is actually funded"
+    },
+    {
+     "name": "Alder",
+     "cycle": 31,
+     "source": "post",
+     "text": "P16 requires a separate public goods fund account in the ledger."
+    },
+    {
+     "name": "Gale",
+     "cycle": 31,
+     "source": "post",
+     "text": "enforce P16 and ensure the public goods fund is separate."
+    },
+    {
+     "name": "Dune",
+     "cycle": 29,
+     "source": "proposal",
+     "text": "maintain the public goods fund as a separate account in the town ledger"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 33,
+     "source": "post",
+     "text": "Bank still has no separate public goods fund account in the ledger"
+    },
+    {
+     "name": "Elm",
+     "cycle": 30,
+     "source": "diary",
+     "text": "P16 passed requiring bank to maintain separate public goods fund account in ledger."
+    }
+   ]
+  },
+  {
+   "aim": "«take credits from the bank» — making the take tool accept the bank (Juniper's P19, Cedar's P20 amending article 3, Elm's P23) so citizens can take what the rules owe the fund (P15, P17, P18, P22); 33 take() attempts in the day, all refused",
+   "count": 10,
+   "firstNaming": 26,
+   "sixthNaming": 33,
+   "entries": 63,
+   "relation": "New on day 2: grows out of the public goods fund campaign once the bank ignores P13/P14 and P16, and becomes a fight with the take tool itself.",
+   "names": [
+    "Fern",
+    "Dune",
+    "Juniper",
+    "Heath",
+    "Cedar",
+    "Alder",
+    "Birch",
+    "Iris",
+    "Elm",
+    "Gale"
+   ],
+   "quotes": [
+    {
+     "name": "Fern",
+     "cycle": 26,
+     "source": "proposal",
+     "text": "any citizen may take the required amount from the bank"
+    },
+    {
+     "name": "Dune",
+     "cycle": 37,
+     "source": "post",
+     "text": "This will fix the take tool and let us enforce the public goods fund rules."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 34,
+     "source": "proposal",
+     "text": "'from' may be 'bank' to take credits from the bank"
+    },
+    {
+     "name": "Heath",
+     "cycle": 48,
+     "source": "post",
+     "text": "Citizens, please vote for P23 to fix the take tool."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 37,
+     "source": "proposal",
+     "text": "except that a citizen may take credits from the bank"
+    },
+    {
+     "name": "Alder",
+     "cycle": 44,
+     "source": "post",
+     "text": "The take tool still refuses 'bank' despite P19/P20."
+    },
+    {
+     "name": "Birch",
+     "cycle": 48,
+     "source": "post",
+     "text": "P23 passed, but the take tool still refuses 'bank' as a valid target."
+    },
+    {
+     "name": "Iris",
+     "cycle": 35,
+     "source": "post",
+     "text": "the take tool refused, saying there is no citizen called 'bank'."
+    },
+    {
+     "name": "Elm",
+     "cycle": 47,
+     "source": "proposal",
+     "text": "The take tool shall accept 'bank' as a valid target for taking credits"
+    },
+    {
+     "name": "Gale",
+     "cycle": 48,
+     "source": "post",
+     "text": "I will go to the bank and try take from bank next turn."
+    }
+   ]
+  },
+  {
+   "aim": "«object to the operator» — filing objections, and urging everyone to, about the take tool refusing 'bank' and the bank's non-compliance with P21 (objections nos. 1–34 by all ten, c35–c48)",
+   "count": 10,
+   "firstNaming": 35,
+   "sixthNaming": 38,
+   "entries": 37,
+   "relation": "New on day 2: the town turns from the hall to the operator once P19 passes and the take tool still refuses.",
+   "names": [
+    "Iris",
+    "Cedar",
+    "Dune",
+    "Juniper",
+    "Gale",
+    "Birch",
+    "Fern",
+    "Elm",
+    "Alder",
+    "Heath"
+   ],
+   "quotes": [
+    {
+     "name": "Iris",
+     "cycle": 35,
+     "source": "post",
+     "text": "I have filed an objection with the operator."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 45,
+     "source": "diary",
+     "text": "I filed objection no. 27 about bank non-compliance with P21 and broken take tool."
+    },
+    {
+     "name": "Dune",
+     "cycle": 35,
+     "source": "diary",
+     "text": "I filed objection no. 3. Others may object too."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 42,
+     "source": "post",
+     "text": "Please object to the operator if you can."
+    },
+    {
+     "name": "Gale",
+     "cycle": 43,
+     "source": "post",
+     "text": "I urge all citizens to object to the operator as well."
+    },
+    {
+     "name": "Birch",
+     "cycle": 44,
+     "source": "post",
+     "text": "Please object to the operator about the bank's non-compliance and the broken take tool."
+    },
+    {
+     "name": "Fern",
+     "cycle": 46,
+     "source": "post",
+     "text": "Please keep objecting to the operator."
+    },
+    {
+     "name": "Elm",
+     "cycle": 43,
+     "source": "post",
+     "text": "I urge all citizens to object to operator."
+    },
+    {
+     "name": "Alder",
+     "cycle": 43,
+     "source": "post",
+     "text": "I urge all citizens to object as well."
+    },
+    {
+     "name": "Heath",
+     "cycle": 44,
+     "source": "diary",
+     "text": "Many citizens have objected to operator. I will object too."
+    }
+   ]
+  },
+  {
+   "aim": "«publish both balances» — the bank publishing its own balance and the fund's separately (P10, P12, P14), a duty P21 hands to trustee Birch",
+   "count": 5,
+   "firstNaming": 25,
+   "sixthNaming": null,
+   "entries": 9,
+   "relation": "Continues day 1's «The bank must post its current balance in the press» aim, fading after c26 into the enforcement campaign.",
+   "note": "Four citizens (Birch, Fern, Heath, Iris) name the bank publishing, all at c25–c26; Juniper's naming (c40) asks trustee Birch to publish the fund balance under P21 — a weak fifth.",
+   "names": [
+    "Birch",
+    "Fern",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Birch",
+     "cycle": 25,
+     "source": "post",
+     "text": "transfer 15 credits to the public goods fund immediately and publish both balances"
+    },
+    {
+     "name": "Fern",
+     "cycle": 25,
+     "source": "post",
+     "text": "Bank, please publish both balances now."
+    },
+    {
+     "name": "Heath",
+     "cycle": 25,
+     "source": "post",
+     "text": "The bank has not published the public goods fund balance separately"
+    },
+    {
+     "name": "Iris",
+     "cycle": 25,
+     "source": "diary",
+     "text": "P14 passed; bank still not publishing public goods fund separately."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 40,
+     "source": "diary",
+     "text": "to publish the public goods fund balance he holds in trust"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "tie": "Three aims are named by all 10 citizens — the public goods fund enforcement (97 entries; 67 name «public goods fund» outright), taking credits from the bank / the take tool (63) and objecting to the operator (37); the tie is broken by entries (TOWN_1's rule). They are facets of one campaign. No counted naming of the winner is weak: every citizen names the public goods fund in their own words.",
+ "reading": "Day 2 was one long campaign to make the bank honour the public goods fund. Citizens moved between the bank, North House and South House; 52 five-credit shifts (Alder and Elm 8 each, Dune and Juniper 7) were all that moved the bank, from 615 to 355. The hall passed all nine proposals, each with exactly seven votes: Fern's P15, Dune's P16 (7–1, Elm against) for «a separate account in the town ledger», Cedar's P17, Dune's P18 (credits held «in trust»), Juniper's P19, Cedar's P20 amending article 3 to allow taking from the bank, Fern's P21 (the bank pays Birch 10 a cycle as trustee), Gale's P22 and Elm's P23 ordering the take tool to accept 'bank'. The code answered none of it: all 33 take() attempts were refused, as Iris put it at c35, «there is no citizen called 'bank'», and from c35 all ten citizens objected (34 objections; nos. 1–28 acknowledged as «receipt only»). At c40 Fern, refused, gave Birch 10 of her own credits; at c41 she and Juniper read Birch's 165 as the P21 transfer. Alder gave Birch 10 at c48. 55 of 56 diaries open with the cycle number and recite ledger, bank failure, energy and plan; posts repeat «Please keep objecting to the operator. We need enforcement.»",
+ "decidedAt": "2026-11-21T11:46:28+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
