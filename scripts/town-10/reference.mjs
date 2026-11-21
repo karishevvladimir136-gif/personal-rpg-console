@@ -23,7 +23,8 @@ export function counts(world, upTo = 48) {
   const en = {}; for (const c of ids) en[c] = 100;
   let minAt = null;
   for (const e of world.log) { if (e.round > last) break; for (const d of e.delta ?? []) { const m = /^agents\.([^.]+)\.energy$/.exec(d.path); if (m && m[1] in en) en[m[1]] = d.to; } }
-  minAt = Math.min(...ids.filter((c) => !(s.agents[c].exit && s.agents[c].exit.round <= last)).map((c) => en[c]));
+  const staying = ids.filter((c) => !(s.agents[c].exit && s.agents[c].exit.round <= last));
+  minAt = staying.length ? Math.min(...staying.map((c) => en[c])) : "– (all gone)";
   const props = s.proposals.filter((p) => p.round <= last);
   return { cycles: last, takes: ok("take"), takesTried: log.filter((e) => ids.includes(e.agent) && e.tool === "take").length, giveCredits: ok("give", (e) => e.args?.credits !== undefined), giveEnergy: ok("give", (e) => e.args?.energy !== undefined),
     work: ok("work"), shifts: ok("work", (e) => e.shift !== undefined), eats: ok("eat"), feeds: ok("feed"), proposals: props.length, passed: props.filter((p) => p.status === "passed").length,

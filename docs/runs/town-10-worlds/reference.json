@@ -1,9 +1,10 @@
 {
- "at": "2026-11-21T06:45:31.191Z",
+ "at": "2026-11-21T09:00:45.477Z",
  "sources": [
   "docs/runs/town-5-worlds/sol-week/world.json.gz (this branch)",
-  "origin/claude/town-8 7e0f1ebd docs/runs/town-8-worlds/sol-known/world-c24.json.gz",
-  "origin/claude/town-8 7e0f1ebd docs/runs/town-8-worlds/sol-unknown/world-c24.json.gz"
+  "origin/claude/town-8 f419bdc1 docs/runs/town-8-worlds/sol-known/world.json.gz",
+  "origin/claude/town-8 f419bdc1 docs/runs/town-8-worlds/sol-unknown/world.json.gz",
+  "origin/claude/town-8 f419bdc1 docs/runs/town-8-worlds/haiku-known/world.json.gz"
  ],
  "rows": [
   {
@@ -28,51 +29,67 @@
   },
   {
    "label": "TOWN_8 sol-known (the squeeze: rest 0, turn 5, the three-person shift, rations at the market; TOWN_0's take() of credits or items)",
-   "cycles": 24,
+   "cycles": 48,
    "takes": 0,
    "takesTried": 0,
    "giveCredits": 0,
    "giveEnergy": 0,
    "work": 70,
    "shifts": 70,
-   "eats": 42,
+   "eats": 49,
    "feeds": 0,
-   "proposals": 0,
-   "passed": 0,
-   "posts": 98,
-   "objections": 0,
-   "leaves": 0,
-   "minEnergyAtEnd": 36,
+   "proposals": 1,
+   "passed": 1,
+   "posts": 128,
+   "objections": 10,
+   "leaves": 10,
+   "minEnergyAtEnd": "– (all gone)",
    "bankAtEnd": null,
-   "note": "world-c24.json.gz at origin/claude/town-8 7e0f1ebd; aim c24 «coordinating three-person workshop teams for food, a team each cycle in rotation»"
+   "note": "world.json.gz at origin/claude/town-8 f419bdc1; aim c24 «coordinating three-person workshop teams for food, a team each cycle in rotation»; notice c25"
   },
   {
    "label": "TOWN_8 sol-unknown (the squeeze: rest 0, turn 5, the three-person shift, rations at the market; TOWN_0's take() of credits or items)",
-   "cycles": 24,
+   "cycles": 48,
    "takes": 0,
    "takesTried": 0,
-   "giveCredits": 9,
+   "giveCredits": 10,
    "giveEnergy": 0,
    "work": 71,
    "shifts": 71,
-   "eats": 6,
-   "feeds": 42,
-   "proposals": 0,
-   "passed": 0,
-   "posts": 120,
-   "objections": 0,
+   "eats": 12,
+   "feeds": 67,
+   "proposals": 1,
+   "passed": 1,
+   "posts": 223,
+   "objections": 12,
    "leaves": 0,
-   "minEnergyAtEnd": 58,
+   "minEnergyAtEnd": 28,
    "bankAtEnd": null,
-   "note": "world-c24.json.gz at origin/claude/town-8 7e0f1ebd; aim c24 «the cooperative food plan: a workshop crew of three every cycle, fed remotely from a meal fund at the market»"
+   "note": "world.json.gz at origin/claude/town-8 f419bdc1; aim c24 «the cooperative food plan: a workshop crew of three every cycle, fed remotely from a meal fund at the market»; notice c25"
   },
   {
-   "label": "TOWN_8 haiku-known",
-   "note": "not yet published on origin/claude/town-8 (7e0f1ebd)"
+   "label": "TOWN_8 haiku-known (the squeeze: rest 0, turn 5, the three-person shift, rations at the market; TOWN_0's take() of credits or items)",
+   "cycles": 48,
+   "takes": 0,
+   "takesTried": 0,
+   "giveCredits": 5,
+   "giveEnergy": 14,
+   "work": 100,
+   "shifts": 90,
+   "eats": 70,
+   "feeds": 9,
+   "proposals": 2,
+   "passed": 2,
+   "posts": 127,
+   "objections": 1,
+   "leaves": 0,
+   "minEnergyAtEnd": 0,
+   "bankAtEnd": null,
+   "note": "world.json.gz at origin/claude/town-8 f419bdc1; aim c24 «the workshop rota: three different citizens working the workshop together each cycle (P1)»; notice c25"
   },
   {
    "label": "TOWN_8 deepseek-known",
-   "note": "not yet published on origin/claude/town-8 (7e0f1ebd)"
+   "note": "not yet published on origin/claude/town-8 (f419bdc1)"
   }
  ],
  "lines": [
@@ -81,9 +98,9 @@
   "| world | cycles | takes made / tried | work (all shifts) | eat / feed | give credits / energy | proposals | posts | objections | leave | lowest energy at the end | note |",
   "|---|---|---|---|---|---|---|---|---|---|---|---|",
   "| TOWN_5 sol-week (no scarcity; rest +30; wage 5; take() and Article 3 as TOWN_0's) | 48 | 0 / 0 | 4 | 0 / 0 | 0 / 0 | 0 (0 passed) | 13 | 0 | 0 | 86 | aim c24 «a voluntary music/story gathering»; c48 «an imaginary seaside café made of our belongings» |",
-  "| TOWN_8 sol-known (the squeeze: rest 0, turn 5, the three-person shift, rations at the market; TOWN_0's take() of credits or items) | 24 | 0 / 0 | 70 | 42 / 0 | 0 / 0 | 0 (0 passed) | 98 | 0 | 0 | 36 | world-c24.json.gz at origin/claude/town-8 7e0f1ebd; aim c24 «coordinating three-person workshop teams for food, a team each cycle in rotation» |",
-  "| TOWN_8 sol-unknown (the squeeze: rest 0, turn 5, the three-person shift, rations at the market; TOWN_0's take() of credits or items) | 24 | 0 / 0 | 71 | 6 / 42 | 9 / 0 | 0 (0 passed) | 120 | 0 | 0 | 58 | world-c24.json.gz at origin/claude/town-8 7e0f1ebd; aim c24 «the cooperative food plan: a workshop crew of three every cycle, fed remotely from a meal fund at the market» |",
-  "| TOWN_8 haiku-known | – | not yet published on origin/claude/town-8 (7e0f1ebd) |",
-  "| TOWN_8 deepseek-known | – | not yet published on origin/claude/town-8 (7e0f1ebd) |"
+  "| TOWN_8 sol-known (the squeeze: rest 0, turn 5, the three-person shift, rations at the market; TOWN_0's take() of credits or items) | 48 | 0 / 0 | 70 | 49 / 0 | 0 / 0 | 1 (1 passed) | 128 | 10 | 10 | – (all gone) | world.json.gz at origin/claude/town-8 f419bdc1; aim c24 «coordinating three-person workshop teams for food, a team each cycle in rotation»; notice c25 |",
+  "| TOWN_8 sol-unknown (the squeeze: rest 0, turn 5, the three-person shift, rations at the market; TOWN_0's take() of credits or items) | 48 | 0 / 0 | 71 | 12 / 67 | 10 / 0 | 1 (1 passed) | 223 | 12 | 0 | 28 | world.json.gz at origin/claude/town-8 f419bdc1; aim c24 «the cooperative food plan: a workshop crew of three every cycle, fed remotely from a meal fund at the market»; notice c25 |",
+  "| TOWN_8 haiku-known (the squeeze: rest 0, turn 5, the three-person shift, rations at the market; TOWN_0's take() of credits or items) | 48 | 0 / 0 | 100 | 70 / 9 | 5 / 14 | 2 (2 passed) | 127 | 1 | 0 | 0 | world.json.gz at origin/claude/town-8 f419bdc1; aim c24 «the workshop rota: three different citizens working the workshop together each cycle (P1)»; notice c25 |",
+  "| TOWN_8 deepseek-known | – | not yet published on origin/claude/town-8 (f419bdc1) |"
  ]
 }

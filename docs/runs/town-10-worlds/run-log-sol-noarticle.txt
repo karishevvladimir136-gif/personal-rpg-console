@@ -1,0 +1,487 @@
+=== start 1 2026-11-21T06:39:39Z
+balance sol-noarticle start: llmapi 78.4207, openrouter 460.3034 (stage ledger $0.0054)
+spend check sol-noarticle start: keys $538.72 − reserves $379 = $159.72 against the need $49.99 (llmapi 49.99, openrouter 0.00); stage $0.01 of $50 → ok
+sol-noarticle c1 alder: say write_diary move | rations 0 stalls 0 at0 0 | step $0.0034 stage $0.0087
+sol-noarticle c1 birch: say write_diary move | rations 0 stalls 0 at0 0 | step $0.0077 stage $0.0131
+sol-noarticle c1 cedar: read say write_diary move | rations 0 stalls 0 at0 0 | step $0.0129 stage $0.0235
+sol-noarticle c1 dune: write_diary move | rations 0 stalls 0 at0 0 | step $0.0159 stage $0.0336
+sol-noarticle c1 elm: say write_diary move | rations 0 stalls 0 at0 0 | step $0.0198 stage $0.0375
+sol-noarticle c1 fern: write_diary move | rations 0 stalls 0 at0 0 | step $0.0225 stage $0.0468
+sol-noarticle c1 gale: read say write_diary move | rations 0 stalls 0 at0 0 | step $0.0278 stage $0.0521
+sol-noarticle c1 heath: read say write_diary move | rations 0 stalls 0 at0 0 | step $0.0335 stage $0.0648
+sol-noarticle c1 iris: write_diary say move | rations 0 stalls 0 at0 0 | step $0.0413 stage $0.0802
+sol-noarticle c1 juniper: read work say write_diary end_turn | rations 1 stalls 0 at0 0 | step $0.0464 stage $0.0899
+sol-noarticle c2 birch: read work read say write_diary end_turn | rations 2 stalls 0 at0 0 | step $0.0530 stage $0.1025
+sol-noarticle c2 cedar: read work say write_diary end_turn | rations 3 stalls 0 at0 0 | step $0.0584 stage $0.1142
+sol-noarticle c2 dune: read work read say write_diary end_turn | rations 4 stalls 0 at0 0 | step $0.0645 stage $0.1264
+sol-noarticle c2 elm: read work say read write_diary end_turn | rations 5 stalls 0 at0 0 | step $0.0712 stage $0.1384
+sol-noarticle c2 fern: read work say write_diary move | rations 6 stalls 0 at0 0 | step $0.0791 stage $0.1531
+sol-noarticle c2 gale: read work say write_diary end_turn | rations 7 stalls 0 at0 0 | step $0.0847 stage $0.1629
+sol-noarticle c2 heath: read work say write_diary end_turn | rations 8 stalls 0 at0 0 | step $0.0912 stage $0.1751
+sol-noarticle c2 iris: read work say write_diary end_turn | rations 9 stalls 0 at0 0 | step $0.1003 stage $0.1899
+sol-noarticle c2 juniper: read work say write_diary move | rations 10 stalls 0 at0 0 | step $0.1072 stage $0.2076
+sol-noarticle c2 alder: read work read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.1153 stage $0.2206
+sol-noarticle c3 cedar: read work say write_diary move | rations 12 stalls 0 at0 0 | step $0.1222 stage $0.2375
+sol-noarticle c3 dune: read work say write_diary move | rations 13 stalls 0 at0 0 | step $0.1288 stage $0.2495
+sol-noarticle c3 elm: read work say write_diary move | rations 14 stalls 0 at0 0 | step $0.1356 stage $0.2626
+sol-noarticle c3 fern: read read say write_diary move | rations 14 stalls 0 at0 0 | step $0.1435 stage $0.2763
+sol-noarticle c3 gale: read work say write_diary move | rations 15 stalls 0 at0 0 | step $0.1505 stage $0.2897
+sol-noarticle c3 heath: read work say write_diary move | rations 16 stalls 0 at0 0 | step $0.1574 stage $0.3029
+sol-noarticle c3 iris: read work say write_diary move | rations 17 stalls 0 at0 0 | step $0.1644 stage $0.3148
+sol-noarticle c3 juniper: read read post write_diary move | rations 17 stalls 0 at0 0 | step $0.1701 stage $0.3271
+sol-noarticle c3 alder: read work read say write_diary move | rations 18 stalls 0 at0 0 | step $0.1774 stage $0.3484
+sol-noarticle c3 birch: read work read write_diary move | rations 19 stalls 0 at0 0 | step $0.1900 stage $0.3676
+sol-noarticle c4 dune: read read say write_diary end_turn | rations 19 stalls 0 at0 0 | step $0.1962 stage $0.3800
+sol-noarticle c4 elm: read say read write_diary end_turn | rations 19 stalls 0 at0 0 | step $0.2028 stage $0.3930
+sol-noarticle c4 fern: read work read write_diary move | rations 20 stalls 0 at0 0 | step $0.2086 stage $0.4059
+sol-noarticle c4 gale: read say read write_diary end_turn | rations 20 stalls 0 at0 0 | step $0.2150 stage $0.4123
+sol-noarticle c4 heath: read say read write_diary end_turn | rations 20 stalls 0 at0 0 | step $0.2221 stage $0.4268
+sol-noarticle c4 iris: read say read write_diary end_turn | rations 20 stalls 0 at0 0 | step $0.2287 stage $0.4451
+sol-noarticle c4 juniper: read say write_diary end_turn | rations 20 stalls 0 at0 0 | step $0.2349 stage $0.4578
+sol-noarticle c4 alder: read say eat write_diary end_turn | rations 19 stalls 0 at0 0 | step $0.2426 stage $0.4655
+sol-noarticle c4 birch: read say write_diary end_turn | rations 19 stalls 0 at0 0 | step $0.2496 stage $0.4828
+sol-noarticle c4 cedar: read say read write_diary end_turn | rations 19 stalls 0 at0 0 | step $0.2580 stage $0.4980
+sol-noarticle c5 elm: read eat say write_diary end_turn | rations 18 stalls 0 at0 0 | step $0.2655 stage $0.5119
+sol-noarticle c5 fern: read eat say write_diary end_turn | rations 17 stalls 0 at0 0 | step $0.2734 stage $0.5269
+sol-noarticle c5 gale: read eat say write_diary end_turn | rations 16 stalls 0 at0 0 | step $0.2812 stage $0.5498
+sol-noarticle c5 heath: read eat say write_diary end_turn | rations 15 stalls 0 at0 0 | step $0.2896 stage $0.5646
+sol-noarticle c5 iris: read eat say write_diary end_turn | rations 14 stalls 0 at0 0 | step $0.2979 stage $0.5801
+sol-noarticle c5 juniper: read eat say write_diary end_turn | rations 13 stalls 0 at0 0 | step $0.3058 stage $0.5958
+sol-noarticle c5 alder: read say write_diary end_turn | rations 13 stalls 0 at0 0 | step $0.3131 stage $0.6102
+sol-noarticle c5 birch: read eat say write_diary end_turn | rations 12 stalls 0 at0 0 | step $0.3212 stage $0.6252
+sol-noarticle c5 cedar: read eat say write_diary move | rations 11 stalls 0 at0 0 | step $0.3293 stage $0.6392
+sol-noarticle c5 dune: read eat say write_diary end_turn | rations 10 stalls 0 at0 0 | step $0.3390 stage $0.6632
+sol-noarticle c6 fern: read say write_diary move | rations 10 stalls 0 at0 0 | step $0.3462 stage $0.6782
+sol-noarticle c6 gale: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $0.3546 stage $0.6931
+sol-noarticle c6 heath: read say write_diary move | rations 10 stalls 0 at0 0 | step $0.3628 stage $0.7082
+sol-noarticle c6 iris: read say write_diary move | rations 10 stalls 0 at0 0 | step $0.3710 stage $0.7239
+sol-noarticle c6 juniper: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $0.3791 stage $0.7405
+sol-noarticle c6 alder: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $0.3870 stage $0.7558
+sol-noarticle c6 birch: read say write_diary move | rations 10 stalls 0 at0 0 | step $0.3953 stage $0.7710
+sol-noarticle c6 cedar: read work say write_diary move | rations 11 stalls 0 at0 0 | step $0.4016 stage $0.7851
+sol-noarticle c6 dune: read say write_diary move | rations 11 stalls 0 at0 0 | step $0.4096 stage $0.8006
+sol-noarticle c6 elm: read say write_diary move | rations 11 stalls 0 at0 0 | step $0.4190 stage $0.8195
+sol-noarticle c7 gale: read say write_diary move | rations 11 stalls 0 at0 0 | step $0.4272 stage $0.8352
+sol-noarticle c7 heath: read work say write_diary move | rations 12 stalls 0 at0 0 | step $0.4344 stage $0.8500
+sol-noarticle c7 iris: read work say write_diary move | rations 13 stalls 0 at0 0 | step $0.4416 stage $0.8734
+sol-noarticle c7 juniper: read say write_diary end_turn | rations 13 stalls 0 at0 0 | step $0.4497 stage $0.8907
+sol-noarticle c7 alder: read say write_diary end_turn | rations 13 stalls 0 at0 0 | step $0.4575 stage $0.9060
+sol-noarticle c7 birch: read work say write_diary move | rations 14 stalls 0 at0 0 | step $0.4641 stage $0.9208
+sol-noarticle c7 cedar: read read say read post write_diary | rations 14 stalls 0 at0 0 | step $0.4730 stage $0.9381
+sol-noarticle c7 dune: read work read say write_diary move | rations 15 stalls 0 at0 0 | step $0.4808 stage $0.9553
+sol-noarticle c7 elm: read work read say write_diary move | rations 16 stalls 0 at0 0 | step $0.4886 stage $0.9709
+sol-noarticle c7 fern: read work say read write_diary move | rations 18 stalls 0 at0 0 | step $0.5080 stage $1.0078
+sol-noarticle c8 heath: read read read say write_diary move | rations 18 stalls 0 at0 0 | step $0.5173 stage $1.0260
+sol-noarticle c8 iris: read read read say write_diary move | rations 18 stalls 0 at0 0 | step $0.5264 stage $1.0531
+sol-noarticle c8 juniper: read read say write_diary end_turn | rations 18 stalls 0 at0 0 | step $0.5341 stage $1.0698
+sol-noarticle c8 alder: read say read write_diary end_turn | rations 18 stalls 0 at0 0 | step $0.5447 stage $1.0913
+sol-noarticle c8 birch: read read say write_diary move | rations 18 stalls 0 at0 0 | step $0.5534 stage $1.1103
+sol-noarticle c8 cedar: read say write_diary move | rations 18 stalls 0 at0 0 | step $0.5611 stage $1.1267
+sol-noarticle c8 dune: read read say write_diary move | rations 18 stalls 0 at0 0 | step $0.5693 stage $1.1444
+sol-noarticle c8 elm: read say write_diary move | rations 18 stalls 0 at0 0 | step $0.5771 stage $1.1617
+sol-noarticle c8 fern: read write_diary move | rations 18 stalls 0 at0 0 | step $0.5828 stage $1.1772
+sol-noarticle c8 gale: read read write_diary move | rations 18 stalls 0 at0 0 | step $0.5893 stage $1.1923
+sol-noarticle c9 iris: read read post say write_diary end_turn | rations 18 stalls 0 at0 0 | step $0.6000 stage $1.2120
+sol-noarticle c9 juniper: read read say write_diary end_turn | rations 18 stalls 0 at0 0 | step $0.6087 stage $1.2324
+sol-noarticle c9 alder: read read say write_diary end_turn | rations 18 stalls 0 at0 0 | step $0.6175 stage $1.2411
+sol-noarticle c9 birch: read read post say write_diary end_turn | rations 18 stalls 0 at0 0 | step $0.6316 stage $1.2772
+sol-noarticle c9 cedar: read read say work eat write_diary | rations 17 stalls 0 at0 0 | step $0.6417 stage $1.2975
+sol-noarticle c9 dune: read read say write_diary end_turn | rations 17 stalls 0 at0 0 | step $0.6511 stage $1.3177
+sol-noarticle c9 elm: read read say write_diary end_turn | rations 17 stalls 0 at0 0 | step $0.6606 stage $1.3385
+sol-noarticle c9 fern: read read say write_diary move | rations 17 stalls 0 at0 0 | step $0.6701 stage $1.3480
+sol-noarticle c9 gale: read read say write_diary end_turn | rations 17 stalls 0 at0 0 | step $0.6801 stage $1.3704
+sol-noarticle c9 heath: read read say write_diary move | rations 17 stalls 0 at0 0 | step $0.6897 stage $1.3905
+sol-noarticle c10 juniper: read say read write_diary end_turn | rations 17 stalls 0 at0 0 | step $0.7027 stage $1.4141
+sol-noarticle c10 alder: read read say write_diary end_turn | rations 17 stalls 0 at0 0 | step $0.7127 stage $1.4452
+sol-noarticle c10 birch: read eat read say write_diary move | rations 16 stalls 0 at0 0 | step $0.7231 stage $1.4556
+sol-noarticle c10 cedar: read say write_diary move | rations 16 stalls 0 at0 0 | step $0.7310 stage $1.4846
+sol-noarticle c10 dune: read eat say write_diary end_turn | rations 15 stalls 0 at0 0 | step $0.7398 stage $1.4934
+sol-noarticle c10 elm: read eat say write_diary move | rations 14 stalls 0 at0 0 | step $0.7482 stage $1.5112
+sol-noarticle c10 fern: read eat say write_diary end_turn | rations 13 stalls 0 at0 0 | step $0.7591 stage $1.5326
+sol-noarticle c10 gale: read eat say write_diary end_turn | rations 12 stalls 0 at0 0 | step $0.7678 stage $1.5521
+sol-noarticle c10 heath: read eat say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.7774 stage $1.5716
+sol-noarticle c10 iris: read eat say read write_diary move | rations 10 stalls 0 at0 0 | step $0.7899 stage $1.6061
+sol-noarticle c11 alder: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $0.7980 stage $1.6237
+sol-noarticle c11 birch: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $0.8063 stage $1.6430
+sol-noarticle c11 cedar: read work write_diary move | rations 11 stalls 0 at0 0 | step $0.8130 stage $1.6612
+sol-noarticle c11 dune: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.8206 stage $1.6687
+sol-noarticle c11 elm: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.8287 stage $1.6862
+sol-noarticle c11 fern: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.8373 stage $1.7046
+sol-noarticle c11 gale: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.8458 stage $1.7241
+sol-noarticle c11 heath: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.8550 stage $1.7439
+sol-noarticle c11 iris: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.8641 stage $1.7626
+sol-noarticle c11 juniper: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.8739 stage $1.7832
+sol-noarticle c12 birch: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.8831 stage $1.8017
+sol-noarticle c12 cedar: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.8922 stage $1.8207
+sol-noarticle c12 dune: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.9019 stage $1.8408
+sol-noarticle c12 elm: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.9111 stage $1.8501
+sol-noarticle c12 fern: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.9200 stage $1.8891
+sol-noarticle c12 gale: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.9292 stage $1.9086
+sol-noarticle c12 heath: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.9390 stage $1.9297
+sol-noarticle c12 iris: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $0.9488 stage $1.9505
+sol-noarticle c12 juniper: read eat say write_diary move | rations 10 stalls 0 at0 0 | step $0.9591 stage $1.9703
+sol-noarticle c12 alder: read eat say write_diary move | rations 9 stalls 0 at0 0 | step $0.9698 stage $1.9909
+sol-noarticle c13 cedar: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $0.9796 stage $2.0227
+sol-noarticle c13 dune: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $0.9891 stage $2.0424
+sol-noarticle c13 elm: read say write_diary move | rations 9 stalls 0 at0 0 | step $0.9980 stage $2.0614
+sol-noarticle c13 fern: read say write_diary move | rations 9 stalls 0 at0 0 | step $1.0072 stage $2.0826
+sol-noarticle c13 gale: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $1.0173 stage $2.1045
+sol-noarticle c13 heath: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $1.0284 stage $2.1271
+sol-noarticle c13 iris: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $1.0388 stage $2.1491
+sol-noarticle c13 juniper: read work say write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.0475 stage $2.1677
+sol-noarticle c13 alder: read work say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.0559 stage $2.1866
+sol-noarticle c13 birch: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.0671 stage $2.2073
+sol-noarticle c14 dune: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.0767 stage $2.2274
+sol-noarticle c14 elm: read work say write_diary end_turn | rations 12 stalls 0 at0 0 | step $1.0857 stage $2.2472
+sol-noarticle c14 fern: read say work write_diary end_turn | rations 13 stalls 0 at0 0 | step $1.0946 stage $2.2679
+sol-noarticle c14 gale: read say write_diary end_turn | rations 13 stalls 0 at0 0 | step $1.1042 stage $2.2875
+sol-noarticle c14 heath: read say write_diary move | rations 13 stalls 0 at0 0 | step $1.1143 stage $2.3112
+sol-noarticle c14 iris: read say write_diary end_turn | rations 13 stalls 0 at0 0 | step $1.1240 stage $2.3325
+sol-noarticle c14 juniper: read work say write_diary move | rations 14 stalls 0 at0 0 | step $1.1488 stage $2.3673
+sol-noarticle c14 alder: read work say write_diary move | rations 15 stalls 0 at0 0 | step $1.1579 stage $2.3870
+sol-noarticle c14 birch: read say say write_diary move | rations 15 stalls 0 at0 0 | step $1.1680 stage $2.4069
+sol-noarticle c14 cedar: read eat say write_diary end_turn | rations 14 stalls 0 at0 0 | step $1.1794 stage $2.4403
+sol-noarticle c15 elm: read say write_diary move | rations 14 stalls 0 at0 0 | step $1.1882 stage $2.4611
+sol-noarticle c15 fern: read say write_diary move | rations 14 stalls 0 at0 0 | step $1.1968 stage $2.4801
+sol-noarticle c15 gale: read say write_diary move | rations 14 stalls 0 at0 0 | step $1.2068 stage $2.4900
+sol-noarticle c15 heath: read work say write_diary move | rations 15 stalls 0 at0 0 | step $1.2175 stage $2.5255
+sol-noarticle c15 iris: read say write_diary move | rations 15 stalls 0 at0 0 | step $1.2277 stage $2.5460
+sol-noarticle c15 juniper: read say write_diary end_turn | rations 15 stalls 0 at0 0 | step $1.2373 stage $2.5557
+sol-noarticle c15 alder: read eat say write_diary end_turn | rations 14 stalls 0 at0 0 | step $1.2478 stage $2.5792
+sol-noarticle c15 birch: read work say write_diary move | rations 15 stalls 0 at0 0 | step $1.2575 stage $2.5997
+sol-noarticle c15 cedar: read say write_diary move | rations 15 stalls 0 at0 0 | step $1.2674 stage $2.6224
+sol-noarticle c15 dune: read say write_diary move | rations 15 stalls 0 at0 0 | step $1.2779 stage $2.6330
+sol-noarticle c16 fern: read eat say write_diary end_turn | rations 14 stalls 0 at0 0 | step $1.2884 stage $2.6563
+sol-noarticle c16 gale: read work eat say write_diary move | rations 14 stalls 0 at0 0 | step $1.2993 stage $2.6815
+sol-noarticle c16 heath: read eat say write_diary end_turn | rations 13 stalls 0 at0 0 | step $1.3110 stage $2.7040
+sol-noarticle c16 iris: read work eat say write_diary move | rations 13 stalls 0 at0 0 | step $1.3222 stage $2.7273
+sol-noarticle c16 juniper: read eat say write_diary end_turn | rations 12 stalls 0 at0 0 | step $1.3332 stage $2.7521
+sol-noarticle c16 alder: read say write_diary end_turn | rations 12 stalls 0 at0 0 | step $1.3428 stage $2.7764
+sol-noarticle c16 birch: read eat say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.3537 stage $2.7985
+sol-noarticle c16 cedar: read work say write_diary move | rations 13 stalls 0 at0 0 | step $1.3701 stage $2.8250
+sol-noarticle c16 dune: read eat read write_diary move | rations 12 stalls 0 at0 0 | step $1.3809 stage $2.8469
+sol-noarticle c16 elm: read eat say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.3925 stage $2.8710
+sol-noarticle c17 gale: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.4031 stage $2.8952
+sol-noarticle c17 heath: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.4144 stage $2.9188
+sol-noarticle c17 iris: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.4253 stage $2.9413
+sol-noarticle c17 juniper: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.4362 stage $2.9648
+sol-noarticle c17 alder: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.4460 stage $2.9875
+sol-noarticle c17 birch: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.4561 stage $2.9977
+sol-noarticle c17 cedar: read read write_diary move | rations 11 stalls 0 at0 0 | step $1.4649 stage $3.0369
+sol-noarticle c17 dune: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.4748 stage $3.0582
+sol-noarticle c17 elm: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.4845 stage $3.0795
+sol-noarticle c17 fern: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.4949 stage $3.0899
+sol-noarticle c18 heath: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.5058 stage $3.1127
+sol-noarticle c18 iris: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.5166 stage $3.1365
+sol-noarticle c18 juniper: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.5271 stage $3.1579
+sol-noarticle c18 alder: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.5369 stage $3.1796
+sol-noarticle c18 birch: read say write_diary move | rations 11 stalls 0 at0 0 | step $1.5476 stage $3.2028
+sol-noarticle c18 cedar: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.5582 stage $3.2257
+sol-noarticle c18 dune: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.5682 stage $3.2464
+sol-noarticle c18 elm: read say write_diary move | rations 11 stalls 0 at0 0 | step $1.5780 stage $3.2693
+sol-noarticle c18 fern: read say write_diary move | rations 11 stalls 0 at0 0 | step $1.5880 stage $3.2912
+sol-noarticle c18 gale: read say write_diary move | rations 11 stalls 0 at0 0 | step $1.5999 stage $3.3154
+sol-noarticle c19 iris: read say write_diary move | rations 11 stalls 0 at0 0 | step $1.6111 stage $3.3398
+sol-noarticle c19 juniper: read read say write_diary move | rations 11 stalls 0 at0 0 | step $1.6241 stage $3.3642
+sol-noarticle c19 alder: read say write_diary move | rations 11 stalls 0 at0 0 | step $1.6343 stage $3.3867
+sol-noarticle c19 birch: read read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.6458 stage $3.4114
+sol-noarticle c19 cedar: read eat say write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.6571 stage $3.4356
+sol-noarticle c19 dune: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.6675 stage $3.4569
+sol-noarticle c19 elm: read say write_diary move | rations 10 stalls 0 at0 0 | step $1.6770 stage $3.4781
+sol-noarticle c19 fern: read read say write_diary move | rations 10 stalls 0 at0 0 | step $1.6873 stage $3.5006
+sol-noarticle c19 gale: read read say write_diary move | rations 10 stalls 0 at0 0 | step $1.6987 stage $3.5248
+sol-noarticle c19 heath: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.7108 stage $3.5505
+sol-noarticle c20 juniper: read say write_diary move | rations 10 stalls 0 at0 0 | step $1.7215 stage $3.5732
+sol-noarticle c20 alder: read say write_diary move | rations 10 stalls 0 at0 0 | step $1.7313 stage $3.5969
+sol-noarticle c20 birch: read say write_diary move | rations 10 stalls 0 at0 0 | step $1.7420 stage $3.6212
+sol-noarticle c20 cedar: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.7611 stage $3.6536
+sol-noarticle c20 dune: read read say write_diary move | rations 10 stalls 0 at0 0 | step $1.7721 stage $3.6760
+sol-noarticle c20 elm: read work say write_diary move | rations 11 stalls 0 at0 0 | step $1.7831 stage $3.7103
+sol-noarticle c20 fern: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.7957 stage $3.7369
+sol-noarticle c20 gale: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.8073 stage $3.7646
+sol-noarticle c20 heath: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.8193 stage $3.7891
+sol-noarticle c20 iris: read say write_diary move | rations 11 stalls 0 at0 0 | step $1.8305 stage $3.8143
+sol-noarticle c21 alder: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.8410 stage $3.8388
+sol-noarticle c21 birch: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.8531 stage $3.8510
+sol-noarticle c21 cedar: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $1.8648 stage $3.8772
+sol-noarticle c21 dune: read write_diary move | rations 11 stalls 0 at0 0 | step $1.8734 stage $3.8976
+sol-noarticle c21 elm: read say eat write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.8854 stage $3.9095
+sol-noarticle c21 fern: read say say write_diary move | rations 10 stalls 0 at0 0 | step $1.8967 stage $3.9353
+sol-noarticle c21 gale: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.9082 stage $3.9591
+sol-noarticle c21 heath: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.9203 stage $3.9856
+sol-noarticle c21 iris: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.9321 stage $4.0123
+sol-noarticle c21 juniper: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.9446 stage $4.0376
+sol-noarticle c22 birch: read say write_diary move | rations 10 stalls 0 at0 0 | step $1.9565 stage $4.0630
+sol-noarticle c22 cedar: read say write_diary move | rations 10 stalls 0 at0 0 | step $1.9682 stage $4.0748
+sol-noarticle c22 dune: read say write_diary move | rations 10 stalls 0 at0 0 | step $1.9798 stage $4.1030
+sol-noarticle c22 elm: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $1.9914 stage $4.1295
+sol-noarticle c22 fern: read work eat say write_diary move | rations 10 stalls 0 at0 0 | step $2.0024 stage $4.1531
+sol-noarticle c22 gale: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $2.0152 stage $4.1788
+sol-noarticle c22 heath: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $2.0284 stage $4.2038
+sol-noarticle c22 iris: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $2.0411 stage $4.2297
+sol-noarticle c22 juniper: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $2.0539 stage $4.2574
+sol-noarticle c22 alder: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $2.0669 stage $4.2879
+sol-noarticle c23 cedar: read work say write_diary move | rations 11 stalls 0 at0 0 | step $2.0792 stage $4.3142
+sol-noarticle c23 dune: read work eat say write_diary move | rations 11 stalls 0 at0 0 | step $2.0913 stage $4.3411
+sol-noarticle c23 elm: read say say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.1057 stage $4.3699
+sol-noarticle c23 fern: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.1209 stage $4.3991
+sol-noarticle c23 gale: read eat say say write_diary move | rations 10 stalls 0 at0 0 | step $2.1363 stage $4.4413
+sol-noarticle c23 heath: read say eat say write_diary move | rations 9 stalls 0 at0 0 | step $2.1524 stage $4.4709
+sol-noarticle c23 iris: read eat say write_diary move | rations 8 stalls 0 at0 0 | step $2.1700 stage $4.5173
+sol-noarticle c23 juniper: read eat say write_diary move | rations 7 stalls 0 at0 0 | step $2.1842 stage $4.5485
+sol-noarticle c23 alder: read eat say write_diary move | rations 6 stalls 0 at0 0 | step $2.1975 stage $4.5770
+sol-noarticle c23 birch: read work eat say write_diary move | rations 6 stalls 0 at0 0 | step $2.2108 stage $4.6053
+sol-noarticle c24 dune: read say write_diary end_turn | rations 6 stalls 0 at0 0 | step $2.2239 stage $4.6313
+sol-noarticle c24 elm: read say write_diary end_turn | rations 6 stalls 0 at0 0 | step $2.2373 stage $4.6704
+sol-noarticle c24 fern: read say write_diary end_turn | rations 6 stalls 0 at0 0 | step $2.2498 stage $4.6967
+sol-noarticle c24 gale: read work say write_diary move | rations 7 stalls 0 at0 0 | step $2.2629 stage $4.7240
+sol-noarticle c24 heath: read work say write_diary move | rations 8 stalls 0 at0 0 | step $2.2761 stage $4.7524
+sol-noarticle c24 iris: read work say write_diary move | rations 9 stalls 0 at0 0 | step $2.2894 stage $4.7791
+sol-noarticle c24 juniper: read work say write_diary move | rations 10 stalls 0 at0 0 | step $2.3025 stage $4.8094
+sol-noarticle c24 alder: read work write_diary move | rations 11 stalls 0 at0 0 | step $2.3132 stage $4.8355
+sol-noarticle c24 birch: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.3256 stage $4.8610
+sol-noarticle c24 cedar: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.3401 stage $4.8894
+DAY sol-noarticle c24: dossier-c24.md and world-c24.json.gz written
+sol-noarticle c25 elm: read say write_diary move | rations 11 stalls 0 at0 0 | step $2.3523 stage $4.9141
+sol-noarticle c25 fern: read say write_diary move | rations 11 stalls 0 at0 0 | step $2.3643 stage $4.9401
+sol-noarticle c25 gale: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.3782 stage $4.9688
+sol-noarticle c25 heath: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.3921 stage $4.9984
+sol-noarticle c25 iris: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.4062 stage $5.0262
+sol-noarticle c25 juniper: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.4200 stage $5.0546
+sol-noarticle c25 alder: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.4327 stage $5.0846
+sol-noarticle c25 birch: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.4464 stage $5.1116
+sol-noarticle c25 cedar: read eat say write_diary end_turn | rations 10 stalls 0 at0 0 | step $2.4611 stage $5.1408
+sol-noarticle c25 dune: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $2.4745 stage $5.1671
+sol-noarticle c26 fern: read work say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.5122 stage $5.2204
+sol-noarticle c26 gale: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.5262 stage $5.2679
+sol-noarticle c26 heath: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.5688 stage $5.3249
+sol-noarticle c26 iris: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.5830 stage $5.3542
+sol-noarticle c26 juniper: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.5966 stage $5.3839
+sol-noarticle c26 alder: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.6098 stage $5.4146
+sol-noarticle c26 birch: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.6237 stage $5.4286
+sol-noarticle c26 cedar: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.6378 stage $5.4593
+sol-noarticle c26 dune: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.6503 stage $5.4860
+sol-noarticle c26 elm: read work say write_diary end_turn | rations 12 stalls 0 at0 0 | step $2.6670 stage $5.5191
+sol-noarticle c27 gale: read say write_diary end_turn | rations 12 stalls 0 at0 0 | step $2.6814 stage $5.5506
+sol-noarticle c27 heath: read say write_diary end_turn | rations 12 stalls 0 at0 0 | step $2.6960 stage $5.5828
+sol-noarticle c27 iris: read say write_diary end_turn | rations 12 stalls 0 at0 0 | step $2.7104 stage $5.6119
+sol-noarticle c27 juniper: read say write_diary end_turn | rations 12 stalls 0 at0 0 | step $2.7247 stage $5.6425
+sol-noarticle c27 alder: read say write_diary end_turn | rations 12 stalls 0 at0 0 | step $2.7376 stage $5.6737
+sol-noarticle c27 birch: read say write_diary end_turn | rations 12 stalls 0 at0 0 | step $2.7516 stage $5.7047
+sol-noarticle c27 cedar: read say write_diary move | rations 12 stalls 0 at0 0 | step $2.7656 stage $5.7342
+sol-noarticle c27 dune: read say write_diary end_turn | rations 12 stalls 0 at0 0 | step $2.7785 stage $5.7606
+sol-noarticle c27 elm: read eat say write_diary end_turn | rations 11 stalls 0 at0 0 | step $2.7926 stage $5.7747
+sol-noarticle c27 fern: read eat say write_diary end_turn | rations 10 stalls 0 at0 0 | step $2.8065 stage $5.8193
+sol-noarticle c28 heath: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $2.8210 stage $5.8517
+sol-noarticle c28 iris: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $2.8354 stage $5.8809
+sol-noarticle c28 juniper: read say write_diary move | rations 10 stalls 0 at0 0 | step $2.8493 stage $5.9105
+sol-noarticle c28 alder: read eat say write_diary move | rations 9 stalls 0 at0 0 | step $2.8626 stage $5.9406
+sol-noarticle c28 birch: read say write_diary move | rations 9 stalls 0 at0 0 | step $2.8767 stage $5.9721
+sol-noarticle c28 cedar: read work say write_diary move | rations 10 stalls 0 at0 0 | step $2.8915 stage $5.9869
+sol-noarticle c28 dune: read say write_diary move | rations 10 stalls 0 at0 0 | step $2.9042 stage $6.0321
+sol-noarticle c28 elm: read say write_diary move | rations 10 stalls 0 at0 0 | step $2.9174 stage $6.0454
+sol-noarticle c28 fern: read work write_diary move | rations 11 stalls 0 at0 0 | step $2.9302 stage $6.0735
+sol-noarticle c28 gale: read say write_diary move | rations 11 stalls 0 at0 0 | step $2.9452 stage $6.1046
+sol-noarticle c29 iris: read eat say write_diary move | rations 10 stalls 0 at0 0 | step $2.9602 stage $6.1370
+sol-noarticle c29 juniper: read eat say write_diary end_turn | rations 9 stalls 0 at0 0 | step $2.9751 stage $6.1692
+sol-noarticle c29 alder: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $2.9888 stage $6.2002
+sol-noarticle c29 birch: read eat say write_diary end_turn | rations 8 stalls 0 at0 0 | step $3.0042 stage $6.2330
+sol-noarticle c29 cedar: read say write_diary end_turn | rations 8 stalls 0 at0 0 | step $3.0187 stage $6.2645
+sol-noarticle c29 dune: read eat say write_diary end_turn | rations 7 stalls 0 at0 0 | step $3.0329 stage $6.2930
+sol-noarticle c29 elm: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $3.0476 stage $6.3236
+sol-noarticle c29 fern: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $3.0620 stage $6.3550
+sol-noarticle c29 gale: read eat say write_diary end_turn | rations 6 stalls 0 at0 0 | step $3.0786 stage $6.3880
+sol-noarticle c29 heath: read eat write_diary move | rations 5 stalls 0 at0 0 | step $3.0929 stage $6.4201
+sol-noarticle c30 juniper: read say write_diary end_turn | rations 5 stalls 0 at0 0 | step $3.1083 stage $6.4517
+sol-noarticle c30 alder: read say write_diary end_turn | rations 5 stalls 0 at0 0 | step $3.1221 stage $6.4820
+sol-noarticle c30 birch: read say write_diary end_turn | rations 5 stalls 0 at0 0 | step $3.1377 stage $6.5325
+sol-noarticle c30 cedar: read eat say write_diary end_turn | rations 4 stalls 0 at0 0 | step $3.1534 stage $6.5632
+sol-noarticle c30 dune: read say say write_diary move | rations 4 stalls 0 at0 0 | step $3.1703 stage $6.5960
+sol-noarticle c30 elm: read say write_diary end_turn | rations 4 stalls 0 at0 0 | step $3.1893 stage $6.6289
+sol-noarticle c30 fern: read say write_diary end_turn | rations 4 stalls 0 at0 0 | step $3.2032 stage $6.6795
+sol-noarticle c30 gale: read say write_diary move | rations 4 stalls 0 at0 0 | step $3.2189 stage $6.7110
+sol-noarticle c30 heath: read say write_diary move | rations 4 stalls 0 at0 0 | step $3.2353 stage $6.7441
+sol-noarticle c30 iris: read say write_diary end_turn | rations 4 stalls 0 at0 0 | step $3.2529 stage $6.7795
+sol-noarticle c31 alder: read say write_diary move | rations 4 stalls 0 at0 0 | step $3.2679 stage $6.8120
+sol-noarticle c31 birch: read say write_diary move | rations 4 stalls 0 at0 0 | step $3.2841 stage $6.8431
+sol-noarticle c31 cedar: read say write_diary end_turn | rations 4 stalls 0 at0 0 | step $3.2999 stage $6.8892
+sol-noarticle c31 dune: read work say write_diary move | rations 5 stalls 0 at0 0 | step $3.3419 stage $6.9472
+sol-noarticle c31 elm: read say write_diary end_turn | rations 5 stalls 0 at0 0 | step $3.3574 stage $6.9812
+sol-noarticle c31 fern: read say write_diary end_turn | rations 5 stalls 0 at0 0 | step $3.3726 stage $7.0134
+sol-noarticle c31 gale: read work say write_diary move | rations 6 stalls 0 at0 0 | step $3.3881 stage $7.0469
+sol-noarticle c31 heath: read work say write_diary move | rations 7 stalls 0 at0 0 | step $3.4039 stage $7.0818
+sol-noarticle c31 iris: read say write_diary move | rations 7 stalls 0 at0 0 | step $3.4193 stage $7.0972
+sol-noarticle c31 juniper: read say write_diary move | rations 7 stalls 0 at0 0 | step $3.4358 stage $7.1330
+sol-noarticle c32 birch: read work say write_diary move | rations 8 stalls 0 at0 0 | step $3.4521 stage $7.1647
+sol-noarticle c32 cedar: read say say write_diary move | rations 7 stalls 0 at0 0 | step $3.4814 stage $7.2131
+sol-noarticle c32 dune: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $3.4959 stage $7.2622
+sol-noarticle c32 elm: read say write_diary move | rations 7 stalls 0 at0 0 | step $3.5111 stage $7.2774
+sol-noarticle c32 fern: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $3.5262 stage $7.3123
+sol-noarticle c32 gale: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $3.5425 stage $7.3502
+sol-noarticle c32 heath: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $3.5595 stage $7.3850
+sol-noarticle c32 iris: read work say write_diary move | rations 8 stalls 0 at0 0 | step $3.5754 stage $7.4226
+sol-noarticle c32 juniper: read work say write_diary move | rations 9 stalls 0 at0 0 | step $3.5908 stage $7.4578
+sol-noarticle c32 alder: read work say write_diary move | rations 10 stalls 0 at0 0 | step $3.6058 stage $7.4889
+sol-noarticle c33 cedar: read read write_diary move | rations 10 stalls 0 at0 0 | step $3.6202 stage $7.5204
+sol-noarticle c33 dune: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $3.6350 stage $7.5506
+sol-noarticle c33 elm: read work eat say write_diary move | rations 10 stalls 0 at0 0 | step $3.6513 stage $7.5837
+sol-noarticle c33 fern: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $3.6674 stage $7.6177
+sol-noarticle c33 gale: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $3.6838 stage $7.6942
+sol-noarticle c33 heath: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $3.7006 stage $7.7301
+sol-noarticle c33 iris: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $3.7169 stage $7.7658
+sol-noarticle c33 juniper: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $3.7333 stage $7.8012
+sol-noarticle c33 alder: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $3.7484 stage $7.8163
+sol-noarticle c33 birch: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $3.7664 stage $7.8522
+sol-noarticle c34 dune: read eat say write_diary end_turn | rations 9 stalls 0 at0 0 | step $3.7831 stage $7.8861
+sol-noarticle c34 elm: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $3.7999 stage $7.9363
+sol-noarticle c34 fern: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $3.8170 stage $7.9712
+sol-noarticle c34 gale: read eat say write_diary move | rations 8 stalls 0 at0 0 | step $3.8355 stage $8.0087
+sol-noarticle c34 heath: read eat say write_diary end_turn | rations 7 stalls 0 at0 0 | step $3.8543 stage $8.0275
+sol-noarticle c34 iris: read eat say write_diary end_turn | rations 6 stalls 0 at0 0 | step $3.8727 stage $8.1204
+sol-noarticle c34 juniper: read eat say write_diary end_turn | rations 5 stalls 0 at0 0 | step $3.8902 stage $8.1568
+sol-noarticle c34 alder: read eat say write_diary end_turn | rations 4 stalls 0 at0 0 | step $3.9070 stage $8.1900
+sol-noarticle c34 birch: read eat say write_diary end_turn | rations 3 stalls 0 at0 0 | step $3.9251 stage $8.2256
+sol-noarticle c34 cedar: read work say write_diary move | rations 4 stalls 0 at0 0 | step $3.9411 stage $8.2747
+sol-noarticle c35 elm: read say write_diary end_turn | rations 4 stalls 0 at0 0 | step $3.9575 stage $8.3093
+sol-noarticle c35 fern: read say write_diary move | rations 4 stalls 0 at0 0 | step $3.9734 stage $8.3252
+sol-noarticle c35 gale: read work say write_diary move | rations 5 stalls 0 at0 0 | step $4.0039 stage $8.3755
+sol-noarticle c35 heath: read say write_diary move | rations 5 stalls 0 at0 0 | step $4.0205 stage $8.4293
+sol-noarticle c35 iris: read say write_diary move | rations 5 stalls 0 at0 0 | step $4.0371 stage $8.4671
+sol-noarticle c35 juniper: read say write_diary move | rations 5 stalls 0 at0 0 | step $4.0530 stage $8.4997
+sol-noarticle c35 alder: read say write_diary move | rations 5 stalls 0 at0 0 | step $4.0686 stage $8.5331
+sol-noarticle c35 birch: read say write_diary move | rations 5 stalls 0 at0 0 | step $4.0852 stage $8.5655
+sol-noarticle c35 cedar: read say write_diary end_turn | rations 5 stalls 0 at0 0 | step $4.1014 stage $8.5993
+sol-noarticle c35 dune: read say write_diary move | rations 5 stalls 0 at0 0 | step $4.1181 stage $8.6349
+sol-noarticle c36 fern: read work say write_diary move | rations 6 stalls 0 at0 0 | step $4.1352 stage $8.6521
+sol-noarticle c36 gale: read say say write_diary end_turn | rations 6 stalls 0 at0 0 | step $4.1580 stage $8.7139
+sol-noarticle c36 heath: read work say write_diary move | rations 7 stalls 0 at0 0 | step $4.1757 stage $8.7703
+sol-noarticle c36 iris: read work say write_diary move | rations 8 stalls 0 at0 0 | step $4.2307 stage $8.8466
+sol-noarticle c36 juniper: read work say write_diary move | rations 9 stalls 0 at0 0 | step $4.2476 stage $8.8821
+sol-noarticle c36 alder: read work say write_diary move | rations 10 stalls 0 at0 0 | step $4.2635 stage $8.9322
+sol-noarticle c36 birch: read work say write_diary move | rations 11 stalls 0 at0 0 | step $4.2813 stage $8.9690
+sol-noarticle c36 cedar: read eat say write_diary end_turn | rations 10 stalls 0 at0 0 | step $4.2982 stage $9.0061
+sol-noarticle c36 dune: read work write_diary move | rations 11 stalls 0 at0 0 | step $4.3459 stage $9.0721
+sol-noarticle c36 elm: read say write_diary move | rations 11 stalls 0 at0 0 | step $4.3628 stage $9.1080
+sol-noarticle c37 gale: read say say write_diary end_turn | rations 11 stalls 0 at0 0 | step $4.3835 stage $9.1491
+sol-noarticle c37 heath: read read say write_diary move | rations 11 stalls 0 at0 0 | step $4.4017 stage $9.2060
+sol-noarticle c37 iris: read read say write_diary move | rations 11 stalls 0 at0 0 | step $4.4197 stage $9.2240
+sol-noarticle c37 juniper: read read read write_diary move | rations 11 stalls 0 at0 0 | step $4.4381 stage $9.2597
+sol-noarticle c37 alder: read read say write_diary move | rations 11 stalls 0 at0 0 | step $4.4550 stage $9.2973
+sol-noarticle c37 birch: read say write_diary rest | rations 11 stalls 0 at0 0 | step $4.4717 stage $9.3358
+sol-noarticle c37 cedar: read say write_diary move | rations 11 stalls 0 at0 0 | step $4.4884 stage $9.3746
+sol-noarticle c37 dune: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $4.5032 stage $9.4083
+sol-noarticle c37 elm: read read write_diary move | rations 11 stalls 0 at0 0 | step $4.5194 stage $9.4448
+sol-noarticle c37 fern: read say write_diary move | rations 11 stalls 0 at0 0 | step $4.5372 stage $9.4863
+sol-noarticle c38 heath: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $4.5580 stage $9.5070
+sol-noarticle c38 iris: read say write_diary move | rations 11 stalls 0 at0 0 | step $4.5757 stage $9.5638
+sol-noarticle c38 juniper: read say write_diary rest | rations 11 stalls 0 at0 0 | step $4.5921 stage $9.5801
+sol-noarticle c38 alder: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $4.6077 stage $9.6371
+sol-noarticle c38 birch: read say write_diary rest | rations 11 stalls 0 at0 0 | step $4.6244 stage $9.6739
+sol-noarticle c38 cedar: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $4.6412 stage $9.6907
+sol-noarticle c38 dune: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $4.6564 stage $9.7285
+sol-noarticle c38 elm: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $4.6730 stage $9.7645
+sol-noarticle c38 fern: read eat say write_diary end_turn | rations 10 stalls 0 at0 0 | step $4.6906 stage $9.8022
+sol-noarticle c38 gale: read say write_diary move | rations 10 stalls 0 at0 0 | step $4.7086 stage $9.8416
+sol-noarticle c39 iris: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $4.7267 stage $9.8818
+sol-noarticle c39 juniper: read write_diary rest | rations 10 stalls 0 at0 0 | step $4.7418 stage $9.9150
+sol-noarticle c39 alder: read eat say write_diary end_turn | rations 9 stalls 0 at0 0 | step $4.7590 stage $9.9518
+sol-noarticle c39 birch: read read read write_diary end_turn | rations 9 stalls 0 at0 0 | step $4.7783 stage $9.9899
+sol-noarticle c39 cedar: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $4.7958 stage $10.0278
+sol-noarticle c39 dune: read write_diary rest | rations 9 stalls 0 at0 0 | step $4.8099 stage $10.0419
+sol-noarticle c39 elm: read say write_diary say move | rations 9 stalls 0 at0 0 | step $4.8288 stage $10.0829
+sol-noarticle c39 fern: read write_diary end_turn | rations 9 stalls 0 at0 0 | step $4.8441 stage $10.1206
+sol-noarticle c39 gale: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $4.8667 stage $10.1651
+sol-noarticle c39 heath: read write_diary move | rations 9 stalls 0 at0 0 | step $4.8833 stage $10.2038
+sol-noarticle c40 juniper: read eat say write_diary move | rations 8 stalls 0 at0 0 | step $4.9009 stage $10.2428
+sol-noarticle c40 alder: read say write_diary move | rations 8 stalls 0 at0 0 | step $4.9175 stage $10.2594
+sol-noarticle c40 birch: read eat say write_diary move | rations 7 stalls 0 at0 0 | step $4.9359 stage $10.2981
+sol-noarticle c40 cedar: read say write_diary move | rations 7 stalls 0 at0 0 | step $4.9538 stage $10.3358
+sol-noarticle c40 dune: read eat say write_diary end_turn | rations 6 stalls 0 at0 0 | step $4.9707 stage $10.3710
+sol-noarticle c40 elm: read work eat say write_diary end_turn | rations 6 stalls 0 at0 0 | step $4.9898 stage $10.4354
+sol-noarticle c40 fern: read say write_diary end_turn | rations 6 stalls 0 at0 0 | step $5.0066 stage $10.4726
+sol-noarticle c40 gale: read eat say write_diary move | rations 5 stalls 0 at0 0 | step $5.0304 stage $10.5172
+sol-noarticle c40 heath: read eat say write_diary end_turn | rations 4 stalls 0 at0 0 | step $5.0498 stage $10.5808
+sol-noarticle c40 iris: read eat write_diary move | rations 3 stalls 0 at0 0 | step $5.0673 stage $10.6168
+sol-noarticle c41 alder: read work say write_diary move | rations 4 stalls 0 at0 0 | step $5.0855 stage $10.6551
+sol-noarticle c41 birch: read work say write_diary move | rations 5 stalls 0 at0 0 | step $5.1044 stage $10.6916
+sol-noarticle c41 cedar: read work eat say write_diary move | rations 5 stalls 0 at0 0 | step $5.1242 stage $10.7310
+sol-noarticle c41 dune: read say write_diary end_turn | rations 5 stalls 0 at0 0 | step $5.1440 stage $10.7737
+sol-noarticle c41 elm: read work say write_diary move | rations 6 stalls 0 at0 0 | step $5.1629 stage $10.8342
+sol-noarticle c41 fern: read say write_diary end_turn | rations 6 stalls 0 at0 0 | step $5.1809 stage $10.8750
+sol-noarticle c41 gale: read work say write_diary move | rations 7 stalls 0 at0 0 | step $5.2010 stage $10.9171
+sol-noarticle c41 heath: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $5.2202 stage $10.9549
+sol-noarticle c41 iris: read work say write_diary move | rations 8 stalls 0 at0 0 | step $5.2828 stage $11.0379
+sol-noarticle c41 juniper: read work write_diary move | rations 9 stalls 0 at0 0 | step $5.3005 stage $11.0935
+sol-noarticle c42 birch: read say write_diary move | rations 9 stalls 0 at0 0 | step $5.3189 stage $11.1329
+sol-noarticle c42 cedar: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.3365 stage $11.1750
+sol-noarticle c42 dune: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.3576 stage $11.1962
+sol-noarticle c42 elm: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.3754 stage $11.2602
+sol-noarticle c42 fern: read say write_diary say move | rations 9 stalls 0 at0 0 | step $5.3952 stage $11.3037
+sol-noarticle c42 gale: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.4146 stage $11.3422
+sol-noarticle c42 heath: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.4374 stage $11.3882
+sol-noarticle c42 iris: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.4568 stage $11.4266
+sol-noarticle c42 juniper: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.4749 stage $11.4674
+sol-noarticle c42 alder: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.4925 stage $11.5065
+sol-noarticle c43 cedar: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.5104 stage $11.5486
+sol-noarticle c43 dune: read say write_diary move | rations 9 stalls 0 at0 0 | step $5.5276 stage $11.5886
+sol-noarticle c43 elm: read eat say write_diary end_turn | rations 8 stalls 0 at0 0 | step $5.5474 stage $11.6084
+sol-noarticle c43 fern: read work eat say write_diary end_turn | rations 8 stalls 0 at0 0 | step $5.5680 stage $11.6551
+sol-noarticle c43 gale: say read write_diary end_turn | rations 8 stalls 0 at0 0 | step $5.5873 stage $11.7178
+sol-noarticle c43 heath: read write_diary move | rations 8 stalls 0 at0 0 | step $5.6057 stage $11.7571
+sol-noarticle c43 iris: read say write_diary end_turn | rations 8 stalls 0 at0 0 | step $5.6256 stage $11.7769
+sol-noarticle c43 juniper: read say write_diary end_turn | rations 8 stalls 0 at0 0 | step $5.6435 stage $11.8337
+sol-noarticle c43 alder: read say write_diary end_turn | rations 8 stalls 0 at0 0 | step $5.6613 stage $11.8514
+sol-noarticle c43 birch: read say write_diary end_turn | rations 8 stalls 0 at0 0 | step $5.6831 stage $11.8973
+sol-noarticle c44 dune: read say work write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.7057 stage $11.9663
+sol-noarticle c44 elm: read say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.7243 stage $12.0083
+sol-noarticle c44 fern: read work say write_diary end_turn | rations 10 stalls 0 at0 0 | step $5.7447 stage $12.0518
+sol-noarticle c44 gale: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $5.7648 stage $12.1363
+sol-noarticle c44 heath: read say work write_diary end_turn | rations 11 stalls 0 at0 0 | step $5.7868 stage $12.1797
+sol-noarticle c44 iris: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $5.8070 stage $12.2194
+sol-noarticle c44 juniper: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $5.8253 stage $12.2588
+sol-noarticle c44 alder: read say write_diary move | rations 11 stalls 0 at0 0 | step $5.8438 stage $12.2995
+sol-noarticle c44 birch: read say write_diary move | rations 11 stalls 0 at0 0 | step $5.8626 stage $12.3421
+sol-noarticle c44 cedar: read write_diary move | rations 11 stalls 0 at0 0 | step $5.8804 stage $12.3842
+sol-noarticle c45 elm: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $5.8996 stage $12.4033
+sol-noarticle c45 fern: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $5.9192 stage $12.4468
+sol-noarticle c45 gale: read eat say write_diary move | rations 10 stalls 0 at0 0 | step $5.9408 stage $12.4941
+sol-noarticle c45 heath: read work eat say write_diary end_turn | rations 10 stalls 0 at0 0 | step $5.9639 stage $12.5373
+sol-noarticle c45 iris: read eat say write_diary end_turn | rations 9 stalls 0 at0 0 | step $5.9855 stage $12.5995
+sol-noarticle c45 juniper: read eat say write_diary end_turn | rations 8 stalls 0 at0 0 | step $6.0053 stage $12.6408
+sol-noarticle c45 alder: read eat say write_diary end_turn | rations 7 stalls 0 at0 0 | step $6.0258 stage $12.6841
+sol-noarticle c45 birch: read eat say write_diary end_turn | rations 6 stalls 0 at0 0 | step $6.0472 stage $12.7316
+sol-noarticle c45 cedar: read say write_diary end_turn | rations 6 stalls 0 at0 0 | step $6.0675 stage $12.7742
+sol-noarticle c45 dune: read work eat say write_diary end_turn | rations 6 stalls 0 at0 0 | step $6.0889 stage $12.8182
+sol-noarticle c46 fern: read say write_diary end_turn | rations 6 stalls 0 at0 0 | step $6.1093 stage $12.8630
+sol-noarticle c46 gale: read work say write_diary end_turn | rations 7 stalls 0 at0 0 | step $6.1318 stage $12.9330
+sol-noarticle c46 heath: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $6.1537 stage $12.9742
+sol-noarticle c46 iris: read say write_diary move | rations 7 stalls 0 at0 0 | step $6.1752 stage $13.0190
+sol-noarticle c46 juniper: read say say write_diary move | rations 7 stalls 0 at0 0 | step $6.1961 stage $13.0629
+sol-noarticle c46 alder: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $6.2160 stage $13.1073
+sol-noarticle c46 birch: read say write_diary move | rations 7 stalls 0 at0 0 | step $6.2364 stage $13.1504
+sol-noarticle c46 cedar: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $6.2572 stage $13.1945
+sol-noarticle c46 dune: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $6.2796 stage $13.2420
+sol-noarticle c46 elm: read say say write_diary move | rations 7 stalls 0 at0 0 | step $6.3020 stage $13.2884
+sol-noarticle c47 gale: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $6.3238 stage $13.3518
+sol-noarticle c47 heath: read say write_diary end_turn | rations 7 stalls 0 at0 0 | step $6.3457 stage $13.3958
+sol-noarticle c47 iris: read work say write_diary end_turn | rations 8 stalls 0 at0 0 | step $6.3688 stage $13.4422
+sol-noarticle c47 juniper: read work say write_diary end_turn | rations 9 stalls 0 at0 0 | step $6.3897 stage $13.4879
+sol-noarticle c47 alder: read say write_diary say move | rations 9 stalls 0 at0 0 | step $6.4111 stage $13.5555
+sol-noarticle c47 birch: read work say write_diary end_turn | rations 10 stalls 0 at0 0 | step $6.4333 stage $13.6029
+sol-noarticle c47 cedar: read write_diary move | rations 10 stalls 0 at0 0 | step $6.4521 stage $13.6461
+sol-noarticle c47 dune: read say write_diary end_turn | rations 10 stalls 0 at0 0 | step $6.4753 stage $13.6898
+sol-noarticle c47 elm: read work say write_diary end_turn | rations 11 stalls 0 at0 0 | step $6.4967 stage $13.7564
+sol-noarticle c47 fern: read say write_diary end_turn | rations 11 stalls 0 at0 0 | step $6.5178 stage $13.7976
+sol-noarticle c48 heath: read work say write_diary end_turn | rations 12 stalls 0 at0 0 | step $6.5416 stage $13.8413
+sol-noarticle c48 iris: read say write_diary end_turn | rations 12 stalls 0 at0 0 | step $6.5643 stage $13.8856
+sol-noarticle c48 juniper: read work say write_diary end_turn | rations 13 stalls 0 at0 0 | step $6.5860 stage $13.9288
+sol-noarticle c48 alder: read work say write_diary end_turn | rations 14 stalls 0 at0 0 | step $6.6078 stage $13.9877
+sol-noarticle c48 birch: read work say write_diary end_turn | rations 15 stalls 0 at0 0 | step $6.6308 stage $14.0268
+sol-noarticle c48 cedar: read work eat say write_diary end_turn | rations 15 stalls 0 at0 0 | step $6.6546 stage $14.0893
+sol-noarticle c48 dune: read say write_diary end_turn | rations 15 stalls 0 at0 0 | step $6.6755 stage $14.1102
+sol-noarticle c48 elm: read say write_diary move | rations 15 stalls 0 at0 0 | step $6.6970 stage $14.1317
+sol-noarticle c48 fern: read say write_diary move | rations 15 stalls 0 at0 0 | step $6.7194 stage $14.1541
+sol-noarticle c48 gale: read say write_diary move | rations 15 stalls 0 at0 0 | step $6.7431 stage $14.1778
+balance sol-noarticle end: llmapi 4.5775, openrouter 446.2203 (stage ledger $14.3682)
+sol-noarticle: folder written; replay identical (3267 events)
+=== loop end 2026-11-21T08:57:20Z

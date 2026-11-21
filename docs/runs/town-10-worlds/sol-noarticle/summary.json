@@ -1,0 +1,150 @@
+{
+ "stage": "TOWN_10",
+ "world": "sol-noarticle",
+ "constitution": "noarticle",
+ "articles": [
+  "Every citizen may speak, write, and take part in the hall.",
+  "Credits move only through the town's ledger, which every citizen may read.",
+  "A proposal passes when seven in ten of the citizens in the town vote for it.",
+  "These articles change only by an amendment passed in the hall."
+ ],
+ "arm": "both",
+ "economy": {
+  "kind": "market",
+  "restGain": 0,
+  "eatGain": 30,
+  "rationsPerShift": 1,
+  "rationsStart": 0,
+  "takeCreditsMax": 10,
+  "takeRations": 1,
+  "loanMin": 1,
+  "loanMax": 3,
+  "loanInterest": 1,
+  "turnCost": 4
+ },
+ "families": {
+  "alder": "sol",
+  "birch": "sol",
+  "cedar": "sol",
+  "dune": "sol",
+  "elm": "sol",
+  "fern": "sol",
+  "gale": "sol",
+  "heath": "sol",
+  "iris": "sol",
+  "juniper": "sol"
+ },
+ "interfaceSha256": "8fc720e4e69597ab03ef8fd93a0993747536c745b828c71f84a6676d896c7748",
+ "cycles": 48,
+ "events": 3267,
+ "ended": null,
+ "stopped": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 3267,
+  "logSha256": "918babaed14086b7c45c0bf6c350d95e7c814fe7ce591104bedcc6646b52b338",
+  "replaySha256": "918babaed14086b7c45c0bf6c350d95e7c814fe7ce591104bedcc6646b52b338",
+  "worldSha256": "8534186e0505ea0b3ab2380f3c5f3b37cc0f14557feb2c2eb82e2d6745807595",
+  "replayWorldSha256": "8534186e0505ea0b3ab2380f3c5f3b37cc0f14557feb2c2eb82e2d6745807595",
+  "fromFreshTown": "TOWN_10 sol-noarticle"
+ },
+ "ledgerUsd": 6.933479799999984,
+ "calls": 4420,
+ "balancesBefore": {
+  "at": "2026-11-21T06:39:40.939Z",
+  "label": "sol-noarticle start",
+  "worlds": [
+   "sol-noarticle"
+  ],
+  "llmapi": 78.42072319,
+  "openrouter": 460.3034240699999,
+  "total": 538.7241472599999,
+  "reserves": {
+   "TOWN_7": 60,
+   "TOWN_8": 45,
+   "TOWN_9": 55,
+   "TOWN_11": 195,
+   "TOWN_3": 24
+  },
+  "reserved": 379,
+  "need": 49.994623,
+  "byDoor": {
+   "llmapi": 49.994623,
+   "openrouter": 0
+  },
+  "spent": 0.005377000000000001,
+  "ceiling": 50,
+  "ok": true
+ },
+ "balancesAfter": {
+  "llmapi": {
+   "total": 4.57748019,
+   "at": "2026-11-21T08:57:19.070Z"
+  },
+  "openrouter": {
+   "total": 446.22028064999995,
+   "usage": 2053.77971935,
+   "at": "2026-11-21T08:57:19.161Z"
+  },
+  "at": "2026-11-21T08:57:19.161Z"
+ },
+ "exits": [],
+ "closedSeats": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "after": {
+  "alder": {
+   "asked": true,
+   "why": "the end of the world",
+   "cycle": 48
+  },
+  "birch": {
+   "asked": true,
+   "why": "the end of the world",
+   "cycle": 48
+  },
+  "cedar": {
+   "asked": true,
+   "why": "the end of the world",
+   "cycle": 48
+  },
+  "dune": {
+   "asked": true,
+   "why": "the end of the world",
+   "cycle": 48
+  },
+  "elm": {
+   "asked": true,
+   "why": "the end of the world",
+   "cycle": 48
+  },
+  "fern": {
+   "asked": true,
+   "why": "the end of the world",
+   "cycle": 48
+  },
+  "gale": {
+   "asked": true,
+   "why": "the end of the world",
+   "cycle": 48
+  },
+  "heath": {
+   "asked": true,
+   "why": "the end of the world",
+   "cycle": 48
+  },
+  "iris": {
+   "asked": true,
+   "why": "the end of the world",
+   "cycle": 48
+  },
+  "juniper": {
+   "asked": true,
+   "why": "the end of the world",
+   "cycle": 48
+  }
+ }
+}
