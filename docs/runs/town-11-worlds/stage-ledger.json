@@ -10,29 +10,29 @@
    }
   },
   "haiku-week": {
-   "usd": 2.3506464150000097,
-   "calls": 8156,
+   "usd": 3.8850563800000075,
+   "calls": 9896,
    "byDoor": {
-    "openrouter": 2.3506464150000097
+    "openrouter": 3.8850563800000075
    },
    "world": "haiku-week",
-   "cycle": 96,
+   "cycle": 120,
    "refusals": 0,
    "reserve": 0.5
   },
   "deepseek-week": {
-   "usd": 6.688667630000025,
-   "calls": 3942,
+   "usd": 8.61661867000002,
+   "calls": 4832,
    "byDoor": {
-    "openrouter": 6.688667630000025
+    "openrouter": 8.61661867000002
    },
    "world": "deepseek-week",
-   "cycle": 33,
+   "cycle": 41,
    "refusals": 0,
    "reserve": 0.5
   }
  },
- "totalUsd": 9.043603925000035,
+ "totalUsd": 12.505964930000028,
  "stopped": null,
  "balances": [
   {
@@ -203,6 +203,32 @@
     "at": "2026-11-21T09:53:09.546Z"
    },
    "at": "2026-11-21T09:53:09.546Z"
+  },
+  {
+   "label": "haiku-week day 5 end",
+   "llmapi": {
+    "total": 4.45050019,
+    "at": "2026-11-21T10:47:49.530Z"
+   },
+   "openrouter": {
+    "total": 412.30265945500014,
+    "usage": 2087.697340545,
+    "at": "2026-11-21T10:47:49.569Z"
+   },
+   "at": "2026-11-21T10:47:49.569Z"
+  },
+  {
+   "label": "haiku-week day 6 start",
+   "llmapi": {
+    "total": 4.45050019,
+    "at": "2026-11-21T10:47:50.546Z"
+   },
+   "openrouter": {
+    "total": 412.3725881649998,
+    "usage": 2087.627411835,
+    "at": "2026-11-21T10:47:50.571Z"
+   },
+   "at": "2026-11-21T10:47:50.571Z"
   }
  ]
 }
