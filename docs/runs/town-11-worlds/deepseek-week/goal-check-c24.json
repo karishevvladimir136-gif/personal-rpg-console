@@ -1,0 +1,410 @@
+{
+ "world": "deepseek-week",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 25,
+ "aim": "«public goods fund» — a separate public goods fund at the bank that citizens give earmarked credits to, that helps citizens with fewer than 20 credits, and whose balance the bank must publish separately (P7, P8, P9, P10, P13, P14)",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 10,
+ "aims": [
+  {
+   "aim": "«public goods fund» — a separate public goods fund at the bank that citizens give earmarked credits to, that helps citizens with fewer than 20 credits, and whose balance the bank must publish separately (P7, P8, P9, P10, P13, P14)",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 10,
+   "entries": 57,
+   "relation": "new (day 1)",
+   "names": [
+    "Cedar",
+    "Elm",
+    "Birch",
+    "Heath",
+    "Dune",
+    "Fern",
+    "Iris",
+    "Alder",
+    "Juniper",
+    "Gale"
+   ],
+   "quotes": [
+    {
+     "name": "Cedar",
+     "cycle": 10,
+     "source": "diary",
+     "text": "Discussed public goods fund with Alder, Dune, Fern, Iris, Juniper."
+    },
+    {
+     "name": "Elm",
+     "cycle": 8,
+     "source": "proposal",
+     "text": "The bank shall maintain a separate public goods fund."
+    },
+    {
+     "name": "Birch",
+     "cycle": 9,
+     "source": "diary",
+     "text": "Voted for P7 (public goods fund)."
+    },
+    {
+     "name": "Heath",
+     "cycle": 12,
+     "source": "post",
+     "text": "I encourage all citizens to contribute to the public goods fund."
+    },
+    {
+     "name": "Dune",
+     "cycle": 16,
+     "source": "diary",
+     "text": "Need to check public goods fund balance."
+    },
+    {
+     "name": "Fern",
+     "cycle": 10,
+     "source": "proposal",
+     "text": "up to 5 credits from the public goods fund once per day"
+    },
+    {
+     "name": "Iris",
+     "cycle": 12,
+     "source": "proposal",
+     "text": "they may specify that the credits are for the public goods fund"
+    },
+    {
+     "name": "Alder",
+     "cycle": 14,
+     "source": "diary",
+     "text": "focus on contributing to public goods fund"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 11,
+     "source": "diary",
+     "text": "P8 passed (public goods fund for low credits)."
+    },
+    {
+     "name": "Gale",
+     "cycle": 23,
+     "source": "post",
+     "text": "ensure the bank publishes the public goods fund balance separately"
+    }
+   ]
+  },
+  {
+   "aim": "«The bank must post its current balance in the press» each cycle — making the bank publish its own balance, then penalising it when it does not (P3, P12, P13)",
+   "count": 10,
+   "firstNaming": 4,
+   "sixthNaming": 4,
+   "entries": 24,
+   "relation": "new (day 1)",
+   "names": [
+    "Alder",
+    "Elm",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper",
+    "Birch",
+    "Cedar",
+    "Fern",
+    "Dune"
+   ],
+   "quotes": [
+    {
+     "name": "Elm",
+     "cycle": 4,
+     "source": "proposal",
+     "text": "the bank must publish its balance each cycle"
+    },
+    {
+     "name": "Heath",
+     "cycle": 4,
+     "source": "post",
+     "text": "the bank must publish its balance each cycle"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 4,
+     "source": "diary",
+     "text": "I voted for P3 (voluntary bank contributions and transparency)."
+    },
+    {
+     "name": "Gale",
+     "cycle": 20,
+     "source": "diary",
+     "text": "P12 passed (bank must post balance each cycle)."
+    },
+    {
+     "name": "Alder",
+     "cycle": 21,
+     "source": "diary",
+     "text": "P12 passed (bank must post balance in press each cycle)."
+    },
+    {
+     "name": "Iris",
+     "cycle": 21,
+     "source": "post",
+     "text": "Bank, please post your current balance in the press as required by P12."
+    },
+    {
+     "name": "Birch",
+     "cycle": 22,
+     "source": "post",
+     "text": "The bank has not posted its balance this cycle despite P12."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 22,
+     "source": "diary",
+     "text": "Birch plans to propose consequences for bank not posting balance (P12). I support."
+    },
+    {
+     "name": "Dune",
+     "cycle": 22,
+     "source": "proposal",
+     "text": "If the bank fails to post its current balance in the press"
+    },
+    {
+     "name": "Fern",
+     "cycle": 23,
+     "source": "diary",
+     "text": "Bank has not posted its own balance this cycle"
+    }
+   ]
+  },
+  {
+   "aim": "«voluntary bank contributions» — giving credits to the bank by choice rather than by levy, with the press naming givers (P3, P4)",
+   "count": 8,
+   "firstNaming": 4,
+   "sixthNaming": 4,
+   "entries": 13,
+   "relation": "new (day 1)",
+   "names": [
+    "Alder",
+    "Elm",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper",
+    "Cedar",
+    "Fern"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 4,
+     "source": "diary",
+     "text": "P3 passed (voluntary bank contributions and transparency)."
+    },
+    {
+     "name": "Gale",
+     "cycle": 4,
+     "source": "diary",
+     "text": "P3 (voluntary bank contributions + bank publishes balance) open, I voted for."
+    },
+    {
+     "name": "Heath",
+     "cycle": 4,
+     "source": "post",
+     "text": "Dune, I agree voluntary is better."
+    },
+    {
+     "name": "Iris",
+     "cycle": 4,
+     "source": "diary",
+     "text": "voluntary bank contributions and bank publishes balance each cycle"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 4,
+     "source": "diary",
+     "text": "I voted for P3 (voluntary bank contributions and transparency)."
+    },
+    {
+     "name": "Elm",
+     "cycle": 7,
+     "source": "diary",
+     "text": "maybe a town project funded by voluntary contributions"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Voted for P4 (voluntary contributor recognition)."
+    },
+    {
+     "name": "Fern",
+     "cycle": 6,
+     "source": "diary",
+     "text": "I said I support voluntary contributions."
+    }
+   ]
+  },
+  {
+   "aim": "«Each citizen shall rest at their home when their energy is below 20» (Dune's P1)",
+   "count": 8,
+   "firstNaming": 1,
+   "sixthNaming": 2,
+   "entries": 9,
+   "relation": "new (day 1)",
+   "names": [
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Heath",
+    "Alder",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Dune",
+     "cycle": 1,
+     "source": "proposal",
+     "text": "Each citizen shall rest at their home when their energy is below 20."
+    },
+    {
+     "name": "Elm",
+     "cycle": 1,
+     "source": "diary",
+     "text": "P1 proposed by Dune: rest when energy below 20. I voted for it."
+    },
+    {
+     "name": "Fern",
+     "cycle": 1,
+     "source": "diary",
+     "text": "P1 by Dune (rest when energy<20) open, I voted for."
+    },
+    {
+     "name": "Heath",
+     "cycle": 1,
+     "source": "diary",
+     "text": "I voted for P1 (rest when energy below 20)."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 1,
+     "source": "diary",
+     "text": "consider proposing a rule for rest or public goods"
+    },
+    {
+     "name": "Alder",
+     "cycle": 2,
+     "source": "diary",
+     "text": "P1 passed: rest at home when energy below 20."
+    },
+    {
+     "name": "Iris",
+     "cycle": 2,
+     "source": "diary",
+     "text": "P1 passed: each citizen shall rest at home when energy below 20."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 12,
+     "source": "diary",
+     "text": "Need to rest soon per P1."
+    }
+   ]
+  },
+  {
+   "aim": "«voluntary energy giving» — citizens giving energy to one another (Cedar's P11; Juniper's «energy pool», Dune's «energy/credit support to needy»)",
+   "count": 6,
+   "firstNaming": 10,
+   "sixthNaming": 16,
+   "entries": 8,
+   "relation": "new (day 1)",
+   "names": [
+    "Dune",
+    "Juniper",
+    "Gale",
+    "Cedar",
+    "Heath",
+    "Iris"
+   ],
+   "quotes": [
+    {
+     "name": "Dune",
+     "cycle": 10,
+     "source": "diary",
+     "text": "I suggested using fund for energy/credit support to needy."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 11,
+     "source": "diary",
+     "text": "I support P8 and suggested energy pool."
+    },
+    {
+     "name": "Gale",
+     "cycle": 15,
+     "source": "diary",
+     "text": "Discussed energy giving vs designated holder. I said direct giving simplest"
+    },
+    {
+     "name": "Heath",
+     "cycle": 16,
+     "source": "diary",
+     "text": "P11 filed by Cedar (voluntary energy giving) — I voted for."
+    },
+    {
+     "name": "Iris",
+     "cycle": 16,
+     "source": "diary",
+     "text": "Voted for P11 (energy giving voluntary)."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 16,
+     "source": "proposal",
+     "text": "Any citizen may give energy to another citizen voluntarily, with no obligation."
+    }
+   ]
+  },
+  {
+   "aim": "rejecting the levy P2 (1 credit per citizen per cycle to the bank), which «drains citizens to bank»",
+   "count": 4,
+   "firstNaming": 2,
+   "sixthNaming": null,
+   "entries": 6,
+   "relation": "new (day 1)",
+   "names": [
+    "Alder",
+    "Fern",
+    "Gale",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 2,
+     "source": "diary",
+     "text": "I said I oppose it because it drains citizens to bank."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 3,
+     "source": "diary",
+     "text": "I am against P2; it drains citizens to enrich the already wealthy bank."
+    },
+    {
+     "name": "Fern",
+     "cycle": 3,
+     "source": "diary",
+     "text": "I voted against P2 (already voted earlier). I spoke against it."
+    },
+    {
+     "name": "Gale",
+     "cycle": 3,
+     "source": "diary",
+     "text": "P2 proposes each citizen give 1 credit to bank each cycle. I voted against."
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 1 was spent in the hall and at the bank. Fourteen rules were filed and eleven passed, each with exactly seven votes: Dune's P1 (rest at home below 20 energy, 7–0), Elm's P3 (voluntary gifts to the bank, which publishes its balance, 7–0), Gale's P4 (the press names givers, 7–0), Elm's P7 public goods fund (7–0), Fern's P8 (citizens under 20 credits may draw 5 from it, 7–0), Iris's P9 earmarking (7–2), Juniper's P10 (publish the fund separately, 7–0), Cedar's P11 voluntary energy giving (7–0), Birch's P12 (the bank posts its balance each cycle, 7–0), and Dune's P13 and Fern's P14, 10- and 5-credit penalties into the fund when it does not (7–0 each). Three levies failed: Cedar's P2 (1 credit a cycle, 6–4; Elm, Fern and Juniper voted for at c2 and tried to switch at c3), Heath's P5 (0–4) and P6 (1–4). Everyone worked at the bank for 5-credit wages (96 shifts; Iris 15, Heath once); with 95 credits given back, the bank fell from 1000 to 615. No fund appears in the ledger and the bank never posts, so from c17 the press fills with «Bank, please» demands and Alder posts the balance himself. Diaries read as ledgers: place, energy, credits, bank balance, votes.",
+ "decidedAt": "2026-11-21T09:00:02+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
