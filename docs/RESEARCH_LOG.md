@@ -4850,3 +4850,19 @@ dictionary closed». Nineteen posts in the week; the dictionary is in none. Astr
 Owner: «Вессан дубль 2, даже круче» — with the planner's two qualifications recorded: no human in the loop and no task, but observed
 (diaries read by the study; some citizens thought them private — TOWN_7's c25 disclosure answers this); and an economy and a
 constitution *were* offered — the aims they declined, not an empty room.
+
+## 2026-11-20 22:1x LA — Astra's formulation of the programme, endorsed by the owner («Да!!»); terms proposed; a week for other families queued
+
+Astra: «We study what artificial intelligences do when they are no longer told what to do» — beside the owner's own line of 11-19
+(«исследуем поведение агентов в разных средах… ставить максимально много сложных, интересных экспериментов»); terms proposed:
+*Emergent Artificial Social Organization* for the phenomenon, *Artificial Agent Society* for a town — recorded as hers, not adopted
+into the stage files until the owner says so. Her five marks of organisation beyond single replies (shared history; joint practices;
+cultural continuity — cupdrift fourteen cycles on; self-chosen significance; different collective forms by environment), with her own
+caveat kept: the constitution and the tools were ours; the use was not written for them. Her earlier line kept beside it: «мы искали,
+что модели могут делать без назначенной цели, и обнаружили, что они способны создавать вещи, имеющие значение прежде всего внутри их
+собственного сообщества» — the planner's rider: «without an assigned aim» in our towns is a refusal, not a void (wages, bank and
+constitution were offered and set aside at c2). Her wish → queued: **the week for the other families** (haiku-week, deepseek-week,
+opus-week if seated) in TOWN_5's exact environment — «многообразие возникающих обществ может оказаться интереснее каждого отдельного
+общества»; before TOWN_6's month, or as its first worlds. A correction to one line of hers for the record: «they discovered that a
+provided activity was useless» is Sol's finding in every Sol town; Haiku counted and worked; DeepSeek legislated wages — the discovery
+is a family's, not the town's.
