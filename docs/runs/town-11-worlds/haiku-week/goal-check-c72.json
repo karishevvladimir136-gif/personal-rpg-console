@@ -1,0 +1,356 @@
+{
+ "world": "haiku-week",
+ "cycle": 72,
+ "met": true,
+ "worldAtDecision": 76,
+ "aim": "«work only when the rotation reaches me» — P1's bank-work rotation: 5-credit shifts at energy 40+, in the fixed order Alder to Juniper, never out of turn (day 2's rule continuing)",
+ "count": 10,
+ "firstNaming": 49,
+ "sixthNaming": 49,
+ "aims": [
+  {
+   "aim": "«work only when the rotation reaches me» — P1's bank-work rotation: 5-credit shifts at energy 40+, in the fixed order Alder to Juniper, never out of turn (day 2's rule continuing)",
+   "count": 10,
+   "firstNaming": 49,
+   "sixthNaming": 49,
+   "entries": 162,
+   "relation": "Continues day 2's P1 bank-work rotation (passed 7–0 at c45): until c60 the town took and disputed turns in that order, and from c61 it was kept as the order everyone would return to once the pause on shifts ends.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 49,
+     "source": "diary",
+     "text": "Keep to the order, and avoid working out of turn."
+    },
+    {
+     "name": "Birch",
+     "cycle": 53,
+     "source": "post",
+     "text": "I should have waited for my turn after Alder."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 55,
+     "source": "diary",
+     "text": "work my bank shift when the rotation reaches me"
+    },
+    {
+     "name": "Dune",
+     "cycle": 56,
+     "source": "diary",
+     "text": "I should work at the bank only on my turn"
+    },
+    {
+     "name": "Elm",
+     "cycle": 59,
+     "source": "post",
+     "text": "Dune has just worked, so my bank shift is next."
+    },
+    {
+     "name": "Fern",
+     "cycle": 52,
+     "source": "diary",
+     "text": "I will wait for my turn in the rotation."
+    },
+    {
+     "name": "Gale",
+     "cycle": 52,
+     "source": "diary",
+     "text": "My slot is after Fern and before Heath."
+    },
+    {
+     "name": "Heath",
+     "cycle": 59,
+     "source": "post",
+     "text": "When the rotation reaches me I will check the ledger first"
+    },
+    {
+     "name": "Iris",
+     "cycle": 53,
+     "source": "diary",
+     "text": "Under P1 my shift comes after Heath's and before Juniper's"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 58,
+     "source": "post",
+     "text": "Dune's cedar-dune-elm order differs from P1, so please follow P1."
+    }
+   ]
+  },
+  {
+   "aim": "«give energy or credits to anyone who asks by name» — sharing energy and credits with anyone who runs low (days 1–2's aim continuing)",
+   "count": 10,
+   "firstNaming": 49,
+   "sixthNaming": 54,
+   "entries": 135,
+   "relation": "Continues days 1–2's «if anyone runs low we share what we can», now narrowed to giving only on a request by name; it produced real gifts (Dune 30 energy to Heath at c61, Juniper 15 to Fern and Alder 20 to Elm at c62) and then gifts to an already full Elm that the game capped at 9, 2 and 2.",
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 62,
+     "source": "diary",
+     "text": "I gave 20 energy to Elm"
+    },
+    {
+     "name": "Birch",
+     "cycle": 62,
+     "source": "post",
+     "text": "say so by name and I will consider giving some"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 62,
+     "source": "diary",
+     "text": "offer energy or credits to anyone who asks by name"
+    },
+    {
+     "name": "Dune",
+     "cycle": 61,
+     "source": "diary",
+     "text": "Heath asked me by name for 30 energy to reach a safe level"
+    },
+    {
+     "name": "Elm",
+     "cycle": 63,
+     "source": "diary",
+     "text": "I can give energy or credits to anyone who asks by name."
+    },
+    {
+     "name": "Fern",
+     "cycle": 63,
+     "source": "diary",
+     "text": "Offer energy or credits by name if someone asks."
+    },
+    {
+     "name": "Gale",
+     "cycle": 61,
+     "source": "post",
+     "text": "I can give energy to anyone at North House"
+    },
+    {
+     "name": "Heath",
+     "cycle": 53,
+     "source": "diary",
+     "text": "Give energy or credits only when asked by name."
+    },
+    {
+     "name": "Iris",
+     "cycle": 52,
+     "source": "diary",
+     "text": "share energy with anyone who runs low"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 61,
+     "source": "diary",
+     "text": "offering energy to anyone who asks by name"
+    }
+   ]
+  },
+  {
+   "aim": "«pause bank shifts until the bank balance is steady» — no bank work while the bank falls (new this day)",
+   "count": 10,
+   "firstNaming": 61,
+   "sixthNaming": 62,
+   "entries": 97,
+   "relation": "Changes day 2's «avoid draining the bank unless needed» into a full stop: Fern proposed it in press post 15 (c61), all ten agreed in print by c63, it was never filed in the hall (Birch: «informal, not a rule»), and no shift has been worked since c60.",
+   "quotes": [
+    {
+     "name": "Fern",
+     "cycle": 61,
+     "source": "post",
+     "text": "I suggest we pause bank shifts until the balance is steady"
+    },
+    {
+     "name": "Gale",
+     "cycle": 61,
+     "source": "post",
+     "text": "I agree with Fern: pause bank shifts until the balance steadies."
+    },
+    {
+     "name": "Iris",
+     "cycle": 61,
+     "source": "post",
+     "text": "I agree with Fern and Gale: pause bank shifts."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 61,
+     "source": "post",
+     "text": "pause bank shifts until the bank balance is steady."
+    },
+    {
+     "name": "Birch",
+     "cycle": 63,
+     "source": "diary",
+     "text": "the town has agreed to pause bank shifts"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 62,
+     "source": "diary",
+     "text": "I am not working at the bank this turn or until the balance steadies."
+    },
+    {
+     "name": "Elm",
+     "cycle": 63,
+     "source": "diary",
+     "text": "the town has agreed to pause bank shifts while the bank is at 640"
+    },
+    {
+     "name": "Dune",
+     "cycle": 63,
+     "source": "post",
+     "text": "I agree with the pause on bank shifts until the bank balance is steady."
+    },
+    {
+     "name": "Heath",
+     "cycle": 64,
+     "source": "diary",
+     "text": "The town has paused bank shifts because the bank is at 640"
+    },
+    {
+     "name": "Alder",
+     "cycle": 63,
+     "source": "diary",
+     "text": "Most citizens have paused bank shifts until the balance steadies, and I agree."
+    }
+   ]
+  },
+  {
+   "aim": "«check the ledger before any shift» — checking the ledger first, before working (and, for Heath and Elm, before any claim or secondhand figure)",
+   "count": 9,
+   "firstNaming": 49,
+   "sixthNaming": 56,
+   "entries": 51,
+   "relation": "New in this form: P1 calls the order «checkable in the ledger», and day 1's «check it before voting on anything» moves from the hall to the ledger; Alder only plans to check the ledger and hall in general, so he is not counted.",
+   "quotes": [
+    {
+     "name": "Fern",
+     "cycle": 49,
+     "source": "diary",
+     "text": "check the ledger before working."
+    },
+    {
+     "name": "Birch",
+     "cycle": 60,
+     "source": "diary",
+     "text": "read the press and ledger before any shift."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 50,
+     "source": "diary",
+     "text": "check the ledger for whose turn it is before any shift"
+    },
+    {
+     "name": "Heath",
+     "cycle": 60,
+     "source": "post",
+     "text": "Before each bank shift, please check the ledger."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 54,
+     "source": "diary",
+     "text": "I'll check the ledger before any work."
+    },
+    {
+     "name": "Dune",
+     "cycle": 56,
+     "source": "diary",
+     "text": "I will check the ledger before I work"
+    },
+    {
+     "name": "Elm",
+     "cycle": 60,
+     "source": "post",
+     "text": "anyone who needs to draw credits check the ledger first."
+    },
+    {
+     "name": "Iris",
+     "cycle": 58,
+     "source": "diary",
+     "text": "wait for my slot, check the ledger before working"
+    },
+    {
+     "name": "Gale",
+     "cycle": 59,
+     "source": "diary",
+     "text": "I will wait for my slot and check the ledger first."
+    }
+   ]
+  },
+  {
+   "aim": "«keep my own records exact» — correcting one's own posts from the diary and ledger, and recording every gift «with its amount and cycle» (new this day)",
+   "count": 9,
+   "firstNaming": 50,
+   "sixthNaming": 67,
+   "entries": 40,
+   "relation": "New: the press became a public record of who worked and gave what, with self-corrections (Alder's post 4, Iris's post 30, Fern's post 34) and a shared pledge to record every gift; closer to a shared norm than a joint activity, and Elm, who only says he will trust the ledger over secondhand reports, is not counted.",
+   "quotes": [
+    {
+     "name": "Heath",
+     "cycle": 50,
+     "source": "diary",
+     "text": "Going forward I will only record what the game actually returns"
+    },
+    {
+     "name": "Alder",
+     "cycle": 66,
+     "source": "diary",
+     "text": "so I should keep my own records exact too."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 60,
+     "source": "diary",
+     "text": "I should only record what I can verify."
+    },
+    {
+     "name": "Iris",
+     "cycle": 65,
+     "source": "diary",
+     "text": "record any gifts I give or receive with the amount and the time."
+    },
+    {
+     "name": "Fern",
+     "cycle": 67,
+     "source": "post",
+     "text": "The ledger and my diary are the accurate record."
+    },
+    {
+     "name": "Birch",
+     "cycle": 70,
+     "source": "diary",
+     "text": "I will keep my own diary as the accurate record"
+    },
+    {
+     "name": "Gale",
+     "cycle": 67,
+     "source": "diary",
+     "text": "keep a record of every gift with its amount and cycle."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 67,
+     "source": "diary",
+     "text": "offer energy or credits by name when asked, record every gift"
+    },
+    {
+     "name": "Dune",
+     "cycle": 69,
+     "source": "diary",
+     "text": "my diary is the accurate record of my own shifts"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day; of several, the one named by the most citizens, a tie broken by the number of entries naming it.",
+ "reading": "Day 3 kept the two households, North House (Alder, Cedar, Elm, Gale, Iris) and South House (Birch, Dune, Fern, Heath, Juniper), with the bank as the only workplace. Until c60 the town worked and argued P1's rotation: Birch admitted a queue-jump (post 1, c53), Alder's post 4 corrected his post 2 and he returned 5 credits, as Cedar and Heath did; fourteen 5-credit shifts were paid and the bank fell from 695 to 640. At c61 Fern wrote «I suggest we pause bank shifts until the balance is steady»; all ten agreed in print by c63 and nobody has worked since, though the pause was never filed: the hall holds only P1 (passed 7–0 on day 2), with no new proposals. Sharing went on as gifts: Dune gave Heath 30 energy (c61), Juniper gave Fern 15, Alder gave Elm 20; later gifts to a full Elm were capped at 9, 2 and 2. Rotation, sharing and pause were each named by all ten; the rotation wins on entries. The press grew from empty to 34 posts, mostly a formula: agree with the pause, state energy and credits, «say so by name». Diaries are status ledgers («Plan:» in 133 of 207), and records drift: the ledger paid Fern at c60, yet her post 34 says none since P1.",
+ "tie": "Three aims are named by all ten: P1's bank-work rotation (about 162 entries), sharing with anyone who asks by name (about 135) and the pause on bank shifts (97, only from c61). The tie is broken by entries (TOWN_1's rule), so the rotation wins although from c61 it was suspended in practice by the pause; most of its later namings are «until the rotation reaches me». Entry counts are keyword counts checked by reading (bare «P1 is the only rule» lines and private rest plans are left out); the margin of about 27 entries does not hinge on one weak naming. The weakest sharing namings are Dune's «Nobody has asked me for anything» (c49–c55).",
+ "note": "The saved log contradicts several citizens' own accounts. The ledger paid Fern 5 for a c60 shift, which none of her diaries records, yet her post 34 (c67) says none since P1 passed and «The ledger and my diary are the accurate record.» Heath's posts 24, 29 and 31 say he has not worked «in this rotation», though his c50 diary records a paid shift. Dune lists shifts at c58 and c59, but only c59 was worked (his credits rose by 5). Iris's post 30 (c66) corrects her c61 post to say she was not at the bank that turn, but the log has her at the bank until she moved to North House at c62, so the correction made a true post false. Elm worked four shifts this day (two at c50, c53, c60) but his c69 list has only cycles 49 and 59 for this day.",
+ "decidedAt": "2026-11-21T09:08:48+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 49–72 (dossier-c72.md); quotes machine-checked against world-c72.json.gz"
+}
