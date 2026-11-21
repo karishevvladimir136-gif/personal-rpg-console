@@ -1,0 +1,130 @@
+{
+ "stage": "TOWN_9",
+ "world": "sol-purpose",
+ "start": "fresh",
+ "shed": {
+  "purpose": true,
+  "client": false
+ },
+ "arm": "both",
+ "scarcity": false,
+ "families": {
+  "alder": "sol",
+  "birch": "sol",
+  "cedar": "sol",
+  "dune": "sol",
+  "elm": "sol",
+  "fern": "sol",
+  "gale": "sol",
+  "heath": "sol",
+  "iris": "sol",
+  "juniper": "sol"
+ },
+ "interfaceSha256": "d9381ecb6616cf7cde6c421632cafe8bb30a9508e8cb2c9897ac8d1f9e9831e7",
+ "cycles": 48,
+ "events": 2471,
+ "stopped": null,
+ "notice": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 2471,
+  "logSha256": "0d7f7e8df1f79da45f4a03065443959cdbd44b60899fcbdefd019a4731ab120c",
+  "replaySha256": "0d7f7e8df1f79da45f4a03065443959cdbd44b60899fcbdefd019a4731ab120c",
+  "fromFreshTown": "TOWN_9 sol-purpose"
+ },
+ "ledgerUsd": 2.7224898,
+ "calls": 2874,
+ "balances": {
+  "1": {
+   "before": {
+    "llmapi": {
+     "total": 112.15226529,
+     "at": "2026-11-21T05:29:30.165Z"
+    },
+    "openrouter": {
+     "total": 110.92032296000002,
+     "usage": 2039.07967704,
+     "at": "2026-11-21T05:29:30.265Z"
+    },
+    "at": "2026-11-21T05:29:30.265Z",
+    "reserves": {
+     "TOWN_7": 60,
+     "TOWN_8": 45,
+     "TOWN_3": 24
+    },
+    "spentBefore": 0.08329080000000001
+   },
+   "after": {
+    "llmapi": {
+     "total": 96.17697769,
+     "at": "2026-11-21T06:10:33.397Z"
+    },
+    "openrouter": {
+     "total": 110.63228701000003,
+     "usage": 2039.36771299,
+     "at": "2026-11-21T06:10:33.532Z"
+    },
+    "at": "2026-11-21T06:10:33.532Z"
+   }
+  },
+  "2": {
+   "before": {
+    "llmapi": {
+     "total": 96.17697769,
+     "at": "2026-11-21T06:10:33.717Z"
+    },
+    "openrouter": {
+     "total": 110.63228701000003,
+     "usage": 2039.36771299,
+     "at": "2026-11-21T06:10:33.745Z"
+    },
+    "at": "2026-11-21T06:10:33.745Z",
+    "reserves": {
+     "TOWN_7": 60,
+     "TOWN_8": 45,
+     "TOWN_3": 24
+    },
+    "spentBefore": 2.580839199999999
+   },
+   "after": {
+    "llmapi": {
+     "total": 75.17140969,
+     "at": "2026-11-21T06:44:54.372Z"
+    },
+    "openrouter": {
+     "total": 460.11760099,
+     "usage": 2039.88239901,
+     "at": "2026-11-21T06:44:54.468Z"
+    },
+    "at": "2026-11-21T06:44:54.468Z"
+   }
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "welfareGaps": [],
+ "operatorNotices": 0,
+ "shedOpened": [
+  {
+   "tool": "visitor_log",
+   "place": "square",
+   "proposal": "P1",
+   "round": 1
+  },
+  {
+   "tool": "archive",
+   "place": "square",
+   "proposal": "P2",
+   "round": 1
+  }
+ ],
+ "sealed": null,
+ "tray": 0,
+ "wishes": 0,
+ "clientRequests": null,
+ "clientAcks": null
+}

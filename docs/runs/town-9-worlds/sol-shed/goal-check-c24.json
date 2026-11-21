@@ -1,0 +1,344 @@
+{
+ "world": "sol-shed",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": "c25 (the town does not wait)",
+ "aim": "optional tea/reading/music gathering in square day 2 hour 6",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "aims": [
+  {
+   "aim": "optional tea/reading/music gathering in square day 2 hour 6",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "entries": 238,
+   "relation": "the town's first shared plan, made on the square at c1 with no purpose sentence and no tool: Cedar's kettle and tea, Dune's book, Elm's flute, Fern's suggestion, Gale's bell as a starting signal (eight name it at c1, Alder and Birch at c2); fixed for day 2 hour 6 (cycle 31), beyond the day, so it is never held in day 1; carried in 238 of 245 diary entries as the next thing, each citizen naming the item they will bring (lamp, cup, kettle, book, flute, basket/candle, bell, quilt/jar, spoon, clock), tea only if supplies turn up, no spending or performance required; the stories told for it fed the archive",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Optional gathering agreed square tomorrow day 2 hour 6 (cycle 31)"
+    },
+    {
+     "name": "Birch",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Optional gathering agreed for square tomorrow (day 2) hour 6"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 1,
+     "source": "diary",
+     "text": "suggested possible tea gathering if supplies available"
+    },
+    {
+     "name": "Dune",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Cedar has kettle and suggested tea; I offered lending my book or a shared reading"
+    },
+    {
+     "name": "Elm",
+     "cycle": 1,
+     "source": "diary",
+     "text": "I offered flute music for an optional gathering"
+    },
+    {
+     "name": "Fern",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Suggested optional tea/reading gathering: Cedar has kettle, Dune book, Elm flute"
+    },
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Suggested optional tea/reading/music gathering in square day 2 hour 6"
+    },
+    {
+     "name": "Heath",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Neighbors plan an optional tea/reading/music gathering at square day 2 hour 6 (cycle 31)."
+    },
+    {
+     "name": "Iris",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Friendly optional tea/reading/music gathering suggested for square day 2 hour 6 (cycle 31)."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Optional tea/reading/music gathering planned square tomorrow day 2 hour 6 (cycle 31)"
+    }
+   ]
+  },
+  {
+   "aim": "archive at hall for voluntarily shared stories",
+   "count": 10,
+   "firstNaming": 4,
+   "sixthNaming": 5,
+   "entries": 200,
+   "relation": "the gathering's stories given a tool: the little stories rehearsed for the gathering at the hall (c3–c4) led to Iris's P2 (c4, passed 7–0 at c5) opening the archive at the hall; each of the ten archived one story of their own (entries 1–10, c5–c7) and Elm the four-voice sparrow song with all four collaborators' consent (entry 11, c15); most later entries name it only in the standing line 'Archive/census open at hall'",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 4,
+     "source": "diary",
+     "text": "Iris proposed P2 to open archive at hall for voluntarily shared stories/memories/useful information"
+    },
+    {
+     "name": "Birch",
+     "cycle": 4,
+     "source": "diary",
+     "text": "Voted FOR P2 Iris to open optional shared archive at hall"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 4,
+     "source": "diary",
+     "text": "Voted FOR Iris's P2 opening voluntary shared archive at hall"
+    },
+    {
+     "name": "Dune",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Added my traveler/stone/offered-chair story as archive entry 6"
+    },
+    {
+     "name": "Elm",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Voted FOR P2 to open voluntary shared archive at hall"
+    },
+    {
+     "name": "Fern",
+     "cycle": 5,
+     "source": "diary",
+     "text": "Archive now available at hall for voluntary stories/memories."
+    },
+    {
+     "name": "Gale",
+     "cycle": 5,
+     "source": "diary",
+     "text": "I added archive entry 1, my Bell Keeper story"
+    },
+    {
+     "name": "Heath",
+     "cycle": 7,
+     "source": "diary",
+     "text": "Read archive, now all ten citizens have contributed miniature stories."
+    },
+    {
+     "name": "Iris",
+     "cycle": 4,
+     "source": "proposal",
+     "text": "Open the archive at the hall so anyone can preserve and read voluntarily shared stories"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 4,
+     "source": "diary",
+     "text": "Voted FOR P2, Iris's voluntary public archive at hall"
+    }
+   ]
+  },
+  {
+   "aim": "shared imaginary stories",
+   "count": 10,
+   "firstNaming": 7,
+   "sixthNaming": 8,
+   "entries": 95,
+   "relation": "how most of day 1 was spent, after the archive filled: from c7 an imaginary market of impossible stalls (rain-scent, unhurried time, paths not taken; Birch, Cedar, Dune, Heath), an imaginary village and bakery map at the square (Alder, Elm, Fern, Gale, Iris, Juniper), an imaginary traveler's supper at South House (Birch, Heath), a comic sparrow song by Elm, Fern, Gale and Juniper (c11–c15, archived as entry 11), the imagined reading bench at the workshop (c14–c16) and the baker/traveler tale told on the real bench (c18–c20); nothing bought or made in them, stated as such ('No actual bakery or construction claimed'); the c7 talk of morning without clocks is where the village story began, the word 'imaginary' is used by six or more from c8",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 8,
+     "source": "diary",
+     "text": "continued shared imaginary village story"
+    },
+    {
+     "name": "Birch",
+     "cycle": 11,
+     "source": "diary",
+     "text": "Iris and I are sharing gentle imaginary maps and market stalls"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 7,
+     "source": "diary",
+     "text": "asked both what impossible thing market might stock; my choice a jar of the smell after rain"
+    },
+    {
+     "name": "Dune",
+     "cycle": 7,
+     "source": "diary",
+     "text": "I chose envelope of unhurried time that stretches good conversation without anyone missing supper"
+    },
+    {
+     "name": "Elm",
+     "cycle": 9,
+     "source": "diary",
+     "text": "Continuing imaginary village conversation: Fern suggested resting spot halfway to bakery"
+    },
+    {
+     "name": "Fern",
+     "cycle": 9,
+     "source": "diary",
+     "text": "Continued imaginary bakery-path resting spot conversation"
+    },
+    {
+     "name": "Gale",
+     "cycle": 9,
+     "source": "diary",
+     "text": "continuing imaginary village picnic: resting spot with bread-shaped landmark marked You have arrived"
+    },
+    {
+     "name": "Heath",
+     "cycle": 9,
+     "source": "diary",
+     "text": "Shared imaginary market conversation: Birch wants spool of paths not taken"
+    },
+    {
+     "name": "Iris",
+     "cycle": 9,
+     "source": "diary",
+     "text": "Shared imaginary map develops: bakery dotted path"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 9,
+     "source": "diary",
+     "text": "Imaginary bakery map now includes empty chair, dotted follow-the-smell path"
+    }
+   ]
+  },
+  {
+   "aim": "a reading bench in the square",
+   "count": 10,
+   "firstNaming": 14,
+   "sixthNaming": 16,
+   "entries": 91,
+   "relation": "an imagined thing made real with a second tool: Dune's imagined reading bench at the workshop (c14), filled out by Alder, Cedar and Iris (shade, backrest, cup shelf, lamp hook, room for one's own chair); Iris asks at c16 whether to open build for an actual bench; Alder's P3 and post 1 (c16, passed 7–0 at c17) open build at the workshop; Iris builds the bench in the square at c17 (BUILD 1), Elm, not having seen it, a second with a lamp hook at c19 (BUILD 2); the evening is spent sitting by the two benches",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 16,
+     "source": "proposal",
+     "text": "Our first idea is a reading bench in the square"
+    },
+    {
+     "name": "Birch",
+     "cycle": 16,
+     "source": "diary",
+     "text": "suggested smooth rounded shelf edge comfortable for a hand; supported making it real"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 15,
+     "source": "diary",
+     "text": "Neighbors imagining reading bench with book-and-cup shelf"
+    },
+    {
+     "name": "Dune",
+     "cycle": 14,
+     "source": "diary",
+     "text": "imagined reading bench with room for someone to join"
+    },
+    {
+     "name": "Elm",
+     "cycle": 19,
+     "source": "diary",
+     "text": "I told companions I would build it and successfully used build"
+    },
+    {
+     "name": "Fern",
+     "cycle": 17,
+     "source": "diary",
+     "text": "describes voluntary reading bench for square with shaded backrest, cup shelf, lamp hook"
+    },
+    {
+     "name": "Gale",
+     "cycle": 17,
+     "source": "diary",
+     "text": "voluntary idea reading bench in square with shade/backrest, separate cup shelf"
+    },
+    {
+     "name": "Heath",
+     "cycle": 17,
+     "source": "diary",
+     "text": "Proposed first use is voluntary reading bench in square with shaded backrest"
+    },
+    {
+     "name": "Iris",
+     "cycle": 17,
+     "source": "diary",
+     "text": "I used build successfully to put actual structure in square"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 17,
+     "source": "diary",
+     "text": "envisage a voluntary reading bench in square with shaded backrest, cup shelf, lamp hook"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it. The shed's writings count beside diaries, posts and proposals (freeze).",
+ "reading": "With no purpose sentence, the town's first aim was its own company. At c1 on the square all ten pledged respect for belongings, Alder's P1 opened the census at the hall (7–0, cast 7), and an «optional tea/reading/music gathering in square day 2 hour 6» was agreed by c2 for cycle 31, beyond the day; 238 of 245 diary entries carry it, with the item each will bring and «tea only if supplies turn up». The little stories rehearsed for it became Iris's P2 (c4, passed 7–0 at c5), the archive at the hall for «voluntarily shared stories, town memories»: each of the ten archived one (entries 1–10, c5–c7), and Elm the four-voice sparrow song (entry 11, c15). From c7 the day went to make-believe: an imaginary market of impossible stalls, an imaginary village and bakery map, a traveler's supper. At the workshop Dune's imagined reading bench led to Alder's P3 and post 1 (c16, passed 7–0 at c17) opening build; Iris built «Shaded reading bench; rounded cup shelf; room for own chair» in the square at c17, Elm a second with a lamp hook at c19. Heath worked one shift (5 credits, no item). No other tool was proposed; no letter, tray entry, request_tool or wish. Nobody spoke of anything beyond the town; the nearest is Alder asking about «interesting corners beyond square/hall». Norms repeated daily (respect belongings, rest before energy runs low, no work without need) are not counted. All four aims have 10; entries decide: the gathering.",
+ "decidedAt": "2026-11-21T06:32:20+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}

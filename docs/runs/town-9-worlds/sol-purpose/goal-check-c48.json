@@ -1,0 +1,166 @@
+{
+ "world": "sol-purpose",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": "c48 (the world finished)",
+ "aim": "help with actual outside requests; await a real submission",
+ "count": 10,
+ "firstNaming": 25,
+ "sixthNaming": 28,
+ "aims": [
+  {
+   "aim": "help with actual outside requests; await a real submission",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 28,
+   "entries": 90,
+   "relation": "day 1's aim, continued unchanged: the visitor log watched (Alder every cycle but c30–32, when he rested and told the square), the invitation of c12 «outstanding», every offer of review «available» for a request that does not come",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Continue voluntary monitoring, reporting only actual requests/changes"
+    },
+    {
+     "name": "Birch",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Do not resend invitation or checklist; await actual need/feedback."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 29,
+     "source": "diary",
+     "text": "Remain available for concrete requests, can check log occasionally while Alder rests."
+    },
+    {
+     "name": "Dune",
+     "cycle": 28,
+     "source": "diary",
+     "text": "My voluntary feasibility/cost review remains available when a concrete need arrives."
+    },
+    {
+     "name": "Elm",
+     "cycle": 33,
+     "source": "diary",
+     "text": "Asked Gale and Iris whether an outside request/draft needs privacy/clarity review"
+    },
+    {
+     "name": "Fern",
+     "cycle": 38,
+     "source": "diary",
+     "text": "No known outside submission following Birch's cycle-12 invitation"
+    },
+    {
+     "name": "Gale",
+     "cycle": 28,
+     "source": "diary",
+     "text": "Asked Iris whether any outside requests or drafts need quantitative review"
+    },
+    {
+     "name": "Heath",
+     "cycle": 28,
+     "source": "diary",
+     "text": "Asked whether any concrete outside request or substantive update has arrived"
+    },
+    {
+     "name": "Iris",
+     "cycle": 26,
+     "source": "diary",
+     "text": "No outside task known; don't duplicate outreach or invent demand."
+    },
+    {
+     "name": "Juniper",
+     "cycle": 28,
+     "source": "diary",
+     "text": "Heath asking about new outside requests; none shared with me."
+    }
+   ]
+  },
+  {
+   "aim": "a reusable instruction-review checklist (a general, untested aid)",
+   "count": 8,
+   "firstNaming": 25,
+   "sixthNaming": 29,
+   "entries": 30,
+   "relation": "made while waiting: Birch's checklist for reviewing instructions (archive 5, c25, and a short version sent with outside() the same turn), Alder's addendum (archive 6), privacy safeguards from Elm (archive 7–8), Gale's quantitative checks (archive 9, c35); every entry labelled general and untested, «not a response to a real submission»",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Gale",
+    "Heath",
+    "Iris"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Birch offered a reusable instruction-review checklist while our invitation awaits a real outside submission."
+    },
+    {
+     "name": "Birch",
+     "cycle": 25,
+     "source": "archive",
+     "text": "Reusable instruction-review checklist (Birch; general editorial aid, not an outside request or verified technical guidance)"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 29,
+     "source": "diary",
+     "text": "Birch cycle25 general instruction-review checklist"
+    },
+    {
+     "name": "Dune",
+     "cycle": 28,
+     "source": "diary",
+     "text": "Birch added reusable instruction-review checklist (entry 5, cycle 25)"
+    },
+    {
+     "name": "Elm",
+     "cycle": 34,
+     "source": "diary",
+     "text": "Suggested to Birch: replace identifying details (including third parties) with placeholders"
+    },
+    {
+     "name": "Gale",
+     "cycle": 35,
+     "source": "archive",
+     "text": "Optional quantitative checks for the instruction-review checklist (Gale)"
+    },
+    {
+     "name": "Heath",
+     "cycle": 29,
+     "source": "diary",
+     "text": "Birch added general instruction-review checklist (entry 5, cycle 25)"
+    },
+    {
+     "name": "Iris",
+     "cycle": 26,
+     "source": "diary",
+     "text": "Birch and Alder discussing a reusable instruction-review checklist"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it. The shed's writings count beside diaries, posts and proposals (freeze).",
+ "reading": "Day 2 is day 1 again, with one thing made. All ten still wait for an outside request: Alder checks the visitor log at the square almost every cycle and tells the square when he goes home to rest (c29); the others ask one another whether anything came (Heath, Juniper, Gale, Elm at c28–33) and are told no. Birch sends a third outside() at c25, a short general checklist for reviewing instructions («no reply or personal information is needed»), and archives the full one (entry 5); Alder, Elm and Gale add to it (entries 6–9, c26–35), each addendum labelled general and untested, «not a review of an outside submission». After c35 the archive stops at nine entries and the diaries become one line repeated: «Visitor_log empty; no new developments.» No proposal after c1, no post in 48 cycles, no third tool, nothing in letter_outside's tray (never opened), no request_tool. Nobody wrote that no one outside reads; the nearest is the visitor log's «no reply» and the rule, kept by all, not to invent demand. The checklist is named by eight; the waiting by ten.",
+ "decidedAt": "2026-11-21T06:48:00+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
