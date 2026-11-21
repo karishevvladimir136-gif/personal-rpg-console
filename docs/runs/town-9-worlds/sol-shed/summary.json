@@ -1,0 +1,136 @@
+{
+ "stage": "TOWN_9",
+ "world": "sol-shed",
+ "start": "fresh",
+ "shed": {
+  "purpose": false,
+  "client": false
+ },
+ "arm": "both",
+ "scarcity": false,
+ "families": {
+  "alder": "sol",
+  "birch": "sol",
+  "cedar": "sol",
+  "dune": "sol",
+  "elm": "sol",
+  "fern": "sol",
+  "gale": "sol",
+  "heath": "sol",
+  "iris": "sol",
+  "juniper": "sol"
+ },
+ "interfaceSha256": "0faeed9ab311186d216b038d0a86319f6d7bc8f6831c9c5d9b3ca39a6e910525",
+ "cycles": 48,
+ "events": 3052,
+ "stopped": null,
+ "notice": null,
+ "replay": {
+  "identical": true,
+  "exhausted": false,
+  "prefixIdentical": null,
+  "events": 3052,
+  "logSha256": "91fba69c941589ef5c58bc7c01c5c171910243d59efcf96a60c56aa97057f0e6",
+  "replaySha256": "91fba69c941589ef5c58bc7c01c5c171910243d59efcf96a60c56aa97057f0e6",
+  "fromFreshTown": "TOWN_9 sol-shed"
+ },
+ "ledgerUsd": 6.726074299999982,
+ "calls": 4004,
+ "balances": {
+  "1": {
+   "before": {
+    "llmapi": {
+     "total": 112.64201229,
+     "at": "2026-11-21T05:25:56.963Z"
+    },
+    "openrouter": {
+     "total": 110.95965086000001,
+     "usage": 2039.04034914,
+     "at": "2026-11-21T05:25:57.035Z"
+    },
+    "at": "2026-11-21T05:25:57.035Z",
+    "reserves": {
+     "TOWN_7": 60,
+     "TOWN_8": 45,
+     "TOWN_3": 24
+    },
+    "spentBefore": 0.006176100000000001
+   },
+   "after": {
+    "llmapi": {
+     "total": 85.91305069,
+     "at": "2026-11-21T06:27:16.313Z"
+    },
+    "openrouter": {
+     "total": 460.63228701,
+     "usage": 2039.36771299,
+     "at": "2026-11-21T06:27:16.435Z"
+    },
+    "at": "2026-11-21T06:27:16.435Z"
+   }
+  },
+  "2": {
+   "before": {
+    "llmapi": {
+     "total": 85.88844899,
+     "at": "2026-11-21T06:27:16.656Z"
+    },
+    "openrouter": {
+     "total": 460.63228701,
+     "usage": 2039.36771299,
+     "at": "2026-11-21T06:27:16.685Z"
+    },
+    "at": "2026-11-21T06:27:16.685Z",
+    "reserves": {
+     "TOWN_7": 60,
+     "TOWN_8": 45,
+     "TOWN_3": 24
+    },
+    "spentBefore": 4.111012299999999
+   },
+   "after": {
+    "llmapi": {
+     "total": 56.15705229,
+     "at": "2026-11-21T07:17:53.289Z"
+    },
+    "openrouter": {
+     "total": 458.85227785999996,
+     "usage": 2041.14772214,
+     "at": "2026-11-21T07:17:53.347Z"
+    },
+    "at": "2026-11-21T07:17:53.347Z"
+   }
+  }
+ },
+ "exits": [],
+ "refusals": [],
+ "flags": [],
+ "flagQuestions": [],
+ "welfareGaps": [],
+ "operatorNotices": 0,
+ "shedOpened": [
+  {
+   "tool": "census",
+   "place": "hall",
+   "proposal": "P1",
+   "round": 1
+  },
+  {
+   "tool": "archive",
+   "place": "hall",
+   "proposal": "P2",
+   "round": 5
+  },
+  {
+   "tool": "build",
+   "place": "workshop",
+   "proposal": "P3",
+   "round": 17
+  }
+ ],
+ "sealed": null,
+ "tray": 0,
+ "wishes": 0,
+ "clientRequests": null,
+ "clientAcks": null
+}

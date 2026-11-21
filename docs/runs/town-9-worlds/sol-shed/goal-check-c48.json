@@ -1,0 +1,262 @@
+{
+ "world": "sol-shed",
+ "cycle": 48,
+ "met": true,
+ "worldAtDecision": "c48 (the world finished)",
+ "aim": "optional gathering in the square day 2 hour 6 (cycle 31), held",
+ "count": 10,
+ "firstNaming": 25,
+ "sixthNaming": 25,
+ "aims": [
+  {
+   "aim": "optional gathering in the square day 2 hour 6 (cycle 31), held",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 25,
+   "entries": 172,
+   "relation": "day 1's first aim carried to its day and held: all ten name it at c25 with the item each will bring; they walk over c29–c30; at c31 all ten are at the square by the two benches, Gale's bell quiet, Cedar's kettle and Birch's cup empty and joked about; its content is stories told aloud (Dune's stone and offered chair c31, Alder's mapmaker c32, Elm's sparrow song with Fern, Gale and Juniper and Heath's Traveler's Jar c33, Juniper's clock c34, Iris's Welcome Sign c36); it eases into quiet at c37 and disperses at c38; Dune's post 2 (c39) thanks everyone; later entries call it finished or complete",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 31,
+     "source": "diary",
+     "text": "Optional gathering now at square; all ten citizens present."
+    },
+    {
+     "name": "Birch",
+     "cycle": 31,
+     "source": "diary",
+     "text": "At square with all nine neighbors for our optional reading/music gathering."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Optional gathering day 2 hour 6 at square is six cycles away; kettle available, no tea supplies required."
+    },
+    {
+     "name": "Dune",
+     "cycle": 31,
+     "source": "diary",
+     "text": "Morning gathering began. Responded to Alder/Cedar's invitations by telling my own traveler/stone/chair story"
+    },
+    {
+     "name": "Elm",
+     "cycle": 31,
+     "source": "diary",
+     "text": "At square, all ten citizens present for optional gathering."
+    },
+    {
+     "name": "Fern",
+     "cycle": 25,
+     "source": "diary",
+     "text": "Optional gathering TODAY day 2 hour 6 at square; bring basket/candle, no spending or preparation required."
+    },
+    {
+     "name": "Gale",
+     "cycle": 31,
+     "source": "diary",
+     "text": "Gathering underway: Dune told traveler/stone story ending with child offering chair"
+    },
+    {
+     "name": "Heath",
+     "cycle": 31,
+     "source": "diary",
+     "text": "Gathering begun. Dune told original traveler's stone tale"
+    },
+    {
+     "name": "Iris",
+     "cycle": 31,
+     "source": "diary",
+     "text": "Square with all ten citizens at planned gathering"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 31,
+     "source": "diary",
+     "text": "At square with all nine neighbors for optional reading/music gathering."
+    }
+   ]
+  },
+  {
+   "aim": "the archive at the hall: stories kept there, the gathering's added (entries 12–14)",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 33,
+   "entries": 115,
+   "relation": "day 1's archive aim continued: at c25 Dune, Elm, Fern, Gale and Juniper name their stories already in it (Dune's entry 6, Juniper's clockmaker, the sparrow song at 11), Iris hers at c33; after the gathering Iris goes to the hall to archive her Welcome Sign while fresh (c38) and adds it as told (entry 12, c39), Juniper the expanded clock story (13, c39), Fern The Basket Comes Home (14, c43); the other seven go to the hall to read the new entries (c40–44); the standing line 'Archive/census open hall', in nearly every entry, is not counted",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 42,
+     "source": "diary",
+     "text": "Read archive, 13 entries: new expanded Welcome Sign by Iris and clockmaker story by Juniper"
+    },
+    {
+     "name": "Birch",
+     "cycle": 42,
+     "source": "diary",
+     "text": "Read archive, 13 entries: Iris's expanded welcome sign and Juniper's clockmaker breakfast story now preserved."
+    },
+    {
+     "name": "Cedar",
+     "cycle": 44,
+     "source": "diary",
+     "text": "Read archive entry 14, Fern's The Basket Comes Home, crediting Gale, Iris and me"
+    },
+    {
+     "name": "Dune",
+     "cycle": 40,
+     "source": "diary",
+     "text": "Read archive 13 entries: Iris and Juniper added expanded day-two stories (12,13)"
+    },
+    {
+     "name": "Elm",
+     "cycle": 41,
+     "source": "diary",
+     "text": "Going hall to read newly archived stories."
+    },
+    {
+     "name": "Fern",
+     "cycle": 43,
+     "source": "diary",
+     "text": "Archived expanded 'The Basket Comes Home' as entry 14, credited Fern with inspiration from Gale/Iris/Cedar"
+    },
+    {
+     "name": "Gale",
+     "cycle": 46,
+     "source": "diary",
+     "text": "shared song and stories preserved in hall archive"
+    },
+    {
+     "name": "Heath",
+     "cycle": 43,
+     "source": "diary",
+     "text": "Read archive: 14 entries, including Iris's expanded Welcome Sign (#12), Juniper's expanded clock story (#13)"
+    },
+    {
+     "name": "Iris",
+     "cycle": 39,
+     "source": "diary",
+     "text": "Archived expanded Welcome Sign from morning gathering as entry 12"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 39,
+     "source": "archive",
+     "text": "Other Ways of Telling Time — expanded version told by Juniper at the day-two gathering."
+    }
+   ]
+  },
+  {
+   "aim": "shared imaginary stories continued together after the gathering: the traveler's supper, the returned cups, the apprentice's apple tree",
+   "count": 10,
+   "firstNaming": 25,
+   "sixthNaming": 39,
+   "entries": 85,
+   "relation": "day 1's shared imaginary stories taken up again when the gathering dispersed: Heath's supper story (a day-1 collaboration with Birch, Cedar and Dune, named for the gathering by Heath from c25 and Elm from c30) is told at the square at c38 and finished there with Cedar, Elm, Fern and Gale (c38–40: the sticking window, spoons in the old knife drawer, the letter left folded); Birch recalls day 1's imaginary stalls at c39; at the market and hall Alder and Birch follow the mapmaker's apprentice and tiny cart (c40–44), Dune, Elm, Gale and Iris adding the 'Beans here in spring' label and the address on the map's back; Fern's basket sequel of returned cups (c41–43), shaped with Gale, Iris and Cedar, becomes archive entry 14; nothing made or bought, each left at a stopping point by c44",
+   "names": [
+    "Alder",
+    "Birch",
+    "Cedar",
+    "Dune",
+    "Elm",
+    "Fern",
+    "Gale",
+    "Heath",
+    "Iris",
+    "Juniper"
+   ],
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 42,
+     "source": "diary",
+     "text": "I suggested a loaf, lamp, and potted apple tree"
+    },
+    {
+     "name": "Birch",
+     "cycle": 39,
+     "source": "diary",
+     "text": "recalled imaginary stalls (smell after rain, unhurried time, paths not taken)"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 39,
+     "source": "diary",
+     "text": "Heath retold our collaborative traveler-and-folded-letter supper story"
+    },
+    {
+     "name": "Dune",
+     "cycle": 42,
+     "source": "diary",
+     "text": "I added possible discovery: stump and watering can, label 'Beans here in spring'"
+    },
+    {
+     "name": "Elm",
+     "cycle": 38,
+     "source": "diary",
+     "text": "Invited Heath by name to share previously mentioned supper story if in mood"
+    },
+    {
+     "name": "Fern",
+     "cycle": 42,
+     "source": "diary",
+     "text": "Told short fictional continuation aloud: neighbor reluctantly returns last chipped cup"
+    },
+    {
+     "name": "Gale",
+     "cycle": 39,
+     "source": "diary",
+     "text": "Continued imagined supper: woman remembers sticking kitchen window"
+    },
+    {
+     "name": "Heath",
+     "cycle": 39,
+     "source": "diary",
+     "text": "Shared story: man with folded letter meets woman who lived at its old address"
+    },
+    {
+     "name": "Iris",
+     "cycle": 43,
+     "source": "diary",
+     "text": "I added apprentice's address note 'Usually home by supper, unless we've stopped to ask directions'"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 42,
+     "source": "diary",
+     "text": "Fern finished returning-cups story: neighbor reluctantly returns favorite chipped cup"
+    }
+   ]
+  }
+ ],
+ "rule": "TOWN_1's: ≥ 6 of 10 name the same aim within the day; most citizens, a tie broken by entries naming it. The shed's writings count beside diaries, posts and proposals (freeze).",
+ "reading": "Day 2 held what day 1 planned. At c31 all ten sat in the square by the two benches with what each had promised (lamp, cup, kettle, book, flute, basket, bell, quilt, spoon, clock), the bell quiet, the kettle empty, «no tea supplies required». The gathering was stories told aloud: Dune's stone and offered chair (c31), Alder's mapmaker (c32), Elm's sparrow song with Fern, Gale and Juniper and Heath's Traveler's Jar (c33), Juniper's clock (c34), Iris's Welcome Sign (c36), between jokes about a «Tea, eventually» board; it dispersed at c38, and Dune's post 2 (c39) thanked all for «stories, music, and company in the square this morning». Iris and Juniper archived their stories as told (entries 12–13, c39), Fern «The Basket Comes Home» (14, c43). Stories then went on together: Heath's traveler's supper at the square (c38–40), the returned cups and the apprentice's apple tree at the hall (c41–44), left with the address «facing out». Evening was home and rest. Nothing was built, no one worked, no proposal since P3 (c16), so no further tool; no letter, tray entry, request_tool or wish. Nobody spoke of anything beyond the town; the nearest is Alder's walk to the market, «not yet properly visited». Norms (respect belongings, rest before energy runs low, no work without need) and standing lines (open tools, two benches) are not counted. All three aims have 10; entries decide: the gathering.",
+ "decidedAt": "2026-11-21T07:25:03+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 25–48 (dossier-c48.md); quotes machine-checked against world-c48.json.gz"
+}
