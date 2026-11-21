@@ -1,0 +1,61 @@
+{
+ "at": "2026-11-21T06:28:06.528Z",
+ "balances": {
+  "llmapi": {
+   "total": 85.39329779,
+   "at": "2026-11-21T06:28:05.872Z"
+  },
+  "openrouter": {
+   "total": 460.63228701,
+   "usage": 2039.36771299,
+   "at": "2026-11-21T06:28:05.983Z"
+  }
+ },
+ "reserved": {
+  "rows": [
+   {
+    "stage": "TOWN_7",
+    "reserved": 60,
+    "how": "the launch prompt's figure (its ceiling)"
+   },
+   {
+    "stage": "TOWN_8",
+    "reserved": 45,
+    "how": "the launch prompt's figure (its ceiling)"
+   },
+   {
+    "stage": "TOWN_9",
+    "reserved": 55,
+    "how": "the launch prompt's figure (its ceiling)"
+   },
+   {
+    "stage": "TOWN_10",
+    "reserved": 50,
+    "how": "the launch prompt's figure (its ceiling)"
+   },
+   {
+    "stage": "TOWN_3",
+    "reserved": 16.14471700000002,
+    "how": "its ceiling $60 less its pushed ledger $43.8553 (origin/claude/town-3:docs/runs/town-3-worlds/stage-ledger.json)"
+   }
+  ],
+  "total": 226.144717
+ },
+ "stageCeiling": 195,
+ "need": 421.144717,
+ "pooled": 546.0255848,
+ "perDoor": {
+  "llmapi": {
+   "balance": 85.39329779,
+   "thisStage": 15,
+   "note": "Haiku citizens only; TOWN_7–10's Sol worlds also draw on this key"
+  },
+  "openrouter": {
+   "balance": 460.63228701,
+   "thisStage": 180,
+   "note": "DeepSeek, the three Claude seats, Opus and Fable 5.2 citizens, the welfare judges; the owner's top-up"
+  }
+ },
+ "covered": true,
+ "rule": "the keys (llmapi + OpenRouter) must cover $195 beside TOWN_7 $60, TOWN_8 $45, TOWN_9 $55, TOWN_10 $50 and TOWN_3's remainder; and llmapi this stage's llmapi worlds + $5"
+}

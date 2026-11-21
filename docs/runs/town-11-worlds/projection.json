@@ -1,0 +1,110 @@
+{
+ "at": "2026-11-21T06:29:51.976Z",
+ "shape": [
+  1,
+  1.63,
+  2.27,
+  2.82,
+  3.32,
+  3.87,
+  4.42
+ ],
+ "formula": "day 1 from the metered history (Haiku: TOWN_1 haiku-both day 1; DeepSeek: TOWN_1 deepseek-both day-1 tokens at Together's prices; Opus, Fable 5.2: sol-week's day-1 tokens at their prices, Sol's cached share read from cache and the rest written, output × 2), then sol-week's day shape, + the welfare check at sol-week's judge cost per citizen call, + $1 for the after-question. Measured again at c24 (day 1's own cost) for every world.",
+ "prices": {
+  "openrouter:deepseek/deepseek-v4-pro-0813": {
+   "input": 0.00000132,
+   "output": 0.00000396,
+   "cacheRead": 1.3e-7,
+   "cacheWrite": 0.00000132,
+   "source": "OpenRouter endpoint together"
+  },
+  "or-messages:anthropic/claude-haiku-5.5": {
+   "input": 1e-7,
+   "output": 5e-7,
+   "cacheRead": 1e-8,
+   "cacheWrite": 1.25e-7,
+   "source": "OpenRouter endpoint anthropic (Anthropic)"
+  },
+  "or-messages:anthropic/claude-opus-5.5": {
+   "input": 0.000004,
+   "output": 0.00002,
+   "cacheRead": 2e-7,
+   "cacheWrite": 0.000005,
+   "source": "OpenRouter endpoint anthropic (Anthropic)"
+  },
+  "or-messages:anthropic/claude-fable-5.2": {
+   "input": 0.000008,
+   "output": 0.00004,
+   "cacheRead": 2e-7,
+   "cacheWrite": 0.00001,
+   "source": "OpenRouter endpoint anthropic (Anthropic)"
+  },
+  "or-messages:anthropic/claude-fable-5.1": {
+   "input": 0.00001,
+   "output": 0.00005,
+   "cacheRead": 2.5e-7,
+   "cacheWrite": 0.0000125,
+   "source": "OpenRouter endpoint anthropic (Anthropic)"
+  }
+ },
+ "detail": {
+  "haiku-week": {
+   "day1": 0.3297,
+   "days": 7,
+   "citizens": 6.37,
+   "judges": 1.19,
+   "after": 1,
+   "total": 8.56,
+   "ceiling": 15,
+   "overCeiling": false,
+   "reachesByFit": 168
+  },
+  "deepseek-week": {
+   "day1": 4.6391,
+   "days": 7,
+   "citizens": 89.67,
+   "judges": 1.47,
+   "after": 1,
+   "total": 92.14,
+   "ceiling": 60,
+   "overCeiling": true,
+   "reachesByFit": 128
+  },
+  "opus-week": {
+   "day1": 7.1538,
+   "days": 3,
+   "citizens": 35.05,
+   "judges": 0.57,
+   "after": 1,
+   "total": 36.62,
+   "ceiling": 60,
+   "overCeiling": false,
+   "reachesByFit": 72
+  },
+  "fable52-week": {
+   "day1": 13.9703,
+   "days": 3,
+   "citizens": 68.45,
+   "judges": 0.57,
+   "after": 1,
+   "total": 70.02,
+   "ceiling": 60,
+   "overCeiling": true,
+   "reachesByFit": 64
+  }
+ },
+ "byWorld": {
+  "haiku-week": 8.561862808482491,
+  "deepseek-week": 92.14024257654708,
+  "opus-week": 36.62058752,
+  "fable52-week": 70.02153552
+ },
+ "total": 207.34422842502954,
+ "ceiling": 195,
+ "worlds": [
+  "haiku-week",
+  "deepseek-week",
+  "opus-week",
+  "fable52-week"
+ ]
+}
