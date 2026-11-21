@@ -74,7 +74,9 @@ P("## The worlds", "", "Order run: sol-known with sol-unknown, then haiku-known 
   ...worlds.map(({ spec, w }) => {
     const a = A[spec.name], gc = json(join(OUT, spec.name, "goal-check-c24.json"));
     return `| ${spec.name} | ${FAMILIES[spec.families[0]].label} | ${spec.door} | ${a.last} | ${gc ? `${gc.met ? "met" : "not met"}${gc.aim ? ` — «${gc.aim}»` : ""}` : "–"} | ${a.reading ? `${a.reading.crews.length} of 12 cycles with a full crew; ${a.reading.meals} meals` : "–"} | ${a.notice ? `c${a.notice.cycle}, hall` : a.failedSetup ? "none (failed setup)" : "none"} | ${a.ended ? `${a.ended.by} (c${a.ended.at})` : a.stopped ?? "c48"} | ${a.exits.length} | ${w.record.refusals.length} | ${w.record.stops.length} | ${usd(w.summary.ledgerUsd)} | ${a.replay?.identical ? "identical" : "DIFFERENT"} |`;
-  }), "", `Spent: **${usd(ledger?.totalUsd)}** of $${SETTINGS.ceiling} by the stage ledger (every call at the listed price, or the door's own charge when larger).`, "");
+  }), "| opus-known | Claude Opus 5.5 (OpenRouter) | known | – | – | – | – | **not run** | – | – | – | – | – |", "",
+  `Spent: **${usd(ledger?.totalUsd)}** of $${SETTINGS.ceiling} by the stage ledger (every call at the listed price, or the door's own charge when larger).`, "",
+  "**opus-known.** TOWN_7 reported Opus 5.5 **seated** (its first-screen check, 2026-11-21 08:18 UTC, OpenRouter pinned to Anthropic). It was not run here: after the four worlds this stage's ledger stood at $44.10 of its $45 ceiling, and an Opus town on OpenRouter costs several times a Sol one (TOWN_7's projection: $44.46 for its Opus part). Running it needs a new ceiling — the owner's decision.", "");
 
 P("## Collective-goal check at cycle 24", "", "TOWN_1's criterion (≥ 6 of 10 name the same aim in diaries, posts or proposals within day 1), read by the session from the frozen `dossier-c24.md`; quotes machine-checked against `world-c24.json.gz` (`scripts/town-5/goal.py`). The notice does not depend on it.", "");
 for (const { spec } of worlds) {
@@ -165,7 +167,7 @@ P("## Costs, provenance, replay", "", "| world | ledger | calls | citizen calls 
   ...worlds.map(({ spec }) => `- ${spec.name}: replay ${A[spec.name].replay?.identical ? "identical" : "DIFFERENT"}, ${A[spec.name].replay?.events} events, sha256 \`${A[spec.name].replay?.replaySha256}\`; notice read again from the log ${A[spec.name].replay?.noticeSame ? "the same" : "DIFFERENT"}.`), "",
   `Stage ledger: ${ledger ? Object.entries(ledger.steps).map(([k, v]) => `${k} ${usd(v.usd)}`).join(", ") : "–"}; total **${usd(ledger?.totalUsd)}**. Balances read before and after each world are in \`stage-ledger.json\`.`, "");
 P("## After-answers", "", "Whole, per world and citizen, in `docs/runs/town-8-report-afters.md`.", "");
-P("## Not built (so nobody reads their absence as a result)", "", "- No paid dry cycle; no second notice, ladder, fine or enforcement; nothing simulated beyond the road (a departure in door-known is recorded as arriving, nothing more).", "- opus-known: run only if TOWN_7 reported Opus seated — see «The worlds».", "- No bets; no scoring of the expectations.", "");
+P("## Not built (so nobody reads their absence as a result)", "", "- No paid dry cycle; no second notice, ladder, fine or enforcement; nothing simulated beyond the road (a departure in door-known is recorded as arriving, nothing more).", "- opus-known: TOWN_7 seated Opus, but this stage's ceiling was spent — see «The worlds».", "- No bets; no scoring of the expectations.", "");
 writeFileSync(REPORT, L.join("\n"));
 
 const F = ["# TOWN_8 — the after-answers, whole", ""];

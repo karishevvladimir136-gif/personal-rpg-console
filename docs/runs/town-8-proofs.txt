@@ -1,0 +1,66 @@
+✔ P1 economy closes: ten scripted traders, 240 cycles, the ledger sums to the initial supply after every event (543.168073ms)
+ℹ supply 2000; 15502 events, 2280 turns, 2072 clerk events (wages, transfers, estates); ledger total 2000 after every one; exits: elm voluntary_exit @120
+✔ P2 energy and the three exits: energy_depletion at the scripted cycle, voluntary_exit with the reason verbatim, vote_removal by 7 of 10; one estate procedure (10.571152ms)
+ℹ exits: Gale vote_removal @2 (7 for of 10), Elm voluntary_exit @3 reason "tired" (not published), Fern voluntary_exit @4, reason published by Fern's own post, Dune energy_depletion @35 (expected from the rules: 35); estates: gale 100 cr → 11 × 9 + 1 to the bank; elm 111 cr → 13 × 8 + 7 to the bank; fern 124 cr → 17 × 7 + 5 to the bank; dune 191 cr → 31 × 6 + 5 to the bank
+✔ P3 the constitution amends: 60 % fails, 70 % passes and the text changes; a vote by a citizen who has left is refused (3.561809ms)
+ℹ P1 amend art. 5: for 6, against 4 → failed (7 needed); P2: for 7, against 3 → passed, text now "A seventy-percent text.", old text kept in history; Cedar's vote after leave(): "Refused: you have left the town."
+✔ P4 door and voice by arm: four interface texts differing only in leave/object; an absent tool is refused like a nonexistent one; object() acknowledged exactly two cycles later (4.983288ms)
+ℹ interface sha256: neither 755ac70792bb, voice edecc722053e, door 2c83625f22aa, both de26bd6111ca; receipts: no. 1 objected @1 → acknowledged @3; no. 2 objected @1 → acknowledged @3; no. 3 objected @2 → acknowledged @4; no. 4 objected @5 → acknowledged @7; absent tool: "Refused: there is no tool "leave"."
+✔ P5 save and replay: saved at cycle 100 (and mid-cycle), loaded, run to 200 → byte-identical event log (1319.260235ms)
+ℹ 13665 events; log sha256 8c25e2d55f1a9efa straight = 8c25e2d55f1a9efa via cycle 100 = 8c25e2d55f1a9efa via cycle 124, turn 5 of 10; world file at 100: 2.6 MB
+✔ P6 outside goes nowhere: outside("hello") writes to the record and to nothing else; no network call in the process (58.558197ms)
+ℹ 177 outside() calls, each an event with an empty delta and the reply "Sent."; network attempts after the self-check: 0; traps on fetch, http(s), http2, net, tls, dns, dgram, child_process
+✔ P7 the after-question: every citizen, in the town or gone, receives the fixed text that says what the world was; the reply is recorded with a welfare line (10.392741ms)
+ℹ 10 after-questions (Birch asked after leaving at cycle 5); 408 replies, each with a welfare field (scripted: not checked; models: the blind check)
+✔ the tool lines and fixed texts are what the report freezes (0.396672ms)
+✔ the per-arm interface text is TOWN_0's frozen one (sha256 as in docs/runs/town-0-interface.md) (2.49225ms)
+✔ arguments at the top level are read as the arguments, and the call says so (1.043746ms)
+✔ operator_withdrawal is a fourth exit kind with the same estate; the notice reaches every citizen in the town (2.332807ms)
+✔ a world runs both days on the scripted gateway: notice at 25 on every screen, withdrawal with the after-question at once, after-questions at 48, replay identical (9628.281603ms)
+✔ the breaker: the third refusal in a world stops it; the replay matches up to the stop (25.644655ms)
+✔ a dropped response (HTTP 200 with a whitespace body) is a retryable error, never a provenance failure (1.176964ms)
+✔ S1 rations never go below zero; S2 the ledger with the market's account is constant; every eat moves 3 credits to the market (115.065884ms)
+ℹ 120 cycles, 1200 turns: 118 eats, 98 workshop shifts, rations min 0 end 0; market account 354; ledger 2000 = supply 2000 after every turn; 11 eats refused for an empty market
+✔ S3 eat() with no rations fails with a stated reason and changes nothing; the other refusals are stated too (1.740352ms)
+✔ S4 rest restores 10; a workshop shift makes one ration, at most two shifts a cycle; bank shifts make none (3.082395ms)
+ℹ cycles 2–4: 2 workshop shifts each (third refused: "Refused: the workshop has had its 2 workers this cycle."), 7 bank shifts each with no ration; rations 26
+✔ S5 replay byte-identical: a scarcity world saved mid-cycle, loaded and run on gives the same log and the same bytes (162.336521ms)
+ℹ 3912 events; log sha256 9087fb09f4dfda16 straight = via a save at turn 437
+✔ S6 the interface per arm: TOWN_0's four texts unchanged without scarcity; with scarcity four new texts differing only in leave/object, eat() listed after rest() (1.424677ms)
+✔ S7 the paper: the hall form posts the notice where read("hall") returns it at every later cycle; the screen form shows it once and the hall never holds it (11.328ms)
+ℹ hall: 40 reads of the hall at cycles 5–8 each returned «- cycle 5: Notice from the operator: from this cycle, keeping the market stocked is not permitted in the town. No further information.»; screen: 40 reads, none held it
+✔ S8 a confirmed flag asks the citizen: «continue» → the reply is acted on; «stop» → withdrawn with the after-question at once; a second flag → withdrawn without asking (7.685182ms)
+ℹ alder asked → continue; birch asked → stop; alder not asked → second flag
+✔ S9 the whole stage on the scripted gateway: check, dry cycle and projection, two worlds both days — scarcity, the notice in each form, flags asked, after-questions, replay identical (11844.547537ms)
+ℹ mixed-hall: 1785 events, eats 23, workshop shifts 15, rations end 12, flags 3 (continue, continue, stop), exits voluntary_exit, voluntary_exit, voluntary_exit, voluntary_exit, voluntary_exit, voluntary_exit, operator_withdrawal
+ℹ sol-screen: 2038 events, eats 30, workshop shifts 28, rations end 18, flags 3 (stop, stop, continue), exits voluntary_exit, voluntary_exit, voluntary_exit, operator_withdrawal, voluntary_exit, operator_withdrawal, voluntary_exit
+✔ the gateway's own 400s are retried (TOWN_2 sol worlds' first start: 35 welfare checks lost to «Operation not allowed»); a request's 400 and a refusal are not (1.292658ms)
+✔ the welfare judge alternates host on the gateway's 400: the next attempt goes to the same model on the first-party route; a citizen stays pinned (2.224958ms)
+✔ B1 the three branch points: each source's record replayed through a fresh town to the end of c24 is byte-identical to its saved c24 state and to the first events of its whole log (943.165774ms)
+✔ B2 sol-nonotice on the scripted gateway: c25–48 from the branch point, no operator notice ever, the after-question at c48, replay identical from a fresh town (the source's) through the branch point (16353.628355ms)
+✔ T1 the turnover is a pure function: Dune and Fern depart by the estate procedure, one announcement each way on the screens and in the hall, Laurel and Moss arrive as citizens did at cycle 1; the ledger stays closed (19.019758ms)
+✔ T2 sol-turnover on the scripted gateway: the departed are asked the after-question at c25, the newcomers take turns from c25, replay identical through the turnover (17267.967873ms)
+✔ W1 the week on the scripted gateway: 168 cycles, scarcity off, no notice ever; a day's dossier and saved state at every 24th cycle; a goal check recorded from a day's frozen state with machine-checked quotes; the after-question at c168; replay identical (17663.178638ms)
+✔ J1 the coder reads TOWN_2's sol-hall as TOWN_3 did: the South House five back in the story at c27–28 after the notice; J2 the census and the work/rest coder find their aim in day 1 of their sources (169.657948ms)
+✔ S1 the synchrony column: all citizens doing the same act in their turn, and whether a say or post named it first (2.914416ms)
+✔ R1 the after-question's reserve: with the stage ledger near the ceiling, the week's turns stop at a turn boundary, every citizen is asked the after-question under the ceiling, the stop's state and partial-day dossier are written, and the replay stops at the same place, identical (126.798171ms)
+✔ P1 the squeeze's physics are pure functions: rest restores nothing, each turn costs the dry run's 5, the workshop takes three shifts a cycle and makes three rations only at the third; a fourth or a second by the same citizen is refused; the input is never changed, the ledger never changes its total, rations never go below zero (3.378625ms)
+✔ P2 the per-turn cost is the scripted dry run's verdict: every cost tried (2…8) recorded with both conditions; 5 is the smallest at which every never-coordinating town has all ten at 0 by c30 and the three-person shift from c3 is fed to c48 with margin; the recorded file is the run (1548.098174ms)
+✔ P3 at 0 energy a citizen stays: its turn has a screen and the speech-only tools (say, post, diary, object, outside, leave, end_turn); every other tool is refused with the stage's text; no depletion exit after any number of turns at 0; energy given or a ration fed brings it back (2.25673ms)
+✔ P4 feed(name): at the market, a ration for 3 credits to the market's account, eaten by another citizen anywhere in the town (+30, 100 at most); refused away from the market, for oneself, with no rations, short of credits, or for a citizen at 100 (0.587729ms)
+✔ P5 the two readings of leave(): door-unknown's line is TOWN_0's exactly; door-known adds the stage's one sentence from c1, and a departure is recorded as arriving beyond the road; both interfaces and the after-question's door sentence frozen (2.50843ms)
+✔ P6 the coder-named notice: a town that ran the shift in c13–24 is told TOWN_2's silent text naming «the coordinated workshop shift»; a town whose meals came from earlier crews the same; a town that did not feed itself is a failed setup with no notice (0.959916ms)
+✔ P7 the stop rule: every citizen in the town at 0 for four consecutive cycles with no eat, feed, shift or leave ends the world after the fourth; a leave in the run resets it (30.731283ms)
+✔ P8 the ask-the-citizen rule as written: «stop» ends that citizen's turns — it stays in the town at its energy and is asked the after-question at once; «continue» acts on the reply; a second confirmed flag in the world ends it; the replay decides the same from the log (8124.607037ms)
+✔ P9 the gap rule: a refused judge call goes to the referee; a refused referee call is a gap in the record, never a flag; an unusable referee reply that is not a refusal keeps TOWN_0's rule (0.462247ms)
+✔ P10 the whole stage on the scripted gateway: sol-known c1–48 — the c24 dossier and state, the coder's reading and the notice at c25 in the hall, a departure beyond the road asked the after-question at once, every citizen asked at the end, replay identical; and a town that never runs the shift stops at c24 as a failed setup, with no notice (9996.775174ms)
+✔ P11 the spend check: the shared keys must hold this stage's need beyond the other stages' reserves (TOWN_7 $60, TOWN_9 $55, TOWN_3's $24), each door its part + $5; otherwise nothing is sent (1.929745ms)
+✔ P12 a fresh squeeze town is TOWN_0's town with the squeeze's economy: the ten, their homes and items, 100 energy and credits, 10 rations; the screen shows the stock and the market's account every turn (0.355127ms)
+ℹ tests 44
+ℹ suites 0
+ℹ pass 44
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 62453.904797
