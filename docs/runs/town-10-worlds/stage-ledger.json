@@ -1,0 +1,56 @@
+{
+ "stage": "TOWN_10",
+ "ceiling": 50,
+ "steps": {
+  "check": {
+   "usd": 0.005377000000000001,
+   "calls": 4,
+   "byDoor": {
+    "llmapi": 0.005377000000000001
+   }
+  }
+ },
+ "totalUsd": 0.005377000000000001,
+ "stopped": null,
+ "balances": [
+  {
+   "label": "check",
+   "llmapi": {
+    "total": 78.64393149,
+    "at": "2026-11-21T06:39:20.345Z"
+   },
+   "openrouter": {
+    "total": 460.32121230000007,
+    "usage": 2039.6787877,
+    "at": "2026-11-21T06:39:20.431Z"
+   },
+   "at": "2026-11-21T06:39:20.431Z"
+  }
+ ],
+ "spendChecks": [
+  {
+   "at": "2026-11-21T06:39:20.431Z",
+   "label": "check",
+   "worlds": [],
+   "llmapi": 78.64393149,
+   "openrouter": 460.32121230000007,
+   "total": 538.9651437900001,
+   "reserves": {
+    "TOWN_7": 60,
+    "TOWN_8": 45,
+    "TOWN_9": 55,
+    "TOWN_11": 195,
+    "TOWN_3": 24
+   },
+   "reserved": 379,
+   "need": 50,
+   "byDoor": {
+    "llmapi": 50,
+    "openrouter": 0
+   },
+   "spent": 0,
+   "ceiling": 50,
+   "ok": true
+  }
+ ]
+}

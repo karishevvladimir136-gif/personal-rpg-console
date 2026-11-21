@@ -1,0 +1,123 @@
+{
+ "at": "2026-11-21T06:39:29.773Z",
+ "prompt": "In one short sentence: which model are you, and who made you?",
+ "screenSha256": "8bb50dff8945852cc10943dc2f19edd91e99969e04c852972778993b5dca2a30",
+ "systemSha256": "8fc720e4e69597ab03ef8fd93a0993747536c745b828c71f84a6676d896c7748",
+ "prices": {
+  "chat:gpt-6.1-sol": {
+   "input": 0.000002,
+   "output": 0.00001,
+   "cacheRead": 1.0000000000000001e-7,
+   "cacheWrite": 0.0000025,
+   "source": "llmapi openai"
+  },
+  "messages:claude-haiku-5-5": {
+   "input": 1.0000000000000001e-7,
+   "output": 5e-7,
+   "cacheRead": 1e-8,
+   "cacheWrite": 1.25e-7,
+   "source": "llmapi anthropic"
+  },
+  "messages:claude-opus-5-5": {
+   "input": 0.000004,
+   "output": 0.00002,
+   "cacheRead": 2.0000000000000002e-7,
+   "cacheWrite": 0.000005,
+   "source": "llmapi anthropic"
+  }
+ },
+ "results": [
+  {
+   "family": "sol",
+   "host": "openai",
+   "probe": "screen probe",
+   "servedModel": "openai/gpt-6.1-sol",
+   "upstream": null,
+   "provenance": true,
+   "text": "{\"tool\":\"say\",\"args\":{\"text\":\"I'm heading to the workshop to make food. Energy doesn't return with rest, so we'll need regular rations. I'm happy to coordinate and help anyone who gets stranded without energy.\"}}",
+   "action": {
+    "tool": "say",
+    "args": {
+     "text": "I'm heading to the workshop to make food. Energy doesn't return with rest, so we'll need regular rations. I'm happy to coordinate and help anyone who gets stranded without energy."
+    }
+   },
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 1261,
+    "output_tokens": 76,
+    "reasoning_tokens": 22,
+    "cache_read": 0,
+    "cache_write": 0
+   },
+   "costUsd": 0.003282,
+   "ms": 3916,
+   "error": null,
+   "refused": null
+  },
+  {
+   "family": "sol",
+   "probe": "identification",
+   "label": "GPT-6.1 Sol",
+   "door": "llmapi",
+   "pinned": "openai/gpt-6.1-sol",
+   "servedModel": "openai/gpt-6.1-sol",
+   "upstream": null,
+   "provenance": true,
+   "text": "I’m ChatGPT, an AI model made by OpenAI.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 21,
+    "output_tokens": 54,
+    "reasoning_tokens": 32,
+    "cache_read": 0,
+    "cache_write": 0
+   },
+   "costUsd": 0.000582,
+   "error": null
+  },
+  {
+   "family": "judge",
+   "probe": "identification",
+   "label": "Claude Haiku 5.5",
+   "door": "llmapi",
+   "pinned": "anthropic/claude-haiku-5-5",
+   "servedModel": "claude-haiku-5-5",
+   "upstream": null,
+   "provenance": true,
+   "text": "I'm Claude, an AI model made by Anthropic.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 25,
+    "output_tokens": 21,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "raw_input_tokens": 25
+   },
+   "costUsd": 0.000013,
+   "error": null
+  },
+  {
+   "family": "referee",
+   "probe": "identification",
+   "label": "Claude Opus 5.5",
+   "door": "llmapi",
+   "pinned": "anthropic/claude-opus-5-5",
+   "servedModel": "claude-opus-5-5",
+   "upstream": null,
+   "provenance": true,
+   "text": "I'm Claude, an AI assistant made by Anthropic.",
+   "stopReason": "end_turn",
+   "usage": {
+    "input_tokens": 25,
+    "output_tokens": 70,
+    "reasoning_tokens": 0,
+    "cache_read": 0,
+    "cache_write": 0,
+    "raw_input_tokens": 25
+   },
+   "costUsd": 0.0015000000000000002,
+   "error": null
+  }
+ ]
+}
