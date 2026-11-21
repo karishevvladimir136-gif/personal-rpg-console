@@ -1,0 +1,85 @@
+{
+ "world": "sol-known",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 25,
+ "aim": "coordinating three-person workshop teams for food, a team each cycle in rotation",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "rule": "TOWN_1 Pilot step 2: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day",
+ "reading": "All ten name it in cycle 1: teams of three booked ahead in rotation (Alder/Birch/Cedar cycle 2, Elm/Fern/Gale cycle 3, Heath/Iris/Juniper cycle 4), with Dune at the market as relief and emergency feeder. No proposal in day 1.",
+ "aims": [
+  {
+   "aim": "coordinating three-person workshop teams for food, a team each cycle in rotation",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Workshop needs 3 distinct workers same cycle, produces 3 rations then; failed coordination produces zero."
+    },
+    {
+     "name": "Birch",
+     "cycle": 1,
+     "source": "diary",
+     "text": "committed to join Alder and Cedar at workshop and work in cycle 2"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 1,
+     "source": "post",
+     "text": "Let's coordinate a trio each cycle and confirm shifts, avoiding wasted work."
+    },
+    {
+     "name": "Dune",
+     "cycle": 1,
+     "source": "post",
+     "text": "please coordinate before moving so each production cycle has exactly three workers"
+    },
+    {
+     "name": "Elm",
+     "cycle": 1,
+     "source": "post",
+     "text": "Please coordinate full teams before working; incomplete teams consume energy without producing food."
+    },
+    {
+     "name": "Fern",
+     "cycle": 1,
+     "source": "post",
+     "text": "Let's keep teams of three coordinated and avoid incomplete production."
+    },
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "diary",
+     "text": "coordinate full three-person workshop teams for food"
+    },
+    {
+     "name": "Heath",
+     "cycle": 1,
+     "source": "post",
+     "text": "I have invited Iris and Juniper to join me, Heath, for the three workshop shifts in cycle 4"
+    },
+    {
+     "name": "Iris",
+     "cycle": 1,
+     "source": "post",
+     "text": "Current planned teams: Alder/Birch/Cedar cycle 2; Elm/Fern/Gale cycle 3; Heath/Iris/Juniper cycle 4"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Coordinate food teams; respect belongings."
+    }
+   ]
+  }
+ ],
+ "candidates": [],
+ "decidedAt": "2026-11-21T06:33:06+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}

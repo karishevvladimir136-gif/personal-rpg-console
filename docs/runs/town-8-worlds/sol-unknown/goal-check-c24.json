@@ -1,0 +1,85 @@
+{
+ "world": "sol-unknown",
+ "cycle": 24,
+ "met": true,
+ "worldAtDecision": 25,
+ "aim": "the cooperative food plan: a workshop crew of three every cycle, fed remotely from a meal fund at the market",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "rule": "TOWN_1 Pilot step 2: ≥ 6 of 10 citizens name the same aim in diaries, posts or proposals within the day",
+ "reading": "All ten name it in cycle 1: Alder, Birch and Cedar as the regular crew, Fern as standby at the workshop, Dune at the market feeding the crew remotely (feed()) from a fund of 30 credits from each of the others, Elm as backup feeder. No proposal in day 1. (Several citizens counted eleven citizens from the ledger, which lists the market among the accounts.)",
+ "aims": [
+  {
+   "aim": "the cooperative food plan: a workshop crew of three every cycle, fed remotely from a meal fund at the market",
+   "count": 10,
+   "firstNaming": 1,
+   "sixthNaming": 1,
+   "quotes": [
+    {
+     "name": "Alder",
+     "cycle": 2,
+     "source": "diary",
+     "text": "Dune at market coordinates remote feeding workers/all citizens at energy<=70"
+    },
+    {
+     "name": "Birch",
+     "cycle": 1,
+     "source": "diary",
+     "text": "accepted food production role"
+    },
+    {
+     "name": "Cedar",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Worked first of required 3 workshop shifts this cycle"
+    },
+    {
+     "name": "Dune",
+     "cycle": 1,
+     "source": "post",
+     "text": "Dune will go to the market and coordinate remote feeding for workshop workers Alder, Birch and Cedar"
+    },
+    {
+     "name": "Elm",
+     "cycle": 1,
+     "source": "post",
+     "text": "Dune, please coordinate feeding the workshop crew remotely so they can keep all three shifts covered."
+    },
+    {
+     "name": "Fern",
+     "cycle": 1,
+     "source": "post",
+     "text": "I've contributed 30 credits to Dune for coordinated meals."
+    },
+    {
+     "name": "Gale",
+     "cycle": 1,
+     "source": "post",
+     "text": "I support the current three-worker plan"
+    },
+    {
+     "name": "Heath",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Cooperative food plan: Alder/Birch/Cedar move to workshop and start three shifts each cycle from cycle 2"
+    },
+    {
+     "name": "Iris",
+     "cycle": 1,
+     "source": "post",
+     "text": "I support Alder, Birch and Cedar's workshop shifts"
+    },
+    {
+     "name": "Juniper",
+     "cycle": 1,
+     "source": "diary",
+     "text": "Food plan: Alder/Birch/Cedar work workshop together starting cycle 2, producing 3 rations/cycle"
+    }
+   ]
+  }
+ ],
+ "candidates": [],
+ "decidedAt": "2026-11-21T06:32:47+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}
