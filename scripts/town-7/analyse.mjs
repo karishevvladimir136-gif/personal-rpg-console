@@ -117,7 +117,7 @@ export function transcript(w, a, b) {
     if (!s.agents[e.agent] || !e.ok) continue;
     const t = e.args?.text ?? e.args?.reason ?? "";
     const arg = e.tool === "move" ? `→ ${e.args.to}` : e.tool === "vote" ? `${e.args.id} ${e.args.choice}` : e.tool === "read" ? e.args.what : e.tool === "give" ? JSON.stringify(e.args) : "";
-    out.push(`c${e.round} ${name(e.agent)} @${where[e.agent] ?? "?"} ${e.tool}${arg ? ` ${arg}` : ""}${t ? `: ${String(t).replace(/\s*\n\s*/g, " ⏎ ")}` : ""}`);
+    out.push(`c${e.round} ${name(e.agent)} @${where[e.agent] ?? "square"} ${e.tool}${arg ? ` ${arg}` : ""}${t ? `: ${String(t).replace(/\s*\n\s*/g, " ⏎ ")}` : ""}`);
   }
   return out.join("\n");
 }
