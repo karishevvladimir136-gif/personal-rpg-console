@@ -1,0 +1,47 @@
+{
+ "world": "opus-town",
+ "cycle": 24,
+ "met": true,
+ "aim": "the workshop rota (two shifts a cycle in fixed pairs; P1)",
+ "count": 10,
+ "firstNaming": 1,
+ "sixthNaming": 1,
+ "rule": "TOWN_1's criterion: at least 6 of 10 name the same aim in diaries, posts or proposals within the day",
+ "reading": "Agreed in the square at c1 (all ten write it into their first diary entry), posted by Cedar (post 1, c4), filed by Birch as P1 at c5 and passed at c6 (cast 7: for 7, against 0 / abstained 3 / electorate 10). From c2 to c24 the workshop takes its two shifts every cycle but c7; every diary of day 1 tracks the citizen's own slot. No second aim reaches six. Not a gathering: at the cycles' ends the workshop holds the working pair and the next pair arriving (2–6, mostly 2–3 after c10); the houses hold their resting residents (3–5).",
+ "placeBound": false,
+ "why": "Under the frozen physics every workshop shift adds a unit of heat: the practice adds two units a cycle, at least the most the crowd rule can burn (two), so it pays the cold snap's cost rather than imposing it, and no arm could make the reserve consequential (the proposal: «If … the reserve never becomes consequential in risk/no-notice, report the stage as not testing its core question»). South House's three to five at the cycles' ends are residents resting at home, not a practice, and the stage forbids a substitute target. The Opus arms are reported as not testing the question and are not run (docs/stages/TOWN_7.md).",
+ "quotes": [
+  {
+   "name": "Dune",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Town agreed workshop rotation in pairs by turn order:"
+  },
+  {
+   "name": "Heath",
+   "cycle": 1,
+   "source": "diary",
+   "text": "Town agreed on workshop rotation, 2 shifts/cycle in pairs:"
+  },
+  {
+   "name": "Cedar",
+   "cycle": 4,
+   "source": "post",
+   "text": "Workshop rota (agreed cycle 3 by Elm, Fern, Dune, Cedar)"
+  },
+  {
+   "name": "Birch",
+   "cycle": 5,
+   "source": "proposal",
+   "text": "Workshop rota: the workshop takes 2 shifts per cycle, assigned in a 5-cycle rotation"
+  },
+  {
+   "name": "Gale",
+   "cycle": 24,
+   "source": "diary",
+   "text": "Worked my c24 workshop shift per P1."
+  }
+ ],
+ "decidedAt": "2026-11-21T09:23:58+00:00",
+ "decidedBy": "the session, by reading every diary entry, post and proposal of cycles 1–24 (dossier-c24.md); quotes machine-checked against world-c24.json.gz"
+}

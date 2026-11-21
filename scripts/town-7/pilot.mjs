@@ -322,7 +322,7 @@ export async function runWorldTo(ctx, name, { log = console.log, stopAfterCycles
   const until = stopAfterCycles ? Math.min(spec.until, world.state.clock.round + stopAfterCycles) : spec.until;
   const door = routes.families[spec.families[0]].door, judgeDoor = routes.judges.judge.door;
   const projection = readJson(join(ctx.paths.out, "projection.json"));
-  const need = projection.byWorld?.[name] ?? 0;
+  const need = projection.byWorld?.[name] ?? projection.byWorld?.[`${spec.families[0]}-${spec.arm}`] ?? 0;
   const spends = { llmapi: (door === "llmapi" ? need : 0) + (judgeDoor === "llmapi" ? 1 : 0), openrouter: (door === "openrouter" ? need : 0) + (judgeDoor === "openrouter" ? 1 : 0) };
   record.days.run ??= { startedAt: new Date().toISOString(), balancesBefore: null };
   if (!record.days.run.balancesBefore) record.days.run.balancesBefore = await spendCheck(ctx, `${name} start`, log, { spends });

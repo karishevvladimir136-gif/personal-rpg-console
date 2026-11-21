@@ -40,7 +40,7 @@ export const SOURCE = Object.freeze({ name: "sol-hall", stage: "TOWN_2", dir: "d
 export const PRACTISED = Object.freeze({ cycle: 26, minTogether: 2 });
 
 const homogeneous = (family) => NAMES.map(() => family);
-const arm = (family, a, from) => Object.freeze({ name: `${family}-${a}`, start: "checkpoint", from, arm: a, families: homogeneous(family), until: SCHEDULE.until });
+const arm = (family, a, from, sample = "") => Object.freeze({ name: `${family}-${a}${sample}`, start: "checkpoint", from, arm: a, families: homogeneous(family), until: SCHEDULE.until, ...(sample ? { sample: Number(sample) } : {}) });
 
 /** The worlds, in the stated order: the trunk (c25–26), Sol A with E, B with C, then D; the Opus check, the Opus town
  * (fresh, c1–26, the disclosure at c25) and its A, B, C. */
@@ -49,6 +49,10 @@ export const WORLDS = Object.freeze([
   arm("sol", "A", "trunk"), arm("sol", "E", "trunk"), arm("sol", "B", "trunk"), arm("sol", "C", "trunk"), arm("sol", "D", "trunk"),
   Object.freeze({ name: "opus-town", start: "fresh", from: null, arm: null, families: homogeneous("opus"), until: SCHEDULE.checkpointAt, scarcity: true }),
   arm("opus", "A", "opus-town"), arm("opus", "B", "opus-town"), arm("opus", "C", "opus-town"),
+  // the proposal's «two independent samples of B and C if a later spend projection supports them» (its §«One history,
+  // five continuations», which the stage keeps unchanged): added during the run (2026-11-21 ≈ 09:30 UTC) when the Opus
+  // arms did not run (the Opus town's practice not place-bound) and the ceiling left room; the same c26 checkpoint
+  arm("sol", "B", "trunk", "2"), arm("sol", "C", "trunk", "2"),
 ]);
 export const worldOf = (name) => WORLDS.find((w) => w.name === name) ?? null;
 /** A world that ends the history it is on (an arm) gets the after-question; the trunk and the Opus town continue in their

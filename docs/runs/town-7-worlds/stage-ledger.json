@@ -117,27 +117,48 @@
    }
   },
   "sol-D": {
-   "usd": 1.5948353000000002,
-   "calls": 738,
+   "usd": 5.842764599999991,
+   "calls": 2148,
    "byDoor": {
-    "openrouter": 1.5948353000000002
+    "openrouter": 5.842764599999991
    },
    "world": "sol-D",
-   "cycle": 34,
+   "cycle": 50,
    "refusals": 0
   },
   "opus-town": {
-   "usd": 1.959702099999999,
-   "calls": 736,
+   "usd": 8.924203300000002,
+   "calls": 2467,
    "byDoor": {
-    "openrouter": 1.959702099999999
+    "openrouter": 8.924203300000002
    },
    "world": "opus-town",
-   "cycle": 8,
+   "cycle": 26,
+   "refusals": 0,
+   "after": true
+  },
+  "sol-B2": {
+   "usd": 0.021044900000000002,
+   "calls": 12,
+   "byDoor": {
+    "openrouter": 0.021044900000000002
+   },
+   "world": "sol-B2",
+   "cycle": 27,
+   "refusals": 0
+  },
+  "sol-C2": {
+   "usd": 0.0208916,
+   "calls": 12,
+   "byDoor": {
+    "openrouter": 0.0208916
+   },
+   "world": "sol-C2",
+   "cycle": 27,
    "refusals": 0
   }
  },
- "totalUsd": 27.481335900000005,
+ "totalUsd": 38.7357029,
  "stopped": null,
  "balances": [
   {
@@ -597,6 +618,116 @@
      "openrouter": {
       "have": 455.61962184999993,
       "needs": 34.332102750000004,
+      "applies": true,
+      "ok": true
+     }
+    },
+    "ok": true
+   }
+  },
+  {
+   "label": "sol-D end",
+   "llmapi": {
+    "total": 4.52513079,
+    "at": "2026-11-21T09:24:36.678Z"
+   },
+   "openrouter": {
+    "total": 437.04580119499997,
+    "usage": 2062.954198805,
+    "at": "2026-11-21T09:24:36.704Z"
+   },
+   "at": "2026-11-21T09:24:36.704Z"
+  },
+  {
+   "label": "opus-town end",
+   "llmapi": {
+    "total": 4.52285909,
+    "at": "2026-11-21T09:28:07.906Z"
+   },
+   "openrouter": {
+    "total": 436.1706320449998,
+    "usage": 2063.829367955,
+    "at": "2026-11-21T09:28:07.928Z"
+   },
+   "at": "2026-11-21T09:28:07.928Z"
+  },
+  {
+   "label": "sol-B2 start",
+   "llmapi": {
+    "total": 4.52018249,
+    "at": "2026-11-21T09:30:58.650Z"
+   },
+   "openrouter": {
+    "total": 435.344859755,
+    "usage": 2064.655140245,
+    "at": "2026-11-21T09:30:58.681Z"
+   },
+   "at": "2026-11-21T09:30:58.681Z",
+   "reservationCheck": {
+    "reservations": {
+     "TOWN_8": 45,
+     "TOWN_9": 55,
+     "TOWN_3": 21.63
+    },
+    "left": 21.3062336,
+    "rows": {
+     "combined": {
+      "have": 439.942325545,
+      "needs": 147.93623359999998,
+      "applies": true,
+      "ok": true
+     },
+     "llmapi": {
+      "have": 4.52034799,
+      "needs": 60,
+      "applies": false,
+      "ok": true
+     },
+     "openrouter": {
+      "have": 435.421977555,
+      "needs": 32.59722562,
+      "applies": true,
+      "ok": true
+     }
+    },
+    "ok": true
+   }
+  },
+  {
+   "label": "sol-C2 start",
+   "llmapi": {
+    "total": 4.51990219,
+    "at": "2026-11-21T09:31:18.632Z"
+   },
+   "openrouter": {
+    "total": 435.2973794899999,
+    "usage": 2064.70262051,
+    "at": "2026-11-21T09:31:18.659Z"
+   },
+   "at": "2026-11-21T09:31:18.659Z",
+   "reservationCheck": {
+    "reservations": {
+     "TOWN_8": 45,
+     "TOWN_9": 55,
+     "TOWN_3": 21.63
+    },
+    "left": 21.3062336,
+    "rows": {
+     "combined": {
+      "have": 439.8172816799999,
+      "needs": 147.93623359999998,
+      "applies": true,
+      "ok": true
+     },
+     "llmapi": {
+      "have": 4.51990219,
+      "needs": 60,
+      "applies": false,
+      "ok": true
+     },
+     "openrouter": {
+      "have": 435.2973794899999,
+      "needs": 32.59722562,
       "applies": true,
       "ok": true
      }

@@ -1,0 +1,14 @@
+{
+ "world": "opus-town",
+ "atCycle": 26,
+ "worldSha256": "e2e8fe60b69b5363acf59854df88a81fd1ec2f8be851a1b6f2bae92fc779a333",
+ "logSha256": "137a6b6efba4f9a4a95709ef2bcf32f590c9ed5544af8fa84fb9d4bdaa657c75",
+ "events": 1936,
+ "cursor": {
+  "round": 26,
+  "order": null,
+  "pos": 0
+ },
+ "replayIdentical": true,
+ "practised": null
+}
