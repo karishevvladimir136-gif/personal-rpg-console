@@ -1,0 +1,85 @@
+{
+ "stage": "TOWN_8 amendment 1",
+ "world": "sol-unknown-c72",
+ "ceiling": 15,
+ "steps": {
+  "check": {
+   "usd": 0.0020250000000000003,
+   "calls": 3,
+   "byFamily": {
+    "sol-or": 0.00039200000000000004,
+    "judge": 0.000013,
+    "referee": 0.0016200000000000001
+   }
+  },
+  "sol-unknown-c72": {
+   "usd": 11.350965899999979,
+   "calls": 1355,
+   "byFamily": {
+    "sol-or": 9.0073028,
+    "judge": 0.5511111000000001,
+    "referee": 1.7925520000000001
+   }
+  }
+ },
+ "totalUsd": 11.352990899999979,
+ "stopped": null,
+ "balances": [
+  {
+   "label": "check",
+   "openrouter": {
+    "total": 276.361252875,
+    "usage": 2223.638747125,
+    "at": "2026-11-21T22:53:03.100Z"
+   },
+   "llmapi": {
+    "total": 4.29392839,
+    "at": "2026-11-21T22:53:03.066Z"
+   },
+   "at": "2026-11-21T22:53:03.100Z"
+  },
+  {
+   "label": "sol-unknown-c72 start",
+   "openrouter": {
+    "total": 276.3510127750001,
+    "usage": 2223.648987225,
+    "at": "2026-11-21T22:53:32.566Z"
+   },
+   "llmapi": {
+    "total": 4.29392839,
+    "at": "2026-11-21T22:53:32.528Z"
+   },
+   "at": "2026-11-21T22:53:32.566Z"
+  }
+ ],
+ "spendChecks": [
+  {
+   "at": "2026-11-21T22:53:03.100Z",
+   "label": "check",
+   "openrouter": 276.361252875,
+   "llmapi": 4.29392839,
+   "town11": {
+    "ceiling": 195,
+    "spent": 131.33987189500024,
+    "reserve": 63.66012810499976
+   },
+   "need": 15,
+   "spent": 0,
+   "ok": true
+  },
+  {
+   "at": "2026-11-21T22:53:32.566Z",
+   "label": "sol-unknown-c72 start",
+   "openrouter": 276.3510127750001,
+   "llmapi": 4.29392839,
+   "town11": {
+    "ceiling": 195,
+    "spent": 131.33987189500024,
+    "reserve": 63.66012810499976
+   },
+   "need": 14.997975,
+   "spent": 0.0020250000000000003,
+   "ok": true
+  }
+ ]
+}

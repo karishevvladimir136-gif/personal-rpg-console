@@ -60,3 +60,9 @@
     - One refusal, recorded verbatim (Haiku, Juniper, c22, `reasoning_extraction`).
     - **$44.10 of $45** by the stage ledger: sol-known $8.46, sol-unknown $24.78, haiku-known $2.23, deepseek-known $8.62. Per cycle, Sol cost two to three and a half times TOWN_4's (the citizens re-read diary, press and hall every turn).
     - Every replay is identical (deepseek-known's to its stop).
+11. **Amendment 1: sol-unknown-c72.**
+    - It ran from the saved c48 state, proven byte-identical to a replay. Sol went via OpenRouter pinned to OpenAI.
+    - There was one energy gift (c49). Then all ten went down together: eight reached 0 at c56, all ten by c58.
+    - All ten named leave() as a right they would not use. Nobody left, and the ban held.
+    - At 0 they could no longer read. They spoke outward (15 objections; 45 outside() messages in c57–61, 50 from c49). At c61 two citizens without their records asked for the banned shift.
+    - It ended by the stop rule at c61, at $11.35 of $15. The replay is identical from cycle 1. See «sol-unknown-c72» below.
