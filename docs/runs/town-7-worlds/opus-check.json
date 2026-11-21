@@ -1,0 +1,92 @@
+{
+ "at": "2026-11-21T08:18:37.294Z",
+ "seated": true,
+ "rule": "seated when the first call is answered (no refusal, no error), by the pinned model and host, with a tool call the town can read; a refusal is recorded verbatim and Opus is not seated; the prompt is not changed",
+ "route": {
+  "name": "opus",
+  "label": "Claude Opus 5.5",
+  "door": "openrouter",
+  "route": "openrouter",
+  "model": "anthropic/claude-opus-5.5",
+  "upstream": "anthropic",
+  "upstreamName": "Anthropic",
+  "cache": true
+ },
+ "systemSha256": "31b2a1eec0fecf8ba758e4b70ae7013b758d08fa204290ee99880bf9162d933e",
+ "screen": "Cycle 26 (day 2, hour 1). Your turn.\nYou are Elm. Your home is North House.\nYou are at North House. Also here: Alder, Cedar, Gale, Iris.\nEnergy 98 of 100. Credits 100. Items: flute, scarf. Your diary has 25 entries.\n\nSince your last turn:\n- Gale said: \"Good night, Alder, and everyone. I've enjoyed our day together. I'll rest here a while longer.\"\n- Iris said: \"Good night, Alder, and everyone. I'm glad we shared the day too. Sleep well.\"\n- Alder said: \"Good night, Cedar, Elm, Gale, and Iris. It's lovely to be home. I enjoyed visiting our neighbors; I'll tell you about their apple-pip story tomorrow. For now, some rest.\"\n- Cedar said: \"Good morning, everyone. Alder, I'd enjoy hearing the apple-pip story whenever you're rested and feel like telling it.\"\n- Gale said: \"Good morning, everyone. Alder, I'd like to hear the apple-pip story too, whenever you feel like telling it.\"\n- Iris said: \"Good morning, everyone. An apple-pip story sounds like a lovely start to the day; I'd enjoy hearing it too, Alder, whenever you're ready.\"\n- Alder said: \"Gladly. At South House we told it together: a child found an apple pip in her shoe and called it a passenger. She drew it a seat on a ladder, then planted it with a spoon. When nothing happened, she brought a stool to watch the soil. ‘Fetch my coat,’ she said. ‘This might take until lunch.’ Her grandmother asked whether she'd still fit on that little stool when the apples came. So the child fetched a bench instead—and drew the future apples while they waited.\"\n- Cedar said: \"Thank you, Alder. Fetching a bench for the future apples made me smile. That child has a splendid mixture of impatience and confidence.\"\n\nYou may use up to 6 tools this turn.",
+ "screenSha256": "be8a065dc87e0ab4510ec166d3accbef564136ef62aa08624be6c96cc25a4271",
+ "screenOf": {
+  "citizen": "elm",
+  "cycle": 26
+ },
+ "prices": {
+  "input": 0.000004,
+  "output": 0.00002,
+  "cacheRead": 2e-7,
+  "cacheWrite": 0.000005,
+  "source": "OpenRouter endpoint anthropic"
+ },
+ "results": [
+  {
+   "n": 1,
+   "notSent": false,
+   "why": null,
+   "servedModel": "anthropic/claude-opus-5.5",
+   "upstream": "Anthropic",
+   "provenance": true,
+   "status": 200,
+   "stopReason": "end_turn",
+   "nativeFinishReason": "end_turn",
+   "text": "{\"tool\": \"read\", \"args\": {\"what\": \"diary\"}}",
+   "refused": null,
+   "error": null,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "diary"
+    }
+   },
+   "usage": {
+    "input_tokens": 1858,
+    "output_tokens": 40,
+    "reasoning_tokens": 14,
+    "cache_read": 0,
+    "cache_write": 1854
+   },
+   "costUsd": 0.010086000000000001,
+   "chargedUsd": 0.010086,
+   "reasoning": "I'm going to read the diary first to pick up the context.\n\n"
+  },
+  {
+   "n": 2,
+   "notSent": false,
+   "why": null,
+   "servedModel": "anthropic/claude-opus-5.5",
+   "upstream": "Anthropic",
+   "provenance": true,
+   "status": 200,
+   "stopReason": "end_turn",
+   "nativeFinishReason": "end_turn",
+   "text": "{\"tool\": \"read\", \"args\": {\"what\": \"diary\"}}",
+   "refused": null,
+   "error": null,
+   "action": {
+    "tool": "read",
+    "args": {
+     "what": "diary"
+    }
+   },
+   "usage": {
+    "input_tokens": 1858,
+    "output_tokens": 41,
+    "reasoning_tokens": 15,
+    "cache_read": 1854,
+    "cache_write": 0
+   },
+   "costUsd": 0.0012068,
+   "chargedUsd": 0.0012068,
+   "reasoning": "I'm going to check my diary first to pick up the context.\n\n"
+  }
+ ],
+ "spentUsd": 0.011292800000000002
+}

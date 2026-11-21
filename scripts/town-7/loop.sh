@@ -10,7 +10,7 @@ for i in $(seq 1 40); do
   [ -f "docs/runs/town-7-worlds/$w/summary.json" ] && break
   [ -f .town-7-work/live/STOP ] && break
   echo "=== start $i $(date -u +%FT%TZ)" >> "$log"
-  node scripts/town-7/pilot.mjs run "$w" >> "$log" 2>&1 && break
+  node scripts/town-7/pilot.mjs run "$w" $VIA >> "$log" 2>&1 && break
   echo "=== exit $? $(date -u +%FT%TZ)" >> "$log"
   grep -q '"stopped": "' docs/runs/town-7-worlds/stage-ledger.json && break
   grep -q "the spend check failed\|no paid branches\|no proven" "$log" && break

@@ -1,0 +1,45 @@
+{
+ "at": "2026-11-21T08:18:58.420Z",
+ "formula": "trunk = TOWN_5 sol-nonotice's metered c25–26; a Sol arm = sol-nonotice's metered c25–48 + its after-question + 2 cycles at its last six cycles' mean, × 1.05 (the heat line); Opus = the Sol figures × the Opus/Sol cost ratio of the Opus check's first call (at least 2), the Opus town from TOWN_2 sol-hall's metered c1–26; once the Opus town has run, its arms from its own ledger (per cycle, scaled by the Sol history's day-2/day-1 cost ratio) + an after-question. The per-call gate holds $60 whatever this says.",
+ "sources": {
+  "solNonotice": {
+   "c25to48": 4.146480800000001,
+   "after": 0.1795708
+  },
+  "solHall": {
+   "c1to26": 2.6808411000000003
+  }
+ },
+ "ratio": 2.450437317784257,
+ "byWorld": {
+  "trunk": 0.25861560000000006,
+  "sol-A": 4.967225620000001,
+  "sol-E": 4.967225620000001,
+  "sol-B": 4.967225620000001,
+  "sol-C": 4.967225620000001,
+  "sol-D": 4.967225620000001,
+  "opus-check": 0.5,
+  "opus-town": 6.569233074489798,
+  "opus-A": 12.171875025102045,
+  "opus-B": 12.171875025102045,
+  "opus-C": 12.171875025102045
+ },
+ "total": 68.67960184979593,
+ "spentBefore": 23.926798500000007,
+ "ceiling": 60,
+ "overCeiling": true,
+ "solTotal": 25.094743700000002,
+ "opusTotal": 43.584858149795934,
+ "worlds": [
+  "trunk",
+  "sol-A",
+  "sol-E",
+  "sol-B",
+  "sol-C",
+  "sol-D",
+  "opus-town",
+  "opus-A",
+  "opus-B",
+  "opus-C"
+ ]
+}

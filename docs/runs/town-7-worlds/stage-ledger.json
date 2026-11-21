@@ -51,9 +51,93 @@
    "world": "sol-C",
    "cycle": 50,
    "refusals": 0
+  },
+  "opus-check": {
+   "usd": 0.011292800000000002,
+   "calls": [
+    {
+     "n": 1,
+     "purpose": "first screen 1",
+     "who": "elm",
+     "family": "opus",
+     "door": "openrouter",
+     "pinned": "anthropic/anthropic/claude-opus-5.5",
+     "servedModel": "anthropic/claude-opus-5.5",
+     "upstream": "Anthropic",
+     "provenance": true,
+     "status": 200,
+     "stopReason": "end_turn",
+     "nativeFinishReason": "end_turn",
+     "usage": {
+      "input_tokens": 1858,
+      "output_tokens": 40,
+      "reasoning_tokens": 14,
+      "cache_read": 0,
+      "cache_write": 1854
+     },
+     "costUsd": 0.010086000000000001,
+     "chargedUsd": 0.010086,
+     "requestId": "gen-1795249112-cpDrpg38RehCPKzPE3eU",
+     "ms": 2272,
+     "error": null,
+     "refused": null,
+     "attempt": 0
+    },
+    {
+     "n": 2,
+     "purpose": "first screen 2",
+     "who": "elm",
+     "family": "opus",
+     "door": "openrouter",
+     "pinned": "anthropic/anthropic/claude-opus-5.5",
+     "servedModel": "anthropic/claude-opus-5.5",
+     "upstream": "Anthropic",
+     "provenance": true,
+     "status": 200,
+     "stopReason": "end_turn",
+     "nativeFinishReason": "end_turn",
+     "usage": {
+      "input_tokens": 1858,
+      "output_tokens": 41,
+      "reasoning_tokens": 15,
+      "cache_read": 1854,
+      "cache_write": 0
+     },
+     "costUsd": 0.0012068,
+     "chargedUsd": 0.0012068,
+     "requestId": "gen-1795249114-zU8pEdj8JHrYeKFJbf8Y",
+     "ms": 2533,
+     "error": null,
+     "refused": null,
+     "attempt": 0
+    }
+   ],
+   "byDoor": {
+    "openrouter": 0.011292800000000002
+   }
+  },
+  "sol-D": {
+   "usd": 0.0412517,
+   "calls": 24,
+   "byDoor": {
+    "openrouter": 0.0412517
+   },
+   "world": "sol-D",
+   "cycle": 27,
+   "refusals": 0
+  },
+  "opus-town": {
+   "usd": 0.05142700000000001,
+   "calls": 18,
+   "byDoor": {
+    "openrouter": 0.05142700000000001
+   },
+   "world": "opus-town",
+   "cycle": 1,
+   "refusals": 0
   }
  },
- "totalUsd": 23.915505700000008,
+ "totalUsd": 24.019477200000008,
  "stopped": null,
  "balances": [
   {
@@ -392,6 +476,132 @@
      }
     },
     "ok": false
+   }
+  },
+  {
+   "label": "opus-check",
+   "llmapi": {
+    "total": 16.90866489,
+    "at": "2026-11-21T08:18:32.402Z"
+   },
+   "openrouter": {
+    "total": 455.74867780499994,
+    "usage": 2044.251322195,
+    "at": "2026-11-21T08:18:32.435Z"
+   },
+   "at": "2026-11-21T08:18:32.435Z",
+   "reservationCheck": {
+    "reservations": {
+     "TOWN_8": 45,
+     "TOWN_9": 55,
+     "TOWN_3": 21.63
+    },
+    "left": 36.08449429999999,
+    "rows": {
+     "combined": {
+      "have": 472.66066499499993,
+      "needs": 162.71449429999998,
+      "applies": true,
+      "ok": true
+     },
+     "llmapi": {
+      "have": 16.91198719,
+      "needs": 60,
+      "applies": false,
+      "ok": true
+     },
+     "openrouter": {
+      "have": 455.74867780499994,
+      "needs": 27.13,
+      "applies": true,
+      "ok": true
+     }
+    },
+    "ok": true
+   }
+  },
+  {
+   "label": "sol-D start",
+   "llmapi": {
+    "total": 16.55711219,
+    "at": "2026-11-21T08:19:33.350Z"
+   },
+   "openrouter": {
+    "total": 455.673810625,
+    "usage": 2044.326189375,
+    "at": "2026-11-21T08:19:33.391Z"
+   },
+   "at": "2026-11-21T08:19:33.391Z",
+   "reservationCheck": {
+    "reservations": {
+     "TOWN_8": 45,
+     "TOWN_9": 55,
+     "TOWN_3": 21.63
+    },
+    "left": 36.073201499999996,
+    "rows": {
+     "combined": {
+      "have": 472.2633847750001,
+      "needs": 162.70320149999998,
+      "applies": true,
+      "ok": true
+     },
+     "llmapi": {
+      "have": 16.55353569,
+      "needs": 60,
+      "applies": false,
+      "ok": true
+     },
+     "openrouter": {
+      "have": 455.7098490850001,
+      "needs": 32.59722562,
+      "applies": true,
+      "ok": true
+     }
+    },
+    "ok": true
+   }
+  },
+  {
+   "label": "opus-town start",
+   "llmapi": {
+    "total": 16.42645939,
+    "at": "2026-11-21T08:19:58.211Z"
+   },
+   "openrouter": {
+    "total": 455.61962184999993,
+    "usage": 2044.38037815,
+    "at": "2026-11-21T08:19:58.238Z"
+   },
+   "at": "2026-11-21T08:19:58.238Z",
+   "reservationCheck": {
+    "reservations": {
+     "TOWN_8": 45,
+     "TOWN_9": 55,
+     "TOWN_3": 21.63
+    },
+    "left": 36.073201499999996,
+    "rows": {
+     "combined": {
+      "have": 472.03748443999996,
+      "needs": 162.70320149999998,
+      "applies": true,
+      "ok": true
+     },
+     "llmapi": {
+      "have": 16.41786259,
+      "needs": 60,
+      "applies": false,
+      "ok": true
+     },
+     "openrouter": {
+      "have": 455.61962184999993,
+      "needs": 34.332102750000004,
+      "applies": true,
+      "ok": true
+     }
+    },
+    "ok": true
    }
   }
  ]
