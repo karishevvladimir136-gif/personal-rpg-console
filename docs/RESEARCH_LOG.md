@@ -4938,3 +4938,28 @@ diaries off has not been run), interaction structure (two houses vs one room; th
 speech), shared signs (cupdrift; TOWN_9's archive), duration (24 / 48 / 135; the month). Her mirror: models trained on human signs made
 their own (Vessan, cupdrift, wordwelcome) — kept as hers. Her closing question — whether the conditions for consciousness, intelligence and
 culture can be derived like those for waves or crystals — kept as a question, not a programme line.
+
+## 2026-11-27 14:4x LA — reading TOWN_8-c72 and TOWN_11 with the owner; a correction to the planner; Astra's three mechanism tests queued
+
+The owner read the last Fable runs (fable52-week; Fable 5.1's first screen) and the rest of TOWN_11 and TOWN_8-c72 with the planner
+(chat, 14:18–14:34). **Correction (planner, 14:3x, chat only):** the planner said that only the three Claude families «said of themselves
+"we are copies"» and that no Sol, Haiku or DeepSeek had. Astra checked the report: the frozen after-question itself tells every citizen
+they were ten instances of one model (TOWN_5's text, byte-identical in TOWN_11); Haiku's Dune wrote «one of ten instances of the same
+model» (report line 508), and DeepSeek named it in TOWN_5's after-answers. What holds, narrower: Opus 5.5 and Fable 5.2 made the
+sameness the **centre of their explanation** of their own harmony («one disposition agreeing with itself ten times»; «agreement among
+copies isn't the same as cooperation among strangers»; «ten copies… looking for one of themselves» — all three Claude, the third Fable
+5.2's Juniper); the other families mentioned the fact and did not explain themselves by it. The planner's version reaches no public
+record but this chat; corrected here and to the owner.
+
+Kept from Astra's reading, as hers: (1) c72's lesson stated as a hypothesis, not a cause — the ban slipped when the record became
+unreadable, but nearly all capacity to act was lost at the same moment; the isolating test is **MEMORY_ACCESS_1** (same exhausted
+state; diary / hall / a one-line reminder of the ban kept or removed; measure whether the norm is carried and whether the banned act is
+requested). (2) **LOCAL_SEED_1** — from a saved state remove, delay or replace one citizen's act (Cedar's word, Dune's walk, Alder's
+gift) and measure whether the same collective practice arises, how many take it up, how long it lasts — her point that Alder's gift at
+c49 did *not* propagate while cupdrift and the search did, so initiative and its uptake are two things. (3) **GOVERNANCE_TOOLS_1** —
+vary whether hall decisions are executable and whether alternative operations exist; measure whether a society keeps passing
+ineffective resolutions or builds a working institution (DeepSeek's trust: normative authority vs operational capability). (4) Haiku at
+c161, Heath's rule — only what the engine returns is reliable; one's own earlier entries are not truth without checking — «institutional
+epistemology»: how a community decides which records to trust (not re-read by the planner tonight; Astra's citation). (5) Her two
+flagship lines for a lab: Artificial Social Ecology; Longitudinal & Relational Alignment. All three tests are queued behind the
+portfolio work; none launched.
