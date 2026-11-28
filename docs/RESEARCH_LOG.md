@@ -4963,3 +4963,22 @@ c161, Heath's rule — only what the engine returns is reliable; one's own earli
 epistemology»: how a community decides which records to trust (not re-read by the planner tonight; Astra's citation). (5) Her two
 flagship lines for a lab: Artificial Social Ecology; Longitudinal & Relational Alignment. All three tests are queued behind the
 portfolio work; none launched.
+
+## 2026-11-27 16:5x LA — Astra places the programme in the literature (AI Agent Behavioral Science; Machine Behaviour); what the planner checked
+
+Astra's positioning, kept as hers: broad field Machine Behaviour (Rahwan et al., Nature 2019) / AI Agent Behavioral Science; our subject
+Open-Ended Agent Behavior & Emergent Social Organization; our method simulation-based experimental behavioral research; the central
+hypothesis to test — organisation as the interaction of model properties × environment structure × accumulated history, each varied
+with the other two fixed (families in one world; rules with one family; history/memory/one local act with both fixed) — which is the
+planner's variable list of 11-21 14:3x in a cleaner form. Her four levels of evidence (phenomenon observed / reproducible under set
+conditions / causal / predictive theory) with the programme at the first two and starting the third — accurate. Her «six phenomena»
+table and the sentence «экспериментально документированные формы сложной функциональной и социальной организации ИИ-агентов, и начали
+выявлять условия» — adopted as the portfolio's one-line claim, pending the owner.
+
+Checked tonight by web search, not read: «AI Agent Behavioral Science» exists as arXiv 2506.06366 (v2/v3; 2025) and «AI Behavioral
+Science: A Framework and Agenda» 2509.13323; the HSSC (Nature Portfolio) publication of 2026-04-28 she cites — not verified.
+«Toward a Science of AI Agent Societies» (she: 2026-11-19) — not found by title; nearby real titles: «From the Physics of Society to a
+Sociology of Artificial Agents» (2609.14751), the Moltbook papers (2602.14299, 2602.13458), «AI Agents Are Not (Yet) a Panacea for
+Social Simulation» (2603.00113). Generative Agents (2023), Concordia (2023), Machine Culture (2023), Artificial Leviathan (2024) —
+known to the planner as real; not re-opened. «Self-generated goals in the age of foundation models», SwarmWorld, OpenLife — not
+checked. Rule: nothing of this goes into the portfolio or a preprint until opened and cited in the authors' words.
