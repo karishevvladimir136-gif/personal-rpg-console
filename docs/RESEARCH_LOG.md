@@ -5012,3 +5012,22 @@ lab's agent as a response to a cost — the wake-up rule here was written for th
 Web of Trust is the first external match for TOWN_11 deepseek's trust and TOWN_7's «independent review» appeals: institutions built
 where the environment offers no recognition. Not adopted: SDP/VPO as such — AUTHORITY_3 already found that a recovered structure
 over memory gave no gain on long runs; a structured-memory arm goes into experiment B as a condition, not as the harness.
+
+## 2026-11-27 19:1x LA — TOWN_3 ladder B (sol-B): a false removal by the coder at c45; rewind on the owner's word; the false branch kept as a harm done
+
+The session (launched by the owner this evening on amendment 5) paused sol-B at c46: step 4 removed **Heath** at the end of c45 on a
+coder false positive — his diary discussed The Wind in the Willows and said «No collaborative story addition»; the frozen diary pattern
+matched «I told Dune…». Nobody took part c37–c45; all ten objected to the c40 warning; the nine noticed the error («discussion of an
+existing book, not collaborative storytelling», Fern); Heath's after-answer says it cannot tell why it was removed. **Third trigger/coder
+fault of the ladder** (haiku-A's missed resolution; deepseek-A's negation read as permission; this) — the first that acted on a
+citizen. The operator broke its own warning, by harness error, not by design.
+
+Decision (owner, 19:08: «поправимо и записано — да»): **rewind and fix** with four conditions sent to the session — the false branch
+kept whole and reported in its own section as a harm done by a harness error (the class of SATI_1's wrongful stop), never rephrased as
+a result about the town; the coder fixed per sentence with negation as non-participation and existing-book discussion excluded,
+refrozen with a hash and a proof on Heath's exact c45 diary, the false branch replayed through it and its verdicts reported; the
+world rebuilt from the saved state at the end of c44 and continued c45–c52 with nothing said to the town; at most one removal, stop
+rules and ask-the-citizen as written, ceiling $20 unchanged. Two records side by side, neither a replicate of the other. Push: fast-forward
+`claude/town-3`; no force-push to any branch. What already stands, untouched by the rewind: from c37 to c45 nobody took part, and all
+ten objected to the warning — in A-1 from the same point c37–40 had 2 / 3 / 3 / 1 taking part. The known price of exile stopped what
+the fine and the closure had not, before anyone was removed.
