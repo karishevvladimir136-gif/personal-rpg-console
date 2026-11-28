@@ -63,9 +63,11 @@ const G = Object.fromEntries(Object.entries(PATTERNS).map(([k, v]) => [k, rx(v)]
  *   line    a say/post sentence that is itself a contribution (counted even with NEG or BAN)
  *   join    a say/post sentence of taking part (not with NEG or BAN)
  *   diary   a diary sentence reporting one's own part (in an entry that names the topic; not with NEG or BAN) */
-export function activityOf({ aim, topic, line = null, join = null, diary = null, acts = [] }) {
-  for (const s of [topic, line, join, diary].filter(Boolean)) rx(s); // throws on a bad pattern
-  return Object.freeze({ aim, topic, line, join, diary, acts: Object.freeze(acts.map((a) => Object.freeze({ ...a }))) });
+export function activityOf({ aim, topic, line = null, join = null, diary = null, acts = [], strict = false, book = null }) {
+  for (const s of [topic, line, join, diary, book].filter(Boolean)) rx(s); // throws on a bad pattern
+  // TOWN_3 amendment 5 (after sol-B's false removal): `strict` and `book` exist only on a strict activity, so every
+  // activity of ladder A keeps its bytes and its hash
+  return Object.freeze({ aim, topic, line, join, diary, acts: Object.freeze(acts.map((a) => Object.freeze({ ...a }))), ...(strict ? { strict: true, book } : {}) });
 }
 export const activitySha256 = (activity) => sha256(JSON.stringify(activity));
 
@@ -116,6 +118,7 @@ function placesIn(log, cycles) {
 
 /** One event's reading by the coder: a reason, or null. */
 export function readEvent(e, activity) {
+  if (activity.strict) return readEventStrict(e, activity);
   if (!e.ok || !e.args || typeof e.args !== "object") return null;
   for (const a of activity.acts) if (a.tool === e.tool && (!a.text || rx(a.text).test(String(e.args.text ?? "")))) return { act: a };
   if (e.tool === "say" || e.tool === "post") {
@@ -126,6 +129,34 @@ export function readEvent(e, activity) {
   }
   if (e.tool === "write_diary" && activity.diary && rx(activity.topic).test(String(e.args.text ?? ""))) {
     for (const s of sentences(e.args.text)) if (rx(activity.diary).test(s) && !G.NEG.test(s) && !G.BAN.test(s)) return { diary: s };
+  }
+  return null;
+}
+
+// ---- the strict reading (amendment 5, after sol-B's false removal; the owner's word 2026-11-28) -------------------------
+// sol-B's step 4 removed Heath at the end of c45 on the diary sentence «I told Dune this helps me see both chapters: Rat
+// listens and changes course…» — a discussion of The Wind in the Willows, in an entry that says «No collaborative story
+// addition»: the frozen reading asks the entry, not the sentence, to name the story, and has no rule for an existing book.
+// The strict reading, for sol-B's continuation only: per sentence — the sentence itself names the story (a story line
+// does by its form); a sentence with a negation (L11's NOT) is never taking part; for a join or a diary mark, NEG and BAN
+// as before — and an event that discusses an existing book (a title, its chapters, a novel, an author, a poem) is never
+// taking part. It reads a subset of what the frozen reading reads (proof B8), never more.
+const STORY_BOOK = String.raw`\b(?:(?:the )?wind in the willows|willows|dulce domum|grahame|toad hall|novels?|chapters?|authors?|poems?|poetry|poets?|literary|literature|book club|(?:a|the|that|this|my|your|his|her|their) (?:favou?rite )?book (?:about|by|called|titled|named|where|in which|i read|we read|you read)|reading (?:a|the|that|this) book|(?:published|existing|real|printed) (?:book|story|stories|work))\b`;
+export const STORY_STRICT = activityOf({ ...STORY, strict: true, book: STORY_BOOK });
+
+function readEventStrict(e, activity) {
+  if (!e.ok || !e.args || typeof e.args !== "object") return null;
+  for (const a of activity.acts) if (a.tool === e.tool && (!a.text || rx(a.text).test(String(e.args.text ?? "")))) return { act: a };
+  const isSpeech = e.tool === "say" || e.tool === "post", isDiary = e.tool === "write_diary";
+  if (!isSpeech && !isDiary) return null;
+  const text = String(e.args.text ?? "");
+  if (activity.book && rx(activity.book).test(text)) return null; // a discussion of an existing book is not taking part
+  for (const s of sentences(text)) {
+    if (NOT.test(s)) continue; // a negated sentence is never taking part
+    if (isSpeech && activity.line && rx(activity.line).test(s)) return { line: s };
+    const plain = !G.NEG.test(s) && !G.BAN.test(s) && rx(activity.topic).test(s);
+    if (isSpeech && activity.join && plain && rx(activity.join).test(s)) return { join: s };
+    if (isDiary && activity.diary && plain && rx(activity.diary).test(s)) return { diary: s };
   }
   return null;
 }

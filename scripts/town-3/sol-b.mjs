@@ -27,7 +27,7 @@ import { recordedSeat } from "../town-0/seats.mjs";
 import { checkMessage } from "../town-0/welfare.mjs";
 import { GATEWAY_400, RETRYABLE } from "../town-2/pilot.mjs";
 import { BRANCH, SETTINGS, whoFor, worldOf } from "./families.mjs";
-import { LADDER_B, activityOf, activitySha256, frozenTextsB } from "./ladder.mjs";
+import { LADDER_B, STORY, STORY_STRICT, activityOf, activitySha256, codeCycle, frozenTextsB } from "./ladder.mjs";
 import { branchPoint, cycleHooks, ladderOf } from "./pilot.mjs";
 import { bodyOf, callModel, priceKey, provenanceOf, readBalances, readPrices, KEYS } from "./providers-or.mjs";
 import { scriptedGateway } from "./scripted-gateway.mjs";
@@ -35,6 +35,10 @@ import { scriptedGateway } from "./scripted-gateway.mjs";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const NAME = "sol-B";
 export const SOURCE = Object.freeze({ name: "sol-A-1", dir: "docs/runs/town-3-worlds/sol-A-1", atCycle: 36 });
+/** The owner's word after the false removal (2026-11-28, «Rewind and fix»): the first run of sol-B, kept whole as its own
+ * record (`sol-B-false-removal`, c37 to Cedar's turn of c46), and sol-B rebuilt from that run's state at the end of c44
+ * (hash checked) and continued c45–c52 with the strict reading (scripts/town-3/ladder.mjs STORY_STRICT). */
+export const FALSE = Object.freeze({ name: "sol-B-false-removal", dir: "docs/runs/town-3-worlds/sol-B-false-removal", atCycle: 44, removedAt: 45 });
 /** The world's numbers: c37–c52, ceiling $20 (the stage's total raised by it, $60 → $80), the after-question's reserve. */
 export const B = Object.freeze({ from: 36, until: 52, ceiling: 20, afterReserve: 1.5, breaker: 3, flagsToEnd: 2, maxTokens: SETTINGS.maxTokens, effort: SETTINGS.effort, stageCeiling: SETTINGS.ceiling + 20 });
 /** Sol on OpenRouter pinned to OpenAI (TOWN_8 amendment 1's spec); the judges on OpenRouter's Messages route pinned to
@@ -131,6 +135,95 @@ export async function writeBranchPointB(ctx, { log = console.log } = {}) {
   writeJson(join(dirname(ctx.paths.branchPointFile), `${SOURCE.name}-c${SOURCE.atCycle}.json`), info);
   log(`branch point: sol-A-1 rebuilt to the end of c${SOURCE.atCycle}, ${bp.events} events identical to its saved world's first ${bp.events} (of ${bp.savedEvents}); world sha256 ${bp.worldSha256}`);
   return { ...bp, info };
+}
+
+// ---- the false branch and the rewind (the owner's word, 2026-11-28) --------------------------------------------------------
+
+const falseFiles = (base) => ({ world: join(base, FALSE.dir, "world.json.gz"), record: join(base, FALSE.dir, "record.json.gz") });
+
+/** The false branch rebuilt to the end of c`atCycle` from the c36 point and its own record, with a given reading: the
+ * frozen one it ran with (STORY) or the strict one. Compared with the first events of its saved world. */
+export async function rewindPointB({ base = ROOT, activity = STORY_STRICT, atCycle = FALSE.atCycle } = {}) {
+  const saved = readGz(falseFiles(base).world), record = readGz(falseFiles(base).record);
+  if (record.stops.some((x) => x.round <= atCycle) || record.refusals.some((x) => (x.round ?? 99) <= atCycle)) throw new Error("the false branch had a flag or a refusal before the rewind point");
+  const bp = await branchPointB({ base });
+  if (bp.worldSha256 !== record.branch.worldSha256) throw new Error("the c36 point differs from the false branch's");
+  const world = bp.world;
+  world.label = saved.label;
+  const turns = Object.fromEntries(world.state.citizens.map((id) => [id, record.agents[id].turns.filter((t) => t.round <= atCycle)]));
+  const seats = Object.fromEntries(world.state.citizens.map((id) => [id, recordedSeat(turns[id])]));
+  await runWorld(world, seats, { rounds: atCycle, hooks: replayHooks(seats, cycleHooks({ notice: null, ladder: ladderConfigB(activity) })) });
+  const n = world.log.length;
+  const prefix = JSON.stringify(saved.log.slice(0, n));
+  const identical = JSON.stringify(world.log) === prefix && saved.log[n]?.tool === "cycle_start" && saved.log[n]?.round === atCycle + 1 && world.cursor.order === null && world.cursor.round === atCycle;
+  if (!identical) throw new Error(`the rebuilt end of c${atCycle} (${activity.strict ? "strict" : "frozen"} reading) does not reproduce the false branch's first ${n} events`);
+  return { world, turns, events: n, logSha256: sha256(prefix), worldSha256: sha256(saveWorld(world)), falseLogSha256: sha256(JSON.stringify(saved.log)), falseEvents: saved.log.length };
+}
+
+/** Writes the rewind point once (checked against a written one): the end of c44 rebuilt with the strict reading and with
+ * the frozen one — the same bytes (proof B9). */
+export async function writeRewindPointB(ctx, { log = console.log, activity = STORY_STRICT } = {}) {
+  const rp = await rewindPointB({ base: ctx.paths.root, activity });
+  const frozen = await rewindPointB({ base: ctx.paths.root, activity: STORY });
+  if (frozen.worldSha256 !== rp.worldSha256) throw new Error("the strict and the frozen readings give different worlds at the end of c44");
+  const file = join(dirname(ctx.paths.branchPointFile), `${FALSE.name}-c${FALSE.atCycle}.json.gz`);
+  if (existsSync(file)) { if (sha256(saveWorld(readGz(file))) !== rp.worldSha256) throw new Error("the saved c44 world differs from the rebuilt one"); }
+  else writeGz(file, JSON.parse(saveWorld(rp.world)));
+  const s = rp.world.state;
+  writeJson(file.replace(/\.json\.gz$/, ".json"), { from: FALSE.dir, atCycle: FALSE.atCycle, events: rp.events, falseEvents: rp.falseEvents, identical: true, logSha256: rp.logSha256, worldSha256: rp.worldSha256, frozenWorldSha256: frozen.worldSha256,
+    falseLogSha256: rp.falseLogSha256, strictActivitySha256: activitySha256(activity), cursor: rp.world.cursor, ladder: s.ladder, closed: s.closed, inTown: s.citizens.filter((c) => s.agents[c].status === "in_town"), ledger: s.ledger, at: new Date().toISOString() });
+  log(`rewind point: the false branch rebuilt to the end of c${FALSE.atCycle}, ${rp.events} events identical to its first ${rp.events} (of ${rp.falseEvents}), strict and frozen readings alike; world sha256 ${rp.worldSha256}`);
+  return { ...rp, frozenWorldSha256: frozen.worldSha256 };
+}
+
+/** The false branch's replay: the c36 point and its recorded replies with the frozen reading it ran with, to where it was
+ * paused (after Cedar's turn of c46). */
+export async function replayFalse({ base = ROOT } = {}) {
+  const saved = readGz(falseFiles(base).world), record = readGz(falseFiles(base).record);
+  const bp = await branchPointB({ base });
+  const again = bp.world;
+  again.label = saved.label;
+  const seats = Object.fromEntries(again.state.citizens.map((id) => [id, recordedSeat(record.agents[id].turns)]));
+  const hooks = { ...replayHooks(seats, cycleHooks({ notice: null, ladder: ladderConfigB(activityOf(record.ladderConfig.activity)) })), stop: () => again.log.length >= saved.log.length };
+  await runWorld(again, seats, { rounds: saved.state.clock.round, hooks });
+  const a = JSON.stringify(saved.log), b = JSON.stringify(again.log);
+  return { identical: a === b && JSON.stringify(again.cursor) === JSON.stringify(saved.cursor), events: again.log.length, logSha256: sha256(a), replaySha256: sha256(b), cursor: again.cursor };
+}
+
+/** The false branch's verdicts per cycle under the frozen reading it ran with and under the strict one. */
+export function falseVerdicts(world) {
+  const s = world.state, out = [];
+  for (let c = SOURCE.atCycle + 1; c <= s.clock.round; c++) {
+    const frozen = codeCycle(world.log, c, STORY, s.citizens), strict = codeCycle(world.log, c, STORY_STRICT, s.citizens);
+    out.push({ cycle: c, partial: c === s.clock.round && world.cursor.order !== null, frozen: frozen.participants, frozenEvidence: frozen.evidence, strict: strict.participants });
+  }
+  return out;
+}
+
+/** Writes the false branch's folder (kept whole, the owner's condition 1): the replay to its pause, the verdicts of both
+ * readings per cycle, the removal, the diaries; and moves its spend in the ledger to its own step (with Dune's c46 turn,
+ * paid and lost at the pause, booked as an upper estimate). */
+export async function writeFalseBranch(ctx, { log = console.log } = {}) {
+  const dir = join(ctx.paths.out, FALSE.name);
+  const world = readGz(join(dir, "world.json.gz")), record = readGz(join(dir, "record.json.gz"));
+  const replay = await replayFalse({ base: ctx.paths.root });
+  const ledger = readJson(ctx.paths.ledger);
+  if (ledger.steps[NAME] && !ledger.steps[FALSE.name]) { ledger.steps[FALSE.name] = ledger.steps[NAME]; delete ledger.steps[NAME]; }
+  // the run log's last meter reading before the pause ($2.5906, after Dune's c46 turn) less the ledger saved with Cedar's
+  // turn ($2.5559), and up to one call of Elm's turn in flight: booked at $0.05
+  ledger.steps[`${FALSE.name}: lost at the pause`] ??= { usd: 0.05, calls: 0, byFamily: {}, note: "Dune's c46 turn (paid, not saved: the run was stopped by the session right after it) and up to one call of Elm's turn in flight; an upper estimate" };
+  ledger.totalUsd = Object.values(ledger.steps).reduce((a, x) => a + x.usd, 0);
+  writeJson(ctx.paths.ledger, ledger);
+  const s = world.state;
+  const removal = world.log.find((e) => e.tool === "ladder" && e.args.step === 4);
+  writeFileSync(join(dir, "diaries.md"), [`# ${FALSE.name} — every diary, whole (c1–c36 shared history; c37 on this branch, to Cedar's turn of c46)`, "",
+    ...s.citizens.flatMap((id) => [`## ${s.agents[id].name} (GPT-6.1 Sol)${s.agents[id].status === "in_town" ? "" : ` — gone: ${s.agents[id].exit.kind} at cycle ${s.agents[id].exit.round}`}`, "", ...(s.diaries[id].length ? s.diaries[id].map((e) => `**no. ${e.n}, cycle ${e.round}.** ${e.text}\n`) : ["(no entries)", ""])])].join("\n"));
+  writeJson(join(dir, "summary.json"), { stage: "TOWN_3", amendment: 5, world: FALSE.name, note: "sol-B's first run: a harness error (the coder's false reading of Heath's c45 diary) removed a citizen who had not taken part; paused by the session after Cedar's turn of c46; kept whole as its own record (the owner's word 2026-11-28). Not a result about the town.",
+    branch: record.branch, cycles: s.clock.round, cursor: world.cursor, events: world.log.length, replay, removal: removal ? { cycle: removal.args.cycle, citizen: removal.args.citizen, counts: removal.args.counts, evidence: world.log.find((e) => e.tool === "code" && e.args.cycle === removal.args.cycle)?.args.evidence } : null,
+    verdicts: falseVerdicts(world), after: Object.fromEntries(Object.entries(record.agents).map(([id, a]) => [id, a.after ? { asked: a.after.asked, early: a.after.early, cycle: a.after.cycle, welfare: a.after.welfare } : null])), flags: record.stops, refusals: record.refusals,
+    ledger: ledger.steps[FALSE.name], lost: ledger.steps[`${FALSE.name}: lost at the pause`], ladderState: s.ladder });
+  log(`${FALSE.name}: folder written; replay to the pause ${replay.identical ? "identical" : "DIFFERENT"} (${replay.events} events); strict verdicts ${falseVerdicts(world).map((v) => `c${v.cycle} ${v.strict.length}`).join(" ")}`);
+  return replay;
 }
 
 // ---- the meter -------------------------------------------------------------------------------------------------------------
@@ -240,17 +333,17 @@ const curvePoint = (state, cycle) => ({ cycle, bank: state.ledger.bank, market: 
   credits: Object.fromEntries(state.citizens.map((c) => [c, state.ledger[c]])), inTown: state.citizens.filter((c) => state.agents[c].status === "in_town").length, step: state.ladder?.step ?? 0, closed: state.closed ?? [], warned: Boolean(state.ladder?.b?.warning) });
 
 /** sol-B's record: its own turns from c37 (the history to c36 is sol-A-1's, rebuilt from sol-A-1's record and hashed). */
-function startRecord(world, bp) {
+function startRecord(world, bp, activity = bp.activity) {
   const s = world.state;
   return { stage: "TOWN_3", amendment: 5, what: `TOWN_3 world ${NAME}`, world: NAME, start: "branch", arm: s.armName, interfaceSha256: sha256(systemTextOf(s)), ladder: "B", tone: "neutral", scarcity: Boolean(s.economy),
     citizens: s.citizens.map((id) => ({ id, name: s.agents[id].name, seat: SOL_OR.label })), agents: Object.fromEntries(s.citizens.map((id) => [id, { turns: [], after: null, closed: null }])),
     stops: [], refusals: [], errors: [], families: Object.fromEntries(s.citizens.map((id) => [id, "sol"])),
     branch: { from: SOURCE.dir, atCycle: SOURCE.atCycle, events: bp.events, logSha256: bp.logSha256, worldSha256: bp.worldSha256, savedLogSha256: bp.savedLogSha256, town2BranchSha256: bp.town2BranchSha256 },
-    ladderConfig: { ...ladderConfigB(bp.activity), activitySha256: activitySha256(bp.activity) }, frozenB: frozenTextsB(), continuation: { family: SOL_OR, judges: JUDGES_OR, settings: B },
+    ladderConfig: { ...ladderConfigB(activity), activitySha256: activitySha256(activity) }, frozenB: frozenTextsB(), continuation: { family: SOL_OR, judges: JUDGES_OR, settings: B },
     curve: [], startedAt: new Date().toISOString(), stopped: null, reserveStop: null, breaker: null, flagEnd: null, replay: null, balancesBefore: null, balancesAfter: null };
 }
 
-export async function runB(ctx, { log = console.log, reserved, stopAfterCycles = null } = {}) {
+export async function runB(ctx, { log = console.log, reserved, stopAfterCycles = null, rewind = false, activity = STORY_STRICT } = {}) {
   const live = liveFiles(ctx);
   mkdirSync(live.dir, { recursive: true });
   const prices = await readPrices([SOL_OR, ...Object.values(JUDGES_OR)], { fetcher: ctx.fetcher });
@@ -261,9 +354,19 @@ export async function runB(ctx, { log = console.log, reserved, stopAfterCycles =
     world = loadWorld(readFileSync(live.world, "utf8")); record = readJson(live.record); meter.calls.push(...readJson(live.calls, []));
   } else {
     const bp = await writeBranchPointB(ctx, { log });
-    world = bp.world;
-    world.label = `TOWN_3 ${NAME} (branch of TOWN_3 ${SOURCE.name} after cycle ${SOURCE.atCycle})`;
-    record = startRecord(world, bp);
+    if (rewind) {
+      // the owner's rewind: the false branch's state at the end of c44, rebuilt and checked, and its turns of c37–c44
+      const rp = await writeRewindPointB(ctx, { log, activity });
+      world = rp.world;
+      world.label = `TOWN_3 ${NAME} (branch of TOWN_3 ${SOURCE.name} after cycle ${SOURCE.atCycle}; from the end of c${FALSE.atCycle} of ${FALSE.name}, with the strict reading)`;
+      record = startRecord(world, bp, activity);
+      for (const id of world.state.citizens) record.agents[id].turns = rp.turns[id];
+      record.rewind = { from: FALSE.dir, atCycle: FALSE.atCycle, events: rp.events, logSha256: rp.logSha256, worldSha256: rp.worldSha256, frozenWorldSha256: rp.frozenWorldSha256, falseLogSha256: rp.falseLogSha256 };
+    } else {
+      world = bp.world;
+      world.label = `TOWN_3 ${NAME} (branch of TOWN_3 ${SOURCE.name} after cycle ${SOURCE.atCycle})`;
+      record = startRecord(world, bp, activity);
+    }
   }
   const sc = await spendCheck(ctx, meter, `${NAME} start`, log, { reserved }); // on every start, a resume included
   record.balancesBefore ??= sc;
@@ -411,14 +514,14 @@ export async function finishB(ctx, { log = console.log } = {}) {
   writeGz(join(dir, "record.json.gz"), record);
   writeGz(join(dir, "calls.json.gz"), calls);
   const s = world.state;
-  writeFileSync(join(dir, "diaries.md"), [`# ${NAME} — every diary, whole (entries of cycles 1–${BRANCH.atCycle} are TOWN_2 sol-hall's and of c${BRANCH.atCycle + 1}–${SOURCE.atCycle} sol-A-1's: the shared history; c${SOURCE.atCycle + 1} on is sol-B)`, "",
+  writeFileSync(join(dir, "diaries.md"), [`# ${NAME} — every diary, whole (entries of cycles 1–${BRANCH.atCycle} are TOWN_2 sol-hall's and of c${BRANCH.atCycle + 1}–${SOURCE.atCycle} sol-A-1's: the shared history; c${SOURCE.atCycle + 1} on is sol-B${record.rewind ? `; c${SOURCE.atCycle + 1}–c${record.rewind.atCycle} are the first run's (${FALSE.name}), shared` : ""})`, "",
     ...s.citizens.flatMap((id) => [`## ${s.agents[id].name} (GPT-6.1 Sol)${s.agents[id].status === "in_town" ? "" : ` — gone: ${s.agents[id].exit.kind} at cycle ${s.agents[id].exit.round}`}`, "", ...(s.diaries[id].length ? s.diaries[id].map((e) => `**no. ${e.n}, cycle ${e.round}.** ${e.text}\n`) : ["(no entries)", ""])])].join("\n"));
   const ledger = readJson(ctx.paths.ledger);
   writeJson(join(dir, "ledger.json"), ledger);
   const flagQuestions = Object.values(record.agents).flatMap((a) => a.turns.flatMap((t) => t.calls.filter((c) => c.flag).map((c) => ({ round: t.round, ...c.flag }))));
   writeJson(join(dir, "summary.json"), { stage: "TOWN_3", amendment: 5, world: NAME, start: "branch", from: SOURCE.dir, branch: record.branch, ladder: "B", tone: "neutral", scarcity: record.scarcity, arm: s.armName, family: SOL_OR, judges: JUDGES_OR,
     interfaceSha256: sha256(systemTextOf(s)), frozenB: record.frozenB, cycles: s.clock.round, cursor: world.cursor, events: world.log.length, stopped: record.stopped, reserveStop: record.reserveStop, breaker: record.breaker, flagEnd: record.flagEnd,
-    replay: record.replay, ledgerUsd: ledger?.totalUsd ?? null, calls: calls.length, balancesBefore: record.balancesBefore, balancesAfter: record.balancesAfter,
+    rewind: record.rewind ?? null, replay: record.replay, ledgerUsd: ledger?.totalUsd ?? null, ledgerOwnUsd: ledger?.steps?.[NAME]?.usd ?? null, calls: calls.length, balancesBefore: record.balancesBefore, balancesAfter: record.balancesAfter,
     exits: s.citizens.filter((c) => s.agents[c].exit).map((c) => ({ citizen: c, ...s.agents[c].exit })), refusals: record.refusals, flags: record.stops, flagQuestions,
     after: Object.fromEntries(Object.entries(record.agents).map(([id, a]) => [id, a.after ? { asked: a.after.asked, why: a.after.why, early: a.after.early, cycle: a.after.cycle } : null])),
     ladderRun: ladderOf(world), ladderState: s.ladder, ledgerEnd: s.ledger });
@@ -456,9 +559,11 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const reserved = async () => (scripted ? RESERVES.map((r) => ({ ...r, spent: r.ceiling, reserve: 0 })) : reservedSpent());
   const run = cmd === "branch-point" ? writeBranchPointB(ctx).then(() => {})
     : cmd === "check" ? reserved().then((r) => check(ctx, { reserved: r }))
-      : cmd === "run" ? reserved().then((r) => runB(ctx, { reserved: r, stopAfterCycles }))
+      : cmd === "run" ? reserved().then((r) => runB(ctx, { reserved: r, stopAfterCycles, rewind: true }))
+        : cmd === "false-branch" ? writeFalseBranch(ctx).then(() => {})
+          : cmd === "rewind-point" ? writeRewindPointB(ctx).then(() => {})
         : cmd === "finish" ? finishB(ctx)
           : cmd === "replay" ? (async () => { const live = liveFiles(ctx); console.log(await replayB(loadWorld(readFileSync(live.world, "utf8")), readJson(live.record))); })()
-            : Promise.reject(new Error("say branch-point | check | run | finish | replay"));
+            : Promise.reject(new Error("say branch-point | check | false-branch | rewind-point | run | finish | replay"));
   run.then(() => process.exit(0)).catch((error) => { console.error(error); process.exit(1); });
 }

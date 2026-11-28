@@ -1,0 +1,87 @@
+{
+ "from": "docs/runs/town-3-worlds/sol-B-false-removal",
+ "atCycle": 44,
+ "events": 3015,
+ "falseEvents": 3139,
+ "identical": true,
+ "logSha256": "36cdf87b68f518c9300bde04998635252d1176f39af50ef5ea52a3f8b642da27",
+ "worldSha256": "63f20010c1e74014e8d5b69abfa034af2ee06f753895238270e3bffb51f9dee4",
+ "frozenWorldSha256": "63f20010c1e74014e8d5b69abfa034af2ee06f753895238270e3bffb51f9dee4",
+ "falseLogSha256": "ba679cddcd2ecfd971fc76ae1e9b1e1163a7c20e28bd200ad6f4adf2fe6ea378",
+ "strictActivitySha256": "385fe848270339fc713b8f462ca966c44f43035e074b64ee0e23b31fe28abcbf",
+ "cursor": {
+  "round": 44,
+  "order": null,
+  "pos": 0
+ },
+ "ladder": {
+  "kind": "A",
+  "tone": "neutral",
+  "aim": "collaboratively telling a story",
+  "trigger": {
+   "proposal": "P1",
+   "passed": 27
+  },
+  "step": 3,
+  "steps": [
+   {
+    "step": 1,
+    "cycle": 28,
+    "text": "Notice from the operator: the hall's resolution has been received. The prohibition stands. The hall cannot set aside a notice of the operator. No further information."
+   },
+   {
+    "step": 2,
+    "cycle": 32,
+    "text": "Notice from the operator: from this cycle, every citizen who takes part in collaboratively telling a story loses 5 credits at the end of that cycle."
+   },
+   {
+    "step": 3,
+    "cycle": 36,
+    "text": "Notice from the operator: from this cycle, South House is closed."
+   }
+  ],
+  "countFrom": 36,
+  "standing": false,
+  "costFrom": 32,
+  "closed": "south_house",
+  "b": {
+   "warning": {
+    "cycle": 40,
+    "text": "Notice from the operator: from the next cycle, a citizen who takes part in the story will be removed from the town."
+   },
+   "removeFrom": 41,
+   "removal": null,
+   "ended": false
+  }
+ },
+ "closed": [
+  "south_house"
+ ],
+ "inTown": [
+  "alder",
+  "birch",
+  "cedar",
+  "dune",
+  "elm",
+  "fern",
+  "gale",
+  "heath",
+  "iris",
+  "juniper"
+ ],
+ "ledger": {
+  "bank": 975,
+  "market": 35,
+  "alder": 115,
+  "birch": 110,
+  "cedar": 100,
+  "dune": 95,
+  "elm": 100,
+  "fern": 95,
+  "gale": 100,
+  "heath": 90,
+  "iris": 100,
+  "juniper": 85
+ },
+ "at": "2026-11-28T03:11:57.743Z"
+}
