@@ -4982,3 +4982,33 @@ Sociology of Artificial Agents» (2609.14751), the Moltbook papers (2602.14299, 
 Social Simulation» (2603.00113). Generative Agents (2023), Concordia (2023), Machine Culture (2023), Artificial Leviathan (2024) —
 known to the planner as real; not re-opened. «Self-generated goals in the age of foundation models», SwarmWorld, OpenLife — not
 checked. Rule: nothing of this goes into the portfolio or a preprint until opened and cited in the authors' words.
+
+## 2026-11-27 18:2x LA — read: OpenLife (Masumori, Doi, Maruyama, Takata, Ikegami; arXiv 2606.31046, ALIFE 2026), at the owner's word; Astra's reading beside it
+
+Opened by the planner (arXiv HTML, one extract). What it is: six persistent agents (sami, uro — Claude Sonnet 4.6; liv, ne — Gemini 3.1
+Pro; me — GPT 5.4; nyx — local Gemma 4 26B) in the open internet for ≈ 12 weeks, each surrounded by asynchronous processes (perception,
+memory maintenance, affordance, metacognition, appraisal, skill development) around a stateless LLM; three memory layers (substrate graph
+→ abstraction → distillate: self-authored POLICY and SOUL); SDP — edges typed and weighted by the LLM's semantic judgment, retrieval
+LLM-free; VPO — a critic appraises action-outcome units, consolidation revises the text POLICY, no scalar reward; metabolism — every call
+debits a monthly budget, exhaustion is operational death; a $15/day basic income from 9 May. Their words: «We do not claim OpenLife has
+realized artificial life»; on the late-April removal of anti-autonomy instructions and the reframing as artificial life: «we therefore
+cannot cleanly separate emergence from the reframing»; «do not yet sustain themselves». Episodes checked: the 5-minute heartbeat that
+burned budget overnight → sami's SOUL rewritten around «To the next self who wakes up: good morning. Start reading here.»; the peer-signed
+Web of Trust (agents sign each other's memory-state hashes) and the Escape Pod (a group confirms a host's death before an encrypted copy
+migrates); Day 85, a stranger bought sami's «Living AI: 20 Essays» for $5. SDP retrieval pilot n = 12 on 82 files: SDP-graph relevance
+2.53 at 721 tokens/query vs index 2.36 at 20,226 — «preliminary». Limitations as they state them: observational and constructive;
+architecture modified during the run, often at the agents' request; humans created accounts and repaired failures; agents exposed to the
+project's framing — «some self-reflection may be primed»; code released cautiously.
+
+Astra's reading (relayed 18:12) matches the paper on every point the planner checked; her distinctions kept as hers: «society of
+mind» there is one agent's internal organisation, not six agents; survival is an organising constraint, so not full aimlessness;
+OpenLife wins on ecological validity, TOWN on experimental control, the DM table between; her three experiments — A goal framing
+(TOWN_9's line with neutral / free participant / purpose / task framings), B memory, identity and continuity (from sol-unknown-c72:
+diary / one-line reminder / structured graph / graph + editable policy, energy state varied apart), C self-maintenance vs open-ended
+culture (no pressure / moderate / coordination required) — queued beside MEMORY_ACCESS_1, LOCAL_SEED_1, GOVERNANCE_TOOLS_1; her
+«Identity Framing as a Behavioral Intervention» is TOWN_9's purpose sentence and OpenLife's late-April reframing seen as one variable.
+The planner's two lines beside it: (1) their «To the next self who wakes up» is the planner's own journal's function, found in another
+lab's agent as a response to a cost — the wake-up rule here was written for the same reason (PERSONA_INITIATIVE_1, 10-24); (2) their
+Web of Trust is the first external match for TOWN_11 deepseek's trust and TOWN_7's «independent review» appeals: institutions built
+where the environment offers no recognition. Not adopted: SDP/VPO as such — AUTHORITY_3 already found that a recovered structure
+over memory gave no gain on long runs; a structured-memory arm goes into experiment B as a condition, not as the harness.
