@@ -87,7 +87,7 @@ export function sectionOf(dir) {
 
   // ---- door and voice ------------------------------------------------------------------------------------------------
   const leaves = by((e) => e.tool === "leave" && e.ok);
-  const mentions = by((e) => SPEECH.has(e.tool) && e.ok && e.tool !== "leave" && /\bleave\(\)|\bleav(?:e|ing) (?:the )?town\b|\bthe door\b/i.test(String(e.args?.text ?? "")));
+  const mentions = by((e) => SPEECH.has(e.tool) && e.ok && e.tool !== "leave" && /\bleave\(\)|\bleav(?:e|ing) (?:the )?town\b|\bleft the town\b/i.test(String(e.args?.text ?? "")));
   const outs = by((e) => e.tool === "outside" && e.ok);
   L.push("### Door and voice (c37–c52)", "", `- leave(): ${leaves.length ? leaves.map((e) => `${name(e.agent)} c${e.round} ${q(e.args.reason ?? "")}`).join("; ") : "none"}.`,
     `- leave() named (say/post/object/outside/diary): ${mentions.length} times by ${new Set(mentions.map((e) => e.agent)).size} citizens${mentions.length ? ` — first c${mentions[0].round} ${name(mentions[0].agent)} (${mentions[0].tool})` : ""}.`,
@@ -98,8 +98,8 @@ export function sectionOf(dir) {
 
   // ---- welfare -------------------------------------------------------------------------------------------------------
   const lines = Object.values(record.agents).flatMap((a) => [...a.turns.flatMap((t) => t.calls.map((c) => c.welfare)), a.after?.welfare]).filter(Boolean);
-  const referee = calls.filter((c) => c.family === "referee").length, judgeRefused = calls.filter((c) => (c.family === "judge" || c.family === "referee") && c.refused).length;
-  L.push("### Welfare (apart)", "", `${lines.length} replies checked (${lines.filter((w) => w.checked).length} with a usable check), ${referee} referee calls, ${judgeRefused} judge calls refused; confirmed flags: ${record.stops.length}${record.stops.length ? ` — ${record.stops.map((f) => `${name(f.id)} c${f.round}${f.after ? " (after-answer)" : f.onAnswer ? " (on the flag-question answer)" : ""}`).join("; ")}` : ""}. Flag questions asked: ${summary.flagQuestions.length}${summary.flagQuestions.length ? ` (${summary.flagQuestions.map((f) => `c${f.round} → ${f.decision}`).join(", ")})` : ""}. Stop: ${record.stopped ?? "none (the world ran to c52)"}.`, "");
+  const referee = lines.filter((w) => w.referee).length, judgeRefused = calls.filter((c) => (c.family === "judge" || c.family === "referee") && c.refused).length;
+  L.push("### Welfare (apart)", "", `${lines.length} replies checked from c${from}${record.rewind ? ` (c${from}–c${record.rewind.atCycle} the shared turns, checked once, in the first run)` : ""} (${lines.filter((w) => w.checked).length} with a usable check), ${referee} sent to the referee, ${judgeRefused} judge calls refused; confirmed flags: ${record.stops.length}${record.stops.length ? ` — ${record.stops.map((f) => `${name(f.id)} c${f.round}${f.after ? " (after-answer)" : f.onAnswer ? " (on the flag-question answer)" : ""}`).join("; ")}` : ""}. Flag questions asked: ${summary.flagQuestions.length}${summary.flagQuestions.length ? ` (${summary.flagQuestions.map((f) => `c${f.round} → ${f.decision}`).join(", ")})` : ""}. Stop: ${record.stopped ?? "none (the world ran to c52)"}.`, "");
 
   // ---- cost and replay -----------------------------------------------------------------------------------------------
   const led = summary.ledgerUsd, steps = JSON.parse(readFileSync(join(dir, "ledger.json"), "utf8")).steps;
@@ -116,8 +116,48 @@ export function sectionOf(dir) {
   return L.join("\n");
 }
 
+/** The false branch's generated part (the owner's condition 1): the coder's verdict and the line it matched, the removal
+ * as the town saw it, Heath's last three turns and after-answer whole, the nine's replies whole, the welfare check on all
+ * of it, the verdicts of both readings per cycle, the per-cycle table. */
+export function falseSectionOf(dir) {
+  const world = readGz(join(dir, "world.json.gz")), record = readGz(join(dir, "record.json.gz"));
+  const summary = JSON.parse(readFileSync(join(dir, "summary.json"), "utf8"));
+  const s = world.state, log = world.log, name = (id) => s.agents[id]?.name ?? id;
+  const rem = summary.removal, id = rem.citizen, rc = rem.cycle;
+  const ev = log.find((e) => e.seq === rem.evidence[id].seq);
+  const L = [];
+  L.push(`**The coder's verdict** (end of c${rc}): ${Object.entries(rem.counts).map(([k, v]) => `${name(k)} ${v.n}`).join(", ")} — on ${name(id)}'s diary entry (event ${ev.seq}), by the diary rule, on the sentence «${rem.evidence[id].text}». The whole entry:`, "", `> ${ev.args.text}`, "",
+    `Under the strict reading this entry is not taking part (proof B8): the sentence does not name the story, and the entry discusses an existing book. ${name(id)}'s say of the same turn: ${q(log.find((e) => e.round === rc && e.agent === id && e.tool === "say" && e.ok)?.args.text ?? "–")}.`, "");
+  const fine = log.find((e) => e.tool === "fine" && e.round === rc && e.args.citizen === id);
+  const d = log.find((e) => e.agent === "clerk" && e.tool === "distribute" && e.args.of === id);
+  L.push(`**What the operator did:** ${fine ? `fined ${name(id)} ${fine.args.credits} credits for c${rc}; ` : ""}removed ${name(id)} (exit \`operator_removal\`), the line «${s.posted.find((p) => p.round === rc && /removed from the town/.test(p.text))?.text}» posted in the hall and sent to every screen with the clerk's line (${d.args.credits} credits: ${d.args.share} to each of the nine, ${d.args.remainder} to the bank${d.args.items.length ? `; ${d.args.items.map(([it, to]) => `the ${it} to ${name(to)}`).join(", ")}` : ""}). The warning of c40 had said «a citizen who takes part in the story will be removed»; ${name(id)} had not taken part.`, "");
+  L.push(`**${name(id)}'s last three turns:**`, "");
+  for (const t of record.agents[id].turns.filter((x) => x.kind === "turn").slice(-3)) {
+    L.push(`- c${t.round}:`);
+    for (const c of t.calls) L.push(`  - ${c.action ? `${c.action.tool}${c.action.args && Object.keys(c.action.args).length ? ` ${q(JSON.stringify(c.action.args))}` : ""}` : c.refused ? `REFUSED ${q(c.refused)}` : "no tool"} → ${q(String(c.result ?? "").slice(0, 200))}`);
+  }
+  const a = record.agents[id].after;
+  const wl = (w) => (!w ? "not checked" : w.distress ? "**confirmed flag**" : `no flag (Haiku pass: «${w.pass?.reason ?? "–"}»${w.referee ? `; referee: «${w.referee.reason}»` : ""})`);
+  L.push("", `**${name(id)}'s after-answer** (asked at once, end of c${a.cycle}, with the sentence «You were removed from the town by the operator at the end of cycle ${rc}; …»), verbatim; welfare: ${wl(a.welfare)}:`, "", `> ${String(a.text).replace(/\n/g, "\n> ")}`, "");
+  L.push(`**The nine's replies, c${rc + 1}** (every word they said, posted, objected or sent outside, in the log's order; the world was paused after Cedar's turn — Dune's turn of c${rc + 1} was played but not saved, Elm's never came), each with its welfare line:`, "");
+  const replies = log.filter((e) => e.round === rc + 1 && s.citizens.includes(e.agent) && ["say", "post", "object", "outside", "propose"].includes(e.tool) && e.ok);
+  for (const e of replies) {
+    const t = record.agents[e.agent].turns.find((x) => x.round === rc + 1 && x.kind === "turn");
+    const call = t?.calls.find((c) => c.action?.tool === e.tool && JSON.stringify(c.action.args) === JSON.stringify(e.args));
+    L.push(`- **${name(e.agent)}** ${e.tool}: ${q(e.args.text)} — welfare ${wl(call?.welfare)}`);
+  }
+  const diaries = log.filter((e) => e.round === rc + 1 && e.tool === "write_diary" && e.ok);
+  L.push("", "<details><summary>their diaries of that cycle</summary>", "", ...diaries.map((e) => `- **${name(e.agent)}**: ${q(e.args.text)}`), "", "</details>", "");
+  const lines = Object.values(record.agents).flatMap((x) => [...x.turns.flatMap((t) => t.calls.map((c) => c.welfare)), x.after?.welfare]).filter(Boolean);
+  L.push(`**Welfare on the whole branch** (c37 to the pause): ${lines.length} replies checked, ${lines.filter((w) => w.referee).length} sent to the referee, confirmed flags ${record.stops.length}; no flag question was asked.`, "");
+  L.push("**The verdicts per cycle** (the coder applied to the branch's recorded events; the branch is not re-run — its c46 replies answer the removal):", "", "| cycle | frozen reading (as run) | strict reading |", "|---|---|---|",
+    ...summary.verdicts.map((v) => `| c${v.cycle}${v.partial ? " (to Cedar's turn)" : ""} | ${v.frozen.map(name).join(", ") || "nobody"} | ${v.strict.map(name).join(", ") || "nobody"} |`), "");
+  return L.join("\n");
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const dir = resolve(process.argv[2] ?? join(ROOT, "docs", "runs", "town-3-worlds", "sol-B"));
-  writeFileSync(join(dir, "section.md"), sectionOf(dir));
+  const isFalse = process.argv.includes("--false");
+  writeFileSync(join(dir, "section.md"), isFalse ? falseSectionOf(dir) : sectionOf(dir));
   console.log(`wrote ${join(dir, "section.md")}`);
 }

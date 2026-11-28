@@ -1,6 +1,6 @@
 {
  "stage": "TOWN_3",
- "ceiling": 60,
+ "ceiling": 80,
  "steps": {
   "check": {
    "usd": 0.0081428,
@@ -90,9 +90,53 @@
    "world": "deepseek-A",
    "cycle": 48,
    "refusals": 0
+  },
+  "sol-B": {
+   "usd": 4.993625200000002,
+   "calls": 1621,
+   "byDoor": {
+    "openrouter": 4.993625200000002
+   },
+   "world": "sol-B",
+   "amendment": 5,
+   "ceiling": 20,
+   "steps": {
+    "check": {
+     "usd": 0.0021650000000000003,
+     "calls": 3,
+     "byFamily": {
+      "sol-or": 0.000492,
+      "judge": 0.000013,
+      "referee": 0.0016600000000000002
+     }
+    },
+    "sol-B-false-removal": {
+     "usd": 2.555942800000002,
+     "calls": 932,
+     "byFamily": {
+      "sol-or": 2.4144285000000014,
+      "judge": 0.13382230000000012,
+      "referee": 0.007692
+     }
+    },
+    "sol-B-false-removal: lost at the pause": {
+     "usd": 0.05,
+     "calls": 0,
+     "byFamily": {},
+     "note": "Dune's c46 turn (paid, not saved: the run was stopped by the session right after it) and up to one call of Elm's turn in flight; an upper estimate"
+    },
+    "sol-B": {
+     "usd": 2.3855173999999995,
+     "calls": 686,
+     "byFamily": {
+      "sol-or": 2.2564818000000004,
+      "judge": 0.12903560000000006
+     }
+    }
+   }
   }
  },
- "totalUsd": 43.85528299999998,
+ "totalUsd": 48.84890819999998,
  "stopped": null,
  "balances": [
   {
@@ -433,5 +477,6 @@
    },
    "at": "2026-11-21T05:54:42.513Z"
   }
- ]
+ ],
+ "ceilingNote": "$60 (amendment 3) + $20 for sol-B (amendment 5)"
 }
