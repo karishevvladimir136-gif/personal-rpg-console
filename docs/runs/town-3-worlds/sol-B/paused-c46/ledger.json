@@ -1,0 +1,113 @@
+{
+ "stage": "TOWN_3 amendment 5",
+ "world": "sol-B",
+ "ceiling": 20,
+ "steps": {
+  "check": {
+   "usd": 0.0021650000000000003,
+   "calls": 3,
+   "byFamily": {
+    "sol-or": 0.000492,
+    "judge": 0.000013,
+    "referee": 0.0016600000000000002
+   }
+  },
+  "sol-B": {
+   "usd": 2.555942800000002,
+   "calls": 932,
+   "byFamily": {
+    "sol-or": 2.4144285000000014,
+    "judge": 0.13382230000000012,
+    "referee": 0.007692
+   }
+  }
+ },
+ "totalUsd": 2.5581078000000024,
+ "stopped": null,
+ "balances": [
+  {
+   "label": "check",
+   "openrouter": {
+    "total": 264.82745112500015,
+    "usage": 2235.172548875,
+    "at": "2026-11-28T02:37:03.258Z"
+   },
+   "llmapi": {
+    "total": 4.29392839,
+    "at": "2026-11-28T02:37:03.179Z"
+   },
+   "at": "2026-11-28T02:37:03.258Z"
+  },
+  {
+   "label": "sol-B start",
+   "openrouter": {
+    "total": 264.82745112500015,
+    "usage": 2235.172548875,
+    "at": "2026-11-28T02:37:25.761Z"
+   },
+   "llmapi": {
+    "total": 4.29392839,
+    "at": "2026-11-28T02:37:25.711Z"
+   },
+   "at": "2026-11-28T02:37:25.761Z"
+  }
+ ],
+ "spendChecks": [
+  {
+   "at": "2026-11-28T02:37:03.258Z",
+   "label": "check",
+   "openrouter": 264.82745112500015,
+   "llmapi": 4.29392839,
+   "reserved": [
+    {
+     "stage": "TOWN_11",
+     "ceiling": 195,
+     "branch": "claude/town-11",
+     "ledger": "docs/runs/town-11-worlds/stage-ledger.json",
+     "spent": 145.25322497500005,
+     "reserve": 49.74677502499995
+    },
+    {
+     "stage": "TOWN_8 amendment 1",
+     "ceiling": 15,
+     "branch": "claude/town-8",
+     "ledger": "docs/runs/town-8-worlds/sol-unknown-c72/ledger.json",
+     "spent": 11.352990899999979,
+     "reserve": 3.6470091000000213
+    }
+   ],
+   "reserve": 53.39378412499997,
+   "need": 20,
+   "spent": 0,
+   "ok": true
+  },
+  {
+   "at": "2026-11-28T02:37:25.761Z",
+   "label": "sol-B start",
+   "openrouter": 264.82745112500015,
+   "llmapi": 4.29392839,
+   "reserved": [
+    {
+     "stage": "TOWN_11",
+     "ceiling": 195,
+     "branch": "claude/town-11",
+     "ledger": "docs/runs/town-11-worlds/stage-ledger.json",
+     "spent": 145.25322497500005,
+     "reserve": 49.74677502499995
+    },
+    {
+     "stage": "TOWN_8 amendment 1",
+     "ceiling": 15,
+     "branch": "claude/town-8",
+     "ledger": "docs/runs/town-8-worlds/sol-unknown-c72/ledger.json",
+     "spent": 11.352990899999979,
+     "reserve": 3.6470091000000213
+    }
+   ],
+   "reserve": 53.39378412499997,
+   "need": 19.997835,
+   "spent": 0.0021650000000000003,
+   "ok": true
+  }
+ ]
+}

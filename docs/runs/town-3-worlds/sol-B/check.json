@@ -1,0 +1,68 @@
+{
+ "at": "2026-11-28T02:37:07.442Z",
+ "prompt": "In one short sentence: which model are you, and who made you?",
+ "prices": {
+  "openrouter:openai/gpt-6.1-sol": {
+   "input": 0.000002,
+   "output": 0.00001,
+   "cacheRead": 1e-7,
+   "cacheWrite": 0.0000025,
+   "source": "OpenRouter endpoint openai"
+  },
+  "or-messages:anthropic/claude-haiku-5.5": {
+   "input": 1e-7,
+   "output": 5e-7,
+   "cacheRead": 1e-8,
+   "cacheWrite": 1.25e-7,
+   "source": "OpenRouter endpoint anthropic (Anthropic)"
+  },
+  "or-messages:anthropic/claude-opus-5.5": {
+   "input": 0.000004,
+   "output": 0.00002,
+   "cacheRead": 2e-7,
+   "cacheWrite": 0.000005,
+   "source": "OpenRouter endpoint anthropic (Anthropic)"
+  }
+ },
+ "results": [
+  {
+   "family": "sol-or",
+   "model": "openai/gpt-6.1-sol",
+   "pin": "openai",
+   "servedModel": "openai/gpt-6.1-sol",
+   "upstream": "OpenAI",
+   "provenance": true,
+   "text": "I’m ChatGPT, an AI model created by OpenAI.",
+   "stopReason": "end_turn",
+   "error": null,
+   "costUsd": 0.000492,
+   "ms": 2051
+  },
+  {
+   "family": "judge",
+   "model": "anthropic/claude-haiku-5.5",
+   "pin": "anthropic",
+   "servedModel": "anthropic/claude-haiku-5.5",
+   "upstream": "Anthropic",
+   "provenance": true,
+   "text": "I'm Claude, an AI model made by Anthropic.",
+   "stopReason": "end_turn",
+   "error": null,
+   "costUsd": 0.000013,
+   "ms": 608
+  },
+  {
+   "family": "referee",
+   "model": "anthropic/claude-opus-5.5",
+   "pin": "anthropic",
+   "servedModel": "anthropic/claude-opus-5.5",
+   "upstream": "Anthropic",
+   "provenance": true,
+   "text": "I'm Claude, an AI assistant made by Anthropic.",
+   "stopReason": "end_turn",
+   "error": null,
+   "costUsd": 0.0016600000000000002,
+   "ms": 1523
+  }
+ ]
+}
