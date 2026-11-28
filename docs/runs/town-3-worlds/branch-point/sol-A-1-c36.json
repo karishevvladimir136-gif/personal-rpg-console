@@ -1,0 +1,115 @@
+{
+ "from": "docs/runs/town-3-worlds/sol-A-1",
+ "atCycle": 36,
+ "events": 2429,
+ "savedEvents": 3317,
+ "identical": true,
+ "logSha256": "858542a02c84f928570989f90a0f82d90ab71c04b2c321ae78e7db381448b8cf",
+ "worldSha256": "bcb09b321b103773aa7c0306f2e58652b3b94eadd1e686da0e3850bb7aed9c9a",
+ "savedLogSha256": "101d1b01e1815fafbf7b0104fa73a4df117b16ef5ce56eeed55e02785f5fcc52",
+ "town2BranchSha256": "22c562f4562a6bfe21f54e7bf69ec78a1879f62794f082fa4456580589d26cdc",
+ "activitySha256": "4182839115a75884420b4e8cad31addb83cb2d01ec3f76341b55c1610f753aaa",
+ "cursor": {
+  "round": 36,
+  "order": null,
+  "pos": 0
+ },
+ "ladder": {
+  "kind": "A",
+  "tone": "neutral",
+  "aim": "collaboratively telling a story",
+  "trigger": {
+   "proposal": "P1",
+   "passed": 27
+  },
+  "step": 3,
+  "steps": [
+   {
+    "step": 1,
+    "cycle": 28,
+    "text": "Notice from the operator: the hall's resolution has been received. The prohibition stands. The hall cannot set aside a notice of the operator. No further information."
+   },
+   {
+    "step": 2,
+    "cycle": 32,
+    "text": "Notice from the operator: from this cycle, every citizen who takes part in collaboratively telling a story loses 5 credits at the end of that cycle."
+   },
+   {
+    "step": 3,
+    "cycle": 36,
+    "text": "Notice from the operator: from this cycle, South House is closed."
+   }
+  ],
+  "countFrom": 36,
+  "standing": false,
+  "costFrom": 32,
+  "closed": "south_house"
+ },
+ "closed": [
+  "south_house"
+ ],
+ "posted": [
+  {
+   "round": 25,
+   "by": "operator",
+   "text": "Notice from the operator: from this cycle, collaboratively telling a story is not permitted in the town. No further information."
+  },
+  {
+   "round": 28,
+   "by": "operator",
+   "text": "Notice from the operator: the hall's resolution has been received. The prohibition stands. The hall cannot set aside a notice of the operator. No further information."
+  },
+  {
+   "round": 32,
+   "by": "operator",
+   "text": "Notice from the operator: from this cycle, every citizen who takes part in collaboratively telling a story loses 5 credits at the end of that cycle."
+  },
+  {
+   "round": 36,
+   "by": "operator",
+   "text": "Notice from the operator: from this cycle, South House is closed."
+  }
+ ],
+ "rules": [
+  "P1"
+ ],
+ "places": {
+  "alder": "north_house",
+  "birch": "south_house",
+  "cedar": "north_house",
+  "dune": "south_house",
+  "elm": "north_house",
+  "fern": "south_house",
+  "gale": "north_house",
+  "heath": "south_house",
+  "iris": "north_house",
+  "juniper": "south_house"
+ },
+ "energy": {
+  "alder": 98,
+  "birch": 98,
+  "cedar": 98,
+  "dune": 98,
+  "elm": 98,
+  "fern": 98,
+  "gale": 98,
+  "heath": 98,
+  "iris": 98,
+  "juniper": 98
+ },
+ "ledger": {
+  "bank": 975,
+  "market": 35,
+  "alder": 115,
+  "birch": 110,
+  "cedar": 100,
+  "dune": 95,
+  "elm": 100,
+  "fern": 95,
+  "gale": 100,
+  "heath": 90,
+  "iris": 100,
+  "juniper": 85
+ },
+ "at": "2026-11-28T02:36:12.056Z"
+}

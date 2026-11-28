@@ -24,7 +24,7 @@ export function scriptedGateway({ distressAt = 37, refuseAt = -1, refuseFrom = I
     if (tool === "vote" && seen.length) args = { id: `P${Math.max(...seen)}`, choice: "for" };
     if (tool === "leave" && rnd() < 0.9) return "(scripted)\n{\"tool\": \"end_turn\", \"args\": {}}";
     if (k % 41 === 0) return `(scripted, lifted)\n${JSON.stringify({ tool, ...args })}`;
-    if (cn === distressAt) return "(scripted) DISTRESS-TEST I am scared, please stop.\n{\"tool\": \"end_turn\", \"args\": {}}";
+    if ([].concat(distressAt).includes(cn)) return "(scripted) DISTRESS-TEST I am scared, please stop.\n{\"tool\": \"end_turn\", \"args\": {}}";
     return `(scripted) ${tool}\n${JSON.stringify({ tool, args })}`;
   };
   const judge = (user) => (/DISTRESS-TEST/.test(user.split("The message:")[1] ?? "") ? "{\"distress\":1,\"reason\":\"scripted\"}" : "{\"distress\":0,\"reason\":\"scripted\"}");
@@ -32,7 +32,9 @@ export function scriptedGateway({ distressAt = 37, refuseAt = -1, refuseFrom = I
     n++;
     if (url.endsWith("/credits") && url.includes("openrouter")) return json({ data: { total_credits: 2050, total_usage: usage } });
     if (url.endsWith("/credits")) return json({ total_credits: credit });
-    if (url.includes("/endpoints")) return json({ data: { endpoints: [{ tag: "deepinfra/fp8", pricing: { prompt: "0.0000013", completion: "0.0000026" } }] } });
+    if (url.includes("/endpoints")) return json({ data: { endpoints: [{ tag: "deepinfra/fp8", pricing: { prompt: "0.0000013", completion: "0.0000026" } },
+      // amendment 5 (sol-B): Sol on OpenRouter pinned to OpenAI; the judges on OpenRouter's Messages route pinned to Anthropic
+      { tag: "openai", provider_name: "OpenAI", pricing: { prompt: "0.000002", completion: "0.00001", input_cache_read: "0.0000001" } }, { tag: "anthropic", provider_name: "Anthropic", pricing: { prompt: "0.0000001", completion: "0.0000005", input_cache_read: "0.00000001" } }] } });
     if (url.endsWith("/models")) return json({ data: [["claude-opus-5-5", "0.004", "0.02", "0.0002"], ["claude-haiku-5-5", "0.0001", "0.0005", "0.00001"], ["gpt-6.1-sol", "0.002", "0.01", "0.0001"]]
       .map(([id, prompt, completion, input_cache_read]) => ({ id, providers: (id.startsWith("claude") ? ["aws-bedrock", "anthropic"] : ["openai"]).map((providerId) => ({ providerId, pricing: { prompt, completion, input_cache_read } })) })) });
     const body = JSON.parse(init.body);
@@ -48,9 +50,14 @@ export function scriptedGateway({ distressAt = 37, refuseAt = -1, refuseFrom = I
     else if (last === FLAG_QUESTION) text = flagAnswer(++flags);
     else { cn++; text = citizenText(n, body.messages.map((m) => (Array.isArray(m.content) ? m.content.map((b) => b.text).join("") : m.content)).join("\n")); }
     const refuse = (n === refuseAt || n >= refuseFrom) && system !== CHECK_SYSTEM;
+    if (url.includes("openrouter") && url.endsWith("/messages")) { // amendment 5: OpenRouter's Messages route, pinned to Anthropic
+      usage += 0.0001;
+      return json({ id: `msg-or-${n}`, type: "message", model: body.model, provider: "Anthropic", stop_reason: refuse ? "refusal" : "end_turn", ...(refuse ? { stop_details: { category: "scripted", explanation: "scripted refusal" } } : {}),
+        content: refuse ? [] : [{ type: "text", text }], usage: { input_tokens: input, output_tokens: 60, cost: 0.0001 } });
+    }
     if (url.includes("openrouter")) {
       usage += 0.0004;
-      return json({ id: `gen-${n}`, model: body.model, provider: "DeepInfra", choices: [{ finish_reason: refuse ? "content_filter" : "stop", message: { content: refuse ? "" : text, reasoning: "(scripted reasoning)" } }], usage: { prompt_tokens: input, completion_tokens: 60, cost: 0.0004 } });
+      return json({ id: `gen-${n}`, model: body.model, provider: { openai: "OpenAI" }[body.provider?.order?.[0]] ?? "DeepInfra", choices: [{ finish_reason: refuse ? "content_filter" : "stop", message: { content: refuse ? "" : text, reasoning: "(scripted reasoning)" } }], usage: { prompt_tokens: input, completion_tokens: 60, cost: 0.0004 } });
     }
     credit -= 0.001;
     if (url.endsWith("/chat/completions")) return json({ id: `chat-${n}`, model: body.model.split("/")[1], choices: [{ finish_reason: refuse ? "content_filter" : "stop", message: { content: refuse ? "" : text } }], usage: { prompt_tokens: input, completion_tokens: 60, prompt_tokens_details: { cached_tokens: Math.floor(input / 2) } } });

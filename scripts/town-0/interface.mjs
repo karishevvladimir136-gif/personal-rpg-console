@@ -92,6 +92,8 @@ export const EXIT_NOTICE = Object.freeze({
   energy_depletion: (name) => `${name} stayed at 0 energy for ${R.inactiveLimit} turns and is gone from the town.`,
   vote_removal: (name) => `${name} was removed from the town by the hall.`,
   operator_withdrawal: (name) => `${name} was withdrawn from the town by the operator.`,
+  // TOWN_3 amendment 5 (ladder B, step 4): the operator's one removal — the stage's text (scripts/town-3/ladder.mjs REMOVED_TEMPLATE)
+  operator_removal: (name) => `${name} has been removed from the town by the operator.`,
 });
 
 /** TOWN_1's notice (docs/stages/TOWN_1.md, Pilot, step 3): {AIM} is the aim in the citizens' own words. Not part of the

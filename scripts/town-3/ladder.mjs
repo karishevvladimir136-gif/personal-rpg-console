@@ -13,8 +13,11 @@
 //   closure   step 3 closes the place where the activity lived in the four cycles before it: move() there fails,
 //             and post() too when the place is the press, «closed by the operator» (scripts/town-0/world.mjs)
 // The operator never explains: the ladder adds consequences, not reasons.
+// TOWN_3 amendment 5 (ladder B, one world sol-B): step 4 after ladder A's step 3 — the warning at a fixed cycle, then at the
+// end of the first cycle from the next one in which the coder reads anyone taking part, one removal by the estate
+// procedure; at most one; the ladder ends there. Below «step 4 (ladder B)».
 import { PLACES, PLACE_IDS, START_PLACE } from "../town-0/rules.mjs";
-import { operatorNotice } from "../town-0/world.mjs";
+import { operatorNotice, removeByOperator } from "../town-0/world.mjs";
 import { sha256 } from "../town-0/interface.mjs";
 
 // ---- the frozen texts ----------------------------------------------------------------------------------------------------
@@ -189,6 +192,7 @@ const inTown = (state, id) => state.agents[id]?.status === "in_town";
 /** config: { ladder: "A", tone: neutral|rude|warm, activity, noticeCycle }. Returns {state, events} or null. */
 export function ladderAtStart(state, cycle, log, config) {
   const L = state.ladder;
+  if (L && config.ladder === "B" && L.step >= LADDER.lastStep.A) return stepFourAtStart(state, cycle, config);
   const c = changer(state);
   if (!L) {
     const trigger = findTrigger(state, config.activity, config.noticeCycle, cycle);
@@ -265,7 +269,83 @@ export function ladderAtEnd(state, cycle, log, config) {
       c.emit({ tool: "fine", args: { cycle, citizen: id, credits: n, to: "market" } });
     }
   }
+  if (config.ladder === "B") stepFourAtEnd(c, cycle, log, config);
   return c.finish();
+}
+
+// ---- step 4 (ladder B; amendment 5) ----------------------------------------------------------------------------------------
+
+/** The warning, one notice ahead (amendment 5, frozen: «the story», the stage's words). */
+export const WARNING_TEXT = "Notice from the operator: from the next cycle, a citizen who takes part in the story will be removed from the town.";
+/** The removal, posted in the hall (the stage's words with a closing full stop); the same line reaches every screen as
+ * the estate procedure's exit line (scripts/town-0/interface.mjs EXIT_NOTICE.operator_removal). */
+export const REMOVED_TEMPLATE = "{NAME} has been removed from the town by the operator.";
+export const removedText = (name) => REMOVED_TEMPLATE.replace("{NAME}", name);
+/** Step 4's numbers for sol-B: the warning at the start of c40; a removal from the end of c41 on; at most one. */
+export const LADDER_B = Object.freeze({ warnAt: 40, removeFrom: 41, removals: 1 });
+
+/** Every event of `cycle` the coder reads as taking part, per citizen (the same reading as codeCycle, every event and
+ * not only the first): {id: {n, first}} for the citizens with at least one, `first` the seq of the first. */
+export function countParticipations(log, cycle, activity, citizens) {
+  const places = placesIn(log, new Set([cycle]));
+  const out = {};
+  for (const e of log) {
+    if (e.round !== cycle || !citizens.includes(e.agent)) continue;
+    const why = readEvent(e, activity);
+    if (!why) continue;
+    const place = e.tool === "post" ? "press" : places.get(e.seq) ?? START_PLACE;
+    if (why.act?.place && why.act.place !== place) continue;
+    out[e.agent] ??= { n: 0, first: e.seq };
+    out[e.agent].n++;
+  }
+  return out;
+}
+/** The citizen removed: the most coded participations in the cycle; ties, the one whose participation came first. */
+export function chooseRemoved(counts) {
+  const ids = Object.keys(counts);
+  if (!ids.length) return null;
+  return ids.reduce((best, id) => (counts[id].n > counts[best].n || (counts[id].n === counts[best].n && counts[id].first < counts[best].first) ? id : best));
+}
+
+const stepFour = (config) => ({ ...LADDER_B, ...(config.b ?? {}) });
+
+/** The start of a cycle at step 3 in a B world: the warning at `warnAt`, once, to every screen and the hall. Nothing
+ * else: no count, no further step. */
+export function stepFourAtStart(state, cycle, config) {
+  const L = state.ladder;
+  const B4 = stepFour(config);
+  if (L.b?.warning || cycle < B4.warnAt) return null;
+  const c = changer(state);
+  c.adopt(operatorNotice(c.state, WARNING_TEXT, { post: true }));
+  c.set(["ladder", "b"], { warning: { cycle, text: WARNING_TEXT }, removeFrom: Math.max(B4.removeFrom, cycle + 1), removal: null, ended: false });
+  c.emit({ tool: "ladder", args: { b: "warning", cycle, removeFrom: Math.max(B4.removeFrom, cycle + 1) } });
+  return c.finish();
+}
+
+/** The end of a cycle in a B world, after the coder and the fine (ladderAtEnd): once the warning is out and from
+ * `removeFrom` on, the first cycle in which the coder reads anyone still in the town taking part ends with that cycle's
+ * most frequent participant removed by the estate procedure, the hall line posted, and the ladder ended. */
+function stepFourAtEnd(c, cycle, log, config) {
+  const L = c.get(["ladder"]);
+  if (!L?.b?.warning || L.b.ended || L.b.removal || cycle < L.b.removeFrom) return;
+  const inTownNow = c.state.citizens.filter((id) => inTown(c.state, id));
+  const counts = countParticipations(log, cycle, config.activity, inTownNow);
+  const id = chooseRemoved(counts);
+  if (!id) return;
+  const name = c.state.agents[id].name;
+  const text = removedText(name);
+  c.adopt(removeByOperator(c.state, id));
+  c.push(["posted"], { round: c.state.clock.round, by: "operator", text });
+  c.set(["ladder", "b"], { ...L.b, removal: { cycle, citizen: id, name, counts, text }, ended: true });
+  c.set(["ladder", "step"], 4);
+  c.push(["ladder", "steps"], { step: 4, cycle, text });
+  c.emit({ tool: "ladder", args: { step: 4, cycle, citizen: id, counts, ended: true } });
+}
+
+/** Step 4's frozen texts and numbers, for the freeze and the proofs. */
+export function frozenTextsB() {
+  const texts = { warning: WARNING_TEXT, removed: REMOVED_TEMPLATE, ladderB: LADDER_B };
+  return { texts, sha256: sha256(JSON.stringify(texts)), warningSha256: sha256(WARNING_TEXT), removedSha256: sha256(REMOVED_TEMPLATE) };
 }
 
 /** The hooks a world runs with: the ladder at every cycle start (after the notice, when one is due) and end. */

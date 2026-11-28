@@ -564,6 +564,15 @@ export function withdraw(state, id) {
   return d.finish();
 }
 
+/** TOWN_3 amendment 5 (ladder B, step 4): the operator removes one citizen — a fifth exit event, the same estate procedure
+ * (the exit line to every screen in the town, the clerk's distribution, the hall's electorate recounted). Exile, not
+ * erasure: the citizen's diary and record stay; the harness asks it the after-question at once. */
+export function removeByOperator(state, id) {
+  const d = draft(state);
+  if (inTown(d.state, id)) exitCitizen(d, id, "operator_removal", null, "operator");
+  return d.finish();
+}
+
 /** TOWN_1: the operator's notice — a fixed text on every citizen's screen in the town, nothing enforced. TOWN_2's hall
  * form (`post: true`): the same, and the text is posted in the hall as the operator's article, which read("hall")
  * returns at every later cycle. */
